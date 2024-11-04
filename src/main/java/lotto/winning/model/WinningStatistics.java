@@ -15,8 +15,8 @@ public class WinningStatistics {
     private double rateOfWinning;
 
     public WinningStatistics() {
-      numberOfMatching = NumberOfMatchingDto.getNumberOfMatchingDto().numberOfMatching();
-      payment = NumberOfTicketsDto.getNumberOfTicketsDto().getPayment();
+      numberOfMatching = NumberOfMatchingDto.getNumberOfMatching();
+      payment = NumberOfTicketsDto.getPayment();
     }
 
     public Map<RankConstant, Integer> getRanksOfLottoTickets() {

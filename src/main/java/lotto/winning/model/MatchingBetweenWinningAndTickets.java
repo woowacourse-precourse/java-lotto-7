@@ -14,9 +14,9 @@ public class MatchingBetweenWinningAndTickets {
     private List<Integer> numberOfMatching;
     
     public MatchingBetweenWinningAndTickets() {
-        LottoTickets = LottoTicketsDto.getLottoTicketsDto().LottoTickets();
-        winningNumbers = WinningNumberDto.getWinningNumberDto().winningNumbers();
-        bonusNumber = BonusNumberDto.getBonusNumberDto().bonusNumber();
+        LottoTickets = LottoTicketsDto.getLottoTickets();
+        winningNumbers = WinningNumberDto.getWinningNumbers();
+        bonusNumber = BonusNumberDto.getBonusNumber();
     }
     
     public List<Integer> getMatching() {

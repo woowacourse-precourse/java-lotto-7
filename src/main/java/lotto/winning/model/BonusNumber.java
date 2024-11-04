@@ -2,7 +2,7 @@ package lotto.winning.model;
 
 import java.util.List;
 import lotto.dto.WinningNumberDto;
-import lotto.winning.ValidatorOfWinningNumber;
+import lotto.winning.validator.ValidatorOfWinningNumber;
 
 public class BonusNumber {
     private int bonusNumber;
@@ -11,7 +11,7 @@ public class BonusNumber {
 
     public BonusNumber() {
         this.validator = ValidatorOfWinningNumber.getValidator();
-        winningNumbers = WinningNumberDto.getWinningNumberDto().winningNumbers();
+        winningNumbers = WinningNumberDto.getWinningNumbers();
     }
 
     public int getBonusNumber(String inputBonusNumber) {

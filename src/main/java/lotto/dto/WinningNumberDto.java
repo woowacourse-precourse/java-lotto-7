@@ -2,16 +2,14 @@ package lotto.dto;
 
 import java.util.List;
 
-public record WinningNumberDto(
-        List<Integer> winningNumbers
-) {
-    private static WinningNumberDto winningNumberDto;
+public class WinningNumberDto {
+    private static List<Integer> winningNumbers;
 
-    public WinningNumberDto {
-        winningNumberDto = new WinningNumberDto(winningNumbers);
+    public static void set(List<Integer> winningNumbers) {
+        WinningNumberDto.winningNumbers = winningNumbers;
     }
 
-    public static WinningNumberDto getWinningNumberDto() {
-        return winningNumberDto;
+    public static List<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 }

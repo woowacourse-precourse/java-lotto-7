@@ -1,4 +1,4 @@
-package lotto.winning;
+package lotto.winning.validator;
 
 import java.util.List;
 
@@ -31,6 +31,10 @@ public class ValidatorOfWinningNumber {
     }
 
     public void validateDegenerate(List<Integer> winningNumbers, int number) {
+        if (winningNumbers == null) {
+            return;
+        }
+
         boolean isDegenerated = winningNumbers.contains(number);
         if (isDegenerated) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");

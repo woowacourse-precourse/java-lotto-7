@@ -33,7 +33,7 @@ public class WinningController {
         try {
             String inputWinningNumbers = inputWinningNumberView.getInputWinningNumbers();
             List<Integer> validWinningNumbers = winningNumbers.getWinningNumbers(inputWinningNumbers);
-            new WinningNumberDto(validWinningNumbers);
+            WinningNumberDto.set(validWinningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + "\n");
             inputWinningNumberView.setNullInputWinningNumbers();
@@ -45,7 +45,7 @@ public class WinningController {
         try {
             String inputBonusNumber = inputWinningNumberView.getInputBonusNumber();
             int validBonusNumber = bonusNumber.getBonusNumber(inputBonusNumber);
-            new BonusNumberDto(validBonusNumber);
+            BonusNumberDto.set(validBonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + "\n");
             inputWinningNumberView.setNullInputBonusNumber();
@@ -56,7 +56,7 @@ public class WinningController {
     private void calculateMatching() {
         MatchingBetweenWinningAndTickets matching = new MatchingBetweenWinningAndTickets();
         List<Integer> numberOfMatching = matching.getMatching();
-        new NumberOfMatchingDto(numberOfMatching);
+        NumberOfMatchingDto.set(numberOfMatching);
     }
 
     private void generateWinningStatics() {

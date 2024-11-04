@@ -1,17 +1,17 @@
 package lotto.dto;
 
-public record NumberOfTicketsDto(int numberOfTickets) {
-    private static NumberOfTicketsDto numberOfTicketsDto;
+public class NumberOfTicketsDto {
+    private static int numberOfTickets;
 
-    public NumberOfTicketsDto {
-        numberOfTicketsDto = new NumberOfTicketsDto(numberOfTickets);
+    public static void set(int numberOfTickets) {
+        NumberOfTicketsDto.numberOfTickets = numberOfTickets;
     }
 
-    public static NumberOfTicketsDto getNumberOfTicketsDto() {
-        return numberOfTicketsDto;
+    public static int getNumberOfTickets() {
+        return numberOfTickets;
     }
 
-    public int getPayment() {
+    public static int getPayment() {
         return numberOfTickets * 1_000;
     }
 }

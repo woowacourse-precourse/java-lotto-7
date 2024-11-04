@@ -2,14 +2,14 @@ package lotto.dto;
 
 import java.util.List;
 
-public record NumberOfMatchingDto(List<Integer> numberOfMatching) {
-    private static NumberOfMatchingDto numberOfMatchingDto;
+public class NumberOfMatchingDto {
+    private static List<Integer> numberOfMatching;
 
-    public NumberOfMatchingDto {
-        numberOfMatchingDto = new NumberOfMatchingDto(numberOfMatching);
+    public static void set(List<Integer> numberOfMatching) {
+        NumberOfMatchingDto.numberOfMatching = numberOfMatching;
     }
 
-    public static NumberOfMatchingDto getNumberOfMatchingDto() {
-        return numberOfMatchingDto;
+    public static List<Integer> getNumberOfMatching() {
+        return numberOfMatching;
     }
 }

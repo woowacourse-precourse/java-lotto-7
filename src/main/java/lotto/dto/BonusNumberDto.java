@@ -1,13 +1,13 @@
 package lotto.dto;
 
-public record BonusNumberDto (int bonusNumber) {
-    private static BonusNumberDto bonusNumberDto;
+public class BonusNumberDto {
+    private static int bonusNumber;
 
-    public BonusNumberDto {
-        bonusNumberDto = new BonusNumberDto(bonusNumber);
+    public static void set(int bonusNumber) {
+        BonusNumberDto.bonusNumber = bonusNumber;
     }
 
-    public static BonusNumberDto getBonusNumberDto() {
-        return bonusNumberDto;
+    public static int getBonusNumber() {
+        return bonusNumber;
     }
 }
