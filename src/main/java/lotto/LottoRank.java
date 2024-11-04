@@ -6,7 +6,7 @@ public enum LottoRank {
     Third(5, false, 1500000),
     Fourth(4, false, 50000),
     Fifth(3, false, 5000),
-    None(0,false,0);
+    None(-1, false, 0);
 
     private final int matchCount;
     private final boolean matchBonus;

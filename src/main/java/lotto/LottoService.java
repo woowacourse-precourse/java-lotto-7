@@ -10,11 +10,7 @@ import java.util.stream.Collectors;
 
 public class LottoService {
 
-    public LottoRank prizeWinningDiscriminationPerLotto(
-            List<Integer> winningNumbers,
-            int bonusNumber,
-            List<Integer> lotto
-    ) {
+    public LottoRank prizeWinningDiscriminationPerLotto( List<Integer> winningNumbers, int bonusNumber, List<Integer> lotto) {
 
         int countOfMatch = 0;
         boolean isMatchBonus = false;
@@ -25,7 +21,7 @@ public class LottoService {
             }
         }
 
-        if (lotto.contains(bonusNumber)) isMatchBonus = true;
+        if (lotto.contains(bonusNumber) && countOfMatch == 5) isMatchBonus = true;
 
         return LottoRank.valueOf(countOfMatch, isMatchBonus);
     }
