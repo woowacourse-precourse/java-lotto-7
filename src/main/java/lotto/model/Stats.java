@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.LottoMatchState;
-
 import java.util.HashMap;
 import java.util.Map;
 

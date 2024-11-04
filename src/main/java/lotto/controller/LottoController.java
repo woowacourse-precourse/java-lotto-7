@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.LottoMatchState;
+import lotto.model.LottoMatchState;
 import lotto.model.LottoMachine;
 import lotto.model.Lottos;
 import lotto.util.Parser;
@@ -12,22 +12,20 @@ import java.util.Map;
 public class LottoController {
     private final ViewFacade viewFacade;
     private final LottoMachine lottoMachine;
-    private final Parser parser;
 
-    public LottoController(ViewFacade viewFacade, LottoMachine lottoMachine, Parser parser) {
+    public LottoController(ViewFacade viewFacade, LottoMachine lottoMachine) {
         this.viewFacade = viewFacade;
         this.lottoMachine = lottoMachine;
-        this.parser = parser;
     }
 
     public void run() {
-        int purchaseAmount = parser.purchaseAmountParser(viewFacade.readPurchaseAmount());
+        int purchaseAmount = Parser.purchaseAmountParser(viewFacade.readPurchaseAmount());
         Lottos lottos = lottoMachine.issueLottos(purchaseAmount);
         viewFacade.printIssuedLottos(lottos);
 
-        List<Integer> winningNums = parser.winningNumsParser(viewFacade.readWinningNums());
+        List<Integer> winningNums = Parser.winningNumsParser(viewFacade.readWinningNums());
         lottoMachine.updateWinningNums(winningNums);
-        int bonusNum = parser.bonusNumParser(viewFacade.readBonusNum());
+        int bonusNum = Parser.bonusNumParser(viewFacade.readBonusNum());
         lottoMachine.updateBonusNum(bonusNum);
 
         lottoMachine.updateWinningDetail(lottos);

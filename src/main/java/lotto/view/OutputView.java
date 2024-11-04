@@ -1,9 +1,8 @@
 package lotto.view;
 
-import lotto.LottoMatchState;
+import lotto.model.LottoMatchState;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
-import lotto.util.Parser;
 
 import java.util.Map;
 

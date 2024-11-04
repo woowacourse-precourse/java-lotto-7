@@ -1,7 +1,6 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.LottoMatchState;
 
 import java.util.List;
 import java.util.Map;

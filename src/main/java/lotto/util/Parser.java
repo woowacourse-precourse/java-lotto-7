@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Parser {
-    public int purchaseAmountParser(String inputPurchaseAmount) {
+    public static int purchaseAmountParser(String inputPurchaseAmount) {
         return Integer.parseInt(inputPurchaseAmount);
     }
 
-    public List<Integer> winningNumsParser(String inputWinningNums) {
+    public static List<Integer> winningNumsParser(String inputWinningNums) {
         List<Integer> winningNums = new ArrayList<>();
         StringTokenizer stringTokenizer = new StringTokenizer(inputWinningNums, ",");
         while (stringTokenizer.hasMoreTokens()) {
@@ -19,7 +19,7 @@ public class Parser {
         return winningNums;
     }
 
-    public int bonusNumParser(String inputBonusNum) {
+    public static int bonusNumParser(String inputBonusNum) {
         return Integer.parseInt(inputBonusNum);
     }
 }
