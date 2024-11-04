@@ -1,5 +1,7 @@
 package lotto.dto;
 
+import java.util.List;
+
 public class BonusNumber {
     private final int bonusNumber;
 
@@ -29,5 +31,9 @@ public class BonusNumber {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이여야 합니다");
         }
+    }
+
+    public boolean isBonusNumberMatched(List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
     }
 }
