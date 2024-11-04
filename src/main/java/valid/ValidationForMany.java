@@ -3,19 +3,7 @@ package valid;
 import java.util.Arrays;
 import java.util.List;
 
-public class Validation {
-    public void consistOfOnlyPositiveNumbers(String money) {
-        try {
-            Integer.parseInt(money);
-        } catch (NumberFormatException ie) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
-        }
-
-        if (Integer.parseInt(money) <= 0) {
-            throw new IllegalArgumentException("[ERROR] 0 보다 큰 숫자를 입력 해주세요.");
-        }
-    }
-
+public class ValidationForMany {
     public void consistOfOnlySixPositiveNumbers(String winningNumbers) {
         List<String> numbers = Arrays.stream(winningNumbers.split(",")).toList();
         if (numbers.size() != 6) {
