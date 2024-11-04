@@ -11,6 +11,9 @@ public enum LottoRank {
     FIFTH(5000L, "3개 일치 (5,000원) - "),
     OUT_OF_RANK(0L, null);
 
+    private static final int FIFTH_THRESHOLD = 3;
+    private static final int FOURTH_THRESHOLD = 4;
+    private static final int FIRST_THRESHOLD = 6;
     private final long winningAmount;
     private final String description;
 
@@ -35,16 +38,16 @@ public enum LottoRank {
     }
 
     public static LottoRank calculateLottoRank(int numberMatchingCount, boolean containsBonusNumber) {
-        if (numberMatchingCount < 3) {
+        if (numberMatchingCount < FIFTH_THRESHOLD) {
             return OUT_OF_RANK;
         }
-        if (numberMatchingCount == 3) {
+        if (numberMatchingCount == FIFTH_THRESHOLD) {
             return FIFTH;
         }
-        if (numberMatchingCount == 4) {
+        if (numberMatchingCount == FOURTH_THRESHOLD) {
             return FOURTH;
         }
-        if (numberMatchingCount == 6) {
+        if (numberMatchingCount == FIRST_THRESHOLD) {
             return FIRST;
         }
         return calculateLottoRankByBonusNumber(containsBonusNumber);
