@@ -75,7 +75,7 @@ public class LottoTickets {
         return calculateTotalProfitRate(totalProfit, money);
     }
 
-    private Double calculateTotalProfitRate(double totalProfit, int money) {
+    private double calculateTotalProfitRate(double totalProfit, int money) {
         return (totalProfit / money) * PERCENTAGE;
     }
 }
