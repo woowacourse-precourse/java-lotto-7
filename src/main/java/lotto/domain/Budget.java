@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static lotto.constant.ErrorMessage.INVALID_BUDGET;
-import static lotto.constant.ErrorMessage.NOT_INPUT_BUDGET;
 import static lotto.util.IntegerConvertor.parse;
 
 public class Budget {
