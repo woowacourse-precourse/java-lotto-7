@@ -8,12 +8,17 @@ import static lotto.model.Winning.SECOND;
 import static lotto.model.Winning.THIRD;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 class WinningTest {
 
@@ -26,6 +31,21 @@ class WinningTest {
 
 		// then
 		assertEquals(winning, winningResult);
+	}
+
+	@Test
+	@DisplayName("총 상금을 정확하게 반환할 수 있다.")
+	void 총_상금을_정확하게_반환한다() {
+		// given
+		Map<Winning, Integer> winningResult = Winning.initializeWinningResults();
+		int count = Randoms.pickUniqueNumbersInRange(1, 10, 1).getFirst();
+		winningResult.put(FIRST, count);
+
+		// when
+		long totalWinningPrize = Winning.getTotalWinningPrize(winningResult);
+
+		// then
+		assertEquals(FIRST.getPrize() * count, totalWinningPrize);
 	}
 
 	private static Stream<Arguments> provideAllCasesWinning() {
