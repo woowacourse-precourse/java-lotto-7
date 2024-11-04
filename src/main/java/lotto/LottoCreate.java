@@ -7,10 +7,12 @@ import java.util.stream.Collectors;
 
 public class LottoCreate {
     private final int count;
-    private List<Lotto> lottoList = new ArrayList<>();
+    private final int amount;
+    private final List<Lotto> lottoList = new ArrayList<>();
 
-    public LottoCreate(int amount) {
-        validate(amount);
+    public LottoCreate(String input) {
+        int amount = validate(input);
+        this.amount = amount;
         this.count = amount / 1000;
         createLotto();
     }
@@ -21,11 +23,13 @@ public class LottoCreate {
         }
     }
 
-    private void validate(int amount) {
+    private int validate(String input) {
         try {
+            int amount = Integer.parseInt(input);
             if(amount % 1000 > 0) {
                 throw new IllegalArgumentException("[ERROR] 구입금액은 1,000 단위로 입력하셔야 합니다.");
             }
+            return amount;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 숫자만 입력하셔야 합니다.");
         }
@@ -40,5 +44,9 @@ public class LottoCreate {
 
     public List<Lotto> getLottoList() {
         return lottoList;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }
