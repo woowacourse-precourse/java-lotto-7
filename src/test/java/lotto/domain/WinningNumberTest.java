@@ -24,8 +24,21 @@ class WinningNumberTest {
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    public void 당첨번호파싱_공백허용_정상테스트() throws Exception {
+        //Given
+        String input = "1,10,20, 30 ,40 ,45";
+        String expected = "[1, 10, 20, 30, 40, 45]";
+
+        //When
+        String actual = WinningNumber.parse(input).retrieveLottoNumber();
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
     @ParameterizedTest
-    @ValueSource(strings = {"", "1,,3,4,5,6", "1,2,3,4,5,46", "1,2,3,4,5, 6"})
+    @ValueSource(strings = {"", "1,,3,4,5,6", "1,2,3,4,5,46"})
     public void 당첨번호파싱_로또숫자_예외테스트(String input) throws Exception {
         //Given
 

@@ -14,6 +14,7 @@ public class WinningNumber extends Lotto {
     public static WinningNumber parse(String input) {
         List<String> inputItems = Arrays.asList(input.split(WINNING_NUMBER_SPLIT_REGEX));
         List<Integer> lottoNumbers = inputItems.stream()
+                .map(String::trim)
                 .map(LottoNumber::parseLottoNumber)
                 .map(LottoNumber::getNumber)
                 .toList();
