@@ -1,12 +1,14 @@
-package lotto;
+package lotto.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DisplayName("로또 객체 테스트")
 class LottoTest {
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
@@ -21,5 +23,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 1에서 45 사이가 아니면 예외가 발생한다.")
+    @Test
+    void throwExceptionOverLimitNumber() {
+        assertThatThrownBy(() -> Lotto.createUserLotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 1에서 45 사이의 숫자로만 이루어지면 예외가 발생하지 않는다")
+    @Test
+    void notThrowExceptionWithinValidRange() {
+        assertThatCode(() -> Lotto.createUserLotto(List.of(1, 2, 3, 4, 5, 45)))
+                .doesNotThrowAnyException();
+    }
 }
