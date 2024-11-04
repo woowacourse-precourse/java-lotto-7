@@ -44,6 +44,7 @@ public class LottoController {
     }
 
     private int setBonusNumber(Lotto winLotto) {
+        System.out.println();
         String bonusNumber = inputView.getBonusNumber();
         return BonusNumberProcessor.validateAndParse(winLotto.getNumbers(), bonusNumber);
     }
