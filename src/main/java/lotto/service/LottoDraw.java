@@ -13,8 +13,8 @@ public class LottoDraw {
     private final int MAX_NUMBER_RANGE = 45;
     private final int RANDOM_NUMBER_COUNT = 6;
 
-    private int numberOfPurchases;
-    private List<Lotto> lottoDrawNumbers;
+    private final int numberOfPurchases;
+    private final List<Lotto> lottoDrawNumbers;
 
     public LottoDraw(int purchaseAmount) {
         numberOfPurchases = purchaseAmount / LOTTO_PRICE;

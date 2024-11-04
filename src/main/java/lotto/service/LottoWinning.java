@@ -3,18 +3,19 @@ package lotto.service;
 import lotto.domain.Lotto;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoWinning {
     private int bonusNumber;
     private Lotto winningNumbers;
-    private LottoDraw lottoDraw;
+    private List<Lotto> lottoDrawNumbers;
     private Map<String, Integer> winningLotto;
 
-    public LottoWinning(Lotto winningNumbers, int bonusNumber, LottoDraw lottoDraw) {
+    public LottoWinning(Lotto winningNumbers, int bonusNumber, List<Lotto> lottoDrawNumbers) {
         this.bonusNumber = bonusNumber;
         this.winningNumbers = winningNumbers;
-        this.lottoDraw = lottoDraw;
+        this.lottoDrawNumbers = lottoDrawNumbers;
         this.winningLotto = setWinningLotto();
         calculateWinningResult();
     }
@@ -34,7 +35,7 @@ public class LottoWinning {
     }
 
     private void calculateWinningResult() {
-        for (Lotto lotto : lottoDraw.getLottoDrawNumbers()) {
+        for (Lotto lotto : lottoDrawNumbers) {
             int matchCount = calculateMatchCount(lotto);
             boolean hasBonus = hasBonusNumber(lotto);
             String mapKeyString = updateWinningLotto(matchCount, hasBonus);
