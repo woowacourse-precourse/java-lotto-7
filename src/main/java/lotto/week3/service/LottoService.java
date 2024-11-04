@@ -7,14 +7,10 @@ import lotto.week3.dto.WinningNumberRequestDto;
 import lotto.week3.model.LottoGenerator;
 import lotto.week3.model.LottoMatching;
 import lotto.week3.model.LottoStatistics;
-import lotto.week3.view.InputView;
+
 
 
 public class LottoService {
-
-    // 구입 금액 입력
-    int purchaseAmount = InputView.purchaseAmountInput();
-    PurchaseRequestDto purchaseRequestDto = new PurchaseRequestDto(purchaseAmount);
 
 
     // 로또 발행
@@ -28,7 +24,6 @@ public class LottoService {
     public void  calculateWinningStatistics(LottoMatching lottoMatching,WinningNumberRequestDto winningNumber) {
         lottoMatching.mathing(winningNumber.getWinningNumbers(), winningNumber.getBonusNumber());
     }
-
 
     /*
     로또 번호 매칭 - > 당첨번호랑 자동 발급된 번호 매칭 -> 확률 구현
