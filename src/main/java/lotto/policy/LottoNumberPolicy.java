@@ -9,7 +9,7 @@ import static lotto.constants.LottoConstants.*;
 
 public enum LottoNumberPolicy {
 
-    RANDOM_NUMBERS(() -> Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT_NUMBER));
+    RANDOM_NUMBERS(() -> Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_COUNT));
 
     private final Supplier<List<Integer>> policy;
 

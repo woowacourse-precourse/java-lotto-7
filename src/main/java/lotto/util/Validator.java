@@ -46,7 +46,7 @@ public abstract class Validator {
     }
 
     private static void validateSize(List<Integer> intList) {
-        if (intList.size() != 6) {
+        if (intList.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException(INVALID_NUMBER_SIZE.getMessage());
         }
     }
