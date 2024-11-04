@@ -41,10 +41,21 @@ public class LottoResult {
     }
 
     public double calculateProfit(Money money) {
-        long totalPrize = rankCounts.entrySet().stream()
+        if (money == null) {
+            throw new IllegalStateException("금액이 초기화되지 않았습니다.");
+        }
+        if (rankCounts == null || rankCounts.isEmpty()) {
+            throw new IllegalStateException("당첨 결과가 계산되지 않았습니다.");
+        }
+
+        long totalPrize = calculateTotalPrize();
+        double profitRate = (totalPrize * 100.0) / money.getAmount();
+        return Math.round(profitRate * 10) / 10.0; // 소수점 둘째 자리에서 반올림
+    }
+
+    private long calculateTotalPrize() {
+        return rankCounts.entrySet().stream()
                 .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
                 .sum();
-
-        return (totalPrize * 100.0) / money.getAmount();
     }
 }
