@@ -30,4 +30,23 @@ public class LottoService {
         }
         return lottos;
     }
+
+    private Long matchLottoNumbers(List<Integer> lotto, List<BigInteger> winning) {
+        List<BigInteger> bigIntegerLotto = lotto.stream()
+                .map(BigInteger::valueOf)
+                .toList();
+
+        return bigIntegerLotto.stream()
+                .filter(winning::contains)
+                .count();
+    }
+
+    private boolean matchBonusNumbers(List<Integer> lotto, BigInteger bonusNumber) {
+        List<BigInteger> bigIntegerLotto = lotto.stream()
+                .map(BigInteger::valueOf)
+                .toList();
+
+        return bigIntegerLotto.stream()
+                .anyMatch(number -> number.equals(bonusNumber));
+    }
 }
