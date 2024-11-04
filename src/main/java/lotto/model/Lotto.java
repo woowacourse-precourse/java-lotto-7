@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.exception.ErrorMessage;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -15,8 +16,11 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        this.numbers = new ArrayList<>(numbers);
+    }
+
+    public void sort() {
         Collections.sort(numbers);
-        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
