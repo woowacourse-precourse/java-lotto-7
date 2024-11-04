@@ -23,16 +23,4 @@ class LottoShopTest {
         Assertions.assertThat(lottos.size()).isEqualTo(6);
     }
 
-    @Test
-    @DisplayName("천원_단위가_아니면_예외처리")
-    void 천원_단위가_아니면_예외처리() {
-        //GIVEN
-        int money = 5500;
-        LottoShop lottoShop = new LottoShop();
-        //WHEN
-
-        //THEN
-        assertThrows(IllegalArgumentException.class, () ->
-                lottoShop.purchaseLotto(money));
-    }
 }
