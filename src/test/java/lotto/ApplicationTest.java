@@ -155,6 +155,25 @@ class ApplicationTest extends NsTest {
                 assertThat(output()).contains(ERROR_MESSAGE);
             });
         }
+
+
+        @DisplayName("로또 당첨 번호가 범위를 벗어남")
+        @Test
+        void inputOutOfRange1() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,7,3,4,56");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("로또 당첨 번호가 범위를 벗어남")
+        @Test
+        void inputOutOfRange2() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,7,3,4,0");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
     }
 
     @Override
