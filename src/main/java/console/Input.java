@@ -32,6 +32,13 @@ public class Input {
         System.out.println(message);
     }
 
+    private String promptInput(String message) {
+        makeEmptyLine(message);
+        String input = Console.readLine().trim();
+        makeEmptyLine(null);
+        return input;
+    }
+
     public long returnLottoCount() {
         try {
             makeEmptyLine(INPUT_UNITS);
