@@ -6,7 +6,7 @@ public enum ResultMessage {
     FIVE_MATCH_MESSAGE("5개 일치 (1,500,000원) - %d개\n"),
     FIVE_WITH_BONUS_MATCH_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
     SIX_MATCH_MESSAGE("6개 일치 (2,000,000,000원) - %d개\n"),
-    PROFIT_RATE_MESSAGE("총 수익률은 %.1f%%입니다.\n");
+    PROFIT_RATE_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 
