@@ -3,21 +3,33 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.exception.BonusNumberDuplicateException;
+import lotto.exception.BonusNumberOutOfBoundException;
+import lotto.exception.LottoInvalidException;
+import lotto.exception.PurchaseNumberInvalidException;
+import lotto.exception.PurchaseNumberOverFlowException;
+import lotto.exception.PurchaseNumberUnderFlowException;
+import lotto.exception.PurchaseNumberUnitException;
 import lotto.lottoMachine.Lotto;
 
 public class InputController {
+    private static final String INPUT_LOTTO_NUMBER_DESCRIPTION = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_DESCRIPTION = "보너스 번호를 입력해 주세요.";
+    private static final String INPUT_PURCHASE_NUMBER_DESCRIPTION = "구입금액을 입력해 주세요.";
     private static final int LOTTO_PRICE = 1_000;
     private static final int MIN_PURCHASE_PRICE = 1_000;
     private static final int MAX_PURCHASE_PRICE = 2_147_483_000;
 
+    private static ExceptionController exceptionController = new ExceptionController();
+
     public Integer getPurchaseNumber() {
         while(true) {
-            System.out.println("구입금액을 입력해 주세요.");
+            System.out.println(INPUT_PURCHASE_NUMBER_DESCRIPTION);
             String input = Console.readLine();
             try {
                 return validatePurchaseNumberInput(input) / LOTTO_PRICE;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                exceptionController.printException(e);
             } finally {
                 System.out.println();
             }
@@ -29,19 +41,19 @@ public class InputController {
         try {
             purchaseNumber = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new PurchaseNumberInvalidException();
         }
 
         if (purchaseNumber > MAX_PURCHASE_PRICE) {
-            throw new IllegalArgumentException(String.format("[ERROR] 구매 금액은 %d원 이하여야 합니다.", MAX_PURCHASE_PRICE));
+            throw new PurchaseNumberOverFlowException();
         }
 
         if(purchaseNumber < MIN_PURCHASE_PRICE) {
-            throw new IllegalArgumentException(String.format("[ERROR] 구매 금액은 %d원 이상이어야 합니다.", MIN_PURCHASE_PRICE));
+            throw new PurchaseNumberUnderFlowException();
         }
 
-        if(purchaseNumber % 1000 != 0) {
-            throw new IllegalArgumentException(String.format("[ERROR] 구매 금액은 %d원 단위어야 합니다.", LOTTO_PRICE));
+        if(purchaseNumber % LOTTO_PRICE != 0) {
+            throw new PurchaseNumberUnitException();
         }
 
         return purchaseNumber;
@@ -49,12 +61,12 @@ public class InputController {
 
     public Lotto getLotto() {
         while(true) {
-            System.out.println("당첨 번호를 입력해 주세요.");
+            System.out.println(INPUT_LOTTO_NUMBER_DESCRIPTION);
             String input = Console.readLine();
             try {
                 return validateLottoInput(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                exceptionController.printException(e);
             } finally {
                 System.out.println();
             }
@@ -68,7 +80,7 @@ public class InputController {
                 numbers.add(Integer.parseInt(numberString));
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자어야합니다.");
+            throw new LottoInvalidException();
         }
 
         return new Lotto(numbers);
@@ -76,12 +88,12 @@ public class InputController {
 
     public Integer getBonusNumber(Lotto lotto) {
         while(true) {
-            System.out.println("보너스 번호를 입력해 주세요.");
+            System.out.println(INPUT_BONUS_NUMBER_DESCRIPTION);
             String input = Console.readLine();
             try {
                 return validateBonusNumberInput(input, lotto);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                exceptionController.printException(e);
             } finally {
                 System.out.println();
             }
@@ -93,15 +105,15 @@ public class InputController {
         try {
             bonusNumber = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45사이의 숫자여야합니다.");
+            throw new BonusNumberOutOfBoundException();
         }
 
         if(bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45사이의 숫자여야합니다.");
+            throw new BonusNumberOutOfBoundException();
         }
 
         if(lotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
+            throw new BonusNumberDuplicateException();
         }
 
         return bonusNumber;

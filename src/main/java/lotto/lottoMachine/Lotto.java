@@ -3,6 +3,10 @@ package lotto.lottoMachine;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import lotto.exception.LottoDuplicateException;
+import lotto.exception.LottoInvalidException;
+import lotto.exception.LottoInvalidSizeException;
+import lotto.exception.LottoOutOfBoundException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,15 +18,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new LottoInvalidSizeException();
         }
 
         if(numbers.stream().anyMatch(num -> num > 45 || num < 1)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45사이여야 합니다.");
+            throw new LottoOutOfBoundException();
         }
 
         if(numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new LottoDuplicateException();
         }
     }
 
