@@ -30,18 +30,23 @@ public class LottoMatcher {
 
     private static long calculatePrizeAmount(long matchCount, boolean hasBonus) {
         if (matchCount == 6) {
-            return FIFTH_PRIZE.getPrize();
+            FIRST_PRIZE.incrementCount();
+            return FIRST_PRIZE.getPrize();
         }
         if (matchCount == 5 && hasBonus) {
+            SECOND_PRIZE.incrementCount();
             return SECOND_PRIZE.getPrize();
         }
         if (matchCount == 5) {
+            THIRD_PRIZE.incrementCount();
             return THIRD_PRIZE.getPrize();
         }
         if (matchCount == 4) {
+            FORTH_PRIZE.incrementCount();
             return FORTH_PRIZE.getPrize();
         }
         if (matchCount == 3) {
+            FIFTH_PRIZE.incrementCount();
             return FIFTH_PRIZE.getPrize();
         }
 
