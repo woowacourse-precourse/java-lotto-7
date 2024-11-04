@@ -1,12 +1,14 @@
 package lotto.model;
 
-public class Bonus extends ValidationManager {
+import utils.ValidationManager;
+
+public class Bonus {
     private final int bonusNumber;
     private static final  String REQUEST_BONUS_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public Bonus(String bonusInput) {
-        isNumber(bonusInput);
-        isNotEmptyInput(bonusInput);
+        ValidationManager.isNumber(bonusInput);
+        ValidationManager.isNotEmptyInput(bonusInput);
         this.bonusNumber = isRangeValid(Integer.parseInt(bonusInput));
     }
 

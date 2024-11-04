@@ -9,8 +9,8 @@ import lotto.model.LottoMatchEvaluator;
 import lotto.model.LottoPublisher;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.model.ValidationManager;
 import utils.TypeConverter;
+import utils.ValidationManager;
 
 public class LottoController {
 
@@ -63,7 +63,7 @@ public class LottoController {
         while (!valid) {
             try {
                 String lottoInput = inputView.readInput(Lotto.getRequestMessage());
-                Lotto.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
+                ValidationManager.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
                 Lotto lotto = new Lotto(TypeConverter.ToNumberList(lottoInput));//6자 이상인지 범위는 (1-45)인지 확인후 객체 생성
                 return lotto.getLottoNumbers();
             } catch (IllegalArgumentException e) {
