@@ -11,7 +11,7 @@ public class LottoController {
 
     public void startGame() {
         int lottoPurchase = LottoInputView.lottoPurchaseAmount();
-        List<Lotto> makePurchasedLottos = LottoFactory.createLottos(count(lottoPurchase));
+        List<Lotto> makePurchasedLottos = createLottos(lottoPurchase);
         LottoOutputView.printPurchasedLottoCount(makePurchasedLottos);
         List<Integer> winningNumbers = LottoInputView.lottoWinningNumbers();
         int bonusNumber = LottoInputView.lottoBonusNumber(winningNumbers);
@@ -19,6 +19,11 @@ public class LottoController {
         lottoGame.calculateLotto(makePurchasedLottos);
         LottoOutputView.printResult(lottoGame.getResult());
         LottoOutputView.printrateOfReturn(lottoGame.rateOfReturn(lottoPurchase));
+    }
+
+    // 로또를 생성하는 함수
+    private List<Lotto> createLottos(int lottoPurchase) {
+        return LottoFactory.createLottos(count(lottoPurchase));
     }
 
     public int count (int lottoPurchase) {
