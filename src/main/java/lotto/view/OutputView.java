@@ -29,4 +29,8 @@ public class OutputView {
     public void displayEarningsRate(double earningsRate) {
         System.out.println("총 수익률은 " + earningsRate + "%입니다.");
     }
+
+    public void displayError(String message) {
+        System.out.println("[ERROR] " + message);
+    }
 }

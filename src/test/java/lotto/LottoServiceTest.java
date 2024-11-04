@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Map;
+import lotto.dto.LottoResponseDTO;
 import lotto.model.Lotto;
 import lotto.model.LottoResults;
 import lotto.model.Rank;
@@ -30,7 +31,8 @@ public class LottoServiceTest {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
-        LottoResults results = lottoService.calculateResult(userLottos, winningLotto, bonusNumber);
+        LottoResponseDTO responseDTO = lottoService.calculateResult(userLottos, winningLotto, bonusNumber);
+        LottoResults results = responseDTO.getResults();
         Map<Rank, Integer> expectedResults = Map.of(
                 Rank.FIRST, 1,
                 Rank.SECOND, 1,
