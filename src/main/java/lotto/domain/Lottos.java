@@ -18,7 +18,7 @@ public record Lottos(List<Lotto> lottoItems) {
 
     public static Lottos purchaseLottos(Money money) {
         List<Lotto> lottoItems = new ArrayList<>();
-        for (int i = 0; i < money.getPurchasableLottoCount(money); i++) {
+        for (int i = 0; i < money.getPurchasableLottoCount(); i++) {
             Lotto newLotto = Lotto.createRandomLotto();
             lottoItems.add(newLotto);
         }

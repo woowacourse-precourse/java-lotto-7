@@ -17,7 +17,7 @@ public class Money {
     }
 
     private void validateUnit(int money) {
-        if (money % 1000 != 0) {
+        if (money % LottoOption.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_UNIT);
         }
     }
@@ -28,7 +28,7 @@ public class Money {
         }
     }
 
-    public int getPurchasableLottoCount(Money money) {
-        return this.money / 1000;
+    public int getPurchasableLottoCount() {
+        return this.money / LottoOption.LOTTO_PRICE;
     }
 }

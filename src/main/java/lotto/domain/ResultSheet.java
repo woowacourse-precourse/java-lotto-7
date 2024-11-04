@@ -13,7 +13,7 @@ public record ResultSheet(Map<Rank, Integer> sheet) {
     }
 
     public double getTotalProfit() {
-        int purchaseCost = 1000 * getTotalCount();
+        int purchaseCost = LottoOption.LOTTO_PRICE * getTotalCount();
         double totalPrize = getTotalPrize();
         return (totalPrize / purchaseCost) * 100;
     }

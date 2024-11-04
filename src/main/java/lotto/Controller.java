@@ -7,6 +7,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.ResultSheet;
 import lotto.domain.WinningLotto;
+import lotto.domain.LottoOption;
 import lotto.message.ViewMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -41,7 +42,7 @@ public class Controller {
         try {
             String lottoNumberString = InputView.readString(ViewMessage.INPUT_WINNING_NUMBERS);
             List<Integer> lottoNumbers = Utils.convertStringToIntegerList(lottoNumberString,
-                ",");
+                LottoOption.LOTTO_NUMBER_DELIMITER);
             return new Lotto(lottoNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);

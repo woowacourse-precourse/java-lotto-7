@@ -15,7 +15,7 @@ public record Lotto(List<Integer> numbers) {
     }
 
     public static Lotto createRandomLotto() {
-        List<Integer> pickedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> pickedNumbers = Randoms.pickUniqueNumbersInRange(LottoOption.LOTTO_START_INCLUSIVE, LottoOption.LOTTO_END_INCLUSIVE, LottoOption.LOTTO_SIZE);
         return new Lotto(pickedNumbers);
     }
 
@@ -33,7 +33,7 @@ public record Lotto(List<Integer> numbers) {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoOption.LOTTO_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_SIZE);
         }
     }
@@ -61,7 +61,7 @@ public record Lotto(List<Integer> numbers) {
     }
 
     private boolean isOutRangeLottoNumber(Integer number) {
-        return number < 1 || number > 45;
+        return number < LottoOption.LOTTO_START_INCLUSIVE || number > LottoOption.LOTTO_END_INCLUSIVE;
     }
 
     public boolean hasNumber(int number) {
