@@ -31,22 +31,28 @@ public class LottoMachine {
             int matchCount = (int) lotto.getNumbers().stream()
                     .filter(winningNums::contains)
                     .count();
-            // 보너스 번호 일치 확인 및 당첨 로직 구현
-            if (matchCount == 3) {
-                prizeCounts[0]++;
-            } else if (matchCount == 4) {
-                prizeCounts[1]++;
-            } else if (matchCount == 5) {
-                if (lotto.getNumbers().contains(bonusNumber)) {
-                    prizeCounts[3]++;
-                } else {
-                    prizeCounts[2]++;
-                }
-            } else if (matchCount == 6) {
-                prizeCounts[4]++;
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+
+            int prizeIndex = getPrizeIndex(matchCount, bonusMatch);
+            if (prizeIndex != -1) {
+                prizeCounts[prizeIndex]++;
             }
         }
     }
+
+    private int getPrizeIndex(int matchCount, boolean bonusMatch) {
+        if (matchCount == 3) {
+            return 0;
+        } else if (matchCount == 4) {
+            return 1;
+        } else if (matchCount == 5) {
+            return bonusMatch ? 3 : 2;
+        } else if (matchCount == 6) {
+            return 4;
+        }
+        return -1;
+    }
+
 
     public String getStatistics() {
         // 실제 통계를 문자열로 포맷팅하여 반환
