@@ -25,6 +25,7 @@ public class LottoDrawController {
 
 	public void run(LottoBundle lottoBundle) {
 		WinningLotto winningLotto = getWinningLotto();
+		drawLottoBundle(winningLotto, lottoBundle);
 	}
 
 	private WinningLotto getWinningLotto() {
