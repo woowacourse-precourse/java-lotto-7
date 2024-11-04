@@ -9,7 +9,6 @@ import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
-//Enum은 1,2,3,4,5,6등 상금에 사용
 public class LottoService {
 
 
