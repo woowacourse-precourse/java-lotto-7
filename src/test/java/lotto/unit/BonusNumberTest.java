@@ -53,4 +53,13 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
     }
+
+    @Test
+    @DisplayName("보너스 번호에 문자열이 입력된 경우 예외가 발생한다.")
+    void bonusNumberIsString() {
+        String input = "1,2,3,4,5,6";
+        WinningNumbers winningNumbers = new WinningNumbers(input);
+        assertThatThrownBy(() -> new BonusNumber(Integer.parseInt("a"), winningNumbers))
+                .isInstanceOf(NumberFormatException.class);
+    }
 }
