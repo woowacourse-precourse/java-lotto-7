@@ -21,4 +21,8 @@ public class Lotto {
         }
         return matchCount;
     }
+
+    public boolean isBonusMatch(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }
