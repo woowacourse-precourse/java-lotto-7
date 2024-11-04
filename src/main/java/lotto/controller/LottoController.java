@@ -12,6 +12,10 @@ public class LottoController {
     public void run() {
         try {
             int purcaseAmount = readPurchaseAmount();
+            lottoService.generateLottos(purcaseAmount);
+            OutputView.printPurchasedLottos(lottoService.getLottos());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
 
     }

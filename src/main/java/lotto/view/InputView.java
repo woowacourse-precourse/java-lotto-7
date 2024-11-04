@@ -9,7 +9,7 @@ public class InputView {
     private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static String getInputPurchaseAmount() {
+    public static String inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
         String input = Console.readLine();
         LottoValidator.validatePurchaseAmount(input);
