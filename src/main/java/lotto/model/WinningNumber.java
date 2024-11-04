@@ -65,4 +65,8 @@ public class WinningNumber {
             }
         }
     }
+
+    public boolean isContainsNumber(int number){
+        return winningNumberList.contains(number);
+    }
 }

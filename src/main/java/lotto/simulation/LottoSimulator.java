@@ -3,6 +3,7 @@ package lotto.simulation;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.io.ConsoleInputHandler;
 import lotto.io.ConsoleOutputHandler;
+import lotto.model.BonusNumber;
 import lotto.model.BuyAmount;
 import lotto.model.Lotto;
 import lotto.model.WinningNumber;
@@ -29,6 +30,9 @@ public class LottoSimulator {
         ConsoleOutputHandler.winningNumberMessage(); // 당첨 번호 입력 안내 메세지 출력
         String winningNumberString = ConsoleInputHandler.input(); // 당첨 번호 문자열로 입력받음
         WinningNumber winningNumber = new WinningNumber(winningNumberString); // 당첨 번호 객체 생성 (혹은 에러 반환)
+
         ConsoleOutputHandler.bounsNumberMessage(); // 보너스 번호 입력 안내 메세지 출력
+        String bounsNumberString = ConsoleInputHandler.input(); // 보너스 번호 문자열로 입력받음
+        BonusNumber bonusNumber = new BonusNumber(bounsNumberString, winningNumber); // 보너스 번호 객체 생성 (혹은 에러 반환)
     }
 }
