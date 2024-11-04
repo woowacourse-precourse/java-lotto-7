@@ -176,6 +176,65 @@ class ApplicationTest extends NsTest {
         }
     }
 
+    @Nested
+    @DisplayName("보너스 번호 예외 처리")
+    class BonusNumberErrorTest {
+
+        @DisplayName("보너스 번호가 중복")
+        @Test
+        void duplicationOfInput() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,3,4,5,6", "1");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("보너스 번호가 범위를 벗어남")
+        @Test
+        void inputOutOfRange1() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,3,4,5,6", "0");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("보너스 번호가 범위를 벗어남")
+        @Test
+        void inputOutOfRange2() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,3,4,5,6", "55");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("보너스 번호가 너무 큼")
+        @Test
+        void inputIsTooBig() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,3,4,5,6", "55000000000000000");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("보너스 번호가 숫자가 아님")
+        @Test
+        void invalidInput1() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,3,4,5,6", "asdf");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("보너스 번호가 숫자가 아님")
+        @Test
+        void invalidInput2() {
+            assertSimpleTest(() -> {
+                runException("1000", "1,2,3,4,5,6", "10asdf");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
