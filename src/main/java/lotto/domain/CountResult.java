@@ -12,8 +12,8 @@ public class CountResult {
         this.hasBonus = hasBonus;
     }
 
-    public static CountResult of(int winnerCount, boolean hasBonus) {
-        return new CountResult(winnerCount, hasBonus);
+    public static CountResult of(int matchedCount, boolean hasBonus) {
+        return new CountResult(matchedCount, hasBonus);
     }
 
     protected Integer calculateReward() {

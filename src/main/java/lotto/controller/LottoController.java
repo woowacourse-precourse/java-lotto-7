@@ -2,7 +2,7 @@ package lotto.controller;
 
 import static lotto.utils.RecoveryUtils.executeWithRetry;
 
-import lotto.dto.LottoListDto;
+import lotto.dto.LottoTicketsDto;
 import lotto.dto.MoneyDto;
 import lotto.service.LottoService;
 import lotto.viewer.Viewer;
@@ -29,7 +29,7 @@ public class LottoController {
 
     protected void getLotto(MoneyDto moneyDto) {
         viewer.printMessage(moneyDto.lottoCount());
-        LottoListDto lottoListDto = lottoService.generateLottoList();
-        viewer.printMessage(lottoListDto.listMessage());
+        LottoTicketsDto lottoTicketsDto = lottoService.generateLottoList();
+        viewer.printMessage(lottoTicketsDto.ticketsMessage());
     }
 }

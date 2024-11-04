@@ -13,7 +13,7 @@ class WinnerStatusTest {
 
 
     /**
-     * expected value : 100000000 * 1등 상금 연산 20초 걸림
+     * expected =100000000 * 1등 상금 연산 => 20초 걸림
      */
     @Test
     @DisplayName("엄청 큰 수익률 발생시 에러 확인 테스트")

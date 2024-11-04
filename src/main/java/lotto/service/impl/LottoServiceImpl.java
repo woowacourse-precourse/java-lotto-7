@@ -4,7 +4,7 @@ import static lotto.utils.ErrorMessage.NOT_SAVE_MONEY;
 
 import lotto.domain.LottoTickets;
 import lotto.domain.Money;
-import lotto.dto.LottoListDto;
+import lotto.dto.LottoTicketsDto;
 import lotto.dto.MoneyDto;
 import lotto.exception.EntityNotFoundException;
 import lotto.repository.SingleRepository;
@@ -30,7 +30,7 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public LottoListDto generateLottoList() {
+    public LottoTicketsDto generateLottoList() {
         Money money = moneyRepository.get()
                 .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_MONEY.getMessage()));
 

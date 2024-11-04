@@ -3,8 +3,7 @@ package lotto.utils;
 import static lotto.utils.Constants.ENTER;
 
 import java.util.StringJoiner;
-import lotto.domain.WinnerStatus;
-import lotto.dto.LottoListDto;
+import lotto.dto.LottoTicketsDto;
 import lotto.dto.MoneyDto;
 import lotto.dto.ProfitRateResultDto;
 import lotto.dto.WinnerStatusDto;
@@ -33,7 +32,7 @@ public class DtoMapper {
         return new WinnerStatusDto(joiner.toString());
     }
 
-    public static LottoListDto toLottoListDto(String listMessage) {
-        return new LottoListDto(listMessage);
+    public static LottoTicketsDto toLottoTicketsDto(String ticketsMessage) {
+        return new LottoTicketsDto(ticketsMessage);
     }
 }

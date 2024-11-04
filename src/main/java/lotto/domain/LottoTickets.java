@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.function.Consumer;
-import lotto.dto.LottoListDto;
+import lotto.dto.LottoTicketsDto;
 import lotto.utils.DtoMapper;
 
 public class LottoTickets {
@@ -29,8 +29,8 @@ public class LottoTickets {
         return new LottoTickets(lottoCollection);
     }
 
-    public LottoListDto toDto() {
-        return DtoMapper.toLottoListDto(this.toString());
+    public LottoTicketsDto toDto() {
+        return DtoMapper.toLottoTicketsDto(this.toString());
     }
 
     protected void forEach(Consumer<Lotto> lotto) {

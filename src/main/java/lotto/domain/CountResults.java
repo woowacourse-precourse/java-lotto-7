@@ -8,6 +8,7 @@ import static lotto.utils.Reward.SECOND;
 import static lotto.utils.Reward.THIRD;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -33,12 +34,14 @@ public class CountResults {
     }
 
     protected Map<Integer, Integer> calculateAllReward() {
+        Map<Integer, Integer> resultMap = new TreeMap<>(this.rewardMap);
+
         for (CountResult countResult : this.results) {
             Integer reward = countResult.calculateReward();
-
-            rewardMap.computeIfPresent(reward, (key, value) -> value + 1);
+            resultMap.computeIfPresent(reward, (key, value) -> value + 1);
         }
-        return new TreeMap<>(this.rewardMap);
+
+        return Collections.unmodifiableMap(resultMap);
     }
 
     private Map<Integer, Integer> initializeRewardMap() {

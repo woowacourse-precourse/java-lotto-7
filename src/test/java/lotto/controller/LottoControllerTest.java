@@ -2,7 +2,7 @@ package lotto.controller;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.dto.LottoListDto;
+import lotto.dto.LottoTicketsDto;
 import lotto.dto.MoneyDto;
 import lotto.service.LottoService;
 import lotto.viewer.MockViewer;
@@ -21,7 +21,7 @@ class LottoControllerTest {
             }
 
             @Override
-            public LottoListDto generateLottoList() {
+            public LottoTicketsDto generateLottoList() {
                 return null;
             }
         }, new MockViewer());

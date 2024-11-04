@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.domain.Money;
-import lotto.dto.LottoListDto;
+import lotto.dto.LottoTicketsDto;
 import lotto.dto.MoneyDto;
 import lotto.exception.EntityNotFoundException;
 import lotto.repository.impl.LottoTicketsRepository;
@@ -56,7 +56,7 @@ class LottoServiceTest {
         LottoService service = new LottoServiceImpl(moneyRepository, lottoTicketsRepository);
 
         // when
-        LottoListDto result = service.generateLottoList();
+        LottoTicketsDto result = service.generateLottoList();
 
         // then
         assertThat(result).isNotNull();

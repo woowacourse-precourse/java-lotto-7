@@ -60,7 +60,6 @@ public class Money {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(INVALID_MONEY_INPUT.getMessage());
         }
-
     }
 
     private Long validateMoney(Long amount) {
