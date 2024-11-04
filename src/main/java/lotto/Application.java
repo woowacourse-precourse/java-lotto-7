@@ -116,6 +116,7 @@ class MainController {
 	public static int inputBonusNumber() {
 		try {
 			int bonusNumber = Integer.parseInt(camp.nextstep.edu.missionutils.Console.readLine());
+			MainController.checkLottoNumberRange(bonusNumber);
 			return bonusNumber;
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException("[Error] 보너스 번호로 숫자를 입력하여야 합니다.");
