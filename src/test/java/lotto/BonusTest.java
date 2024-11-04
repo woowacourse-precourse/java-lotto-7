@@ -1,10 +1,10 @@
 package lotto;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BonusTest {
     @DisplayName("보너스 번호가 숫자가 아닌 입력이라면 예외가 발생한다")
@@ -17,7 +17,7 @@ class BonusTest {
     @DisplayName("두개 이상의 보너스 번호를 입력하면 예외가 발생한다.")
     @Test
     void 보너스_번호_개수_검증_테스트() {
-        assertThatThrownBy(() -> new BonusNumber(List.of("1" , "2")))
+        assertThatThrownBy(() -> new BonusNumber(List.of("1", "2")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

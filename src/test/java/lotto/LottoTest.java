@@ -23,7 +23,7 @@ class LottoTest {
 
     @Test
     void 발급한_로또에서_서로_같은_로또가_존재하면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lottos(List.of(List.of(1, 2, 3, 4, 5,6), List.of(1, 2, 3, 4, 5, 6))))
+        assertThatThrownBy(() -> new Lottos(List.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 6))))
                 .isInstanceOf(IllegalStateException.class);
     }
 }
