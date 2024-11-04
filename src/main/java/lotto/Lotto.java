@@ -8,6 +8,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호 리스트는 null이 될 수 없습니다.");
+        }
+
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
