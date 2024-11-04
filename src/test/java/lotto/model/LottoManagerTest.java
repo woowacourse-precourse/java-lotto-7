@@ -3,6 +3,7 @@ package lotto.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,5 +31,17 @@ class LottoManagerTest {
         List<Lotto> lottos = lottoManager.getLottos();
 
         assertEquals(lottos.size(), 5);
+    }
+
+    @DisplayName("총 상금을 반환한다")
+    @Test
+    void 총_상금을_반환한다() {
+        List<Result> results = new ArrayList<>();
+        results.add(Result.SECOND);
+        results.add(Result.FIFTH);
+        LottoManager lottoManager = new LottoManager();
+        lottoManager.setResults(results);
+        int expect = 30_000_000 + 5_000;
+        assertEquals(lottoManager.getWinningAmount(), expect);
     }
 }

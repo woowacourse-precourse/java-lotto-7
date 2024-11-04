@@ -98,6 +98,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [x] 로또를 구입하는 기능 추가
 - [x] 구입 가능한 로또 수를 계산하는 기능 추가
 - [x] 결과들을 저장하는 기능 추가
+- [x] 총 상금을 반환하는 기능 추가
 - Money
 - [x] 남은 금액을 반환하는 기능 추가
 - [x] 사용한 금액을 반환하는 기능 추가

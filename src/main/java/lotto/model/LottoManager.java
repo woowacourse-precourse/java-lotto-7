@@ -20,4 +20,11 @@ public class LottoManager {
     public void setResults(List<Result> results) {
         this.results = results;
     }
+    public int getWinningAmount() {
+        int totalWinningAmount = 0;
+        for(Result result : results) {
+            totalWinningAmount += result.winningAmount;
+        }
+        return totalWinningAmount;
+    }
 }
