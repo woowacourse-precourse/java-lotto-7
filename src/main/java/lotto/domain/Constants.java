@@ -6,6 +6,7 @@ public class Constants {
     public static final int LOTTO_MIN = 1;
     public static final int LOTTO_MAX = 45;
     public final static String SPLIT = ",";
+
     public final static int FIRST_PRIZE_MATCH = 6;
     public final static int SECONDTHIRD_PRIZE_MATCH = 5;
     public final static int FOURTH_PRIZE_MATCH = 4;

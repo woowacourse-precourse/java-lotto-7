@@ -4,6 +4,7 @@ import static lotto.domain.Constants.SPLIT;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.validation.Validation;
 
 public class Input {
@@ -14,8 +15,9 @@ public class Input {
 
     Validation validation = new Validation();
     List<Integer> numbers = new ArrayList<>();
+    Lotto lotto;
 
-    public List<Integer> winningNumber() {
+    public List<Integer> winningNumber() throws IllegalArgumentException{
         String input = Console.readLine();
         validation.number(input);
         validation.duplicatedNumber(input);
@@ -27,6 +29,7 @@ public class Input {
             numbers.add(Integer.parseInt(numberString.trim()));
         }
 
+        lotto = new Lotto(numbers);
         return numbers;
     }
 

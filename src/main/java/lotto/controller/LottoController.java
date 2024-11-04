@@ -27,9 +27,8 @@ public class LottoController {
             try {
                 purchaseAmount = lottoPurchase.purchaseAmount();
                 break;
-
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 금액은 숫자를 입력해주세요");
+                System.out.println(e.getMessage());
             }
         }
 
@@ -41,7 +40,7 @@ public class LottoController {
                 winningNumbers = lottoWinningNumber.input();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1~45까지의 정수 6개를 입력해주세요. ex) 1,2,3,4,5,6");
+                System.out.println(e.getMessage());
             }
         }
 
@@ -51,7 +50,7 @@ public class LottoController {
                 bonusNumber = lottoBonusNumber.input(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1~45까지의 정수를 입력해주세요.");
+                System.out.println(e.getMessage());
             }
         }
 
