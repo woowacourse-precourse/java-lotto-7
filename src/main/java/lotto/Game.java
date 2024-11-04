@@ -17,7 +17,6 @@ public class Game {
     private final Input input = new Input();
     private final Output output = new Output();
 
-
     public void gameStart(){
         Purchase purchase = getPurchase();
         //사용자가 뽑은 로또 갯수의 번호
@@ -33,9 +32,6 @@ public class Game {
 
         output.printStatistics(winner.getWinningsStats());
         output.printCalculateWinningsRate(winner.getCalculateReturnRate());
-
-
-
     }
 
     private Purchase getPurchase(){

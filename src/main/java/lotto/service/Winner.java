@@ -57,13 +57,7 @@ public class Winner {
         int totalPurchaseAmount = getLottoNumbers.size() * 1000;
         int totalWinnings = 0;
 
-        for (Map.Entry<Winnings, Integer> entry : winningsStats.entrySet()) {
-            Winnings winnings = entry.getKey();
-            int count = entry.getValue();
-
-            // 당첨 통계에 따른 금액을 총 당첨 금액에 추가
-            totalWinnings += winnings.getPrize() * count; // 각 당첨 등급의 금액 * 해당 등급의 갯수
-        }
+        totalWinnings = getTotalWinnings(totalWinnings);
 
         if (totalPurchaseAmount == 0) {
             return 0;
@@ -74,6 +68,17 @@ public class Winner {
         // 소수점 둘째 자리에서 반올림
         return Math.round(rate * 100.0) / 100.0; // 소수점 둘째 자리로 반올림
 
+    }
+
+    private int getTotalWinnings(int totalWinnings) {
+        for (Map.Entry<Winnings, Integer> entry : winningsStats.entrySet()) {
+            Winnings winnings = entry.getKey();
+            int count = entry.getValue();
+
+            // 당첨 통계에 따른 금액을 총 당첨 금액에 추가
+            totalWinnings += winnings.getPrize() * count; // 각 당첨 등급의 금액 * 해당 등급의 갯수
+        }
+        return totalWinnings;
     }
 
     public double getCalculateReturnRate() {
