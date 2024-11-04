@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 public class Lotto {
 
+    private static final int LOTTO_NUMBERS = 6;
     private static final String ERROR_LOTTO_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String ERROR_LOTTO_DUPLICATE = "[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.";
     private static final String ERROR_BONUS_DUPLICATE = "[ERROR] 보너스 번호는 로또와 중복되지 않는 숫자여야 합니다.";
@@ -16,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS) {
             throw new IllegalArgumentException(ERROR_LOTTO_SIZE);
         }
         if (numbers.size() != numbers.stream().distinct().count()) {

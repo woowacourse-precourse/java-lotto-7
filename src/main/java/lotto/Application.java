@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Application {
 
-    private static final int LOTTO_AMOUNT = 1000;
+    private static final int LOTTO_AMOUNT_UNIT = 1000;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -14,7 +14,7 @@ public class Application {
         User user = new User();
 
         int purchaseAmount = inputView.inputPurchaseAmount();
-        List<Lotto> lottos = user.createLotto(purchaseAmount / LOTTO_AMOUNT);
+        List<Lotto> lottos = user.createLotto(purchaseAmount / LOTTO_AMOUNT_UNIT);
         outputView.printLottos(lottos);
         Lotto winningLotto = inputView.inputWinningLottoNumbers();
         int bonusNumber = inputView.inputBonus(winningLotto);
