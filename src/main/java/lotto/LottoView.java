@@ -18,6 +18,7 @@ public class LottoView {
         return numberOfPurchases;
     }
     public void printLottoNumbers(List<Lotto> lottoNumbers){
+        // 구입한 로또 번호 출력
         ListIterator<Lotto> iterator = lottoNumbers.listIterator();
         while(iterator.hasNext()){
             System.out.println(iterator.next().getList());

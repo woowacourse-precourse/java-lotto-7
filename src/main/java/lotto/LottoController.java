@@ -51,10 +51,11 @@ public class LottoController {
     }
     public boolean setValidPurchasePrice(){
         try {
-            String purchasePriceString = view.getPurchasePrice();
-            purchasePrice = Integer.parseInt(purchasePriceString);
+            // 구매 금액 String으로 입력 받고 Integer로 형변환
+            purchasePrice = Integer.parseInt(view.getPurchasePrice());
             return true;
         }catch (NumberFormatException e){
+            // 숫자 이외의 문자가 포함 돼 있으면 NumberFormatException 발생
             System.out.println("\n[ERROR] 구매금액은 숫자로만 작성해야합니다.");
             return false;
         }
@@ -65,24 +66,29 @@ public class LottoController {
             try {
                 lottoNumbers.add(model.getLottoNumber());
             }catch (IllegalArgumentException e){
+                // 로또 번호 개수가 6개가 아니거나 중복된 숫자가 포함 돼 있을 경우 예외 발생
+                // i-- 후 로또 번호 재생성
                 System.out.println(e.getMessage());
                 i--;
             }
         }
     }
     public void setWinninNumber(String numberString){
+        // 당첨 번호 리스트에 저장
         for(String n:numberString.split(",")){
             winningNumbers.add(Integer.parseInt(n));
         }
+        // 객체 생성 하여 validate Number인지 확인
+        Lotto winningLotto = new Lotto(winningNumbers);
     }
     public boolean validWinningNumber(){
+        // 당첨 번호 입력 받기
+        // 적절하지 않은 입력일 때 예외 발생
+        // ex)숫자와 콤마 이외의 문자가 포함 등
         try{
             String numberString = view.getWinningNumbers();
             if(!numberString.matches("[0-9,]+")){
                 throw new IllegalArgumentException("\n[ERROR] 당첨번호는 숫자와 콤마(,)로만 이루어져야합니다.");
-            }
-            else if(numberString.split(",").length != 6){
-                throw new IllegalArgumentException("\n[ERROR] 당첨번호는 6개여야 합니다.");
             }
             setWinninNumber(numberString);
             return true;
@@ -92,14 +98,18 @@ public class LottoController {
         }
     }
     public void matchNumbers(){
+        // 구매 로또와 당첨 번호 매치
+        // 몇 개 일치하는지 count 후 리스트에 count 저장
         Iterator<Lotto> iterator = lottoNumbers.listIterator();
         while(iterator.hasNext()){
             Lotto currentNumeberList = iterator.next();
             int count = currentNumeberList.getMatchedSize(winningNumbers);
 
+            // 숫자가 5개 일치 + 보너스 번호 O
             if(count == 5 && currentNumeberList.hasBonusNumber(bonusNumber)){
                 countHasBonusNumber++;
             }
+            // 숫자가 5개 일치 + 보너스 번호 X or 3개, 4개, 6개 일치
             else if(count != 5 || !currentNumeberList.hasBonusNumber(bonusNumber)){
                 countMatched.add(count);
             }
