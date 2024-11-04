@@ -35,12 +35,12 @@ public class LottoWinningTierManager {
     // 당첨된 로또 개수 증가
     public void increaseLottoWinningTier(int matchCount, boolean isBonusNumber) {
         if (matchCount == MATCH_FIVE_COUNT && isBonusNumber) {
-            checkLottoWinningTier(matchCount, true);
+            updateLottoWinningTier(matchCount, true);
             return;
         }
-        checkLottoWinningTier(matchCount, isBonusNumber);
+        updateLottoWinningTier(matchCount, isBonusNumber);
     }
-    private void checkLottoWinningTier (int matchCount, boolean isBonusNumber) {
+    private void updateLottoWinningTier(int matchCount, boolean isBonusNumber) {
         lottoWinningTiers.put(
                 LottoWinningTier.getMatchCountTier(matchCount, isBonusNumber),
                 lottoWinningTiers.get(LottoWinningTier.getMatchCountTier(matchCount, isBonusNumber)) + 1);
