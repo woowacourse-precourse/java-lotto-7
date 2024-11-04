@@ -18,7 +18,7 @@ class LottoConfigurationTest {
         }
         @Override
         public String inputWinningNumbers() {
-            return "1, 2, 3, 4, 5, 6";
+            return "1,2,3,4,5,6";
         }
         @Override
         public int inputBonusNumber() {
@@ -28,7 +28,7 @@ class LottoConfigurationTest {
     private static class FixedInputParser extends InputParser {
         @Override
         public List<Integer> splitWinningNumbers(String winningNumbers) {
-            return Arrays.asList(1, 2, 3, 4, 5, 6);
+            return Arrays.asList(1,2,3,4,5,6);
         }
     }
 
@@ -39,7 +39,7 @@ class LottoConfigurationTest {
         LottoConfiguration lottoConfiguration = new LottoConfiguration(inputHandler, inputParser);
         assertEquals(8000, lottoConfiguration.lottoPrice());
         assertEquals(8, lottoConfiguration.lottoCount());
-        assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), lottoConfiguration.winningNumbers());
+        assertEquals(Arrays.asList(1,2,3,4,5,6),lottoConfiguration.winningNumbers());
         assertEquals(8, lottoConfiguration.lottos().size());
         assertEquals(7, lottoConfiguration.bonusNumber());
     }

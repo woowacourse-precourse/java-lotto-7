@@ -12,7 +12,7 @@ class InputParserTest {
     InputParser inputParser = new InputParser();
     @Test
     void 당첨번호_파싱_테스트(){
-        String input = "1, 2, 3, 4, 5, 6";
+        String input = "1,2,3,4,5,6";
         List<Integer> result = inputParser.splitWinningNumbers(input);
         assertEquals(6, result.size());
         assertIterableEquals(Arrays.asList(1, 2, 3, 4, 5, 6), result);
