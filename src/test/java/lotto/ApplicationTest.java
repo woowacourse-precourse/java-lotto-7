@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private static final String NEED_NUMBER_IN_RANGE = "[ERROR] 구매 금액은 1000이상 100000이하여야 합니다.";
+    private static final String NEED_NUMBER_IN_RANGE = "[ERROR] 구매 금액은 1000이상 10000000이하여야 합니다.";
 
 
     @Test
