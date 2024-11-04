@@ -2,7 +2,6 @@ package lotto.Integration;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
-import lotto.fixture.LottoFixture;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -18,7 +17,7 @@ public class LottoIntegrationTest extends NsTest {
     void 통합_테스트_모두_한번씩_당첨() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run(LottoFixture.INPUT_AMOUNT, INPUT_NUMBERS, INPUT_BONUS_NUMBER);
+                    run(INPUT_AMOUNT, INPUT_NUMBERS, INPUT_BONUS_NUMBER);
                     assertThat(output()).contains(
                             CORRECT_ANSWER
                     );
@@ -106,6 +105,14 @@ public class LottoIntegrationTest extends NsTest {
     void 통합_테스트_예외_잘못된_타입_금액() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 통합_테스트_예외_0원_금액() {
+        assertSimpleTest(() -> {
+            runException("0");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
