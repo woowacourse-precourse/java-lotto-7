@@ -7,10 +7,12 @@ import lotto.model.purchase.LottoStore;
 public class Game {
     private final LottoStore lottoStore;
     private List<Lotto> issuedLottos;
+    private WinningNumber winningNumber;
 
     public Game(LottoStore lottoStore) {
         this.lottoStore = lottoStore;
         this.issuedLottos = List.of();
+        winningNumber = new WinningNumber();
     }
 
     public void purchaseLottos(int amount) {
@@ -19,5 +21,9 @@ public class Game {
 
     public List<Lotto> getIssuedLottos() {
         return issuedLottos;
+    }
+
+    public void setWinningNumber(List<Integer> winningNumbers) {
+        winningNumber.setWinningNumbers(new Lotto(winningNumbers));
     }
 }

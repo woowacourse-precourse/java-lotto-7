@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.dto.IssuedLottosDto;
 import lotto.dto.LottoDto;
 import lotto.model.Game;
+import lotto.model.WinningNumberConverter;
 import lotto.model.purchase.PurchaseAmountConverter;
 import lotto.view.View;
 
@@ -19,6 +20,7 @@ public class LottoController {
     public void run() {
         handleLottoPurchase();
         displayIssuedLottos();
+        handleInputWinningNumbers();
     }
 
     private <T> void executeWithRetry(Runnable action) {
@@ -47,5 +49,15 @@ public class LottoController {
                 .map(LottoDto::of)
                 .toList();
         view.displayIssuedLottos(new IssuedLottosDto(lottoDtos));
+    }
+
+    private void handleInputWinningNumbers() {
+        executeWithRetry(this::inputWinningNumbers);
+    }
+
+    private void inputWinningNumbers() {
+        String input = view.promptWinningNumbers();
+        List<Integer> winningNumbers = WinningNumberConverter.convert(input);
+        game.setWinningNumber(winningNumbers);
     }
 }
