@@ -12,7 +12,7 @@ public final class RandomNumberUtil {
     }
 
     public static List<Integer> generateLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(LottoConstants.LOTTO_MIN_NUMBER, LottoConstants.LOTTO_MAX_NUMBER, LottoConstants.LOTTO_NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER, LottoConstants.MAX_NUMBER,
+                LottoConstants.NUMBER_COUNT);
     }
 }
-

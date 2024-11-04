@@ -13,10 +13,10 @@ public class PurchaseAmountValidator implements NumberValidator {
 
         try {
             int purchaseAmount = Integer.parseInt(purchaseAmountInput);
-            if (purchaseAmount <= LottoConstants.ZERO) {
+            if (purchaseAmount <= 0) {
                 throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE.getMessage());
             }
-            if (purchaseAmount % LottoConstants.TICKET_PRICE != LottoConstants.ZERO) {
+            if (purchaseAmount % LottoConstants.TICKET_PRICE != 0) {
                 throw new IllegalArgumentException(ErrorMessage.NOT_DISABLE_BY_1000.getMessage());
             }
             return purchaseAmount;
