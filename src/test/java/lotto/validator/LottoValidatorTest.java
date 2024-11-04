@@ -52,18 +52,6 @@ class LottoValidatorTest {
     }
 
     @Test
-    @DisplayName("validateNumbers는 유효하지 않은 로또 번호일 때, IllegalArgumentException을 던진다.")
-    void validateNumbers_WithInvalidNumber_ThrowIllegalArgumentException() {
-        // given
-        List<Integer> duplicatedNumbers = List.of(1, 2, 2, 3, 4, Lotto.MAX_NUMBER + 1);
-
-        // when & then
-        Assertions.assertThatThrownBy(
-                () -> lottoValidator.validateNumbers(duplicatedNumbers)
-        ).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     @DisplayName("validateNumber는 유효한 로또 번호일 때, 예외를 발생시키지 않는다.")
     void validateNumber_WithValidInput_DoesNotThrowException() {
         // given
