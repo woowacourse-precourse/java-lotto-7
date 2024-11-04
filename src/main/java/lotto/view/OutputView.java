@@ -63,4 +63,8 @@ public class OutputView {
         System.out.println();
         System.out.println(BONUS_NUMBER_MESSAGE);
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
