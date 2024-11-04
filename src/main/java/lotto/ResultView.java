@@ -36,7 +36,7 @@ public class ResultView {
         // 수익률 계산 및 반올림 처리
         int totalPrize = result.calculateTotalPrize();
         double profitRate = (double) totalPrize / buyer.getPurchaseAmount() * 100;
-        profitRate = Math.round(profitRate * 100.0) / 100.0;
+        profitRate = Math.round(profitRate * 10.0) / 10.0;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 

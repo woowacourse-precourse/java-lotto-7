@@ -30,7 +30,7 @@ public class Buyer {
         ResultView.printResult(this, lottoGame);
     }
 
-    public double getPurchaseAmount() {
+    public int getPurchaseAmount() {
         return purchaseAmount;
     }
 }
