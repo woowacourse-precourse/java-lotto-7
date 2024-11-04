@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.IO.InputHandler;
+import lotto.inputoutput.InputHandler;
 import lotto.constants.ErrorMessage;
 
 import java.util.List;

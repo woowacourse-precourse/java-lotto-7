@@ -1,10 +1,8 @@
-package lotto.IO;
+package lotto.inputoutput;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Validator;
-import lotto.constants.ErrorMessage;
+import lotto.util.Validator;
 import lotto.constants.SystemMessage;
-
 import java.util.Arrays;
 import java.util.List;
 

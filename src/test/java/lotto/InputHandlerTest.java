@@ -6,8 +6,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
-
-import static lotto.IO.InputHandler.getWinningLottoNumber;
+import static lotto.inputoutput.InputHandler.getWinningLottoNumber;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class InputHandlerTest {
