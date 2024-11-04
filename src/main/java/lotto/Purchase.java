@@ -1,15 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class MoneyPurchase {
+public class Purchase {
     final int lotoPrice = 1000;
     private int money;
 
-    public MoneyPurchase(String inputMoney) {
+    public Purchase(String inputMoney) {
         try {
             Integer.parseInt(inputMoney);
         } catch (NumberFormatException e) {
@@ -48,16 +43,5 @@ public class MoneyPurchase {
         System.out.println(lotoCount + "개를 구입했습니다.");
         return lotoCount;
     }
-//    public ArrayList<List> getlotoProduct(int count) {
-//        ArrayList<List> buyLoto = new ArrayList<>();
-//
-//        for (int i = 0; i < count ; i++) {
-//            List<Integer> lotoProduct = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//            buyLoto.add(lotoProduct);
-//
-//        }
-//
-//        return buyLoto;
-//    }
-//
+
 }
