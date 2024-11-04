@@ -1,11 +1,13 @@
 package lotto.validator;
 
 import static lotto.message.ExceptionMessage.INVALID_BLANK_INPUT;
+import static lotto.message.ExceptionMessage.INVALID_RANGE_INPUT;
 import static lotto.message.ExceptionMessage.INVALID_TYPE_INPUT;
 
 import java.util.Arrays;
 import java.util.List;
 import lotto.exception.IllegalInputException;
+import lotto.exception.IllegalRangeException;
 import lotto.exception.IllegalTypeException;
 import org.junit.platform.commons.util.StringUtils;
 
@@ -20,6 +22,9 @@ public class WinningLottoValidator {
         return Arrays.stream(input.split(DELIMITER))
                 .peek(WinningLottoValidator::validateBlank)
                 .map(WinningLottoValidator::validateType)
+                .peek(number -> {
+                    validateRange(number);
+                })
                 .toList();
     }
 
@@ -39,6 +44,14 @@ public class WinningLottoValidator {
         } catch (NumberFormatException e) {
             throw new IllegalTypeException(
                     String.format(INVALID_TYPE_INPUT.getMessage(), INPUT, TYPE)
+            );
+        }
+    }
+
+    private static void validateRange(int input) {
+        if (input < MIN_VALUE || input > MAX_VALUE) {
+            throw new IllegalRangeException(
+                    String.format(INVALID_RANGE_INPUT.getMessage(), INPUT, MIN_VALUE, MAX_VALUE)
             );
         }
     }
