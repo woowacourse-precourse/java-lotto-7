@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import lotto.constants.errorType.LottoPurchaseErrorType;
+import lotto.constants.lottoType.LottoType;
 
 public class LottoPurchaseValidation {
 
@@ -27,7 +28,7 @@ public class LottoPurchaseValidation {
     }
 
     public static void validateMoneyIsNotDivisibleByLottoPrice(int rawIntegerInput) {
-        if (rawIntegerInput % 1000 != 0) {
+        if (rawIntegerInput % LottoType.LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(LottoPurchaseErrorType.INVALID_MONEY_UNIT.getMessage());
         }
     }

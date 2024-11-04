@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import lotto.constants.errorType.BonusNumberErrorType;
+import lotto.constants.lottoType.LottoType;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class BonusNumberValidation {
     }
 
     private static void validateNumberRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LottoType.LOTTO_MIN_NUMBER.getValue() || bonusNumber > LottoType.LOTTO_MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(BonusNumberErrorType.INVALID_BONUS_NUMBER_RANGE.getMessage());
         }
     }

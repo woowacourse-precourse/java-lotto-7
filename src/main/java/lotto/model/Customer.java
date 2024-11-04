@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constants.Ranking;
+import lotto.constants.lottoType.LottoType;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ public class Customer {
     private Map<Ranking, Integer> lottoResults = new EnumMap<>(Ranking.class);
 
     public void buyLottoTickets(int money) {
-        lottoTickets += money / 1000;
+        lottoTickets += money / LottoType.LOTTO_PRICE.getValue();
     }
 
     public int getLottoTickets() {
@@ -20,12 +21,12 @@ public class Customer {
 
     public void initializeRankingResults() {
         for (Ranking ranking : Ranking.values()) {
-            lottoResults.put(ranking, 0);
+            lottoResults.put(ranking, LottoType.LOTTO_INIT_RANK.getValue());
         }
     }
 
     public void updateLottoRanking(Ranking ranking) {
-        lottoResults.put(ranking, lottoResults.get(ranking) + 1);
+        lottoResults.put(ranking, lottoResults.get(ranking) + LottoType.LOTTO_RANK_UPDATE_VALUE.getValue());
     }
 
     public Map<Ranking, Integer> getLottoResults() {

@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import lotto.constants.errorType.WinningNumberErrorType;
+import lotto.constants.lottoType.LottoType;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,7 +11,7 @@ public class WinningNumberValidation {
 
     public static void validateNumberRange(List<Integer> winningNumbers) {
         for (int winningNumber : winningNumbers) {
-            if (winningNumber < 1 || winningNumber > 45) {
+            if (winningNumber < LottoType.LOTTO_MIN_NUMBER.getValue() || winningNumber > LottoType.LOTTO_MAX_NUMBER.getValue()) {
                 throw new IllegalArgumentException(WinningNumberErrorType.INVALID_WINNING_NUMBER_RANGE.getMessage());
             }
         }
