@@ -35,6 +35,8 @@ public class LottoController {
 
         inputWinningNumber();
         validateWinningNumber();
+
+        inputBonusNumber();
     }
 
     public void inputPurchaseAmount() {
@@ -96,6 +98,11 @@ public class LottoController {
 
         // split 후, 검증
         WinningNumber validWinNumber = lottoService.validateSplitWinNumber(splitWinningNumber);
+    }
+
+    public void inputBonusNumber() {
+        inputView.printMessage(InputMessage.INPUT_BONUS_NUMBER);
+        inputView.inputBonusNumber();
     }
 
 

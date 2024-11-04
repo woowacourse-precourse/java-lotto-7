@@ -19,4 +19,10 @@ public class InputView {
         System.out.println();
         return inputWinningNumber;
     }
+
+    public String inputBonusNumber() {
+        String inputBonusNumber = Console.readLine();
+        System.out.println();
+        return inputBonusNumber;
+    }
 }
