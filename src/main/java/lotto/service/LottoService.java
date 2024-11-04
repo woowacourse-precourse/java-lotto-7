@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Customer;
 import lotto.domain.Price;
+import lotto.domain.WinningLotto;
 import lotto.domain.dto.WinningNumbersDto;
 import lotto.exceptionHandler.ExceptionHandler;
 import lotto.view.InputView;
@@ -15,6 +16,7 @@ public class LottoService {
     private Customer customer;
     private WinningNumbersDto winningNumbersDto;
     private BonusNumber bonusNumber;
+    private WinningLotto winningLotto;
 
     public void inputPrice() {
         ExceptionHandler.handle(() -> {
@@ -48,5 +50,11 @@ public class LottoService {
             int number = InputView.bonusNumber(winningNumbersDto);
             bonusNumber = BonusNumber.from(number);
         });
+    }
+
+    public void initWinningLotto() {
+        List<Integer> winningNumbers = winningNumbersDto.numbers();
+        int number = bonusNumber.getNumber();
+        winningLotto = WinningLotto.of(winningNumbers, number);
     }
 }
