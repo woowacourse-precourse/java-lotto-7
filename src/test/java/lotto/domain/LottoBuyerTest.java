@@ -1,12 +1,11 @@
 package lotto.domain;
 
-import java.util.List;
-
-import lotto.vo.PurchaseAmount;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import java.util.List;
+import lotto.vo.PurchaseAmount;
+import org.junit.jupiter.api.Test;
 
 class LottoBuyerTest {
     @Test

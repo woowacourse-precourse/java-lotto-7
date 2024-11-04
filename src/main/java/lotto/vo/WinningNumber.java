@@ -7,7 +7,7 @@ import lotto.domain.Lotto;
 
 public record WinningNumber(Lotto lotto) {
     private static final String NON_DIGIT_PATTERN = ".*[^0-9].*";
-
+    
     public WinningNumber(String inputWinningNumber) {
         this(validateWinningNumber(inputWinningNumber));
     }

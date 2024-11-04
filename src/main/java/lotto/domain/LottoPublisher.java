@@ -7,6 +7,8 @@ import lotto.vo.PurchaseAmount;
 
 public class LottoPublisher {
     public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_RANGE_MIN = 1;
+    public static final int LOTTO_RANGE_MAX = 45;
     public static final int LOTTO_COUNT_SIZE = 6;
 
     public static List<Lotto> publishLotto(PurchaseAmount purchaseAmount) {
@@ -24,6 +26,6 @@ public class LottoPublisher {
     }
 
     private static List<Integer> generateLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_RANGE_MIN, LOTTO_RANGE_MAX, LOTTO_COUNT_SIZE);
     }
 }

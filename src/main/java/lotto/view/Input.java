@@ -1,8 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.vo.BonusNumber;
 import lotto.validator.InputValidator;
+import lotto.vo.BonusNumber;
 import lotto.vo.LottoNumber;
 import lotto.vo.PurchaseAmount;
 import lotto.vo.WinningNumber;
@@ -11,10 +11,10 @@ public class Input {
     public static PurchaseAmount getPurchaseAmount() {
         try {
             String input = Console.readLine();
-            validateInput(input);
+            validateInputNumber(input);
             return new PurchaseAmount(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            Output.printErrorMessage(e.getMessage());
             return getPurchaseAmount();
         }
     }
@@ -22,10 +22,10 @@ public class Input {
     public static WinningNumber getWinningNumber() {
         try {
             String input = Console.readLine();
-            validateInput(input);
+            validateInputNumbers(input);
             return new WinningNumber(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            Output.printErrorMessage(e.getMessage());
             return getWinningNumber();
         }
     }
@@ -33,16 +33,22 @@ public class Input {
     public static BonusNumber getBonusNumber(WinningNumber winningNumber) {
         try {
             String input = Console.readLine();
-            validateInput(input);
+            validateInputNumber(input);
             return new BonusNumber(new LottoNumber(input), winningNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            Output.printErrorMessage(e.getMessage());
             return getBonusNumber(winningNumber);
         }
     }
 
-    private static void validateInput(String input) {
+    private static void validateInputNumbers(String input) {
         InputValidator.validateBlank(input);
         InputValidator.validateWhitespace(input);
+    }
+
+    private static void validateInputNumber(String input) {
+        InputValidator.validateBlank(input);
+        InputValidator.validateWhitespace(input);
+        InputValidator.validateLetter(input);
     }
 }

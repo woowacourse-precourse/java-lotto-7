@@ -32,11 +32,19 @@ public enum LottoWinningRanks {
     // `sameCount`와 `isBonusMatched`를 사용해 알맞은 LottoWinningRanks 찾기
     public static LottoWinningRanks getRank(int sameCount, boolean isBonusMatched) {
         if (sameCount == 5 && isBonusMatched) {
-            return Arrays.stream(values())
-                    .filter(rank -> rank.sameCount == sameCount && rank.isBonusMatched == isBonusMatched)
-                    .findFirst()
-                    .orElse(NO_WIN);
+            return getRankByCountAndBonus(sameCount, isBonusMatched);
         }
+        return getRankByCount(sameCount);
+    }
+
+    private static LottoWinningRanks getRankByCountAndBonus(int sameCount, boolean isBonusMatched) {
+        return Arrays.stream(values())
+                .filter(rank -> rank.sameCount == sameCount && rank.isBonusMatched == isBonusMatched)
+                .findFirst()
+                .orElse(NO_WIN);
+    }
+
+    private static LottoWinningRanks getRankByCount(int sameCount) {
         return Arrays.stream(values())
                 .filter(rank -> rank.sameCount == sameCount)
                 .findFirst()

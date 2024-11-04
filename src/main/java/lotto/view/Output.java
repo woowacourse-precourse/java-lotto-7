@@ -3,9 +3,9 @@ package lotto.view;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.constant.OutputMessage;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningRanks;
-import lotto.constant.OutputMessage;
 
 public class Output {
     public static void printPurchaseAmountRequestMessage() {
@@ -61,6 +61,10 @@ public class Output {
         messages.put(LottoWinningRanks.SECOND, OutputMessage.LOTTO_RESULT_SECOND);
         messages.put(LottoWinningRanks.FIRST, OutputMessage.LOTTO_RESULT_FIRST);
         return messages;
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 
     private static void printBlankLine() {

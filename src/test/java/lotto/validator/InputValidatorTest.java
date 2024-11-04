@@ -1,12 +1,11 @@
 package lotto.validator;
 
-import lotto.constant.ErrorMessage;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.constant.ErrorMessage;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputValidatorTest {
     @ParameterizedTest
@@ -30,6 +29,18 @@ class InputValidatorTest {
 
         //when & then
         assertThatThrownBy(() -> InputValidator.validateWhitespace(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(expectedMessage);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", ",", "Ahn"})
+    void 숫자_입력_시_문자가_입력되면_예외가_발생한다(String input) {
+        //given
+        final String expectedMessage = ErrorMessage.INVALID_INPUT_NUMBER_CHARACTER_ERROR;
+
+        //when & then
+        assertThatThrownBy(() -> InputValidator.validateLetter(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expectedMessage);
     }
