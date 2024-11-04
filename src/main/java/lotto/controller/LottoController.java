@@ -100,7 +100,7 @@ public class LottoController {
         }
     }
 
-    private List<Lotto> generateLottos(List<Lotto> lottos, int count) {
+    public List<Lotto> generateLottos(List<Lotto> lottos, int count) {
         for (int i = 0; i < count; i++) {
             lottos.add(new Lotto(LottoNumberGenerator.generate()));
         }
