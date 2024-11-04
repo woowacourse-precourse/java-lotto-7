@@ -14,6 +14,7 @@ public record WinningResultsDto(
 
 	private static List<WinningResultDto> getWinningResults(Map<Winning, Integer> winningResult) {
 		return winningResult.entrySet().stream()
+				.sorted(Map.Entry.comparingByKey())
 				.map(winning -> WinningResultDto.from(winning.getKey(), winning.getValue()))
 				.toList();
 	}
