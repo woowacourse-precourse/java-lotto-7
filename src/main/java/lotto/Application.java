@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
 import lotto.controller.LottoController;
@@ -20,8 +21,8 @@ public class Application {
         String purchasePrice;
         List<Lotto> lottos;
         while (true) {
+            purchasePrice = inputView.promptPurchasePrice();
             try {
-                purchasePrice = inputView.promptPurchasePrice();
                 lottos = lottoController.purchaseLotto(purchasePrice);
                 outputView.displayPurchases(lottos);
                 break;
@@ -33,9 +34,9 @@ public class Application {
         //당첨 번호 및 보너스 번호 입력
         LottoMachine lottoMachine;
         while (true) {
+            String winningNumbers = inputView.promptWinningNumbers();
+            String bonusNumbers = inputView.promptBonusNumber();
             try {
-                String winningNumbers = inputView.promptWinningNumbers();
-                String bonusNumbers = inputView.promptBonusNumber();
                 lottoMachine = lottoController.registerWinningNumber(winningNumbers, bonusNumbers);
                 break;
             } catch (Exception e) {
@@ -50,5 +51,7 @@ public class Application {
         //수익률 출력
         Double rateOfReturn = lottoController.getRateOfReturn(results, purchasePrice);
         outputView.displayRateOfReturn(rateOfReturn);
+
+        Console.close();
     }
 }
