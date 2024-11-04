@@ -1,75 +1,82 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import static lotto.view.InputView.getBonusNumber;
+import static lotto.view.InputView.getPurchaseStr;
+import static lotto.view.InputView.getWinningNumStr;
+import static lotto.view.OutputView.printLottosNum;
+import static lotto.view.OutputView.printRateOfReturn;
+import static lotto.view.OutputView.printResult;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.domain.Game;
 import lotto.domain.Lotto;
-import lotto.dto.InputDto;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.service.GameService;
+import lotto.util.InputParser;
+import lotto.util.InputValidator;
 
 public class GameController {
 
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final GameService gameService;
 
+    public GameController(GameService gameService) {
+        this.gameService = gameService;
+    }
 
     public void run() {
-        InputDto inputData = getInputData();
-        int purchaseAmount;
-        int bonusNumber;
-        Lotto winningLotto;
-        List<Lotto> lottos = new ArrayList<>();
+        int purchaseAmount = getValidPurchaseAmount();
+        Lotto winningLotto = new Lotto(getValidWinningNumbers());
+        int bonusNumber = getValidBonusNumber(winningLotto);
 
-        try {
-            purchaseAmount = Integer.parseInt(inputData.getPurchaseAmountStr());
-            bonusNumber = Integer.parseInt(inputData.getBonusNumber());
+        List<Lotto> lottos = gameService.generateLottos(purchaseAmount);
+        Game game = gameService.createGame(lottos, winningLotto, bonusNumber);
 
-            List<Integer> winningNumbers = Arrays.stream(inputData.getWinningNumStr().split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+        displayResults(game, purchaseAmount, winningLotto, lottos);
+    }
 
-            winningLotto = new Lotto(winningNumbers);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 정수로 변환이 불가능 합니다.");
-        }
-
-        if (canBuy(purchaseAmount)) {
-            for (int i = 0; i < purchaseAmount/1000; i++) {
-                Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-                lottos.add(lotto);
+    private int getValidPurchaseAmount() {
+        while (true) {
+            try {
+                int amount = InputParser.parseInteger(getPurchaseStr());
+                InputValidator.validatePurchaseAmount(amount);
+                return amount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " 다시 입력해 주세요.");
             }
         }
-
-        Game game = new Game(lottos, winningLotto, bonusNumber);
-        int[] results = game.compareNumbers(winningLotto);
-        double rateOfReturn = Math.round(game.calculateRateOfReturn(purchaseAmount, results));
-
-        outputView.printLottosNum(lottos);
-        System.out.println();
-        outputView.printResult(results);
-        System.out.println();
-        outputView.printRateOfReturn(rateOfReturn);
     }
 
-
-    private InputDto getInputData() {
-        InputDto inputDto = new InputDto(inputView.getPurchaseStr(),
-                                         inputView.getWinningNumStr(),
-                                         inputView.getBonusNumber());
-
-        if (!inputDto.validateDto()) {
-            throw new IllegalArgumentException("[ERROR] 비어있는 입력 값이 존재합니다.");
+    private List<Integer> getValidWinningNumbers() {
+        while (true) {
+            try {
+                return InputParser.parseWinningNumbers(getWinningNumStr());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " 다시 입력해 주세요.");
+            }
         }
-        return inputDto;
     }
 
-    private boolean canBuy(int purchaseAmount) {
-        return (purchaseAmount % 1000 == 0);
+    private int getValidBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                int bonus = InputParser.parseInteger(getBonusNumber());
+                InputValidator.validateRange(bonus);
+                InputValidator.validateDuplicate(winningLotto, bonus);
+                return bonus;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " 다시 입력해 주세요.");
+            }
+        }
     }
 
+    private void displayResults(Game game, int purchaseAmount, Lotto winningLotto, List<Lotto> lottos) {
+        int[] results = gameService.getResults(game, winningLotto);
+        double rateOfReturn = gameService.calculateRateOfReturn(game, purchaseAmount, results);
+
+        printLottosNum(lottos);
+        System.out.println();
+        printResult(results);
+        System.out.println();
+        printRateOfReturn(rateOfReturn);
+    }
 }
