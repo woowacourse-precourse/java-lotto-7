@@ -2,6 +2,7 @@ package lotto.validator;
 
 import static lotto.exception.ExceptionMessage.*;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
@@ -10,6 +11,7 @@ public class InputValidator {
     public static void validatePurchaseAmount(String purchaseAmount) {
         checkEmpty(purchaseAmount);
         checkValidNumber(purchaseAmount);
+        checkMaxPurchaseAmount(purchaseAmount);
         checkMultipleOfThousand(purchaseAmount);
     }
 
@@ -38,9 +40,17 @@ public class InputValidator {
 
     private static void checkValidNumber(String purchaseAmount) {
         try {
-            Integer.parseInt(purchaseAmount);
+            new BigInteger(purchaseAmount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_INPUT.getMessage());
+        }
+    }
+
+    private static void checkMaxPurchaseAmount(String purchaseAmount) {
+        BigInteger parsedAmount = new BigInteger(purchaseAmount);
+
+        if (parsedAmount.compareTo(BigInteger.valueOf(100000)) > 0) {
+            throw new IllegalArgumentException(MAX_PURCHASE_AMOUNT_EXCEEDED.getMessage());
         }
     }
 
