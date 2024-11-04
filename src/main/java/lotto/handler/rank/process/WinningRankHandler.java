@@ -45,7 +45,7 @@ public class WinningRankHandler extends LottoHandler {
 
     private List<Integer> getWinningNumbers(WinningNumberDTO winningNumberDTO) {
         String winningNumbers = winningNumberDTO.getWinningNumbers();
-        return FormatConverter.convertStringToInteger(winningNumbers);
+        return FormatConverter.convertStringToIntegerList(winningNumbers);
     }
 
     private int getBonusNumbers(WinningNumberDTO winningNumberDTO) {

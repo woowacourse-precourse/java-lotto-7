@@ -1,11 +1,10 @@
 package lotto.handler.rank.validation;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.handler.rank.dto.WinningNumberDTO;
 import lotto.handler.token.HandlerToken;
 import lotto.handler.token.TokenType;
-import lotto.utility.Delimiter;
+import lotto.utility.FormatConverter;
 
 public interface WinningNumberValidator {
     void validate(HandlerToken handlerToken);
@@ -18,8 +17,7 @@ public interface WinningNumberValidator {
 
     default List<Integer> getWinningNumbersToList(HandlerToken handlerToken) {
         String rawWinningNumbers = getWinningNumbersToString(handlerToken);
-        String[] winningNumbers = rawWinningNumbers.split(Delimiter.COMMA.getDelimiter());
-        return Arrays.stream(winningNumbers).map(Integer::parseInt).toList();
+        return FormatConverter.convertStringToIntegerList(rawWinningNumbers);
     }
 
     default String getBonusNumberToString(HandlerToken handlerToken) {
