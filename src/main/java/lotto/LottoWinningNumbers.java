@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoWinningNumbers {
-    private List<Integer> winningNumbers = new ArrayList<>();
+    private final List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;
 
     public void inputWinningNumbers() {
@@ -18,5 +18,13 @@ public class LottoWinningNumbers {
         }
         System.out.println("보너스 번호를 입력해 주세요.");
         bonusNumber = Integer.parseInt(Console.readLine());
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 }
