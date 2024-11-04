@@ -20,19 +20,7 @@ class HandlerTest {
   private InputTest inputTest;
   private Input input;
 
-  @BeforeEach
-  void setUp() throws Exception {
-    // 사용자가 구매 금액을 입력하면
 
-    String readLine = "14000";
-    this.input = new Input(readLine);
-    System.setIn(setReadLine(readLine));
-
-    // 로또 발행 수를 요청한다
-    int amount = input.readAmount();
-    int request = input.getLottoCounts(amount);
-    handler = new Handler(request);
-  }
 
   private InputStream setReadLine(String readLine) {
     return new ByteArrayInputStream(readLine.getBytes());
@@ -46,6 +34,13 @@ class HandlerTest {
   @DisplayName("사용자 입력 후 로또를 요청 수만큼 발행했는지 확인한다")
   @Test
   public void generateLottoTest() throws Exception{
+    // 사용자가 구매 금액을 입력하면
+
+    String readLine = "14000";
+    this.input = new Input(readLine);
+    System.setIn(setReadLine(readLine));
+
+
       //given
     int expectGenerated = 14;
     int givenRequest = input.getLottoCounts(expectGenerated);
@@ -66,17 +61,18 @@ class HandlerTest {
   @DisplayName("입력받은 당첨번호를 쉼표, 공백 구분자와 정수를 분리한다")
   @Test
   void generateWinningTest() throws Exception{
-    String given = "1,2,3,4,5,6";
-    // split으로 두번 잘라서 배열에서 조회한다 (On²)
-    // 스트림을 활용한다
-    List<Integer> actual = Arrays.stream(given.split("\\s,"))
-        .map(Integer::parseInt)
-        .collect(Collectors.toList()); // NumberFormatException
 
-    List<Integer> expect = List.of(1, 2, 3, 4, 5, 6);
+    // given : 당첨 번호를 입력하면
+    String expect = "1, 2, 3, 4, 5, 6";
+    this.input = new Input(expect);
+    System.setIn(setReadLine(expect));
 
-    assertEquals(expect, actual);
+    // when : 쉼표와 공백 구분자를 정수와 분리한다
+    String actualWinning = input.readWinning();
 
+
+    // then : 실제 입력된 당첨번호를 조회하여 검증한다
+    assertEquals(expect, actualWinning);
   }
 
 
