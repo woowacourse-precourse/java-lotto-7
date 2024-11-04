@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import lotto.model.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +60,7 @@ class ApplicationTest extends NsTest {
     void 로또_구입_금액_예외_테스트_1() {
         assertSimpleTest(() -> {
             runException("11327");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ErrorMessage.NOT_MULTIPLE_OF_1000);
         });
     }
 
@@ -68,7 +69,7 @@ class ApplicationTest extends NsTest {
     void 로또_구입_금액_예외_테스트_2() {
         assertSimpleTest(() -> {
             runException("-3");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ErrorMessage.NOT_MULTIPLE_OF_1000);
         });
     }
 
@@ -77,7 +78,7 @@ class ApplicationTest extends NsTest {
     void 로또_구입_금액_예외_테스트_3() {
         assertSimpleTest(() -> {
             runException("0");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ErrorMessage.NOT_MULTIPLE_OF_1000);
         });
     }
 
