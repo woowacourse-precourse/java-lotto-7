@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constant.Constant;
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
-import lotto.util.Converter;
-import lotto.util.Splitter;
+import lotto.util.Parser;
 import lotto.validator.Validator;
 
 public class Lotto {
@@ -19,13 +20,13 @@ public class Lotto {
 
     public static Lotto of(String input) {
         validate(input);
-        List<String> tokens = Splitter.splitWithDelimiter(input);
-        return new Lotto(Converter.convertToNumbers(tokens));
+        List<String> tokens = splitWithDelimiter(input);
+        return new Lotto(convertToNumbers(tokens));
     }
 
     private static void validate(String input) {
         Validator.validateBlank(input, ErrorMessage.BLANK_WINNING_NUMBER);
-        List<String> tokens = Splitter.splitWithDelimiter(input);
+        List<String> tokens = splitWithDelimiter(input);
         tokens.forEach(token -> Validator.validateNumeric(token, ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER));
     }
 
@@ -49,6 +50,18 @@ public class Lotto {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new LottoException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
         }
+    }
+
+    private static List<String> splitWithDelimiter(String input) {
+        return Arrays.stream(input.split(Constant.DELIMITER))
+                .map(String::strip)
+                .collect(Collectors.toList());
+    }
+
+    private static List<Integer> convertToNumbers(List<String> input) {
+        return input.stream()
+                .map(Parser::parseInt)
+                .collect(Collectors.toList());
     }
 
     public List<Integer> getNumbers() {
