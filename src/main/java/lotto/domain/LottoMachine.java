@@ -37,7 +37,7 @@ public class LottoMachine {
         return Lotto.from(numbers);
     }
 
-    private int calculatePurchaseQuantity(PurchaseAmount purchaseAmount) {
+    private int calculatePurchaseQuantity(final PurchaseAmount purchaseAmount) {
         return purchaseAmount.amount() / PurchaseAmount.UNIT_AMOUNT;
     }
 }

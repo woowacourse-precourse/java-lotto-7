@@ -7,15 +7,16 @@ import lotto.domain.LottoNumber;
 
 public class OutputView {
 
-    public static void printPurchaseQuantity(int quantity) {
+    public static void printPurchaseQuantity(final int quantity) {
         System.out.println(quantity + "개를 구매했습니다.");
     }
 
-    public static void printLottos(List<Lotto> lottos) {
+    public static void printLottos(final List<Lotto> lottos) {
         lottos.forEach(OutputView::printLotto);
+        System.out.println();
     }
 
-    public static void printLotto(Lotto lotto) {
+    public static void printLotto(final Lotto lotto) {
         String result = lotto.numbers().stream()
                 .map(LottoNumber::number)
                 .map(String::valueOf)
