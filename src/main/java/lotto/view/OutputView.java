@@ -5,6 +5,8 @@ import lotto.domain.Result;
 
 import java.util.Arrays;
 
+import static lotto.constant.LottoValues.LOTTO_PRICE;
+import static lotto.constant.LottoValues.PERCENT_MULTIPLIER;
 import static lotto.message.InfoMessage.*;
 
 public class OutputView {
@@ -23,7 +25,8 @@ public class OutputView {
     }
 
     public static void showProfitRate(long lottoCount, long profitSum) {
-        double profitRate = profitSum / (lottoCount * 10.0);
+        double lottoCost = (double) lottoCount * LOTTO_PRICE.value();
+        double profitRate = profitSum / lottoCost * PERCENT_MULTIPLIER.value();
         System.out.println(PROFIT_RATE_INFO.formatProfit(profitRate));
     }
 }
