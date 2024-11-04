@@ -3,13 +3,15 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class LottoServiceImpl implements LottoService{
+public class LottoServiceImpl implements LottoService {
     private final List<Lotto> lottoList;
     private final int ticketPrice = 1000;
 
-    public LottoServiceImpl(){
+    public LottoServiceImpl() {
         this.lottoList = new ArrayList<>();
     }
 
@@ -42,5 +44,15 @@ public class LottoServiceImpl implements LottoService{
         boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
 
         return Rank.of(matchCount, matchBonus);
+    }
+
+    @Override
+    public Map<Rank, Integer> calculateResults(List<Integer> winningNumbers, int bonusNumber) {
+        Map<Rank, Integer> results = new HashMap<>();
+        for (Lotto lotto : lottoList) {
+            Rank rank = checkWinning(lotto, winningNumbers, bonusNumber);
+            results.put(rank, results.getOrDefault(rank, 0) + 1);
+        }
+        return results;
     }
 }

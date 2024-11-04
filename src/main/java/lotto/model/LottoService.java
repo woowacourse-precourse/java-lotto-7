@@ -9,4 +9,6 @@ public interface LottoService {
     List<Lotto> getLottoList();
 
     Rank checkWinning(Lotto lotto, List<Integer> winningNumbers, int bonusNumber);
+
+    Map<Rank, Integer> calculateResults(List<Integer> winningNumbers, int bonusNumber);
 }
