@@ -21,9 +21,6 @@ public class InputWinningNumbersValidator {
     private static void validateInputNumbers(String[] inputNumbers) {
 
         for (String inputNumber : inputNumbers) {
-            if (!isNumeric(inputNumber)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자로 입력해 주세요.");
-            }
 
             int number = Integer.parseInt(inputNumber);
             if (number <= 0 || number > 45) {
@@ -36,9 +33,5 @@ public class InputWinningNumbersValidator {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복일 수 없습니다.");
         }
-    }
-
-    private static boolean isNumeric(String inputPrice) {
-        return inputPrice.chars().allMatch(Character::isDigit);
     }
 }
