@@ -8,10 +8,9 @@ public class Statistics {
         FIVE_BONUS(5, 30000000),
         SIX(6, 2000000000);
 
-        private final int matchCount; // 일치 수
-        private final int prize; // 상금
+        private final int matchCount;
+        private final int prize;
 
-        // 생성자
         MatchLevel(int matchCount, int prize) {
             this.matchCount = matchCount;
             this.prize = prize;
@@ -25,7 +24,6 @@ public class Statistics {
             return prize;
         }
 
-        // 매치 타입을 찾는 메서드
         public static MatchLevel findMatchType(int matchCount, boolean bonusMatch) {
             if (matchCount == 6) return SIX;
             if (matchCount == 5 && bonusMatch) return FIVE_BONUS;

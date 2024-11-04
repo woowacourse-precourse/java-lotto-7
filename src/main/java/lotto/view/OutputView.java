@@ -1,16 +1,13 @@
 package lotto.view;
 
-import java.util.List;
-
-import lotto.controller.OutputController;
-
 import java.util.Collections;
+import java.util.List;
 
 public class OutputView {
     public static void printLottoNumbers(List<List<Integer>> lottoNumbersList){
         for (List<Integer> lottoNumbers : lottoNumbersList) {
             Collections.sort(lottoNumbers);
-            System.out.println(lottoNumbers); // 각 로또 번호 리스트 출력
+            System.out.println(lottoNumbers);
         }
         System.out.println();
     }

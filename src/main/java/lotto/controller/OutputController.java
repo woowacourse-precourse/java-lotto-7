@@ -15,7 +15,7 @@ public class OutputController {
     }
 
     public static int[] calculateStatistics(List<Integer> winningNumbers, List<List<Integer>> lottoNumbersList) {
-        int[] matchCounts = new int[7]; // 일치 수 카운트 배열
+        int[] matchCounts = new int[7];
         for (List<Integer> ticket : lottoNumbersList) {
             int matches = countMatches(ticket, winningNumbers);
             if (matches > 0) {
@@ -33,15 +33,15 @@ public class OutputController {
         if (totalSpent == 0) {
             return 0;
         }
-        return (double) totalPrize / totalSpent * 100; // 수익률 (%) 계산
+        return (double) totalPrize / totalSpent * 100;
     }
     public static int calculateTotalPrize(int[] matchPoints) {
         int totalPrize = 0;
-        totalPrize += matchPoints[2] * 5000;  // 3개 일치 상금
-        totalPrize += matchPoints[3] * 50000; // 4개 일치 상금
-        totalPrize += matchPoints[4] * 1500000; // 5개 일치 상금
-        totalPrize += matchPoints[5] * 30000000; // 5개 일치 + 보너스 상금
-        totalPrize += matchPoints[6-1] * 2000000000; // 6개 일치 상금
+        totalPrize += matchPoints[2] * 5000;
+        totalPrize += matchPoints[3] * 50000;
+        totalPrize += matchPoints[4] * 1500000;
+        totalPrize += matchPoints[5] * 30000000;
+        totalPrize += matchPoints[6-1] * 2000000000;
         return totalPrize;
     }
 

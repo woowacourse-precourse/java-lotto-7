@@ -10,8 +10,8 @@ import java.util.List;
 
 public class InputController {
     public static int getPurchaseAmount(){
-        String input = InputView.purchaseAmount(); // String으로 입력받음
-        int price = Lotto.parseInt(input); // Lotto에서 변환 및 유효성 검사
+        String input = InputView.purchaseAmount();
+        int price = Lotto.parseInt(input);
         return price;
     }
 
@@ -19,7 +19,7 @@ public class InputController {
         String inputNumbers = Console.readLine();
         List<Integer> winningNumbers = new ArrayList<>();
         for (String num : inputNumbers.split(",")) {
-            winningNumbers.add(Integer.parseInt(num.trim())); // 각 요소를 Integer로 변환해 리스트에 추가
+            winningNumbers.add(Integer.parseInt(num.trim()));
         }
         Lotto.validate(winningNumbers);
         Lotto.validateDuplicationOfWinningNumbers(winningNumbers);
@@ -29,7 +29,6 @@ public class InputController {
 
 
     public static int getBonusNumber(){
-        //int bonusNumber = Integer.parseInt(Console.readLine());
         return Integer.parseInt(Console.readLine());
     }
 
