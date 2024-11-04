@@ -25,16 +25,18 @@ public class LottoController {
 
     public void run() {
         PurchaseAmount purchaseAmount = purchaseLottos();
-        List<Lotto> lottos = generateLottos(purchaseAmount);
+        List<Lotto> lottos = lottoService.generateLottos(purchaseAmount);
         outputView.printLottos(lottos);
 
-        WinningNumbers winningNumbers = createWinningNumbers();
+        WinningNumbers winningNumbers = processWinningNumbers();
         LottoResult result = lottoService.createWinningResult(lottos, winningNumbers, purchaseAmount);
         outputView.printWinningStatistics(result);
     }
 
-    private List<Lotto> generateLottos(PurchaseAmount purchaseAmount) {
-        return lottoService.generateLottos(purchaseAmount.getAmount());
+    private WinningNumbers processWinningNumbers() {
+        WinningLottoNumbers winningNumbers = createWinningLottoNumbers();
+        BonusNumber bonusNumber = createBonusNumber();
+        return lottoService.createWinningNumbers(winningNumbers, bonusNumber);
     }
 
     private PurchaseAmount purchaseLottos() {
@@ -45,12 +47,6 @@ public class LottoController {
                 return PurchaseAmount.from(input);
             }
         }.process();
-    }
-
-    private WinningNumbers createWinningNumbers() {
-        WinningLottoNumbers winningNumbers = createWinningLottoNumbers();
-        BonusNumber bonusNumber = createBonusNumber();
-        return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
     private WinningLottoNumbers createWinningLottoNumbers() {
