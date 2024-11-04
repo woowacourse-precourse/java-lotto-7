@@ -15,14 +15,11 @@ public class LottoTicket {
         return lottos;
     }
 
-    public int getSize() {
-        return lottos.size();
-    }
-
     @Override
     public String toString() {
-        return lottos.stream()
-                .map(Lotto::toString)
-                .collect(Collectors.joining("\n"));
+        return "\n" + lottos.size() + "개를 구매했습니다.\n" +
+                lottos.stream()
+                        .map(Lotto::toString)
+                        .collect(Collectors.joining("\n"));
     }
 }
