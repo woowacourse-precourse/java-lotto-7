@@ -2,9 +2,9 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.PurchaseLottos;
 import lotto.domain.LottosGenerator;
 import lotto.domain.NumbersGenerator;
+import lotto.domain.PurchaseLottos;
 import lotto.domain.RandomNumbersGenerator;
 import lotto.domain.WinningCalculator;
 import lotto.domain.WinningResult;
@@ -24,10 +24,10 @@ public class LottoService {
     }
 
     public PurchaseLotto purchase(int amount) {
-        List<Lotto> purchaseLottos = this.purchaseLottos.saveAll(lottosGenerator.generate(amount));
-        winningCalculator.saveLottos(this.purchaseLottos);
-        Integer lottoCount = this.purchaseLottos.findLottoCount();
-        return PurchaseLotto.of(purchaseLottos, lottoCount);
+        List<Lotto> lottos = purchaseLottos.saveAll(lottosGenerator.generate(amount));
+        winningCalculator.saveLottos(purchaseLottos);
+        Integer lottoCount = purchaseLottos.findLottoCount();
+        return PurchaseLotto.of(lottos, lottoCount);
     }
 
     public void registerWinningLotto(List<Integer> winnerNumber) {
