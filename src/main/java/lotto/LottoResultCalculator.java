@@ -44,7 +44,8 @@ public class LottoResultCalculator {
         if (purchaseAmount == 0) {
             return 0;
         }
-        return (double) totalPrize / purchaseAmount * 100;
+        double roi = (double) totalPrize / purchaseAmount * 100;
+        return Math.round(roi * 10) / 10.0;
     }
 
     private int calculateMatchCount(Lotto lotto) {
