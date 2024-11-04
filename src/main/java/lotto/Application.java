@@ -1,7 +1,18 @@
 package lotto;
 
+import lotto.machine.LottoMachine;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Validator validator = new Validator();
+        OutputHandler outputHandler = new OutputHandler();
+        LottoMachine machine = new LottoMachine(validator, outputHandler);
+
+        machine.requestPurchasePrice();
+        machine.generateLottos();
+        machine.printLottoStatus();
+        machine.requestWinnerNumbers();
+        machine.requestBonusNumber();
+        machine.printLottoResult();
     }
 }
