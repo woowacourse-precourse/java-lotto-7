@@ -1,8 +1,12 @@
 package lotto;
 
-import java.util.Collections;
-import java.util.Comparator;
+import lotto.exception.InvalidNumberException;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static lotto.exception.ErrorMessage.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,12 +14,13 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateRange(numbers);
+        validateDuplicates(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new InvalidNumberException(INVALID_NUMBER_COUNT.getMessage());
         }
     }
 
@@ -24,8 +29,15 @@ public class Lotto {
                 filter(number -> number < 1 || number > 45)
                 .findAny()
                 .ifPresent(number -> {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    throw new InvalidNumberException(INVALID_NUMBER_RANGE.getMessage());
                 });
+    }
+
+    public static void validateDuplicates(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if(set.size() != numbers.size()) {
+            throw new InvalidNumberException(INVALID_NUMBER_DUPLICATE.getMessage());
+        }
     }
 
     public List<Integer> numbers() {
