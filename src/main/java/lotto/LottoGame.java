@@ -31,4 +31,14 @@ public class LottoGame {
 
         return purchasedLottos;
     }
+
+    private void calculateRank(List<Lotto> purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
+        for (Lotto lotto : purchasedLottos) {
+            int rank = lottoCheck.checkRank(lotto, winningNumbers, bonusNumber);
+            if (rank >= 1 && rank <= 5) {
+                lottoResult[rank - 1]++;
+                totalPrize += lottoCheck.prizeInfo(rank);
+            }
+        }
+    }
 }
