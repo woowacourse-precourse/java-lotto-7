@@ -47,14 +47,13 @@ public class Application {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
                     .stream().sorted().collect(Collectors.toList());
             lottos.add(new Lotto(numbers));
-            System.out.println(numbers);
         }
         return lottos;
     }
 
     private static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.print(lotto.getNumbers());
+            System.out.println(lotto.getNumbers());
         }
     }
 
@@ -106,6 +105,10 @@ public class Application {
         double totalEarnings = 0;
 
         for (Rank rank : Rank.values()) {
+            if (rank == Rank.NONE) {
+                continue; // Rank.NONE은 출력하지 않음
+            }
+            
             int count = result.getOrDefault(rank, 0);
             System.out.println(rank.getMatchMessage() + " - " + count + "개");
             totalEarnings += rank.getPrize() * count;
