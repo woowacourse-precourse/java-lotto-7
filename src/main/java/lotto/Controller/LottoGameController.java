@@ -21,68 +21,45 @@ public class LottoGameController {
     }
 
     public void play() {
-        LottoGame game = createGame(getPurchaseAmount());
+        String purchaseAmount = inputView.readPurchaseAmount();
+        MoneyValidator.validate(purchaseAmount);
+        LottoGame game = new LottoGame(Integer.parseInt(purchaseAmount));
+
         printPurchasedLottos(game.getLottos());
-        WinningLotto winningLotto = createWinningLotto();
-        game.checkResult(winningLotto);
+        processWinningNumbers(game);
         printGameResults(game);
     }
 
-    private int getPurchaseAmount() {
-        String input = inputView.readPurchaseAmount();
-        MoneyValidator.validate(input);
-        return Integer.parseInt(input);
+    private void processWinningNumbers(LottoGame game) {
+        List<Integer> winningNumbers = parseWinningNumbers(inputView.readWinningNumbers());
+        int bonusNumber = Integer.parseInt(inputView.readBonusNumber());
+        game.checkResult(new WinningLotto(winningNumbers, bonusNumber));
     }
 
-    private LottoGame createGame(int amount) {
-        return new LottoGame(amount);
-    }
-
-    private WinningLotto createWinningLotto() {
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
-        return new WinningLotto(winningNumbers, bonusNumber);
-    }
-
-    private List<Integer> getWinningNumbers() {
-        String input = inputView.readWinningNumbers();
+    private List<Integer> parseWinningNumbers(String input) {
         return Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    private int getBonusNumber() {
-        String input = inputView.readBonusNumber();
-        return Integer.parseInt(input);
-    }
-
     private void printPurchasedLottos(List<Lotto> lottos) {
         outputView.printPurchaseResult(lottos.size());
-        lottos.forEach(this::printLotto);
-    }
-
-    private void printLotto(Lotto lotto) {
-        outputView.printLottoNumbers(lotto.getNumbers());
+        lottos.forEach(lotto -> outputView.printLottoNumbers(lotto.getNumbers()));
     }
 
     private void printGameResults(LottoGame game) {
         outputView.printStatisticsTitle();
-        printPrizeResults(game);
-        printProfitRate(game);
-    }
-
-    private void printPrizeResults(LottoGame game) {
-        Arrays.stream(LottoPrizeRank.values())
-                .filter(rank -> !rank.equals(LottoPrizeRank.MISS))
-                .forEach(rank -> printPrizeResult(rank, game));
-    }
-
-    private void printPrizeResult(LottoPrizeRank rank, LottoGame game) {
-        outputView.printMatchResult(rank.resultMessage, game.getWinningCount(rank));
-    }
-
-    private void printProfitRate(LottoGame game) {
+        printWinningStatistics(game);
         outputView.printProfitRate(game.calculateProfitRate());
+    }
+
+    private void printWinningStatistics(LottoGame game) {
+        Arrays.stream(LottoPrizeRank.values())
+                .filter(rank -> rank != LottoPrizeRank.MISS)
+                .forEach(rank -> outputView.printMatchResult(
+                        rank.resultMessage,
+                        game.getWinningCount(rank)
+                ));
     }
 }
