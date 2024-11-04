@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class DtoConverterTest {
     DtoConverter converter = new DtoConverter();
-    
+
     private Lotto lotto1, lotto2;
     private List<Lotto> lotteries;
     private UserLotto userLotto;
@@ -30,6 +30,8 @@ class DtoConverterTest {
         // when
         LotteriesResponse response = converter.toLotteriesResponse(lotteries);
         // then
+
+
         Assertions.assertThat(response.lotteriesCount()).isEqualTo(2);
         Assertions.assertThat(response.lotteries().get(0)).isEqualTo(lotto1.getNumbers());
         Assertions.assertThat(response.lotteries().get(1)).isEqualTo(lotto2.getNumbers());
