@@ -1,11 +1,12 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constants.InputViewConstants;
+
+import static lotto.constants.InputViewConstants.*;
 
 public class InputService {
     public int getPurchaseAmount() {
-        System.out.println(InputViewConstants.PURCHASE_AMOUNT_INSTRUCTION);
+        System.out.println(PURCHASE_AMOUNT_INSTRUCTION);
         String enteredPurchasePrice = Console.readLine();
         try {
             return ConverterService.convertPurchasePrice(enteredPurchasePrice);
@@ -16,7 +17,7 @@ public class InputService {
     }
 
     public int[] getWinningNumbers() {
-        System.out.println(InputViewConstants.WINNING_NUMBER_INSTRUCTION);
+        System.out.println(WINNING_NUMBER_INSTRUCTION);
         String enteredWinningNumber = Console.readLine();
         try {
             String[] splitWinningNumber = ConverterService.splitWinningNumber(enteredWinningNumber);
@@ -25,5 +26,16 @@ public class InputService {
             System.out.println(e.getMessage());
         }
         return this.getWinningNumbers();
+    }
+
+    public int getBonusNumber() {
+        System.out.println(BONUS_NUMBER_INSTRUCTION);
+        String enteredBonusNumber = Console.readLine();
+        try {
+            return ConverterService.convertBonusNumber(enteredBonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return this.getBonusNumber();
     }
 }
