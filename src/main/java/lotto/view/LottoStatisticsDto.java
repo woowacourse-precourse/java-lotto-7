@@ -32,7 +32,7 @@ public class LottoStatisticsDto {
             sb.append(lottoPrizeToPrintFormat(lottoPrize, prizeCount.get(lottoPrize)))
                     .append(LINE_SEPARATOR);
         }
-        sb.append(String.format("총 수익률은 %,f%%입니다.", rateOfReturn));
+        sb.append(String.format("총 수익률은 %,.2f%%입니다.", rateOfReturn));
         return sb.toString();
     }
 
