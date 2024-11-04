@@ -16,7 +16,8 @@ public class Application {
         List<List<Integer>> lottoList = lottoRandom(countLotto);
         haveLotto(lottoList);
 
-        Lotto lotto = new Lotto(prizeNumbers());
+        List<Integer> prizeNum = prizeNumbers();
+        Lotto lotto = new Lotto(prizeNum);
         int bonusNum = lotto.bonusNumber(inputBonus());
 
         Map<Integer, Long> prizeMap = new HashMap<>();
@@ -66,14 +67,17 @@ public class Application {
         List<Integer> finalList = new ArrayList<>();
 
         while (true) {
-            List<Integer> numberList = new ArrayList<>();
-            boolean validate = inputNumber(numberList);
-            if (validate) {
+            try {
+                List<Integer> numberList = new ArrayList<>();
+                inputNumber(numberList);
+                Lotto lotto = new Lotto(numberList);
+
                 finalList = numberList;
                 break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
-
         return finalList;
     }
 
@@ -102,19 +106,19 @@ public class Application {
 
     public static boolean validateNumber(String num) {
         if (num.isBlank()) {
-            return false;
+            throw new IllegalArgumentException("[ERROR] 번호가 입력되지 않았습니다.");
         }
 
         if (!Pattern.matches("^[0-9]*$", num)) {
-            return false;
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
         }
 
         if (Integer.parseInt(num) < 1) {
-            return false;
+            throw new IllegalArgumentException("[ERROR] 번호가 1보다 작으면 안됩니다.");
         }
 
         if (45 < Integer.parseInt(num)) {
-            return false;
+            throw new IllegalArgumentException("[ERROR] 번호가 45보다 크면 안됩니다.");
         }
 
         return true;
