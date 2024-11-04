@@ -6,17 +6,17 @@ import lotto.constant.Rank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 
-import static lotto.constant.OutputMessages.LOTTO_BUY_COUNT_MESSAGE;
-import static lotto.constant.OutputMessages.OUTPUT_DELIMITER;
-import static lotto.constant.OutputMessages.PREFIX;
-import static lotto.constant.OutputMessages.SUFFIX;
-import static lotto.constant.OutputMessages.RESULT_MESSAGE;
-import static lotto.constant.OutputMessages.MATCH_COUNT_MESSAGE;
-import static lotto.constant.OutputMessages.MATCH_COUNT_BONUS_MESSAGE;
-import static lotto.constant.OutputMessages.WINNINGS_FORMAT;
-import static lotto.constant.OutputMessages.PROFIT_RATE_MESSAGE;
-
 public class OutputView {
+    private static final String LOTTO_BUY_COUNT_MESSAGE = "%d개를 구매했습니다.";
+    private static final String OUTPUT_DELIMITER = ", ";
+    private static final String PREFIX = "[";
+    private static final String SUFFIX = "]";
+    private static final String RESULT_MESSAGE = "당첨 통계\n---";
+    private static final String MATCH_COUNT_MESSAGE = "%d개 일치 (%s원) - %d개";
+    private static final String MATCH_COUNT_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+    private static final String WINNINGS_FORMAT = "%,d";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.%n";
+
     public static void printError(String message) {
         System.out.println(message);
     }
