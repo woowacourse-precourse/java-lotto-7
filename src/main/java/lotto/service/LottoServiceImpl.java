@@ -10,7 +10,7 @@ import lotto.dto.LottoDto;
 import lotto.repository.LottoRepository;
 import lotto.utils.LottoGenerator;
 
-public class LottoServiceImpl {
+public class LottoServiceImpl implements LottoService {
     private final LottoRepository lottoRepository;
     private LottoAnswer lottoAnswer;
     private BonusNumber bonusNumber;
