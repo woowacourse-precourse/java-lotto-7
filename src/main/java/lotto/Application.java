@@ -1,18 +1,17 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import java.util.Scanner;
 
 public class Application {
     private static final int THOUSAND_UNIT = 1000;
     private static final int START_MATCH = 3;
     public static void main(String[] args) {
         try {
-            Scanner scanner = new Scanner(System.in);
             int[] matchCountArray = new int[8];
             // 구입 금액 입력 및 검증
             System.out.println("구입금액을 입력해 주세요.");
-            int input_purchaseAmount = Integer.parseInt(scanner.nextLine());
+            int input_purchaseAmount = Integer.parseInt(Console.readLine());
             Lotto.validatePurchaseAmount(input_purchaseAmount);
             System.out.println("");
 
@@ -23,13 +22,13 @@ public class Application {
 
             // 당첨 번호 입력
             System.out.println("당첨 번호를 입력해 주세요.");
-            String input_winningNumbers = scanner.nextLine();
+            String input_winningNumbers = Console.readLine();
             int[] winningNumbers = Lotto.parse_winNumberArray(input_winningNumbers);
             System.out.println("");
 
             // 보너스 번호 입력
             System.out.println("보너스 번호를 입력해 주세요.");
-            int bonusNumber = Integer.parseInt(scanner.nextLine());
+            int bonusNumber = Integer.parseInt(Console.readLine());
             Lotto.validateNoDuplicatesBonusNumber(winningNumbers, bonusNumber);
             System.out.println("");
 
