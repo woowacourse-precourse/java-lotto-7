@@ -2,6 +2,10 @@ package lotto.handler;
 
 import lotto.message.error.ErrorMessage;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ExceptionHandler {
 
     public void validatePurchaseAmount(int purchaseAmount) {
@@ -10,10 +14,9 @@ public class ExceptionHandler {
         }
     }
 
-    public void validateWinningNumbers(String winningNumbers) {
-        for (String number : winningNumbers.split(",")) {
-            int num = Integer.parseInt(number);
-            if (num < 1 || num > 45) {
+    public void validateWinningNumbers(List<Integer> winningNumbers) {
+        for (int number : winningNumbers) {
+            if (number < 1 || number > 45) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS.getMessage());
             }
         }
@@ -24,4 +27,5 @@ public class ExceptionHandler {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS.getMessage());
         }
     }
+
 }

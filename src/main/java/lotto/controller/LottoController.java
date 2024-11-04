@@ -25,28 +25,23 @@ public class LottoController {
         int purchaseAmount = inputView.requestPurchaseAmount();
         int cnt = lottoService.calculateLottoCount(purchaseAmount);
 
-        System.out.println("\n" + cnt + resultView.responseCntLotto());
+        resultView.responseCntLotto(cnt);
 
         List<List<Integer>> lottoNumbersList = lottoService.lottoNumbers(cnt);
-        for (List<Integer> lottoNumber : lottoNumbersList) {
-            System.out.println(lottoNumber);
-        }
+        resultView.responseLottoNumberList(lottoNumbersList);
 
         List<Integer> winningNumbers = inputView.requestLottoNumbers();
 //        List<Integer> winningNumbers = lottoService.extractWinningNumbersFromString(str);
 
         int bonusNumber = inputView.requestBonusNumber();
 
-
+        resultView.displayWinningStatistics();
         Map<String, Integer> matchCounts = lottoService.calculateWinningStatistics(lottoNumbersList, winningNumbers, bonusNumber);
-
-        for (Map.Entry<String, Integer> entry : matchCounts.entrySet()) {
-            System.out.printf("%s - %d개\n", entry.getKey(), entry.getValue());
-        }
+        resultView.winningResult(matchCounts);
 
         Long totalPrize = lottoService.calculateTotalPrize(matchCounts);
         double yield = lottoService.calculateYield(totalPrize, purchaseAmount);
-        System.out.printf(InfoMessage.RESPONSE_TOTAL_YIELD.getMessage(), yield);
+        resultView.totalPrize(yield);
 
     }
 }

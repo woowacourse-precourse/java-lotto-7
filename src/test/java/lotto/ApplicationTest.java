@@ -102,10 +102,10 @@ class ApplicationTest extends NsTest {
     @DisplayName("구입한 당첨번호 중 1부터 45 사이가 아닌 값이 존재하면 예외처리하는 테스트")
     public void requestWinningNumbersExceptionTest() {
         //given
-        String str = "1,47,3,4,5,6";
+        List<Integer> list = List.of(1, 48, 2, 3, 4, 5);
         //when, then
         assertThrows(IllegalArgumentException.class,
-                () -> exceptionHandler.validateWinningNumbers(str));
+                () -> exceptionHandler.validateWinningNumbers(list));
     }
 
     @Test

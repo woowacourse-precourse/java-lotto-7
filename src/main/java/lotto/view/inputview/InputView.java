@@ -41,14 +41,12 @@ public class InputView implements Input {
             try {
                 System.out.println("\n" + InfoMessage.REQUEST_WINNING_NUMBERS.getMessage());
                 String str = Console.readLine();
-                exceptionHandler.validateWinningNumbers(str);
                 lottoNumbers = lottoService.extractWinningNumbersFromString(str);
+                exceptionHandler.validateWinningNumbers(lottoNumbers);
                 Lotto lotto = new Lotto(lottoNumbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.INVALID_WINNING_NUMBERS.getMessage());
-            } catch (IllegalStateException e) {
-                System.out.println(ErrorMessage.INVALID_WINNING_NUMBERS_CNT.getMessage());
+                System.out.println(e.getMessage());
             }
         }
         return lottoNumbers;
