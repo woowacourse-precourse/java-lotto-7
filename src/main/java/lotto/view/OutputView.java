@@ -23,13 +23,13 @@ public class OutputView {
         System.out.println();
     }
 
-    // priceAndCount의 첫 번째 값은 낙첨된 경우에 대한 정보이기 때문에 건너뛰고 출력하였다.
+    // prizeAndCount의 첫 번째 값은 낙첨된 경우에 대한 정보이기 때문에 건너뛰고 출력하였다.
     public void printWinningInformation() {
-        Map<WinningPrize, Integer> priceAndCount = WinningInformation.getInstance().getPriceAndCount();
+        Map<WinningPrize, Integer> prizeAndCount = WinningInformation.getInstance().getPrizeAndCount();
         System.out.println(NEWLINE + START_STATISTICS_MESSAGE);
         System.out.println(DIVIDER);
 
-        priceAndCount.entrySet().stream()
+        prizeAndCount.entrySet().stream()
                 .skip(1)
                 .forEach(entry ->
                         System.out.println(
