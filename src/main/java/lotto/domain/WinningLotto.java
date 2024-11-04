@@ -1,4 +1,4 @@
-package lotto.Domain;
+package lotto.domain;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +39,7 @@ public class WinningLotto {
         int winningCount = 0;
         for (Integer number : winningNumbers) {
             if (matchWinningBonusNumber(lotto, number)) {
-                System.out.println("당첨" + number);
+                //System.out.println("당첨" + number);
                 winningCount++;
             }
         }
@@ -64,7 +64,7 @@ public class WinningLotto {
         }
         return totalWinMoney;
     }
-    public double calculateRateOfReturn(long totalWinMoney, long payment){
-        return Math.round(((double) totalWinMoney / payment));
+    public double calculateRate(long totalWinMoney, long payment){
+        return Math.round(((double) totalWinMoney / payment) * 10) / 10.0;
     }
 }

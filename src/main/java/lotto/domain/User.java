@@ -1,11 +1,11 @@
-package lotto.Domain;
+package lotto.domain;
 
 import java.util.List;
 
 public class User {
     private final long payment;  // 지불한 금액
     private final long lottoNumbers; // 로또의 개수
-    private final List<Lotto> lottoPapers;
+    private final List<List<Integer>> lottoPapers;
     final long WON = 1000L;
 
     public User(long payment) {
@@ -27,5 +27,11 @@ public class User {
 
     public long getLottoNumbers() {
         return lottoNumbers;
+    }
+    public long getPayment(){
+        return payment;
+    }
+    public List<List<Integer>> getLottoPapers(){
+        return lottoPapers;
     }
 }

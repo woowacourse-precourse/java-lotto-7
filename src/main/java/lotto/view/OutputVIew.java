@@ -1,17 +1,17 @@
-package lotto.View;
+package lotto.view;
 
-import lotto.Domain.LottoRank;
+import lotto.domain.LottoRank;
 
 import java.util.List;
 import java.util.Map;
 
 public class OutputVIew {
     public void printLottoQuantityMessage(long lottoCount) {
-        System.out.printf( "\n%d개를 구매했습니다.",lottoCount);
+        System.out.printf( "\n%d개를 구매했습니다.\n",lottoCount);
         ;
     }
 
-    public void printLottNumbers(List<Integer> lottoNumbers) {
+    public void printLottNumbers(List<List<Integer>> lottoNumbers) {
         lottoNumbers.forEach(System.out::println);
     }
 

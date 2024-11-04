@@ -1,10 +1,8 @@
-package lotto.View;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -51,7 +49,7 @@ public class InputView {
     }
 
     private void printWinningLottoNumber(){
-        System.out.println("당첨 번호를 입력해 주세요");
+        System.out.println("\n당첨 번호를 입력해 주세요");
     }
     private void printPaymentMessage(){
         System.out.println("구입금액을 입력해 주세요.");
