@@ -90,7 +90,7 @@ public class Application {
     }
 
     private static Lotto buyLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6).stream().sorted().toList());
     }
 
     private static List<Lotto> generateLotto(int cnt) {
