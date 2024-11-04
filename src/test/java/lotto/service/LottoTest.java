@@ -39,7 +39,6 @@ public class LottoTest extends NsTest {
         Ranking resultRanking = lottoHandler.checkedResult(lotto, lottos);
 
         assertEquals(resultRanking.getWinnings(), 2000000000);
-
     }
 
 

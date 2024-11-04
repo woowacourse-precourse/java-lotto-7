@@ -50,17 +50,40 @@ public class LottoHandler {
     }
 
     public Ranking checkedResult(Lotto winningLotto, Lottos boughtLottos) {
+        int rankedNumber = calculateRankedNumber(winningLotto, boughtLottos);
+        boolean checkedBonus = checkedBonusNumber(getBonusNumber(), boughtLottos);
+        return determineRanking(rankedNumber, checkedBonus);
+    }
+
+    private int calculateRankedNumber(Lotto winningLotto, Lottos boughtLottos) {
         int rankedNumber = checkedSameNumber(winningLotto.getNumbers(), boughtLottos.getLottoNumbers());
         if (rankedNumber == 6) {
             rankedNumber++;
         }
-        boolean checkedBonus = checkedBonusNumber(getBonusNumber(), boughtLottos);
+        return rankedNumber;
+    }
+
+    private Ranking determineRanking(int rankedNumber, boolean checkedBonus) {
         Ranking ranking = Ranking.values()[rankedNumber];
         if (ranking == Ranking.FIVE && checkedBonus) {
             return Ranking.FIVE_BONUS;
         }
         return ranking;
     }
+
+
+//    public Ranking checkedResult(Lotto winningLotto, Lottos boughtLottos) {
+//        int rankedNumber = checkedSameNumber(winningLotto.getNumbers(), boughtLottos.getLottoNumbers());
+//        if (rankedNumber == 6) {
+//            rankedNumber++;
+//        }
+//        boolean checkedBonus = checkedBonusNumber(getBonusNumber(), boughtLottos);
+//        Ranking ranking = Ranking.values()[rankedNumber];
+//        if (ranking == Ranking.FIVE && checkedBonus) {
+//            return Ranking.FIVE_BONUS;
+//        }
+//        return ranking;
+//    }
 
     private boolean checkedBonusNumber(int bonusNumber, Lottos boughtLottos) {
         return boughtLottos.getLottoNumbers().contains(bonusNumber);
