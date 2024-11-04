@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.constant.ErrorMessage.ERROR_TAG;
 import static lotto.view.OutputMessage.OUTPUT_EARNING_RATE;
 import static lotto.view.OutputMessage.OUTPUT_EXCEPT_SECOND_PLACE_RESULT;
 import static lotto.view.OutputMessage.OUTPUT_PURCHASE_QUANTITY;
@@ -43,5 +44,9 @@ public class OutputView {
 
     public static void printMessage(String message) {
         System.out.println(message);
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        printMessage(ERROR_TAG + errorMessage);
     }
 }

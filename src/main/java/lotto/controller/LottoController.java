@@ -2,7 +2,7 @@ package lotto.controller;
 
 import static lotto.domain.WinningStatistics.calculateEarningRate;
 import static lotto.domain.WinningStatistics.checkWinningResult;
-import static lotto.view.OutputView.printMessage;
+import static lotto.view.OutputView.printErrorMessage;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.Budget;
@@ -31,7 +31,7 @@ public class LottoController {
             try {
                 return new Budget(InputView.readBudget());
             } catch (IllegalArgumentException e) {
-                printMessage(e.getMessage());
+                printErrorMessage(e.getMessage());
             }
         }
     }
@@ -41,7 +41,7 @@ public class LottoController {
             try {
                 return new WinningNumbers(InputView.readWinningNumbers());
             } catch (IllegalArgumentException e) {
-                printMessage(e.getMessage());
+                printErrorMessage(e.getMessage());
             }
         }
     }
@@ -51,7 +51,7 @@ public class LottoController {
             try {
                 return new BonusNumber(InputView.readBonusNumber(), numbers);
             } catch (IllegalArgumentException e) {
-                printMessage(e.getMessage());
+                printErrorMessage(e.getMessage());
             }
         }
     }
