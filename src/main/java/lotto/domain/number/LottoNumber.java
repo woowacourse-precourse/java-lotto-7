@@ -2,7 +2,7 @@ package lotto.domain.number;
 
 import java.util.Objects;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
     private static final int MIN_VALUE = 1;
     private static final int MAX_VALUE = 45;
     private static final String ERROR_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
@@ -17,6 +17,7 @@ public class LottoNumber {
     private final int value;
 
     private LottoNumber(int value) {
+        validateRange(value);
         this.value = value;
     }
 
@@ -50,5 +51,15 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public int compareTo(LottoNumber o) {
+        return Integer.compare(this.value, o.value);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
     }
 }
