@@ -1,104 +1,88 @@
 package lotto;
-import camp.nextstep.edu.missionutils.Console;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
+    private static int buyLottoMoney = 0;
+    private static int cntLotto = 0;
+    private static int bonusNum = 0;
+    private static double totalSum = 0;
+    private static int matchNum = 0;
+    private static boolean matchBonus = false;
+    private static InputView input;
+    private static OutputView output;
+    public static List<Lotto> lottos = new ArrayList<>();  // 로또 객체 리스트
+    public static int[] perRankCount = {0, 0, 0, 0, 0, 0};
+    private static Prize prize;
+
     public static void main(String[] args) {
-        int totalLotto = 0;
+        // 로또 구매
+        buyLottoMoney = buyLotto();
+        System.out.println();
+
+        // 금액에 따른 개수 도출
+        cntLotto = buyLottoMoney / 1000;
+        output.printCntLotto(cntLotto);
+
+        // 로또 랜덤하게 생성
+        randomizePublish();
+        System.out.println();
+
+        // 당첨 번호 입력
+        Lotto winLotto = input.enterWinNum();
+        System.out.println();
+
+        // 보너스 번호 입력
+        bonusNum = input.enterBonusNum();
+
+        // 당첨 확인 과정
+        for (Lotto lotto : lottos) {
+            checkLotto(lotto, winLotto);
+        }
+
+        // 당첨 결과 출력
+        output.printResultPrize();
+
+        // 총 수익률
+        output.printRevenue(totalSum, buyLottoMoney);
+    }
+
+    private static int buyLotto() {
         try {
-            System.out.println("구입 금액을 입력해 주세요.");
-            totalLotto = Integer.parseInt(Console.readLine());
-            if(totalLotto % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
-            }
+            return input.buyLotto();
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자만 입력해 주세요.");
         }
-        System.out.println();
+        return 0;
+    }
 
-        int cntLotto = totalLotto / 1000;
-        System.out.println(cntLotto + "개를 구매했습니다.");
-        List<Lotto> lottos = new ArrayList<>();
+    private static void randomizePublish() {
         for (int i = 0; i < cntLotto; i++) {
-            Lotto randLotto = new Lotto(Randoms.pickUniqueNumbersInRange(1,45, 6));
+            Lotto randLotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottos.add(randLotto);
             System.out.println(randLotto.toString());
         }
-        System.out.println();
-
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-
-        List<Integer> winLottoNumbers = new ArrayList<>();
-        Set<Integer> numberSet = new HashSet<>();
-        try {
-            for (String numStr : input.split(",")) {
-                int numbers = Integer.parseInt(numStr.trim());
-                winLottoNumbers.add(numbers);
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 포함해야 합니다.");
-        }
-        Lotto winLotto = new Lotto(winLottoNumbers);
-        System.out.println();
-
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNum;
-        try {
-            bonusNum = Integer.parseInt(Console.readLine());
-
-            // 1 ~ 45 범위 검사
-            if (bonusNum < 1 || bonusNum > 45) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해 주세요.");
-        }
-
-        double totalSum = 0;
-        int[] perRankCount = {0, 0, 0, 0, 0, 0};    // 인덱스 0은 무시
-        // 당첨 확인 과정
-        for (Lotto lotto : lottos) {
-            int matchNum = lotto.cntMatchingNumbers(winLotto);
-            boolean matchBonus = lotto.getNumbers().contains(bonusNum);
-            Prize prize = null;
-            if(matchNum == 5 && matchBonus){
-                prize = prize.BONUS;
-                perRankCount[prize.getRank()]++;
-                totalSum += prize.money();
-            }
-            if(matchNum >= 3 && prize == null){
-                prize = Prize.checkByMatchNum(matchNum);
-                perRankCount[prize.getRank()]++;
-                totalSum += prize.money();
-            }
-        }
-
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
-        for (int rank = 5; rank >=1; rank--) {
-            Prize prize = Prize.checkByRank(rank);
-            if(rank == 2) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", prize.getMatchNumbers(), prize.getMoney(), perRankCount[rank]);
-                continue;
-            }
-            System.out.printf("%d개 일치 (%s원) - %d개\n", prize.getMatchNumbers(), prize.getMoney(), perRankCount[rank]);
-        }
-
-        // 총 수익률
-        double totalRevenue = totalSum / totalLotto * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.", totalRevenue);
     }
 
-    private static boolean duplicated(int number, Lotto lotto) {
-        for ( int num : lotto.getNumbers() ){
-            if ( number == num ) {
-                return true;
-            }
-        }
-        return false;
+    private static void calculateCntAndSum(Prize prize) {
+        perRankCount[prize.getRank()]++;
+        totalSum += prize.money();
     }
 
-
+    private static void checkLotto(Lotto lotto, Lotto winLotto) {
+        matchNum = lotto.cntMatchingNumbers(winLotto);  // 당첨 숫자 개수
+        matchBonus = lotto.getNumbers().contains(bonusNum); // 보너스 숫자 맞는지 여부
+        prize = null;
+        if (matchNum == 5 && matchBonus) {
+            prize = prize.BONUS;
+            calculateCntAndSum(prize);
+        }
+        if (matchNum >= 3 && prize == null) {
+            prize = Prize.checkByMatchNum(matchNum);
+            calculateCntAndSum(prize);
+        }
+    }
 }
