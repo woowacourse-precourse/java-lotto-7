@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import lotto.message.ErrorMessage;
@@ -14,7 +13,7 @@ public class WinningNumberValidator {
             checkNullOrEmptyNumber(winningNumber);
             checkInteger(winningNumber);
             checkValidWinningNumber(winningNumber);
-            duplicateWinningNumber(winningNumber, winningNumberList);
+            checkDuplicateWinningNumber(winningNumber, winningNumberList);
             winningNumberList.add(Integer.parseInt(winningNumber));
         }
         return winningNumberList;
@@ -62,11 +61,11 @@ public class WinningNumberValidator {
     private static void checkValidWinningNumber(String winningNumber) {
         int winningNumberInt = Integer.parseInt(winningNumber);
         if (winningNumberInt > 45 || winningNumberInt < 1) {
-            handleValidWinningNumber();
+            handleInvalidWinningNumber();
         }
     }
 
-    private static void handleValidWinningNumber() {
+    private static void handleInvalidWinningNumber() {
         try {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER.getMessage());
         } catch (IllegalArgumentException e) {
@@ -75,7 +74,7 @@ public class WinningNumberValidator {
         }
     }
 
-    private static void duplicateWinningNumber(String winningNumber, Set<Integer> winningNumberList) {
+    private static void checkDuplicateWinningNumber(String winningNumber, Set<Integer> winningNumberList) {
         if (winningNumberList.contains(Integer.parseInt(winningNumber))) {
             handleDuplicateWinningNumber();
         }
