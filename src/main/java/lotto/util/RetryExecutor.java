@@ -1,11 +1,9 @@
 package lotto.util;
 
-import java.util.Arrays;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class RetryExecutor {
-
     private RetryExecutor() {
     }
 
@@ -17,19 +15,22 @@ public class RetryExecutor {
      * @param retryableErrors 재시도할 예외 목록
      * @param <T>             작업 결과의 타입
      * @return 작업 수행 결과
-     * @throws Exception 재시도 불가능한 예외 발생 시
      */
     @SafeVarargs
     public static <T> T execute(
             Supplier<T> operation,
             Consumer<Exception> errorCallback,
             Class<? extends Exception>... retryableErrors
-    ) throws Exception {
+    ) {
         while (true) {
             try {
                 return operation.get();
             } catch (Exception error) {
-                handleException(error, errorCallback, retryableErrors);
+                if (isNotRetryableException(error, retryableErrors)) {
+                    throw error;
+                }
+
+                errorCallback.accept(error);
             }
         }
     }
@@ -41,34 +42,26 @@ public class RetryExecutor {
      * @param retryableErrors 재시도할 예외 목록
      * @param <T>             작업 결과의 타입
      * @return 작업 수행 결과
-     * @throws Exception 재시도 불가능한 예외 발생 시
      */
     @SafeVarargs
     public static <T> T execute(
             Supplier<T> operation,
             Class<? extends Exception>... retryableErrors
-    ) throws Exception {
+    ) {
         return execute(operation, error -> {
         }, retryableErrors);
     }
 
-    private static void handleException(
-            Exception error,
-            Consumer<Exception> errorCallback,
-            Class<? extends Exception>[] retryableErrors
-    ) throws Exception {
-        if (shouldRethrowException(error, retryableErrors)) {
-            throw error;
-        }
-
-        errorCallback.accept(error);
-    }
-
-    private static boolean shouldRethrowException(
+    private static boolean isNotRetryableException(
             Exception error,
             Class<? extends Exception>[] retryableErrors
     ) {
-        return Arrays.stream(retryableErrors)
-                .noneMatch(errorClass -> errorClass.isInstance(error));
+        for (Class<? extends Exception> retryableError : retryableErrors) {
+            if (retryableError.isInstance(error)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
