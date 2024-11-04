@@ -1,5 +1,7 @@
 package lotto.week3.global.error.validate;
 
+import lotto.week3.global.error.message.ErrorMessage;
+
 public class PurchaseAmountValidator {
 
 
@@ -15,7 +17,7 @@ public class PurchaseAmountValidator {
     // 1. 입력이 비어있는지 확인
     private static void checkIfEmpty(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력이 비어 있습니다. 금액을 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY.getMessage());
         }
     }
 
@@ -24,21 +26,21 @@ public class PurchaseAmountValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.PLEASE_ENTER_THE_AMOUNT_IN_NUMBERS.getMessage());
         }
     }
 
     // 3. 최소 금액 확인 (1,000원 이상)
     private static void checkMinimumAmount(int amount) {
         if (amount < 1000) {
-            throw new IllegalArgumentException("[ERROR] 최소 구입 금액은 1,000원입니다.");
+            throw new IllegalArgumentException(ErrorMessage.MINIMUM_PURCHASE_AMOUNT.getMessage());
         }
     }
 
     // 4. 1,000원 단위 확인
     private static void checkThousandUnit(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT.getMessage());
         }
     }
 }
