@@ -8,6 +8,8 @@ public enum Rank {
     FIFTH(3, false, 5_000),
     NONE(0, false, 0);
 
+    private static final String ERROR_NO_MATCHING_RANK = "[ERROR] 매칭되는 Rank가 없습니다.";
+
     private final int matchCount;
     private final boolean matchBonus;
     private final int prize;
@@ -28,6 +30,6 @@ public enum Rank {
                 return rank;
             }
         }
-        return NONE;
+        throw new IllegalArgumentException(ERROR_NO_MATCHING_RANK);
     }
 }
