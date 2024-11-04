@@ -5,6 +5,7 @@ import static lotto.utils.Constant.LOTTO_NUMBER_MIN;
 import static lotto.utils.Constant.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -27,8 +28,9 @@ public class Lotto {
 
     public static Lotto create() {
         List<Integer> randoms = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_SIZE);
+        List<Integer> sortedNumbers = new ArrayList<>(randoms);
         Collections.sort(randoms);
-        return new Lotto(randoms);
+        return new Lotto(sortedNumbers);
     }
 
     public boolean containBonusNumber(BonusNumber bonusNumber) {
@@ -58,13 +60,13 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }
 
     private void validateNumbersInRange(List<Integer> numbers) {
         if(numbers.stream().anyMatch(number -> number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하 입니다");
+            throw new IllegalArgumentException("로또 번호는 1 이상 45 이하 입니다");
         }
     }
 
@@ -72,7 +74,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for(Integer number : numbers) {
             if(!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 중복 되지 않은 로또 번호를 입력하세요");
+                throw new IllegalArgumentException("중복 되지 않은 로또 번호를 입력하세요");
             }
         }
     }
