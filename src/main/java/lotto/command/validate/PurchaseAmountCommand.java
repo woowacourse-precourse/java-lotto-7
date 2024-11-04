@@ -12,10 +12,19 @@ import lotto.view.exception.InputException;
 public class PurchaseAmountCommand implements ValidateCommand {
   private static final int AMOUNT_UNIT = 1000;
   private static final int AMOUNT_MAXIMUM = (Integer.MAX_VALUE / AMOUNT_UNIT) * AMOUNT_UNIT;
-  private static final String ASK = "로또 구입 금액을 입력 해주세요.";
+  private static final String ASK = "구입금액을 입력해 주세요.";
 
   @Override
   public UserInput execute(String input) {
+    try {
+      return validate(input);
+    } catch (IllegalArgumentException | IllegalStateException e) {
+      view.displayOutput(e.getMessage());
+      return redo();
+    }
+  }
+
+  private PurchaseAmountUserInput validate (String input) {
     validateBlank(input);
     validateWhiteSpace(input);
     int value = validateIntegerRange(input,
@@ -35,10 +44,5 @@ public class PurchaseAmountCommand implements ValidateCommand {
       throw new InputException(ExceptionEnum.PURCHASE_AMOUNT_NOT_IN_UNIT,
           String.valueOf(AMOUNT_UNIT));
     }
-  }
-
-  @Override
-  public void redo() {
-
   }
 }
