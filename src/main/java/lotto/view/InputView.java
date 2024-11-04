@@ -11,6 +11,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
+	private static final String SEPARATOR = ",";
+
 	public int getPurchasePriceInput() {
 		try {
 			String purchasePrice = Console.readLine();
@@ -38,7 +40,7 @@ public class InputView {
 	}
 
 	private List<Integer> parseToNumbers(String input) {
-		return Arrays.stream(input.split(","))
+		return Arrays.stream(input.split(SEPARATOR))
 				.map(Integer::parseInt)
 				.toList();
 	}
