@@ -76,15 +76,15 @@ public class OutputView {
     private static void printSecondRewardStatistic(int matchNumberCount, String prize, int count) {
         System.out.println(matchNumberCount +
                 ViewMessages.PRINT_REWARD_SECOND_RANK_STATISTIC_FIRST.getMessage() +
-                prize + ViewMessages.PRINT_REWARD_STATISTIC_SECOND +
-                count + ViewMessages.PRINT_REWARD_STATISTIC_LAST);
+                prize + ViewMessages.PRINT_REWARD_STATISTIC_SECOND.getMessage() +
+                count + ViewMessages.PRINT_REWARD_STATISTIC_LAST.getMessage());
     }
 
     private static void printDefaultRewardStatistic(int matchNumberCount, String prize, int count) {
         System.out.println(matchNumberCount +
                 ViewMessages.PRINT_REWARD_STATISTIC_FIRST.getMessage() +
-                prize + ViewMessages.PRINT_REWARD_STATISTIC_SECOND +
-                count + ViewMessages.PRINT_REWARD_STATISTIC_LAST);
+                prize + ViewMessages.PRINT_REWARD_STATISTIC_SECOND.getMessage() +
+                count + ViewMessages.PRINT_REWARD_STATISTIC_LAST.getMessage());
     }
 
     private static float getProfitRateAtSecondDecimals(float profitRatio) {
