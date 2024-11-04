@@ -60,7 +60,7 @@ public class LottoController {
     private Lotto readWinningLottoNumbers() {
         String winningLottoNumbersInput = consoleView.readWinningLottoNumbersInput();
         LottoNumbersInputParser lottoNumbersInputParser = new LottoNumbersInputParser();
-        List<String> lottoNumbers = lottoNumbersInputParser.parse(winningLottoNumbersInput);
+        List<Integer> lottoNumbers = lottoNumbersInputParser.parse(winningLottoNumbersInput);
 
         return new Lotto(lottoNumbers);
     }
