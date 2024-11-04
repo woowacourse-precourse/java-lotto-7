@@ -33,5 +33,11 @@ public class InputMessageTest {
     assertFalse(validator.validateEnterWinningNumber(invalidNumbers));
   }
 
+  @Test
+  void 로또_번호가_정상값_일때() {
+    List<Integer> invalidNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+    assertThat(validator.validateEnterWinningNumber(invalidNumbers));
+  }
+
 
 }
