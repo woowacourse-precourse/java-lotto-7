@@ -16,7 +16,7 @@ public class OutputView {
     public void printWinningStatistics(Map<Integer, Integer> lottoStatistics) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        printStatisticsDetails(lottoStatistics);// 일치 숫자 개수 별 몇 개인지 출력
+        printStatisticsDetails(lottoStatistics);
     }
 
     public void printRateOfReturn(double rateOfReturn) {
@@ -28,14 +28,12 @@ public class OutputView {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
-    // 각 로또 번호 출력
     private void printGeneratedLottoNumbers(List<Lotto> generatedLottoNumbers) {
         for (Lotto generatedLottoNumber : generatedLottoNumbers) {
             System.out.println(generatedLottoNumber.getNumbers()); // 로또 형태로 출력
         }
     }
 
-    // 일치 숫자 개수 별 몇 개인지 출력
     private void printStatisticsDetails(Map<Integer, Integer> lottoStatistics) {
         System.out.printf("%s%d개%n", Constants.THREE_MATCHED_MESSAGE, lottoStatistics.get(3));
         System.out.printf("%s%d개%n", Constants.FOUR_MATCHED_MESSAGE, lottoStatistics.get(4));
