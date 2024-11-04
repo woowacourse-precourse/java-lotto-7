@@ -19,6 +19,7 @@ public class LottoGenerator {
 
     // 사용자가 구매 금액을 입력하면 그 금액에 맞게 로또를 발행 (1000원당 1개의 로또)
     public Lotto[] generate(String amount){
+        StringUtil.checkIfNull(amount);
         purchaseAmount = StringUtil.parseToPositiveInt(amount);
 
         validatePurchaseAmount(purchaseAmount);
