@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Rank;
 import lotto.model.WinningLotto;
 
 public class LottoService {
@@ -50,6 +51,28 @@ public class LottoService {
     // 보너스 번호 일치 여부 확인
     private boolean isBonusNumberMatch(Lotto userLotto) {
         return userLotto.getNumbers().contains(winningLotto.getBonusNumber());
+    }
+
+    public List<Rank> calculateResults() {
+        List<Rank> results = new ArrayList<>();
+        for (Lotto lotto : lottoTickets) {
+            int matchCount = countMatchingNumbers(lotto);
+            boolean bonusMatch = isBonusNumberMatch(lotto);
+            results.add(Rank.valueOf(matchCount, bonusMatch));
+        }
+        return results;
+    }
+
+    // 수익률 계산
+    public double calculateYield(int moneySpent) {
+        List<Rank> results = calculateResults();
+        int totalPrize = results.stream().mapToInt(Rank::getPrize).sum();
+        return ((double) totalPrize / moneySpent) * 100;
+    }
+
+    // 생성된 로또 티켓 가져오기
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
     }
 
 
