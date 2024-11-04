@@ -1,11 +1,11 @@
 package lotto;
 
 public enum LottoWinningStandard {
-    FIRST_PRIZE(6, 0, 2000000000),
-    SECOND_PRIZE(5, 1, 30000000),
-    THIRD_PRIZE(5, 0, 1500000),
+    FIFTH_PRIZE(3, 0, 5000),
     FOURTH_PRIZE(4, 0, 50000),
-    FIFTH_PRIZE(3, 0, 5000);
+    THIRD_PRIZE(5, 0, 1500000),
+    SECOND_PRIZE(5, 1, 30000000),
+    FIRST_PRIZE(6, 0, 2000000000);
 
     private final int matchedNumberCount;
     private final int matchedBonusNumberCount;
