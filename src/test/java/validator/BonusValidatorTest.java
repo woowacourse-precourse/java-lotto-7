@@ -1,6 +1,7 @@
 package validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import lotto.ErrorMessage;
@@ -30,5 +31,16 @@ class BonusValidatorTest {
         assertThatThrownBy(() -> BonusValidator.validate(bonus, prizeNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE); // then
+    }
+
+    @Test
+    void 보너스_번호_적합성이_성공하는_경우() {
+        // given
+        Integer bonus = 30;
+        List<Integer> prizeNumbers = List.of(1, 2, 3, 4, 5, 44);
+
+        // when
+        // then
+        assertDoesNotThrow(() -> BonusValidator.validate(bonus, prizeNumbers));
     }
 }
