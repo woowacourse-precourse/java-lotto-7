@@ -28,7 +28,7 @@ public class ProfitCalculator {
     }
 
     private long calculateWinningAmount(MatchResult matchResult) {
-        LottoRank rank = LottoRank.of(matchResult.matchCount(), matchResult.containBonusNumber());
+        LottoRank rank = LottoRank.from(matchResult);
         return rank.getMoney();
     }
 }

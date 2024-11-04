@@ -21,7 +21,7 @@ public class LottoResult {
     public Map<LottoRank, Integer> produceStatistics(List<MatchResult> matchResults) {
 
         for (MatchResult matchResult : matchResults) {
-            LottoRank rank = LottoRank.of(matchResult.matchCount(), matchResult.containBonusNumber());
+            LottoRank rank = LottoRank.from(matchResult);
             rankCounts.computeIfPresent(rank, (key, count) -> count + 1);
         }
         return rankCounts;

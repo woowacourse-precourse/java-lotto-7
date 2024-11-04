@@ -1,5 +1,7 @@
 package lotto.enums;
 
+import lotto.dto.MatchResult;
+
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -31,13 +33,13 @@ public enum LottoRank {
         return prizeMoney;
     }
 
-    public static LottoRank of(int matchCount, boolean hasBonusNum) {
-        if (matchCount == SECOND.matchCount && hasBonusNum) {
+    public static LottoRank from(MatchResult matchResult) {
+        if (matchResult.matchCount() == SECOND.matchCount && matchResult.containBonusNumber()) {
             return SECOND;
         }
 
         return Arrays.stream(values())
-                .filter(lottoRank -> lottoRank.matchCount == matchCount)
+                .filter(lottoRank -> lottoRank.matchCount == matchResult.matchCount())
                 .findFirst()
                 .orElse(NO_REWARD);
     }
