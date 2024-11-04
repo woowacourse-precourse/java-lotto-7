@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.service.exception.LottoExceptionMessage.PRICE_NOT_POSITIVE_INTEGER;
+import static lotto.service.exception.LottoExceptionMessage.PRICE_OVERFLOW;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -17,5 +18,14 @@ class PriceTest {
             PriceValidator.validate(price);
         });
         assertEquals(PRICE_NOT_POSITIVE_INTEGER.message(), e.getMessage());
+    }
+
+    @Test
+    void 가격의_정수_타입_최대값을_초과할_경우_예외발생() {
+        String price = "99999999999999999";
+        LottoException e = assertThrows(LottoException.class, () -> {
+            PriceValidator.validate(price);
+        });
+        assertEquals(PRICE_OVERFLOW.message(), e.getMessage());
     }
 }
