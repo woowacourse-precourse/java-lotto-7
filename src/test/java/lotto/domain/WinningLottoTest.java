@@ -16,15 +16,16 @@ class WinningLottoTest {
     @Nested
     @DisplayName("당첨 로또 체크 테스트")
     class WinningLottoCheckLottoTest {
-        private final List<Integer> ticket = List.of(1, 2, 3, 4, 5, 6);
+        private final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        private final Lotto ticket = Lotto.of(numbers);
 
         private static Stream<Arguments> provideLottoRankTestCases() {
             return Stream.of(
                     // NONE 랭크
                     Arguments.of("로또 번호 0개 맞고 보너스도 맞지 않을때 None 랭크를 반환한다"
-                            , List.of(7, 8, 9, 10, 11, 12), 13, Rank.NONE),
+                            , java.util.List.of(7, 8, 9, 10, 11, 12), 13, Rank.NONE),
                     Arguments.of("로또 번호 1개 맞고 보너스도 맞지 않을때 None 랭크를 반환한다"
-                            , List.of(6, 7, 8, 9, 10, 11), 12, Rank.NONE),
+                            , java.util.List.of(6, 7, 8, 9, 10, 11), 12, Rank.NONE),
                     Arguments.of("로또 번호 1개 맞고 보너스 번호 맞을때 None 랭크를 반환한다"
                             , List.of(6, 7, 8, 9, 10, 11), 7, Rank.NONE),
                     Arguments.of("로또 번호 2개 맞고 보너스도 맞지 않을때 None 랭크를 반환한다"
@@ -58,7 +59,7 @@ class WinningLottoTest {
         @DisplayName("로또 결과를 검증시")
         void rankingTest(String description, List<Integer> numbers, int bonusNumber, Rank expectedRank) {
             // given
-            BonusNumber bonusNum = BonusNumber.of(bonusNumber, ticket);
+            BonusNumber bonusNum = BonusNumber.of(bonusNumber, numbers);
             WinningLotto winningLotto = WinningLotto.of(ticket, bonusNum);
             Lotto newTicket = Lotto.of(numbers);
 

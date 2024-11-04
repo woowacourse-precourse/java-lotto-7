@@ -29,13 +29,13 @@ public class InputView {
         return readWinningLottoNumbers();
     }
 
-    public int readBonusLottoNumber() {
+    public int readBonusNumber() {
         System.out.println(BONUS_LOTTO_NUMBER_MESSAGE);
         try {
             return parser.parseStringToInteger(Console.readLine());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
         }
-        return readBonusLottoNumber();
+        return readBonusNumber();
     }
 }

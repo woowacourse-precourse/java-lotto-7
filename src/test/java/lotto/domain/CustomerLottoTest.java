@@ -13,7 +13,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CustomerLottoTest {
-    private final List<Integer> winningTicket = List.of(1, 2, 3, 4, 5, 6);
+    private final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+    private final Lotto winningTicket = Lotto.of(numbers);
 
     @Test
     @DisplayName("고객의 로또와 당첨로또를 비교하면 해당하는 결과들이 나온다")
@@ -34,7 +35,7 @@ class CustomerLottoTest {
         ));
         CustomerLotto customerLotto = CustomerLotto.of(tickets);
 
-        BonusNumber bonusNumber = BonusNumber.of(number, winningTicket);
+        BonusNumber bonusNumber = BonusNumber.of(number, numbers);
         WinningLotto winningLotto = WinningLotto.of(winningTicket, bonusNumber);
         // when
         LottoResults lottoResults = customerLotto.compareWinningLotto(winningLotto);
