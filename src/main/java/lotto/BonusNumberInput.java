@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class BonusNumberInput {
-
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 

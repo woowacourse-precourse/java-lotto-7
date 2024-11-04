@@ -9,12 +9,12 @@ public enum Rank {
     NONE(0, false, 0);
 
     private final int matchCount;
-    private final boolean matchBonus;
+    private final boolean requiresBonus;
     private final int prize;
 
-    Rank(int matchCount, boolean matchBonus, int prize) {
+    Rank(int matchCount, boolean requiresBonus, int prize) {
         this.matchCount = matchCount;
-        this.matchBonus = matchBonus;
+        this.requiresBonus = requiresBonus;
         this.prize = prize;
     }
 

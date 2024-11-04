@@ -8,25 +8,34 @@ import java.util.List;
 
 public class LottoPurchase {
     private static final int PRICE_PER_LOTTO = 1000;
+    private int totalCost;
+    private List<Lotto> userLottos;
 
     public void start() {
         try {
             System.out.println("구입 금액을 입력해 주세요.");
             String input = Console.readLine().trim();
-            int purchaseAmount = inputPurchaseAmount(input);
-            int lottoCount = purchaseAmount / PRICE_PER_LOTTO;
+            totalCost = inputPurchaseAmount(input);
+            int lottoCount = totalCost / PRICE_PER_LOTTO;
             System.out.println();
             System.out.println(lottoCount + "개를 구매했습니다.");
-            List<Lotto> lottos = generateLottos(lottoCount);
-            lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+            userLottos = generateLottos(lottoCount);
+            userLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             start();
         }
     }
 
+    public List<Lotto> getUserLottos() {
+        return userLottos;
+    }
+
     public int inputPurchaseAmount(String input) {
         int amount = Integer.parseInt(input);
+        if (amount <= 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0보다 커야 합니다.");
+        }
         if (amount % PRICE_PER_LOTTO != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
         }
@@ -40,5 +49,9 @@ public class LottoPurchase {
             lottos.add(new Lotto(numbers));
         }
         return lottos;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
     }
 }

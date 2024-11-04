@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class WinningResultCalculator {
-
     public Map<Rank, Integer> calculateResults(List<Lotto> userLottos, List<Integer> winningNumbers, int bonusNumber) {
         Map<Rank, Integer> results = new HashMap<>();
         for (Rank rank : Rank.values()) {
