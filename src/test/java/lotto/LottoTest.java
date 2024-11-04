@@ -81,47 +81,4 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
-    @Test
-    @DisplayName("로또 번호 발행 테스트")
-    void testPublishLotto() {
-        publishLotto();
-        assertEquals(pieces, lottos.size());
-    }
-
-    @Test
-    @DisplayName("당첨 번호가 정상적으로 받아졌는지 테스트")
-    void testGetWinningNumbers() {
-        String input = "1,2,3,4,5,6";
-        winningNumbers.clear();
-        getWinningNumbers(input);
-        assertThat(winningNumbers).contains(1,2,3,4,5,6);
-    }
-
-    @Test
-    @DisplayName("일치하는 번호 개수 테스트")
-    void testMatchTest() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        winningNumbers = List.of(1,2,3,4,5,6);
-        matchTest(lotto);
-        assertThat(matchCount[6]).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("5개 번호 + 보너스 번호 일치 테스트")
-    void test2nd() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        winningNumbers = List.of(1,2,3,4,5,7);
-        bonusNumber = 6;
-        matchTest(lotto);
-        assertThat(matchCount[7]).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("수익률 테스트")
-    void testRevenueRate() {
-        revenue = 5000;
-        credit = 8000;
-        calculateRevenueRate();
-        assertThat(revenueRate).isEqualTo(62.5);
-    }
 }

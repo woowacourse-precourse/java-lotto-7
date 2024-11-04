@@ -76,4 +76,12 @@ public class LottoDraw {
     public double getRevenueRate() {
         return revenueRate;
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getPieces() {
+        return pieces;
+    }
 }
