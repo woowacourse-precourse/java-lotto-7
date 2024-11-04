@@ -1,10 +1,11 @@
 package lotto.application.support;
 
+import static lotto.common.Consts.AMOUNT_MUST_BE_POSITIVE_NUMBER_ERROR;
 import static lotto.common.Consts.CLASS_CAST_NOT_ACCEPTABLE_ERROR;
 import static lotto.common.Consts.LOTTO_NUMBER_MUST_BE_BETWEEN_ONE_FORTY_FIVE_ERROR;
+import static lotto.common.Consts.NUMBER_MUST_BE_POSITIVE_NUMBER_ERROR;
 import static lotto.common.Consts.WINNING_NUMBER_NOT_DUPLICATED_ERROR;
 import static lotto.common.Consts.INPUT_MUST_BE_NUMBER_ERROR;
-import static lotto.common.Consts.INPUT_MUST_BE_POSITIVE_NUMBER_ERROR;
 import static lotto.common.Consts.LOTTO_PRICE;
 import static lotto.common.Consts.PURCHASE_AMOUNT_1000_UNIT_ERROR;
 import static lotto.common.Consts.WINNING_NUMBER_SIZE_MUST_BE_6_ERROR;
@@ -40,7 +41,7 @@ public class LottoInputParser {
         }
 
         if(amount < 0){
-            Errors.IllegalArgumentException(INPUT_MUST_BE_POSITIVE_NUMBER_ERROR);
+            Errors.IllegalArgumentException(AMOUNT_MUST_BE_POSITIVE_NUMBER_ERROR);
         }
     }
 
@@ -52,9 +53,11 @@ public class LottoInputParser {
             registerInCache("winningNumber", winningNumbers);
 
             return winningNumbers;
-        } catch (IllegalArgumentException e){
-            return Collections.emptyList();
+        } catch (NumberFormatException e) {
+            Errors.IllegalArgumentException(NUMBER_MUST_BE_POSITIVE_NUMBER_ERROR);
         }
+
+        return Collections.emptyList();
     }
 
     private List<Integer> winningNumbertoList(String winningNumber){
