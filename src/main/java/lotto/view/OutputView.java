@@ -18,6 +18,7 @@ public class OutputView {
     private static final String SIX_NUMBERS_MATCH = "6개 일치 (2,000,000,000원) - ";
     private static final String COUNT_UNIT = "개";
     private static final String RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
+
     private static final long THREE_MATCH_MONEY = 5_000;
     private static final long FOUR_MATCH_MONEY = 50_000;
     private static final long FIVE_MATCH_MONEY = 1_500_000;
@@ -25,11 +26,11 @@ public class OutputView {
     private static final long SIX_MATCH_MONEY = 2_000_000_000;
     private static final long PERCENTAGE = 100;
 
-    public void printLottoResult(List<Set<Integer>> lottoResults, int lotteryCount) {
+    public void printLottoResult(List<Set<Integer>> lottoResults, final int lotteryCount) {
         System.out.printf(HOW_MANY_DID_YOU_PURCHASED.getMessage(), lotteryCount);
 
         StringBuilder stringBuilder = new StringBuilder();
-        for(Set<Integer> lottoResult : lottoResults) {
+        for (Set<Integer> lottoResult : lottoResults) {
             stringBuilder.append(toPrettyString(lottoResult));
         }
 
@@ -37,61 +38,54 @@ public class OutputView {
     }
 
     private String toPrettyString(Set<Integer> lottoResult) {
-        List<String> numbersToString =
-                lottoResult.stream()
+        return lottoResult.stream()
                 .sorted()
-                .map(Object::toString)
-                .toList();
-
-        return "[" + String.join(", ", numbersToString) + "]" + "\n";
+                .map(String::valueOf)
+                .toList()
+                .toString();
     }
 
-    public void printWinningResult(LottoStatisticsDto lottoStatisticsDto) {
+    public void printWinningResult(final LottoStatisticsDto lottoStatisticsDto) {
         System.out.println(LOTTERY_RESULT.getMessage() + DIVIDER.getMessage());
         System.out.println(winningResult(lottoStatisticsDto));
         System.out.printf(RATE_OF_RETURN, rateOfReturn(lottoStatisticsDto));
     }
 
-    private double rateOfReturn(LottoStatisticsDto lottoStatisticsDto) {
-        double sum = 0;
-        sum += lottoStatisticsDto.threeNumbersMatch() * THREE_MATCH_MONEY;
-        sum += lottoStatisticsDto.fourNumbersMatch() * FOUR_MATCH_MONEY;
-        sum += lottoStatisticsDto.fiveNumbersMatch() * FIVE_MATCH_MONEY;
-        sum += lottoStatisticsDto.fiveAndBonusNumbersMatch() * FIVE_AND_BONUS_MATCH_MONEY;
-        sum += lottoStatisticsDto.sixNumbersMatch() * SIX_MATCH_MONEY;
+    private double rateOfReturn(final LottoStatisticsDto lottoStatisticsDto) {
+        double sum = lottoStatisticsDto.threeNumbersMatch() * THREE_MATCH_MONEY
+                + lottoStatisticsDto.fourNumbersMatch() * FOUR_MATCH_MONEY
+                + lottoStatisticsDto.fiveNumbersMatch() * FIVE_MATCH_MONEY
+                + lottoStatisticsDto.fiveAndBonusNumbersMatch() * FIVE_AND_BONUS_MATCH_MONEY
+                + lottoStatisticsDto.sixNumbersMatch() * SIX_MATCH_MONEY;
 
         double investmentAmount = lottoStatisticsDto.lotteryCount() * COST_UNIT.getNumber();
         return sum / investmentAmount * PERCENTAGE;
     }
 
-    private String winningResult(LottoStatisticsDto lottoStatisticsDto) {
-        StringBuilder stringBuilder = new StringBuilder();
+    private String winningResult(final LottoStatisticsDto lottoStatisticsDto) {
+        return THREE_NUMBERS_MATCH
+                + lottoStatisticsDto.threeNumbersMatch()
+                + COUNT_UNIT
+                + "\n"
 
-        stringBuilder.append(THREE_NUMBERS_MATCH)
-                .append(lottoStatisticsDto.threeNumbersMatch())
-                .append(COUNT_UNIT)
-                .append("\n")
+                + FOUR_NUMBERS_MATCH
+                + lottoStatisticsDto.fourNumbersMatch()
+                + COUNT_UNIT
+                + "\n"
 
-                .append(FOUR_NUMBERS_MATCH)
-                .append(lottoStatisticsDto.fourNumbersMatch())
-                .append(COUNT_UNIT)
-                .append("\n")
+                + FIVE_NUMBERS_MATCH
+                + lottoStatisticsDto.fiveNumbersMatch()
+                + COUNT_UNIT
+                + "\n"
 
-                .append(FIVE_NUMBERS_MATCH)
-                .append(lottoStatisticsDto.fiveNumbersMatch())
-                .append(COUNT_UNIT)
-                .append("\n")
+                + FIVE_AND_BONUS_NUMBERS_MATCH
+                + lottoStatisticsDto.fiveAndBonusNumbersMatch()
+                + COUNT_UNIT
+                + "\n"
 
-                .append(FIVE_AND_BONUS_NUMBERS_MATCH)
-                .append(lottoStatisticsDto.fiveAndBonusNumbersMatch())
-                .append(COUNT_UNIT)
-                .append("\n")
-
-                .append(SIX_NUMBERS_MATCH)
-                .append(lottoStatisticsDto.sixNumbersMatch())
-                .append(COUNT_UNIT);
-
-        return stringBuilder.toString();
+                + SIX_NUMBERS_MATCH
+                + lottoStatisticsDto.sixNumbersMatch()
+                + COUNT_UNIT;
     }
 
     public void newLine() {

@@ -32,7 +32,7 @@ class LottoAdministratorServiceTest {
         void 숫자_또는_콤마_외_문자_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers("!","1"))
+                            service.setWinningNumbers("!"))
                             .isInstanceOf(NotNumberOrCommaException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -41,7 +41,7 @@ class LottoAdministratorServiceTest {
         void 빈값_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers("","1"))
+                            service.setWinningNumbers(""))
                             .isInstanceOf(EmptyInputException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -50,7 +50,7 @@ class LottoAdministratorServiceTest {
         void Integer_범위를_벗어난_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers(String.valueOf(Long.MAX_VALUE),"1"))
+                            service.setWinningNumbers(String.valueOf(Long.MAX_VALUE)))
                             .isInstanceOf(OutOfRangeLottoNumberException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -59,7 +59,7 @@ class LottoAdministratorServiceTest {
         void 숫자6개_중_빈값_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers("1,2,3,4,,6","7"))
+                            service.setWinningNumbers("1,2,3,4,,6"))
                             .isInstanceOf(OutOfRangeLottoNumberException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -68,7 +68,7 @@ class LottoAdministratorServiceTest {
         void 숫자6개_중_범위_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers("1,2,3,4,46,6","7"))
+                            service.setWinningNumbers("1,2,3,4,46,6"))
                             .isInstanceOf(OutOfRangeLottoNumberException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -77,7 +77,7 @@ class LottoAdministratorServiceTest {
         void 숫자6개_중_중복_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers("1,2,3,4,4,6","7"))
+                            service.setWinningNumbers("1,2,3,4,4,6"))
                             .isInstanceOf(LottoNumbersDuplicationException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -86,7 +86,7 @@ class LottoAdministratorServiceTest {
         void 콤마와_콤마_사이_빈값_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers(",,","1"))
+                            service.setWinningNumbers(",,"))
                             .isInstanceOf(LottoNumbersMustBeSixException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -95,7 +95,7 @@ class LottoAdministratorServiceTest {
         void 숫자_6개_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers("1,2,3,4,5","1"))
+                            service.setWinningNumbers("1,2,3,4,5"))
                             .isInstanceOf(LottoNumbersMustBeSixException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -104,7 +104,7 @@ class LottoAdministratorServiceTest {
         void 정상_테스트() {
             assertSimpleTest(() ->
                     assertDoesNotThrow(() ->
-                            service.setUpWinningNumbers("1,2,3,4,5,6","7")));
+                            service.setWinningNumbers("1,2,3,4,5,6")));
         }
     }
 
@@ -116,7 +116,7 @@ class LottoAdministratorServiceTest {
         void 빈값_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers("1,2,3,4,5,6",""))
+                            service.setBonusNumber(""))
                             .isInstanceOf(EmptyInputException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -125,7 +125,7 @@ class LottoAdministratorServiceTest {
         void 숫자_아닌_문자_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers("1,2,3,4,5,6","!"))
+                            service.setBonusNumber("!"))
                             .isInstanceOf(NotNumberException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -134,7 +134,7 @@ class LottoAdministratorServiceTest {
         void Integer_범위를_벗어난_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers("1,2,3,4,5,6",String.valueOf(Long.MAX_VALUE)))
+                            service.setBonusNumber(String.valueOf(Long.MAX_VALUE)))
                             .isInstanceOf(OutOfRangeLottoNumberException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -143,7 +143,7 @@ class LottoAdministratorServiceTest {
         void 범위_예외테스트() {
             assertSimpleTest(() ->
                     assertThatThrownBy(() ->
-                            service.setUpWinningNumbers("1,2,3,4,5,6","0"))
+                            service.setBonusNumber("0"))
                             .isInstanceOf(OutOfRangeLottoNumberException.class)
                             .isInstanceOf(IllegalArgumentException.class));
         }
@@ -152,7 +152,7 @@ class LottoAdministratorServiceTest {
         void 정상_테스트() {
             assertSimpleTest(() ->
                     assertDoesNotThrow(() ->
-                            service.setUpWinningNumbers("1,2,3,4,5,6","45")));
+                            service.setBonusNumber("45")));
         }
     }
 }

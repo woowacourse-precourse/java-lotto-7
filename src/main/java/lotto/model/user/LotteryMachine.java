@@ -23,7 +23,9 @@ public class LotteryMachine {
     }
 
     public List<Set<Integer>> getLottoResults() {
-        return lottoNumbersList.stream().map(LottoNumbers::getLotteryNumbers).toList();
+        return lottoNumbersList.stream()
+                .map(LottoNumbers::getLotteryNumbers)
+                .toList();
     }
 
     public int getLotteryCount() {
@@ -35,11 +37,13 @@ public class LotteryMachine {
         for (int left = 0; left < lotteryCount; left++) {
             resultNumbersList.add(new LottoNumbers());
         }
+
         return resultNumbersList;
     }
 
     private int createLotteryCount(final String insertedMoney) {
         ValidateUtil.validateNumber(insertedMoney);
+
         final int funds = parseToInt(insertedMoney);
         validateMaxLotteryCount(funds);
         validateCostUnit(funds);

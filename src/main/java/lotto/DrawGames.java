@@ -2,7 +2,8 @@ package lotto;
 
 import lotto.controller.LottoController;
 import lotto.controller.LottoControllerFactory;
-import lotto.model.administrator.WinningLottoNumbersDto;
+import lotto.model.administrator.Lotto;
+import lotto.model.administrator.LottoBonusNumber;
 import lotto.model.statistic.LottoStatisticsDto;
 import lotto.model.user.LottoResultDto;
 import lotto.view.InputView;
@@ -22,18 +23,58 @@ public class DrawGames {
     }
 
     public void run() {
-        final String insertedMoney = inputView.purchaseLottery();
-        outputView.newLine();
-        final LottoResultDto LottoResultDto = controller.buyLotto(insertedMoney);
-        outputView.printLottoResult(LottoResultDto.lottoResults(), LottoResultDto.lotteryCount());
-        outputView.newLine();
-        final String winningNumbers = inputView.inputWinningNumbers();
-        outputView.newLine();
-        final String bonusNumber = inputView.inputBonusNumber();
-        outputView.newLine();
-        final WinningLottoNumbersDto winningLottoNumbersDto =
-                controller.setWinningNumbers(winningNumbers, bonusNumber);
-        final LottoStatisticsDto lottoStatisticsDto = controller.getStatistics(LottoResultDto, winningLottoNumbersDto);
+        LottoResultDto lottoResultDto = getLottoResult();
+        Lotto winningNumbers = getWinningNumbers();
+        LottoBonusNumber bonusNumber = getBonusNumber();
+
+        LottoStatisticsDto lottoStatisticsDto = controller.getStatistics(
+                lottoResultDto, winningNumbers, bonusNumber
+        );
         outputView.printWinningResult(lottoStatisticsDto);
+    }
+
+    private LottoResultDto getLottoResult() {
+        try {
+            String insertedMoney = inputView.purchaseLottery();
+            outputView.newLine();
+
+            LottoResultDto lottoResultDto = controller.buyLotto(insertedMoney);
+            outputView.printLottoResult(
+                    lottoResultDto.lottoResults(),
+                    lottoResultDto.lotteryCount()
+            );
+            outputView.newLine();
+
+            return lottoResultDto;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getLottoResult();
+        }
+    }
+
+    private Lotto getWinningNumbers() {
+        try {
+            String winningNumbers = inputView.inputWinningNumbers();
+            Lotto lotto = controller.setWinningNumbers(winningNumbers);
+            outputView.newLine();
+
+            return lotto;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumbers();
+        }
+    }
+
+    private LottoBonusNumber getBonusNumber() {
+        try {
+            String bonusNumberInput = inputView.inputBonusNumber();
+            LottoBonusNumber bonusNumber = controller.setBonusNumber(bonusNumberInput);
+            outputView.newLine();
+
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
+        }
     }
 }

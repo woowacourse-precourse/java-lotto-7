@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import lotto.model.administrator.WinningLottoNumbersDto;
+import lotto.model.administrator.Lotto;
+import lotto.model.administrator.LottoBonusNumber;
 import lotto.model.statistic.LottoStatisticsDto;
 import lotto.model.user.LottoResultDto;
 import lotto.service.LottoAdministratorService;
@@ -23,12 +24,23 @@ public class LottoController {
         return userService.createLottoResult(insertedMoney);
     }
 
-    public WinningLottoNumbersDto setWinningNumbers(String winningNumbers, String bonusNumber) {
-        return administratorService.setUpWinningNumbers(winningNumbers, bonusNumber);
+    public Lotto setWinningNumbers(final String winningNumbers) {
+        return administratorService.setWinningNumbers(winningNumbers);
     }
 
-    public LottoStatisticsDto getStatistics(LottoResultDto lottoResultDto,
-                                            WinningLottoNumbersDto winningLottoNumbersDto) {
-        return userService.fetchStatistics(lottoResultDto, winningLottoNumbersDto);
+    public LottoBonusNumber setBonusNumber(final String bonusNumber) {
+        return administratorService.setBonusNumber(bonusNumber);
+    }
+
+    public LottoStatisticsDto getStatistics(
+            final LottoResultDto lottoResultDto,
+            final Lotto winningNumbers,
+            final LottoBonusNumber bonusNumber
+    ) {
+        return userService.fetchStatistics(
+                lottoResultDto,
+                winningNumbers,
+                bonusNumber
+        );
     }
 }

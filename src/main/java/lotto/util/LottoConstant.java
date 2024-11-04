@@ -1,7 +1,6 @@
 package lotto.util;
 
 public enum LottoConstant {
-
     COST_UNIT(1_000),
     MAX_LOTTERY_COUNT(100),
     LOTTO_NUMBER_START_WITH(1),

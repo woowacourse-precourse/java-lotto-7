@@ -1,12 +1,7 @@
 package lotto.service;
 
-import static lotto.model.statistic.MatchList.FIVE_AND_BONUS_NUMBERS_MATCH;
-import static lotto.model.statistic.MatchList.FIVE_NUMBERS_MATCH;
-import static lotto.model.statistic.MatchList.FOUR_NUMBERS_MATCH;
-import static lotto.model.statistic.MatchList.SIX_NUMBERS_MATCH;
-import static lotto.model.statistic.MatchList.THREE_NUMBERS_MATCH;
-
-import lotto.model.administrator.WinningLottoNumbersDto;
+import lotto.model.administrator.Lotto;
+import lotto.model.administrator.LottoBonusNumber;
 import lotto.model.statistic.LottoStatisticsDto;
 import lotto.model.statistic.Match;
 import lotto.model.user.LotteryMachine;
@@ -18,19 +13,17 @@ public class LottoUserService {
         return LottoResultDto.from(new LotteryMachine(insertedMoney));
     }
 
-    public LottoStatisticsDto fetchStatistics(LottoResultDto lottoResultDto, WinningLottoNumbersDto winningLottoNumbersDto) {
+    public LottoStatisticsDto fetchStatistics(
+            final LottoResultDto lottoResultDto,
+            final Lotto winningNumbers,
+            final LottoBonusNumber bonusNumber
+    ) {
         Match match = new Match(
-                winningLottoNumbersDto.lottoNumbers(),
-                winningLottoNumbersDto.bonusNumber(),
-                lottoResultDto.lottoResults());
-
-        return LottoStatisticsDto.of(
-                match.getMatchResult(THREE_NUMBERS_MATCH),
-                match.getMatchResult(FOUR_NUMBERS_MATCH),
-                match.getMatchResult(FIVE_NUMBERS_MATCH),
-                match.getMatchResult(FIVE_AND_BONUS_NUMBERS_MATCH),
-                match.getMatchResult(SIX_NUMBERS_MATCH),
-                lottoResultDto.lotteryCount()
+                winningNumbers.getNumbers(),
+                bonusNumber.getBonusNumber(),
+                lottoResultDto.lottoResults()
         );
+
+        return LottoStatisticsDto.from(match, lottoResultDto);
     }
 }

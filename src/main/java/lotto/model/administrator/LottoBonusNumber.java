@@ -10,7 +10,7 @@ public class LottoBonusNumber {
 
     private final int bonusNumber;
 
-    public LottoBonusNumber(String bonusNumberInput) {
+    public LottoBonusNumber(final String bonusNumberInput) {
         bonusNumber = parseToString(bonusNumberInput);
     }
 
@@ -18,7 +18,7 @@ public class LottoBonusNumber {
         return bonusNumber;
     }
 
-    private int parseToString(String bonusNumberInput) {
+    private int parseToString(final String bonusNumberInput) {
         ValidateUtil.validateNumber(bonusNumberInput);
 
         try {
@@ -30,7 +30,7 @@ public class LottoBonusNumber {
         }
     }
 
-    private void validateRange(int number) {
+    private void validateRange(final int number) {
         if (number < LOTTO_NUMBER_START_WITH.getNumber() ||
                 number > LOTTO_NUMBER_END_WITH.getNumber()) {
             throw new OutOfRangeLottoNumberException();
