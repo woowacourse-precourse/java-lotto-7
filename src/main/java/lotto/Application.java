@@ -81,6 +81,17 @@ public class Application {
     }
 
     private static void checkResults(List<Lotto> lottos, Lotto winningLotto, int bonusNumber, int moneySpent) {
+        Map<Rank, Integer> matchCounts = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            matchCounts.put(rank, 0);
+        }
+
+        for (Lotto lotto : lottos) {
+            Rank rank = Rank.getRank(lotto.getMatchCount(winningLotto), lotto.containsNumber(bonusNumber));
+            matchCounts.put(rank, matchCounts.get(rank) + 1);
+        }
+        displayResults(matchCounts);
+        displayProfit(matchCounts, moneySpent);
     }
 
     private static void displayResults(Map<Rank, Integer> matchCounts) {
