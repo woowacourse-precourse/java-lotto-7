@@ -1,9 +1,6 @@
 package lotto.validator;
 
-import static lotto.message.ExceptionMessage.INVALID_BLANK_INPUT;
 import static lotto.message.ExceptionMessage.INVALID_NUMBER_INPUT;
-import static lotto.message.ExceptionMessage.INVALID_RANGE_INPUT;
-import static lotto.message.ExceptionMessage.INVALID_TYPE_INPUT;
 
 import lotto.exception.IllegalInputException;
 import lotto.exception.IllegalRangeException;
@@ -27,7 +24,7 @@ public class PurchaseAmountValidator {
 
     private static void validateBlank(String input) {
         if (StringUtils.isBlank(input)) {
-            throw new IllegalInputException(INVALID_BLANK_INPUT.getMessage());
+            throw new IllegalInputException();
         }
     }
 
@@ -35,17 +32,13 @@ public class PurchaseAmountValidator {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalTypeException(
-                    String.format(INVALID_TYPE_INPUT.getMessage(), INPUT, TYPE)
-            );
+            throw new IllegalTypeException(INPUT, TYPE);
         }
     }
 
     private static void validateRange(int input) {
         if (input < MIN_VALUE || input > MAX_VALUE) {
-            throw new IllegalRangeException(
-                    String.format(INVALID_RANGE_INPUT.getMessage(), INPUT, MIN_VALUE, MAX_VALUE)
-            );
+            throw new IllegalRangeException(INPUT, MIN_VALUE, MAX_VALUE);
         }
     }
 

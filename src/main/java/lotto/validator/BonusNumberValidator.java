@@ -1,10 +1,5 @@
 package lotto.validator;
 
-import static lotto.message.ExceptionMessage.INVALID_BLANK_INPUT;
-import static lotto.message.ExceptionMessage.INVALID_DUPLICATION_INPUT;
-import static lotto.message.ExceptionMessage.INVALID_RANGE_INPUT;
-import static lotto.message.ExceptionMessage.INVALID_TYPE_INPUT;
-
 import java.util.List;
 import lotto.exception.IllegalDuplicationException;
 import lotto.exception.IllegalInputException;
@@ -29,7 +24,7 @@ public class BonusNumberValidator {
 
     private static void validateBlank(String input) {
         if (StringUtils.isBlank(input)) {
-            throw new IllegalInputException(INVALID_BLANK_INPUT.getMessage());
+            throw new IllegalInputException();
         }
     }
 
@@ -37,25 +32,19 @@ public class BonusNumberValidator {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalTypeException(
-                    String.format(INVALID_TYPE_INPUT.getMessage(), INPUT, TYPE)
-            );
+            throw new IllegalTypeException(INPUT, TYPE);
         }
     }
 
     private static void validateRange(int input) {
         if (input < MIN_VALUE || input > MAX_VALUE) {
-            throw new IllegalRangeException(
-                    String.format(INVALID_RANGE_INPUT.getMessage(), INPUT, MIN_VALUE, MAX_VALUE)
-            );
+            throw new IllegalRangeException(INPUT, MIN_VALUE, MAX_VALUE);
         }
     }
 
     private static void validateDuplication(int bonusNumber, List<Integer> numbers) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalDuplicationException(
-                    String.format(INVALID_DUPLICATION_INPUT.getMessage(), INPUT)
-            );
+            throw new IllegalDuplicationException(INPUT);
         }
     }
 }
