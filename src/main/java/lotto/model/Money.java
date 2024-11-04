@@ -1,14 +1,13 @@
 package lotto.model;
 
 import lotto.policy.MoneyPolicy;
-import lotto.policy.MoneyPolicyImpl;
 
 public class Money {
     private final MoneyPolicy moneyPolicy;
     private String money;
 
     public Money(String userInputMoney) {
-        moneyPolicy = new MoneyPolicyImpl();
+        moneyPolicy = new MoneyPolicy();
 
         moneyPolicy.checkMoneyPolicy(userInputMoney);
         this.money = userInputMoney;

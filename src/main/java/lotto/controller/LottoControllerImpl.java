@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.LottoWinningNumbers;
 import lotto.dto.lottoDto.LottoResponse;
@@ -11,19 +10,12 @@ import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.service.LottoService;
 import lotto.service.LottoServiceImpl;
-import lotto.view.InputView;
-import lotto.view.InputViewImpl;
-import lotto.view.OutputView;
-
-// TODO: 컨트롤러 리팩토링
+import lotto.util.StringParser;
 
 public class LottoControllerImpl implements LottoController {
-    private final InputView inputView;
-    private final OutputView outputView = null;
     private final LottoService lottoService;
 
     public LottoControllerImpl() {
-        inputView = new InputViewImpl();
         lottoService = new LottoServiceImpl();
     }
 
@@ -74,14 +66,8 @@ public class LottoControllerImpl implements LottoController {
     public LottoWinningNumbers analyzeLottoStart() {
         LottoWinningResultRequest lottoWinningResultRequest = lottoService.inputLottoWinningResult();
 
-        // TODO: convertToLottoWinningNumbers
-        String[] _numbers = lottoWinningResultRequest.winningNumbers().split(",");
-        List<Integer> numbers = new ArrayList<>();
-        for (String number : _numbers) {
-            numbers.add(Integer.parseInt(number));
-        }
         int bonusNumber = Integer.parseInt(lottoWinningResultRequest.bonusNumber());
-
+        List<Integer> numbers = StringParser.parse(lottoWinningResultRequest.winningNumbers());
         return new LottoWinningNumbers(new Lotto(numbers), bonusNumber);
     }
 
@@ -99,6 +85,5 @@ public class LottoControllerImpl implements LottoController {
     @Override
     public void analyzeLottoEnd(LottoWinningResultResponse lottoWinningResultResponse) {
         lottoService.printAnalyzedLottoStatus(lottoWinningResultResponse);
-
     }
 }

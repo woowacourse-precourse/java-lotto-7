@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class MoneyPolicyTest {
-    MoneyPolicy moneyPolicy = new MoneyPolicyImpl();
+    MoneyPolicy moneyPolicy = new MoneyPolicy();
 
     @Test
     public void 돈은_숫자만_입력_되어야_한다() {

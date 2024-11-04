@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class LottoPolicyTest {
-    LottoPolicy lottoPolicy = new LottoPolicyImpl();
+    LottoPolicy lottoPolicy = new LottoPolicy();
 
     @Test
     public void 로또의_숫자는_1에서_45_사이의_숫자가_아니라면_예외를_발생시켜야_한다() {

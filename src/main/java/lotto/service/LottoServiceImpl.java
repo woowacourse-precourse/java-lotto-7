@@ -12,7 +12,7 @@ import lotto.dto.lottoWinningResultDto.LottoWinningResultResponse;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.policy.BonusNumberPolicy;
-import lotto.policy.LottoPolicyImpl;
+import lotto.policy.LottoPolicy;
 import lotto.util.StringParser;
 import lotto.view.InputView;
 import lotto.view.InputViewImpl;
@@ -79,7 +79,7 @@ public class LottoServiceImpl implements LottoService {
     public String inputWinningNumbers() {
         String winningNumbers = inputView.inputWinningNumbers();
         try {
-            new LottoPolicyImpl().checkLottoPolicy(StringParser.parse(winningNumbers));
+            new LottoPolicy().checkLottoPolicy(StringParser.parse(winningNumbers));
             return winningNumbers;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

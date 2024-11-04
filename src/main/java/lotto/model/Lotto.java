@@ -2,13 +2,12 @@ package lotto.model;
 
 import java.util.List;
 import lotto.policy.LottoPolicy;
-import lotto.policy.LottoPolicyImpl;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoPolicy lottoPolicy = new LottoPolicyImpl();
+        LottoPolicy lottoPolicy = new LottoPolicy();
         lottoPolicy.checkLottoPolicy(numbers);
         this.numbers = numbers;
     }

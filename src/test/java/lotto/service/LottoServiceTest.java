@@ -75,7 +75,7 @@ class LottoServiceTest {
     }
 
     @Test
-    public void 로또_당첨_결과를_바탕으로_수익률을_계산_해야_한다() { // TODO: 이거까지 다 만들면 commit
+    public void 로또_당첨_결과를_바탕으로_수익률을_계산_해야_한다() {
         // given
         // 로또 당첨 결과
         LottoWinningResult lottoWinningResult = new LottoWinningResult(1, 0, 0, 0, 0);

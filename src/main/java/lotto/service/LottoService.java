@@ -20,6 +20,7 @@ public interface LottoService {
 
     public void printIssuedLotto(LottoResponse lottoResponse);
 
+    
     // About Analyze Lotto
     public LottoWinningResultRequest inputLottoWinningResult();
 
