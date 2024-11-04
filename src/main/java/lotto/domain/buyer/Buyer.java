@@ -30,11 +30,11 @@ public class Buyer {
         return Objects.hash(LottosCount, buyLottos);
     }
 
-    public int getLottosCount() {
+    public int getBuyerLottosCount() {
         return LottosCount.getLottosCount();
     }
 
-    public Lottos getbuyLottos() {
+    public Lottos getBuyerLottos() {
         return buyLottos;
     }
 }

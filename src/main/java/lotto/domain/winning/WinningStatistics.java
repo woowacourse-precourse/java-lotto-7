@@ -26,13 +26,13 @@ public class WinningStatistics {
 
     public static WinningStatistics of(final LottoMatcher lottoMatcher, final Buyer buyer) {
         LottoStatistics statistics = LottoStatistics.createLottoStatistics();
-        int totalSpent = buyer.getLottosCount() * THOUSAND_UNIT;
+        int totalSpent = buyer.getBuyerLottosCount() * THOUSAND_UNIT;
 
         return new WinningStatistics(lottoMatcher, statistics, totalSpent);
     }
 
     public void calculateWinningStatistics(final Buyer buyer, final WinningInfo winningInfo) {
-        List<Lotto> buyerLottos = buyer.getbuyLottos().getLottos();
+        List<Lotto> buyerLottos = buyer.getBuyerLottos().getLottos();
 
         for (Lotto lotto : buyerLottos) {
             Rank rank = lottoMatcher.calculateRank(lotto, winningInfo);

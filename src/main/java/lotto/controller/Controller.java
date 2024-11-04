@@ -35,7 +35,7 @@ public class Controller {
     private Buyer purchaseLotto() {
         String inputMoney = inputView.inputMoney();
         Buyer buyer = lottoService.createBuyer(inputMoney);
-        System.out.println(buyer.getbuyLottos().toString());
+        System.out.println(buyer.getBuyerLottos().toString());
         return buyer;
     }
 
