@@ -9,15 +9,20 @@ import lotto.model.domain.LottoTickets;
 import lotto.model.domain.WinningLotto;
 import lotto.model.domain.WinningNumbers;
 import lotto.model.dto.LottoStatisticsDto;
-import lotto.model.generator.RandomNumberGenerator;
 import lotto.view.LottoGameInputView;
 import lotto.view.LottoGameOutputView;
 
 public class LottoGameController {
 
+    private final LottoMachine lottoMachine;
+
+    public LottoGameController(LottoMachine lottoMachine) {
+        this.lottoMachine = lottoMachine;
+    }
+
     public void run() {
         LottoTickets lottoTickets = inputValidLottoTickets();
-
+        
         List<Lotto> lottos = generateLottosFromTickets(lottoTickets);
         printGeneratedLottos(lottos);
 
@@ -38,7 +43,6 @@ public class LottoGameController {
     }
 
     private List<Lotto> generateLottosFromTickets(LottoTickets lottoTickets) {
-        LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator());
         return lottoMachine.generateLottos(lottoTickets);
     }
 
