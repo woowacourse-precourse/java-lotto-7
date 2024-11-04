@@ -20,23 +20,23 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private static void validateLottoNumbers(List<Integer> numbers) {
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    private void validateLottoNumbers(List<Integer> numbers) {
         if (numbers.size() != Rule.LOTTO_LENGTH) {
             throw new IllegalArgumentException(LOTTO_LENGTH);
         }
     }
 
-    private static void validateIndividualNumber(Integer number, Set<Integer> numberSet) {
+    private void validateIndividualNumber(Integer number, Set<Integer> numberSet) {
         if (LOTTO_MINIMUM_NUMBER > number || number > LOTTO_MAXIMUM_NUMBER) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DOMAIN);
         }
         if (!numberSet.add(number)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE);
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
