@@ -17,7 +17,7 @@ public class LottoNumber {
                 .ints(LottoRange.LOTTO_LOWEST_NUMBER.getValue(),
                         LottoRange.LOTTO_HIGHEST_NUMBER.getValue())
                 .distinct()
-                .limit(6)
+                .limit(7)
                 .boxed()
                 .sorted()
                 .collect(Collectors.toList());
