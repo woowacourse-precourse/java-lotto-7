@@ -111,6 +111,8 @@
   - 보너스 번호가 1 ~ 45 사이의 숫자가 아닐 경우 발생합니다.
 - **`INVALID_BONUS_NUMBER_DUPLICATE_WITH_WINNING`**: "보너스 번호가 당첨 로또 번호와 중복됩니다."
   - 보너스 번호가 당첨 로또 번호와 중복될 경우 발생합니다.
+- **`INVALID_BONUS_NUMBER_FORMAT`**: "보너스 번호에는 정수만 입력 가능합니다."
+  - 보너스 번호에 정수가 아닌 값이 포함된 경우 발생합니다.
 
 ### 4. 생성된 로또 번호 관련 예외
 - **`INVALID_GENERATED_LOTTO_NUMBERS_SIZE`**: "로또 번호는 6개여야 합니다."
