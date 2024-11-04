@@ -10,6 +10,9 @@ public class UnitConverter {
     private static final NumberFormat numberFormatter = NumberFormat.getInstance();
     private static final NumberFormat decimalFormatter = new DecimalFormat(PROFIT_FORMAT);
 
+    private UnitConverter() {
+
+    }
 
     public static String convertUnit(int money) {
         return numberFormatter.format(money);
