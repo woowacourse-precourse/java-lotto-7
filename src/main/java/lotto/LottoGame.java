@@ -24,7 +24,11 @@ public class LottoGame {
 
         List<Integer> winningNumbers = getValidateWinningNumbers();
 
-        getValidateBonusNumber(winningNumbers);
+        int bonusNumber = getValidateBonusNumber(winningNumbers);
+
+        LottoStatistics statistics = new LottoStatistics(lottoNumbers, winningNumbers, bonusNumber);
+        statistics.printStatistics(purchaseAmount);
+
     }
 
     private int getValidatePurchaseAmount() {
