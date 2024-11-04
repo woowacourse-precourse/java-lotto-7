@@ -8,7 +8,7 @@ public class UserInterfaceMessage {
     //output message
     public final static String PRINTF_BOUGHT_LOTTO_INFO = "%d개를 구매했습니다.";
     public final static String PRINT_LOTTO_LIST_START_DELIMITER = "[";
-    public final static String PRINT_LOTTO_LIST_MIDDLE_DELIMITER = ",";
+    public final static String PRINT_LOTTO_LIST_MIDDLE_DELIMITER = ", ";
     public final static String PRINT_LOTTO_LIST_END_DELIMITER = "]";
     public final static String PRINTF_RETURN_OF_RATE = "총 수익률은 %s%%입니다.\n";
 

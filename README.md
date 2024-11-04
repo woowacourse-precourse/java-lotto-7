@@ -35,7 +35,7 @@
   - [ ] read input money from user 
   - [ ] calculate a number of Lotto user buy
   - [ ] read input winning number and **bonus number from user**
-  - [ ] print bought Lotto info
+  - [ ] print bought Lotto info that places ", " between numbers
   - [ ] print winning Lotto info from bough Lotto info
   - [ ] repeat read input when input is invalid
   - [ ] print rate of return
