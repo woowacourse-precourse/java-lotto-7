@@ -1,7 +1,10 @@
 package lotto.model;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
+
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -15,6 +18,22 @@ public class LottosTest {
         Lottos lottos = Lottos.randomFrom(size);
 
         // then
-        Assertions.assertThat(lottos.isSize(size)).isTrue();
+        assertThat(lottos.getLottos().size()).isEqualTo(size);
+    }
+
+    @Test
+    @DisplayName("각 로또에 대한 추첨 결과들을 통해 전체 추첨 결과를 생성한다.")
+    void 전체_추첨_결과_생성_테스트() {
+        // given
+        List<Lotto> allLotto = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 3, 5, 7, 9, 11)),
+                new Lotto(List.of(2, 4, 5, 6, 7, 8)));
+        Lottos lottos = new Lottos(allLotto);
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        DrawResults result = lottos.getDrawResult(winningLotto, 7);
+
+        // then
+        assertThat(result.getDrawResults().size()).isEqualTo(3);
     }
 }
