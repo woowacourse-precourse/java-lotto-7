@@ -14,11 +14,6 @@ public record Lottos(List<Lotto> lottos) implements Iterable<Lotto> {
         return this.lottos.iterator();
     }
 
-    @Override
-    public List<Lotto> lottos() {
-        return this.lottos;
-    }
-
     public int size() {
         return this.lottos.size();
     }

@@ -25,12 +25,10 @@ public class LottoStore {
     public Lottos issueLottos(final int pay) {
         validatePayment(pay);
 
-        final List<Lotto> lottos = createLottosByAmount(pay);
-
-        return new Lottos(lottos);
+        return createLottosByAmount(pay);
     }
 
-    private List<Lotto> createLottosByAmount(final int pay) {
+    private Lottos createLottosByAmount(final int pay) {
         final int lottoQuantity = pay / LOTTO_PRICE;
 
         final List<Lotto> lottos = new ArrayList<>();
@@ -38,7 +36,8 @@ public class LottoStore {
         for (int i = 0; i < lottoQuantity; i++) {
             lottos.add(generateLotto());
         }
-        return lottos;
+
+        return new Lottos(lottos);
     }
 
     private Lotto generateLotto() {
