@@ -17,4 +17,8 @@ public class WinningLotto {
     public List<LottoNumber> getNumbers() {
         return numbers.getNumbers();
     }
+
+    public LottoNumber getBonus() {
+        return bonus;
+    }
 }

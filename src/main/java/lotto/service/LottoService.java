@@ -49,6 +49,7 @@ public class LottoService {
             List<LottoNumber> mergedLotto = merge(winningLotto, radnomLotto);
 
             int matchingCount = countMatching(mergedLotto);
+            boolean hasNumber = radnomLotto.hasNumber(winningLotto.getBonus());
         }
 
         return winningResult;
