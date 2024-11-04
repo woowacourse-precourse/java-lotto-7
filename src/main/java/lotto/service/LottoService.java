@@ -22,13 +22,12 @@ public class LottoService {
 
     private final LottoGenerator lottoGenerator;
 
-    public int getLottoCountByAmount(String purchaseAmount) {
-        LottoCount lottoCount = new LottoCount(parseInt(purchaseAmount), LOTTO_PRICE);
-        return lottoCount.getCount();
+    public LottoCount getLottoCountByAmount(String purchaseAmount) {
+        return new LottoCount(parseInt(purchaseAmount), LOTTO_PRICE);
     }
 
-    public List<Lotto> getLottosByCount(int count) {
-        return IntStream.range(0, count)
+    public List<Lotto> getLottosByCount(LottoCount lottoCount) {
+        return IntStream.range(0, lottoCount.getCount())
                 .mapToObj(i -> Lotto.createRandomNumberLotto(lottoGenerator))
                 .toList();
     }

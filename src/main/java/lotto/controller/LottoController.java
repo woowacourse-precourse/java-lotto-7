@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.domain.Lotto;
+import lotto.domain.LottoCount;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoResultDto;
 import lotto.service.LottoService;
@@ -21,8 +22,8 @@ public class LottoController {
     }
 
     public void run() {
-        int lottoCount = getLottoCount();
-        outputView.printPurchaseCount(lottoCount);
+        LottoCount lottoCount = getLottoCount();
+        outputView.printPurchaseCount(lottoCount.getCount());
 
         List<Lotto> lottos = lottoService.getLottosByCount(lottoCount);
         List<LottoDto> lottoDtos = convertToDto(lottos);
@@ -36,7 +37,7 @@ public class LottoController {
         outputView.printRevenueResult(resultDto);
     }
 
-    private int getLottoCount() {
+    private LottoCount getLottoCount() {
         return retryUntilValidInput(() -> {
             String purchaseAmount = inputView.getPurchaseAmount();
             return lottoService.getLottoCountByAmount(purchaseAmount);
