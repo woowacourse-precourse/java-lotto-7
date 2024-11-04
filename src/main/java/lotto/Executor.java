@@ -31,7 +31,6 @@ public class Executor {
 
         double lottoYield = winningStatisticsDto.getLottoYield(purchaseAmount);
         ioController.printWinningStatistics(lottoYield);
-
     }
 
     private int getPurchaseAmount() {

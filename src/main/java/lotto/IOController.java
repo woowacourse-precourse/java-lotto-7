@@ -13,7 +13,6 @@ public class IOController {
     private static String OUTPUT_PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";
     private static String OUTPUT_WINNING_STATISTICS_MESSAGE = "당첨 통계\n---";
 
-
     public String inputPurchaseAmount() {
         String purchaseAmountInput;
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
