@@ -26,7 +26,6 @@ public class LottoController {
     }
 
     private WinningLotto receiveWinningLotto() {
-
         WinningLotteryDto winningLotteryDto = receiveValidWinningLottery();
         while (true) {
             try {

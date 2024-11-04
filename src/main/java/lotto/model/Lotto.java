@@ -39,14 +39,14 @@ public class Lotto {
     }
 
     private void isGeneratedSixNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_QUANTITY) {
             throw new IllegalArgumentException(INVALID_GENERATED_LOTTO_NUMBERS_SIZE.getMessage());
         }
     }
 
     private void isDuplicate(List<Integer> numbers) {
         Set<Integer> checkDuplicate = new HashSet<>(numbers);
-        if (checkDuplicate.size() != 6) {
+        if (checkDuplicate.size() != LOTTO_NUMBER_QUANTITY) {
             throw new IllegalArgumentException(INVALID_GENERATED_LOTTO_NUMBERS_DUPLICATE.getMessage());
         }
     }
