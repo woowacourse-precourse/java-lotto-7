@@ -6,25 +6,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGame {
-    //로또 생성, 당첨 번호와 비교 후 결과 계산
-    private final List<Lotto> tickets = new ArrayList<>();
 
-    public void purchaseTickets(int amount){
-        int ticketCount = amount / 1000;
-        for (int i =0; i< ticketCount; i++){
-            tickets.add(new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6)));
+    public List<Lotto> generateLottos(int count){
+        if (count <= 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 수는 1 이상이어야 합니다.");
         }
-    }
 
-    public List<Lotto> getTickets(){
-        return tickets;
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return lottos;
     }
+    public LottoResult calculateResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.");
+        }
 
-    public int calculateProfit(WinningNumbers winningNumbers){
-        return tickets.stream()
-                .mapToInt(ticket ->Rank.valueOf(
-                        winningNumbers.countMatchingNumbers(ticket.getNumbers()),
-                        ticket.getNumbers().contains(winningNumbers.getBonusNumber()))
-                        .getPrize()).sum();
+        return new LottoResult(lottos, winningNumbers, bonusNumber);
     }
 }
