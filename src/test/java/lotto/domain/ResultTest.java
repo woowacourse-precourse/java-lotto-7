@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,9 +11,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ResultTest {
+    private Result result;
+
+    @BeforeEach
+    void setResult() {
+        result = new Result();
+    }
+
     @Test
     void 로또_1등_테스트() {
-        Result result = Result.getResult();
         result.addWinPrize(Ranking.FIRST);
         result.addWinCount(Ranking.FIRST);
 
@@ -21,7 +29,6 @@ class ResultTest {
 
     @Test
     void 로또_3등_3번_테스트() {
-        Result result = Result.getResult();
         for(int i=0; i<3; i++) {
             result.addWinPrize(Ranking.FIFTH);
             result.addWinCount(Ranking.FIFTH);
