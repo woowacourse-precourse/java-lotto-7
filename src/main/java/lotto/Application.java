@@ -28,10 +28,16 @@ public class Application {
     }
 
     private static int inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        System.out.println();
-        return parsePurchaseAmount(input);
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String input = Console.readLine();
+                System.out.println();
+                return parsePurchaseAmount(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static int parsePurchaseAmount(String input) {
@@ -79,10 +85,16 @@ public class Application {
     }
 
     private static Set<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        System.out.println();
-        return parseWinningNumbers(input);
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                System.out.println();
+                return parseWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static Set<Integer> parseWinningNumbers(String input) {
@@ -107,10 +119,16 @@ public class Application {
     }
 
     private static int inputBonusNumber(Set<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        System.out.println();
-        return parseBonusNumber(input, winningNumbers);
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                System.out.println();
+                return parseBonusNumber(input, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static int parseBonusNumber(String input, Set<Integer> winningNumbers) {
