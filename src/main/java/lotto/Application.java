@@ -28,5 +28,6 @@ public class Application {
         int bonusNumber = Integer.parseInt(Console.readLine());
         System.out.println("입력한 보너스 번호: " + bonusNumber);
 
+        new Lotto(winningNumbers);
     }
 }
