@@ -13,8 +13,12 @@ public class LottoNumbersInputParser {
     }
 
     private List<Integer> mapInteger(String[] lottoNumbers) {
-        return Arrays.stream(lottoNumbers)
-                .map(Integer::parseInt)
-                .toList();
+        try {
+            return Arrays.stream(lottoNumbers)
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("로또 번호는 정수여야 합니다.");
+        }
     }
 }
