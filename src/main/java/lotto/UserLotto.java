@@ -11,13 +11,17 @@ public class UserLotto {
     private int price;
     private List<Lotto> lotto;
 
-    public UserLotto(int price) {
+    public UserLotto(String price) {
         validate(price);
-        this.price = price;
+        this.price = 0;
         lotto = new ArrayList<>();
     }
 
-    private void validate(int price) {
+    private void validate(String inputPrice) {
+        if (!validatePriceIsString(inputPrice)) {
+            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_PRICE_IS_NOT_STRING));
+        }
+        int price = Integer.parseInt(inputPrice);
         if (price <= 0) {
             throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_PRICE_UNDER_ZERO));
         }
@@ -40,5 +44,16 @@ public class UserLotto {
             lotto.add(new Lotto(lottoNumbers));
         }
         return lotto;
+    }
+
+    private boolean validatePriceIsString(String price) {
+        try {
+            this.price = Integer.parseInt(price);
+        }
+        catch (IllegalArgumentException e) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -14,9 +14,9 @@ public class LottoController {
 
 
     public void run() {
-        int price = inputView.printGetPurchasePrice();
+        String price = inputView.printGetPurchasePrice();
         userLotto = new UserLotto(price);
-        outputView.printLottoCount(price);
+        outputView.printLottoCount(Integer.parseInt(price));
 
         outputView.printUserLottoNumbers(userLotto.generateLotto());
         String winningLottoNumber = inputView.printGetWinningLottoNumber();

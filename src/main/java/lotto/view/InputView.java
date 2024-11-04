@@ -8,9 +8,9 @@ public class InputView {
     private static final String PRINT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String PRINT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-    public int printGetPurchasePrice() {
+    public String printGetPurchasePrice() {
         System.out.println(PRINT_PURCHASE_PRICE);
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
     public String printGetWinningLottoNumber() {
