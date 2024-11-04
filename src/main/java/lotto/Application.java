@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.controller.AppController;
+import lotto.controller.ApplicationController;
 import lotto.model.LottoGenerator;
 import lotto.model.RankCalculator;
 import lotto.model.WinningNumberGenerator;
@@ -21,8 +21,8 @@ public class Application {
                 new WinningNumberGenerator()
         );
         ControllerFactory controllerFactory = new ControllerFactory(ioComponent, lottoComponent);
-        AppController appController = new AppController(controllerFactory, ioComponent, lottoComponent);
+        ApplicationController applicationController = new ApplicationController(controllerFactory, ioComponent, lottoComponent);
 
-        appController.runApplication();
+        applicationController.runApplication();
     }
 }

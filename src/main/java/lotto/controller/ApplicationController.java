@@ -7,20 +7,18 @@ import lotto.model.WinningNumber;
 import lotto.util.ControllerFactory;
 import lotto.util.IoComponent;
 import lotto.util.LottoComponent;
-import lotto.util.common.RepeatInput;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import static lotto.util.common.RepeatInput.repeatUntilValid;
 
-public class AppController {
+public class ApplicationController {
     private final ControllerFactory controllerFactory;
     private final IoComponent ioComponent;
     private final LottoComponent lottoComponent;
 
-    public AppController(ControllerFactory controllerFactory, IoComponent ioComponent, LottoComponent lottoComponent) {
+    public ApplicationController(ControllerFactory controllerFactory, IoComponent ioComponent, LottoComponent lottoComponent) {
         this.controllerFactory = controllerFactory;
         this.ioComponent = ioComponent;
         this.lottoComponent = lottoComponent;
