@@ -15,6 +15,7 @@ public class LottoGameController {
         Money money = repeatUntilReadValidInput(this::readMoney);
 
         Lottos lottos = generateLottos(money);
+        showLottoNumbers(money, lottos);
     }
 
     private Money readMoney() {
@@ -26,6 +27,10 @@ public class LottoGameController {
         LottoMachine lottoMachine = LottoMachine.from(money);
         List<Lotto> lottos = lottoMachine.publishLotto();
         return Lottos.from(lottos);
+    }
+
+    private void showLottoNumbers(Money money, Lottos lottos) {
+        OutputView.printPurchasedResult(money.calculateTicketCount(), lottos.getLottos());
     }
 
     private <T> T repeatUntilReadValidInput(Supplier<T> supplier) {
