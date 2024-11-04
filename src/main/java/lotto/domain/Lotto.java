@@ -7,6 +7,7 @@ import static lotto.MessageContainer.COUNT_OF_LOTTO_NUMBERS_ERROR;
 import static lotto.MessageContainer.DUPLICATE_NUMBER_ERROR;
 import static lotto.MessageContainer.OUT_OF_RANGE_NUMBER_ERROR;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -17,8 +18,8 @@ public class Lotto {
         validateSizeOf(numbers);
         validateNoDuplicatesIn(numbers);
         validateRangeOfNumbersIn(numbers);
-        numbers.sort(Comparator.naturalOrder());
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        this.numbers.sort(Comparator.naturalOrder());
     }
 
     public int countMatchingNumbersWith(Lotto other) {
@@ -56,6 +57,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        return numbers.toString().concat(System.lineSeparator());
     }
 }

@@ -7,7 +7,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,7 +47,7 @@ class LottoSellerTest {
     @Test
     void createLottoTicketWith() {
         LottoSeller lottoSeller = LottoSellerFixture.createLottoSeller();
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         List<Lotto> expectedLottos = List.of(new Lotto(numbers));
 
         LottoTicket actual = lottoSeller.createLottoTicketFor(numbers);
