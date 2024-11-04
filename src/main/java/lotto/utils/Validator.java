@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public class Validator {
 
@@ -51,6 +52,12 @@ public class Validator {
 
         if(number > endRange || number < startRange){
             ExceptionFactory.throwIllegalArgumentException(ExceptionType.OUT_OF_SPECIFIC_RANGE);
+        }
+   }
+
+   public static void validateListSize(List<Integer> list, int size){
+        if(list.size() != size){
+            ExceptionFactory.throwIllegalArgumentException(ExceptionType.NOT_PROPER_SIZE);
         }
    }
 }
