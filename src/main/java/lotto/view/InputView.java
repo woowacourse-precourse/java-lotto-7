@@ -4,7 +4,6 @@ import static lotto.util.ValidationUtils.*;
 
 import camp.nextstep.edu.missionutils.Console;
 
-
 public class InputView {
     public long getPurchaseAmount() {
         while (true) {
