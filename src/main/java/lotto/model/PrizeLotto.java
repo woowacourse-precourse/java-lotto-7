@@ -15,4 +15,8 @@ public class PrizeLotto {
     public List<Integer> getNumbers() {
         return this.lotto.getNumbers();
     }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
+    }
 }

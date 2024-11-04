@@ -1,7 +1,7 @@
 package lotto.view;
 
 import static lotto.constants.OutputMessageConstants.PURCHASE_MESSAGE;
-import static lotto.constants.RegExpConstants.ENTER;
+import static lotto.constants.RegExpConstants.ESCAPE_ENTER;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class UserLottoListView {
     }
 
     private void printLottoCount(final int number) {
-        stringBuilder.append(number).append(PURCHASE_MESSAGE).append(ENTER);
+        stringBuilder.append(number).append(PURCHASE_MESSAGE).append(ESCAPE_ENTER);
     }
 
     private void printLottoList(final List<List<Integer>> lottoNumberList) {
@@ -27,6 +27,6 @@ public class UserLottoListView {
     }
 
     private void printLotto(final List<Integer> lottoNumber) {
-        stringBuilder.append(lottoNumber.toString()).append(ENTER);
+        stringBuilder.append(lottoNumber.toString()).append(ESCAPE_ENTER);
     }
 }

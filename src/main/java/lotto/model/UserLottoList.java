@@ -27,6 +27,10 @@ public class UserLottoList {
         return new Lotto(LottoNumberGenerator.getNumbers());
     }
 
+    public List<Lotto> getLottoList() {
+        return this.lottoList;
+    }
+
     public List<List<Integer>> getNumberList() {
         return this.lottoList.stream()
                 .map(Lotto::getNumbers)

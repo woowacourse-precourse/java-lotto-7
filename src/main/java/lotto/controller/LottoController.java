@@ -2,26 +2,42 @@ package lotto.controller;
 
 import lotto.model.PrizeLotto;
 import lotto.model.UserLottoList;
+import lotto.model.WinningDetailComputer;
+import lotto.model.WinningDetailList;
+import lotto.model.WinningPriceStore;
 import lotto.util.MoneyToLottoCountUtil;
 import lotto.view.UserLottoListView;
+import lotto.view.WinningDetailView;
 
 public class LottoController {
 
     private final InputMoneyController inputMoneyController;
     private final UserLottoListView userLottoListView;
     private final InputPrizeNumberController inputPrizeNumberController;
+    private final WinningDetailView winningDetailView;
 
     public LottoController(final InputMoneyController inputMoneyController, UserLottoListView userLottoListView,
-                           InputPrizeNumberController inputPrizeNumberController) {
+                           InputPrizeNumberController inputPrizeNumberController, WinningDetailView winningDetailView) {
         this.inputMoneyController = inputMoneyController;
         this.userLottoListView = userLottoListView;
         this.inputPrizeNumberController = inputPrizeNumberController;
+        this.winningDetailView = winningDetailView;
     }
 
     public void run() {
         UserLottoList userLottoList = getUserLotto();
 
         PrizeLotto prizeLotto = inputPrizeNumberController.getPrizeNumbers();
+
+        WinningDetailComputer winningDetailComputer
+                = new WinningDetailComputer(userLottoList.getLottoList(), prizeLotto, new WinningDetailList());
+        winningDetailComputer.computeLottoList();
+
+        winningDetailView.addMessage();
+        for (WinningPriceStore list : winningDetailComputer.getWinningDetailList()) {
+            winningDetailView.addMatchDetail(list);
+        }
+        winningDetailView.print();
 
     }
 

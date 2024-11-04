@@ -6,6 +6,7 @@ import lotto.controller.LottoController;
 import lotto.view.InputPrizeNumberView;
 import lotto.view.PurchaseView;
 import lotto.view.UserLottoListView;
+import lotto.view.WinningDetailView;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,9 +18,10 @@ public class Application {
 
         InputPrizeNumberView inputPrizeNumberView = new InputPrizeNumberView();
         InputPrizeNumberController inputPrizeNumberController = new InputPrizeNumberController(inputPrizeNumberView);
+        WinningDetailView winningDetailView = new WinningDetailView();
 
         LottoController lottoController = new LottoController(inputMoneyController, userLottoListView,
-                inputPrizeNumberController);
+                inputPrizeNumberController, winningDetailView);
 
         lottoController.run();
     }
