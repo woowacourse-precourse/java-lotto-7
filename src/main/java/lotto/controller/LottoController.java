@@ -6,7 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.Lottos;
+import lotto.model.Prize;
 
 public class LottoController {
     private static final int LOTTO_PRICE = 1000;
@@ -39,6 +41,17 @@ public class LottoController {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    public void checkResult(Lottos lottos, LottoResult lottoResult) {
+        int resultPrize = 0;
+        for (Lotto lotto : lottos.getLottos()) {
+            int matchCount = checkCorrectCount(lotto, lottoResult.getWinningNumbers());
+            boolean bonusMatch = lotto.getNumbers().contains(lottoResult.getBonusNumber());
+            Prize prize = Prize.valueOf(matchCount, bonusMatch);
+            resultPrize += prize.getResultPrize();
+        }
+        lottoResult.setTotalPrize(resultPrize);
     }
 
 }
