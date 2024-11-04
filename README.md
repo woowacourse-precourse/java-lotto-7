@@ -172,6 +172,7 @@ lotto
 │   │   │   │   │   ├── LottoNumberFormatException.java
 │   │   │   │   │   ├── LottoNumberOutOfRangeException.java
 │   │   │   │   │   ├── PriceNumberFormatException.java
+│   │   │   │   │   ├── PriceNumberInRangeException.java
 │   │   │   │   ├── model
 │   │   │   │   │   ├── BonusNumber.java
 │   │   │   │   │   ├── Lotto.java
@@ -182,6 +183,7 @@ lotto
 │   │   │   │   │   ├── LottoShop.java
 │   │   │   │   │   ├── Rank.java
 │   │   │   │   │   ├── WinningLotto.java
+│   │   │   │   │   ├── Price.java
 │   │   │   │   ├── service
 │   │   │   │   │   ├── LottoService.java
 │   │   │   │   ├── util
