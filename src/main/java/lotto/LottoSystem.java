@@ -16,29 +16,17 @@ public class LottoSystem {
     private Money money;
 
     public void start() {
-        money = purchaseMoney();
-        generateLottos(money);
-        displayPurchaseResult();
-        inputWinningNumbers();
+        purchaseProcess();
+        inputWinningNumbersProcess();
         calculateAndDisplayResult();
     }
 
-    private void calculateAndDisplayResult() {
-        LottoResult result = new LottoResult(money.getAmount());
-        for (Lotto lotto : purchasedLottos) {
-            result.addWinningResult(lotto, winningNumber);
-        }
-        result.printStatistics();
-    }
-
-    private void inputWinningNumbers() {
+    private void purchaseProcess() {
         while (true) {
             try {
-                System.out.println(WINNING_NUMBER_GUIDE);
-                String winningInput = Console.readLine();
-                System.out.println(BONUS_NUMBER_GUIDE);
-                String bonusInput = Console.readLine();
-                winningNumber = new WinningNumber(winningInput, bonusInput);
+                money = purchaseMoney();
+                generateLottos(money);
+                displayPurchaseResult();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -49,6 +37,21 @@ public class LottoSystem {
     private Money purchaseMoney() {
         System.out.println(PURCHASE_GUIDE);
         return new Money(Console.readLine());
+    }
+
+    private void inputWinningNumbersProcess() {
+        while (true) {
+            try {
+                System.out.println(WINNING_NUMBER_GUIDE);
+                String numbers = Console.readLine();
+                System.out.println(BONUS_NUMBER_GUIDE);
+                String bonus = Console.readLine();
+                winningNumber = new WinningNumber(numbers, bonus);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void generateLottos(Money money) {
@@ -69,5 +72,13 @@ public class LottoSystem {
     private void displayPurchaseResult() {
         System.out.printf(PURCHASE_RESULT + "%n", purchasedLottos.size());
         purchasedLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
+    private void calculateAndDisplayResult() {
+        LottoResult result = new LottoResult(money.getAmount());
+        for (Lotto lotto : purchasedLottos) {
+            result.addWinningResult(lotto, winningNumber);
+        }
+        result.printStatistics();
     }
 }
