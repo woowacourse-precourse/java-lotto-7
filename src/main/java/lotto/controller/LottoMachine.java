@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.LottoRank;
-import lotto.domain.Lottos;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
 import lotto.dto.WinningRankCountDto;
 import lotto.service.LottoRankCounter;
 import lotto.service.LottoService;
@@ -17,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.common.Constants.*;
+import static lotto.view.OutputView.printErrorMessage;
 
 public class LottoMachine {
     private final InputView inputView;
@@ -43,7 +41,7 @@ public class LottoMachine {
 
         Lottos lottos = generateLottos(lottoTicketCount);
 
-        WinningNumbers winningNumbers = getWinningNumbers();
+        WinningNumbers winningNumbers = getWinningNumbersAndBonusNumber();
 
         WinningRankCountDto winningRankCountDto = getWinningRanks(lottos, winningNumbers);
 
@@ -72,19 +70,71 @@ public class LottoMachine {
 
 
     private Integer lottoPurchase () {
-        return purchaseService.purchaseLotto();
+        Integer ticketCount = null;
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                String rawPurchaseAmount = inputView.getPurchaseAmount();
+                ticketCount = purchaseService.purchaseLotto(rawPurchaseAmount);
+
+                validInput = true;
+
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
+            }
+        }
+
+        return ticketCount;
     }
 
     private List<Integer> generateRandomNumbers () {
         return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
     }
 
-    private WinningNumbers getWinningNumbers () {
-        WinningNumbers winningNumbers = winningNumbersService.getWinningNumbers();
+    private WinningNumbers getWinningNumbersAndBonusNumber () {
+        WinningNumbers winningNumbers = getWinningNumbers();
 
-        winningNumbersService.getBonusNumber(winningNumbers);
+        getBonusNumber(winningNumbers);
 
         return winningNumbers;
+    }
+
+    private WinningNumbers getWinningNumbers () {
+        WinningNumbers winningNumbers = null;
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                String inputWinningNumbers = inputView.getWinningNumbers();
+
+                winningNumbers = winningNumbersService.getWinningNumbers(inputWinningNumbers);
+
+                validInput = true;
+
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
+            }
+        }
+
+        return winningNumbers;
+    }
+
+    private void getBonusNumber (WinningNumbers winningNumbers) {
+
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                String rawBonusNumber = inputView.getBonusNumber();
+                winningNumbersService.getBonusNumber(winningNumbers, rawBonusNumber);
+
+                validInput = true;
+
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private WinningRankCountDto getWinningRanks (Lottos lottos, WinningNumbers winningNumbers) {
