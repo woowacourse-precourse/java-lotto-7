@@ -23,8 +23,10 @@ class LottoMachineTest {
         Lotto mockLotto3 = new Lotto(List.of(13, 14, 15, 16, 17, 18));
         List<Lotto> mockLottos = List.of(mockLotto1, mockLotto2, mockLotto3);
 
-        String lottos = LottoMachine.buyLotto(3, new MockLottoGenerator(mockLottos)).toLottos();
-        assertThat(lottos).isEqualTo(EXPECT);
+        LottoMachine lottoMachine = LottoMachine.buyLotto(3, new MockLottoGenerator(mockLottos));
+
+        assertThat(lottoMachine.getLottos().size()).isEqualTo(3);
+        assertThat(lottoMachine.toLottos()).isEqualTo(EXPECT);
     }
 
 }
