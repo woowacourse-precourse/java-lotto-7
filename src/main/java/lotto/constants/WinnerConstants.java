@@ -2,7 +2,7 @@ package lotto.constants;
 
 public enum WinnerConstants {
     FIRST_WINNER(1, 6, 2000000000, "6개 일치"),
-    SECOND_WINNER(2, 6, 30000000, "5개 일치, 보너스 볼 일치"),
+    SECOND_WINNER(2, 5, 30000000, "5개 일치, 보너스 볼 일치"),
     THIRD_WINNER(3, 5, 1500000, "5개 일치"),
     FOURTH_WINNER(4, 4, 50000, "4개 일치"),
     FIFTH_WINNER(5, 3, 5000, "3개 일치");
