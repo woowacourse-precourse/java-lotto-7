@@ -35,8 +35,7 @@ public class Application {
 
             // 당첨 통계를 출력
             Output.resultOfLotto(lottoList, winnerLotto, bonusNum, total * 1000);
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
