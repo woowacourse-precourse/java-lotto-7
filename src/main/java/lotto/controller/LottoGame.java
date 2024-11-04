@@ -22,6 +22,23 @@ public class LottoGame {
 
     public void start() {
         purchaseLottos();
+        generateWinningLotto();
+    }
+
+    private void generateWinningLotto() {
+        List<Integer> validWiningNumbers = getValidWinningNumbers();
+    }
+
+    private List<Integer> getValidWinningNumbers() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = inputView.inputWinningLottoNumbers();
+                Lotto lotto = new Lotto(winningNumbers);
+                return lotto.getNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void purchaseLottos() {
