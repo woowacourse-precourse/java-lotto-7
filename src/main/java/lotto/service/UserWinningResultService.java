@@ -28,13 +28,13 @@ public class UserWinningResultService {
 
         OutputView.newLine();
         OutputView.printMessage(WINNING_STATISTICS);
-        double rateOfRevenue = generateStatistics(lottoResult,user);
+        double rateOfRevenue = generateStatistics(lottoResult, user);
 
         OutputView.printTotalReturn(rateOfRevenue);
     }
 
     private double generateStatistics(LottoResult lottoResult, User user) {
-        int[][] lottoMatchCount = countMatchWinningNumber(lottoResult,user);
+        int[][] lottoMatchCount = countMatchWinningNumber(lottoResult, user);
         for (int match = 3; match <= LottoConstant.COUNT.getValue(); match++) {
             OutputView.printWinningResult(match, lottoMatchCount);
         }
@@ -42,7 +42,7 @@ public class UserWinningResultService {
     }
 
     private int[][] countMatchWinningNumber(LottoResult lottoResult, User user) {
-        int[][] resultTable = new int[LottoConstant.COUNT.getValue()+1][2];
+        int[][] resultTable = new int[LottoConstant.COUNT.getValue() + 1][2];
         LottoTickets lottoTickets = user.getLottoTickets();
 
         for (Lotto lotto : lottoTickets.getTickets()) {

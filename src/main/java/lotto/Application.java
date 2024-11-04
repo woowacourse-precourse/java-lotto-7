@@ -23,8 +23,7 @@ public class Application {
         LottoResult lottoResult = lottoController.getBonusNumbers(winningNumber);
 
         // 당첨 통계 출력
-        userController.getWinningResult(lottoResult,userId);
-
+        userController.getWinningResult(lottoResult, userId);
 
     }
 }

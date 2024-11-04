@@ -27,6 +27,6 @@ public class UserController {
     }
 
     public void getWinningResult(LottoResult lottoResult, int userId) {
-        userWinningResultService.getWinningResult(lottoResult,userId);
+        userWinningResultService.getWinningResult(lottoResult, userId);
     }
 }

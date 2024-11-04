@@ -27,7 +27,7 @@ public class Lotto {
         List<Integer> getNumbers = winningNumber.getNumbers();
         int count = 0;
         for (int number : numbers) {
-            if(getNumbers.contains(number)) {
+            if (getNumbers.contains(number)) {
                 count++;
             }
         }

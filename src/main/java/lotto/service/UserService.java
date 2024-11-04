@@ -36,7 +36,7 @@ public class UserService {
 
     public int inputPurchasePriceForUser() {
         int accessCount = ACCESS_COUNT.getValue();
-        for(int count = 0; count < accessCount; count++) {
+        for (int count = 0; count < accessCount; count++) {
             String purchasePrice = inputPurchasePrice();
             try {
                 User user = new User(purchasePrice);

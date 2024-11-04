@@ -9,13 +9,13 @@ public class LottoResult {
     private final int bonusNumber;
 
     public LottoResult(WinningNumber winningNumbers, String bonusNumber) {
-        validate(winningNumbers,bonusNumber);
+        validate(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
     private void validate(WinningNumber winningNumbers, String bonusNumber) {
-        Validator.checkBonusNumber(winningNumbers,bonusNumber);
+        Validator.checkBonusNumber(winningNumbers, bonusNumber);
     }
 
     public WinningNumber getWinningNumbers() {

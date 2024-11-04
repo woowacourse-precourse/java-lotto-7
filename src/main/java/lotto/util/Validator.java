@@ -35,7 +35,7 @@ public class Validator {
     }
 
     private static void validateWinningNumbers(String[] values) {
-        for(String value : values) {
+        for (String value : values) {
             ValidatorException.throwIfValueIsNotNumber(value);
             ValidatorException.throwIfValueIsOutOfRange(value);
         }
@@ -53,13 +53,13 @@ public class Validator {
 
     // 보너스 번호 검사
     public static void checkBonusNumber(WinningNumber winningNumbers, String bonusNumber) {
-        validateBonusNumber(winningNumbers,bonusNumber);
+        validateBonusNumber(winningNumbers, bonusNumber);
     }
 
     private static void validateBonusNumber(WinningNumber winningNumbers, String bonusNumber) {
         ValidatorException.throwIfValueIsNotNumber(bonusNumber);
         ValidatorException.throwIfValueIsOutOfRange(bonusNumber);
-        ValidatorException.throwIfBonusNumberIsDuplicate(winningNumbers,bonusNumber);
+        ValidatorException.throwIfBonusNumberIsDuplicate(winningNumbers, bonusNumber);
         ValidatorException.throwIfValueIsOutOfRange(bonusNumber);
     }
 

@@ -37,7 +37,7 @@ public class User {
         double rateOfRevenue = generateRevenueRate(this.revenue);
 
         // 수익률이 음수일 경우 100.0을 더함
-        if(rateOfRevenue < 0.0) {
+        if (rateOfRevenue < 0.0) {
             rateOfRevenue += 100.0;
         }
         return rateOfRevenue;
