@@ -31,7 +31,7 @@ public class RankingServiceTest {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
 
         rankingService.evaluateLottoResult(winningLotto, 6, lotto);
-        
+
         assertThat(Ranking.SECOND.getCount()).isEqualTo(1);
         assertThat(Ranking.FIFTH.getCount()).isEqualTo(0);
         assertThat(Ranking.FOURTH.getCount()).isEqualTo(0);
