@@ -54,6 +54,49 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 잘못된_금액_입력_예외() {
+        assertSimpleTest(() -> {
+            runException("1050");  // 1000원 단위가 아닌 금액 입력
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("-1000");  // 음수 금액 입력
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 잘못된_당첨번호_입력_예외() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5");  // 당첨 번호가 6개 미만
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6,7");  // 당첨 번호가 6개 초과
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,5");  // 중복된 당첨 번호 입력
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 잘못된_보너스번호_입력_예외() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "46");  // 1~45 범위를 벗어난 보너스 번호
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "0");  // 1~45 범위를 벗어난 보너스 번호
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "3");  // 중복된 당첨 번호와 같은 보너스 번호
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});
