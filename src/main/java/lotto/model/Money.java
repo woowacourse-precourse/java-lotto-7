@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.message.InputErrorMessage;
-
 public class Money {
     private static final int LOTTO_PRICE = 1000;
     private final int amount;
