@@ -1,18 +1,38 @@
 package lotto.controller;
 
+import java.util.List;
+
+import lotto.domain.BonusNumber;
+import lotto.domain.GameResults;
+import lotto.domain.Lotto;
+import lotto.domain.LottoMachine;
+import lotto.domain.Money;
+import lotto.domain.WinningLotto;
+import lotto.domain.common.Random;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+
 public class LottoGame {
 
+	private final LottoMachine lottoMachine;
+	private final Random random;
+
+	public LottoGame(LottoMachine lottoMachine, Random random) {
+		this.lottoMachine = lottoMachine;
+		this.random = random;
+	}
+
 	public void start(){
-		// money 입력
+		Money money = new Money(InputView.readLottoPurchaseMoney());
 
-		// 로또 구매 -> List<Lotto> 반환
+		List<Lotto> lottos = lottoMachine.purchaseLottos(money, random);
 
-		// 당첨 로또 입력 및 생성
+		WinningLotto winningLotto = new WinningLotto(InputView.readWinningNumbers());
+		BonusNumber bonusNumber = new BonusNumber(InputView.readBonusNumber());
 
-		// 보너스 번호 입력 및 생성
+		GameResults gameResults = new GameResults();
+		gameResults.calculateGameResult(lottos, winningLotto, bonusNumber);
 
-		// 결과 계산 및 출력
-
-		// 수익률 계산 및 출력
+		OutputView.printGameResult(gameResults);
 	}
 }
