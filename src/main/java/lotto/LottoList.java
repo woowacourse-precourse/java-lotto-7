@@ -4,22 +4,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoList {
-    List<Lotto> list;
+    List<Lotto> lottoList;
 
     public LottoList(List<Lotto> lottoList) {
-        this.list = lottoList;
+        this.lottoList = lottoList;
     }
 
     public List<Lotto> getLottoList() {
-        return list;
+        return lottoList;
     }
 
     public int size() {
-        return list.size();
+        return lottoList.size();
     }
 
     public List<Integer> getMatchCounts(List<Integer> winningNumbers, int bonusNumber) {
-        return list.stream()
+        return lottoList.stream()
                 .map(lotto -> lotto.countMatchingWinningNumbers(winningNumbers, bonusNumber))
                 .collect(Collectors.toList());
     }
