@@ -8,13 +8,8 @@ import lotto.model.Lotto;
 import lotto.util.Grade;
 
 public class OutputView {
-    private final List<Lotto> lottos;
 
-    public OutputView(List<Lotto> lottos) {
-        this.lottos = lottos;
-    }
-
-    public void printPurchasedLottos() {
+    public static void printPurchasedLottos(final List<Lotto> lottos) {
         final int lottosCount = lottos.size();
         final String delimiter = ", ";
         final String prefix = "[";
