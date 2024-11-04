@@ -25,6 +25,9 @@ public class LottoController {
 
         Map<Rank, Integer> results = winningLotto.calculateResults(lottos);
         OutputView.printWinningStatistics(results);
+
+        double yield = winningLotto.calculateYield(results, purchaseAmount);
+        OutputView.printYield(yield);
     }
 
     private List<Integer> inputWinningNumbers() {

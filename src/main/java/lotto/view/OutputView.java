@@ -10,6 +10,7 @@ import lotto.domain.Rank;
 public class OutputView {
     private static final String PURCHASED_LOTTOS_MSG = "%d개를 구매했습니다.";
     private static final String STATISTICS_HEADER = "당첨 통계\n---";
+    private static final String YIELD_MSG = "총 수익률은 %.1f%%입니다.";
 
     public static void printPurchasedLottos(List<Lotto> lottos) {
         System.out.println(String.format(PURCHASED_LOTTOS_MSG, lottos.size()));
@@ -27,5 +28,9 @@ public class OutputView {
                 .sorted(Comparator.comparingInt(Rank::getMatchCount).
                         thenComparing(Rank::isBonusRequired))
                 .forEach(rank -> System.out.printf("%s - %d개\n", rank.getDisplayMessage(), results.getOrDefault(rank, 0)));
+    }
+
+    public static void printYield(double yield) {
+        System.out.printf(YIELD_MSG, yield);
     }
 }

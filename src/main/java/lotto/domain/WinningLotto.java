@@ -38,4 +38,11 @@ public class WinningLotto {
         }
         return results;
     }
+
+    public double calculateYield(Map<Rank, Integer> results, int purchaseAmount) {
+        long totalPrize = results.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        return (double) totalPrize / purchaseAmount * 100;
+    }
 }
