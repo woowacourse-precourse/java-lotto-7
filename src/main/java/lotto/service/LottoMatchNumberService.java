@@ -3,9 +3,9 @@ package lotto.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
-import lotto.WinningLotto;
 import lotto.constant.WinningRank;
+import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 
 public class LottoMatchNumberService {
     private final WinningLotto winningLotto;

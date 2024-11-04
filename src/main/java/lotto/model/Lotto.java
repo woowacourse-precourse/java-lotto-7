@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static lotto.constant.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.constant.ErrorMessage.INVALID_WINNING_NUMBER_COUNT;

@@ -7,9 +7,9 @@ import static lotto.constant.GameValue.DIVIDE_FOR_TICKET_COUNT_NUMBER;
 import static lotto.constant.GameValue.MIN_BUYING_AMOUNT;
 
 import java.util.List;
-import lotto.Bonus;
-import lotto.Lotto;
-import lotto.WinningLotto;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 
 public class InputMiddleController {

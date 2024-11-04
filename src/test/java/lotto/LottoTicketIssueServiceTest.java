@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.service.LottoNumberGeneratorService;
 import lotto.service.LottoTicketIssueService;
 import org.junit.jupiter.api.DisplayName;

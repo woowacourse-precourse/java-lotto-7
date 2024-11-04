@@ -2,8 +2,8 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
 import lotto.constant.WinningRank;
+import lotto.model.Lotto;
 
 public interface OutPutView {
     void printBoughtLotto(List<Lotto> boughtLotto);

@@ -4,9 +4,9 @@ import static lotto.constant.ErrorMessage.PRINT_ERROR_MESSAGE;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
-import lotto.WinningLotto;
 import lotto.constant.WinningRank;
+import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.service.CalculateProfitRateService;
 import lotto.service.LottoMatchNumberService;
 import lotto.service.LottoNumberGeneratorService;

@@ -9,8 +9,8 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import lotto.Lotto;
 import lotto.constant.WinningRank;
+import lotto.model.Lotto;
 import lotto.view.OutPutView;
 
 public class OutViewImpl implements OutPutView {
