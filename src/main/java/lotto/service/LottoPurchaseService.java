@@ -13,7 +13,7 @@ public class LottoPurchaseService {
 
     public int getPurchasedLottoCount() {
         int lottoCount = repeatPromptPurchaseAmount();
-        return lottoCount;
+        return calculateLottoCount(lottoCount);
     }
 
     public int repeatPromptPurchaseAmount() {

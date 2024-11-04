@@ -20,7 +20,7 @@ public class LottoGeneratorService {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = generateSixNumbers();
-            sortNumbers(numbers);
+            numbers = sortNumbers(numbers);
             lottos.add(new Lotto(numbers));
         }
         return lottos;
