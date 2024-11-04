@@ -55,6 +55,6 @@ public class IOHandler {
     }
 
     public void showLottoResult(LottoTickets tickets) {
-        outputHandler.showLottoResultSummary2(tickets);
+        outputHandler.showLottoResultSummary(tickets);
     }
 }

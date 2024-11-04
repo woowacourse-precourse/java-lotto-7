@@ -19,20 +19,6 @@ public class OutputHandler {
     public void showLottoResultSummary(LottoTickets lottoTickets) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        Map<LottoPlace, Integer> lottoResultSummary = lottoTickets.getLottoResultSummary();
-        System.out.println("3개 일치 " + "(" + LottoPlace.FIFTH.getFormattedWinningMoney() + "원)" + " - " + lottoResultSummary.get(LottoPlace.FIFTH) + "개");
-        System.out.println("4개 일치 " + "(" + LottoPlace.FIFTH.getFormattedWinningMoney() + "원)" + " - " + lottoResultSummary.get(LottoPlace.FORTH) + "개");
-        System.out.println("5개 일치 " + "(" + LottoPlace.FIFTH.getFormattedWinningMoney() + "원)" + " - " + lottoResultSummary.get(LottoPlace.THIRD) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 " + "(" + LottoPlace.FIFTH.getFormattedWinningMoney() + "원)" + " - " + lottoResultSummary.get(LottoPlace.SECOND) + "개");
-        System.out.println("6개 일치 " + "(" + LottoPlace.FIFTH.getFormattedWinningMoney() + "원)" + " - " + lottoResultSummary.get(LottoPlace.FIRST) + "개");
-
-        double profitRate = lottoTickets.getProfitRate();
-        System.out.println("총 수익률을 " + String.format("%.1f", profitRate) + "%입니다.");
-    }
-
-    public void showLottoResultSummary2(LottoTickets lottoTickets) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
         showResultOfEachPlace(lottoTickets);
 
         double profitRate = lottoTickets.getProfitRate();

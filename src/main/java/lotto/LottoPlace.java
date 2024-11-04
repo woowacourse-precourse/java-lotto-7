@@ -36,7 +36,6 @@ public enum LottoPlace implements Comparable<LottoPlace> {
             "당첨되지 않았습니다."
     );
 
-    public static final String WINNING__NUMBER_FORMAT = "#,###";
     private final int winningMoney;
     private final String summaryComment;
 
@@ -58,10 +57,5 @@ public enum LottoPlace implements Comparable<LottoPlace> {
 
     public String provideSummaryComment(int numberOfTicket) {
         return this.summaryComment + numberOfTicket + "개";
-    }
-
-    public String getFormattedWinningMoney() {
-        DecimalFormat formatter = new DecimalFormat(WINNING__NUMBER_FORMAT);
-        return formatter.format(winningMoney);
     }
 }

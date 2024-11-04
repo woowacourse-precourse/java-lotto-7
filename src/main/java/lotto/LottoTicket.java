@@ -21,32 +21,6 @@ public class LottoTicket {
         int matchingNumberCount = lotto.compareNumberWithTicket(numbers);
         boolean hasBonusNumber = numbers.contains(bonusNumber);
 
-        if (matchingNumberCount == 6) {
-            place = LottoPlace.FIRST;
-            return;
-        }
-
-        if (matchingNumberCount == 5 && hasBonusNumber) {
-            place = LottoPlace.SECOND;
-            return;
-        }
-        if (matchingNumberCount == 5) {
-            place = LottoPlace.THIRD;
-            return;
-        }
-        if (matchingNumberCount == 4) {
-            place = LottoPlace.FORTH;
-            return;
-        }
-        if (matchingNumberCount == 3) {
-            place = LottoPlace.FIFTH;
-        }
-    }
-
-    public void decideLottoPlaceBy2(Lotto lotto, int bonusNumber) {
-        int matchingNumberCount = lotto.compareNumberWithTicket(numbers);
-        boolean hasBonusNumber = numbers.contains(bonusNumber);
-
         this.place = LottoPlaceDecider.findLottoPlaceBy(matchingNumberCount, hasBonusNumber);
     }
 

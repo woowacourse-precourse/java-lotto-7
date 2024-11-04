@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +23,7 @@ public class LottoTickets {
 
     public void decideLottoPlacesBy(Lotto lotto, int bonusNumber) {
         for (LottoTicket lottoTicket : tickets) {
-            lottoTicket.decideLottoPlaceBy2(lotto, bonusNumber);
+            lottoTicket.decideLottoPlaceBy(lotto, bonusNumber);
         }
     }
 
