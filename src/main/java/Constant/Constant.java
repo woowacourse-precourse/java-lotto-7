@@ -8,9 +8,12 @@ public class Constant {
         public static final String INPUT_PURCHASE_PROMPT = "구입금액을 입력해 주세요.";
         public static final String INPUT_NUMBER_PROMPT = "당첨 번호를 입력해 주세요.";
         public static final String INPUT_BONUS_PROMPT = "보너스 번호를 입력해 주세요.";
-        public static final String OUTPUT_PROMPT = "개를 구매했습니다.";
+        public static final String OUTPUT_PROMPT = "\n%d개를 구매했습니다.";
+        public static final String WINNING_STATISTICS = "\n당첨 통계\n---";
+
     }
     public class GameRuleConstant {
+        public static Integer LOTTO_PRICE = 1000;
         public static final String INPUT_DELIMITER = ",";
         public static final int LOTTO_RANGE_MIN = 1;
         public static final int LOTTO_RANGE_MAX = 45;
@@ -26,6 +29,7 @@ public class Constant {
         public static final String OUTPUT_ERROR = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
         public static final String COUNT_MISMATCH_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
         public static final String BOUNS_COUNT_MISMATCH_ERROR ="[ERROR] 보너스 번호는 1개여야 합니다.";
-
+        public static final String PURCHASE_WORD_INPUT_ERROR = "[ERROR] 구매 금액은 숫자만 입력하셔야 합니다.";
+        public static final String PURCHASE_THOUSAND_ERROR = "[ERROR] 1,000원 단위로 입력하셔야 합니다.";
     }
 }
