@@ -42,6 +42,10 @@ public class LottoController {
         CorrectDTO correctDTO = getCorrectNumAndBonusNum();
         lottoService.countMatchingNumbers(correctDTO,lottoDTO);
         //결과에 대해 출력하는 부분
+        printResultOfLotto(moneyDTO);
+    }
+
+    public void printResultOfLotto(MoneyDTO moneyDTO) {
         RateOfReturnDTO rateOfReturnDTO = lottoService.calculateRateOfReturn(moneyDTO);
         lottoView.printResult(rateOfReturnDTO);
     }
