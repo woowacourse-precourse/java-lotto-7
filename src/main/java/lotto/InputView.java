@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
+    private static List<Integer> winningNumbers;
     public static int inputPurchaseAmount() {
         while (true) {
             try {
@@ -30,6 +31,7 @@ public class InputView {
     }
 
 
+
     public static List<Integer> inputWinningNumber() {
         while (true) {
             try {
@@ -39,6 +41,7 @@ public class InputView {
                     numbers.add(Integer.parseInt(inputNumber.trim()));
                 }
                 validateWinningNumber(numbers);
+                winningNumbers = numbers; // 당첨 번호 저장
                 return numbers;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자만 입력 가능합니다.");
@@ -79,6 +82,9 @@ public class InputView {
     private static void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다.");
+        }
+        if (winningNumbers != null && winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }
