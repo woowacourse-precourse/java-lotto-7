@@ -52,4 +52,11 @@ class WinnerLottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE.getMessage());
     }
+
+    @Test
+    void 입력된_보너스_번호에_숫자가_아닌값이_포함되면_예외가_발생한다() {
+        assertThatThrownBy(() -> WinnerLotto.from("1,2,3,4,5,6").setBonusNumber("6,"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INPUT_MUST_BE_NUMBER.getMessage());
+    }
 }
