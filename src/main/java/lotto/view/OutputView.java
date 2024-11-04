@@ -15,10 +15,10 @@ public class OutputView {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
-        System.out.println();
     }
 
     public static void printRankCounts(Map<Ranking, Integer> rankCounts) {
+        System.out.println();
         System.out.println("당첨 통계\n---");
         for (Ranking ranking : Ranking.values()) {
             if (ranking != Ranking.LOSE) {
