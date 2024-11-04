@@ -53,6 +53,10 @@
 - [x] 로또 번호를 추가하고, getLottos() 메서드를 통해 올바르게 저장되는지 확인
 - [x] Prize 값을 결과에 추가하고, getResults() 메서드를 통해 올바르게 업데이트되었는지
 - [x] User 객체 생성 후 기본적으로 모든 Prize의 수가 0인지 확인
+- Profit
+- [x] Profit 객체를 생성했을 때 초기 profit과 profitRate가 0인지 확인
+- [x] addProfit() 메서드를 통해 이익을 추가하고, getProfit() 메서드를 사용하여 올바르게 업데이트되었는지 확인
+- [x] setProfitRate() 메서드를 사용하여 이익률을 설정하고, getProfitRate() 메서드를 통해 올바르게 설정되었는지 확인
 
 # 프로그래밍 요구 사항 
 - depth가 3이 넘지 않도록, 2까지만 허용
