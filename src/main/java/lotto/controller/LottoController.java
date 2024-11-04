@@ -7,6 +7,7 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 
 public class LottoController {
+    private static final int LOTTO_PRICE = 1000;
 
     private Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -19,5 +20,9 @@ public class LottoController {
             lottoList.add(generateLotto());
         }
         return new Lottos(lottoList);
+    }
+
+    public int getLottoPurchaseCount(int cost) {
+        return cost / LOTTO_PRICE;
     }
 }
