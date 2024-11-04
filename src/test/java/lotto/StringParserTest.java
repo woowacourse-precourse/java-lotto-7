@@ -5,7 +5,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringParserTest {
 
@@ -18,10 +17,5 @@ public class StringParserTest {
         }
         assertThat(winningNumbers)
                 .isEqualTo(List.of(1, 2, 3, 4, 5, 6));
-    }
-
-    @Test
-    public void 당첨번호가_6개가_아닐_경우() {
-
     }
 }
