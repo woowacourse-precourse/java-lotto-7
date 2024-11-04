@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -30,6 +31,25 @@ class ApplicationTest extends NsTest {
     @Test
     void parseWinningNumber_기능_테스트() {
         assertThat(Application.parseWinningNumber("1,2,3,4,5,6")).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @DisplayName("drawLotto 단위 테스트")
+    @Test
+    void drawLotto_기능_테스트() {
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 2, 3, 10, 11, 12)),
+                new Lotto(List.of(10, 11, 12, 13, 14, 15)));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        assertThat(Application.drawLotto(lottos, winningLotto, bonusNumber)).isEqualTo(Map.of(
+                "FIFTH", 1,
+                "FOURTH", 0,
+                "THIRD", 0,
+                "SECOND", 1,
+                "FIRST", 1));
     }
 
     @Test
