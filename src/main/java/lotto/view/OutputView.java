@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.message.Message;
+import lotto.model.MyLotto;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,5 +22,14 @@ public class OutputView {
                         .map(String::valueOf)
                         .collect(Collectors.joining(COMMA + SPACE));
         System.out.println(lottoNumbers + CLOSE_PAREN);
+    }
+
+    public void printWinningPlaces(MyLotto myLotto) {
+        System.out.println(Message.WIN_STAT_MESSAGE);
+        Message.MATCH_3.printFormatted(myLotto.getFifthPlace());
+        Message.MATCH_4.printFormatted(myLotto.getFourthPlace());
+        Message.MATCH_5.printFormatted(myLotto.getThirdPlace());
+        Message.MATCH_5_BONUS.printFormatted(myLotto.getSecondPlace());
+        Message.MATCH_6.printFormatted(myLotto.getFirstPlace());
     }
 }

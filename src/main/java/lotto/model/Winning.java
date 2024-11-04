@@ -11,4 +11,7 @@ public class Winning {
         this.winNumbers = winNumbers;
         this.bonusNumber = bonusNumber;
     }
+
+    public List<BigInteger> getWinNumbers() { return winNumbers; }
+    public BigInteger getBonusNumber() { return bonusNumber; }
 }

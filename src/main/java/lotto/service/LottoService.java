@@ -32,6 +32,16 @@ public class LottoService {
         return lottos;
     }
 
+    public void checkWinning(MyLotto myLotto, Winning winning) {
+        for (Lotto lotto : myLotto.getLottos()) {
+            Long sameCount = matchLottoNumbers(lotto.getNumbers(), winning.getWinNumbers());
+
+            updatePlaces(myLotto, sameCount, matchBonusNumbers(lotto.getNumbers(), winning.getBonusNumber()));
+        }
+        OutputView outputView = new OutputView();
+        outputView.printWinningPlaces(myLotto);
+    }
+
     private Long matchLottoNumbers(List<Integer> lotto, List<BigInteger> winning) {
         List<BigInteger> bigIntegerLotto = lotto.stream()
                 .map(BigInteger::valueOf)
