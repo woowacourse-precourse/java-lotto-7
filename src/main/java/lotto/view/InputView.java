@@ -12,14 +12,13 @@ public class InputView {
         System.out.println("구매금액을 입력해 주세요.");
         int price = InputController.getPurchaseAmount();
         System.out.println();
-        printPurchaseQuantity(price);
-
         return price;
     }
 
     public static void printPurchaseQuantity(int price){
         int purchaseQuantity = price/1000;
-        Lotto.validateUnit(price%1000);
+        int remainPurchaseQuantity = price%1000;
+        Lotto.validateUnit(remainPurchaseQuantity);
         System.out.println(purchaseQuantity + "개를 구매했습니다.");
     }
 

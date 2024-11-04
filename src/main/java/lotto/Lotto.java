@@ -18,8 +18,8 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    public static void validateUnit(int purchaseQuantity) {
-        if (purchaseQuantity != 0){
+    public static void validateUnit(int remainPurchaseQuantity) {
+        if (remainPurchaseQuantity != 0){
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위만 가능합니다.");
         }
     }
