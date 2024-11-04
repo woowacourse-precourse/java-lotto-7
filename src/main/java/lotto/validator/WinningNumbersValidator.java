@@ -1,7 +1,6 @@
 package lotto.validator;
 
 import lotto.common.ErrorMessage;
-import lotto.common.RegexPattern;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,19 +11,19 @@ public class WinningNumbersValidator {
 
     public static List<Integer> validateWinningNumbers(String input){
         validateNullAndBlank(input);
-        validateOnyIntegerAndComma(input);
+        List<Integer> parsedWinningNumbers=validateOnyIntegerAndComma(input);
 
-        List<Integer> winningNumbers= Arrays.stream(input.split(INPUT_SEPERATOR))
-                        .mapToInt(Integer::parseInt)
-                        .boxed()
-                        .collect(Collectors.toList());
-        return winningNumbers;
-
+        return parsedWinningNumbers;
     }
 
-    private static void validateOnyIntegerAndComma(String input) {
-        if (!RegexPattern.ONLY_INTEGER_AND_COMMA.matches(input)){
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CHARACTER);
+    private static List<Integer> validateOnyIntegerAndComma(String input) {
+        try{
+            return Arrays.stream(input.split(INPUT_SEPERATOR))
+                    .mapToInt(Integer::parseInt)
+                    .boxed()
+                    .collect(Collectors.toList());
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_TYPE);
         }
     }
 
@@ -33,8 +32,4 @@ public class WinningNumbersValidator {
             throw new IllegalArgumentException(ErrorMessage.BLANK_OR_NULL_INPUT);
         }
     }
-
-
-
-
 }
