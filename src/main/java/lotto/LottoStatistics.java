@@ -65,8 +65,8 @@ public class LottoStatistics {
 
     public void calculateProfit() {
         long profit = 5000L*fifth + 50000L*fourth + 1500000L*third + 30000000L*second + 2000000000L*first;
-        profitRate = (double)profit / (lottos.length*1000);
-        profitRate = Math.round(profitRate * 100);
+        profitRate = ((double)profit / (lottos.length*1000)) * 100;
+        profitRate = Math.round(profitRate * 10) / 10.0;
     }
 
     public void run() {
