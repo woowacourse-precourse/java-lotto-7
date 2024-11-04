@@ -7,15 +7,15 @@ import lotto.domain.Lottos;
 import lotto.domain.Prize;
 
 public class OutputView {
-    private final String ISSUED_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
-    private final String RESULT_TITLE = "당첨 통계";
-    private final String DIVIDER = "---";
-    private final String THREE_MATCHES_RESULT = "3개 일치 (5,000원) - %d개\n";
-    private final String FOUR_MATCHES_RESULT = "4개 일치 (50,000원) - %d개\n";
-    private final String FIVE_MATCHES_RESULT = "5개 일치 (1,500,000원) - %d개\n";
-    private final String FIVE_MATCHES_BONUS_MATCH_RESULT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
-    private final String SIX_MATCHES_RESULT = "6개 일치 (2,000,000,000원) - %d개\n";
-    private final String PROFIT_RATE_RESULT = "총 수익률은 %,.1f%%입니다.";
+    private static final String ISSUED_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
+    private static final String RESULT_TITLE = "당첨 통계";
+    private static final String DIVIDER = "---";
+    private static final String THREE_MATCHES_RESULT = "3개 일치 (5,000원) - %d개\n";
+    private static final String FOUR_MATCHES_RESULT = "4개 일치 (50,000원) - %d개\n";
+    private static final String FIVE_MATCHES_RESULT = "5개 일치 (1,500,000원) - %d개\n";
+    private static final String FIVE_MATCHES_BONUS_MATCH_RESULT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
+    private static final String SIX_MATCHES_RESULT = "6개 일치 (2,000,000,000원) - %d개\n";
+    private static final String PROFIT_RATE_RESULT = "총 수익률은 %,.1f%%입니다.";
 
     public void displayIssuedLottos(Lottos lottos) {
         System.out.println(System.lineSeparator() + lottos.getLottos().size() + ISSUED_LOTTO_COUNT_MESSAGE);
