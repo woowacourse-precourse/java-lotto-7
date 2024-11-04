@@ -29,6 +29,10 @@ public class Application {
 
         Map<Rank, Integer> rankCount = new HashMap<>();
         rankCount = Lotto.calculateWinningResults(lottoTickets,winNumber,bonusNumber);
+
+        int totalPrize = OutputView.printWinningStatistics(rankCount);
+
+        OutputView.outputReturnRate(totalPrize, price);
     }
 }
 

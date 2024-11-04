@@ -1,6 +1,9 @@
 package InputOutput;
 
+import Rank.Rank;
+
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public static void firstMessage(){
@@ -30,5 +33,29 @@ public class OutputView {
             System.out.println(ticket); // 각 로또 티켓의 번호 출력
         }
         System.out.println("");
+    }
+    public static int printWinningStatistics(Map<Rank, Integer> rankCount){
+        System.out.println("");
+        System.out.println("당첨 통계\n---");
+        int totalPrize = 0;
+        // 원하는 출력 순서대로 Rank 배열 정의
+        Rank[] ranksToPrint = {
+                Rank.FIFTH, // 3개 일치
+                Rank.FOURTH, // 4개 일치
+                Rank.THIRD,
+                Rank.SECOND, // 5개 일치, 보너스 볼 일치
+                Rank.FIRST, // 6개 일치
+        };
+
+        for (Rank rank : ranksToPrint) {
+            int count = rankCount.getOrDefault(rank, 0);
+            System.out.printf("%s - %d개\n", rank.description, count);
+            totalPrize += count * rank.prize;
+        }
+        return totalPrize;
+    }
+    public static void outputReturnRate(int totalPrize, int price){
+        double yield = (double) totalPrize / price * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다\n", yield);
     }
 }
