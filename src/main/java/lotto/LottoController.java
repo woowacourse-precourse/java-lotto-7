@@ -14,18 +14,22 @@ public class LottoController {
 
 
     public void run() {
-        String price = inputView.printGetPurchasePrice();
-        userLotto = new UserLotto(price);
-        outputView.printLottoCount(Integer.parseInt(price));
+        try {
+            int price = inputView.printGetPurchasePrice();
+            userLotto = new UserLotto(price);
+            outputView.printLottoCount(price);
 
-        outputView.printUserLottoNumbers(userLotto.generateLotto());
-        String winningLottoNumber = inputView.printGetWinningLottoNumber();
-        int bonusNumber = inputView.printGetBonusNumber();
+            outputView.printUserLottoNumbers(userLotto.generateLotto());
+            String winningLottoNumber = inputView.printGetWinningLottoNumber();
+            int bonusNumber = inputView.printGetBonusNumber();
 
-        winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
-        lottoResult.checkLottoIsWinner(winningLotto, userLotto);
+            winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
+            lottoResult.checkLottoIsWinner(winningLotto, userLotto);
 
-        double rateOfReturn = lottoResult.calculateRateOfReturn(userLotto);
-        outputView.printResultStatistics(rateOfReturn);
+            double rateOfReturn = lottoResult.calculateRateOfReturn(userLotto);
+            outputView.printResultStatistics(rateOfReturn);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

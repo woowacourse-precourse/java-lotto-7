@@ -11,22 +11,24 @@ public class UserLotto {
     private int price;
     private List<Lotto> lotto;
 
-    public UserLotto(String price) {
-        validate(price);
-        this.price = 0;
+    public UserLotto(int price) {
+//        validate(price);
+        this.price = price;
         lotto = new ArrayList<>();
     }
 
-    private void validate(String inputPrice) {
-        if (!validatePriceIsString(inputPrice)) {
-            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_PRICE_IS_NOT_STRING));
-        }
-        int price = Integer.parseInt(inputPrice);
-        if (price <= 0) {
-            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_PRICE_UNDER_ZERO));
-        }
-        if (price % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_PRICE_NOT_IN_UNITS_OF_1000));
+    private void validate(int inputPrice) {
+        try {
+
+            if (price <= 0) {
+                throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_PRICE_UNDER_ZERO));
+            }
+            if (price % 1000 != 0) {
+                throw new IllegalArgumentException(
+                        ErrorMessages.printError(ErrorMessages.ERROR_PRICE_NOT_IN_UNITS_OF_1000));
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 
