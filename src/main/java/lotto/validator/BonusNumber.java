@@ -34,7 +34,7 @@ public class BonusNumber {
     }
 
     private void validateNumbersUnique(int bonus, List<Integer> winningNumbers) {
-        if(winningNumbers.contains(bonus)) {
+        if (winningNumbers.contains(bonus)) {
             throw new IllegalArgumentException(ERROR_PREFIX + bonus + ": 당첨 번호와 중복되지 않는 숫자를 입력해주세요.");
         }
     }

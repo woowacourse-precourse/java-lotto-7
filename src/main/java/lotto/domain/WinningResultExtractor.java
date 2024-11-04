@@ -5,10 +5,11 @@ import java.util.*;
 public class WinningResultExtractor {
 
     public Map<Integer, Integer> totalMatchCounts = new HashMap<>();
-    public int bonusCount=0;
+    public int bonusCount = 0;
 
     public void getWinningResult(List<Set<Integer>> totalLottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
         initializeMatchCounts(totalMatchCounts);
+
         for (Set<Integer> lottoNumber : totalLottoNumbers) {
             countMatchingNumbers(lottoNumber, winningNumbers, bonusNumber);
         }
@@ -23,12 +24,14 @@ public class WinningResultExtractor {
 
     private void countMatchingNumbers(Set<Integer> lottoNumber, List<Integer> winningNumbers, int bonusNumber) {
         int matchingCount = 0;
+
         for (Integer winningNumber : winningNumbers) {
             if (lottoNumber.contains(winningNumber)) {
                 matchingCount++;
             }
         }
         totalMatchCounts.put(matchingCount, totalMatchCounts.getOrDefault(matchingCount, 0) + 1);
+
         if (matchingCount == 5 && lottoNumber.contains(bonusNumber)) {
             bonusCount++;
         }
@@ -43,7 +46,7 @@ public class WinningResultExtractor {
     }
 
     public String getWinningRate(int purchaseAmount) {
-        double winningRate = (double) getWinningAmount() /purchaseAmount * 100;
-        return String.format("%.1f",winningRate);
+        double winningRate = (double) getWinningAmount() / purchaseAmount * 100;
+        return String.format("%.1f", winningRate);
     }
 }

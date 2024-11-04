@@ -32,7 +32,7 @@ public class PurchaseAmount {
 
     private int validateIntegerRange(String beforePurchaseAmount) {
         long longValue = Long.parseLong(beforePurchaseAmount);
-        if ( longValue < Integer.MIN_VALUE || longValue > Integer.MAX_VALUE) {
+        if (longValue < Integer.MIN_VALUE || longValue > Integer.MAX_VALUE) {
             throw new IllegalArgumentException(String.format(OVERFLOW_ERROR, longValue));
         }
         return Integer.parseInt(beforePurchaseAmount);
