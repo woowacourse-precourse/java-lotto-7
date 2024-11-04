@@ -29,6 +29,7 @@ public class LottoController {
         final WinningLotto winningLotto = requestBonusNumber(lotto);
 
         LottoResult lottoResult = winningLotto.calculateResult(purchasedLottos);
+        OutputView.printLottoResult(lottoResult);
     }
 
     private static Money requestPurchaseMoneyAmount() {

@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 
 public class OutputviewFormatter {
