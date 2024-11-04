@@ -2,53 +2,35 @@ package lotto.Integration;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
+import lotto.fixture.LottoFixture;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.fixture.LottoFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoIntegrationTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private static final String INPUT_AMOUNT = "8000";
-    private static final String INPUT_NUMBERS = "1,5,20,25,40,45";
-    private static final String INPUT_BONUS_NUMBER = "7";
-    private static final List<String> CORRECT_ANSWER = List.of("8개를 구매했습니다.",
-            "[1, 5, 20, 25, 40, 45]",
-            "[1, 5, 20, 25, 40, 44]",
-            "[1, 5, 20, 25, 43, 44]",
-            "[1, 5, 20, 24, 43, 44]",
-            "[1, 5, 23, 24, 43, 44]",
-            "[1, 4, 23, 24, 43, 44]",
-            "[2, 4, 23, 24, 43, 44]",
-            "[1, 5, 20, 25, 40, 7]",
-            "3개 일치 (5,000원) - 1개",
-            "4개 일치 (50,000원) - 1개",
-            "5개 일치 (1,500,000원) - 1개",
-            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
-            "6개 일치 (2,000,000,000원) - 1개",
-            "총 수익률은 25394437.5%입니다.");
 
     @Test
     void 통합_테스트_모두_한번씩_당첨() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run(INPUT_AMOUNT, INPUT_NUMBERS, INPUT_BONUS_NUMBER);
+                    run(LottoFixture.INPUT_AMOUNT, INPUT_NUMBERS, INPUT_BONUS_NUMBER);
                     assertThat(output()).contains(
                             CORRECT_ANSWER
                     );
                 },
-                List.of(1, 5, 20, 25, 40, 45),
-                List.of(1, 5, 20, 25, 40, 44),
-                List.of(1, 5, 20, 25, 43, 44),
-                List.of(1, 5, 20, 24, 43, 44),
-                List.of(1, 5, 23, 24, 43, 44),
-                List.of(1, 4, 23, 24, 43, 44),
-                List.of(2, 4, 23, 24, 43, 44),
-                List.of(1, 5, 20, 25, 40, 7)
+                zeroMatchNumbers,
+                oneMatchNumbers,
+                twoMatchNumbers,
+                threeMatchNumbers,
+                fourMatchNumbers,
+                fiveMatchNumbers,
+                fiveBonusMatchNumbers,
+                sixMatchNumbers
         );
     }
 
@@ -61,14 +43,14 @@ public class LottoIntegrationTest extends NsTest {
                             CORRECT_ANSWER
                     );
                 },
-                List.of(1, 5, 20, 25, 40, 45),
-                List.of(1, 5, 20, 25, 40, 44),
-                List.of(1, 5, 20, 25, 43, 44),
-                List.of(1, 5, 20, 24, 43, 44),
-                List.of(1, 5, 23, 24, 43, 44),
-                List.of(1, 4, 23, 24, 43, 44),
-                List.of(2, 4, 23, 24, 43, 44),
-                List.of(1, 5, 20, 25, 40, 7)
+                zeroMatchNumbers,
+                oneMatchNumbers,
+                twoMatchNumbers,
+                threeMatchNumbers,
+                fourMatchNumbers,
+                fiveMatchNumbers,
+                fiveBonusMatchNumbers,
+                sixMatchNumbers
         );
     }
 
@@ -81,14 +63,14 @@ public class LottoIntegrationTest extends NsTest {
                             CORRECT_ANSWER
                     );
                 },
-                List.of(1, 5, 20, 25, 40, 45),
-                List.of(1, 5, 20, 25, 40, 44),
-                List.of(1, 5, 20, 25, 43, 44),
-                List.of(1, 5, 20, 24, 43, 44),
-                List.of(1, 5, 23, 24, 43, 44),
-                List.of(1, 4, 23, 24, 43, 44),
-                List.of(2, 4, 23, 24, 43, 44),
-                List.of(1, 5, 20, 25, 40, 7)
+                zeroMatchNumbers,
+                oneMatchNumbers,
+                twoMatchNumbers,
+                threeMatchNumbers,
+                fourMatchNumbers,
+                fiveMatchNumbers,
+                fiveBonusMatchNumbers,
+                sixMatchNumbers
         );
     }
 
@@ -101,14 +83,14 @@ public class LottoIntegrationTest extends NsTest {
                             CORRECT_ANSWER
                     );
                 },
-                List.of(1, 5, 20, 25, 40, 45),
-                List.of(1, 5, 20, 25, 40, 44),
-                List.of(1, 5, 20, 25, 43, 44),
-                List.of(1, 5, 20, 24, 43, 44),
-                List.of(1, 5, 23, 24, 43, 44),
-                List.of(1, 4, 23, 24, 43, 44),
-                List.of(2, 4, 23, 24, 43, 44),
-                List.of(1, 5, 20, 25, 40, 7)
+                zeroMatchNumbers,
+                oneMatchNumbers,
+                twoMatchNumbers,
+                threeMatchNumbers,
+                fourMatchNumbers,
+                fiveMatchNumbers,
+                fiveBonusMatchNumbers,
+                sixMatchNumbers
         );
     }
 

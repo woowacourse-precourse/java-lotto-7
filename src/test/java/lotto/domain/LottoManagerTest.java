@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.domain.LottoRank.*;
+import static lotto.domain.LottoRank.values;
+import static lotto.fixture.LottoFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoManagerTest {
@@ -40,36 +41,5 @@ public class LottoManagerTest {
                 .sum();
 
         assertThat(lottoManager.calculatePrize(result)).isEqualTo(expectPrize);
-    }
-
-    private Map<LottoRank, Integer> getLottoResult() {
-        return Map.of(
-                FAIL, 3,
-                THREE, 1,
-                FOUR, 1,
-                FIVE, 1,
-                FIVE_BONUS, 1,
-                SIX, 1
-        );
-    }
-
-    private WinLotto getWinLotto() {
-        WinLotto winLotto = new WinLotto(List.of(1, 5, 20, 25, 40, 45));
-        winLotto.setBonusNumber(7);
-
-        return winLotto;
-    }
-
-    private List<Lotto> getLottos() {
-        return List.of(
-                new Lotto(List.of(1, 5, 20, 25, 40, 45)),
-                new Lotto(List.of(1, 5, 20, 25, 40, 44)),
-                new Lotto(List.of(1, 5, 20, 25, 43, 44)),
-                new Lotto(List.of(1, 5, 20, 24, 43, 44)),
-                new Lotto(List.of(1, 5, 23, 24, 43, 44)),
-                new Lotto(List.of(1, 4, 23, 24, 43, 44)),
-                new Lotto(List.of(2, 4, 23, 24, 43, 44)),
-                new Lotto(List.of(1, 5, 20, 25, 40, 7))
-        );
     }
 }
