@@ -14,7 +14,6 @@ public enum ExceptionMessage {
     INVALID_SIZE("로또 번호는 %d개여야 합니다."),
     DUPLICATE_BONUS("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
 
-    private static final String ERROR_PREFIX = "[ERROR] ";
 
     private final String message;
 
@@ -23,11 +22,10 @@ public enum ExceptionMessage {
     }
 
     public String message() {
-        return ERROR_PREFIX.concat(message);
+        return message;
     }
 
     public String format(Object... args) {
-        String formattedMessage = String.format(message, args);
-        return ERROR_PREFIX.concat(formattedMessage);
+        return String.format(message, args);
     }
 }

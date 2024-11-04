@@ -13,6 +13,7 @@ public class OutputView {
     private static final String BONUS_MATCH = ", 보너스 볼 일치";
     private static final String EMPTY_STRING = "";
     private static final String NEW_LINE = "\n";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printLottoTickets(LottoTicketsDto lottoTicketsDto) {
         StringBuilder result = new StringBuilder();
@@ -34,6 +35,10 @@ public class OutputView {
 
         result.append(String.format(RETURN_RATE_FORMAT, winningStatisticsDto.returnRate() * 100));
         System.out.println(result);
+    }
+
+    public void printError(String message) {
+        System.out.println(ERROR_PREFIX.concat(message));
     }
 
     private String formatWinningCount(WinningCountDto winningCount) {

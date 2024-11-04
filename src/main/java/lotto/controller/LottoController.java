@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPayment;
 import lotto.domain.WinningLotto;
@@ -12,6 +13,7 @@ import lotto.service.LottoWinningCheckService;
 import lotto.strategy.QuickpickIssuanceStrategy;
 import lotto.util.NumberArrayParser;
 import lotto.util.NumberParser;
+import lotto.util.RetryExecutor;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.vo.LottoNumber;
@@ -36,23 +38,50 @@ public class LottoController {
     }
 
     public void run() {
-        String a = inputView.getPurchaseAmount();
-        Long b = NumberParser.parseLong(a);
+        LottoPayment payment = withRetry(this::createLottoPayment);
+        List<Lotto> purchasedLottos = purchaseLottos(payment);
 
-        LottoPayment lottoPayment = LottoPayment.from(Money.from(b));
-        List<Lotto> lottos = lottoService.purchaseAll(lottoPayment, new QuickpickIssuanceStrategy());
+        Lotto winningNumbers = withRetry(this::createWinningNumbers);
+        WinningLotto winningLotto = withRetry(() -> createWinningLottoWithBonusNumber(winningNumbers));
+
+        processResults(purchasedLottos, winningLotto, payment);
+    }
+
+    private LottoPayment createLottoPayment() {
+        String input = inputView.getPurchaseAmount();
+        Long amount = NumberParser.parseLong(input);
+        return LottoPayment.from(Money.from(amount));
+    }
+
+    private List<Lotto> purchaseLottos(LottoPayment payment) {
+        List<Lotto> lottos = lottoService.purchaseAll(payment, new QuickpickIssuanceStrategy());
         outputView.printLottoTickets(LottoTicketsDto.from(lottos));
+        return lottos;
+    }
 
-        String c = inputView.getWinningNumbers();
-        List<Integer> d = NumberArrayParser.parse(c);
-        Lotto e = Lotto.from(d);
+    private Lotto createWinningNumbers() {
+        String input = inputView.getWinningNumbers();
+        List<Integer> numbers = NumberArrayParser.parse(input);
+        return Lotto.from(numbers);
+    }
 
-        String f = inputView.getBonusNumber();
-        Integer h = NumberParser.parseInt(f);
+    private WinningLotto createWinningLottoWithBonusNumber(Lotto winningNumbers) {
+        String input = inputView.getBonusNumber();
+        Integer number = NumberParser.parseInt(input);
+        return WinningLotto.of(winningNumbers, LottoNumber.from(number));
+    }
 
-        List<WinningResultDto> check = lottoWinningCheckService.check(lottos, WinningLotto.of(e, LottoNumber.from(h)));
-        WinningStatisticsDto statistics = lottoWinningCheckService.createStatistics(check, lottoPayment);
-
+    private void processResults(List<Lotto> lottos, WinningLotto winningLotto, LottoPayment payment) {
+        List<WinningResultDto> results = lottoWinningCheckService.check(lottos, winningLotto);
+        WinningStatisticsDto statistics = lottoWinningCheckService.createStatistics(results, payment);
         outputView.printWinningStatistics(statistics);
+    }
+
+    private <T> T withRetry(Supplier<T> function) {
+        return RetryExecutor.execute(
+                function,
+                (error) -> outputView.printError(error.getMessage()),
+                IllegalArgumentException.class
+        );
     }
 }
