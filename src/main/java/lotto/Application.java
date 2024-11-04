@@ -9,10 +9,12 @@ import static lotto.InputUtil.splitByComma;
 import static lotto.Lotto.LOTTO_BASIC_PRICE;
 import static lotto.Lotto.LOTTO_MAX_NUM;
 import static lotto.Lotto.LOTTO_MIN_NUM;
+import static lotto.Lotto.checkLotto;
 import static lotto.Lotto.makeRandomLotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -85,7 +87,22 @@ public class Application {
             }
         }
 
-    }
+        ArrayList<Integer> statics = new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0, 0));
 
+        // 당첨 내역 출력
+        for (Lotto lotto : purchases) {
+            int result = checkLotto(lotto.getNumbers(), winningLotto.getNumbers(), bonusNumber);
+            if (result >= 0 && result < 5) {
+                statics.set(result, statics.get(result) + 1);
+            }
+        }
+
+        System.out.println("3개 일치 (5,000원) - " + statics.get(0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + statics.get(1) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + statics.get(2) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + statics.get(3) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + statics.get(4) + "개");
+
+    }
 
 }
