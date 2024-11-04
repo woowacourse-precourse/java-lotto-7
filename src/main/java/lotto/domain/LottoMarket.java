@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.Lotto;
+import lotto.exception.ExceptionCode;
+import lotto.exception.LottoException;
 
 public class LottoMarket {
 
@@ -28,13 +30,13 @@ public class LottoMarket {
 
     private void validatePositive(int money) {
         if (money < 1) {
-            throw new IllegalArgumentException();
+            throw new LottoException(ExceptionCode.NEGATIVE_NUMBER);
         }
     }
 
     private void validateDivisibleByThousand(int money) {
         if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException();
+            throw new LottoException(ExceptionCode.NON_DIVISIBLE_BY_THOUSAND);
         }
     }
 
