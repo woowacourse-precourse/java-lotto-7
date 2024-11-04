@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
+
+    private static final String NUMBER_DELIMITER = ", ";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,7 +20,7 @@ public class Lotto {
         return numbers.stream()
                 .sorted()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(NUMBER_DELIMITER));
     }
 
     public int countMatchingNumbers(Lotto otherLotto) {
