@@ -45,14 +45,16 @@ public class LottoService {
 
     public void updateLottoResults(List<List<Integer>> totalRandomNumbers, List<Integer> winningNumbers) {
         System.out.println("\n당첨 통계\n---");
+        calculateMatchingResults(totalRandomNumbers, winningNumbers);
+        printResults();
+        printTotalYield();
+    }
+
+    private void calculateMatchingResults(List<List<Integer>> totalRandomNumbers, List<Integer> winningNumbers) {
         for (List<Integer> randomNumbers : totalRandomNumbers) {
             int commonCount = countCommonElements(randomNumbers, winningNumbers);
-            boolean bonusMatch = (commonCount == LottoConstants.BONUS_MATCH_CONDITION) && isBonusNumberMatched(randomNumbers, winningNumbers);
+            boolean bonusMatch = isBonusMatched(commonCount, randomNumbers, winningNumbers);
             incrementMatchingResult(commonCount, bonusMatch);
-        }
-
-        for (LottoResult result : LottoResult.values()) {
-            System.out.printf("%s - %d개%n", result.toString(), result.getWinCount());
         }
     }
 
@@ -60,6 +62,10 @@ public class LottoService {
         List<Integer> copiedRandomNumbers = new ArrayList<>(randomNumbers);
         copiedRandomNumbers.retainAll(winningNumbers);
         return copiedRandomNumbers.size();
+    }
+
+    private boolean isBonusMatched(int commonCount, List<Integer> randomNumbers, List<Integer> winningNumbers) {
+        return (commonCount == LottoConstants.BONUS_MATCH_CONDITION) && isBonusNumberMatched(randomNumbers, winningNumbers);
     }
 
     private boolean isBonusNumberMatched(List<Integer> randomNumbers, List<Integer> winningNumbers) {
@@ -76,6 +82,25 @@ public class LottoService {
         handleRegularMatch(commonCount);
     }
 
+    private void printResults() {
+        for (LottoResult result : LottoResult.values()) {
+            System.out.printf("%s - %d개%n", result.toString(), result.getWinCount());
+        }
+    }
+
+    private void printTotalYield() {
+        int totalPrize = calculateTotalPrize();
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", getYield(totalPrize, this.totalPurchase));
+    }
+
+    private int calculateTotalPrize() {
+        int totalPrize = 0;
+        for (LottoResult result : LottoResult.values()) {
+            totalPrize += result.getPrize() * result.getWinCount();
+        }
+        return totalPrize;
+    }
+
     private void handleFiveMatch(boolean bonusMatch) {
         for (LottoResult result : LottoResult.values()) {
             if (result.getMatchCount() == LottoConstants.BONUS_MATCH_CONDITION && result.isBonusMatch() == bonusMatch) {
@@ -90,6 +115,11 @@ public class LottoService {
                 result.incrementWinCount();
             }
         }
+    }
+
+    private double getYield(int totalPrize, int totalPurchase) {
+        double yield = ((double) totalPrize / totalPurchase) * 100;
+        return Math.round(yield * 10) / 10.0;
     }
 
     public void setBonusNumber(int bonusNumber) {
