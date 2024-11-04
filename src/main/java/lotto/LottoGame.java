@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.config.Config;
-import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,12 +13,10 @@ public class LottoGame {
     public static final int LOTTO_UNIT_PRICE = 1000;
     private final InputView inputView;
     private final OutputView outputView;
-    private final Validator validator;
 
     public LottoGame(Config config) {
         this.inputView = config.getInputView();
         this.outputView = config.getOutputView();
-        this.validator = config.getValidator();
     }
 
     public void run() {
