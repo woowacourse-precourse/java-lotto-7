@@ -23,7 +23,7 @@ public enum LottoPrize {
         return prizeMoney;
     }
 
-    public static LottoPrize from(int matchNumberCount, boolean matchBonusNumber) {
+    public static LottoPrize from(long matchNumberCount, boolean matchBonusNumber) {
         for (LottoPrize prize : values()) {
             if (prize.matchNumberCount == matchNumberCount && prize.matchBonusNumber == matchBonusNumber) {
                 return prize;
