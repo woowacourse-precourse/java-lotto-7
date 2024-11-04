@@ -11,11 +11,11 @@ public class Validator {
     private static final String POSITIVE_RANGE_ERROR_MESSAGE = "양수 범위 내에서 입력 가능합니다.";
     private static final String LOTTERY_RANGE_ERROR_MESSAGE = "로또 번호는 1부터 45 사이의 값이어야 합니다";
     private static final String AMOUNT_UNIT_ERROR_MESSAGE = "입력은 1000단위어야 합니다.";
-    private static final String LOTTERY_NUMBER_COUNT_ERROR = "로또 번호는 총 6개여야 합니다.";
+    private static final String LOTTERY_NUMBER_COUNT_ERROR_MESSAGE = "로또 번호는 총 6개여야 합니다.";
+    private static final String DUPLICATE_NUMBER_ERROR_MESSAGE = "중복된 숫자는 입력할 수 없습니다.";
+    private static final String EMPTY_INPUT_ERROR_MESSAGE = "입력은 비어있을 수 없습니다.";
 
     private static final String WINNING_NUMBER_OPERATOR = ",";
-    private static final String DUPLICATE_NUMBER_ERROR = "중복된 숫자는 입력할 수 없습니다.";
-    private static final String EMPTY_INPUT_ERROR_MESSAGE = "입력은 비어있을 수 없습니다.";
     public static final int PURCHASE_AMOUNT_STANDARD = 1000;
 
     private void checkIsNumber(String input) {
@@ -66,12 +66,12 @@ public class Validator {
             for (String splitInput : splitInputs) {
                 Integer parseInt = Integer.parseInt(splitInput);
                 if (winningDigits.contains(parseInt)) {
-                    throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
+                    throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
                 }
                 winningDigits.add(parseInt);
             }
             if (winningDigits.size() != LottoConstants.LOTTERY_NUMBER_COUNT) {
-                throw new IllegalArgumentException(LOTTERY_NUMBER_COUNT_ERROR);
+                throw new IllegalArgumentException(LOTTERY_NUMBER_COUNT_ERROR_MESSAGE);
             }
 
             for (Integer winningDigit : winningDigits) {
@@ -93,7 +93,7 @@ public class Validator {
             checkIsPositiveNumber(num);
             checkIsLotteryRange(num);
             if (winningNumbers.contains(num)) {
-                throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
+                throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
             }
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(COMMON_ERROR_MESSAGE +  e.getMessage());
