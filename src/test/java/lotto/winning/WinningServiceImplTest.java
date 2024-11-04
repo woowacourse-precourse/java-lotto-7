@@ -8,13 +8,10 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
-
 import lotto.AppConfig;
 import lotto.donghang.WinningLotto;
 import lotto.vendingmachine.Lotto;
 import lotto.vendingmachine.VendingMachineRepository;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
