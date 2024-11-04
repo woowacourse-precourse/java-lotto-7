@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.Message.ErrorMessage;
 import lotto.model.*;
 import lotto.Utils;
 import lotto.view.InputView;
@@ -26,14 +27,14 @@ public class LottoController {
     private void start() {
         int amount = getTicketCount();
         generateTickets(amount);
-        Lotto winningNumber = getWinNumbers();
-        int bonusNumber = getBonusNum();
+        Lotto winningNumber = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumber);
 
         LottoMatcher winningNumbers = new LottoMatcher(winningNumber, bonusNumber);
         startGame(winningNumbers, amount);
     }
 
-    private int getTicketCount() {
+    public int getTicketCount() {
         try {
             LottoAmount lottoAmount = new LottoAmount(InputView.inputAmount());
             OutputView.printAmount(lottoAmount.getAmount());
@@ -44,7 +45,7 @@ public class LottoController {
         }
     }
 
-    private void generateTickets(int amount) {
+    public void generateTickets(int amount) {
         for (int i = 0; i < amount; i++) {
             numbers = randomLotto.getRandNumbers();
             Lotto lotto = new Lotto(numbers);
@@ -53,28 +54,29 @@ public class LottoController {
         }
     }
 
-    private Lotto getWinNumbers() {
+    public Lotto getWinningNumbers() {
         try {
             String input = InputView.inputWinningNum();
             numbers = Utils.parseToList(input);
             return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getWinNumbers();
+            return getWinningNumbers();
         }
     }
 
-    private int getBonusNum() {
+    public int getBonusNumber(Lotto winningNumber) {
         try {
             BonusNumber bonusNumber = new BonusNumber(InputView.inputBonusNum());
+            validateBonusNumber(bonusNumber.getNumber(), winningNumber);
             return bonusNumber.getNumber();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBonusNum();
+            return getBonusNumber(winningNumber);
         }
     }
 
-    private static void startGame(LottoMatcher winningNumbers, int amount) {
+    public static void startGame(LottoMatcher winningNumbers, int amount) {
         Map<LottoRank, Integer> result = initResults();
         LottoRank rank;
 
@@ -115,5 +117,11 @@ public class LottoController {
             result.put(rank, 0);
         }
         return result;
+    }
+
+    private static void validateBonusNumber(int bonusNumber, Lotto winningNumber) {
+        if (winningNumber.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_BONUS_IN_WINNING.toString());
+        }
     }
 }
