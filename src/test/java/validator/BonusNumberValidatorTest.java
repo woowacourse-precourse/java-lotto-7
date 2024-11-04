@@ -12,15 +12,16 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class BonusNumberValidatorTest {
     private BonusNumberValidator bonusNumberValidator;
+
     @BeforeEach
-    void    setUp() {
+    void setUp() {
         bonusNumberValidator = new BonusNumberValidator();
     }
 
     @Test
-    void    보너스번호_비정상입력_테스트() {
+    void 보너스번호_비정상입력_테스트() {
         List<String> errorBonusNumberInputs = new ArrayList<>();
-        String[] exampleLottoNumbers = {"1","2","3","4","5","6"};
+        String[] exampleLottoNumbers = {"1", "2", "3", "4", "5", "6"};
 
         errorBonusNumberInputs.add("a");
         errorBonusNumberInputs.add(",");
