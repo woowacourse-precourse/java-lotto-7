@@ -45,7 +45,7 @@ public class Application {
 
     private static void validateInputLength(String input_price) {
         if (input_price.length() >= STRING_MAX_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] Purchasing price should be less than or equal 2 billions won.");
+            throw new IllegalArgumentException("[ERROR] Buying price should be less than or equal 2 billions won.");
         }
     }
 
@@ -176,20 +176,20 @@ public class Application {
         throw new IllegalArgumentException("[ERROR] Some error in statistics is occurred");
     }
 
-    private static int printSecondPrize(Lotto[] lottos, int bonus, int i, int count, Lotto win_lotto) {
-        int second_count = 0;
+    private static int printSecondPrize(Lotto[] lottos, int bonus, int i, int count, Lotto winlotto) {
+        int second = 0;
         if (count == 0) {
             System.out.println(i - 1 + "개 일치, 보너스 볼 일치 (" + formatPrize(Prize.SECOND.getPrize()) + "원) - 0개");
             return 0;
         }
         for (int j = 0; j < lottos.length; j++) {
-            if ((isItFirst(lottos[j].getNumbers(), win_lotto)) && (isBonusMatched(lottos[j].getNumbers(), bonus) == 1)) {
-                second_count += 1;
+            if ((isItFirst(lottos[j].getNumbers(), winlotto)) && (isBonusMatched(lottos[j].getNumbers(), bonus) == 1)) {
+                second += 1;
             }
         }
         System.out.print((i - 1) + "개 일치, 보너스 볼 일치 (");
-        System.out.println(formatPrize(Prize.SECOND.getPrize()) + "원) - " + second_count + "개");
-        return second_count;
+        System.out.println(formatPrize(Prize.SECOND.getPrize()) + "원) - " + second + "개");
+        return second;
     }
 
     private static boolean isItFirst(List<Integer> numbers, Lotto win_lotto) {
@@ -231,7 +231,7 @@ public class Application {
         return 0;
     }
 
-    private static String formatPrize(int prize){
+    private static String formatPrize(int prize) {
         return String.format("%,d", prize);
     }
 
@@ -240,7 +240,6 @@ public class Application {
 
         System.out.printf("총 수익률은 %,.1f%%입니다.", profit);
     }
-
 
 
 }

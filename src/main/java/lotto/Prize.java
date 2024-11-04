@@ -22,13 +22,4 @@ public enum Prize {
     public int getPrize() {
         return prize;
     }
-
-    public static Prize getRankByMatchCount(int count, boolean bonus_matched) {
-        if (count == 6) return FIRST;
-        if (count == 5 && bonus_matched) return SECOND;
-        if (count == 5) return THIRD;
-        if (count == 4) return FOURTH;
-        if (count == 3) return FIFTH;
-        return null;
-    }
 }
