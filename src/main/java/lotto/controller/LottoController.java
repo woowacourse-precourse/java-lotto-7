@@ -13,7 +13,6 @@ public class LottoController {
   private final OutputViewInterface outputView;
   private final LottosServiceInterface lottoService;
   private final InputValidatorInterface inputValidator;
-  private List<Lotto> lottos;
 
   public LottoController(InputViewInterface inputView, OutputViewInterface outputView,
       LottosServiceInterface lottoService, InputValidatorInterface inputValidator) {
@@ -32,7 +31,7 @@ public class LottoController {
     outputView.printPurchaseCount(numOfLottos);
 
     // 로또 리스트 생성 및 출력
-    lottos = lottoService.generateLottosByAmount(purchaseAmount);
+    List<Lotto> lottos = lottoService.generateLottosByAmount(numOfLottos);
     outputView.printGeneratedLottos(lottos);
 
     // 당첨 번호 입력 및 검증
