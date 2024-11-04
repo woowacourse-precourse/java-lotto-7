@@ -39,9 +39,17 @@ public class Application {
         List<Lotto> lottos = createLotto(lottoPieces);
         lottosView(lottos);
 
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String winningNumber = Console.readLine();
-        Lotto winningLotto = new Lotto(parseWinningNumber(winningNumber));
+        Lotto winningLotto;
+        while (true) {
+            try {
+                System.out.println("\n당첨 번호를 입력해 주세요.");
+                String winningNumber = Console.readLine();
+                winningLotto = new Lotto(parseWinningNumber(winningNumber));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         int bonusNumber;
         while (true) {
