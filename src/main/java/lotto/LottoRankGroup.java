@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoRankGroup {
@@ -17,17 +18,17 @@ public class LottoRankGroup {
                 .toList());
     }
 
-    public List<String> getInstructions() {
+    public List<String> getRankInstructions() {
         List<String> instructions = new ArrayList<>();
-        for (LottoRank rank : ranks.reversed()) {
+        for (LottoRank rank : Arrays.stream(LottoRank.values()).toList().reversed()) {
             if (rank == LottoRank.NONE) continue;
             instructions.add(rank.getConditionInstruction() + countInstruction(rank));
         }
         return instructions;
     }
 
-    public double getRateOfRevenue(){
-        return Math.round(turnToPercentage((double)revenue()/cost()) * 10) / 10.0;
+    public String getRateOfRevenue(){
+        return String.format("총 수익률은 %s입니다.",Math.round(turnToPercentage((double)revenue()/cost()) * 10) / 10.0 + "%");
     }
 
     private double turnToPercentage(double number){

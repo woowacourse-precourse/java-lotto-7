@@ -19,11 +19,11 @@ public class LottoGroup {
         return new LottoGroup(lottos);
     }
 
-    public int getLottoGroupSize(){
-        return lottos.size();
+    public String getLottoGroupSize(){
+        return String.format("%d개를 구매했습니다.", lottos.size());
     }
 
-    public List<String> lottoNumbers() {
+    public List<String> getLottoNumbers() {
         return lottos.stream()
                 .map(Lotto::toString).toList();
     }

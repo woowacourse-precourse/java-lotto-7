@@ -22,7 +22,7 @@ class LottoGroupTest {
                 Lotto.of("13,14,15,16,17,18"),
                 Lotto.of("19,20,21,22,23,24")));
 
-        assertThat(lottoGroup.lottoNumbers()).contains(
+        assertThat(lottoGroup.getLottoNumbers()).contains(
                 "[1, 2, 3, 4, 5, 6]",
                 "[7, 8, 9, 10, 11, 12]",
                 "[13, 14, 15, 16, 17, 18]",
