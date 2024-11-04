@@ -30,21 +30,35 @@ public class OutputView {
             if (rank == Rank.NONE) {
                 continue;
             }
-
             int count = results.getOrDefault(rank, DEFAULT_STATISTIC_COUNT);
-            String formattedPrize = numberFormat.format(rank.getPrizeMoney());
-
-            if (rank == Rank.SECOND) {
-                System.out.printf(StatisticsOutputMessage.CONTENT_OF_RESULT_FOR_BONUS_NUMBER.getMessage(),
-                        rank.getMatchCount(), formattedPrize, count);
-            }
-
-            if (rank != Rank.SECOND) {
-                System.out.printf(StatisticsOutputMessage.CONTENT_OF_LOTTO_RESULT.getMessage(),
-                        rank.getMatchCount(), formattedPrize, count);
-            }
+            printRankResult(rank, count);
         }
     }
+
+    private static void printRankResult(Rank rank, int count) {
+        String formattedPrize = formatPrize(rank.getPrizeMoney());
+        if (rank == Rank.SECOND) {
+            printResultWithBonus(rank, formattedPrize, count);
+        }
+        if (rank != Rank.SECOND) {
+            printStandardResult(rank, formattedPrize, count);
+        }
+    }
+
+    private static String formatPrize(int prizeMoney) {
+        return numberFormat.format(prizeMoney);
+    }
+
+    private static void printStandardResult(Rank rank, String formattedPrize, int count) {
+        System.out.printf(StatisticsOutputMessage.CONTENT_OF_LOTTO_RESULT.getMessage(),
+                rank.getMatchCount(), formattedPrize, count);
+    }
+
+    private static void printResultWithBonus(Rank rank, String formattedPrize, int count) {
+        System.out.printf(StatisticsOutputMessage.CONTENT_OF_RESULT_FOR_BONUS_NUMBER.getMessage(),
+                rank.getMatchCount(), formattedPrize, count);
+    }
+
 
     public static void printProfitRate(double profitRate) {
         System.out.printf(StatisticsOutputMessage.PROFIT_RATE.getMessage(), profitRate);
