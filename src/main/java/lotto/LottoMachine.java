@@ -11,8 +11,8 @@ public class LottoMachine {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            numbers.sort(Comparator.naturalOrder());
-            Lotto lotto = new Lotto(numbers);
+            List<Integer> sortedNumbers = new ArrayList<>(numbers);
+            Lotto lotto = new Lotto(sortedNumbers);
             System.out.println(lotto);
             lottos.add(lotto);
         }
