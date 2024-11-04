@@ -2,19 +2,31 @@ package lotto.model;
 
 import static lotto.utils.Constants.LOTTO_PRICE;
 
-public class Cashier {
-    public Cashier() {
+import lotto.utils.ErrorMessage;
 
+public class Cashier {
+    private int price;
+
+    public Cashier() {
+        this.price = 0;
     }
 
-    public int getLottoCount(int price) {
+    public void payPrice(int price) {
         validatePriceAmount(price);
-        return (price / LOTTO_PRICE);
+        this.price = price;
+    }
+
+    public int getLottoCount() {
+        return (this.price / LOTTO_PRICE);
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     private void validatePriceAmount(int price) {
         if (price % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("1000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_IN_THOUSAND_UNITS.getMessage());
         }
     }
 }

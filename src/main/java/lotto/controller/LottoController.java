@@ -17,17 +17,21 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoManager lottoManager;
+    private final LottoResult lottoResult;
     private final Cashier cashier;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoManager lottoManager, Cashier cashier) {
+    public LottoController(InputView inputView, OutputView outputView, LottoManager lottoManager, LottoResult lottoResult, Cashier cashier) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoManager = lottoManager;
+        this.lottoResult = lottoResult;
         this.cashier = cashier;
     }
 
     public void run() {
         buyLotto();
+        checkResult();
+        checkRateOfReturn();
     }
 
     public void buyLotto() {
@@ -45,6 +49,23 @@ public class LottoController {
 
     public WinningLotto generateWinningLotto() {
         return new WinningLotto(generateWinningNumbers(), generateBonusNumber());
+    }
+
+    public void checkResult() {
+        lottoResult.calculateResult(lottoManager.getLottos(), generateWinningLotto());
+        outputView.printWinningResultHeader();
+        Arrays.stream(Prize.values())
+                .filter(prize -> prize != Prize.FAILURE)
+                .sorted(Comparator.comparingInt(Prize::getCountOfMatchingNumbers)
+                        .thenComparingInt(Prize::getPrizeMoney))
+                .forEach(prize -> {
+                    outputView.printWinningResult(prize.getCountOfMatchingNumbers(), prize.isBonusNumberMatch()
+                            , prize.getPrizeMoney(), lottoResult.getPrizeCount(prize));
+                });
+    }
+
+    public void checkRateOfReturn() {
+        outputView.printRateOfReturn(lottoResult.calculateRateOfReturn(cashier.getPrice()));
     }
 
     private void buy(int count) {

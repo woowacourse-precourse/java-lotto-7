@@ -10,4 +10,12 @@ public class WinningLotto{
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
+
+    public int matchWinningNumber(List<Integer> numbers) {
+        return lotto.matchNumber(numbers);
+    }
+
+    public boolean matchBonusNumber(List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
+    }
 }

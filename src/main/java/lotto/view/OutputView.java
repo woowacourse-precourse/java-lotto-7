@@ -17,6 +17,28 @@ public class OutputView {
         System.out.println(convertTicketToFormat(numbers));
     }
 
+    public void printWinningResultHeader() {
+        System.out.printf(OUTPUT_RESULT_PRIZE_STATISTICS);
+    }
+
+    public void printWinningResult(int matchCount, boolean isBonusNumberMatch, int prizeMoney, int count) {
+        System.out.printf(OUTPUT_RESULT_MATCH_MESSAGE, matchCount, checkBonusBallMatch(isBonusNumberMatch), prizeMoney, count);
+    }
+
+    private String checkBonusBallMatch(boolean isBonusNumberMatch) {
+        String bonusMatchMessage = "";
+
+        if (isBonusNumberMatch) {
+            bonusMatchMessage = OUTPUT_RESULT_BONUS_MATCH_MESSAGE;
+        }
+
+        return bonusMatchMessage;
+    }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.printf(OUTPUT_RESULT_ROR_MESSAGE, rateOfReturn);
+    }
+
     private String convertTicketToFormat(List<Integer> numbers) {
         return "[" + convertNumbersToString(numbers) + "]";
     }
