@@ -20,7 +20,7 @@ public enum LottoRanking {
         this.prize = prize;
     }
 
-    public static LottoRanking findRanking(int matchCount, boolean bonusMatch) {
+    public static LottoRanking getRanking(int matchCount, boolean bonusMatch) {
         for (LottoRanking ranking : values()) {
             if (ranking.matchCount == matchCount && ranking.matchBonus == bonusMatch) {
                 return ranking;

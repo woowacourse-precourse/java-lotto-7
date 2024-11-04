@@ -9,6 +9,9 @@ public class LottoTicket {
     public LottoTicket(List<Integer> numbers) {
         this.numbers = Set.copyOf(numbers);
     }
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
 
     public int getMatchCount(List<Integer> winningNumbers) {
         return (int) winningNumbers.stream().filter(numbers::contains).count();

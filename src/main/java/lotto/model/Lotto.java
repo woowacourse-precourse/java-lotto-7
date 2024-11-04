@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constants.AppConstants;
 import lotto.constants.ErrorMessage;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+        if (numbers.stream().anyMatch(num -> num < AppConstants.LOTTO_MIN_NUMBER || num > AppConstants.LOTTO_MAX_NUMBER)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
