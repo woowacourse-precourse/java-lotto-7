@@ -17,12 +17,8 @@ public class LottoInput {
     public Integer getLottoPurchaseAmount() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
-                String purchaseAmount = Console.readLine();
-
-                PurchaseAmountErrors errorHandler = new PurchaseAmountErrors();
-                errorHandler.errorCheck(purchaseAmount);
-
+                String purchaseAmount = readPurchaseAmount();
+                validatePurchaseAmount(purchaseAmount);
                 Integer lottoAmount = Integer.parseInt(purchaseAmount) / 1000;
 
                 System.out.println();
@@ -34,23 +30,36 @@ public class LottoInput {
         }
     }
 
+    private String readPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    private void validatePurchaseAmount(String purchaseAmount) {
+        PurchaseAmountErrors errorHandler = new PurchaseAmountErrors();
+        errorHandler.errorCheck(purchaseAmount);
+    }
+
     public List<Integer> inputWinningNumbers() {
-        String winningNumbersInput = null;
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                winningNumbersInput = Console.readLine();
-
-                // 숫자 이외의 값을 입력했을 경우
-                if (!winningNumbersInput.matches("^(\\d+\\s*,\\s*)*\\d+$")) {
-                    throw new IllegalArgumentException("[ERROR] 숫자와 쉼표만 입력해 주세요.");
-                }
-
-                List<Integer> winningNumbers = makeWinningNumberListAndValidate(winningNumbersInput);
-                return winningNumbers;
+                String winningNumbersInput = readWinningNumbers();
+                validateWinningNumbersFormat(winningNumbersInput);
+                return makeWinningNumberListAndValidate(winningNumbersInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage()); // [ERROR]로 시작하는 메시지 출력
             }
+        }
+    }
+
+    private String readWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    private void validateWinningNumbersFormat(String winningNumbersInput) {
+        if (!winningNumbersInput.matches("^(\\d+\\s*,\\s*)*\\d+$")) {
+            throw new IllegalArgumentException("[ERROR] 숫자와 쉼표만 입력해 주세요.");
         }
     }
 
