@@ -1,7 +1,11 @@
 package lotto.controller;
 
+import static lotto.constant.OutputMessage.INPUT_BONUS_NUMBER;
+import static lotto.constant.OutputMessage.INPUT_BUDGET;
+import static lotto.constant.OutputMessage.INPUT_WINNING_NUMBER;
 import static lotto.util.LottoSplitter.split;
 
+import lotto.constant.OutputMessage;
 import lotto.domain.BonusNumber;
 import lotto.domain.Budget;
 import lotto.domain.LottoMaker;
@@ -30,7 +34,7 @@ public class LottoController {
     private void buyLotto() {
         while (true) {
             try {
-                budget = new Budget(inputView.inputBudget());
+                budget = new Budget(inputView.read(INPUT_BUDGET.getMessage()));
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -45,8 +49,8 @@ public class LottoController {
     private void setWinningLotto() {
         while (true) {
             try {
-                winningNumbers = new WinningNumbers(split(inputView.
-                        inputWinningNumber()));
+                winningNumbers = new WinningNumbers(split(inputView
+                        .read(INPUT_WINNING_NUMBER.getMessage())));
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -57,8 +61,8 @@ public class LottoController {
     private void setBonusNumber() {
         while (true) {
             try {
-                bonusNumber = new BonusNumber(inputView.inputBonusNumber(),
-                        winningNumbers.getWinningNumbers());
+                bonusNumber = new BonusNumber(inputView.read(INPUT_BONUS_NUMBER.getMessage())
+                        , winningNumbers.getWinningNumbers());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

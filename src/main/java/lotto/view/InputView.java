@@ -1,24 +1,20 @@
 package lotto.view;
 
-import static lotto.constant.OutputMessage.INPUT_BUDGET;
-import static lotto.constant.OutputMessage.INPUT_BONUS_NUMBER;
-import static lotto.constant.OutputMessage.INPUT_WINNING_NUMBER;
+import static lotto.constant.ErrorMessage.INPUT_EMPTY;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    public String inputBudget() {
-        System.out.println(INPUT_BUDGET.getMessage());
-        return Console.readLine();
+    public String read(String guideMessage) {
+        System.out.println(guideMessage);
+        String userInput = Console.readLine();
+        validate(userInput);
+        return userInput;
     }
 
-    public String inputWinningNumber() {
-        System.out.println(INPUT_WINNING_NUMBER.getMessage());
-        return Console.readLine();
-    }
-
-    public String inputBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER.getMessage());
-        return Console.readLine();
+    private void validate(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException(INPUT_EMPTY.getMessage());
+        }
     }
 }

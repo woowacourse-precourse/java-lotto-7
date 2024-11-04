@@ -15,9 +15,6 @@ public class Budget {
     }
 
     private void validate(String budget) {
-        if (budget == null || budget.isEmpty()) {
-            throw new IllegalArgumentException(NOT_INPUT_BUDGET.getMessage());
-        }
         if (parse(budget) % 1000 != 0) {
             throw new IllegalArgumentException(INVALID_BUDGET.getMessage());
         }
