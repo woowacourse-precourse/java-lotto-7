@@ -4,6 +4,14 @@ import lotto.constant.LottoConstant;
 
 public class LottoMoneyValidator {
 
+    public void validate(String money) {
+        try {
+            Integer.parseInt(money);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
+        }
+    }
+
     public void validate(int money) {
         validatePositive(money);
         validateUnitOfThousand(money);

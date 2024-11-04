@@ -16,6 +16,11 @@ public class LottoCreateService {
         this.lottoMoneyValidator = new LottoMoneyValidator();
     }
 
+    public Lottos createLottosWithMoney(String money) {
+        lottoMoneyValidator.validate(money);
+        return createLottosWithMoney(Integer.parseInt(money));
+    }
+
     public Lottos createLottosWithMoney(int money) {
         lottoMoneyValidator.validate(money);
         int lottoCount = money / LottoConstant.LOTTO_PRICE;
