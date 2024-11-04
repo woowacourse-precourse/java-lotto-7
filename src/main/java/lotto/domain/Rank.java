@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 public enum Rank {
     FIRST(6, false, 2_000_000_000, "%d개 일치 (%s원) - %d개"),
@@ -44,7 +43,4 @@ public enum Rank {
         return String.format("%,d", prize);
     }
 
-    public static Stream<Rank> streamValidRanks() {
-        return Arrays.stream(values()).filter(rank -> rank != MISS);
-    }
 }
