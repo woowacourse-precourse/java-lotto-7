@@ -20,6 +20,8 @@ public class MessageContainer {
 
     public static final String ERROR_LABEL = "[ERROR]";
 
+    public static final String NON_DIGIT_ERROR
+            = String.format("%s 숫자만 입력해야 합니다.", ERROR_LABEL);
     public static final String NEITHER_DIGIT_NOR_DELIMITER_ERROR
             = String.format("%s 숫자와 %s만 입력해야 합니다.", ERROR_LABEL, VIEW_DELIMITER_LABEL);
     public static final String COUNT_OF_LOTTO_NUMBERS_ERROR

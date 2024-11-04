@@ -12,4 +12,6 @@ public class ViewConstants {
 
     public static final Pattern DIGIT_AND_DELIMITER_ONLY_PATTERN
             = Pattern.compile(String.format("^[%s%s]+$", DIGITS, VIEW_DELIMITER));
+
+    public static final Pattern DIGIT_ONLY_PATTERN = Pattern.compile(String.format("^[%s]+$", DIGITS));
 }

@@ -26,6 +26,7 @@ public class AppRunner {
 
     public void run() {
         String inputAmount = inputView.requestPurchaseAmount();
+        inputValidator.validateDigitOnly(inputAmount);
         LottoReceipt lottoReceipt = controller.readPurchaseAmount(inputAmount);
 
         outputView.printIssuedLottoQuantity(lottoReceipt.getIssuedLottoQuantity());
