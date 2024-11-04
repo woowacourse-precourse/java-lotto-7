@@ -35,8 +35,10 @@ public class LottoManager {
     }
 
 
-    public HashMap<LottoPrize, Integer> getWinningResult(ArrayList<Lotto> lottos,
+    public HashMap<LottoPrize, Integer> getWinningResult(List<Lotto> lottos,
         Lotto winningLotto) {
+        validateLottosIsEmpty(lottos);
+
         HashMap<LottoPrize, Integer> winningResult = new HashMap<>();
         for (LottoPrize lottoPrize : LottoPrize.values()) {
             winningResult.put(lottoPrize, 0);
@@ -96,9 +98,12 @@ public class LottoManager {
 
 
     public double getProfitRate(HashMap<LottoPrize, Integer> winningResult, int purchaseAmount) {
+        validateAmount(purchaseAmount);
         double profitRate;
         double totalPrize = 0;
         for (LottoPrize lottoPrize : LottoPrize.values()) {
+            if(!winningResult.containsKey(lottoPrize))
+                continue;
             totalPrize += winningResult.get(lottoPrize) * lottoPrize.getPrize();
         }
 
@@ -110,6 +115,15 @@ public class LottoManager {
     private void validateAmount(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000으로 나누어 떨어져야 합니다.");
+        }
+        if (amount <= 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액이 0원입니다.");
+        }
+    }
+
+    private void validateLottosIsEmpty(List<Lotto> lottos) {
+        if (lottos.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 로또들이 비어있습니다.");
         }
     }
 }
