@@ -19,4 +19,15 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorCode.MONEY_TYPE_ERROR.getMessage());
     }
+
+    @DisplayName("입력 된 돈이 로또 가격보다 작은 경우 예외 발생.")
+    @Test
+    void validMoneyTest() {
+        // given
+        Long money = 900L;
+        // when // then
+        assertThatThrownBy(() -> inputValidator.validMoney(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.LOTTO_MIN_PRICE_ERROR.getMessage());
+    }
 }
