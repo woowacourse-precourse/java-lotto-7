@@ -1,6 +1,7 @@
 package lotto.controller;
 
 
+import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.service.LottoValidationService;
 import lotto.view.Input;
@@ -20,6 +21,8 @@ public class LottoController {
 
     public void run() {
         PurchaseAmount purcharseAmount = requestPurchaseAmount();
+        Lottos lottos = purchaseLotto(purcharseAmount.calculateLottoCount());
+        output.printLottos(lottos);
     }
 
     private PurchaseAmount requestPurchaseAmount() {
@@ -33,6 +36,10 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private Lottos purchaseLotto(int count) {
+        return Lottos.generateLottos(count);
     }
 
 }
