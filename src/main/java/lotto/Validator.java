@@ -1,78 +1,76 @@
 package lotto;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Validator {
     private static final int LOTTO_PRICE = 1000;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
 
     public static void validatePurchaseAmount(String input) {
-        validateNumeric(input);
-        int amount = Integer.parseInt(input);
-        validateDivisibleByLottoPrice(amount);
+        int amount = parseInt(input, "[ERROR] 구입 금액은 숫자여야 합니다.");
         validatePositiveAmount(amount);
-    }
-    private static void validateNumeric(String input) {
-        if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 함");
-        }
+        validateDivisibleByLottoPrice(amount);
     }
 
-    private static void validateDivisibleByLottoPrice(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 천원 단위로 나눠 떨어져야 함");
+    private static int parseInt(String input, String errorMessage) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
     private static void validatePositiveAmount(int amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 천원 이상이어야 함");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.");
+        }
+    }
+
+    private static void validateDivisibleByLottoPrice(int amount) {
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 
     public static void validateWinningNumbers(List<String> inputs) {
         if (inputs.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 함.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
+        List<Integer> numbers = new ArrayList<>();
         for (String input : inputs) {
-            validateNumber(input);
+            int number = parseInt(input, "[ERROR] 당첨 번호는 숫자여야 합니다.");
+            validateNumberRange(number);
+            numbers.add(number);
         }
-        validateNoDuplicateNumbers(inputs);
+        validateNoDuplicateNumbers(numbers);
+    }
+
+    private static void validateNoDuplicateNumbers(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+        }
     }
 
     public static void validateBonusNumber(String input, List<Integer> winningNumbers) {
-        validateWinningNumeric(input);
-        int bonusNumber = Integer.parseInt(input);
+        int bonusNumber = parseInt(input, "[ERROR] 보너스 번호는 숫자여야 합니다.");
         validateNumberRange(bonusNumber);
+        validateBonusNotInWinningNumbers(bonusNumber, winningNumbers);
+    }
+
+    private static void validateBonusNotInWinningNumbers(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없음");
-        }
-    }
-
-    private static void validateNoDuplicateNumbers(List<String> inputs) {
-        Set<String> uniqueNumbers = new HashSet<>(inputs);
-        if (uniqueNumbers.size() != inputs.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없음.");
-        }
-    }
-
-    private static void validateNumber(String input) {
-        validateWinningNumeric(input);
-        int number = Integer.parseInt(input);
-        validateNumberRange(number);
-    }
-
-    private static void validateWinningNumeric(String input) {
-        if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 함");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 
     private static void validateNumberRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 함");
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
-
 }
