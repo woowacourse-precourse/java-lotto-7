@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Validator {
     public static int validateMoneyInput(String userInput) {
-        validateNotEmpty(userInput);
+        validateNotEmptyValue(userInput);
         int moneyInput = validateNumberInput(userInput);
         validateDivisibilityBy1000(moneyInput);
 
@@ -22,7 +22,7 @@ public class Validator {
     }
 
     public static int validateLottoNumber(String userInput) {
-        validateNotEmpty(userInput);
+        validateNotEmptyValue(userInput);
         return validateNumberInput(userInput);
     }
 
@@ -52,7 +52,7 @@ public class Validator {
         }
     }
 
-    private static void validateNotEmpty(String userInput) {
+    private static void validateNotEmptyValue(String userInput) {
         if (userInput.isEmpty() || userInput.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 빈 값은 입력할 수 없습니다.");
         }
