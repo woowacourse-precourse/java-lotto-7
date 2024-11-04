@@ -1,10 +1,10 @@
 package lotto.controller;
 
 import lotto.domain.LottoMachine;
+import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
 import lotto.domain.Result;
 import lotto.domain.lottoForm.WinningNumbers;
-import lotto.domain.number.BonusNumber;
 import lotto.handler.MoneyInputHandler;
 import lotto.handler.NumbersInputHandler;
 
@@ -27,7 +27,7 @@ public class LottoController {
         showLottosInfo(lottos);
 
         WinningNumbers winningNumbers = numbersInputHandler.getWinningNumbers();
-        BonusNumber bonusNumber = numbersInputHandler.getBonusNumber(winningNumbers);
+        LottoNumber bonusNumber = numbersInputHandler.getBonusNumber(winningNumbers);
         lottos.compare(winningNumbers, bonusNumber);
 
         showResult();

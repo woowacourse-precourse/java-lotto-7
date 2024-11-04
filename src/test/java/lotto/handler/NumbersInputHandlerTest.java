@@ -1,8 +1,7 @@
 package lotto.handler;
 
 import lotto.domain.lottoForm.WinningNumbers;
-import lotto.domain.number.BonusNumber;
-import lotto.domain.number.LottoNumber;
+import lotto.domain.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,11 +19,10 @@ public class NumbersInputHandlerTest {
     @Test
     void bonusNumberSuccessTest() {
         // given
-        WinningNumbers winningNumbers = WinningNumbers.from("1,2,4,7,9,10");
         int bonusNumber = 42;
 
         // when & then
-        assertThatCode(() -> new BonusNumber(42, winningNumbers))
+        assertThatCode(() -> new LottoNumber(bonusNumber))
                 .doesNotThrowAnyException();
     }
 
@@ -56,10 +54,10 @@ public class NumbersInputHandlerTest {
     void duplicateExceptionTest() {
         // given
         WinningNumbers winningNumbers = WinningNumbers.from("1,2,4,7,9,10");
-        int bonusNumber = 4;
+        LottoNumber bonusNumber = new LottoNumber(4);
 
         // when & then
-        assertThatCode(() -> new BonusNumber(bonusNumber, winningNumbers))
+        assertThatCode(() -> winningNumbers.validateDuplicate(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(BONUS_NUMBER_DUPLICATE.formatValue(SIZE.value()));
     }

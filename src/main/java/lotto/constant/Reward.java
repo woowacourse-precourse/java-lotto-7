@@ -10,11 +10,11 @@ public enum Reward {
 
     private final long rewardAmount;
 
-    Reward(int rewardAmount){
+    Reward(int rewardAmount) {
         this.rewardAmount = rewardAmount;
     }
 
-    public long value(){
+    public long value() {
         return rewardAmount;
     }
 

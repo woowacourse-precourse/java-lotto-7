@@ -48,7 +48,7 @@ public enum Result {
         resultCount++;
     }
 
-    private boolean equals(int matchingNumber, boolean bonus){
+    private boolean equals(int matchingNumber, boolean bonus) {
         return predicate.test(matchingNumber, bonus);
     }
 
@@ -69,7 +69,7 @@ public enum Result {
                 .sum();
     }
 
-    private long calculateProfit(){
+    private long calculateProfit() {
         return resultCount * reward.value();
     }
 
@@ -77,7 +77,7 @@ public enum Result {
         return find(matchingNumber, bonus).resultCount;
     }
 
-    public String formattedMessage(){
+    public String formattedMessage() {
         return infoMessage.formatNumber(resultCount);
     }
 }

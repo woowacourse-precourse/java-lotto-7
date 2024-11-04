@@ -1,7 +1,6 @@
 package lotto.domain.lottoForm;
 
-import lotto.domain.number.BonusNumber;
-import lotto.domain.number.Number;
+import lotto.domain.LottoNumber;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +33,7 @@ public class WinningNumbers extends LottoForm {
         }
     }
 
-    public void validateDuplicate(BonusNumber bonusNumber) {
+    public void validateDuplicate(LottoNumber bonusNumber) {
         numbers.stream()
                 .filter(lottoNumber -> lottoNumber.isSame(bonusNumber))
                 .findAny()
@@ -43,7 +42,7 @@ public class WinningNumbers extends LottoForm {
                 });
     }
 
-    public boolean contains(Number number) {
+    public boolean contains(LottoNumber number) {
         return numbers.stream()
                 .anyMatch(lottoNumber -> lottoNumber.isSame(number));
     }

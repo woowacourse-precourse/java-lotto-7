@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.number.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,7 +15,7 @@ public class LottoNumberTest {
     void lottoNumberSuccessTest(int rawLottoNumber) {
         // when
         LottoNumber lottoNumber = new LottoNumber(rawLottoNumber);
-        int result = lottoNumber.getNumber();
+        int result = lottoNumber.number();
 
         // then
         assertThat(result).isEqualTo(rawLottoNumber);

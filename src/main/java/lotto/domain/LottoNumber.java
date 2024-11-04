@@ -1,15 +1,12 @@
-package lotto.domain.number;
+package lotto.domain;
 
 import static lotto.constant.LottoValues.NUMBER_MAX;
 import static lotto.constant.LottoValues.NUMBER_MIN;
 import static lotto.message.ErrorMessage.LOTTO_SCOPE_ERROR;
 
-public abstract class Number {
-    private final int number;
-
-    public Number(int number) {
+public record LottoNumber(int number) {
+    public LottoNumber {
         validateScope(number);
-        this.number = number;
     }
 
     private void validateScope(int number) {
@@ -19,11 +16,7 @@ public abstract class Number {
         }
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public boolean isSame(Number number) {
-        return this.number == number.getNumber();
+    public boolean isSame(LottoNumber number) {
+        return this.number == number.number();
     }
 }

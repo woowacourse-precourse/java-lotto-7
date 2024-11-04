@@ -1,10 +1,10 @@
 package lotto.domain;
 
 import lotto.domain.lottoForm.WinningNumbers;
-import lotto.domain.number.BonusNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static lotto.constant.LottoValues.SIZE;
 import static lotto.message.ErrorMessage.BONUS_NUMBER_DUPLICATE;
@@ -26,25 +26,18 @@ public class BonusNumberTest {
         WinningNumbers winningNumbers = WinningNumbers.from(winningInput);
 
         // when
-        BonusNumber bonusNumber = new BonusNumber(bonusInput, winningNumbers);
+        LottoNumber bonusNumber = new LottoNumber(bonusInput);
 
         // then
-        assertThat(bonusNumber.getNumber()).isEqualTo(bonusInput);
+        assertThat(bonusNumber.number()).isEqualTo(bonusInput);
     }
 
     @DisplayName("보너스 번호가 로또 번호 범위 안의 수이면 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource({
-            "'6,7,8,9,10,21', 74",
-            "'13,14,15,16,12,17', 46",
-            "'30,37,40,39,45,11', 0"
-    })
-    void scopeExceptionTest(String winningInput, int bonusInput) {
-        // given
-        WinningNumbers winningNumbers = WinningNumbers.from(winningInput);
-
+    @ValueSource(strings = {"74", "46", "0"})
+    void scopeExceptionTest(int bonusInput) {
         // when & then
-        assertThatThrownBy(() -> new BonusNumber(bonusInput, winningNumbers))
+        assertThatThrownBy(() -> new LottoNumber(bonusInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_SCOPE_ERROR.getMessage());
     }
@@ -59,9 +52,10 @@ public class BonusNumberTest {
     void duplicateExceptionTest(String winningInput, int bonusInput) {
         // given
         WinningNumbers winningNumbers = WinningNumbers.from(winningInput);
+        LottoNumber bonusNumber = new LottoNumber(bonusInput);
 
         // when & then
-        assertThatThrownBy(() -> new BonusNumber(bonusInput, winningNumbers))
+        assertThatThrownBy(() -> winningNumbers.validateDuplicate(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(BONUS_NUMBER_DUPLICATE.formatValue(SIZE.value()));
     }

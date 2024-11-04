@@ -35,7 +35,7 @@ public class MoneyInputHandler {
         if (rawMoney < MONEY_MIN_LIMIT.value()) {
             throw new IllegalArgumentException(NEGATIVE_PURCHASE_AMOUNT.formatValue(MONEY_MIN_LIMIT.value()));
         }
-        if (rawMoney > MONEY_MAX_LIMIT.value()){
+        if (rawMoney > MONEY_MAX_LIMIT.value()) {
             throw new IllegalArgumentException(OVERFLOW_PURCHASE_AMOUNT.formatValue(MONEY_MAX_LIMIT.value()));
         }
     }
