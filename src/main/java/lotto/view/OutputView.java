@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 
 public class OutputView {
-    public static void printError(IllegalArgumentException exceptionMessage) {
+    public void printError(IllegalArgumentException exceptionMessage) {
         System.out.println(exceptionMessage.getMessage());
     }
 

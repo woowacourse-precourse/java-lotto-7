@@ -34,7 +34,7 @@ public class LottoController {
             outputView.printSpace();
             return lottoGame;
         } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
+            outputView.printError(e);
             return handleTotalCostInput();
         }
     }
@@ -52,7 +52,7 @@ public class LottoController {
             outputView.printSpace();
             lottoGame.setWinningLotto(winningLotto);
         } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
+            outputView.printError(e);
             handleWinningNumbersInput(lottoGame);
         }
     }
@@ -64,7 +64,7 @@ public class LottoController {
             lottoGame.setBonusNumber(bonusNumber);
             outputView.printWinningStatAnnouncement();
         } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
+            outputView.printError(e);
             handleBonusNumberInput(lottoGame);
         }
     }
