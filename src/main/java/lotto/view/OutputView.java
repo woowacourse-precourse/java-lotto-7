@@ -23,11 +23,21 @@ public class OutputView {
     public void printResult(LottoResult result, int amount) {
         System.out.println("당첨 통계");
         System.out.println("---");
+        printWinningRanks(result);
+        printTotalProfitRate(result, amount);
+    }
+
+    // 당첨 순위별 결과 출력 메소드
+    private void printWinningRanks(LottoResult result) {
         for (WinningRank rank : WinningRank.values()) {
             int count = result.getResults().getOrDefault(rank, 0);
             String matchMessage = formatMatchMessage(rank);
             System.out.println(matchMessage + " (" + formatPrize(rank.getPrize()) + "원) - " + count + "개");
         }
+    }
+
+    // 수익률 계산 및 출력 메소드
+    private void printTotalProfitRate(LottoResult result, int amount) {
         long totalPrize = result.totalPrize();
         double rate = (double) totalPrize / amount;
 
