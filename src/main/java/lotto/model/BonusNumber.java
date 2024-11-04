@@ -15,8 +15,7 @@ public record BonusNumber(int bonusNumber) {
 
     private void validateRange(int bonusNumber) {
         if (bonusNumber < Limit.MIN_LOTTO_NUMBER.getValue() || bonusNumber > Limit.MAX_LOTTO_NUMBER.getValue()) {
-            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
-                    + ErrorMessage.BONUS_NUMBER_RANGE.getError());
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE.getError());
         }
     }
 }

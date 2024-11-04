@@ -35,23 +35,20 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != Limit.LOTTO_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
-                    + ErrorMessage.LOTTO_NUMBER_COUNT.getError());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_COUNT.getError());
         }
     }
 
     private void validateUnique(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
-                    + ErrorMessage.UNIQUE_LOTTO_NUMBER.getError());
+            throw new IllegalArgumentException(ErrorMessage.UNIQUE_LOTTO_NUMBER.getError());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(integer ->
                 integer < Limit.MIN_LOTTO_NUMBER.getValue() || integer > Limit.MAX_LOTTO_NUMBER.getValue())) {
-            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
-                    + ErrorMessage.LOTTO_NUMBER_RANGE.getError());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getError());
         }
     }
 }

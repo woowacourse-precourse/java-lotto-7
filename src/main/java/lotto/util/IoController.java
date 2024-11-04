@@ -22,8 +22,7 @@ public class IoController {
         try {
             return io.convertStringToInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
-                    + ErrorMessage.INVALID_NUMBER.getError(), e);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getError(), e);
         }
     }
 

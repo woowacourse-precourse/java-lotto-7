@@ -23,8 +23,7 @@ public class WinningNumberGenerator {
         try {
             return rawWinningNumbers.stream().map(Integer::parseInt).toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
-                    + ErrorMessage.INVALID_NUMBER.getError());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getError());
         }
     }
 
@@ -34,8 +33,7 @@ public class WinningNumberGenerator {
 
     private void validateFormat(String rawWinningNumbers) {
         if (!rawWinningNumbers.matches(Regex.ONLY_DIGIT_WITH_COMMA.getRegex())) {
-            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
-                    + ErrorMessage.WINNING_NUMBER_FORMAT.getError());
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_FORMAT.getError());
         }
     }
 }

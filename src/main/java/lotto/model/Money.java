@@ -28,8 +28,7 @@ public class Money {
 
     private void validateRange(int amount) {
         if (amount < Limit.MIN_AMOUNT.getValue() || amount > Limit.MAX_AMOUNT.getValue()) {
-            throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
-                    + ErrorMessage.MONEY_RANGE.getError());
+            throw new IllegalArgumentException(ErrorMessage.MONEY_RANGE.getError());
         }
     }
 
