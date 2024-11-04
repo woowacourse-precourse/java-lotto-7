@@ -1,9 +1,10 @@
 package lotto.controller;
 
-import lotto.Consumer;
-import lotto.Lotto;
-import lotto.WinningNumber;
+import lotto.model.Consumer;
+import lotto.model.Lotto;
+import lotto.model.WinningNumber;
 import lotto.constant.CompareInteger;
+import lotto.constant.LottoGuide;
 import lotto.constant.PriceRule;
 import lotto.constant.WinningNumberRule;
 import lotto.validator.NumberValidator;
@@ -29,7 +30,7 @@ public class LottoController {
 
     private int getLottoPrice() {
         String inputPrice = InputView.readInput();
-        int price = NumberValidator.stringToInteger(inputPrice, PriceRule.ONLY_INTEGER.getMessage());
+        int price = NumberValidator.stringToInteger(inputPrice, LottoGuide.ERROR.getMessage() + PriceRule.ONLY_INTEGER.getMessage());
         try {
             PriceValidator.validatePrice(price);
             return price / CompareInteger.PRICE_LOTTO.getNumber();

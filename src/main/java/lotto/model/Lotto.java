@@ -1,4 +1,6 @@
-package lotto;
+package lotto.model;
+
+import lotto.validator.WinningNumberValidator;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -11,11 +13,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    }
 
     public List<Integer> getNumbers() {
         return this.numbers;
@@ -27,5 +24,9 @@ public class Lotto {
 
     public boolean isMatchBonus(Integer bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    private void validate(List<Integer> numbers) {
+        WinningNumberValidator.validateLotto(numbers);
     }
 }
