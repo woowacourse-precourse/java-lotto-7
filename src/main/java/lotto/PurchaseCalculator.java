@@ -20,7 +20,7 @@ public class PurchaseCalculator {
 
     // 변환 금액이 1,000원 단위인지 확인
     private void validateAmount(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
+        if (amount % LOTTO_PRICE != 0 || amount == 0) {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력하세요.");
         }
     }

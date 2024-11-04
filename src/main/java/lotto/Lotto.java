@@ -7,7 +7,6 @@ public class Lotto {
     private static final int LOTTO_SIZE = 6; // 로또 번호 개수
     private static final int MIN_NUMBER = 1; // 로또 번호 최소값
     private static final int MAX_NUMBER = 45; // 로또 번호 최대값
-
     private final List<Integer> numbers; // 로또 번호 리스트
 
     public Lotto(List<Integer> numbers) {

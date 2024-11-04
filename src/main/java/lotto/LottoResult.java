@@ -9,9 +9,7 @@ public class LottoResult {
     private final Lotto winningLotto;
     private final int bonusNumber;
     private final Map<String, Integer> resultCountMap = new HashMap<>();
-    private static final int[] MATCH_COUNTS = {3, 4, 5, 6};
     private static final int[] PRIZE = {5000, 50000, 1500000, 30000000, 2000000000};
-
 
     private static final String[] RESULT_MESSAGES = {
             "3개 일치 (5,000원) - ",
@@ -44,25 +42,11 @@ public class LottoResult {
     // 일치 개수에 따라 해당 등수 카운트 증가
     private void updateResultCount(Lotto userLotto) {
         int matchCount = getMatchCount(userLotto);
-        if (matchCount == 6) {
-            increaseResultCount(4);
-            return;
-        }
-        if (matchCount == 5 && containsBonus(userLotto)) {
-            increaseResultCount(3);
-            return;
-        }
-        if (matchCount == 5) {
-            increaseResultCount(2);
-            return;
-        }
-        if (matchCount == 4) {
-            increaseResultCount(1);
-            return;
-        }
-        if (matchCount == 3) {
-            increaseResultCount(0);
-        }
+        if (matchCount == 6) { increaseResultCount(4); return; }
+        if (matchCount == 5 && containsBonus(userLotto)) { increaseResultCount(3); return; }
+        if (matchCount == 5) { increaseResultCount(2); return; }
+        if (matchCount == 4) { increaseResultCount(1); return; }
+        if (matchCount == 3) { increaseResultCount(0); }
     }
 
     // 지정된 인덱스에 해당하는 메시지의 카운트를 증가
@@ -96,7 +80,7 @@ public class LottoResult {
     // 수익률 출력
     private void printYield() {
         double yield = calculateYield();
-        System.out.printf("총 수익률은 %.1f%%입니다.", yield);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", yield);
     }
 
     // 수익률 계산
