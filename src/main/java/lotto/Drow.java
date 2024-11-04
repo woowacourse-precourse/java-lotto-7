@@ -82,7 +82,7 @@ public class Drow {
 
         for (String inputNumber : inputNumbers) {
 
-            if(!validateNumber(inputNumber)){
+            if (!validateNumber(inputNumber)) {
                 return false;
             }
         }
@@ -96,7 +96,7 @@ public class Drow {
 
         try {
             if (numbersSet.size() < 6) { // 중복되는 숫자가 있어, numberSet의 길이가 6이되지 않을 경우
-                throw new IllegalArgumentException(ERROR_MESSAGE + " 당첨 번호 중복되지 않아야합니다.");
+                throw new IllegalArgumentException("당첨 번호 중복되지 않아야합니다.");
             }
 
             return true;
@@ -112,7 +112,7 @@ public class Drow {
 
         try {
             if (inputNumbers.length != 6) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + " 당첨 번호는 6개여야 합니다.");
+                throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
             }
             return true;
 
@@ -124,22 +124,20 @@ public class Drow {
 
     /// 입력 값의 범위 및 숫자 여부 확인
     boolean validateNumber(String inputNumber) {
-        try {
-            inputNumber = inputNumber.trim();
-            validateIsNumber(inputNumber);
-            int number = Integer.parseInt(inputNumber);
-            validateNumberRange(number);
 
-            return true;
-        } catch (NumberFormatException e) {
-            System.out.println(ERROR_MESSAGE + " 유효한 숫자를 입력해야 합니다.");
+        inputNumber = inputNumber.trim();
+
+        if (!validateIsNumber(inputNumber)) {
             return false;
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE + " " + e.getMessage());
-            return false;
-
         }
+
+        int number = Integer.parseInt(inputNumber);
+
+        if (!validateNumberRange(number)) {
+            return false;
+        }
+
+        return true;
     }
 
     public boolean validateDuplicateBonusNumber(List<Integer> checkNumbers, Integer bonusNumber) {
@@ -149,12 +147,12 @@ public class Drow {
         try {
 
             if (numbersSet.contains(bonusNumber)) { // 보너스 번호가 당첨 숫자에 포함될 경우
-                throw new IllegalArgumentException(ERROR_MESSAGE + " 보너스 번호는 당첨 번호와 중복되지 않아야합니다.");
+                throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복되지 않아야합니다.");
             }
             return true;
 
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE + e.getMessage());
+            System.out.println(ERROR_MESSAGE + " " + e.getMessage());
             return false;
         }
     }
@@ -166,8 +164,8 @@ public class Drow {
             int number = Integer.parseInt(inputNumber);
             return true;
 
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE + " " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println(ERROR_MESSAGE + " " + "당첨 번호와 보너스 번호는 슷지만 입력할 수 있습니다.");
             return false;
         }
     }
@@ -177,15 +175,15 @@ public class Drow {
         try {
 
             if (number < 1) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + " 당첨 번호는 1보다 커야합니다.");
+                throw new IllegalArgumentException("당첨 번호는 1보다 커야합니다.");
             }
             if (number > 45) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + " 당첨 번호는 45보다 작아야합니다.");
+                throw new IllegalArgumentException("당첨 번호는 45보다 작아야합니다.");
             }
             return true;
 
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE + " " + e.getMessage());
+            System.out.println(ERROR_MESSAGE+" "+e.getMessage());
             return false;
         }
     }
