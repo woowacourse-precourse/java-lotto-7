@@ -27,4 +27,9 @@ public class Output {
     private static String money(Long prize) {
         return new DecimalFormat(OutputFormat.MONEY_FORMAT.getForm()).format(prize);
     }
+
+    public static void profitRate(Double rate) {
+        String output = String.format(OutputFormat.TOTAL_PROFIT_RATE.getForm(), rate);
+        System.out.println(output);
+    }
 }
