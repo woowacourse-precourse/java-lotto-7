@@ -21,19 +21,24 @@ public class Application {
 
         final List<Integer> winningNumbers = getWinningNumbers();
 
+        final int bonusNumber = getBonusNumber(winningNumbers);
+
+    }
+
+    private static int getBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
 
-
         final String inputForBonus = Console.readLine();
+
+        int bonusNumber = 0;
         try {
-            int bonusNumber = isNotNum(inputForBonus);
+            bonusNumber = isNotNum(inputForBonus);
             rangeOfNumber(bonusNumber);
             isAlreadyExist(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
-
+        return bonusNumber;
     }
 
     private static List<Integer> getWinningNumbers() {
