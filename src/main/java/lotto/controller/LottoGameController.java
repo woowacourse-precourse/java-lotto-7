@@ -1,7 +1,13 @@
-package lotto;
+package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.InputView;
+import lotto.LottoGenerator;
+import lotto.OutputView;
+import lotto.model.BonusNumber;
+import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
 
 public class LottoGameController {
     private final InputView inputView;
