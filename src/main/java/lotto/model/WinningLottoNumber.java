@@ -34,4 +34,8 @@ public class WinningLottoNumber {
         WinningLottoNumberValidator.validateWinningLottoNumber(parsedWinningNumbers);
         return parsedWinningNumbers;
     }
+
+    public boolean isContainInWinningLottoNumber(BonusNumber bonusNumber){
+        return winningNumbers.contains(bonusNumber.getBonusNumber());
+    }
 }

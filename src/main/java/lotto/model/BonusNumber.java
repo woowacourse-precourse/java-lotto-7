@@ -28,4 +28,8 @@ public class BonusNumber {
         BonusNumberValidator.validateBonusNumber(bonusNumber);
         return bonusNumber;
     }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }
