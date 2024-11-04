@@ -15,7 +15,10 @@ public class Application {
         try {
             int purchaseAmount = inputPurchaseAmount();
             List<Lotto> purchasedLottos = generateLottos(purchaseAmount);
-            // 이후 기능 구현
+            printLottos(purchasedLottos);
+            List<Integer> winningNumbers = inputWinningNumbers();
+            int bonusNumber = inputBonusNumber(winningNumbers);
+            displayResults(purchasedLottos, winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
