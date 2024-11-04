@@ -29,6 +29,7 @@ public class LottoController {
         outputView.displayLottos(lottos);
 
         Lotto winningLotto = validateWinningNumbers();
+        int bonusNum = validateBonusNumber(winningLotto);
     }
 
     public int validatePurchaseAmount() {
@@ -59,5 +60,20 @@ public class LottoController {
             }
         }
         return winningLotto;
+    }
+
+    public int validateBonusNumber(Lotto winningLotto) {
+        int bonusNum = 0;
+        while (true) {
+            try {
+                bonusNum = inputView.getBonusNumber();
+                validator.validateBonusRange(bonusNum);
+                validator.validateBonusDuplicate(winningLotto.getNumbers(), bonusNum);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNum;
     }
 }
