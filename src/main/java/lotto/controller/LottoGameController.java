@@ -43,14 +43,18 @@ public class LottoGameController {
 
     private WinNumber makeWinNumber() {
         Lotto winningNumber = repeatUntilReadValidInput(this::readWinningNumber);
-        BonusNumber bonusNumber = repeatUntilReadValidInput(this::readBonusNumber);
-        return WinNumber.of(winningNumber, bonusNumber);
+        return repeatUntilReadValidInput(() -> createWinNumber(winningNumber));
     }
 
     private Lotto readWinningNumber() {
         OutputView.askWinningNumber();
         List<Integer> winningNumber = ConvertInput.makeWinningNumberToList(InputView.readInput());
         return new Lotto(winningNumber);
+    }
+
+    private WinNumber createWinNumber(Lotto winningNumber) {
+        BonusNumber bonusNumber = repeatUntilReadValidInput(this::readBonusNumber);
+        return WinNumber.of(winningNumber, bonusNumber);
     }
 
     private BonusNumber readBonusNumber() {
