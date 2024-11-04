@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -12,32 +13,41 @@ public class Application {
         InputHandler inputHandler = new InputHandler();
         int num = inputHandler.getAmountPaid();
 
-        System.out.println(num/1000+"개를 구매했습니다.");
+        System.out.println("\n"+num/1000+"개를 구매했습니다.");
 
 
         List<Lotto> lottos = inputHandler.initializeLotto(num/1000);
 
 
-        for(int i=0;i<num/1000;i++){
-            for(int j=0;j<6;j++){
-                System.out.print(lottos.get(i).getNumbers().get(j)+",");
-            }
-            System.out.println(" ");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
         }
 
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+
         List<Integer> v = inputHandler.getLottoNumber();
 
         Lotto winnigLotto = new Lotto(v);
 
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonus = inputHandler.getBonusNumber();
 
 
 
+        int arr[] = new int[8];
 
+        for(int i=0;i<num/1000;i++){
+            int a = lottos.get(i).countMatchingNumbers(winnigLotto.getNumbers());
+            arr[a]++;
+            if(a==5 && lottos.get(i).getNumbers().contains(bonus)){
+                arr[7]++;
+            }
 
+        }
+        OutputHandler outputHandler = new OutputHandler(arr,num);
+        outputHandler.Print();
 
 
 
