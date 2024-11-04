@@ -38,4 +38,8 @@ public class Lotto {
                 .map(LottoNumber::getNumber)
                 .toList();
     }
+
+    public List<LottoNumber> getNumbers() {
+        return numbers;
+    }
 }

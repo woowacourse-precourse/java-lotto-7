@@ -1,8 +1,12 @@
 package lotto.controller;
 
 import lotto.domain.RandomLottos;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
 import lotto.domain.model.Lotto;
+import lotto.domain.model.LottoNumber;
 import lotto.service.LottoService;
+import lotto.util.Parser;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
@@ -32,5 +36,9 @@ public class LottoController {
         Lotto winningLottoNumbers = lottoService.createWinningLottoNumbers(winningNumberInput);
 
         String bonusInput = inputView.getBonusInput();
+        LottoNumber bonus = new LottoNumber(Parser.parseToInt(bonusInput));
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonus);
+
+        WinningResult winningResult = lottoService.calculateResult(randomLottos, winningLotto);
     }
 }
