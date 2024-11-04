@@ -28,4 +28,8 @@ public class LottoOutputView {
     private String formatPrize(int prize) {
         return NumberFormat.getNumberInstance(Locale.KOREA).format(prize);
     }
+
+    public String getProfitRateMessage(double profitRate) {
+        return String.format("총 수익률은 %.1f%%입니다.", profitRate);
+    }
 }
