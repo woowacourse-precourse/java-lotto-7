@@ -6,6 +6,8 @@ import lotto.error.exception.InvalidNumberException;
 
 public class NumberValidator<T extends Number & Comparable<T>> {
 
+    private static final int ZERO = 0;
+
     private NumberValidator() {
 
     }
@@ -36,11 +38,11 @@ public class NumberValidator<T extends Number & Comparable<T>> {
     }
 
     private boolean isExceedsRange(final T number, final T min, final T max) {
-        return number.compareTo(min) < 0 || number.compareTo(max) > 0;
+        return number.compareTo(min) < ZERO || number.compareTo(max) > ZERO;
     }
 
     private boolean isInvalidUnit(final T number, final T unit) {
-        return number.intValue() % unit.intValue() != 0;
+        return number.intValue() % unit.intValue() != ZERO;
     }
 
     private boolean isContainsNumber(final List<T> numbers, final T number) {
