@@ -9,16 +9,15 @@ import java.math.BigInteger;
 public class PaymentValidator {
 
     static final int MIN_PAYMENT = 0;
-    static final int INTEGER_INDEX = 0;
-    static final int DECIMAL_INDEX = 1;
+    static final int INTEGER_PART = 0;
+    static final int DECIMAL_PART = 1;
     static final int MAX_SPLIT_PAYMENT_LENGTH = 2;
     static final String DOT = "\\.";
-    static final long LOTTO_OBJECT_SIZE = 200L;
     static final double ALLOW_LOTTO_OBJECT_SIZE_RATE = 0.7;
 
     public boolean validate(String paymentInput) {
         String[] splitPayment = paymentInput.split(DOT);
-        String integerPart = splitPayment[INTEGER_INDEX];
+        String integerPart = splitPayment[INTEGER_PART];
 
         validateFormat(splitPayment, integerPart);
         validateMaxValue(integerPart);
@@ -33,7 +32,7 @@ public class PaymentValidator {
         }
 
         if (hasDecimal(splitPayment)) {
-            String decimalPart = splitPayment[DECIMAL_INDEX];
+            String decimalPart = splitPayment[DECIMAL_PART];
             validateHasOnlyZero(decimalPart);
         }
 
@@ -57,7 +56,7 @@ public class PaymentValidator {
     }
 
     private BigInteger calcTotalLottoObjectSize(String integerPart) {
-        return new BigInteger(integerPart).multiply(BigInteger.valueOf(LOTTO_OBJECT_SIZE));
+        return new BigInteger(integerPart).multiply(BigInteger.valueOf(Lotto.LOTTO_OBJECT_SIZE));
     }
 
     private void validateNumber(String integerPart) {

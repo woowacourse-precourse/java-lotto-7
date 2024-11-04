@@ -12,6 +12,7 @@ public class Lotto {
 
     public static final long PRICE = 1000;
     public static final int NUMBER_COUNT = 6;
+    public static final long LOTTO_OBJECT_SIZE = 200L;
 
     private final List<Integer> numbers; // numbers 이외의 필드(인스턴스 변수) 추가 불가능, private 변경 불가능
 
