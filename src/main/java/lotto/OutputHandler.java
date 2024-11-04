@@ -33,7 +33,7 @@ public class OutputHandler {
         tickets.forEach(ticket -> System.out.println(ticket));
     }
 
-    public void printWinningStatistics(LottoWinningResult winningResult) {
+    public static void printWinningStatistics(LottoWinningResult winningResult) {
         System.out.println(WINNING_STATISTICS_HEADER);
         System.out.println(DASH_LINE);
 
@@ -44,7 +44,7 @@ public class OutputHandler {
         }
     }
 
-    public void printTotalProfitRate(double totalProfitRate) {
+    public static void printTotalProfitRate(double totalProfitRate) {
         System.out.printf(TOTAL_PROFIT_RATE_MESSAGE_FORMAT, totalProfitRate);
     }
 }
