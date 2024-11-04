@@ -61,7 +61,6 @@ public class Lotto {
         if (numberStrings.length != 6) {
             throw new IllegalArgumentException(ERROR_NO_MORE_THAN_LOTTO_COUNT);
         }
-
         List<Integer> numbers = new ArrayList<>();
         try {
             for (String numberString : numberStrings) {
@@ -72,7 +71,6 @@ public class Lotto {
         }catch(NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_WRONG_TYPE);
         }
-
         return numbers;
     }
 

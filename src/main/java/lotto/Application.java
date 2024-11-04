@@ -43,7 +43,7 @@ public class Application {
         return purchasedLottos;
     }
 
-    private static int calculateLottoCount(int amount) {
+    static int calculateLottoCount(int amount) {
         return amount / LOTTO_PRICE;
     }
 
@@ -59,7 +59,7 @@ public class Application {
         }
     }
 
-    private static int validateAmountValue(String inputAmount) {
+    static int validateAmountValue(String inputAmount) {
         try {
             int amount = Integer.parseInt(inputAmount);
             if (amount < 0) {
@@ -91,7 +91,7 @@ public class Application {
         }
     }
 
-    private static int validateBonusNumber(String inputBonus, List<Integer> winningNumbers) {
+    static int validateBonusNumber(String inputBonus, List<Integer> winningNumbers) {
         try {
             int bonusNumber = Integer.parseInt(inputBonus.trim());
             if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
@@ -134,7 +134,7 @@ public class Application {
         return rankCount;
     }
 
-    private static int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+    static int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int matchCount = 0;
         for (int number : lottoNumbers) {
             if (winningNumbers.contains(number)) {
