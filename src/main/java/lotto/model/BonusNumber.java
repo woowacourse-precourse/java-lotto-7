@@ -18,4 +18,8 @@ public class BonusNumber {
             throw new IllegalArgumentException();
         }
     }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }
