@@ -1,0 +1,23 @@
+package lotto;
+
+import org.junit.jupiter.api.Test;
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+class PayingTest {
+
+	@Test
+	void testPaymentExceptionValidInput() {
+		Paying paying = new Paying();
+
+		// 올바른 입력값으로 예외가 발생하지 않는지 확인
+		assertDoesNotThrow(() -> paying.paymentExcception("3000"));
+		assertDoesNotThrow(() -> paying.paymentExcception("10000"));
+	}
+
+	
+}
