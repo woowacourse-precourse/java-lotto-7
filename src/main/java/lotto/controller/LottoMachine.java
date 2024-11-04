@@ -26,7 +26,7 @@ public class LottoMachine {
         double profitRate = profitCalculator.calculateProfit();
         outputView.printProfit(profitRate);
     }
-    
+
     private Lottos prepareLottos() {
         Lottos lottos = repeatOnIllegalArgument(() -> {
             Long payment = inputView.readPayment();

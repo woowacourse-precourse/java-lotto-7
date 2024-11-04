@@ -29,6 +29,7 @@ public class ProfitCalculator {
                 .mapToLong(Integer::longValue)
                 .sum();
 
-        return Math.round(sum / (size * LOTTO_PRICE) * 10) / 10.0;
+        double percentage = sum / (size * LOTTO_PRICE) * 100;
+        return Math.round(percentage * 10) / 10.0;
     }
 }
