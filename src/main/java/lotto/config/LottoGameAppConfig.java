@@ -11,6 +11,7 @@ public class LottoGameAppConfig {
     private static final LottoService lottoService = new LottoService();
     private static final LottoController lottoController = new LottoController(lottoService,inputView,outputView);
 
+
     private LottoGameAppConfig() {
     }
 
