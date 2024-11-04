@@ -22,9 +22,9 @@ public class WinningNumber {
         }
 
         String[] separateWinningNumber = Utils.separateStr(input, SEPARATOR);
-        
+
         if (!Arrays.stream(separateWinningNumber)
-                .allMatch(num -> Integer.parseInt(num) >= 1 && Integer.parseInt(num) <= 45)) {
+                .allMatch(num -> Utils.isContainInRange(num))) {
             Error.reject(Error.RANGE_MSG);
         }
 

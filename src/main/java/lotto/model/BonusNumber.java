@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.Utils;
 import lotto.view.Error;
 
 public class BonusNumber {
@@ -16,7 +17,7 @@ public class BonusNumber {
             Error.reject(Error.INVALID_MSG);
         }
 
-        if (!(Integer.parseInt(input) >= 1 && Integer.parseInt(input) <= 45)) {
+        if (!Utils.isContainInRange(input)) {
             Error.reject(Error.RANGE_MSG);
         }
     }

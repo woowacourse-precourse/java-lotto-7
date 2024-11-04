@@ -20,6 +20,10 @@ public class Utils {
         return input.split(separator);
     }
 
+    public static boolean isContainInRange(String numStr) {
+        return Integer.parseInt(numStr) >= MIN_LOTTO_NUMBER && Integer.parseInt(numStr) <= MAX_LOTTO_NUMBER;
+    }
+
     private static List<Integer> getRandomNumber(int start, int end, int count) {
         return Randoms.pickUniqueNumbersInRange(start, end, count);
     }
