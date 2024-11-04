@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.Purchase;
 import lotto.model.Lotto;
 import lotto.model.MyLotto;
+import lotto.model.Winning;
 import lotto.view.OutputView;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -48,5 +49,23 @@ public class LottoService {
 
         return bigIntegerLotto.stream()
                 .anyMatch(number -> number.equals(bonusNumber));
+    }
+
+    private void updatePlaces(MyLotto myLotto, Long sameCount, Boolean bonusMatch) {
+        if (sameCount == 3L) {
+            myLotto.updateFifthPlace();
+        }
+        if (sameCount == 4L) {
+            myLotto.updateFourthPlace();
+        }
+        if (sameCount == 5L && !bonusMatch) {
+            myLotto.updateThirdPlace();
+        }
+        if (sameCount == 5L && bonusMatch) {
+            myLotto.updateSecondPlace();
+        }
+        if (sameCount == 6L) {
+            myLotto.updateFirstPlace();
+        }
     }
 }
