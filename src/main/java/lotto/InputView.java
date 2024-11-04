@@ -7,14 +7,14 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     private final int lottoPurchase;
-    private int bonusNumber;
-    private List<Integer> lottoNumbers;
     private final int lottoCount;
-    final int LOTTO_PURCHASE_COUNT = 1000;
+    private List<Integer> lottoNumbers;
+    private int bonusNumber;
+    final int LOTTO_PRICE = 1000;
 
     public InputView() {
         this.lottoPurchase = lottoPurchase();
-        this.lottoCount = lottoPurchase/LOTTO_PURCHASE_COUNT;
+        this.lottoCount = lottoPurchase/LOTTO_PRICE;
     }
 
     public int lottoPurchase() {
