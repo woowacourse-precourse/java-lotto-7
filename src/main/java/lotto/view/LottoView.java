@@ -38,11 +38,11 @@ public class LottoView {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (" + String.format("%,d", WinningState.valueOf("FIFTH_PRIZE").getAmount()) + "원) - " + result.get("FIFTH_PRIZE"));
-        System.out.println("4개 일치 (" + String.format("%,d", WinningState.valueOf("FOURTH_PRIZE").getAmount()) + "원) - " + result.get("FOURTH_PRIZE"));
-        System.out.println("5개 일치 (" + String.format("%,d", WinningState.valueOf("THIRD_PRIZE").getAmount()) + "원) - " + result.get("THIRD_PRIZE"));
-        System.out.println("5개 일치, 보너스 볼 일치 (" + String.format("%,d", WinningState.valueOf("SECOND_PRIZE").getAmount()) + "원) - " + result.get("SECOND_PRIZE"));
-        System.out.println("6개 일치 (" + String.format("%,d", WinningState.valueOf("FIRST_PRIZE").getAmount()) + "원) - " + result.get("FIRST_PRIZE"));
+        System.out.println("3개 일치 (" + String.format("%,d", WinningState.valueOf("FIFTH_PRIZE").getAmount()) + "원) - " + result.get("FIFTH_PRIZE") + "개");
+        System.out.println("4개 일치 (" + String.format("%,d", WinningState.valueOf("FOURTH_PRIZE").getAmount()) + "원) - " + result.get("FOURTH_PRIZE") + "개");
+        System.out.println("5개 일치 (" + String.format("%,d", WinningState.valueOf("THIRD_PRIZE").getAmount()) + "원) - " + result.get("THIRD_PRIZE") + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + String.format("%,d", WinningState.valueOf("SECOND_PRIZE").getAmount()) + "원) - " + result.get("SECOND_PRIZE") + "개");
+        System.out.println("6개 일치 (" + String.format("%,d", WinningState.valueOf("FIRST_PRIZE").getAmount()) + "원) - " + result.get("FIRST_PRIZE") + "개");
 
     }
 
