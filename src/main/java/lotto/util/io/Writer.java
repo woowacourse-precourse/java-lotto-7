@@ -27,8 +27,9 @@ public class Writer {
         System.out.println("---");
 
         for (Prize prize : Prize.values()) {
-            if (prize == Prize.FAIL)
+            if (prize == Prize.FAIL) {
                 continue;
+            }
 
             String matchMessage = constructMessageFrom(prize);
             int count = getCount(result.getImmutablePrizeCount(), prize);
