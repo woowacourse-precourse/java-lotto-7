@@ -30,16 +30,18 @@ public class OutputView {
     public static void printPrizeMoney(List<Integer> prizeMoneyGroup) {
         Map<Integer, Long> groupByPrize = prizeMoneyGroup.stream()
                 .collect(Collectors.groupingBy(prize -> prize, Collectors.counting()));
-            System.out.println(MATCH_RESULT);
-            System.out.printf((MATCH_THREE_NUMBERS), findOrZero(groupByPrize, 5000));
-            System.out.printf((MATCH_FOUR_NUMBERS), findOrZero(groupByPrize, 50000));
-            System.out.printf((MATCH_FIVE_NUMBERS), findOrZero(groupByPrize, 1500000));
-            System.out.printf((MATCH_FIVE_AND_BONUS_NUMBERS), findOrZero(groupByPrize, 30000000));
-            System.out.printf((MATCH_SIX_NUMBERS), findOrZero(groupByPrize, 2000000000));
+        System.out.println(MATCH_RESULT);
+        System.out.printf((MATCH_THREE_NUMBERS), findOrZero(groupByPrize, 5000));
+        System.out.printf((MATCH_FOUR_NUMBERS), findOrZero(groupByPrize, 50000));
+        System.out.printf((MATCH_FIVE_NUMBERS), findOrZero(groupByPrize, 1500000));
+        System.out.printf((MATCH_FIVE_AND_BONUS_NUMBERS), findOrZero(groupByPrize, 30000000));
+        System.out.printf((MATCH_SIX_NUMBERS), findOrZero(groupByPrize, 2000000000));
     }
 
     private static Long findOrZero(Map<Integer, Long> groupByPrize, int prize) {
-        if (groupByPrize.get(prize) != null) return groupByPrize.get(prize);
+        if (groupByPrize.get(prize) != null) {
+            return groupByPrize.get(prize);
+        }
         return 0L;
     }
 
