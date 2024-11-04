@@ -40,4 +40,13 @@ public enum LottoRule {
     public boolean isBonusMatch() {
         return bonusMatch;
     }
+
+    public static LottoRule getWinInfo(int matchCount, boolean bonusMatch) {
+        for (LottoRule value : LottoRule.values()) {
+            if (value.matchCount == matchCount && value.bonusMatch == bonusMatch) {
+                return value;
+            }
+        }
+        return NO_MATCH;
+    }
 }
