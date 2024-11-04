@@ -52,27 +52,26 @@ class ApplicationTest extends NsTest {
     void 구입_금액에_문자가_들어올_경우_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE).isEqualTo("구입 금액은 정수여야 합니다.");
         });
+        assertThat(output()).contains(ERROR_MESSAGE).contains("구입 금액은 정수여야 합니다.");
     }
 
     @Test
-    void 구입_금액에_따른_로또_구매_매수_기능_테스트(){
+    void 구입_금액에_따른_로또_구매_매수_기능_테스트() {
         Application app = new Application();
         int purchaseAmount = 5000;
-        int expectedLottoCount = purchaseAmount/1000;
-        int LottoCount = app.calculateLottoCount(purchaseAmount);
+        int expectedLottoCount = purchaseAmount / 1000;
+        int lottoCount = app.calculateLottoCount(purchaseAmount);
 
-        assertThat(LottoCount).isEqualTo(expectedLottoCount);
+        assertThat(lottoCount).isEqualTo(expectedLottoCount);
     }
     @Test
-    void 구입_금액이_로또_가격보다_낮은_경우_예외_테스트(){
-        assertSimpleTest(()->{
+    void 구입_금액이_로또_가격보다_낮은_경우_예외_테스트() {
+        assertSimpleTest(() -> {
             runException("500");
-            assertThat(output()).contains(ERROR_MESSAGE).isEqualTo("구입 금액은 1000원 이상이어야 합니다.");
         });
+        assertThat(output()).contains(ERROR_MESSAGE).contains("구입 금액은 1000원 이상이어야 합니다.");
     }
-
 
     @Override
     public void runMain() {

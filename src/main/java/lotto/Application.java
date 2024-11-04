@@ -12,7 +12,7 @@ public class Application {
     private List<Lotto> lottos = new ArrayList<>();
     private int bonusNumber;
     private double earnRate;
-    private Lotto winningLotto;
+    private Lotto winningLotto = null;
     private Map<WinningStatistics,Integer> winningCountMap = new HashMap<>();
 
     public static void main(String[] args) {
@@ -85,6 +85,9 @@ public class Application {
     }
 
     public void getWinningLottoNum(){
+        if(this.winningLotto!=null){
+            throw new IllegalStateException("이미 당첨번호를 입력 받았습니다.");
+        }
         while(true){
             System.out.println();
             System.out.println("당첨 번호를 입력해주세요.");

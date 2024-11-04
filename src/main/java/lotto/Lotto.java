@@ -13,12 +13,20 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("무작위 생성된 로또 번호가 6개가 아닙니다.");
         }
 
         HashSet<Integer> numberSet = new HashSet<>(numbers);
         if(numberSet.size()!=numbers.size()){
-            throw new IllegalArgumentException("로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException("무작위 생성된 로또 번호에 중복된 숫자가 있습니다.");
+        }
+        for (Integer number : numbers) {
+            if (number < 1) {
+                throw new IllegalArgumentException("무작위 생성된 로또 번호는 1 이상의 숫자여야 합니다.");
+            }
+            if (number > 45) {
+                throw new IllegalArgumentException("무작위 생성된 로또 번호는 45 이하의 숫자여야 합니다.");
+            }
         }
     }
 
