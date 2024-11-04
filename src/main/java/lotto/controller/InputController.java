@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Payment;
@@ -22,50 +23,17 @@ public class InputController {
     }
 
     public Payment getPayment() {
-        while (true) {
-            try {
-                return readPayment();
-            } catch (IllegalArgumentException exception) {
-                inputView.printException(exception);
-            }
-        }
+        return retryOnException(this::readPayment);
     }
 
     public WinningLotto getWinningLotto() {
-        Lotto lotto = getWinningNumber();
-        while (true) {
-            try {
-                BonusNumber bonusNumber = getBonusNumber();
-                return WinningLotto.createWinningLotto(lotto, bonusNumber);
-            } catch (IllegalArgumentException exception) {
-                inputView.printException(exception);
-            }
-        }
-    }
-
-    private Lotto getWinningNumber() {
-        while (true) {
-            try {
-                return readWinningNumber();
-            } catch (IllegalArgumentException exception) {
-                inputView.printException(exception);
-            }
-        }
-    }
-
-    private BonusNumber getBonusNumber() {
-        while (true) {
-            try {
-                return readBonusNumber();
-            } catch (IllegalArgumentException exception) {
-                inputView.printException(exception);
-            }
-        }
-
+        Lotto lotto = retryOnException(this::readWinningNumber);
+        BonusNumber bonusNumber = retryOnException(this::readBonusNumber);
+        return retryOnException(() -> WinningLotto.createWinningLotto(lotto, bonusNumber));
     }
 
     private Payment readPayment() {
-        Integer purchaseAmount = parse.StringToInteger(inputView.readPurchaseAmount());
+        int purchaseAmount = parse.StringToInteger(inputView.readPurchaseAmount());
         return Payment.from(purchaseAmount);
     }
 
@@ -77,8 +45,18 @@ public class InputController {
     }
 
     private BonusNumber readBonusNumber() {
-        Integer bonusNumber = parse.StringToInteger(inputView.readBonusNumber());
+        int bonusNumber = parse.StringToInteger(inputView.readBonusNumber());
         return new BonusNumber(bonusNumber);
+    }
+
+    private <T> T retryOnException(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException exception) {
+                inputView.printException(exception);
+            }
+        }
     }
 
 }
