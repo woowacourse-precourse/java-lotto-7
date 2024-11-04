@@ -30,7 +30,7 @@ public class LottoEvaluator {
         }
     }
 
-    public Rank getRank(int matchCount, boolean hasBonus) {
+    private Rank getRank(int matchCount, boolean hasBonus) {
         if (matchCount == 6) return Rank.FIRST;
         if (matchCount == 5 && hasBonus) return Rank.SECOND;
         if (matchCount == 5) return Rank.THIRD;

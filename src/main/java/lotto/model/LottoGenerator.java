@@ -9,8 +9,8 @@ public class LottoGenerator {
     private static final int STARTINCLUSIVE = 1;
     private static final int ENDINCLUSIVE = 45;
     private static final int COUNT = 6;
-    private int lottoCnt;
-    private List<Lotto> lottos;
+    private final int lottoCnt;
+    private final List<Lotto> lottos;
 
     public LottoGenerator(int lottoCnt) {
         this.lottoCnt = lottoCnt;
@@ -24,12 +24,8 @@ public class LottoGenerator {
         return lottos;
     }
 
-    public List<Integer> generateLottoNumbers() {
+    private List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(STARTINCLUSIVE, ENDINCLUSIVE, COUNT);
-    }
-
-    public List<Lotto> getLottos() {
-        return lottos;
     }
 
     public int getLottoCnt() {
