@@ -46,4 +46,13 @@ class RankTest {
         assertThat(profit).isEqualTo(Integer.MAX_VALUE * 2_000_000_000L);
     }
 
+    @Test
+    @DisplayName("통계 메시지 반환 테스트")
+    void 통계_메시지_반환_테스트() {
+        String message = Rank.FIRST.getMessage(10);
+        assertThat(message).contains(
+                "6개 일치 (2,000,000,000원) - 10개"
+        );
+    }
+
 }
