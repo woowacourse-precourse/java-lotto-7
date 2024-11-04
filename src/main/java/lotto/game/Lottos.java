@@ -26,7 +26,7 @@ public class Lottos {
     public LottoPrizeRecord checkLottos(Buyer buyer) {
         LottoPrizeRecord lottoPrizeRecord = new LottoPrizeRecord();
         for (Lotto lotto : lottos) {
-            LottoPrize lottoPrize = lotto.decideLottoPrize(buyer);
+            LottoPrize lottoPrize = lotto.getLottoPrize(buyer);
             lottoPrizeRecord.updateResult(lottoPrize);
         }
         return lottoPrizeRecord;

@@ -27,19 +27,29 @@ public class Lotto {
         OutputHandler.printLottos(Convertor.convert(numbers));
     }
 
-    public LottoPrize decideLottoPrize(Buyer buyer) {
+    public LottoPrize getLottoPrize(Buyer buyer) {
         WinningNumbers winningNumbers = buyer.getwinningNumbers();
         int matchCount = winningNumbers.checkMatchingCount(numbers);
         boolean hasBonusNumber = hasBonusNumber(buyer.getBonusNumber());
 
+        if (decideBonusPrize(matchCount, hasBonusNumber) == null) {
+            return decidePrize(matchCount);
+        }
+
+        return null;
+    }
+
+    private LottoPrize decideBonusPrize(int matchCount, boolean hasBonusNumber) {
         if (matchCount == 5 && hasBonusNumber) {
             return LottoPrize.BONUS;
         }
+        return null;
+    }
 
+    private LottoPrize decidePrize(int matchCount) {
         if (matchCount > 2) {
             return LottoPrize.values()[matchCount - 3];
         }
-
         return null;
     }
 

@@ -38,7 +38,7 @@ class LottoTest {
         Buyer buyer = new Buyer(winningNumbers, bonusNumber);
 
         // when
-        LottoPrize lottoPrize = lotto.decideLottoPrize(buyer);
+        LottoPrize lottoPrize = lotto.getLottoPrize(buyer);
 
         // then
         assertThat(lottoPrize).isEqualTo(LottoPrize.SIX);
@@ -56,7 +56,7 @@ class LottoTest {
         Buyer buyer = new Buyer(winningNumbers, bonusNumber);
 
         // when
-        LottoPrize lottoPrize = lotto.decideLottoPrize(buyer);
+        LottoPrize lottoPrize = lotto.getLottoPrize(buyer);
 
         // then
         assertThat(lottoPrize).isEqualTo(LottoPrize.BONUS);
