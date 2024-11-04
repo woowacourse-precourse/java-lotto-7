@@ -13,8 +13,9 @@ public class LottoNumbersCreator {
                 LottoInfo.NUMBER_COUNT.getInfo());
     }
 
-    public static void validateWinningNumbersInput(String input) {
+    public static List<Integer> createWinningNumbers(String input) {
         validateNotStartEndWithComma(input);
+        return createNumberListByInput(input);
     }
 
     public static void validateNotStartEndWithComma(String input) {
