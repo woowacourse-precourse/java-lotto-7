@@ -1,7 +1,6 @@
 package lotto.common;
 
 public enum ErrorMessage {
-    // TODO: 에러 세부화해서 클래스 추출?
     EMPTY_INPUT("[ERROR] 입력이 비어있습니다."),
     INTEGER_RANGE_EXCESS("[ERROR] 입력 숫자가 가능 범위를 초과합니다."),
     NOT_NUMBER_OR_RANGE_EXCESS("[ERROR] 숫자 이외의 입력이 존재하거나 범위를 초과합니다."),
