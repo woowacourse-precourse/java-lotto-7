@@ -28,7 +28,16 @@ class LottoTest {
     @DisplayName("메서드_테스트")
     @Test
     void methodTest(){
+        final List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6))); //matchCnt: 6
+        lottos.add(new Lotto(List.of(1, 6, 8, 4, 3, 2))); //matchCnt: 5
+        lottos.add(new Lotto(List.of(1, 4, 5, 11, 2, 7)));//matchCnt: 4
 
+        final List<Integer> winningNums = List.of(1,2,3,4,5,6,7);
+
+        assertThat(Lotto.compareBasicNum(lottos.getLast(), winningNums)).isEqualTo(4);
+        assertThat(Lotto.isBonusMatched(lottos.getLast(), winningNums)).isEqualTo(true);
+        //assertThat(Lotto.cntWinningLottos(lottos, winningNums)).containsExactly(6,5,4);
     }
 
     @DisplayName("예외_테스트")

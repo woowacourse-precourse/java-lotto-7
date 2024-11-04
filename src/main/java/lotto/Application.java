@@ -8,6 +8,8 @@ public class Application {
             Lotto.run();
         } catch(IllegalArgumentException e){
             System.out.println("[ERROR] " + e.getMessage());
+        } finally{
+            Console.close();
         }
     }
 }

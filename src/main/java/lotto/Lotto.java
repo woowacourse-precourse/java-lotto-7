@@ -1,12 +1,38 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+
+enum Rank {
+    FAIL("0",0), FIFTH("5,000", 3) , FOURTH("50,000", 4), THIRD("1,500,000", 5),
+    SECOND("30,000,000", 5, true), FIRST("2,000,000,000", 6);
+
+    private final String price;
+    private final int match;
+    private final boolean bonusMatch;
+    private Rank(String price, int match) {
+        this.price = price;
+        this.match = match;
+        this.bonusMatch = false;
+    }
+    private Rank(String price, int match, boolean bonusMatch) {
+        this.price = price;
+        this.match = match;
+        this.bonusMatch = bonusMatch;
+    }
+
+    public final String getPrice() {
+        return price;
+    }
+    public final int getMatch() {
+        return match;
+    }
+    public final boolean isBonusMatch() {
+        return bonusMatch;
+    }
+}
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -39,24 +65,132 @@ public class Lotto {
 
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNums = new ArrayList<>();
-        setWinningNums(winningNums);
+        winningNums = inputWinnNums();
         seperateParagraph();
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNum = Integer.parseInt(Console.readLine());
+        Integer bonusNum = Integer.parseInt(Console.readLine());
+        winningNums.add(bonusNum);
         seperateParagraph();
 
         System.out.println("당첨 통계");
         System.out.println("---");
+        printResult(lottos, winningNums);
+        seperateParagraph();
 
         //출력
     }
 
+    private static void printResult(
+            final List<Lotto> lottos,
+            final List<Integer> winningNums
+    ) {
 
-    public static void setWinningNums(List<Integer> winningNums) {
+        final List<Rank> winResult = cntWinningLottos(lottos, winningNums);
+        for(Rank rk : Rank.values()){
+            if(rk.equals(Rank.FAIL)) continue;
+            String price = rk.getPrice();
+            int match = rk.getMatch();
+            int matchedCnt = cntMatched(winResult, rk);
+            //보너스볼 일치
+            if(rk.equals(Rank.SECOND)){
+                System.out.println(match + "개 일치, 보너스 볼 일치 (" + price + "원) - " + matchedCnt + "개");
+            } else {
+                System.out.println(match + "개 일치 (" + price + "원) - " + matchedCnt + "개");
+            }
+        }
+        //수익률
+        int sumReturnPrize = accumulateProfit(winResult);
+        float totalLottoPrice = lottos.size() * 1000;
+        float rateReturn = sumReturnPrize / totalLottoPrice;
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateReturn * 100);
+
+    }
+
+    private static int accumulateProfit(final List<Rank> winResult) {
+        int sum = 0;
+        for(Rank rk : Rank.values()){
+            for(Rank result : winResult){
+                if(result.equals(rk)){
+                    sum += parsingPrice(rk.getPrice());
+                }
+            }
+        }
+        return sum;
+    }
+
+    private static int parsingPrice(String price) {
+        return Integer.parseInt(price.replace(",",""));
+    }
+
+    private static int cntMatched(List<Rank> winResult, Rank rk) {
+        return Collections.frequency(winResult, rk);
+    }
+
+    public static List<Rank> cntWinningLottos(
+            final List<Lotto> lottos,
+            final List<Integer> winningNums
+    ) {
+        List<Rank> winningResults = new ArrayList<>();
+        boolean bonusMatch = false;
+
+        for(Lotto lotto : lottos) {
+            int matchedNum = compareBasicNum(lotto,winningNums);
+            if(isBonusMatched(lotto, winningNums)){
+                matchedNum++;
+                bonusMatch = true;
+            }
+
+            //Rank match와 matchCnt 비교해서 enum 뽑아오는 코드
+            winningResults.add(announceResult(matchedNum,bonusMatch));
+
+            bonusMatch = false;
+        }
+
+        return winningResults;
+    }
+
+    private static Rank announceResult(int matchedNum, boolean bonusMatch) {
+        for(Rank rk : Rank.values()) {
+            if (rk.getMatch() == matchedNum) {
+                if (rk.getMatch() == 5 && bonusMatch) {
+                    return Rank.SECOND;
+                }
+                return rk;
+            }
+        }
+        return Rank.FAIL;
+    }
+
+    public static boolean isBonusMatched(Lotto lotto, List<Integer> winningNums) {
+        for(int num : lotto.numbers){
+            if(num == winningNums.getLast()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int compareBasicNum(
+            final Lotto lotto,
+            final List<Integer> winningNums
+    ) {
+        int matchCnt = 0;
+        for(int i=0;i < winningNums.size() -1;i++) {
+            int num = winningNums.get(i);
+            if(lotto.numbers.contains(num)) {
+                matchCnt++;
+            }
+        }
+        return matchCnt;
+    }
+
+
+
+
+    private static List<Integer> inputWinnNums() {
         String nums = Console.readLine();
-        winningNums = parseNum(nums);
-        Console.close();
+        return parseNum(nums);
     }
 
     private static List<Integer> parseNum(String nums) {
@@ -110,8 +244,6 @@ public class Lotto {
         } catch (IllegalArgumentException e){
             System.out.println("[ERROR] " + e.getMessage());
             inputPrice();
-        } finally{
-            Console.close();
         }
         return price;
     }
