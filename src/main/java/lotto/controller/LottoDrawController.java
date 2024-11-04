@@ -52,5 +52,6 @@ public class LottoDrawController {
 		Map<Winning, Integer> winningResult = winningLotto.drawLottoBundle(lottoBundle);
 		double profitRate = lottoBundle.getProfitRate(winningResult);
 		WinningResultsDto winningResultsDto = WinningResultsDto.from(winningResult, profitRate);
+		outputView.printWinningResultMessage(winningResultsDto);
 	}
 }
