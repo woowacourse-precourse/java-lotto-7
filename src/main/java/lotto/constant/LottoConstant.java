@@ -5,7 +5,7 @@ public enum LottoConstant {
     MAX_LOTTO_NUMBER(45),
     LOTTO_NUMBERS_LENGTH(6),
     LOTTO_PRICE(1000),
-    MIN_PURCHASE_AMOUNT(0),
+    MIN_PURCHASE_AMOUNT(1000),
     MAX_PURCHASE_AMOUNT(100000);
 
     private final int value;
