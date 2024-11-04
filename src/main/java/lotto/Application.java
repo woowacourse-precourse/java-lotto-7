@@ -27,7 +27,7 @@ public class Application {
 
         final int totalWinningReward = calculatorForTotalWinningReward(resultOfLotto);
 
-        final double returnOnInvestment = (double) ((totalWinningReward - price) / price) * 100;
+        final double returnOnInvestment = (double) (totalWinningReward / price) * 100;
 
         System.out.println("당첨 통계");
         System.out.println("---");
