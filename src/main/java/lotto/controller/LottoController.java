@@ -1,26 +1,26 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.service.LottoService;
-import lotto.view.Input;
+import lotto.view.InputValidator;
 import lotto.view.Output;
 
 public class LottoController {
     private LottoService lottoService = new LottoService();
-    private Input input = new Input();
+    private InputValidator inputController = new InputValidator();
     private Output output = new Output();
 
     public void buyLotto() {
-        int buyMoney = input.readLottoAmount();
+        int buyMoney = inputController.readBuyLotto();
+
         List<Lotto> lottos = lottoService.buyLottos(buyMoney);
         output.printPurchasedLottos(lottos);
 
-        Lotto winningLotto = new Lotto(input.readWinningNumber());
+        Lotto winningLotto = inputController.readWinningLotto();
 
-        new BonusNumber(input.readBonusNumber(), winningLotto);
+        inputController.makeBonusNumber(winningLotto);
 
         LottoResult lottoResult = lottoService.matchLotto(lottos, winningLotto);
 
