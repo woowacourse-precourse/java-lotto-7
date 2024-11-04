@@ -21,6 +21,8 @@ public class Application {
 
         Lotto winningLotto = getWinningNumbers();
         int bonusNumber = getBonusNumber();
+        LottoResult result = calculateResult(tickets, winningLotto, bonusNumber);
+        result.printResult(purchaseAmount);
     }
 
     private static int getPurchaseAmount() {
@@ -72,4 +74,8 @@ public class Application {
         return Integer.parseInt(Console.readLine());
     }
 
+    private static LottoResult calculateResult(List<Lotto> tickets, Lotto winningLotto, int bonusNumber) {
+        LottoMachine lottoMachine = new LottoMachine(winningLotto, bonusNumber);
+        return lottoMachine.checkTickets(tickets);
+    }
 }
