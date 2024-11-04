@@ -2,6 +2,7 @@ package lotto.config;
 
 import static lotto.view.ViewConstants.NEW_LINE;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import lotto.controller.LottoController;
@@ -29,14 +30,30 @@ public class AppRunner {
     }
 
     public void run() {
+        LottoReceipt lottoReceipt = sellLottos();
+        WinningLotto winningLotto = drawWinningLotto();
+        announceWinningResult(lottoReceipt, winningLotto);
+        Console.close();
+    }
+
+    private LottoReceipt sellLottos() {
         LottoReceipt lottoReceipt = readPurchaseAmount();
 
-        outputView.printIssuedLottoQuantity(lottoReceipt.getIssuedLottoQuantity());
-        outputView.printIssuedLottoDetails(lottoReceipt.toString());
+        BigInteger lottoQuantity = lottoReceipt.getIssuedLottoQuantity();
+        outputView.printIssuedLottoQuantity(lottoQuantity);
 
+        String lottoDetails = lottoReceipt.toString();
+        outputView.printIssuedLottoDetails(lottoDetails);
+
+        return lottoReceipt;
+    }
+
+    private WinningLotto drawWinningLotto() {
         LottoTicket winningTicket = readWinningNumbers();
-        WinningLotto winningLotto = getWinningLotto(winningTicket);
+        return getWinningLotto(winningTicket);
+    }
 
+    private void announceWinningResult(LottoReceipt lottoReceipt, WinningLotto winningLotto) {
         WinningReport winningReport = controller.getReport(lottoReceipt, winningLotto);
         String winningDetails = controller.sendWinningDetails(winningReport.getWinningCounts());
         outputView.printWinningDetails(winningDetails);
