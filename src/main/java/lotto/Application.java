@@ -1,7 +1,9 @@
 package lotto;
 
-import lotto.controller.InputController;
+import lotto.controller.InputMoneyController;
+import lotto.controller.InputPrizeNumberController;
 import lotto.controller.LottoController;
+import lotto.view.InputPrizeNumberView;
 import lotto.view.PurchaseView;
 import lotto.view.UserLottoListView;
 
@@ -9,11 +11,16 @@ public class Application {
     public static void main(String[] args) {
 
         PurchaseView purchaseView = new PurchaseView();
-        InputController inputController = new InputController(purchaseView);
+        InputMoneyController inputMoneyController = new InputMoneyController(purchaseView);
 
         UserLottoListView userLottoListView = new UserLottoListView();
 
-        LottoController lottoController = new LottoController(inputController, userLottoListView);
+        InputPrizeNumberView inputPrizeNumberView = new InputPrizeNumberView();
+        InputPrizeNumberController inputPrizeNumberController = new InputPrizeNumberController(inputPrizeNumberView);
+
+        LottoController lottoController = new LottoController(inputMoneyController, userLottoListView,
+                inputPrizeNumberController);
+
         lottoController.run();
     }
 }

@@ -2,8 +2,11 @@ package lotto.controller;
 
 import static lotto.message.ErrorMessage.DUPLICATE_NUMBER;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_EXCEPTION;
+import static lotto.util.LottoNumberGenerator.LOTTO_RANGE_END;
+import static lotto.util.LottoNumberGenerator.LOTTO_RANGE_START;
 import static lotto.util.MoneyValidator.INT_REGEX;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -22,21 +25,25 @@ public class InputPrizeNumberController {
     }
 
     public PrizeLotto getPrizeNumbers() {
+
+        Lotto prizeNumberLotto = getSixNumbers();
+        int bonusNumber = getBonusNumber(prizeNumberLotto);
+
+        return new PrizeLotto(prizeNumberLotto, bonusNumber);
+    }
+
+    private Lotto getSixNumbers() {
         while (true) {
             try {
                 String[] inputNumbers = inputPrizeNumberView.getSixPrizeNumber().split(",");
-                checkNumberFormat(inputNumbers);
+                checkNumberListFormat(inputNumbers);
                 List<Integer> prizeNumbers = Arrays.stream(inputNumbers)
                         .mapToInt(Integer::parseInt).boxed()
                         .toList();
-                checkDuplicate(prizeNumbers);
+                checkNumberListRange(prizeNumbers);
+                checkNumbersDuplicate(prizeNumbers);
 
-                Lotto prizeNumberLotto = new Lotto(prizeNumbers);
-
-                int bonusNumber = Integer.parseInt(inputPrizeNumberView.getBonusNumber());
-
-                return new PrizeLotto(prizeNumberLotto, bonusNumber);
-
+                return new Lotto(prizeNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 ViewUtil.printEmptyLine();
@@ -44,15 +51,55 @@ public class InputPrizeNumberController {
         }
     }
 
-    private void checkNumberFormat(final String[] numbers) {
-        if (!Arrays.stream(numbers).allMatch(number -> number.matches(INT_REGEX))) {
+    private int getBonusNumber(Lotto lottoNumbers) {
+        while (true) {
+            try {
+                String inputBonusNumber = inputPrizeNumberView.getBonusNumber();
+                checkNumberFormat(inputBonusNumber);
+
+                int bonusNumber = Integer.parseInt(inputBonusNumber);
+                checkNumberRange(bonusNumber);
+
+                List<Integer> prizeNumbers = new ArrayList<>(lottoNumbers.getNumbers());
+                prizeNumbers.add(bonusNumber);
+                checkNumbersDuplicate(prizeNumbers);
+
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                ViewUtil.printEmptyLine();
+            }
+        }
+
+    }
+
+    private void checkNumberListFormat(final String[] numbers) {
+        for (String number : numbers) {
+            checkNumberFormat(number);
+        }
+    }
+
+    private void checkNumberFormat(final String number) {
+        if (!number.matches(INT_REGEX)) {
             throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 
-    private void checkDuplicate(final List<Integer> numbers) {
+    private void checkNumberListRange(final List<Integer> numbers) {
+        for (final int number : numbers) {
+            checkNumberRange(number);
+        }
+    }
+
+    private void checkNumberRange(final int number) {
+        if (number < LOTTO_RANGE_START || number > LOTTO_RANGE_END) {
+            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
+        }
+    }
+
+    private void checkNumbersDuplicate(final List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
-        for (int number : numbers) {
+        for (final int number : numbers) {
             if (!set.add(number)) {
                 throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
             }
