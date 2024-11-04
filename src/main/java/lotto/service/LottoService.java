@@ -7,6 +7,7 @@ import lotto.domain.LottoRank;
 import lotto.domain.ProfitCalculator;
 import lotto.domain.ResultAnalyzer;
 import lotto.domain.TicketGenerator;
+import lotto.domain.WinningNumbers;
 
 public class LottoService {
 
@@ -14,7 +15,8 @@ public class LottoService {
     private final ResultAnalyzer resultAnalyzer;
     private final ProfitCalculator profitCalculator;
 
-    public LottoService(TicketGenerator ticketGenerator, ResultAnalyzer resultAnalyzer, ProfitCalculator profitCalculator) {
+    public LottoService(TicketGenerator ticketGenerator, ResultAnalyzer resultAnalyzer,
+                        ProfitCalculator profitCalculator) {
         this.ticketGenerator = ticketGenerator;
         this.resultAnalyzer = resultAnalyzer;
         this.profitCalculator = profitCalculator;
@@ -24,8 +26,8 @@ public class LottoService {
         return ticketGenerator.generateTickets(ticketCount);
     }
 
-    public Map<LottoRank, Integer> analyzeLottoResults(List<Lotto> purchasedTickets, List<Integer> winningNumbers, int bonusNumber) {
-        return resultAnalyzer.getRankCounts(purchasedTickets, winningNumbers, bonusNumber);
+    public Map<LottoRank, Integer> analyzeLottoResults(List<Lotto> purchasedTickets, WinningNumbers winningNumbers) {
+        return resultAnalyzer.getRankCounts(purchasedTickets, winningNumbers);
     }
 
     public double calculateProfitRate(Map<LottoRank, Integer> results, int purchaseAmount) {
