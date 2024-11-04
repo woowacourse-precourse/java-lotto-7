@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LottoTest {
     @Test
@@ -22,4 +24,19 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또번호_생성_성공() {
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(validNumbers);
+
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @Test
+    void 로또번호_범위_검증_실패() {
+        List<Integer> invalidNumbers = List.of(1, 2, 3, 4, 5, 46);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Lotto(invalidNumbers));
+
+        assertThat(exception.getMessage()).isEqualTo("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
 }
