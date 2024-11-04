@@ -21,7 +21,7 @@ public class CalculateService {
 
     public void calculateWinning(PurchasedLotto purchasedLotto, WinningLotto winningLotto) {
         List<Lotto> purchasedLottos = purchasedLotto.getPurchasedLottos();
-        List<Integer> winningNumbers = winningLotto.getWinningLotto();
+        List<Integer> winningNumbers = winningLotto.getWinningLotto().getNumbers();
         int bonusNumber = winningLotto.getBonusNumber();
 
         for (Lotto lotto : purchasedLottos) {
@@ -35,7 +35,7 @@ public class CalculateService {
     private LottoRank getLottoRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int matchedCount = getMatchedCount(lotto, winningNumbers);
         boolean bonusMatch = isMatchedBonusNumber(lotto, bonusNumber);
-        return LottoRank.getPrizeRank(matchedCount, bonusMatch);
+        return LottoRank.getLottoRank(matchedCount, bonusMatch);
     }
 
     private boolean isMatchedBonusNumber(Lotto lotto, int bonusNumber) {
@@ -50,10 +50,14 @@ public class CalculateService {
 
     public void calculateProfitRate(int purchaseAmount) {
         int purchaseWon = purchaseAmount * 1000;
-        double totalPrize = winningLottos.entrySet().stream()
+        double totalPrize = getTotalPrize();
+        profitRate = (totalPrize / purchaseWon) * 100;
+    }
+
+    private double getTotalPrize() {
+        return winningLottos.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getReward() * entry.getValue())
                 .sum();
-        profitRate = (totalPrize / purchaseWon) * 100;
     }
 
     public EnumMap<LottoRank, Integer> getWinningLottos() {

@@ -11,7 +11,7 @@ public class LottoNumberService {
 
     private PurchasedLotto purchasedLotto;
     private WinningLotto winningLotto;
-    private Lotto winningNumbers;
+    private Lotto winningLottoNumbers;
 
     public void purchaseLotto(int purchaseAmount) {
         List<Lotto> purchasedLottos = new ArrayList<>();
@@ -22,18 +22,12 @@ public class LottoNumberService {
         purchasedLotto = new PurchasedLotto(purchasedLottos);
     }
 
-    public void setWinningNumbers(List<Integer> winningNumbers) throws IllegalArgumentException {
-        this.winningNumbers = new Lotto(winningNumbers);
+    public void setWinningLottoNumbers(List<Integer> winningLottoNumbers) throws IllegalArgumentException {
+        this.winningLottoNumbers = new Lotto(winningLottoNumbers);
     }
 
-    public void createWinningLotto(int bonusNumber) {
-        winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-    }
-
-    public void validateBonusNumber(int bonusNumber) throws IllegalArgumentException {
-        if (winningNumbers.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
+    public void createWinningLotto(int bonusNumber) throws IllegalArgumentException {
+        winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
     }
 
     public PurchasedLotto getPurchasedLotto() {

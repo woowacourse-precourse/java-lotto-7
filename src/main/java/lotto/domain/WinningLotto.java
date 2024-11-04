@@ -1,19 +1,20 @@
 package lotto.domain;
 
-import java.util.List;
+import static lotto.validate.LottoNumberValidator.validateBonusNumberDuplicate;
 
 public class WinningLotto {
 
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, int bonusNumber) {
+    public WinningLotto(Lotto winningLotto, int bonusNumber) throws IllegalArgumentException {
         this.winningLotto = winningLotto;
+        validateBonusNumberDuplicate(bonusNumber, winningLotto);
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getWinningLotto() {
-        return winningLotto.getNumbers();
+    public Lotto getWinningLotto() {
+        return winningLotto;
     }
 
     public int getBonusNumber() {

@@ -24,14 +24,10 @@ public class LottoServiceFacade {
     }
 
     public void setWinningNumbers(List<Integer> winningNumbers) throws IllegalArgumentException {
-        lottoNumberService.setWinningNumbers(winningNumbers);
+        lottoNumberService.setWinningLottoNumbers(winningNumbers);
     }
 
-    public void validateBonusNumber(int bonusNumber) throws IllegalArgumentException {
-        lottoNumberService.validateBonusNumber(bonusNumber);
-    }
-
-    public void createWinningLotto(int bonusNumber) {
+    public void createWinningLotto(int bonusNumber) throws IllegalArgumentException {
         lottoNumberService.createWinningLotto(bonusNumber);
     }
 

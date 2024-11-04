@@ -1,10 +1,12 @@
 package lotto.validate;
 
+import static lotto.constants.ErrorMessage.NUMBER_DUPLICATE;
 import static lotto.constants.LottoConstants.DELIMITER;
 
 import java.util.List;
 import lotto.constants.ErrorMessage;
 import lotto.constants.LottoConstants;
+import lotto.domain.Lotto;
 
 public class LottoNumberValidator extends Validator {
 
@@ -38,7 +40,13 @@ public class LottoNumberValidator extends Validator {
 
     private static void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE.getMessage());
+            throw new IllegalArgumentException(NUMBER_DUPLICATE.getMessage());
+        }
+    }
+
+    public static void validateBonusNumberDuplicate(int bonusNumber, Lotto winningLotto) {
+        if (winningLotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(NUMBER_DUPLICATE.getMessage());
         }
     }
 

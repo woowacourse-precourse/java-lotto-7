@@ -23,18 +23,17 @@ public class LottoController {
         purchaseLotto(purchaseAmount);
 
         setWinningNumbers();
-        lottoServiceFacade.createWinningLotto(getValidatedBonusNumber());
-
+        setWinningLotto();
 
         lottoServiceFacade.calculateResults(purchaseAmount);
         outputView.printWinningStatistics(lottoServiceFacade.getWinningStatistics());
         outputView.printTotalProfitRate(lottoServiceFacade.getProfitRate());
     }
 
-    private int getValidatedBonusNumber() {
-        return retryUntilValid(() -> {
+    private void setWinningLotto() {
+        retryUntilValid(() -> {
             int bonusNumber = retryUntilValid(inputView::readBonusNumber);
-            lottoServiceFacade.validateBonusNumber(bonusNumber);
+            lottoServiceFacade.createWinningLotto(bonusNumber);
             return bonusNumber;
         } );
     }
