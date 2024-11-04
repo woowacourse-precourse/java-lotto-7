@@ -9,7 +9,6 @@ public enum ViewMessages {
     PROMPT_BONUS_NUMBER("{0}부터 {1}까지 번호들 중에서 당첨 번호와 중복되지 않는 보너스 번호 1개를 입력해주세요."),
 
     // Output
-    PRINT_BLANK("\n"),
     PRINT_LOTTO_AMOUNT("{0}개를 구매했습니다."),
     PRINT_RESULT_COMMENT("당첨 통계\n---"),
     PRINT_LOTTO_NORMAL_RESULT("{0}개 일치 ({1}원) - {2}개"),
