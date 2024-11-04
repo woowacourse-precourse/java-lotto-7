@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.view.Input;
 
 public class InputValidator {
     private Input input = new Input();
