@@ -9,6 +9,7 @@ public class WinningLotto {
     private final List<Integer> numbers;
     private final int bonusNumber;
 
+
     public WinningLotto(String input, String bonusNumberInput) {
         List<Integer> parsedNumbers = WinningLottoParser.parseWinningNumbers(input);
         int parsedBonusNumber = BonusNumberParser.toIntStringBonusNumberParser(bonusNumberInput);

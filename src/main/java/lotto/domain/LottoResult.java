@@ -23,17 +23,21 @@ public class LottoResult {
         }
 
         if (winning == Winning.SECOND) {
-            return String.format("5개 일치, 보너스 볼 일치 (%d원)", winning.getPrize());
+            return String.format("5개 일치, 보너스 볼 일치 (%,d원)", winning.getPrize());
         }
 
-        int matchCount = switch (winning) {
-            case FIRST -> 6;
-            case THIRD -> 5;
-            case FOURTH -> 4;
-            case FIFTH -> 3;
-            default -> 0;
-        };
+        if (winning == Winning.FIRST) {
+            return String.format("6개 일치 (%,d원)", winning.getPrize());
+        }
 
-        return String.format("%d개 일치 (%d원)", matchCount, winning.getPrize());
+        if (winning == Winning.THIRD) {
+            return String.format("5개 일치 (%,d원)", winning.getPrize());
+        }
+
+        if (winning == Winning.FOURTH) {
+            return String.format("4개 일치 (%,d원)", winning.getPrize());
+        }
+
+        return String.format("3개 일치 (%,d원)", winning.getPrize());
     }
 }
