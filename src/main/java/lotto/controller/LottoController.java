@@ -5,9 +5,7 @@ import static lotto.view.input.readTotalAmount;
 import static lotto.view.input.readWinningNumbers;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.model.CalculateResult;
 import lotto.model.Lotto;
 import lotto.constants.Error_Messages;
@@ -84,56 +82,23 @@ public class LottoController {
         return intList;
     }
 
-    public static void checkRange(Integer number){
-        if (number > 45 || number < 1) {
-            throw new IllegalArgumentException(Error_Messages.NUMBER_RANGE_ERROR);
-        }
-    }
-
-    public static void checkNumbersRange(List<Integer> numbers){
-        for (Integer number : numbers) {
-            checkRange(number);
-        }
-    }
-
-    public static void checkWinningLotto(WinningLotto winningLotto){
-        List<Integer> numbers = winningLotto.getNumbers();
-        Set<Integer> set = new HashSet<>(numbers);
-        if (set.size() != numbers.size()) {
-            throw new IllegalArgumentException(Error_Messages.DUPLICATE_ERROR);
-        }
-        checkNumbersRange(numbers);
-    }
-
     public static WinningLotto makeWinningLotto() {
         List<String> inputNumbers = readWinningNumbers();
         try {
             List<Integer> numbers = changeStringListToIntList(inputNumbers);
             Lotto lotto = new Lotto(numbers);
-            WinningLotto winningLotto = new WinningLotto(lotto);
-            checkWinningLotto(winningLotto);
-            return winningLotto;
+            return new WinningLotto(lotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeWinningLotto();
         }
     }
 
-    private static int checkBonusNumber(WinningLotto winningLotto, String number){
-        inputNullCheck(number);
-        int num = Integer.parseInt(number);
-        checkRange(num);
-        if (winningLotto.getNumbers().contains(num)) {
-            throw new IllegalArgumentException(Error_Messages.DUPLICATE_ERROR);
-        }
-        return num;
-    }
-
     public static void bonusNumber(WinningLotto winningLotto){
         String bonusNumber = readBonusNumber();
         try{
-            int vaildBonusNum = checkBonusNumber(winningLotto, bonusNumber);
-            winningLotto.setBonusNumber(vaildBonusNum);
+            inputNullCheck(bonusNumber);
+            winningLotto.setBonusNumber(bonusNumber);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             bonusNumber(winningLotto);
