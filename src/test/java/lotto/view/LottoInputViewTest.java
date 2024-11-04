@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -72,5 +73,14 @@ class LottoInputViewTest {
             new LottoInputView().validateWinningNumbers("1,2,3,4,5,5");
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+    }
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다")
+    @Test
+    void validateBonusNumberDuplicate() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> {
+            new LottoInputView().validateBonusNumber("1", winningNumbers);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
 }

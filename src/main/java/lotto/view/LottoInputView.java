@@ -68,4 +68,26 @@ public class LottoInputView {
         String input = Console.readLine();
         return validateWinningNumbers(input);
     }
+
+    public int validateBonusNumber(String input, List<Integer> winningNumbers) {
+        try {
+            int bonusNumber = Integer.parseInt(input);
+            validateNumbersRange(List.of(bonusNumber));
+            validateNotDuplicate(bonusNumber, winningNumbers);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        }
+    }
+
+    private void validateNotDuplicate(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
+    public int readBonusNumber(List<Integer> winningNumbers) {
+        String input = Console.readLine();
+        return validateBonusNumber(input, winningNumbers);
+    }
 }
