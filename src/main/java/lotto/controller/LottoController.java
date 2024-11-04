@@ -1,7 +1,10 @@
 package lotto.controller;
 
+import java.util.List;
+
 import lotto.model.domain.LottoBundle;
 import lotto.model.domain.PurchaseMoney;
+import lotto.model.domain.WinningNumber;
 import lotto.model.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -24,12 +27,13 @@ public class LottoController {
 
 		int lottoCount = getLottoCount(purchaseMoney);
 
-		getLottoBundle(lottoCount);
+		LottoBundle lottoBundle = getLottoBundle(lottoCount);
+		WinningNumber winningNumber = getWinningNumber();
 	}
 
 	private PurchaseMoney getPurchaseMoney() {
 		OutputView.promptPurchaseMoney();
-		int purchaseMoney = InputView.getPurchaseMoney();
+		int purchaseMoney = InputView.purchaseMoney();
 		return new PurchaseMoney(purchaseMoney);
 	}
 
@@ -39,8 +43,17 @@ public class LottoController {
 		return lottoCount;
 	}
 
-	private void getLottoBundle(int lottoCount) {
+	private LottoBundle getLottoBundle(int lottoCount) {
 		LottoBundle lottoBundle = lottoService.createLottoBundle(lottoCount);
 		OutputView.promptLottoNumbers(lottoBundle);
+
+		return lottoBundle;
+	}
+
+	private WinningNumber getWinningNumber() {
+		OutputView.promptWinningNumber();
+		List<Integer> winningNumber = InputView.winningNumber();
+
+		return new WinningNumber(winningNumber);
 	}
 }
