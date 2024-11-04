@@ -36,7 +36,7 @@ public class InputHandler {
         }
     }
 
-    private void validateWinningNumbers(List<Integer> numbers) {
+    protected void validateWinningNumbers(List<Integer> numbers) {
         if (numbers.size() != 6 || numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 6개의 숫자여야 합니다.");
         }
