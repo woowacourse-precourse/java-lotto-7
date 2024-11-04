@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Customer;
 import lotto.domain.Price;
 import lotto.domain.dto.WinningNumbersDto;
@@ -13,6 +14,7 @@ public class LottoService {
     private Price price;
     private Customer customer;
     private WinningNumbersDto winningNumbersDto;
+    private BonusNumber bonusNumber;
 
     public void inputPrice() {
         ExceptionHandler.handle(() -> {
@@ -38,6 +40,13 @@ public class LottoService {
         ExceptionHandler.handle(() -> {
             List<Integer> numbers = InputView.winningNumbers();
             winningNumbersDto = new WinningNumbersDto(numbers);
+        });
+    }
+
+    public void setBonusNumber() {
+        ExceptionHandler.handle(() -> {
+            int number = InputView.bonusNumber(winningNumbersDto);
+            bonusNumber = BonusNumber.from(number);
         });
     }
 }
