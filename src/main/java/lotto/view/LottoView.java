@@ -17,7 +17,7 @@ public class LottoView {
                 Output.priceInputMessage();
                 money = Input.readMoney();
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -32,7 +32,7 @@ public class LottoView {
                 Output.winningNumberInputMessage();
                 winningNumbers = Input.readWinningNumber();
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -42,13 +42,12 @@ public class LottoView {
 
     public BonusNumberDTO bonusNumberView() {
         int bonusNumber;
-
         while (true) {
             try {
                 Output.bonusNumberInputMessage();
                 bonusNumber = Input.readBonusNumber();
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
