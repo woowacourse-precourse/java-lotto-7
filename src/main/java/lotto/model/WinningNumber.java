@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.util.Constant.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,14 +40,14 @@ public class WinningNumber {
 
     private void checkRange() {
         for (int number : winningNumbers) {
-            if (!(number > 0 && number <= 45)) {
+            if (!(number > ZERO && number <= MAX_LOTTO_NUM)) {
                 throw new IllegalArgumentException(WRONG_RANGE_NUMBER);
             }
         }
     }
 
     private void checkSize() {
-        if (winningNumbers.size() != 6) {
+        if (winningNumbers.size() != LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException(WRONG_SIZE);
         }
     }

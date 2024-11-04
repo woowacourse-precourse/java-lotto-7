@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.util.Constant.ZERO;
+
 public class Money {
 
     private final int money;
@@ -29,13 +31,13 @@ public class Money {
     }
 
     private void checkPositiveNumber(int money) {
-        if (!(money >= 0)) {
+        if (money < ZERO) {
             throw new IllegalArgumentException(NEGATIVE_NUMBER);
         }
     }
 
     private void checkMultiple(int money) {
-        if (!(money % 1000 == 0)) {
+        if (money % 1000 != 0) {
             throw new IllegalArgumentException(NOT_1000_MULTIPLE);
         }
     }
