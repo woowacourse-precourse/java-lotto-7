@@ -19,8 +19,12 @@ public class WinningLottoTest {
     @DisplayName("보너스 번호에 1~45 이외의 숫자가 있으면 예외가 발생한다.")
     @Test
     void 보너스_번호에_허동되는_범위_이외의_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new WinningLotto(List.of(1, 3, 6, 8, 13, 45),48))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new WinningLotto.Builder()
+                .numbers(List.of(1, 3, 6, 8, 13, 45))
+                .bonusNumber(48)
+                .build())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1~45 숫자만 가능합니다.");
     }
 
 }
