@@ -16,6 +16,22 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
+    public void buyLotto() {
+        // Step 1: 구매한 로또 개수 확인
+        PurchaseCount purchaseCount = getPurchasedLottoCount();
+        printPurchasedLottoCount(purchaseCount);
+
+        // Step 2: 로또 구매 및 출력
+        LottoList lottoList = purchaseLottos(purchaseCount.getPurchaseCount());
+        displayPurchasedLottoNumbers(lottoList);
+
+        // Step 3: 당첨 번호 입력 받기
+        WinningNumbers winningNumbers = getWinningNumbers();
+
+        // Step 4: 당첨 결과 확인 및 출력
+        checkLottoResult(winningNumbers, lottoList);
+    }
+
     private PurchaseCount getPurchasedLottoCount() {
         String purchaseAmount = lottoView.inputPurchaseAmount();
         return lottoService.getCount(purchaseAmount);
