@@ -58,6 +58,34 @@ Exception
 
 Validator
 -[ ] 입력값을 검증한다.
+
+-- -- --
+## 예외 사항
+InputMoney
+- 숫자가 아닌 값 입력
+- 공백 입력
+- 1000 단위가 아닌 숫자 입력
+- 음수 입력
+
+Calculator
+- 자료형을 넘는 범위 입력
+
+InputWinningLotto
+- 숫자가 아닌 값 입력
+- 공백 입력
+- 유효하지 않은 delimiter 입력
+
+InputBonusNumber
+- 숫자가 아닌 값 입략
+- 공백 입력
+- 음수 입력
+- 당첨 번호 중복 입력
+
+WinningLottoNumbers
+- 6개 이상의 숫자 입력
+- 중복된 숫자 입력
+- 1~45 사이가 아닌 숫자 입력
+
 -- -- --
 ## 다이어그램
 #### 클래스 다이어그램 (설계 기준)
