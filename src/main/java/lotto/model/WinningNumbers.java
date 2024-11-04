@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.enums.ErrorCode.DUPLICATE_BONUS_NUMBER;
 import static lotto.enums.ErrorCode.DUPLICATE_LOTTO_NUMBER;
 import static lotto.enums.ErrorCode.INVALID_LOTTO_NUMBER_COUNT;
 import static lotto.enums.ErrorCode.INVALID_LOTTO_NUMBER_RANGE;
@@ -17,12 +18,17 @@ public class WinningNumbers {
     private static final String DELIMITER = ",";
 
     private List<Integer> numbers;
+    private int bonusNumber;
 
-    public WinningNumbers(String numbersInput) {
+    public WinningNumbers(String numbersInput, String bonusInput) {
         List<Integer> numbers = parseNumbersInput(numbersInput);
         validateNumbers(numbers);
 
+        int bonusNumber = parseBonusInput(bonusInput);
+        validateBonusNumber(numbers, bonusNumber);
+
         this.numbers = numbers;
+        this.bonusNumber = bonusNumber;
     }
 
     private List<Integer> parseNumbersInput(String input) {
@@ -33,6 +39,11 @@ public class WinningNumbers {
             numbers.add(Integer.parseInt(num));
         }
         return numbers;
+    }
+
+    private int parseBonusInput(String bonusInput) {
+        checkIsNumber(bonusInput);
+        return Integer.parseInt(bonusInput);
     }
 
     private void checkIsNumber(String input) {
@@ -46,7 +57,12 @@ public class WinningNumbers {
     private void validateNumbers(List<Integer> numbers) {
         checkNumberCount(numbers);
         checkUniqueNumbers(numbers);
-        checkNumberRange(numbers);
+        checkNumbersRange(numbers);
+    }
+
+    private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        checkNumbersRange(bonusNumber);
+        checkBonusNotDuplicate(numbers, bonusNumber);
     }
 
     private void checkNumberCount(List<Integer> numbers) {
@@ -62,14 +78,29 @@ public class WinningNumbers {
         }
     }
 
-    private void checkNumberRange(List<Integer> numbers) {
+    private void checkNumbersRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
-            }
+            checkNumbersRange(number);
         }
     }
+
+    private void checkNumbersRange(int number) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void checkBonusNotDuplicate(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMessage());
+        }
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

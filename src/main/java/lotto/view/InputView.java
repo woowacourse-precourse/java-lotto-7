@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.enums.ViewMessage.INPUT_BONUS_NUMBER;
 import static lotto.enums.ViewMessage.INPUT_PURCHASE_AMOUNT;
 import static lotto.enums.ViewMessage.INPUT_WINNING_NUMBERS;
 
@@ -23,5 +24,14 @@ public class InputView {
 
     private void printWinningNumbersMessage() {
         System.out.println(INPUT_WINNING_NUMBERS.getMessage());
+    }
+
+    public String getBonusNumber() {
+        printBonusNumberMessage();
+        return Console.readLine().trim();
+    }
+
+    private void printBonusNumberMessage() {
+        System.out.println(INPUT_BONUS_NUMBER.getMessage());
     }
 }

@@ -22,6 +22,7 @@ public class LottoController {
         Lottos lottos = store.purchaseLottos(inputView.getLottoPurchaseAmount());
         outputView.printLottos(lottos);
 
-        WinningNumbers winningNumbers = new WinningNumbers(inputView.getWinningNumbers());
+        WinningNumbers winningNumbers = new WinningNumbers(inputView.getWinningNumbers(), inputView.getBonusNumber());
+
     }
 }
