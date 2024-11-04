@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Money {
+    private static final String MINUS_MONEY_ERROR_MESSAGE = "돈은 음수가 불가능합니다.";
+    private static final String REMAINING_BALANCE_ERROR_MESSAGE = "잔액이 발생합니다.";
     private static final int EMPTY_MONEY = 0;
     public static final Money EMPTY = new Money(EMPTY_MONEY);
     private static final int PERCENT_MULTIPLIER = 100;
@@ -16,7 +18,7 @@ public class Money {
 
     public Money(int amount) {
         if(isMinusMoney(amount))
-            throw new IllegalArgumentException("돈은 음수가 불가능합니다.");
+            throw new IllegalArgumentException(MINUS_MONEY_ERROR_MESSAGE);
         this.amount = amount;
     }
 
@@ -25,14 +27,18 @@ public class Money {
     }
 
     public int countBundle(Money bundleUnit) {
-        if(bundleUnit.equals(EMPTY) || amount % bundleUnit.amount != 0)
-            throw new IllegalArgumentException("묶을 수 없는 단위입니다.");
+        if(hasRemainingBalance(bundleUnit))
+            throw new IllegalArgumentException(REMAINING_BALANCE_ERROR_MESSAGE);
         return amount / bundleUnit.amount;
     }
 
+    private boolean hasRemainingBalance(Money bundleUnit) {
+        return bundleUnit.equals(EMPTY) || amount % bundleUnit.amount != EMPTY_MONEY;
+    }
+
     public double rateAsPercent(Money money) {
-        BigDecimal baseAmount = new BigDecimal(toString(amount));
-        BigDecimal referenceAmount = new BigDecimal(toString(money.amount));
+        BigDecimal baseAmount = new BigDecimal(String.valueOf(amount));
+        BigDecimal referenceAmount = new BigDecimal(String.valueOf(money.amount));
 
         return toPercent(
                 baseAmount.divide(referenceAmount, SCALE, RoundingMode.HALF_UP)
@@ -65,7 +71,4 @@ public class Money {
         return amount < EMPTY_MONEY;
     }
 
-    private String toString(int money) {
-        return String.valueOf(money);
-    }
 }

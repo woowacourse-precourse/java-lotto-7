@@ -3,14 +3,16 @@ package lotto.store.lotto;
 import java.util.Objects;
 
 public class LottoNumber implements Comparable {
+    private static final String OUT_OF_RANGE_ERROR_MESSAGE = "로또 번호는 1~45 숫자여야 합니다.";
     private int number;
 
     protected static final int MIN_LOTTO_NUMBER = 1;
     protected static final int MAX_LOTTO_NUMBER = 45;
 
     public LottoNumber(int number) {
-        if(isOutOfRange(number))
-            throw new IllegalArgumentException("로또 번호는 1~45 숫자여야 합니다.");
+        if(isOutOfRange(number)) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_ERROR_MESSAGE);
+        }
         this.number = number;
     }
 

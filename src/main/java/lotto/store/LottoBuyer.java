@@ -8,13 +8,15 @@ import lotto.store.lotto.winner.WinningNumbers;
 import java.util.List;
 
 public class LottoBuyer {
+    private static final String LOTTO_SEED_MONEY_ERROR_MESSAGE = "로또를 구매할 돈이 부족합니다.";
     private final Money seedMoney;
     private final List<Lotto> myLotto;
 
     public LottoBuyer(LottoStore store, Money seedMoney) {
         myLotto = store.sale(seedMoney);
-        if(myLotto.isEmpty())
-            throw new IllegalArgumentException("로또를 구매할 돈이 부족합니다.");
+        if(myLotto.isEmpty()) {
+            throw new IllegalArgumentException(LOTTO_SEED_MONEY_ERROR_MESSAGE);
+        }
 
         this.seedMoney = seedMoney;
     }

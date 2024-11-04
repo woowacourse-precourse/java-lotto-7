@@ -1,9 +1,6 @@
 package lotto.store.lotto;
 
 import lotto.basic.NumbersGeneratorStub;
-import lotto.store.lotto.Lotto;
-import lotto.store.lotto.LottoGenerator;
-import lotto.store.lotto.LottoNumber;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

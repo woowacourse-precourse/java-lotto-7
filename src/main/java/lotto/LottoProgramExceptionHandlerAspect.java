@@ -1,9 +1,7 @@
 package lotto;
 
 import lotto.exception.ExceptionLogger;
-import lotto.money.Money;
 import lotto.ui.LottoResult;
-import lotto.ui.WinningNumberSettings;
 
 public class LottoProgramExceptionHandlerAspect extends LottoProgram {
     private final LottoProgram main;

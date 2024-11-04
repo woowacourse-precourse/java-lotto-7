@@ -2,9 +2,6 @@ package lotto.store.lotto.winner;
 
 import lotto.store.lotto.Lotto;
 import lotto.store.lotto.LottoNumber;
-import lotto.store.lotto.winner.LottoRank;
-
-import java.util.Objects;
 
 public class WinningNumbers {
     private final Lotto winningLotto;
