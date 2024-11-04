@@ -35,7 +35,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> createLotto() {
+    public static List<Integer> createLotto() {
         return pickUniqueNumbersInRange(1, 45, 6);
     }
 

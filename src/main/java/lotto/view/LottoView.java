@@ -16,6 +16,18 @@ public class LottoView {
         return input;
     }
 
+    public static String inputWinningNumbers(){
+        System.out.println(Message.INPUT_WINNING_NUMBERS);
+        String input = Console.readLine();
+        return input;
+    }
+
+    public static String inputBonusNumbers(){
+        System.out.println(Message.INPUT_BONUS_NUMBERS);
+        String input = Console.readLine();
+        return input;
+    }
+
     public static void printLottoList(List<Lotto> lottoList){
         System.out.println(lottoList.size() + Message.OUTPUT_LOTTOS.toString());
         lottoList.forEach(lotto -> System.out.println(lotto.getNumbers()));
