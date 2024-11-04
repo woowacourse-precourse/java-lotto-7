@@ -1,6 +1,6 @@
 package lotto.validation;
 
-import lotto.exception.ExceptionMessage;
+import lotto.constatnt.ExceptionMessage;
 
 public class LottoPurchaseValidator {
 

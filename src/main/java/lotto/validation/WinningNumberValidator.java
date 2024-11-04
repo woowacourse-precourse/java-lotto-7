@@ -3,7 +3,7 @@ package lotto.validation;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exception.ExceptionMessage;
+import lotto.constatnt.ExceptionMessage;
 
 public class WinningNumberValidator {
 
