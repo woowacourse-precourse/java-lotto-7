@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.constants.ConstraintConstants;
 import lotto.constants.ErrorViewConstants;
 
+import static lotto.constants.ErrorViewConstants.*;
 import static lotto.service.ValidatorService.validatePurchaseAmount;
 
 public class ConverterService {
@@ -12,16 +13,16 @@ public class ConverterService {
             if (validatePurchaseAmount(purchasePrice)) {
                 return purchasePrice / ConstraintConstants.PURCHASE_UNIT;
             }
-            throw new IllegalArgumentException(ErrorViewConstants.INVALID_INPUT_CONSTRAINT);
+            throw new IllegalArgumentException(INVALID_INPUT_CONSTRAINT);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorViewConstants.INVALID_WINNING_NUMBERS);
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS);
         }
     }
 
     public static String[] splitWinningNumber(String enteredWinningNumber) {
         String[] splitWinningNumber = enteredWinningNumber.split(",");
         if (splitWinningNumber.length != ConstraintConstants.WINNING_NUMBER_COUNT) {
-            throw new IllegalArgumentException(ErrorViewConstants.INVALID_WINNING_NUMBERS);
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS);
         }
         return splitWinningNumber;
     }
@@ -31,9 +32,17 @@ public class ConverterService {
         for (int i = 0; i < enteredWinningNumber.length; i++) {
             result[i] = Integer.parseInt(enteredWinningNumber[i]);
             if (!ValidatorService.isValidNumber(result[i])) {
-                throw new IllegalArgumentException(ErrorViewConstants.INVALID_WINNING_NUMBERS);
+                throw new IllegalArgumentException(INVALID_WINNING_NUMBERS);
             }
         }
         return result;
+    }
+
+    public static int convertBonusNumber(String bonusNumber) {
+        try {
+            return Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBERS);
+        }
     }
 }
