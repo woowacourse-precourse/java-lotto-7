@@ -25,4 +25,12 @@ public class LottoService {
         // 여기서 결과를 DTO로 변환
         return new LottoResponseDTO(userLottos, results);
     }
+
+    public double calculateEarningsRate(LottoResults results, int purchaseAmount) {
+        int totalPrize = results.getResultMap().entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        double earningsRate = ((double) totalPrize / purchaseAmount) * 100;
+        return earningsRate;
+    }
 }

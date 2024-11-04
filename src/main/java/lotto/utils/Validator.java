@@ -13,7 +13,7 @@ public class Validator {
 
     // 2. 숫자로만 이루어져 있는지 검증
     private static void checkNumericInput(String input, String errorMessage) {
-        if (!input.matches("[0-9]+")) {
+        if (!input.matches("[0-9]+") && !input.matches("-?[0-9]+")) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

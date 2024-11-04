@@ -31,5 +31,9 @@ public class LottoController {
                 new Lotto(requestDTO.getWinningNumbers()),  // 당첨 번호
                 requestDTO.getBonusNumber()                 // 보너스 번호
         );
+        outputView.displayResults(lottoResponseDTO.getResults().getResultMap());
+        double earningsRate = lottoService.calculateEarningsRate(lottoResponseDTO.getResults(),
+                requestDTO.getPurchaseAmount());
+        outputView.displayEarningsRate(earningsRate);
     }
 }
