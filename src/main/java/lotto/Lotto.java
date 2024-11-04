@@ -22,6 +22,12 @@ public class Lotto {
         if (notDuplicatedNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
+
+        for (int value : numbers) {
+            if (value < 1 || value > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1과 45사이여야 합니다.");
+            }
+        }
     }
 
     public void lottoView() {
