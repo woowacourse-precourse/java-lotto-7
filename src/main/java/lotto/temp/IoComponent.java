@@ -8,8 +8,10 @@ public class IoComponent {
     private final IoController ioController;
     private final InputView inputView;
     private final OutputView outputView;
+    private final CommonIo commonIo;
 
     public IoComponent(CommonIo commonIo) {
+        this.commonIo = commonIo;
         this.ioController = new IoController(commonIo);
         this.inputView = new InputView(commonIo);
         this.outputView = new OutputView(commonIo);
@@ -25,5 +27,9 @@ public class IoComponent {
 
     public OutputView getOutputView() {
         return outputView;
+    }
+
+    public CommonIo getCommonIo() {
+        return commonIo;
     }
 }
