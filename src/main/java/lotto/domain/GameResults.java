@@ -21,6 +21,19 @@ public class GameResults {
 		}
 	}
 
+	public double getRoundedProfitRate() {
+		double profit = 0;
+		double purchaseAmount = 0;
+
+		for (Rank rank : Rank.values()) {
+			Integer matchCount = gameResultMap.getOrDefault(rank, 0);
+			profit += matchCount * rank.getPrizeMoney();
+		}
+
+		double profitRate = profit / purchaseAmount;
+
+		return Math.round(profitRate * 100) / 100.0;
+	}
 
 	public Map<Rank, Integer> getGameResultMap() {
 		return gameResultMap;
