@@ -20,11 +20,23 @@ public class LottoController {
         this.lottoService = new LottoService(inputView, outputView);
     }
 
-    public void run(){
-        int lottoTickets  = userService.inputAmount();
-        User user = userService.priceLotto(lottoTickets);
+    public void run() {
+        int lottoTickets = userService.inputAmount();
+        User user = createUserWithLottos(lottoTickets);
+        Lotto winningLotto = createWinningLotto();
+        winningResultView(user, winningLotto);
+    }
+
+    private User createUserWithLottos(int lottoTickets) {
+        return userService.priceLotto(lottoTickets);
+    }
+
+    private Lotto createWinningLotto() {
         Lotto lotto = lottoService.winningLottoNumbers();
-        lotto = lottoService.bonusLottoNumbers(lotto);
-        System.out.println(lotto.getNumbers());
+        return lottoService.bonusLottoNumbers(lotto);
+    }
+
+    private void winningResultView(User user, Lotto lotto) {
+        lottoService.winningResult(user, lotto);
     }
 }

@@ -28,7 +28,7 @@ public class UserService {
 
     public User priceLotto(int lottoTickets){
 
-        User user = new User();
+        User user = new User(lottoTickets);
 
         for(int i=0; i<lottoTickets; i++) {
             user.AddPurchaseLottos(new PurchaseLotto(LottoNumberGenerator.lottoNumbers()));

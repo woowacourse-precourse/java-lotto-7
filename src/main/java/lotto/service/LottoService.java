@@ -1,9 +1,14 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.domain.PurchaseLotto;
+import lotto.domain.User;
 import lotto.util.LottoNumberParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoService {
 
@@ -32,5 +37,10 @@ public class LottoService {
             System.out.println(e.getMessage());
             return bonusLottoNumbers(lotto);
         }
+    }
+
+    public void winningResult(User user, Lotto lotto) {
+        LottoResult lottoResult = new LottoResult(user.getPurchaseLottos(), lotto);
+        outputView.lottoResultView(lottoResult, user.getPurchaseAmount());
     }
 }
