@@ -21,10 +21,11 @@ public enum ExceptionMessage {
 
 
     private final String HEADER = "[ERROR] ";
+    private final String LINE_BREAK = "\n";
     private final String message;
 
     private ExceptionMessage(String message) {
-        this.message = HEADER + message;
+        this.message = HEADER + message + LINE_BREAK;
     }
 
     public String getMessage() {
