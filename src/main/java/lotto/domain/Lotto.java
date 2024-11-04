@@ -16,7 +16,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_COUNT);
         }
-        if(numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS);
         }
     }
@@ -25,13 +25,13 @@ public class Lotto {
         return numbers;
     }
 
-    public int countMatches(List<Integer> winningNumbers){
+    public int countMatches(List<Integer> winningNumbers) {
         return (int) numbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
 
-    public boolean contains(int number){
+    public boolean contains(int number) {
         return numbers.contains(number);
     }
 }

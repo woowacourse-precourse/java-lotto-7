@@ -25,7 +25,7 @@ class LottoMachineTest {
 
     @DisplayName("정상적으로 로또가 발행되는 경우")
     @Test
-    void issue_Lotto_Test(){
+    void issue_Lotto_Test() {
         int purchaseAmount = 4000;
 
         lottoMachine.generateLottos(purchaseAmount);
@@ -34,7 +34,7 @@ class LottoMachineTest {
         int expectedLottosCount = purchaseAmount / LOTTO_PRICE;
         assertThat(myLottos).hasSize(expectedLottosCount);
 
-        for(Lotto lotto: myLottos) {
+        for (Lotto lotto : myLottos) {
             assertThat(lotto.getNumbers()).hasSize(LOTTO_NUMBER_COUNT);
             assertThat(lotto.getNumbers()).isSorted();
             assertThat(lotto.getNumbers()).doesNotHaveDuplicates();

@@ -15,7 +15,7 @@ public class Application {
 
         ResultView.displayRequestPurchaseAmount();
         int purchaseAmount = inputView.inputPurchaseAmount();
-        ResultView.displayPurchasedLottoCount(purchaseAmount/1000);
+        ResultView.displayPurchasedLottoCount(purchaseAmount / 1000);
 
         lottoMachine.generateLottos(purchaseAmount);
         List<Lotto> myLottos = lottoMachine.getMyLottos();

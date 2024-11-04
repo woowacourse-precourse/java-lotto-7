@@ -18,7 +18,7 @@ public class LottoMachine {
         this.myLottos = new ArrayList<>();
     }
 
-    public void generateLottos(int purchaseAmount){
+    public void generateLottos(int purchaseAmount) {
         int numLottos = purchaseAmount / LOTTO_PRICE;
 
         for (int i = 0; i < numLottos; i++) {
@@ -28,19 +28,19 @@ public class LottoMachine {
         }
     }
 
-    private List<Integer> generateLottoNumbers(){
+    private List<Integer> generateLottoNumbers() {
         List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT));
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
 
-    public List<Lotto> getMyLottos(){
+    public List<Lotto> getMyLottos() {
         return myLottos;
     }
 
-    public List<Prize> calculateStatistics(List<Lotto> myLottos, List<Integer> winningNumbers, int bonusNumber){
+    public List<Prize> calculateStatistics(List<Lotto> myLottos, List<Integer> winningNumbers, int bonusNumber) {
         return myLottos.stream()
-                .map(lotto ->{
+                .map(lotto -> {
                     int matchCount = lotto.countMatches(winningNumbers);
                     boolean matchBonus = lotto.contains(bonusNumber);
                     return Prize.valueOf(matchCount, matchBonus);
@@ -48,7 +48,7 @@ public class LottoMachine {
                 .collect(Collectors.toList());
     }
 
-    public double calculateProfitRate(List<Prize> results, int purchaseAmount){
+    public double calculateProfitRate(List<Prize> results, int purchaseAmount) {
         int totalPrize = results.stream()
                 .mapToInt(Prize::getPrize)
                 .sum();
