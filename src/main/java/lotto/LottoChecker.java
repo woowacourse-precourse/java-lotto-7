@@ -20,6 +20,11 @@ public class LottoChecker {
         this.bonusNumber = bonusNumber;
     }
 
+    public void lottoCheck(Customer customer) {
+        int[] totalRanks = lottoRankCheck(customer);
+        showLottoResult(totalRanks);
+    }
+
     public double calculateRateOfReturn(int[] totalRanks) {
         int prizeAmount = LOTTO_5_PRIZE * totalRanks[5] + LOTTO_4_PRIZE * totalRanks[4] + LOTTO_3_PRIZE * totalRanks[3]
                 + LOTTO_2_PRIZE * totalRanks[2] + LOTTO_1_PRIZE * totalRanks[1];
@@ -40,7 +45,7 @@ public class LottoChecker {
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 
-    public int[] lottoCheck(Customer customer) {
+    public int[] lottoRankCheck(Customer customer) {
         int[] totalRanks = new int[LOTTO_NUMS_COUNT];
 
         for (Lotto lotto : customer.getLottos()) {

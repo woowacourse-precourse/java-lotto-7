@@ -26,7 +26,6 @@ public class Application {
         formatter.hasDuplicateNum(winningNums, bonusNum);
 
         LottoChecker lottoChecker = new LottoChecker(winningNums, bonusNum);
-        int[] totalRanks = lottoChecker.lottoCheck(customer);
-        lottoChecker.showLottoResult(totalRanks);
+        lottoChecker.lottoCheck(customer);
     }
 }
