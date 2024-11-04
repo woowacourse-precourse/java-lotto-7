@@ -1,6 +1,5 @@
 package lotto.model.shop;
 
-import lotto.mock.number_generator.ChoosableRandomNumberMaker;
 import lotto.mock.number_generator.RealRandomNumberGenerator;
 import lotto.mock.number_generator.SequentialRandomNumberGenerator;
 import lotto.model.Lottos;
@@ -25,7 +24,6 @@ public class LottoShopTest {
 
     private final LottoShop lottoShop = new LottoShop();
     private final SequentialRandomNumberGenerator sequentialRandomNumberGenerator = new SequentialRandomNumberGenerator();
-    private final ChoosableRandomNumberMaker choosableRandomNumberMaker = new ChoosableRandomNumberMaker();
     private final RealRandomNumberGenerator realRandomNumberGenerator = new RealRandomNumberGenerator();
 
     static Stream<Arguments> 로또_구매_금액이_로또_가격의_배수가_아닐_경우_예외를_던진다_테스트_케이스() {
