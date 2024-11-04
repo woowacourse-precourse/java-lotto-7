@@ -15,12 +15,18 @@ public class LottoServiceImpl implements LottoService {
     private static final int LOTTO_MAX_NUMBER = 45;
 
     private Purchase purchase;
+    private Lotto winningLotto;
 
     @Override
     public void buyLotto(String amount) {
         purchase = new Purchase(amount);
         List<Lotto> lottos = makeRandomLottos(purchase.getAmount());
         purchase.setLottos(lottos);
+    }
+
+    @Override
+    public void assignWinningLotto(String numbers) {
+        winningLotto = new Lotto(numbers);
     }
 
     public PurchaseDto getPurchaseDto() {

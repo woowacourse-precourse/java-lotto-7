@@ -6,4 +6,6 @@ public interface LottoView {
     String readPurchaseAmount();
 
     void displayLottoNumbers(PurchaseDto purchaseDto);
+
+    String readWinningNumbers();
 }

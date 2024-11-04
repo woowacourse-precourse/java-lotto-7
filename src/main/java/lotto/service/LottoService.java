@@ -6,4 +6,6 @@ public interface LottoService {
     void buyLotto(String amount);
 
     PurchaseDto getPurchaseDto();
+
+    void assignWinningLotto(String numbers);
 }

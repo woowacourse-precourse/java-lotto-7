@@ -20,4 +20,10 @@ public class ConsoleLottoView implements LottoView {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    @Override
+    public String readWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
 }
