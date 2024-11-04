@@ -6,12 +6,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        try{
-            validate(numbers);
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-
+        validate(numbers);
         this.numbers = numbers;
     }
 
