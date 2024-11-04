@@ -4,14 +4,16 @@ import lotto.domain.LottoGame;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.utils.Utils;
-import java.util.HashMap;
 import lotto.domain.Rank;
 import lotto.validation.Validation;
 import lotto.view.InputMessage;
 import lotto.view.OutputMessage;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
+import java.util.ArrayList;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Service {
@@ -56,7 +58,8 @@ public class Service {
     }
 
     public Lotto generateLottoNumber() {
-        List<Integer> numbers = Utils.randomUniqueNumberGenerate(LOTTO_START_NUMBER, LOTTO_LAST_NUMBER, LOTTO_LENGTH);
+        List<Integer> numbers = new ArrayList<>(
+                Utils.randomUniqueNumberGenerate(LOTTO_START_NUMBER, LOTTO_LAST_NUMBER, LOTTO_LENGTH));
         Validation.validateLengthOfList(numbers, LOTTO_LENGTH);
         Validation.validateDuplicationList(numbers);
         Validation.validateListNumberInRange(numbers, LOTTO_START_NUMBER, LOTTO_LAST_NUMBER);
@@ -116,5 +119,11 @@ public class Service {
             Rank rank = determineLottoRank(lotto);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
+    }
+
+    public void showGameResult() {
+        OutputMessage.winningStatistics();
+        OutputMessage.showRankResult(buyer.getLottoResult());
+        OutputMessage.showYieldResult(buyer.getYield());
     }
 }
