@@ -21,5 +21,29 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 구입 금액이 1,000원 단위가 아니면 예외가 발생한다")
+    @Test
+    void 로또_구입_금액_단위_예외_테스트() {
+        assertThatThrownBy(() -> Application.validatePurchaseAmount(1500))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("구입 금액은 1,000원 단위여야 합니다.");
+    }
+
+    @DisplayName("로또 구입 금액이 음수거나 0일 때 예외가 발생한다")
+    @Test
+    void 로또_구입_금액_음수_예외_테스트() {
+        assertThatThrownBy(() -> Application.validatePurchaseAmount(-1000))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("구입 금액은 1보다 커야 합니다.");
+
+        assertThatThrownBy(() -> Application.validatePurchaseAmount(0))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("구입 금액은 1보다 커야 합니다.");
+    }
+
+    @DisplayName("유효한 로또 구입 금액이면 예외가 발생하지 않는다")
+    @Test
+    void 유효한_로또_구입_금액_테스트() {
+        Application.validatePurchaseAmount(3000);
+    }
 }
