@@ -20,7 +20,7 @@ public class MyLottoInfo {
     private int revenue;
     private double revenuePercentage;
 
-    public MyLottoInfo(int purchaseAmount) {
+    private MyLottoInfo(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
         this.purchaseLottoCount = calculateQuantities();
         this.myLotteries = generateLotto();
