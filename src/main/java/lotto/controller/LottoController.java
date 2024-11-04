@@ -51,6 +51,7 @@ public class LottoController {
             return PurchaseAmount.from(InputUtils.parseStringToInt(purchaseAmount));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            System.out.println();
             return getPurchaseAmountWithRetry();
         }
     }
