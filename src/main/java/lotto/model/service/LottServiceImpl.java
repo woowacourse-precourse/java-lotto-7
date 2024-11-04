@@ -3,6 +3,7 @@ package lotto.model.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.message.info.InfoMessage;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class LottServiceImpl implements LottoService {
@@ -71,7 +72,10 @@ public class LottServiceImpl implements LottoService {
     @Override
     public double calculateYield(Long totalPrize, int purchaseAmount) {
         if (purchaseAmount == 0) return 0;
-        return ((double) totalPrize / purchaseAmount) * 100;
+        System.out.println(totalPrize + ", " + purchaseAmount);
+        double yield = ((double) totalPrize / purchaseAmount) * 100;
+        System.out.println(yield);
+        return roundToTwoDecimalPlaces(yield);
     }
 
     @Override
@@ -86,7 +90,6 @@ public class LottServiceImpl implements LottoService {
         return totalPrize;
     }
 
-
     private int calculateMatchCount(List<Integer> lotto, List<Integer> winningNumbers) {
         int matchCount = 0;
         for (int number : lotto) {
@@ -97,5 +100,7 @@ public class LottServiceImpl implements LottoService {
         return matchCount;
     }
 
-
+    private double roundToTwoDecimalPlaces(double value) {
+        return Math.round(value * 10.0) / 10.0;
+    }
 }

@@ -134,9 +134,14 @@ class ApplicationTest extends NsTest {
     public void testCalculateWinningStatistics() {
         //given
         List<List<Integer>> purchasedLotto = List.of(
-                List.of(1, 2, 3, 4, 5, 6),
-                List.of(3, 4, 5, 6, 7, 8),
-                List.of(10, 20, 30, 40, 45, 33)
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42),
+                List.of(13, 14, 16, 38, 42, 45),
+                List.of(7, 11, 30, 40, 42, 43),
+                List.of(2, 13, 22, 32, 38, 45),
+                List.of(1, 3, 5, 14, 22, 45)
         );
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
@@ -144,11 +149,11 @@ class ApplicationTest extends NsTest {
         //when
         Map<String, Integer> matchCounts = lottoService.calculateWinningStatistics(purchasedLotto, winningNumbers, bonusNumber);
         //then
-        assertEquals(1, matchCounts.get(InfoMessage.FIRST.getMessage()));
+        assertEquals(0, matchCounts.get(InfoMessage.FIRST.getMessage()));
         assertEquals(0, matchCounts.get(InfoMessage.SECOND.getMessage()));
         assertEquals(0, matchCounts.get(InfoMessage.THIRD.getMessage()));
-        assertEquals(1, matchCounts.get(InfoMessage.FOURTH.getMessage()));
-        assertEquals(0, matchCounts.get(InfoMessage.FIFTH.getMessage()));
+        assertEquals(0, matchCounts.get(InfoMessage.FOURTH.getMessage()));
+        assertEquals(1, matchCounts.get(InfoMessage.FIFTH.getMessage()));
 
     }
 
@@ -157,9 +162,14 @@ class ApplicationTest extends NsTest {
     public void calculateTotalPrizeTest() {
         //given
         List<List<Integer>> purchasedLotto = List.of(
-                List.of(1, 2, 3, 4, 5, 6),
-                List.of(3, 4, 5, 6, 7, 8),
-                List.of(10, 20, 30, 40, 45, 33)
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42),
+                List.of(13, 14, 16, 38, 42, 45),
+                List.of(7, 11, 30, 40, 42, 43),
+                List.of(2, 13, 22, 32, 38, 45),
+                List.of(1, 3, 5, 14, 22, 45)
         );
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
@@ -168,11 +178,34 @@ class ApplicationTest extends NsTest {
         Map<String, Integer> matchCounts = lottoService.calculateWinningStatistics(purchasedLotto, winningNumbers, bonusNumber);
         Long calculateTotalPrize = lottoService.calculateTotalPrize(matchCounts);
         //then
-        assertEquals(calculateTotalPrize, 200050000);
+        assertEquals(calculateTotalPrize, 5000);
     }
 
     @Test
     @DisplayName("당첨된 로또 통계를 기반으로 수익률을 계산하는 테스트")
+    public void calculateYieldTest() {
+        //given
+        int purchaseAmount = 8000;
+        List<List<Integer>> purchasedLotto = List.of(
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42),
+                List.of(13, 14, 16, 38, 42, 45),
+                List.of(7, 11, 30, 40, 42, 43),
+                List.of(2, 13, 22, 32, 38, 45),
+                List.of(1, 3, 5, 14, 22, 45)
+        );
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        //when
+        Map<String, Integer> matchCounts = lottoService.calculateWinningStatistics(purchasedLotto, winningNumbers, bonusNumber);
+        Long calculateTotalPrize = lottoService.calculateTotalPrize(matchCounts);
+        double yield = lottoService.calculateYield(calculateTotalPrize, purchaseAmount);
+        //then
+        assertEquals(yield, 62.5);
+    }
 
 
     @Override
