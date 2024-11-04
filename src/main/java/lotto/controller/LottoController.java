@@ -5,6 +5,7 @@ import lotto.model.LottoResult;
 import lotto.model.MyWallet;
 import lotto.model.YieldCalculator;
 import lotto.util.InputParser;
+import lotto.util.Validation;
 import lotto.view.LottoView;
 
 import java.util.List;
@@ -38,6 +39,9 @@ public class LottoController {
         List<Integer> numbers = InputParser.winningNumParse(input);
         String bonusInput = lottoView.bonusInput();
         int bonus = Integer.parseInt(bonusInput);
+
+        Validation.validateNumbersBoundary(numbers);
+        Validation.validateOneNumBoundary(bonus);
 
         lottoManagementSystem.setWinningNumbers(numbers);
         lottoManagementSystem.setBonusNumber(bonus);
