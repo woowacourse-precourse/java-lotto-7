@@ -1,5 +1,7 @@
 package lotto.common.config;
 
+import java.util.Arrays;
+
 public enum LottoRank {
     MATCH_6(6, false, 2_000_000_000),
     MATCH_5_BONUS(5, true, 30_000_000),
@@ -18,12 +20,12 @@ public enum LottoRank {
         this.prize = prize;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public boolean isBonusMatch() {
-        return bonusMatch;
+    public static LottoRank getLottoRank(int matchCount, boolean bonusMatch) {
+        return Arrays.stream(values())
+                .filter(rank -> rank.matchCount == matchCount)
+                .filter(rank -> rank.bonusMatch == bonusMatch)
+                .findFirst()
+                .orElse(null);
     }
 
     public int getPrize() {

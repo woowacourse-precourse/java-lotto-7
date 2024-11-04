@@ -10,7 +10,7 @@ public class WinningNumbers {
     }
 
     public MatchResult match(Lotto lotto) {
-        long matchCount = lotto.countMatchNumbers(winningNumbers);
+        int matchCount = (int) lotto.countMatchNumbers(winningNumbers); // TODO long -> int
         boolean matchBonus = lotto.containsNumber(bonusNumber);
         return new MatchResult(matchCount, matchBonus);
     }

@@ -1,19 +1,19 @@
 package lotto.domain;
 
+import lotto.common.config.LottoRank;
+
 public class MatchResult {
-    private final long matchCount;
-    private final boolean matchBonus;
+    private final int matchCount;
+    private final boolean bonusMatch;
+    private final LottoRank rank;
 
-    public MatchResult(long matchCount, boolean matchBonus) {
+    public MatchResult(int matchCount, boolean bonusMatch) {
         this.matchCount = matchCount;
-        this.matchBonus = matchBonus;
+        this.bonusMatch = bonusMatch;
+        this.rank = LottoRank.getLottoRank(matchCount, bonusMatch);
     }
 
-    public long getMatchCount() {
-        return matchCount;
-    }
-
-    public boolean isMatchBonus() {
-        return matchBonus;
+    public LottoRank getRank() {
+        return rank;
     }
 }
