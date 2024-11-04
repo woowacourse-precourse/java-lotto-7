@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.util.Config;
 
 public class WinningLotto {
     private final Lotto winningLotto;
@@ -14,7 +15,7 @@ public class WinningLotto {
 
     private void validateBonusNumber() {
         if (winningLotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(Config.ERROR_BONUS_NUMBER_DUPLICATE);
         }
     }
 
