@@ -13,10 +13,12 @@ public class ProfitRateCalculator { // 수익률 계산기
         this.totalPurchaseAmount = totalPurchaseAmount;
     }
 
-    public double calculator() {
+    public ProfitRate calculateProfitRate() {
         int totalPrizeMoney = statistics.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
-        return ((double) totalPrizeMoney / (double) totalPurchaseAmount) * 100;
+
+        double profitRateValue = ((double) totalPrizeMoney / (double) totalPurchaseAmount) * 100;
+        return new ProfitRate(profitRateValue);
     }
 }

@@ -3,6 +3,7 @@ package lotto.system.formater.winning;
 import static lotto.system.utils.constants.WinningMessage.HEADER;
 
 import java.util.Map;
+import lotto.system.formater.profit.ProfitRate;
 import lotto.system.formater.profit.ProfitRateCalculator;
 import lotto.system.formater.profit.ProfitRateFormatter;
 import lotto.system.utils.PrizeType;
@@ -33,7 +34,7 @@ public class WinningStatisticsFormatter {
 
     private static void appendProfitRate(StringBuilder sb, Map<PrizeType, Integer> statistics, int totalPurchaseAmount) {
         ProfitRateCalculator profitRateCalculator = new ProfitRateCalculator(statistics, totalPurchaseAmount);
-        double profitRate = profitRateCalculator.calculator();
-        sb.append(ProfitRateFormatter.formatAsMessage(profitRate));
+        ProfitRate profitRate = profitRateCalculator.calculateProfitRate();
+        sb.append(ProfitRateFormatter.formatAsMessage(profitRate.getProfitRate()));
     }
 }
