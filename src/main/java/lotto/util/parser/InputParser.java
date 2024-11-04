@@ -20,4 +20,10 @@ public class InputParser {
         return winNumList;
     }
 
+    public int convertWinningBonusNumber(String input) {
+        int winBonusNum = Integer.parseInt(input);
+        return winBonusNum;
+    }
+
+
 }
