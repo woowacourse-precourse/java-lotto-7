@@ -3,6 +3,7 @@ package lotto.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,6 +23,21 @@ class LottoGeneratorServiceTest {
         assertEquals(6, list.size());
         for (Integer number : list) {
             assertTrue(number >= 1 && number <= 45);
+        }
+    }
+
+    @Test
+    void 여섯개의_숫자_정렬(){
+        List<Integer> list = new ArrayList<>();
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list = lottoGeneratorService.sortNumbers(list);
+        for(Integer number : list){
+            System.out.println(number);
         }
     }
 }
