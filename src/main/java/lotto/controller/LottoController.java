@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.*;
 import lotto.input.*;
@@ -24,6 +25,7 @@ public class LottoController {
         Lottos lottos = lottoService.generateLottos(purchaseCount);
         outputView.printLottoNumbers(lottos);
         WinningLotto winningLotto = setWinningLotto();
+        Console.close();
 
         ResultCalculator resultCalculator = lottoService.calculateResult(lottos, winningLotto);
 
