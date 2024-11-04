@@ -1,11 +1,10 @@
-package lotto.model;
+package lotto.model.domain;
 
 import static lotto.constant.ErrorMessages.DUPLICATE_LOTTO_NUMBER_ERROR;
 import static lotto.constant.ErrorMessages.LOTTO_NUMBER_COUNT_ERROR;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.model.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,11 +1,10 @@
-package lotto.model;
+package lotto.model.domain;
 
 import static lotto.constant.ErrorMessages.EMPTY_INPUT_ERROR;
 import static lotto.constant.ErrorMessages.INVALID_LOTTO_NUMBER_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.model.domain.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

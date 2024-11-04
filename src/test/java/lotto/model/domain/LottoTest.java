@@ -1,11 +1,10 @@
-package lotto.model;
+package lotto.model.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.model.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,6 +42,6 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(5, 3, 6, 1, 2, 4));
 
         assertThat(lotto.getNumbers())
-                .containsExactly(1, 2, 3, 4, 5, 6);  // 정렬된 순서 확인
+                .containsExactly(1, 2, 3, 4, 5, 6);
     }
 }
