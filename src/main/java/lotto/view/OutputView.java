@@ -15,8 +15,13 @@ public class OutputView {
 
     public void printLottoResults(ResultCalculator resultCalculator){
         for (Rank rank : Rank.values()) {
+            if (rank.getPrize() == 0) continue;
             int count = resultCalculator.getRankCounts().getOrDefault(rank, 0);
             System.out.println(rank.getDescription() + count + "개");
         }
+    }
+
+    public void printProfitRate(double profitRate){
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 }
