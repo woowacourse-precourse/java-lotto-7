@@ -19,7 +19,7 @@ public class AutoLottoGenerator {
         this.inputValidator = inputValidator;
     }
 
-    public List<Lotto> generate(int lottoCount) {
+    public Lottos generate(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
@@ -29,6 +29,6 @@ public class AutoLottoGenerator {
             lottos.add(lotto);
         }
 
-        return lottos;
+        return new Lottos(lottos);
     }
 }
