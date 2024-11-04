@@ -40,6 +40,7 @@ public class LottoController {
 
 		ReturnRate returnRate = lottoService.displayWinningStatistics(winning, purchaseMoney);
 		double resultRate = returnRate.calculate();
+		OutputView.printReturnRate(resultRate);
 	}
 
 	private PurchaseMoney getPurchaseMoney() {

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import lotto.model.domain.LottoBundle;
 import lotto.model.domain.Rank;
+import lotto.model.domain.ReturnRate;
 
 public class OutputView {
 
@@ -57,5 +58,9 @@ public class OutputView {
 				System.out.printf("%d개 일치 (%s원) - %d개%n",
 					rank.getMatchCount(), numberFormat.format(rank.getPrize()), count);
 			});
+	}
+
+	public static void printReturnRate(double resultRate) {
+		System.out.printf("총 수익률은 %.1f%%입니다.%n", resultRate);
 	}
 }
