@@ -61,8 +61,10 @@ public class InputParser {
         while (true) {
             try {
                 String rawBonusNumber = inputView.requireBonusNumber();
+
                 validator.isBonusNumberValid(rawBonusNumber);
                 validator.isBonusNumberDuplicated(rawBonusNumber, lottoNumbers);
+
                 int bonusNumber = Integer.parseInt(rawBonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {

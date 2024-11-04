@@ -18,7 +18,7 @@ public class Lotto implements Iterable<Integer> {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_COUNT);
         }
 
         Set<Integer> removeDuplicates = new HashSet<>(numbers);
@@ -30,15 +30,18 @@ public class Lotto implements Iterable<Integer> {
     public Map<Integer, Boolean> sameNumbersCount(WinningLotto winningLotto, int bonusNumber) {
         int matchedCount = 0;
         boolean matchedBonus = false;
+
         for (int winningNumber : winningLotto) {
             if (numbers.contains(winningNumber)) {
                 matchedCount++;
             }
         }
+
         if (numbers.contains(bonusNumber)) {
             matchedCount++;
             matchedBonus = true;
         }
+
         return Map.of(matchedCount, matchedBonus);
     }
 

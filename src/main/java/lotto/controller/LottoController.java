@@ -12,7 +12,6 @@ import lotto.service.LottoService;
 import lotto.view.OutputView;
 
 public class LottoController {
-
     private final InputParser inputParser;
     private final OutputView outputView;
     private final LottoFactory lottoFactory;
@@ -29,12 +28,16 @@ public class LottoController {
     public void start() {
         LottoPurchaseDTO lottoPurchaseDTO = inputParser.lottoPurchaseDTO();
         Lottos lottos = lottoFactory.createLottos(lottoPurchaseDTO);
+
         outputView.showLottoNumbers(lottoFactory.checkLottos(), lottoPurchaseDTO.getLottoCount());
+
         WinningLotto winningLotto = lottoFactory.createWinningLotto(lottoPurchaseDTO);
         Map<Integer, Boolean> rawResults = lottoService.sameNumberCounts(lottos, winningLotto, lottoPurchaseDTO);
+
         List<String> results = lottoService.calculateResults(rawResults);
         double profit = lottoService.calculateProfit();
         Map<LottoRank, Integer> rankCount = lottoService.getRankCount();
+
         outputView.showStatistics(results, profit, rankCount);
     }
 

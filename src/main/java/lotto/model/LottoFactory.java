@@ -35,9 +35,8 @@ public class LottoFactory {
     }
 
     public WinningLotto createWinningLotto(LottoPurchaseDTO lottoPurchaseDTO) {
-        WinningLotto winningLotto = new WinningLotto(lottoPurchaseDTO.getLottoNumbers(),
+        return new WinningLotto(lottoPurchaseDTO.getLottoNumbers(),
                 lottoPurchaseDTO.getBonusNumber());
-        return winningLotto;
     }
 
     public String checkLottos() {

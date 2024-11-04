@@ -14,6 +14,7 @@ public class Prompts {
     public static final String OUTPUT_FOURTH_LOTTO_PROMPT = "4개 일치 (50,000원) - ";
     public static final String OUTPUT_FIFTH_LOTTO_PROMPT = "3개 일치 (5,000원) - ";
     public static final String OUTPUT_PERCENTAGE_UNIT = "%";
+    public static final String OUTPUT_LOTTO_COUNT_UNIT = "개";
     public static final String OUTPUT_PERCENTAGE_PROMPT_PRE = "총 수익률은 ";
     public static final String OUTPUT_PERCENTAGE_PROMPT_POST = "입니다.";
 

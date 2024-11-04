@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import lotto.common.Constants;
 import lotto.common.Prompts;
 import lotto.model.LottoRank;
 
@@ -33,7 +34,7 @@ public class OutputView {
     private void showRankStatistics(Map<LottoRank, Integer> rankCount) {
         for (LottoRank rank : LottoRank.values()) {
             int count = rankCount.getOrDefault(rank, 0);
-            System.out.println(rank.getMessage() + count + "개");
+            System.out.println(rank.getMessage() + count + Prompts.OUTPUT_LOTTO_COUNT_UNIT);
         }
     }
 

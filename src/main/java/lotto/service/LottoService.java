@@ -1,6 +1,5 @@
 package lotto.service;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,11 +13,9 @@ import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 
 public class LottoService {
-
     private int totalLottoCount;
     private int totalLottoPrice;
     private int totalPrize;
-
     private Map<LottoRank, Integer> rankCountMap = new HashMap<>();
 
     public Map<Integer, Boolean> sameNumberCounts(Lottos lottos, WinningLotto winningLotto,
