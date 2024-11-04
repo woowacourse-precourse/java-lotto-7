@@ -24,6 +24,14 @@ public enum WinningDetails {
         return matchedLottoCount;
     }
 
+    public int getSameNumberCount(){
+        return rank.matchCount();
+    }
+
+    public boolean getMatchBonusNumber(){
+        return rank.isBonusMatched();
+    }
+
 
     WinningDetails(Rank rank, String winningPrize, int matchedLottoCount) {
         this.rank = rank;
