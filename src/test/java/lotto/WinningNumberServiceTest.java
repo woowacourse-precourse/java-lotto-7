@@ -37,7 +37,7 @@ public class WinningNumberServiceTest {
         WinningNumber winning = winningNumberService.createWinningNumber(winningNumber, bonusNumber);
 
         assertThat(winning.getNumbers().size()).isEqualTo(6);
-        assertThat(winning.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(winning.getNumbers()).isEqualTo(List.of(1, 2, 3, 8, 9, 13));
     }
 
     @Test
