@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -46,10 +47,65 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("입력 금액이 숫자가 아니면 에러")
     @Test
-    void 예외_테스트() {
+    void checkNumber() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또를 살 수 없으면 에러")
+    @Test
+    void cantBuy() {
+        assertSimpleTest(() -> {
+            runException("999");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("입력 금액이 1,000원 단위가 아니면 에러")
+    @Test
+    void checkDivisible() {
+        assertSimpleTest(() -> {
+            runException("1234");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 중복되면 에러")
+    @Test
+    void checkNumberSame() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,5", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨번호가 1 에서 45 사이가 아니면 에러")
+    @Test
+    void checkNumberSize() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,50", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 에러")
+    @Test
+    void checkBonus() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 1 에서 45 사이가 아니면 에러")
+    @Test
+    void checkBonusSize() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "50");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
