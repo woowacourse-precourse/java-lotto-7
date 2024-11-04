@@ -29,9 +29,12 @@ class LottoServiceTest {
         List<Lotto> actualLottos = lottoService.generateLottos(amount);
 
         assertEquals(expectedTicketCount, actualLottos.size());
-        for (Lotto lotto : actualLottos) {
-            assertEquals(6, lotto.getNumbers().size());
-            assertTrue(lotto.getNumbers().stream().allMatch(num -> num >= START_INCLUSIVE  && num <= END_INCLUSIVE));
-        }
+
+        assertTrue(actualLottos.stream()
+                .allMatch(lotto -> lotto.getNumbers().size() == 6));
+
+        assertTrue(actualLottos.stream()
+                .flatMap(lotto -> lotto.getNumbers().stream())
+                .allMatch(num -> num >= START_INCLUSIVE && num <= END_INCLUSIVE));
     }
 }

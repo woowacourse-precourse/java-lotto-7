@@ -9,7 +9,7 @@ import static lotto.constants.LottoConstants.ZERO;
 
 public class LottoResult {
 
-    private final Map<Rank, Integer> rankCount;
+    private final Map<Rank, Long> rankCount;
 
     public LottoResult() {
         rankCount = Arrays.stream(Rank.values())
@@ -17,18 +17,16 @@ public class LottoResult {
     }
 
     public void addRank(Rank rank) {
-        if (rank != null) {
-            rankCount.put(rank, rankCount.get(rank) + ONE);
-        }
+        rankCount.put(rank, rankCount.get(rank) + ONE);
     }
 
-    public Map<Rank, Integer> getRankCount() {
+    public Map<Rank, Long> getRankCount() {
         return rankCount;
     }
 
-    public int calculateTotalPrizeMoney() {
+    public long calculateTotalPrizeMoney() {
         return rankCount.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().calculateTotalPrize(entry.getValue()))
+                .mapToLong(entry -> entry.getKey().calculateTotalPrize(entry.getValue()))
                 .sum();
     }
 }

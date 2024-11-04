@@ -5,6 +5,7 @@ import lotto.model.LottoGame;
 import lotto.model.LottoResult;
 import lotto.model.Rank;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public class ResultViewImpl implements ResultView {
 
     private void printLottoResult(LottoResult lottoResult) {
         StringBuilder result = new StringBuilder();
-        Map<Rank, Integer> rankCount = lottoResult.getRankCount();
+        Map<Rank, Long> rankCount = lottoResult.getRankCount();
         appendRank(result, rankCount, Rank.FIFTH, FIFTH_RANK_MESSAGE);
         appendRank(result, rankCount, Rank.FOURTH, FOURTH_RANK_MESSAGE);
         appendRank(result, rankCount, Rank.THIRD, THIRD_RANK_MESSAGE);
@@ -40,12 +41,18 @@ public class ResultViewImpl implements ResultView {
     }
 
 
-    private void appendRank(StringBuilder result, Map<Rank, Integer> rankCount, Rank rank, String description) {
+    private void appendRank(StringBuilder result, Map<Rank, Long> rankCount, Rank rank, String description) {
         result.append(String.format(LOTTO_RESULT_FORMAT, description, rankCount.getOrDefault(rank, ZERO)));
     }
 
     private void printReturnRate(LottoGame lottoGame) {
-        System.out.printf(RETURN_RATE_MESSAGE, lottoGame.calculateRate());
-        System.out.println();
+        double rate = lottoGame.calculateRate();
+        String formattedRate = formatRate(rate);
+        System.out.printf(RETURN_RATE_MESSAGE, formattedRate);
+    }
+
+    public String formatRate(double rate) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        return decimalFormat.format(rate) + "%";
     }
 }

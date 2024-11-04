@@ -28,7 +28,7 @@ public class LottoGame {
     }
 
     public double calculateRate() {
-        int totalPrizeMoney = lottoResult.calculateTotalPrizeMoney();
+        long totalPrizeMoney = lottoResult.calculateTotalPrizeMoney();
         if (purchaseAmount == ZERO) {
             return ZERO;
         }

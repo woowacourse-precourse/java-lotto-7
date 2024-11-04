@@ -11,9 +11,9 @@ public enum Rank {
     NONE(NONE_MATCH_COUNT, NONE_PRIZE_AMOUNT);
 
     private final int matchingCount;
-    private final int prize;
+    private final long prize;
 
-    Rank(int matchingCount, int prize) {
+    Rank(int matchingCount, long prize) {
         this.matchingCount = matchingCount;
         this.prize = prize;
     }
@@ -22,7 +22,7 @@ public enum Rank {
         return matchingCount;
     }
 
-    public int calculateTotalPrize(int count) {
+    public long calculateTotalPrize(long count) {
         return prize * count;
     }
 
