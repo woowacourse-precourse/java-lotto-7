@@ -19,11 +19,11 @@ public abstract class RankingEvaluator {
     }
 
     private static Map<Ranking, Integer> initRankingMap() {
-        Map<Ranking, Integer> rankingCounts = new LinkedHashMap<>();
+        Map<Ranking, Integer> rankingMap = new LinkedHashMap<>();
         Arrays.stream(Ranking.values())
                         .sorted(Collections.reverseOrder())
-                                .forEach(ranking -> rankingCounts.put(ranking, 0));
-        return rankingCounts;
+                                .forEach(ranking -> rankingMap.put(ranking, 0));
+        return rankingMap;
     }
 
     private static Ranking evaluateRank(Lotto lotto, JackpotNumbers jackpotNumbers) {
