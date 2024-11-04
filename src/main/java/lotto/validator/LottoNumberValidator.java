@@ -1,7 +1,8 @@
 package lotto.validator;
 
-import java.util.Collections;
 import java.util.List;
+
+import static lotto.validator.ErrorMessage.*;
 
 public class LottoNumberValidator {
     private static final Integer MIN = 1;
@@ -20,19 +21,19 @@ public class LottoNumberValidator {
             Integer.parseInt(token);
         }
         catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.TYPE.getMessage());
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + TYPE.getMessage());
         }
     }
 
     public static void validateNumberRange(Integer number) {
         if (number < MIN || number > MAX) {
-            throw new IllegalArgumentException(ErrorMessage.RANGE.getMessage());
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + RANGE.getMessage());
         }
     }
 
     public static void validateDuplicatedBonusNumber(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION.getMessage());
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + BONUS_NUMBER_DUPLICATION.getMessage());
         }
     }
 }
