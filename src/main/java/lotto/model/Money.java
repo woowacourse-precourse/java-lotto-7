@@ -21,4 +21,7 @@ public class Money {
     public void receiveWinningAmount(int totalWinningAmount) {
         this.winningAmount = totalWinningAmount;
     }
+    public double getRateOfReturn() {
+        return Math.round(10.0 * winningAmount / usedMoney )/10.0;
+    }
 }

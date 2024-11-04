@@ -42,4 +42,13 @@ class MoneyTest {
 
         assertEquals(takedMoney, usedMoney);
     }
+
+    @DisplayName("수익률을 반환한다")
+    @Test
+    void 수익률을_반환한다() {
+        Money money = new Money(5000);
+        money.take(5000);
+        money.receiveWinningAmount(7333);
+        assertEquals(money.getRateOfReturn(), 1.5);
+    }
 }
