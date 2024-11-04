@@ -31,7 +31,7 @@ public class LottoController {
             }
         }
 
-        // to output -> "X개를 구매했습니다. \n~~~  \n~~~"
+        lottoOutput.printAboutLottos(lottos);
 
         while (true) {
             try {
