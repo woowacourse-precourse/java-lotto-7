@@ -9,6 +9,7 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(List<Integer> numbers, int bonusNumber) {
+        validateDuplicateNumber(numbers,bonusNumber);
         this.winningNumbers = new Lotto(numbers).getNumbers();
         this.bonusNumber = bonusNumber;
     }
@@ -66,5 +67,11 @@ public class WinningLotto {
     }
     public double calculateRate(long totalWinMoney, long payment){
         return Math.round(((double) totalWinMoney / payment) * 10) / 10.0;
+    }
+
+    private void validateDuplicateNumber(List<Integer> winningNumbers, int bonusNumber){
+        if(winningNumbers.stream().anyMatch(n -> n.equals(bonusNumber))){
+            throw new IllegalArgumentException("[ERROR] 로또 번호와 보너스 번호가 중복됩니다.");
+        }
     }
 }
