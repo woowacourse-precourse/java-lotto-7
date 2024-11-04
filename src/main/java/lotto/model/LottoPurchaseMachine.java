@@ -21,19 +21,19 @@ public class LottoPurchaseMachine {
     public List<Lotto> generateLottoTickets() {
         int lottoAmount = calculateLottoAmount();
         return createLottoTickets(lottoAmount);
-    } // 로또 개수 저장, 생성
+    }
 
     private List<Lotto> createLottoTickets(int lottoAmount) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < lottoAmount; i++) {
             lottoTickets.add(generateSingleLottoTicket());
-        } //총 로또 생성 로직
+        }
         return lottoTickets;
     }
 
     private Lotto generateSingleLottoTicket() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, Lotto.NUMBERS_COUNT);
         return new Lotto(numbers);
-    } // 개별 로또 생성 로직
+    }
 }
 
