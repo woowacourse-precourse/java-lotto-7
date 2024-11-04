@@ -7,7 +7,7 @@ import lotto.model.LottoBonusNumber;
 import lotto.model.LottoCount;
 import lotto.service.LottoService;
 import lotto.util.InputValidator;
-import lotto.util.WinningDetails;
+import lotto.model.WinningDetails;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

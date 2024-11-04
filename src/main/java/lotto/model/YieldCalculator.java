@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.util.WinningDetails;
-
 public class YieldCalculator {
 
     public static final int UNIT_PURCHASE_AMOUNT = 1000;
