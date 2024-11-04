@@ -38,6 +38,15 @@ public class Validator {
         }
     }
 
+    public static void validateBonusNumber(String input, List<Integer> winningNumbers) {
+        validateWinningNumeric(input);
+        int bonusNumber = Integer.parseInt(input);
+        validateNumberRange(bonusNumber);
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없음");
+        }
+    }
+
     private static void validateNumber(String input) {
         validateWinningNumeric(input);
         int number = Integer.parseInt(input);
