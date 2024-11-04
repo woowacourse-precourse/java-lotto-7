@@ -70,4 +70,10 @@ public class Validation {
         }
     }
 
+
+    public static void validateMoneyInMyWallet(int money) {
+        if (money <= 0) {
+            throw new IllegalStateException("[ERROR] 지갑 속 구매금액은 0원 이하가 될 수 없습니다.");
+        }
+    }
 }
