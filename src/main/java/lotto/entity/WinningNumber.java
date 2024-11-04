@@ -6,7 +6,6 @@ import lotto.validator.entity.WinningNumberValidator;
 import java.util.ArrayList;
 import java.util.List;
 
-// 당첨 번호 엔티티 클래스
 public class WinningNumber {
     private final Lotto value;
     private Validator validator;

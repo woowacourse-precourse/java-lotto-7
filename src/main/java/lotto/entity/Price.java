@@ -3,7 +3,6 @@ package lotto.entity;
 import lotto.validator.Validator;
 import lotto.validator.entity.PriceValidator;
 
-// 구입가격 엔티티 클래스
 public class Price {
     private final int value;
     private Validator validator;

@@ -6,7 +6,6 @@ import lotto.validator.Validator;
 import java.util.HashSet;
 import java.util.List;
 
-// 로또 번호 검증 클래스
 public class LottoValidator implements Validator {
     private final List<Integer> numbers;
 

@@ -17,21 +17,21 @@ public class LottoResultOutputView implements OutputView {
     private final HashMap<LottoPrize, Integer> winningHistory;
     private final double rateOfReturn;
 
-    public LottoResultOutputView(HashMap<LottoPrize, Integer> winningHistory, double rateOfReturn){
+    public LottoResultOutputView(HashMap<LottoPrize, Integer> winningHistory, double rateOfReturn) {
         this.winningHistory = winningHistory;
         this.rateOfReturn = rateOfReturn;
     }
 
     @Override
-    public void print(){
+    public void print() {
         printWinningHistory();
         printRateOfReturn();
     }
 
-    private void printWinningHistory(){
+    private void printWinningHistory() {
         System.out.println(OutputMessage.WINNING_HISTORY_TITLE.getMessage());
 
-        for(LottoPrize lottoPrize: lottoPrizes){
+        for (LottoPrize lottoPrize : lottoPrizes) {
             int correctCount = lottoPrize.getCorrectCount();
             int prizeMoney = lottoPrize.getPrizeMoney();
             int winningCount = winningHistory.getOrDefault(lottoPrize, 0);
@@ -40,12 +40,12 @@ public class LottoResultOutputView implements OutputView {
         }
     }
 
-    private void printRateOfReturn(){
+    private void printRateOfReturn() {
         System.out.printf(OutputMessage.TOTAL_RATE_OF_RETURN.getMessage(), rateOfReturn);
     }
 
-    private String getHistoryMessage(LottoPrize lottoPrize){
-        if(lottoPrize == LottoPrize.SECOND_PRIZE){
+    private String getHistoryMessage(LottoPrize lottoPrize) {
+        if (lottoPrize == LottoPrize.SECOND_PRIZE) {
             return OutputMessage.SECOND_PRIZE_WINNING_HISTORY.getMessage();
         }
 

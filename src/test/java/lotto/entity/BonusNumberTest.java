@@ -9,8 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BonusNumberTest {
-    // 보너스 번호 엔티티 ( BonusNumber.java ) 테스트
-
     @DisplayName("[BonusNumberTest] 보너스 번호에 빈 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
     @NullSource

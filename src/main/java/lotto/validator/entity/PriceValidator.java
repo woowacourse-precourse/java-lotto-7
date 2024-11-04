@@ -3,7 +3,6 @@ package lotto.validator.entity;
 import lotto.enums.ExceptionMessage;
 import lotto.validator.Validator;
 
-// 구입 금액 검증 클래스
 public class PriceValidator implements Validator {
     private final String price;
 

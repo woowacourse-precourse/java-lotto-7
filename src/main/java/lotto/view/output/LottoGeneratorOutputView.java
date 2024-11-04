@@ -8,7 +8,7 @@ import java.util.List;
 public class LottoGeneratorOutputView implements OutputView {
     private final List<Lotto> lottos;
 
-    public LottoGeneratorOutputView(List<Lotto> lottoList){
+    public LottoGeneratorOutputView(List<Lotto> lottoList) {
         this.lottos = lottoList;
     }
 
@@ -18,11 +18,11 @@ public class LottoGeneratorOutputView implements OutputView {
         printLottos();
     }
 
-    private void printLottosSize(){
+    private void printLottosSize() {
         System.out.printf(OutputMessage.LOTTO_COUNT.getMessage(), lottos.size());
     }
 
-    private void printLottos(){
+    private void printLottos() {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers().toString());
         }

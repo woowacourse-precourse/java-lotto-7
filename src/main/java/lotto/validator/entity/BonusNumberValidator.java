@@ -3,7 +3,6 @@ package lotto.validator.entity;
 import lotto.enums.ExceptionMessage;
 import lotto.validator.Validator;
 
-// 보너스 번호 검증 클래스
 public class BonusNumberValidator implements Validator {
     private final String bonusNumber;
 

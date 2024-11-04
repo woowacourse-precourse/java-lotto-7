@@ -11,8 +11,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoTest {
-    // 로또 엔티티 ( Lotto.java ) 테스트
-
     @DisplayName("[LottoTest] 로또 번호의 개수가 6개가 아니면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource

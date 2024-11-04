@@ -1,6 +1,5 @@
 package lotto.enums;
 
-// 입력 안내 메세지 열거 클래스
 public enum InputMessage {
     PRICE_INPUT_MESSAGE("구입금액을 입력해 주세요"),
     WINNING_NUMBER_INPUT_MESSAGE("당첨 번호를 입력해 주세요"),

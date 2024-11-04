@@ -9,9 +9,9 @@ import java.util.List;
 
 // 로또를 만드는 클래스
 public class LottoGenerator {
-    private final int START_NUMBER = 1;
-    private final int END_NUMBER = 45;
-    private final int COUNT_OF_LOTTO_NUMBER = 6;
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
+    private static final int COUNT_OF_LOTTO_NUMBER = 6;
 
     private final Price price;
     private final List<Lotto> lottos;

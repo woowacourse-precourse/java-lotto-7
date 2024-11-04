@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoGame {
-    public void start(){
+    public void start() {
         Price price = inputPrice(new PriceInputView());
 
         List<Lotto> lottos = getLottos(price);
@@ -33,51 +33,51 @@ public class LottoGame {
         printLottoResult(lottoResult.getWinningHistory(), lottoResult.getRateOfReturn());
     }
 
-    private Price inputPrice(InputView view){
+    private Price inputPrice(InputView view) {
         Price price;
 
-        try{
+        try {
             price = new Price(view.input());
-        }catch (IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             price = inputPrice(view);
         }
 
         return price;
     }
 
-    private List<Lotto> getLottos(Price price){
+    private List<Lotto> getLottos(Price price) {
         return new LottoGenerator(price).getLottoList();
     }
 
-    private void printLottos(List<Lotto> lottos){
+    private void printLottos(List<Lotto> lottos) {
         new LottoGeneratorOutputView(lottos).print();
     }
 
-    private WinningNumber inputWinningNumber(InputView view){
+    private WinningNumber inputWinningNumber(InputView view) {
         WinningNumber winningNumber;
 
-        try{
+        try {
             winningNumber = new WinningNumber(view.input());
-        }catch (IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             winningNumber = inputWinningNumber(view);
         }
 
         return winningNumber;
     }
 
-    private BonusNumber inputBonusNumber(InputView view){
+    private BonusNumber inputBonusNumber(InputView view) {
         BonusNumber bonusNumber;
 
-        try{
+        try {
             bonusNumber = new BonusNumber(view.input());
-        }catch (IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             bonusNumber = inputBonusNumber(view);
         }
 
         return bonusNumber;
     }
 
-    private void printLottoResult(HashMap<LottoPrize, Integer> winningHistory, double rateOfReturn){
+    private void printLottoResult(HashMap<LottoPrize, Integer> winningHistory, double rateOfReturn) {
         new LottoResultOutputView(winningHistory, rateOfReturn).print();
     }
 }

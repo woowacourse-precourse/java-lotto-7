@@ -18,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoResultTest {
-    // 로또 결과 계산 기능 ( LottoResult.java ) 테스트
-
     @DisplayName("[LottoResultTest] 구입 금액에 빈 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
     @MethodSource

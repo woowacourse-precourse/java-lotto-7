@@ -2,7 +2,6 @@ package lotto.enums;
 
 import java.util.Arrays;
 
-// 등수 별 맞춘 갯수, 상금을 관리하는 열거 클래스
 public enum LottoPrize {
     NO_PRIZE(0, false, 0),
     FIFTH_PRIZE(3, false, 5_000),

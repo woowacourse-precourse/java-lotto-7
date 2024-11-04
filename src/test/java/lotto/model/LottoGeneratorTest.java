@@ -11,8 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoGeneratorTest {
-    // 로또 번호 생성 기능 ( LottoGenerator.java ) 테스트
-    private final int UNIT_PRICE = 1000;
+    private static final int UNIT_PRICE = 1000;
 
     @DisplayName("[LottoGeneratorTest] 구입 금액에 빈 값이 입력되면 예외가 발생한다")
     @ParameterizedTest

@@ -9,8 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PriceTest {
-    // 구입 금액 엔티티 ( Price.java ) 테스트
-
     @DisplayName("[PriceTest] 구입 금액에 빈 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
     @NullSource

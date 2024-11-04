@@ -7,7 +7,7 @@ public abstract class InputView {
     protected Validator validator;
     protected String inputValue;
 
-    public String input(){
+    public String input() {
         printInputMessage();
 
         this.inputValue = removeWhiteSpace(Console.readLine());

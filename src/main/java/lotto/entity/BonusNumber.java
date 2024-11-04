@@ -3,7 +3,6 @@ package lotto.entity;
 import lotto.validator.Validator;
 import lotto.validator.entity.BonusNumberValidator;
 
-// 보너스 게임 엔티티 클래스
 public class BonusNumber {
     private final int value;
     private Validator validator;

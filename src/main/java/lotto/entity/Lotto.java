@@ -6,7 +6,6 @@ import lotto.validator.entity.LottoValidator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// 로또 엔티티 클래스
 public class Lotto {
     private final List<Integer> numbers;
     private Validator validator;

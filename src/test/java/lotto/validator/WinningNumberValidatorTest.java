@@ -11,8 +11,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningNumberValidatorTest {
-    // 당첨 번호 검증 클래스 ( WinningNumberValidator.java ) 테스트
-
     @DisplayName("[WinningNumberValidatorTest] 당첨 번호에 빈 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
     @NullSource
