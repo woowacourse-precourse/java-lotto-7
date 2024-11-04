@@ -121,4 +121,10 @@ class LottoRankTest {
     void 다섯번째순위일치수확인_테스트() {
         assertEquals(3, LottoRank.FIFTH.getMatchCount());
     }
+
+    @DisplayName("일치하지 않는 경우의 일치 수 확인")
+    @Test
+    void 일치하지않는경우일치수확인_테스트() {
+        assertEquals(0, LottoRank.NONE.getMatchCount());
+    }
 }
