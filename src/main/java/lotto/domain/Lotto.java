@@ -53,4 +53,8 @@ public class Lotto {
             System.out.println(e.getMessage());
         }
     }
+
+    public List<Integer> getLottoNumbers(){
+        return numbers;
+    }
 }

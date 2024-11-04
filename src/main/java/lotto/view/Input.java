@@ -41,6 +41,7 @@ public class Input {
     }
     
     public static int inputBonusNumber(List<Integer> winningNumbers) throws IllegalArgumentException{
+        System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber;
         try{
             bonusNumber = Integer.parseInt(Console.readLine());
