@@ -1,7 +1,11 @@
 package lotto.view;
 
+import static lotto.utils.Transformer.joinToString;
+import static lotto.utils.Transformer.parsePositiveInt;
+import static lotto.utils.Transformer.toStringWithRound;
+import static lotto.utils.Transformer.transformToIntegerList;
+
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
@@ -40,7 +44,7 @@ public class LottoView {
     public int readBuyingLottoCount(){
         try {
             String rawMoney = this.readMoney();
-            int money = this.parsePositiveInt(rawMoney);
+            int money = parsePositiveInt(rawMoney);
             return money/ LottoView.LOTTO_PRICE;
         }catch (IllegalArgumentException exception){
             return readBuyingLottoCount();
@@ -64,7 +68,7 @@ public class LottoView {
         String rawBonusNumber = Console.readLine();
         try {
             this.validateBonusNumber(rawBonusNumber);
-            return this.parsePositiveInt(rawBonusNumber);
+            return parsePositiveInt(rawBonusNumber);
         }catch (IllegalArgumentException exception){
             return readBonusNumber();
         }
@@ -94,7 +98,7 @@ public class LottoView {
     }
 
     public void validateMoney(String money) throws IllegalArgumentException{
-        Validator.validateDivisible(this.parsePositiveInt(money),LottoView.LOTTO_PRICE);
+        Validator.validateDivisible(parsePositiveInt(money),LottoView.LOTTO_PRICE);
     }
 
     public void validateWinningNumbers(String rawWinningNumbers){
@@ -111,7 +115,7 @@ public class LottoView {
     }
 
     public void validateBonusNumber(String rawBonusNumber){
-        int bonusNumber = this.parsePositiveInt(rawBonusNumber);
+        int bonusNumber = parsePositiveInt(rawBonusNumber);
         NumberList.validateLottoNumberRange(bonusNumber);
     }
 
@@ -132,49 +136,12 @@ public class LottoView {
 
     public void printRateOfReturn(double rateOfReturn){
         int roundPosition = 2;
-        String stringReturnRate = this.toStringWithRound(rateOfReturn,roundPosition);
+        String stringReturnRate = toStringWithRound(rateOfReturn,roundPosition);
         System.out.printf(UserInterfaceMessage.PRINTF_RETURN_OF_RATE,stringReturnRate);
     }
 
-    public List<Integer> transformToIntegerList(String[] rawNumberList){
-        List<Integer> numberList = new ArrayList<>();
-
-        for(String rawNumber : rawNumberList){
-            int number = this.parsePositiveInt(rawNumber);
-            numberList.add(number);
-        }
-
-        return numberList;
-    }
-
-    /*TODO
-       - 변환 로직을 책임질 클래스 구현 고려하기
-     */
-    public String toStringWithRound(double decimal, int roundPosition){
-        String format = "%,.0f";
-        int defaultDecimalPosition = 0;
-        int decimalPosition = --roundPosition;
-        if(decimalPosition != defaultDecimalPosition){
-           format = format.replaceFirst(Integer.toString(defaultDecimalPosition),Integer.toString(decimalPosition));
-        }
-        return String.format(format,decimal);
-    }
 
 
-    public int parsePositiveInt(String rawNumber){
-
-        validatePositiveNumericString(rawNumber);
-
-        return Integer.parseInt(rawNumber);
-    }
-
-    public void validatePositiveNumericString(String rawNumber){
-        Validator.validateBlankString(rawNumber);
-        Validator.validateNumericString(rawNumber);
-        Validator.validateIntRange(rawNumber);
-        int number = Integer.parseInt(rawNumber);
-        Validator.validatePositiveNumber(number);
-    }
 
     public void printLottoNumbers(Lotto lotto){
        String result = UserInterfaceMessage.PRINT_LOTTO_LIST_START_DELIMITER;
@@ -183,17 +150,7 @@ public class LottoView {
        System.out.println(result);
     }
 
-    static public String joinToString(List<Integer> numberList, String delimiter){
 
-
-        List<String> stringNumbers = new ArrayList<>();
-
-        for(int number : numberList){
-            stringNumbers.add(Integer.toString(number));
-        }
-
-       return String.join(delimiter,stringNumbers);
-    }
 
 
 }
