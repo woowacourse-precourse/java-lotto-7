@@ -17,7 +17,7 @@ public class Application {
         List<Lotto> playerLottos = lottoMachine.purchaseLotto(lottoMoney.getPurchaseCount());
         output.printPurchaseLotto(playerLottos);
         WinningLotto winningLotto = createWinningLotto();
-        Map<String, Integer> winningResult = winningLotto.getWinningResult(playerLottos);
+        Map<LottoPrize, Integer> winningResult = winningLotto.getWinningResult(playerLottos);
         LottoStatistics lottoStatistics = new LottoStatistics();
         output.printWinningResult(winningResult, lottoStatistics.calculateYield(lottoMoney.getMoney(), winningResult));
     }
