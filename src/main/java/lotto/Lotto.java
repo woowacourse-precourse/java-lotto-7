@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -22,8 +23,9 @@ public class Lotto {
     }
 
     public void checkForWinning(List<Integer> inputNumbers, Integer specNum) {
-        numbers.retainAll(inputNumbers);
-        int matchedNum = numbers.size();
+        List<Integer> matchingNums = new ArrayList<>(numbers);
+        matchingNums.retainAll(inputNumbers);
+        int matchedNum = matchingNums.size();
         rank = ranking(matchedNum, specNum);
     }
 
