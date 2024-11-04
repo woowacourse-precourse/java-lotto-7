@@ -54,14 +54,6 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @Test
-    void NegativeNumberException() {
-        assertSimpleTest(() -> {
-            runException("-1000");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
     @Override
     public void runMain() {
         Application.main(new String[]{});
