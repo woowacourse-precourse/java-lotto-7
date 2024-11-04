@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private LottoView view;
@@ -13,7 +14,7 @@ public class LottoController {
 
     public void run() {
         buyLottos();
-        
+        Map<LottoEnum, Integer> matchResult = matchWinningLotto();
     }
 
     private void buyLottos() {
@@ -24,11 +25,44 @@ public class LottoController {
 
                 int purchaseCount = logic.getTicketCount(purchaseAmount);
                 view.printIssuedLottos(purchaseCount, lottos);
+
                 break;
             } catch (IllegalArgumentException iae) {
-                System.out.println(iae.getMessage());
+                view.printErrorMessage(iae.getMessage());
             }
         }
     }
+
+    private Map<LottoEnum, Integer> matchWinningLotto() {
+        ValidationForm<List<Integer>> winningNumbersValidated = getWinningNumbersValidated();
+        ValidationForm<Integer> bonusNumberValidated = getBonusNumberValidated();
+
+        return logic.matchWinners(winningNumbersValidated, bonusNumberValidated);
+    }
+
+    private ValidationForm<List<Integer>> getWinningNumbersValidated() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = view.readWinningNumbers();
+                return logic.validateWinningNumber(winningNumbers);
+            } catch (IllegalArgumentException iae) {
+                view.printErrorMessage(iae.getMessage());
+            }
+
+        } 
+    }
+
+    private ValidationForm<Integer> getBonusNumberValidated() {
+        while (true) {
+            try {
+                int bonusNumber = view.readBonusNumber();
+                return logic.validateBonusNumber(bonusNumber);
+            } catch (IllegalArgumentException iae) {
+                view.printErrorMessage(iae.getMessage());
+            }
+
+        } 
+    }
+
     
 }

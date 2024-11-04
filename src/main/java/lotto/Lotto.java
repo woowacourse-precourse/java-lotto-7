@@ -26,9 +26,20 @@ public class Lotto {
         }
 
         // 로또 번호 범위 값 달성 검사
-        if (!numbers.stream().allMatch(number -> number >= Lotto.MIN_VALUE && number <= Lotto.MAX_VALUE)) {
+        if (!numbers.stream()
+                    .allMatch(number -> number >= Lotto.MIN_VALUE && number <= Lotto.MAX_VALUE)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호의 범위가 잘못 설정되었습니다.");
         }
+    }
+
+    public int matchNumbers(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                            .filter(winningNumbers::contains)
+                            .count();
+    }
+
+    public boolean matchBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     public List<Integer> getNumbers() {
