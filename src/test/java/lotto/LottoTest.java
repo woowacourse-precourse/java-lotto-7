@@ -22,9 +22,9 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
-    @DisplayName("로또 번호에 문자열이 포함되면 예외가 발생한다.")
+    @DisplayName("로또_번호에_45초과의_숫자가_포함되면_예외가_발생한다.")
     @Test
-    void 로또_번호에_45의_숫자가_포함되면_예외가_발생한다() {
+    void 로또_번호에_45초과의_숫자가_포함되면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 175, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class); // 예외 메시지 확인
     }
