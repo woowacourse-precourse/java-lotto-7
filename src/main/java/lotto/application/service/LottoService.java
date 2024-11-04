@@ -2,10 +2,7 @@ package lotto.application.service;
 
 import lotto.application.dto.LottoTicketsDTO;
 import lotto.domain.generator.LottoNumberGenerator;
-import lotto.domain.model.Lotto;
-import lotto.domain.model.LottoNumbers;
-import lotto.domain.model.LottoTickets;
-import lotto.domain.model.WinningLotto;
+import lotto.domain.model.*;
 import lotto.domain.result.LottoResult;
 import lotto.domain.result.ResultCalculator;
 import lotto.infrastructure.repository.LottoRepository;
@@ -43,5 +40,9 @@ public class LottoService {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         ResultCalculator calculator = new ResultCalculator();
         return new LottoResult(calculator.calculateResults(lottoTickets, winningLotto));
+    }
+
+    public double calculateProfitRate(LottoResult result, int amount) {
+        return ProfitCalculator.calculateProfitRate(result.getResults(), amount);
     }
 }

@@ -27,7 +27,7 @@ public class OutputView {
         }
     }
 
-    public void printResults(LottoResult result) {
+    public void printResults(LottoResult result, double profitRate) {
         System.out.println(WINNING_STATISTICS_TITLE);
         System.out.println(SEPARATOR_LINE);
 
@@ -37,12 +37,11 @@ public class OutputView {
                     String formatMoney = NumberFormat.getInstance().format(rank.getPrize());
 
                     if (rank == LottoRank.SECOND) {
-                        // 5개 일치, 보너스 볼 일치 형식으로 출력
                         System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개%n", formatMoney, result.getRankCount(rank));
                     } else {
-                        // 그 외의 경우
                         System.out.printf(RANK_RESULT_FORMAT + "%n", rank.getMatchCount(), formatMoney, result.getRankCount(rank));
                     }
                 });
+        System.out.printf(TOTAL_PROFIT_MESSAGE + "%n", profitRate);
     }
 }

@@ -16,4 +16,8 @@ public class LottoResult {
     public int getRankCount(LottoRank rank) {
         return results.getOrDefault(rank, 0);
     }
+
+    public Map<LottoRank, Integer> getResults() {
+        return new EnumMap<>(results);
+    }
 }

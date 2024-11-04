@@ -46,7 +46,8 @@ public class LottoController {
         int bonusNumber = getValidBonusNumber(winningNumbers.getNumbers());
 
         LottoResult result = lottoService.calculateResults(lottoTickets, winningNumbers, bonusNumber);
-        outputView.printResults(result);
+        double profitRate = lottoService.calculateProfitRate(result, amount);
+        outputView.printResults(result, profitRate);
 
     }
 
