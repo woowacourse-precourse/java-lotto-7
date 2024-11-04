@@ -2,18 +2,20 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.PatternSyntaxException;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
-    private Lotto(Set<Integer> numbers) {
-        List<Integer> result = new ArrayList<>(numbers);
-        validate(result);
-        this.numbers = List.copyOf(result);
+    public Lotto(List<Integer> numbers) {
+        numbers = new ArrayList<>(numbers);
+        validate(numbers);
+        Collections.sort(numbers);
+        this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
@@ -21,12 +23,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        Set<Integer> numberSet = new HashSet<>(numbers);
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (numberSet.size() != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    public static Lotto createLotto(Set<Integer> numbers) {
+    public static Lotto createLotto(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 
@@ -41,7 +47,7 @@ public class Lotto {
             if (numberList.size() != numberSet.size()) {
                 throw new IllegalArgumentException();
             }
-            return new Lotto(numberSet);
+            return new Lotto(numberList);
         } catch (PatternSyntaxException e) {
             throw new IllegalArgumentException();
         }
