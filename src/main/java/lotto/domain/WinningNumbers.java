@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.WINNING_NUMBERS_NOT_NATURAL_NUMBERS;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -7,7 +9,6 @@ import java.util.List;
 public class WinningNumbers {
 
     private static final String DELIMITER = ",";
-    private static final String WINNING_NUMBERS_NOT_NATURAL_NUMBERS = "[ERROR] 당첨 번호가 자연수가 아닙니다.";
 
     private Lotto numbers;
 

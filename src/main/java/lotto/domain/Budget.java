@@ -1,9 +1,9 @@
 package lotto.domain;
 
-public class Budget {
+import static lotto.constant.ErrorMessage.BUDGET_NOT_DIVIDED_ONE_THOUSAND;
+import static lotto.constant.ErrorMessage.BUDGET_NOT_NATURAL_NUMBER;
 
-    private static final String BUDGET_NOT_NATURAL_NUMBER = "[ERROR] 구입 금액이 자연수가 아닙니다.";
-    private static final String BUDGET_NOT_DIVIDED_ONE_THOUSAND = "[ERROR] 구입 금액이 1000원으로 나누어 떨어지지 않습니다.";
+public class Budget {
 
     private final int amount;
 

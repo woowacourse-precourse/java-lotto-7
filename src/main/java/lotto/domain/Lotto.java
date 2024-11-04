@@ -3,6 +3,9 @@ package lotto.domain;
 import static lotto.constant.LottoInfo.END_NUMBER;
 import static lotto.constant.LottoInfo.PICK_COUNT;
 import static lotto.constant.LottoInfo.START_NUMBER;
+import static lotto.constant.ErrorMessage.NUMBER_COUNT_NOT_VALID;
+import static lotto.constant.ErrorMessage.NUMBER_DUPLICATED;
+import static lotto.constant.ErrorMessage.NUMBER_OUT_OF_RANGE;
 import static lotto.domain.WinningInfo.SECOND;
 import static lotto.domain.WinningInfo.THIRD;
 
@@ -11,9 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private static final String NUMBER_COUNT_NOT_VALID = "[ERROR] 로또 번호 개수가 일치하지 않습니다.";
-    private static final String NUMBER_OUT_OF_RANGE = "[ERROR] 로또 번호의 숫자 범위를 벗어납니다.";
-    private static final String NUMBER_DUPLICATED = "[ERROR] 번호에 중복이 존재합니다.";
 
     private final List<Integer> numbers;
 
