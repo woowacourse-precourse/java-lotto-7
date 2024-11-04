@@ -6,7 +6,7 @@ import java.util.List;
 public class Lotto {
     private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<LottoNumber> numbers) {
         validate(numbers);
         this.numbers = numbers.stream()
                 .map(LottoNumber::new)
