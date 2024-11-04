@@ -1,9 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoView {
@@ -17,7 +15,8 @@ public class LottoView {
     public static List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputNumbers = Console.readLine();
-        List<Integer> winningNumbers = Arrays.stream(inputNumbers.split(",", -1))
+
+        List<Integer> winningNumbers = Arrays.stream(inputNumbers.replace(" ", "").split(",", -1))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
         return winningNumbers;
