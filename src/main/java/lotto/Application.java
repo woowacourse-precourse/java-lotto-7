@@ -84,7 +84,7 @@ public class Application {
         }
     }
 
-    public static void printLottoResults(int purchaseAmount, int totalPrizeMoney, List<LottoResultType> lottoResults) {
+    private static void printLottoResults(int purchaseAmount, int totalPrizeMoney, List<LottoResultType> lottoResults) {
         System.out.println();
         System.out.println("당첨 통계\n---");
         for (LottoResultType lottoResultType : LottoResultType.hasPrizeMoneyLottoResultType()) {
@@ -145,7 +145,7 @@ public class Application {
                 !isBonusNumInWinningNumbers(bonusNumberStr.trim(), winningNumbers);
     }
 
-    public static void handleInvalidPurchaseAmount() {
+    private static void handleInvalidPurchaseAmount() {
         try {
             throw new IllegalArgumentException(CustomError.INVALID_PURCHASE_INPUT.getErrorMessage());
         } catch (IllegalArgumentException e) {
@@ -153,7 +153,7 @@ public class Application {
         }
     }
 
-    public static void handleInvalidWinningNumbers() {
+    private static void handleInvalidWinningNumbers() {
         try {
             throw new IllegalArgumentException(CustomError.INVALID_LOTTO_NUM_INPUT.getErrorMessage());
         } catch (IllegalArgumentException e) {
@@ -161,14 +161,13 @@ public class Application {
         }
     }
 
-    public static void handleInvalidBonusNumber() {
+    private static void handleInvalidBonusNumber() {
         try {
             throw new IllegalArgumentException(CustomError.INVALID_BONUS_NUM_INPUT.getErrorMessage());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
-
 
     private static boolean isBlank(String input) {
         return input.isBlank();
