@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.util.ErrorMessage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -89,6 +91,60 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호 문자 입력")
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ErrorMessage.IS_NOT_NUMBER.getMsg());
+        });
+    }
+
+    @DisplayName("보너스 번호 여러 개 입력")
+    @Test
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "4,5");
+            assertThat(output()).contains(ErrorMessage.IS_NOT_NUMBER.getMsg());
+        });
+    }
+
+    @DisplayName("보너스 번호 중복 입력")
+    @Test
+    void 예외_테스트4() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ErrorMessage.LOTTO_BONUS_NUM_DUPLICATION.getMsg());
+        });
+    }
+
+    @DisplayName("로또 번호 중복 입력")
+    @Test
+    void 예외_테스트5() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,6,6");
+            assertThat(output()).contains(ErrorMessage.LOTTO_NUMS_DUPLICATION.getMsg());
+        });
+    }
+
+    @DisplayName("로또 번호 개수 초과 입력")
+    @Test
+    void 예외_테스트6() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ErrorMessage.LOTTO_SIZE_OUT_OF_RANGE.getMsg());
+        });
+    }
+
+    @DisplayName("로또 번호 개수 미만 입력")
+    @Test
+    void 예외_테스트7() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5");
+            assertThat(output()).contains(ErrorMessage.LOTTO_SIZE_OUT_OF_RANGE.getMsg());
         });
     }
 
