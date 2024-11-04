@@ -16,6 +16,9 @@ public class OutputView {
     private static final String FIRST_PLACE_MESSAGE = "6개 일치 (2,000,000,000원) - %d개%n";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.%n";
 
+    private OutputView() {
+    }
+
     public static void printLottoTickets(LottoTickets lottoTickets) {
         System.out.printf(LOTTO_TICKETS_MESSAGE, lottoTickets.get().size());
         lottoTickets.get().forEach(lotto -> System.out.println(lotto.get()));

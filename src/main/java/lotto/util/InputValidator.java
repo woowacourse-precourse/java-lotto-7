@@ -6,6 +6,9 @@ import lotto.common.LottoConstants;
 
 public class InputValidator {
 
+    private InputValidator() {
+    }
+
     public static void validateNotBlankAndInteger(String input) {
         InputValidator.validateNotBlank(input);
         InputValidator.validateInteger(input);

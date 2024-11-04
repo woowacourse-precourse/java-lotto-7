@@ -11,6 +11,9 @@ public class InputView {
     private static final String WINNING_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
+    private InputView() {
+    }
+
     public static int inputPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
         return readValidatedInteger();
