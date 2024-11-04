@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.service.LottoNumberGenerator;
+import lotto.service.LottoPrizeCalculator;
 import lotto.service.PriceCalculator;
 import lotto.service.WinningNumberParser;
 import lotto.view.input.PurchasePriceInput;
@@ -18,13 +19,16 @@ public class LottoController {
     private final WinningNumberParser winningNumberParser;
     private final WinningNumberInput winningNumberInput;
 
-    public LottoController(PriceCalculator priceCalculator, PurchasePriceInput purchasePriceInput, LottoNumberGenerator lottoNumberGenerator, ResultDisplayer resultDisplayer, WinningNumberParser winningNumberParser, WinningNumberInput winningNumberInput) {
+    private final LottoPrizeCalculator lottoPrizeCalculator;
+
+    public LottoController(PriceCalculator priceCalculator, PurchasePriceInput purchasePriceInput, LottoNumberGenerator lottoNumberGenerator, ResultDisplayer resultDisplayer, WinningNumberParser winningNumberParser, WinningNumberInput winningNumberInput, LottoPrizeCalculator lottoPrizeCalculator) {
         this.purchasePriceInput = purchasePriceInput;
         this.priceCalculator = priceCalculator;
         this.lottoNumberGenerator = lottoNumberGenerator;
         this.resultDisplayer = resultDisplayer;
         this.winningNumberParser = winningNumberParser;
         this.winningNumberInput = winningNumberInput;
+        this.lottoPrizeCalculator = lottoPrizeCalculator;
     }
 
     public void start() {
@@ -37,7 +41,8 @@ public class LottoController {
         Lotto parsedWinningNumbers = winningNumberParser.splitWinngNumber(winningNumber);
 
         String winningBonusNumber = winningNumberInput.getBonusNumber();
-        int parsedWinningBonusNumber = winningNumberParser.parseBonusWinningNumber(winningBonusNumber);
+        int parsedWinningBonus= winningNumberParser.parseBonusWinningNumber(winningBonusNumber);
+        lottoPrizeCalculator.calculatePrize(generatedLottos, parsedWinningNumbers, parsedWinningBonus);
     }
 }
 
