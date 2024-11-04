@@ -20,10 +20,11 @@ public class LottoController {
         this.service = service;
     }
     public void run(){
-        outputView.purchase();
+        outputView.purchasePrint();
         String purchaseInput = inputView.purchaseInput();
         int lottoQuantity = service.lottoQuantity(purchaseInput);
-        outputView.quantity(lottoQuantity);
+        outputView.quantityPrint(lottoQuantity);
         List<Lotto> lottos = service.issueLottos(lottoQuantity);
+        outputView.lottosPrint(lottos);
     }
 }
