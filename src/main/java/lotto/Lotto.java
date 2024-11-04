@@ -8,7 +8,7 @@ import java.util.Collections;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         checkSize(numbers);
         checkDuplicate(numbers);
         checkRange(numbers);
@@ -55,11 +55,10 @@ public class Lotto {
         return new ArrayList<>(this.numbers);
     }
 
-    public int countMatches(Lotto winningLotto) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
+    public int countMatches(List<Integer> winningNumberList) {
         int count = 0;
         for (Integer number : this.numbers) {
-            if (winningNumbers.contains(number)) {
+            if (winningNumberList.contains(number)) {
                 count++;
             }
         }
