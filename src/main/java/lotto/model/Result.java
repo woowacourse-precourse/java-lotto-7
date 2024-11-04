@@ -24,10 +24,7 @@ public class Result {
     }
 
     private boolean isRecordableCount(long matchingCount) {
-        if (matchingCount == 0 || matchingCount == 1 || matchingCount == 2) {
-            return false;
-        }
-        return true;
+        return matchingCount != 0 && matchingCount != 1 && matchingCount != 2;
     }
 
     private void increaseMatchingIndex(int matchingIndex) {

@@ -3,7 +3,6 @@ package lotto.view;
 import lotto.enumMessage.Rank;
 import lotto.model.UserLotto;
 import lotto.model.UserLottos;
-import org.junit.jupiter.params.ParameterizedTest;
 
 import java.util.List;
 

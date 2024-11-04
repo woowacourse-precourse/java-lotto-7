@@ -36,9 +36,6 @@ public enum Rank {
         if (matchingCount == 4) {
             return FOURTH;
         }
-        if (matchingCount == 3) {
-            return FIFTH;
-        }
-        return null;
+        return FIFTH;
     }
 }
