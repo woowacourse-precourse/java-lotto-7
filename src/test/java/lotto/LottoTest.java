@@ -32,8 +32,8 @@ class LottoTest {
                 .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
-    @Test
     @DisplayName("보너스 번호가 1~45 범위를 벗어나면 예외가 발생한다")
+    @Test
     void 보너스_번호가_범위를_벗어나면_예외가_발생한다() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
