@@ -29,10 +29,13 @@ public class Lotto {
     }
 
     private void isOutOfRange(List<Integer> winningLottery){
-        winningLottery.forEach(number -> {
-            if(number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END)
-                throw new IllegalArgumentException(INVALID_GENERATED_LOTTO_NUMBERS_RANGE.getMessage());
-        });
+        winningLottery.forEach(this::checkRangeEachNumber);
+    }
+
+    private void checkRangeEachNumber(Integer number) {
+        if(number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END) {
+            throw new IllegalArgumentException(INVALID_GENERATED_LOTTO_NUMBERS_RANGE.getMessage());
+        }
     }
 
     private void isGeneratedSixNumbers(List<Integer> numbers){
