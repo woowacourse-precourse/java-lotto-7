@@ -41,4 +41,16 @@ public final class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateListStringToInteger(List<String> list) {
+        for (String string : list) {
+            validateStringToInteger(string);
+        }
+    }
+
+    public static void validateStringToInteger(String string) {
+        if (!string.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
