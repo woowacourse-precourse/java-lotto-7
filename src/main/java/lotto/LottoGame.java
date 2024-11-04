@@ -8,13 +8,6 @@ import java.util.stream.Collectors;
 
 public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
-    private static final Map<Integer, Integer> PRIZE_MONEY = Map.of(
-            6, 2000000000,
-            5, 1500000,
-            4, 50000,
-            3, 5000
-    );
-    private static final int SECOND_PLACE_PRIZE = 30000000;
     private final List<Lotto> lottos = new ArrayList<>();
     private List<Integer> winningNumbers;
     private int bonusNumber;
@@ -52,8 +45,8 @@ public class LottoGame {
     // 2. 로또 발행 및 출력
     public void purchaseLottos(int quantity) {
         for (int i = 0; i < quantity; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6); // 로또 번호 생성
-            lottos.add(new Lotto(numbers)); // 생성된 번호 리스트로 Lotto 객체 생성
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos.add(new Lotto(numbers));
         }
         System.out.printf("%d개를 구매했습니다.%n", quantity);
         printLottoNumbers();
@@ -112,11 +105,9 @@ public class LottoGame {
 
     private Map<String, Integer> initializeRankCount() {
         Map<String, Integer> rankCount = new HashMap<>();
-        rankCount.put("1st", 0);
-        rankCount.put("2nd", 0);
-        rankCount.put("3rd", 0);
-        rankCount.put("4th", 0);
-        rankCount.put("5th", 0);
+        for (Rank rank : Rank.values()) {
+            rankCount.put(rank.name(), 0);
+        }
         return rankCount;
     }
 
@@ -125,31 +116,12 @@ public class LottoGame {
         for (Lotto lotto : lottos) {
             int matchCount = getMatchCount(lotto.getNumbers());
             boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
-            totalPrize += updateRankAndPrize(rankCount, matchCount, bonusMatch);
+            Rank rank = Rank.valueOf(matchCount, bonusMatch);
+            rankCount.put(rank.name(), rankCount.getOrDefault(rank.name(), 0) + 1);
+            totalPrize += rank.getPrize();
         }
         return totalPrize;
     }
-
-    private int updateRankAndPrize(Map<String, Integer> rankCount, int matchCount, boolean bonusMatch) {
-        if (matchCount == 6) {
-            rankCount.put("1st", rankCount.get("1st") + 1);
-            return PRIZE_MONEY.get(6);
-        } else if (matchCount == 5 && bonusMatch) {
-            rankCount.put("2nd", rankCount.get("2nd") + 1);
-            return SECOND_PLACE_PRIZE;
-        } else if (matchCount == 5) {
-            rankCount.put("3rd", rankCount.get("3rd") + 1);
-            return PRIZE_MONEY.get(5);
-        } else if (matchCount == 4) {
-            rankCount.put("4th", rankCount.get("4th") + 1);
-            return PRIZE_MONEY.get(4);
-        } else if (matchCount == 3) {
-            rankCount.put("5th", rankCount.get("5th") + 1);
-            return PRIZE_MONEY.get(3);
-        }
-        return 0;
-    }
-
 
     private int getMatchCount(List<Integer> lottoNumbers) {
         return (int) lottoNumbers.stream().filter(winningNumbers::contains).count();
@@ -158,15 +130,15 @@ public class LottoGame {
     private void printResults(Map<String, Integer> rankCount) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("3개 일치 (5,000원) - %d개%n", rankCount.get("5th"));
-        System.out.printf("4개 일치 (50,000원) - %d개%n", rankCount.get("4th"));
-        System.out.printf("5개 일치 (1,500,000원) - %d개%n", rankCount.get("3rd"));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", rankCount.get("2nd"));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", rankCount.get("1st"));
+        System.out.printf("3개 일치 (5,000원) - %d개%n", rankCount.getOrDefault("FIFTH", 0));
+        System.out.printf("4개 일치 (50,000원) - %d개%n", rankCount.getOrDefault("FOURTH", 0));
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", rankCount.getOrDefault("THIRD", 0));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", rankCount.getOrDefault("SECOND", 0));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", rankCount.getOrDefault("FIRST", 0));
     }
 
     private void printProfitRate(int totalPrize) {
-        int totalCost = lottos.size() * 1000;
+        int totalCost = lottos.size() * LOTTO_PRICE;
         double profitRate = (double) totalPrize / totalCost * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
