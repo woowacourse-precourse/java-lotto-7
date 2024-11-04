@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 class LottoMachineTest {
     @Test
     void 넣은금액_만큼_로또나오는지_확인() {
-        LottoMachine lottoMachine = new LottoMachine(2000);
+        LottoMachine lottoMachine = new LottoMachine("2000");
         lottoMachine.makeLottos();
         assertThat(lottoMachine.lottoNumbers)
                 .isNotEmpty()
@@ -22,7 +22,7 @@ class LottoMachineTest {
 
     @Test
     void 당첨번호_변수에_들어갔는지_확인(){
-        LottoMachine lottoMachine = new LottoMachine(2000);
+        LottoMachine lottoMachine = new LottoMachine("2000");
         lottoMachine.inputWinnigNumbers("1,2,3,4,5,6");
         assertThat(lottoMachine.winnigNumbers)
                 .isNotEmpty()
@@ -30,7 +30,7 @@ class LottoMachineTest {
     }
     @Test
     void 보너스_점수_확인(){
-        LottoMachine lottoMachine = new LottoMachine(2000);
+        LottoMachine lottoMachine = new LottoMachine("2000");
         lottoMachine.inputWinnigNumbers("1,2,3,4,5,6");
         lottoMachine.inputBonusNumbers("7");
         assertThat(lottoMachine.winnigNumbers)
@@ -40,7 +40,7 @@ class LottoMachineTest {
     @Test
     void 당첨번호_매치갯수_확인(){
         List<Integer> example = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
-        LottoMachine lottoMachine = new LottoMachine(2000);
+        LottoMachine lottoMachine = new LottoMachine("2000");
         lottoMachine.inputWinnigNumbers("1,2,3,4,5,6");
         lottoMachine.inputBonusNumbers("7");
         assertThat(lottoMachine.getRanking(example))
@@ -48,7 +48,7 @@ class LottoMachineTest {
     }
     @Test
     void makePriceMap_메서드_테스트(){
-        LottoMachine lottoMachine = new LottoMachine(2000);
+        LottoMachine lottoMachine = new LottoMachine("2000");
         lottoMachine.makeLottos();
         lottoMachine.inputWinnigNumbers("1,2,3,4,5,6");
         lottoMachine.inputBonusNumbers("7");

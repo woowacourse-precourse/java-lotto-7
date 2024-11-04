@@ -4,7 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        LottoMachine lottoMachine = new LottoMachine(Integer.parseInt(Console.readLine()));
+
+        LottoMachine lottoMachine = new LottoMachine(Console.readLine());
         lottoMachine.makeLottos();
         lottoMachine.printLottos();
         lottoMachine.inputWinnigNumbers(Console.readLine());
@@ -12,5 +13,6 @@ public class Application {
         lottoMachine.initPrizeMap();
         lottoMachine.makePrizeMap();
         lottoMachine.printPrize();
+        lottoMachine.printProfit();
     }
 }

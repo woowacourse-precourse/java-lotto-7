@@ -14,12 +14,22 @@ public class LottoMachine {
     ArrayList<Lotto> lottoNumbers = new ArrayList<>();
     Map<Ranking, Integer> prizeResult = new LinkedHashMap<>();
 
-    public LottoMachine(int inputMoney) {
-
-        this.inputMoney = inputMoney;
-
+    public LottoMachine(String inputMoney) {
+        if(!isDigit(inputMoney)){
+            throw new IllegalArgumentException("[ERROR] 정수를 입력하시오!");
+        }
+        this.inputMoney = Integer.parseInt(inputMoney);
         this.count = this.inputMoney / 1000;
-
+    }
+    private boolean isDigit(String input){
+        char tmp;
+        for (int i=0; i< input.length(); i++){
+            tmp = input.charAt(i);
+            if(!Character.isDigit(tmp)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void makeLottos() {
@@ -111,10 +121,26 @@ public class LottoMachine {
 
     public void printPrize() {
         for (Map.Entry<Ranking, Integer> entry : prizeResult.entrySet()) {
-            System.out.println(String.format("%d개 일치 (%d원) - %d개"
+            if (entry.getKey().equals(Ranking.SECOND)){
+                System.out.println(String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"
+                    ,entry.getKey().getMatchCount(), entry.getKey().getPrice()
+                    ,entry.getValue()));
+                continue;
+            }
+            System.out.println(String.format("%d개 일치 (%,d원) - %d개"
                     , entry.getKey().getMatchCount(), entry.getKey().getPrice()
                     , entry.getValue()));
         }
+    }
+
+    public void printProfit(){
+        double sum = 0;
+        double profit = 0;
+        for (Map.Entry<Ranking,Integer> entry : prizeResult.entrySet()){
+            sum += entry.getKey().getPrice()*entry.getValue();
+        }
+        profit = sum/inputMoney*100;
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.",profit));
     }
 
 
