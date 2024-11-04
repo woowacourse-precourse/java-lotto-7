@@ -126,7 +126,7 @@
 |               | 입력 범위가 아닌 숫자  | IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 정수여야 합니다.")  | ✅  |  ✅  |
 |               | 중복된 숫자        | IllegalArgumentException("[ERROR] 당첨 번호는 서로 중복되면 안 됩니다.")        | ✅  |  ✅  |
 | **보너스 번호 입력** | 정수가 아님        | IllegalArgumentException("[ERROR] 보너스 번호의 형식이 잘못되었습니다.")         | ✅  |  ✅  |
-|               | 입력 범위가 아닌 숫자  | IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 정수여야 합니다.") |    |     |
+|               | 입력 범위가 아닌 숫자  | IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 정수여야 합니다.") | ✅  |  ✅  |
 
 
 
