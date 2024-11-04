@@ -4,8 +4,8 @@ import static lotto.domain.constants.LottoConstants.LOTTO_DEFAULT_COUNT;
 import static lotto.exception.ErrorMessage.*;
 
 import java.util.List;
+import java.util.Objects;
 import lotto.domain.vo.LottoNumber;
-import lotto.exception.ErrorMessage;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -56,5 +56,20 @@ public class Lotto {
         return numbers.stream()
                 .map(LottoNumber::getValue)
                 .toList(); // unmodifiableList 반환
+    }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.stream()
+                .anyMatch(number -> Objects.equals(
+                        number.getValue(),
+                        lottoNumber.getValue())
+                );
+    }
+
+    public int countMatchingNumbers(Lotto otherLotto) {
+        return (int) this.numbers
+                .stream()
+                .filter(otherLotto::contains)
+                .count();
     }
 }
