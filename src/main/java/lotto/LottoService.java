@@ -28,6 +28,8 @@ public class LottoService {
                 amount = Integer.parseInt(Console.readLine());
                 validateAmount(amount);
                 break;
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 숫자만 입력 가능합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage()); // 예외 메시지 출력
             }
@@ -142,10 +144,10 @@ public class LottoService {
         // 출력
         System.out.println("당첨 통계\n---");
         for (Rank rank : Rank.values()) {
-            System.out.printf("%d개 일치%s (%d원) - %d개\n",
+            System.out.printf("%d개 일치%s (%s원) - %d개\n",
                     rank.getMatchCount(),
                     rank.isMatchBonus() ? ", 보너스 볼 일치" : "",
-                    rank.getPrize(),
+                    formatWithComma(rank.getPrize()),
                     rankCount[rank.ordinal()]
             );
         }
@@ -158,5 +160,18 @@ public class LottoService {
         return Math.round(profitRate * 10) / 10.0; // 소수점 둘째 자리에서 반올림
     }
 
+    private String formatWithComma(int number) {
+        StringBuilder formatted = new StringBuilder();
+        String numStr = String.valueOf(number);
+        int length = numStr.length();
 
+        // 3자리마다 콤마 추가
+        for (int i = 0; i < length; i++) {
+            if (i > 0 && (length - i) % 3 == 0) {
+                formatted.append(",");
+            }
+            formatted.append(numStr.charAt(i));
+        }
+        return formatted.toString();
+    }
 }
