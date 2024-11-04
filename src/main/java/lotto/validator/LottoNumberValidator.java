@@ -12,10 +12,22 @@ import java.util.stream.Stream;
 import lotto.exception.InputNumberException;
 
 public class LottoNumberValidator {
-    public static void validate(List<Integer> numbers) {
-        validateDuplicates(numbers);
-        validateRange(numbers);
+    public static List<Integer> validateAndParse(String input) {
+        if (input.trim().isEmpty()) {
+            throw new IllegalArgumentException(InputNumberException.EMPTY_INPUT.getMessage());
+        }
+
+        List<Integer> numbers;
+        try {
+            numbers = parseNumbers(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(InputNumberException.INVALID_FORMAT.getMessage());
+        }
+
         validateLength(numbers);
+        validateRange(numbers);
+        validateDuplicates(numbers);
+        return numbers;
     }
 
     private static List<Integer> parseNumbers(String input) {
