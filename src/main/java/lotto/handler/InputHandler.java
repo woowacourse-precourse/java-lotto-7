@@ -7,7 +7,6 @@ import java.util.List;
 import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.PurchaseAmount;
-import lotto.SpecialNumber;
 import lotto.WinningNumber;
 
 public class InputHandler {
