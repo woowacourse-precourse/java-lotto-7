@@ -6,12 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.constants.LottoPrize;
-
+import lotto.constants.LottoConstants;
 public class LottoService implements LottosServiceInterface {
 
   @Override
   public int getNumOfLottos(int purchaseAmount) {
-    return purchaseAmount / 1000;
+    return purchaseAmount / LottoConstants.LOTTO_PRICE;
   }
 
   @Override
@@ -19,7 +19,7 @@ public class LottoService implements LottosServiceInterface {
     List<Lotto> lottos = new ArrayList<>();
 
     for (int i = 0; i < numOfLottos; i++) {
-      lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+      lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER, LottoConstants.MAX_NUMBER, LottoConstants.NUMBER_COUNT)));
     }
     return lottos;
   }
