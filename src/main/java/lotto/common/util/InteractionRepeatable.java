@@ -6,7 +6,7 @@ public interface InteractionRepeatable {
 
     String RETRY_MESSAGE_HEADER = "[ERROR] ";
 
-    default void runWithTry(final Runnable runnable) {
+    default void runWithRetry(final Runnable runnable) {
         while (true) {
             try {
                 runnable.run();
@@ -17,7 +17,7 @@ public interface InteractionRepeatable {
         }
     }
 
-    default <T> T supplyWithTry(final Supplier<T> supplier) {
+    default <T> T supplyWithRetry(final Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();

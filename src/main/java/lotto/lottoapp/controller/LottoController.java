@@ -30,7 +30,7 @@ public class LottoController implements InteractionRepeatable {
     }
 
     private void handleLottoTrade() {
-        List<LottoNumbers> issuedLottoNumbers = supplyWithTry(() -> {
+        List<LottoNumbers> issuedLottoNumbers = supplyWithRetry(() -> {
             Won wonOfPurchased = lottoInput.askForPurchasePrice();
             return lottoService.buyLotto(wonOfPurchased);
         });
@@ -38,7 +38,7 @@ public class LottoController implements InteractionRepeatable {
     }
 
     private void handleLottoWinningProcess() {
-        WinningStatistics winningStatistics = supplyWithTry(() -> {
+        WinningStatistics winningStatistics = supplyWithRetry(() -> {
             WinningLotto winningLotto = lottoInput.askForWinningLotto();
             return lottoService.checkWinningResults(winningLotto);
         });
