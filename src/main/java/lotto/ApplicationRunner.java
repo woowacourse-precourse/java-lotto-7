@@ -10,6 +10,7 @@ import lotto.controller.DrawController;
 import lotto.controller.PurchaseController;
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningLotto.WinningLottoBuilder;
 import lotto.endpoint.AbstractIOHandler;
 
 
@@ -31,10 +32,9 @@ public class ApplicationRunner extends AbstractIOHandler {
         outputView.printWithArgs(PURCHASE_QUANTITY_MESSAGE, lottos.getCount());
         outputView.printLine(lottos);
 
-        List<Integer> winningNumbers = handleInput(SystemMessage.ENTER_WINNING_NUMBERS, this::parseWinningNumbers);
-        Integer bonusNumber = handleInput(SystemMessage.ENTER_BONUS_NUMBER, this::parseBonusNumber);
+        WinningLottoBuilder builder = handleInput(SystemMessage.ENTER_WINNING_NUMBERS, this::setWinningNumbers);
+        WinningLotto winningLotto =handleInput(SystemMessage.ENTER_BONUS_NUMBER, s -> setBonusNumber(s,builder));
 
-        WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
         Displayable result = drawController.draw(lottos, winningLotto);
         outputView.printLine(result);
     }
@@ -44,11 +44,13 @@ public class ApplicationRunner extends AbstractIOHandler {
         return purchaseController.purchaseLotto(amount);
     }
 
-    private List<Integer> parseWinningNumbers(String input) {
-        return Objects.requireNonNull(StringParser.toNumericsSplitBy(input, DELIMITER));
+    private WinningLottoBuilder setWinningNumbers(String input) {
+        List<Integer> winningNumbers = Objects.requireNonNull(StringParser.toNumericsSplitBy(input, DELIMITER));
+        return WinningLottoBuilder.builder().winningNumbers(winningNumbers);
     }
 
-    private Integer parseBonusNumber(String input) {
-        return StringParser.toInteger(input);
+    private WinningLotto setBonusNumber(String input, WinningLottoBuilder builder) {
+        Integer bonusNumber = StringParser.toInteger(input);
+        return builder.bonusNumber(bonusNumber).build();
     }
 }
