@@ -77,6 +77,7 @@ public class LottoNumbersTest {
 
     @Test
     void 생성_가능한_로또_번호_수를_초과하면_예외가_발생한다() {
+
         // given
         int size = MAX_NUMBER - MIN_NUMBER + 2;
 
@@ -85,7 +86,7 @@ public class LottoNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "numberCount: {0}")
     @ValueSource(ints = {1, 2, 3, 4, 5})
     @DisplayName("사이즈만큼의 로또 번호를 랜덤으로 생성한다.")
     void 사이즈만큼의_로또_번호를_랜덤으로_생성한다(int numberCount) {
@@ -100,7 +101,7 @@ public class LottoNumbersTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "size: {0}")
     @ValueSource(ints = {11, 12, 13, 14, 15})
     void 로또_번호들을_정수로_변환한다(int size) {
 
