@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.money.DivideMoneyException;
-import lotto.exception.money.MaximunMoneyException;
+import lotto.exception.money.MaximumMoneyException;
 import lotto.exception.money.ZeroMoneyException;
 import lotto.util.Limit;
 
@@ -36,7 +36,7 @@ public class Money {
 
     private void validateMaximum(int amount) {
         if (amount > PURCHASE_MONEY_MAX_RANGE) {
-            throw new MaximunMoneyException();
+            throw new MaximumMoneyException();
         }
     }
 

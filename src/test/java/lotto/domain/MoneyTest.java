@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.money.DivideMoneyException;
-import lotto.exception.money.MaximunMoneyException;
+import lotto.exception.money.MaximumMoneyException;
 import lotto.exception.money.ZeroMoneyException;
 import lotto.util.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
@@ -42,9 +42,9 @@ class MoneyTest {
                         ErrorMessage.PURCHASE_MONEY_DIVIDE, "1,000원으로 나누어 떨어지지 않을 때"),
                 Arguments.of(1_001, DivideMoneyException.class,
                         ErrorMessage.PURCHASE_MONEY_DIVIDE, "1,000원으로 나누어 떨어지지 않을 때"),
-                Arguments.of(100_001, MaximunMoneyException.class,
+                Arguments.of(100_001, MaximumMoneyException.class,
                         ErrorMessage.PURCHASE_MONEY_MAXIMUM, "100,000원 이상일 때"),
-                Arguments.of(200_000, MaximunMoneyException.class,
+                Arguments.of(200_000, MaximumMoneyException.class,
                         ErrorMessage.PURCHASE_MONEY_MAXIMUM, "100,000원 이상일 때")
         );
     }
