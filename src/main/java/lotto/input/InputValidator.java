@@ -17,13 +17,11 @@ public interface InputValidator<T, U> {
     }
 
     default T promptAndGetValidatedInput(U context) {
-        displayPrompt();
-        while (true) {
-            try {
-                return validateInput(getInput(), context);
-            } catch (IllegalArgumentException e) {
-                displayError(e);
-            }
+        try {
+            return validateInput(getInput(), context);
+        } catch (IllegalArgumentException e) {
+            displayError(e);
+            return promptAndGetValidatedInput(context);
         }
     }
 

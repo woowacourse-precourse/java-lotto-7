@@ -1,5 +1,7 @@
 package lotto.enums;
 
+import java.text.NumberFormat;
+
 public enum LottoRank {
     THREE_MATCHES(3, false, 5000),
     FOUR_MATCHES(4, false, 50000),
@@ -21,11 +23,14 @@ public enum LottoRank {
         return prize;
     }
 
-    public String getMessage(int count) {
+    public String getMessage(int lottoWinningCount) {
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        formatter.setGroupingUsed(true);
+
         if (this == FIVE_MATCHES_WITH_BONUS_NUMBER) {
-            return "5개 일치, 보너스 볼 일치 (" + prize + "원) - " + count + "개";
+            return "5개 일치, 보너스 볼 일치 (" + formatter.format(prize) + "원) - " + lottoWinningCount + "개";
         }
-        return matchCount + "개 일치 (" + prize + "원) - " + count + "개";
+        return matchCount + "개 일치 (" + formatter.format(prize) + "원) - " + lottoWinningCount + "개";
     }
 
     public static LottoRank findByMatchCountAndBonus(int matchCount, boolean requiresBonusMatch) {

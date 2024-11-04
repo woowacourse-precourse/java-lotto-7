@@ -31,14 +31,17 @@ public class LottoController {
     }
 
     private int getPurchaseAmount() {
+        purchaseAmountValidator.displayPrompt();  // 한 번만 프롬프트 메시지 출력
         return purchaseAmountValidator.promptAndGetValidatedInput();
     }
 
     private List<Integer> getWinningNumbers() {
+        winningNumbersValidator.displayPrompt();  // 한 번만 프롬프트 메시지 출력
         return winningNumbersValidator.promptAndGetValidatedInput();
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {
+        bonusNumberValidator.displayPrompt();  // 한 번만 프롬프트 메시지 출력
         return bonusNumberValidator.promptAndGetValidatedInput(winningNumbers);
     }
 
