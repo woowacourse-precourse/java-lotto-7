@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -41,4 +42,12 @@ class LottoTest {
         LottoService lottoService = new LottoService();
         lottoService.validateAmountForTest(3000); // 예외 발생하지 않음
     }
+
+    @Test
+    void 정상적인_로또_번호_입력() {
+        LottoService lottoService = new LottoService();
+        Lotto lotto = lottoService.win_number("1, 2, 3, 4, 5, 6");
+        assertThat(lotto).isNotNull();
+    }
+
 }
