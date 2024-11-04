@@ -14,7 +14,7 @@ public class InputView {
             try {
                 return Integer.parseInt(readUserInput());
             } catch (NumberFormatException e) {
-                OutPutView.printMessage(INVALID_NUMBER_INPUT.getMessage());
+                OutputView.printMessage(INVALID_NUMBER_INPUT.getMessage());
             }
         }
     }
@@ -28,7 +28,7 @@ public class InputView {
             try {
                 return Integer.parseInt(readUserInput());
             } catch (NumberFormatException e) {
-                OutPutView.printMessage(INVALID_NUMBER_INPUT.getMessage());
+                OutputView.printMessage(INVALID_NUMBER_INPUT.getMessage());
             }
         }
     }

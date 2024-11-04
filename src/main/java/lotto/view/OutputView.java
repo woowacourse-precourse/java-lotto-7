@@ -1,9 +1,9 @@
 package lotto.view;
 
-public class OutPutView {
+public class OutputView {
 
-    private OutPutView() {
-        throw new IllegalStateException("OutPutView is utility class");
+    private OutputView() {
+        throw new IllegalStateException("OutputView is utility class");
     }
 
     public static void printMessageWithNewLine(String message) {
