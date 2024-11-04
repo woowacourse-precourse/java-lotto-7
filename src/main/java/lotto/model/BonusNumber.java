@@ -12,7 +12,7 @@ public class BonusNumber {
 
     private final Integer bonusNumber;
 
-    private BonusNumber(String userInputBonusNumber,WinningLottoNumber winningLottoNumber) {
+    private BonusNumber(String userInputBonusNumber, WinningLottoNumber winningLottoNumber) {
         this.bonusNumber = parseUserInputBonusNumber(userInputBonusNumber);
 
         if (winningLottoNumber.isContainInWinningLottoNumber(this)) {
@@ -20,15 +20,15 @@ public class BonusNumber {
         }
     }
 
-    public static BonusNumber of(String userInputBonusNumber,WinningLottoNumber winningLottoNumber){
-        return new BonusNumber(userInputBonusNumber,winningLottoNumber);
+    public static BonusNumber of(String userInputBonusNumber, WinningLottoNumber winningLottoNumber) {
+        return new BonusNumber(userInputBonusNumber, winningLottoNumber);
     }
 
-    private Integer parseUserInputBonusNumber(String userInputBonusNumber){
+    private Integer parseUserInputBonusNumber(String userInputBonusNumber) {
         Integer bonusNumber;
-        try{
+        try {
             bonusNumber = Integer.parseInt(userInputBonusNumber.trim());
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new BonusNumberException(BONUS_NUMBER_FORMAT_ERROR);
         }
 

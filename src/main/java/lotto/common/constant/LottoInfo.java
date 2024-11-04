@@ -2,14 +2,14 @@ package lotto.common.constant;
 
 public enum LottoInfo {
 
-    DEFAULT_LOTTO(0,45, 6, 1000);
+    DEFAULT_LOTTO(0, 45, 6, 1000);
 
     private final Integer lowBoundOfLottoNumber;
     private final Integer highBoundOfLottoNumber;
     private final Integer countOfLottoNumber;
     private final Integer priceOfOneLotto;
 
-    LottoInfo(Integer lowBoundOfLottoNumber, Integer highBoundOfLottoNumber, Integer countOfLottoNumber,Integer priceOfOneLotto){
+    LottoInfo(Integer lowBoundOfLottoNumber, Integer highBoundOfLottoNumber, Integer countOfLottoNumber, Integer priceOfOneLotto) {
         this.lowBoundOfLottoNumber = lowBoundOfLottoNumber;
         this.highBoundOfLottoNumber = highBoundOfLottoNumber;
         this.countOfLottoNumber = countOfLottoNumber;

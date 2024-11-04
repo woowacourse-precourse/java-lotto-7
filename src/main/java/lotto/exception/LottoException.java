@@ -9,7 +9,7 @@ public class LottoException extends IllegalArgumentException {
         this.errorMessage = errorMessage;
     }
 
-    public void printErrorMessage(){
+    public void printErrorMessage() {
         errorMessage.printErrorMessage();
     }
 }

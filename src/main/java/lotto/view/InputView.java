@@ -10,7 +10,7 @@ import lotto.model.WinningLottoNumber;
 
 public class InputView {
 
-    private InputView(){
+    private InputView() {
     }
 
     public static PriceToBuyLotto getPriceToBuyLotto() {
@@ -37,15 +37,15 @@ public class InputView {
         return winningLottoNumber;
     }
 
-    public static BonusNumber getBonusNumber(WinningLottoNumber winningLottoNumber){
+    public static BonusNumber getBonusNumber(WinningLottoNumber winningLottoNumber) {
         BonusNumber bonusNumber;
-        try{
+        try {
             String userInputBonusNumber = Console.readLine();
             bonusNumber = BonusNumber.of(userInputBonusNumber, winningLottoNumber);
-        }catch(BonusNumberException e){
+        } catch (BonusNumberException e) {
             e.printErrorMessage();
             bonusNumber = getBonusNumber(winningLottoNumber);
-        }finally{
+        } finally {
             Console.close();
         }
         return bonusNumber;

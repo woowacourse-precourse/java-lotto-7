@@ -7,20 +7,20 @@ import java.util.List;
 public class Lottoes {
     private final List<Lotto> lottoes;
 
-    public Lottoes(PriceToBuyLotto priceToBuyLotto){
+    public Lottoes(PriceToBuyLotto priceToBuyLotto) {
         lottoes = LottoFactory.drawLottoesByPrice(priceToBuyLotto);
     }
 
-    public void printLottoesInfo(){
+    public void printLottoesInfo() {
         OutputView.printNumberOfLotto(lottoes.size());
         lottoes.forEach(Lotto::printLottoInfo);
     }
 
-    public List<Lotto> getLottoes(){
+    public List<Lotto> getLottoes() {
         return lottoes;
     }
 
-    public Integer getLottoesCount(){
+    public Integer getLottoesCount() {
         return lottoes.size();
     }
 }

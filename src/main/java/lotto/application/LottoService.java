@@ -4,16 +4,16 @@ import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoService implements Service{
+public class LottoService implements Service {
 
     private Lottoes lottoes;
     private PriceToBuyLotto priceToBuyLotto;
 
-    public LottoService(){
+    public LottoService() {
     }
 
     @Override
-    public void buyLottoHandler(){
+    public void buyLottoHandler() {
         //input
         OutputView.printPromptMessageForPriceToBuyLotto();
         PriceToBuyLotto priceToBuyLotto = InputView.getPriceToBuyLotto();
@@ -28,7 +28,7 @@ public class LottoService implements Service{
     }
 
     @Override
-    public void matchLottoHandler(){
+    public void matchLottoHandler() {
         //input WinningLottoNumber
         OutputView.printPromptMessageForWinningLotto();
         WinningLottoNumber winningLottoNumber = InputView.getWinningLottoNumber();

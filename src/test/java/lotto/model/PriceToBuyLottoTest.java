@@ -11,7 +11,7 @@ public class PriceToBuyLottoTest {
 
     @DisplayName("로또 가격 객체가 성공적으로 생성된다")
     @Test
-    void 로또_가격_객체_생성_성공(){
+    void 로또_가격_객체_생성_성공() {
         //given
         String price = "5000";
         //when
@@ -22,7 +22,7 @@ public class PriceToBuyLottoTest {
 
     @DisplayName("로또 가격 객체가 성공적으로 생성된다. 가격 문자열에 공백이 있어도 성공")
     @Test
-    void 로또_가격_객체_생성_성공_문자열_공백(){
+    void 로또_가격_객체_생성_성공_문자열_공백() {
         //given
         String price = " 5000 ";
         //when
@@ -33,48 +33,48 @@ public class PriceToBuyLottoTest {
 
     @DisplayName("로또 가격이 음수일 때 실패")
     @Test
-    void 로또_가격_객체_생성_실패_음수(){
+    void 로또_가격_객체_생성_실패_음수() {
         //given
         String price = "-5000";
         //when
         //then
-        assertThrows(PriceToBuyLottoException.class, ()->{
-           PriceToBuyLotto.of(price);
+        assertThrows(PriceToBuyLottoException.class, () -> {
+            PriceToBuyLotto.of(price);
         });
     }
 
     @DisplayName("로또 가격이 실수일 때 실패")
     @Test
-    void 로또_가격_객체_생성_실패_실수(){
+    void 로또_가격_객체_생성_실패_실수() {
         //given
         String price = "5000.1";
         //when
         //then
-        assertThrows(PriceToBuyLottoException.class, ()->{
+        assertThrows(PriceToBuyLottoException.class, () -> {
             PriceToBuyLotto.of(price);
         });
     }
 
     @DisplayName("로또 가격이 1000단위가 아닐 때 실패")
     @Test
-    void 로또_가격_객체_생성_실패_단위(){
+    void 로또_가격_객체_생성_실패_단위() {
         //given
         String price = "5200";
         //when
         //then
-        assertThrows(PriceToBuyLottoException.class, ()->{
+        assertThrows(PriceToBuyLottoException.class, () -> {
             PriceToBuyLotto.of(price);
         });
     }
 
     @DisplayName("로또 가격이 2,000,000,000 넘을 때 실패")
     @Test
-    void 로또_가격_객체_생성_실패_범위_초과(){
+    void 로또_가격_객체_생성_실패_범위_초과() {
         //given
         String price = "2000001000";
         //when
         //then
-        assertThrows(PriceToBuyLottoException.class, ()->{
+        assertThrows(PriceToBuyLottoException.class, () -> {
             PriceToBuyLotto.of(price);
         });
     }

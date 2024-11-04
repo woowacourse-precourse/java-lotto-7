@@ -4,12 +4,12 @@ import lotto.common.constant.ErrorMessage;
 import lotto.exception.PriceToBuyLottoException;
 import lotto.validation.PriceToBuyLottoValidator;
 
-public record PriceToBuyLotto (Integer price){
-    public static PriceToBuyLotto of (String input) {
+public record PriceToBuyLotto(Integer price) {
+    public static PriceToBuyLotto of(String input) {
         Integer price;
-        try{
+        try {
             price = Integer.parseInt(input.trim());
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new PriceToBuyLottoException(ErrorMessage.PRICE_SHOULD_BE_INTEGER);
         }
 

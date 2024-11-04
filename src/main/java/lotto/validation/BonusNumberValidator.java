@@ -7,7 +7,7 @@ import static lotto.common.constant.LottoInfo.DEFAULT_LOTTO;
 
 public class BonusNumberValidator {
 
-    private BonusNumberValidator(){
+    private BonusNumberValidator() {
     }
 
     public static void validateBonusNumber(Integer bonusNumber) {
@@ -22,7 +22,7 @@ public class BonusNumberValidator {
     }
 
     private static void throwExceptionIfNumberIsNotValid(Integer bonusNumber) {
-        if(bonusNumber < DEFAULT_LOTTO.getLowBoundOfLottoNumber() || bonusNumber > DEFAULT_LOTTO.getHighBoundOfLottoNumber()){
+        if (bonusNumber < DEFAULT_LOTTO.getLowBoundOfLottoNumber() || bonusNumber > DEFAULT_LOTTO.getHighBoundOfLottoNumber()) {
             throw new BonusNumberException(THERE_IS_INVALID_NUMBER_IN_BONUS_NUMBER);
         }
     }

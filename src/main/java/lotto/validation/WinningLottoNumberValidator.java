@@ -12,38 +12,38 @@ public class WinningLottoNumberValidator {
 
     private static final String defaultDelimiter = ",";
 
-    private WinningLottoNumberValidator(){
+    private WinningLottoNumberValidator() {
     }
 
-    public static void validateWinningLottoNumber(List<Integer> winningNumbers){
+    public static void validateWinningLottoNumber(List<Integer> winningNumbers) {
         throwExceptionIfDuplicateNumber(winningNumbers);
         throwExceptionIfNumberIsNotValid(winningNumbers);
         throwExceptionIfSizeIsOver(winningNumbers);
     }
 
-    public static void throwExceptionPrefixOrSuffixIsComma(String userInputWinningNumbers){
-        if(userInputWinningNumbers.startsWith(defaultDelimiter) || userInputWinningNumbers.endsWith(defaultDelimiter)){
+    public static void throwExceptionPrefixOrSuffixIsComma(String userInputWinningNumbers) {
+        if (userInputWinningNumbers.startsWith(defaultDelimiter) || userInputWinningNumbers.endsWith(defaultDelimiter)) {
             throw new WinningLottoNumberException(WINNING_LOTTO_MUST_NOT_START_END_WITH_COMMA);
         }
     }
 
-    private static void throwExceptionIfDuplicateNumber(List<Integer> winningNumbers){
-        if(winningNumbers.size() != new HashSet<>(winningNumbers).size()){
+    private static void throwExceptionIfDuplicateNumber(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != new HashSet<>(winningNumbers).size()) {
             throw new WinningLottoNumberException(THERE_IS_DUPLICATE_NUMBER_IN_WINNING_LOTTO);
         }
     }
 
-    private static void throwExceptionIfNumberIsNotValid(List<Integer> winningNumbers){
+    private static void throwExceptionIfNumberIsNotValid(List<Integer> winningNumbers) {
         boolean isValid = winningNumbers.stream()
                 .allMatch(number -> number >= DEFAULT_LOTTO.getLowBoundOfLottoNumber() && number <= DEFAULT_LOTTO.getHighBoundOfLottoNumber());
 
-        if(!isValid){
+        if (!isValid) {
             throw new WinningLottoNumberException(THERE_IS_INVALID_NUMBER_IN_WINNING_LOTTO);
         }
     }
 
-    private static void throwExceptionIfSizeIsOver(List<Integer> winningNumbers){
-        if(winningNumbers.size() != DEFAULT_LOTTO.getCountOfLottoNumber()){
+    private static void throwExceptionIfSizeIsOver(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != DEFAULT_LOTTO.getCountOfLottoNumber()) {
             throw new WinningLottoNumberException(WINNING_NUMBER_COUNT_ERROR);
         }
     }

@@ -9,7 +9,7 @@ public class PriceToBuyLottoValidator {
 
     private static Integer priceMaxLimit = 2000000000;
 
-    private PriceToBuyLottoValidator(){
+    private PriceToBuyLottoValidator() {
     }
 
     public static void validatePriceToBuyLotto(Integer priceToBuyLotto) {
@@ -18,8 +18,8 @@ public class PriceToBuyLottoValidator {
         throwExceptionIfPriceIsOverThanMax(priceToBuyLotto);
     }
 
-    private static void throwExceptionIfPriceIsNull(Integer priceToBuyLotto){
-        if(priceToBuyLotto == null){
+    private static void throwExceptionIfPriceIsNull(Integer priceToBuyLotto) {
+        if (priceToBuyLotto == null) {
             throw new PriceToBuyLottoException(PRICE_MUST_NOT_BE_NULL);
         }
     }
@@ -31,7 +31,7 @@ public class PriceToBuyLottoValidator {
     }
 
     private static void throwExceptionIfPriceIsOverThanMax(Integer priceToBuyLotto) {
-        if(priceToBuyLotto < 0 || priceToBuyLotto > priceMaxLimit){
+        if (priceToBuyLotto < 0 || priceToBuyLotto > priceMaxLimit) {
             throw new PriceToBuyLottoException(PRICE_SHOULD_BE_SMALLER_THAN_LIMITS);
         }
     }

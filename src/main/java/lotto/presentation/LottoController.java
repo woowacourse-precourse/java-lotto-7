@@ -10,7 +10,7 @@ public class LottoController {
         this.service = service;
     }
 
-    public void run(){
+    public void run() {
         service.buyLottoHandler();
         service.matchLottoHandler();
     }

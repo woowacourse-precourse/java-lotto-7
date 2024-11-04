@@ -10,7 +10,7 @@ public class OutputView {
     private static final String messageOfRateOfReturnSuffix = "%입니다.";
     private static final String newLine = "\n";
 
-    private OutputView(){
+    private OutputView() {
     }
 
     public static void printPromptMessageForPriceToBuyLotto() {
@@ -41,7 +41,7 @@ public class OutputView {
         System.out.println(messageOfRateOfReturnPrefix + rateOfReturn + messageOfRateOfReturnSuffix);
     }
 
-    public static void printMessage(final String message){
+    public static void printMessage(final String message) {
         System.out.println(message);
     }
 }

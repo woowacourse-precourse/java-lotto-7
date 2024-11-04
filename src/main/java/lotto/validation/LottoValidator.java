@@ -11,7 +11,7 @@ public class LottoValidator {
 
     private static final Integer lottoNumberSize = 6;
 
-    private LottoValidator(){
+    private LottoValidator() {
     }
 
     public static void validateLotto(List<Integer> numbers){

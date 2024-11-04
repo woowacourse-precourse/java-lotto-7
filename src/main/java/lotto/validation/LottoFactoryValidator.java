@@ -11,16 +11,16 @@ import static lotto.common.constant.LottoInfo.DEFAULT_LOTTO;
 
 public class LottoFactoryValidator {
 
-    private LottoFactoryValidator(){
+    private LottoFactoryValidator() {
     }
 
-    public static void validateLottoFactory(List<Lotto> lottoes, PriceToBuyLotto priceToBuyLotto){
+    public static void validateLottoFactory(List<Lotto> lottoes, PriceToBuyLotto priceToBuyLotto) {
         throwExceptionIfNotMatchPriceAndLottoCount(lottoes, priceToBuyLotto);
     }
 
-    private static void throwExceptionIfNotMatchPriceAndLottoCount(List<Lotto> lottoes, PriceToBuyLotto priceToBuyLotto){
+    private static void throwExceptionIfNotMatchPriceAndLottoCount(List<Lotto> lottoes, PriceToBuyLotto priceToBuyLotto) {
         int lottoCount = Integer.divideUnsigned(priceToBuyLotto.price(), DEFAULT_LOTTO.getPriceOfOneLotto());
-        if(lottoCount != lottoes.size()){
+        if (lottoCount != lottoes.size()) {
             throw new LottoFactoryException(NOT_MATCH_LOTTO_COUNT_WITH_PRICE);
         }
     }
