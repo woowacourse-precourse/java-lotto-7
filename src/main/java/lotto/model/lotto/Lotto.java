@@ -37,7 +37,7 @@ public class Lotto {
         }
 
         if (numbers.stream().distinct().count() < numbers.size()) {
-            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_NUMBERS.getMessage());
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
         }
     }
 

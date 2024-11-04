@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import lotto.error.LottoErrorMessage;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.constant.LottoNumber;
 
@@ -19,9 +20,22 @@ public class DrawNumbersValidator {
         validateAllNoLetters(splitWinningNumbers);
         validateDuplicateWiningNumbers(splitWinningNumbers);
         validateAllRange(splitWinningNumbers);
-        return splitWinningNumbers.stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        return numbersToList(splitWinningNumbers);
+    }
+
+    public int validateBonusNumber(String bonusNumber) {
+        validateEmpty(bonusNumber);
+        validateNoLetters(bonusNumber);
+        int parseBonusNumber = Integer.parseInt(bonusNumber);
+        validateRange(bonusNumber);
+
+        return parseBonusNumber;
+    }
+
+    public void validateAssociateWinningAndBonusNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_WINNING_AND_BONUS_NUMBERS.getMessage());
+        }
     }
 
     private void validateAllRange(List<String> splitWinningNumbers) {
@@ -36,61 +50,53 @@ public class DrawNumbersValidator {
         }
     }
 
-    public int validateBonusNumber(String bonusNumber) {
-        validateEmpty(bonusNumber);
-        validateNoLetters(bonusNumber);
-        int parseBonusNumber = Integer.parseInt(bonusNumber);
-        validateRange(bonusNumber);
-
-        return parseBonusNumber;
-    }
-
-    public void validateAssociateWinningAndBonusNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호와 당첨 번호는 중복될 수 없습니다.");
-        }
-    }
     private void validateRange(String number) {
         if (Integer.parseInt(number) < LottoNumber.MIN_VALUE || LottoNumber.MAX_VALUE < Integer.parseInt(number)) {
-            throw new IllegalArgumentException("번호는 1 ~ 45 범위로 입력해주세요.");
+            throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateDuplicateWiningNumbers(List<String> splitWinningNumbers) {
         if (isDuplicateWinningNumbers(splitWinningNumbers)) {
-            throw new IllegalArgumentException("당첨 번호는 중복을 제거하고 입력해주세요");
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_WINNING_NUMBERS.getMessage());
         }
     }
 
     private void validateNoLetters(String number) {
         if (!number.matches(LottoNumber.FORMAT)) {
-            throw new IllegalArgumentException("번호로는 문자를 입력할 수 없습니다.");
+            throw new IllegalArgumentException(LottoErrorMessage.LETTERS_IN_NUMBERS.getMessage());
         }
     }
 
     private void validateCountWinningNumbers(List<String> splitWinningNumbers) {
         if (splitWinningNumbers.size() < Lotto.NUMBER_COUNT) {
-            throw new IllegalArgumentException("당첨 번호 개수가 부족합니다.");
+            throw new IllegalArgumentException(LottoErrorMessage.INSUFFICIENT_WINNING_NUMBERS.getMessage());
         }
 
         if (splitWinningNumbers.size() > Lotto.NUMBER_COUNT) {
-            throw new IllegalArgumentException("당첨 번호 개수가 초과되었습니다.");
+            throw new IllegalArgumentException();
         }
     }
 
     private void validateWinningNumbersFormat(String winningNumbers) {
         if (winningNumbers.startsWith(DELIMITER) || winningNumbers.endsWith(DELIMITER)) {
-            throw new IllegalArgumentException("잘못된 당첨 번호 형식입니다.");
+            throw new IllegalArgumentException(LottoErrorMessage.WRONG_WINNING_NUMBERS_FORMAT.getMessage());
         }
     }
 
     private void validateEmpty(String number) {
         if (number.isEmpty()) {
-            throw new IllegalArgumentException("번호를 입력해주세요.");
+            throw new IllegalArgumentException(LottoErrorMessage.EMPTY_NUMBERS.getMessage());
         }
     }
 
     private boolean isDuplicateWinningNumbers(List<String> splitWinningNumbers) {
         return splitWinningNumbers.stream().distinct().count() != splitWinningNumbers.size();
+    }
+
+    private List<Integer> numbersToList(List<String> splitWinningNumbers) {
+        return splitWinningNumbers.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
