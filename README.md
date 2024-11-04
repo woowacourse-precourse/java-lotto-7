@@ -108,7 +108,80 @@
 * Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다.
 * numbers의 접근 제어자인 private은 변경할 수 없다.
 * Lotto의 패키지를 변경할 수 있다.
-
+* 
+## 📄 Directory Tree
+```declarative
+main
+└── java
+    └── lotto
+        ├── domain
+        │   ├── Lotto
+        │   ├── LottoCalculator
+        │   └── PrizeTier
+        ├── io
+        │   ├── InputReader
+        │   └── OutputWriter
+        ├── strategy
+        │   └── LotteryNumberGenerator
+        ├── validation
+        │   └── InputValidator
+        └── Application
+test
+└── java
+    └── racingcar
+        ├── ApplicationTest
+        └── LottoTest
+```
 ## 📄기능 목록
 
-## 📄 Directory Tree
+### domain
+* **Lotto**
+  *  로또 번호와 관련된 기능
+      * `countMatchingNumbers` : 당첨 번호와 일치하는 로또 번호의 개수 반환
+      * `contains` : 특정 보너스 번호가 로또 번호에 포함되어 있는지 확인 
+* **LottoCalculator**
+  * 로또 당첨 결과를 계산하고 수익률을 산출하는 기능
+    * `calculateResults` : 로또 티켓과 당첨 번호, 보너스 번호를 비교하여 각 등수(PrizeTier) 별 당첨 개수를 계산
+    * `profitRate`: 총 상금을 기반으로 구매 금액 대비 수익률을 계산하여 반환
+* **PrizeTier**
+  * 로또 당첨 등수를 정의하는 열거형(enum) 클래스
+    - `FIRST`: 1등, 6개 일치, 상금 20억 원.
+    - `SECOND`: 2등, 5개 일치 + 보너스 번호 일치, 상금 3천만 원.
+    - `THIRD`: 3등, 5개 일치, 상금 150만 원.
+    - `FOURTH`: 4등, 4개 일치, 상금 5만 원.
+    - `FIFTH`: 5등, 3개 일치, 상금 5천 원.
+    - `getMatchCount()`: 각 등수에 필요한 일치 개수를 반환.
+    - `isBonusMatch()`: 각 등수에 보너스 번호 일치가 필요한지 여부를 반환.
+    - `getPrize()`: 각 등수의 상금을 반환.
+### io
+* **InputReader**
+  * 사용자로부터 입력을 받는 기능
+    - `totalPurchaseAmount`: 사용자에게 총 구매 금액을 입력받고, 유효성을 검사한 후 구매 가능한 로또 개수를 반환.
+    - `winningNumbers`: 당첨 번호를 쉼표로 구분된 형식으로 입력받아 리스트 형태로 반환, 유효성을 검사.
+    - `bonusNumber`: 보너스 번호를 입력받아 리스트에 없는 번호인지 확인 후 반환.
+    - `readInput`: 콘솔에서 입력을 읽어오는 메서드.
+    - `stringToInt`: 입력받은 문자열을 정수로 변환하며, 유효성을 검사.
+* **OutputWriter**
+  * 로또 관련 정보를 콘솔에 출력하는 기능
+    - `message`:  메시지를 콘솔에 출력
+    - `issuedNumbers`: 발행된 복권 번호 리스트를 출력하며, 각 티켓을 새 줄에 인쇄하여 명확한 가시성을 제공합니다.
+    - `lottoCalculateResults`: 복권 계산 결과를 각 등급별로 출력.
+    - `profitRate(double profitRate)`: 총 수익률을 백분율로 출력.
+    - `addBlankLine()`: 빈 줄 출력.
+### strategy
+  * **LotteryNumberGenerator**
+    * 로또 번호를 생성 기능
+      * `generateNumbers`: 지정된 수만큼의 로또 번호 조합을 생성
+
+### validation
+  * **InputValidator** 
+    * 로또 관련 입력 값의 유효성을 검사하여 잘못된 입력을 방지
+      * `integerValidate`: 주어진 문자열이 정수인지 검증
+      * `purchaseAmountValidate`: 구입 금액이 1,000원 단위인지 검증
+      * `winningNumbersValidate`: 당첨 번호의 유효성을 검증
+        * 입력된 번호의 개수가 6개인지 확인하고, 1~45 범위의 정수인지 확인
+        * 중복된 번호 여부 확인
+      * `bonusNumberValidate`: 보너스 번호의 유효성을 검증
+        - 보너스 번호가 1~45 범위의 정수인지 확인
+
+
