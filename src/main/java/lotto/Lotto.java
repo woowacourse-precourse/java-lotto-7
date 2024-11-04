@@ -28,7 +28,7 @@ public class Lotto {
 
     private void validateNumber(List<Integer> numbers) {
         if (numbers.stream().anyMatch(n -> n < 1 || n > 45))
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
     private void checkDuplicate(List<Integer> nums) {
