@@ -12,12 +12,18 @@ public class Application {
 
         startMessage();
         String money = Console.readLine();
+        System.out.println();
+
         userRequestController.inputMoney(money);
         winLottoMessage();
         String winNumbers = Console.readLine();
+        System.out.println();
+
         userRequestController.inputWinNumbers(winNumbers);
         bonusLottoMessage();
         String bonusNum = Console.readLine();
+        System.out.println();
+
         userRequestController.inputBonusNum(bonusNum);
 
     }

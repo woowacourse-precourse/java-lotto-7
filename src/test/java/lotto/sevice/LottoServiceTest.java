@@ -1,8 +1,10 @@
 package lotto.sevice;
 
+import lotto.model.WinLotto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -56,6 +58,23 @@ class LottoServiceTest {
         assertThat(res.get(3)).isEqualTo(1);
         assertThat(res.get(4)).isEqualTo(1);
 
+    }
+
+    @Test
+    void totalRevenueMoneyTest(){
+        //given
+        List<Integer> winCounts = List.of(1,0,0,0,0);
+        WinLotto[] winLotto = WinLotto.values();
+        int i=0;
+        for(WinLotto w : winLotto){
+            w.setWin(winCounts.get(i));
+            i++;
+        }
+        int cnt = 8;
+        //when
+        String res = lottoService.totalRevenueMoney(winLotto, winCounts, cnt);
+        //then
+        assertThat(res).isEqualTo("62.5");
     }
 
 

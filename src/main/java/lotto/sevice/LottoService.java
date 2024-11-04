@@ -1,5 +1,7 @@
 package lotto.sevice;
 
+import lotto.model.WinLotto;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -61,5 +63,14 @@ public class LottoService {
         return List.of(arr);
     }
 
-//    public int totalRevenueMoney(List<Integer> winCounts){}
+    public String totalRevenueMoney(WinLotto[] winLottos, List<Integer> winCounts, int inputMoney){
+        int[] arr = new int[winLottos.length];
+        int i=0;
+        for(WinLotto w : winLottos){
+            String money = w.getPrizeMoney().replace(",", "");
+            arr[i] = Integer.parseInt(money) * winCounts.get(i);
+            i++;
+        }
+        return String.format("%.1f",(double)Arrays.stream(arr).sum()/(inputMoney*1000)*100);
+    }
 }

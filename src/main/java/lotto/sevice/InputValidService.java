@@ -1,5 +1,9 @@
 package lotto.sevice;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class InputValidService {
     public boolean isMoney(String money){
         try{
@@ -24,7 +28,9 @@ public class InputValidService {
                 return false;
             }
         }
-        return true;
+        List<String> list = Arrays.asList(nums);
+        List<String> newList = list.stream().distinct().toList();
+        return list.size() == newList.size();
     }
 
     public boolean isBonusNumber(String bonusNum){

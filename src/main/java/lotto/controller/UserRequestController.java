@@ -34,8 +34,10 @@ public class UserRequestController {
         if(inputValidService.isWinNumbers(numbers)){
             lotto = new Lotto(lottoService.getWinLottoList(numbers));
             return;
+        }else{
+            error("로또 번호 입력이 잘 못 되었습니다.");
         }
-        error("로또 번호 입력이 잘 못 되었습니다.");
+
     }
 
     public void inputBonusNum(String bonusNum){
@@ -43,12 +45,15 @@ public class UserRequestController {
             bonusNumber = Integer.parseInt(bonusNum);
             winCountLotto();
             statistics();
+            totalRevenue();
+        }else{
+            error("로또 보너스 번호의 입력이 잘 못 되었습니다.");
         }
-        error("로또 보너스 번호의 입력이 잘 못 되었습니다.");
     }
 
     public void totalRevenue(){
-        lottoService.totalRevenueMoney(winCounts);
+        String total = lottoService.totalRevenueMoney(winLotto, winCounts, lottoCnt);
+        revenueMessage(total);
     }
 
     public void statistics(){

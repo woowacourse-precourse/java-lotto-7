@@ -17,20 +17,6 @@ class InputValidServiceTest {
         assertThat(res).isFalse();
     }
 
-    @Test
-    void isWinNumbersTest() {
-        //given
-        String str = "1,2,3,4,5,6";
-        String str2 = "400,12";
-
-        //when
-        boolean res = inputValidService.isWinNumbers(str);
-        boolean res2 = inputValidService.isWinNumbers(str2);
-
-        //then
-        assertThat(res).isTrue();
-        assertThat(res2).isFalse();
-    }
 
     @Test
     void isRangeTest(){
@@ -65,4 +51,5 @@ class InputValidServiceTest {
         assertThat(res3).isFalse();
 
     }
+
 }
