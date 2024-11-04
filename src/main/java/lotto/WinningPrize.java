@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.OutputMessage.MATCH_BONUS_MESSAGE_FORMAT;
+import static lotto.OutputMessage.MATCH_MESSAGE_FORMAT;
+
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -37,5 +40,12 @@ public enum WinningPrize {
                 .filter(winningPrize -> winningPrize.matchCount == matchCount
                         && (!winningPrize.requiresBonus() || bonusNumberMatch))
                 .findFirst();
+    }
+
+    public String getFormattedMessage(int count, boolean bonusNumberRequired) {
+        if (bonusNumberRequired)
+            return String.format(MATCH_BONUS_MESSAGE_FORMAT, matchCount, prize, count);
+
+        return String.format(MATCH_MESSAGE_FORMAT, matchCount, prize, count);
     }
 }
