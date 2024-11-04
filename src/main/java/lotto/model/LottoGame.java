@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static lotto.model.LottoRank.SECOND;
+import static lotto.model.LottoRank.THIRD;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,21 +10,21 @@ import java.util.Map;
 
 public class LottoGame {
 
-    Map<LottoRank, Integer> lottoResult;
-    List<Integer> winningNumber;
-    int bonusNumber;
-    List<Lotto> purchasedLottoList;
+    private final Map<LottoRank, Integer> lottoResult;
+    private final List<Integer> winningNumber;
+    private final int bonusNumber;
+    private final List<Lotto> purchasedLottos;
 
-    public LottoGame(List<Integer> winningNumber, int bonusNumber, List<Lotto> purchasedLottoList) {
+    public LottoGame(List<Integer> winningNumber, int bonusNumber, List<Lotto> purchasedLottos) {
         this.lottoResult = initializeLottoResult();
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
-        this.purchasedLottoList = purchasedLottoList;
+        this.purchasedLottos = purchasedLottos;
     }
 
     public Map<LottoRank, Integer> checkLottoResult() {
         initializeLottoResult();
-        for (Lotto purchasedLotto : purchasedLottoList) {
+        for (Lotto purchasedLotto : purchasedLottos) {
             List<Integer> purchasedLottoNumbers = purchasedLotto.getNumbers();
             checkIndividualLottoResult(purchasedLottoNumbers);
         }
@@ -47,8 +48,15 @@ public class LottoGame {
 
     private void checkIndividualLottoResult(List<Integer> purchasedLottoNumbers) {
         long matchNumbers = checkWinningNumber(purchasedLottoNumbers);
-        for (LottoRank lottoRank : LottoRank.values()) {
-            checkEachRank(matchNumbers, lottoRank, purchasedLottoNumbers);
+        LottoRank resultRank = getMatchRank(matchNumbers);
+
+        if (resultRank == SECOND || resultRank == THIRD) {
+            checkBonusNumber(purchasedLottoNumbers);
+            return;
+        }
+
+        if (resultRank != null) {
+            lottoResult.put(resultRank, lottoResult.get(resultRank) + 1);
         }
     }
 
@@ -58,24 +66,21 @@ public class LottoGame {
                 .count();
     }
 
-    private void checkEachRank(long matchNumbers, LottoRank lottoRank, List<Integer> purchasedLottoNumbers) {
-        if (matchNumbers == lottoRank.getMatchNumbers()) {
-            if (matchNumbers == SECOND.getMatchNumbers()) {
-                checkBonusNumber(purchasedLottoNumbers);
-            }
-            if (matchNumbers != SECOND.getMatchNumbers()) {
-                lottoResult.put(lottoRank, lottoResult.get(lottoRank) + 1);
+    private LottoRank getMatchRank(long matchNumbers) {
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.getMatchNumbers() == matchNumbers) {
+                return rank;
             }
         }
+        return null;
     }
 
     private void checkBonusNumber(List<Integer> purchasedLottoNumbers) {
         if (purchasedLottoNumbers.contains(bonusNumber)) {
             lottoResult.put(SECOND, lottoResult.get(SECOND) + 1);
+            return;
         }
-        if (!purchasedLottoNumbers.contains(bonusNumber)) {
-            lottoResult.put(LottoRank.THIRD, lottoResult.get(LottoRank.THIRD) + 1);
-        }
+        lottoResult.put(LottoRank.THIRD, lottoResult.get(LottoRank.THIRD) + 1);
     }
 
     private double getPrizeSum() {
