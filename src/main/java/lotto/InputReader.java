@@ -30,6 +30,7 @@ public class InputReader {
     public int readBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
+        System.out.println();
         return inputValidator.validateBonusNumber(input);
     }
 
