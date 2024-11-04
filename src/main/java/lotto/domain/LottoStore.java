@@ -11,8 +11,10 @@ public class LottoStore {
         validateMinimumPurchasePrice(money);
         validateMaximumPurchasePrice(money);
         validatePurchasingUnit(money);
-        return money.divide(Money.from(TICKET_PRICE.getNumber()))
-                .intValue();
+
+        Money ticketPrice = Money.from(TICKET_PRICE.getNumber());
+        return money.divideBy(ticketPrice)
+                .toIntValue();
     }
 
     private void validatePurchasingUnit(Money money) {
