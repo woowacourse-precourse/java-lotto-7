@@ -1,28 +1,27 @@
-package lotto;
+package lotto.model;
 
 import static lotto.model.constant.LottoRule.MAX_NUMBER;
 import static lotto.model.constant.LottoRule.MIN_NUMBER;
 import static lotto.model.constant.LottoRule.NUMBER_COUNT;
 
 import java.util.List;
-import lotto.model.BonusNumber;
-import lotto.model.constant.LottoRank;
-import lotto.model.WinningNumbers;
+import lotto.dto.WinningNumberRequestDTO;
 
-public class Lotto {
+public class WinningNumbers {
     private static final String INVALID_COUNT_MESSAGE = "[ERROR] 로또 번호는 6개이어야 합니다.";
     private static final String OVER_RANGE_MESSAGE = "[ERROR] 로또 번호의 범위를 초과했습니다.";
     private static final String DUPLICATE_MESSAGE = "[ERROR] 중복된 로또 번호가 있습니다.";
 
-    private final List<Integer> numbers;
+    private final List<Integer> winningNumbers;
 
-    public Lotto(List<Integer> numbers) {
+    public WinningNumbers(WinningNumberRequestDTO winningNumberRequestDTO) {
+        List<Integer> numbers = winningNumberRequestDTO.getNumbers();
         validate(numbers);
-        this.numbers = numbers;
+        this.winningNumbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -53,24 +52,7 @@ public class Lotto {
         }
     }
 
-    public LottoRank calculateRank(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        long winningCount = calculateWinning(winningNumbers);
-        boolean isBonus = calculateBonus(bonusNumber);
-        return matchRank(winningCount, isBonus);
-    }
-
-    private long calculateWinning(WinningNumbers winningNumbers) {
-        return this.numbers.stream()
-                .filter(winningNumbers::isWinningNumber)
-                .count();
-    }
-
-    private boolean calculateBonus(BonusNumber bonusNumber) {
-        return this.numbers.stream()
-                .anyMatch(bonusNumber::isBonusNumber);
-    }
-
-    private LottoRank matchRank(long winningCount, boolean isBonus) {
-        return LottoRank.getRank(winningCount, isBonus);
+    public boolean isWinningNumber(Integer number) {
+        return winningNumbers.contains(number);
     }
 }
