@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import static lotto.domain.lotto.constants.LottoFormat.*;
 import static lotto.domain.lotto.constants.LottoNumber.*;
-import static lotto.infrastructure.exception.ErrorCode.*;;
+import static lotto.infrastructure.exception.ErrorCode.*;
 
 import java.util.List;
 import java.util.stream.Collectors;

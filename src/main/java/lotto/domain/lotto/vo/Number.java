@@ -1,6 +1,6 @@
 package lotto.domain.lotto.vo;
 
-import static lotto.domain.lotto.Lotto.*;
+import static lotto.domain.lotto.constants.LottoNumber.*;
 import static lotto.infrastructure.exception.ErrorCode.*;
 
 public record Number(Integer number) {
@@ -10,7 +10,7 @@ public record Number(Integer number) {
     }
 
     private void validate(Integer number) {
-        if (number < LOTTO_NUMBER_MINIMUM_CRITERION || number > LOTTO_NUMBER_MAXIMUM_CRITERION) {
+        if (number < MINIMUM_LOTTO_NUMBER.getCriteria() || number > MAXIMUM_LOTTO_NUMBER.getCriteria()) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
