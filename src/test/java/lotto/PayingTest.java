@@ -19,5 +19,15 @@ class PayingTest {
 		assertDoesNotThrow(() -> paying.paymentExcception("10000"));
 	}
 
-	
+	@Test
+	void testPaymentExceptionInvalidInput() {
+		Paying paying = new Paying();
+
+		// 숫자가 아닌 값 입력 시 예외 발생 확인
+		IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
+				() -> paying.paymentExcception("abc"));
+		assertEquals("[ERROR] : 숫자만 입력해 주세요.", ex.getMessage());
+
+
+	}
 }
