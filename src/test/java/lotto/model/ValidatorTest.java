@@ -21,4 +21,12 @@ class ValidatorTest {
             validator.validateAmountUnit(2500);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호_범위_예외_테스트() {
+        assertThatThrownBy(() -> {
+            Validator validator = new Validator();
+            validator.validateBonusRange(46);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
