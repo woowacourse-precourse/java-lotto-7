@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,13 +63,18 @@ public class LottoGame {
 
     public double getRateOfReturn(Map<PrizeRank, Integer> prizeRankCounts, int purchaseAmount) {
         // 수익률 = 총상금 / 구입금액 * 100
-        // 수익률 = 총상금 / (구입개수 * 1000) * 100
-        double totalPrizeAmount = 0;
-        for (PrizeRank prizeRank : PrizeRank.values()) {
-            double prizeAmount = prizeRank.getPrizeAmount();
-            int prizeCount = prizeRankCounts.get(prizeRank);
-            totalPrizeAmount += prizeAmount * prizeCount;
-        }
-        return totalPrizeAmount / (purchaseAmount * 1000) * 100;
+        return getTotalPrizeAmount(prizeRankCounts) / getPurchasePrice(purchaseAmount) * 100;
+    }
+
+    public double getTotalPrizeAmount(Map<PrizeRank, Integer> prizeRankCounts) {
+        return prizeRankCounts.entrySet().stream()
+                // 총상금 = 등수 별 (당첨 매수 * 상금)
+                .mapToDouble(entry -> entry.getValue() * entry.getKey().getPrizeAmount())
+                .sum();
+    }
+
+    public double getPurchasePrice(int purchaseAmount) {
+        // 구입금액 = 구입개수 * 로또 구매 금액
+        return purchaseAmount * LOTTO_UNIT_PRICE;
     }
 }
