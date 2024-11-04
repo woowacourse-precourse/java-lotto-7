@@ -14,7 +14,7 @@ public class PurchaseAmountValidator {
 
     public static final String INPUT = "구입 금액";
     public static final String TYPE = "정수";
-    public static final int MIN_VALUE = 0, MAX_VALUE = 100_000;
+    public static final int MIN_VALUE = 1000, MAX_VALUE = 100_000;
     public static final int UNIT = 1000;
 
     public static int validatePurchaseAmount(String input) {
