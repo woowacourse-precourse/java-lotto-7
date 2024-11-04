@@ -26,7 +26,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호가 1~45 범위를 벗어나면 예외가 발생한다")
+    @DisplayName("로또 번호가 1~45 범위를 벗어나면 예외가 발생한다.")
     @Test
     void 로또_번호가_범위를_벗어나면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
@@ -34,7 +34,7 @@ class LottoTest {
                 .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
-    @DisplayName("보너스 번호가 1~45 범위를 벗어나면 예외가 발생한다")
+    @DisplayName("보너스 번호가 1~45 범위를 벗어나면 예외가 발생한다.")
     @Test
     void 보너스_번호가_범위를_벗어나면_예외가_발생한다() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -43,7 +43,7 @@ class LottoTest {
         assertThrows(IllegalArgumentException.class, () -> Lotto.validateBonusNumber(winningNumbers, 46), "보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
-    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다")
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
     @Test
     void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
