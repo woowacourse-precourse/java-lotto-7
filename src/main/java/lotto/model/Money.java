@@ -21,7 +21,6 @@ public class Money {
             throw new IllegalArgumentException(
                 "[ERROR] " + ErrorMessage.INVALID_PURCHASING_AMOUNT.getMessage());
         }
-
     }
 
     public int getPurchasingMoney() {
