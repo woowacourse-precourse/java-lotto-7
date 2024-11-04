@@ -2,9 +2,12 @@ package controller;
 
 import domain.Lotto;
 import domain.LottoGenerator;
+import domain.Ranking;
 import domain.User;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import view.InputView;
 import view.OutputView;
 
@@ -24,6 +27,7 @@ public class Controller {
         generator();
         getLottoNumbers();
         getBonusNumber();
+        getTotal();
     }
 
     private void buying() {
@@ -121,6 +125,37 @@ public class Controller {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void getTotal() {
+        Map<Ranking, Integer> total = new LinkedHashMap<>();
+        setBasicRanking(total);
+        for (List<Integer> lottoList : lottoLists) {
+            Ranking rank = Ranking.valueOf(getMatchingCount(lottoList), checkBonus());
+            total.put(rank, total.get(rank) + 1);
+        }
+        OutputView.outTotal(total, user.getBuyingPrice());
+    }
+
+    private int getMatchingCount(List<Integer> lottoList) {
+        int matchingCount = 0;
+        for (Integer i : lottoList) {
+            if (lottoNumbers.contains(i)) {
+                matchingCount++;
+            }
+        }
+        return matchingCount;
+    }
+
+    private void setBasicRanking(Map<Ranking, Integer> total) {
+        Ranking[] rankings = Ranking.values();
+        for (Ranking ranking : rankings) {
+            total.put(ranking, 0);
+        }
+    }
+
+    private Boolean checkBonus() {
+        return lottoNumbers.contains(bonusNumber);
     }
 
 
