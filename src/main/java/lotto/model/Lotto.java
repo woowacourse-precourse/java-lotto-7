@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final String LOTTO_DELIMITER = ",";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -19,7 +20,7 @@ public class Lotto {
     }
 
     public static Lotto of(String rawNumbers) {
-        String[] WinningNumberStrings = rawNumbers.split(",");
+        String[] WinningNumberStrings = rawNumbers.split(LOTTO_DELIMITER);
         try {
             List<Integer> winningNumbers = Arrays.stream(WinningNumberStrings)
                     .map(Integer::parseInt)
