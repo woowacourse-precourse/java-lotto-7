@@ -38,8 +38,8 @@ public class Lotto {
         int matchCount = (int) numbers.stream()
                 .filter(winningNumbers.getNumbers()::contains)
                 .count();
-
         boolean matchBonus = numbers.contains(bonusNumber.getNumber());
-        return Rank.valueOf(matchCount, matchBonus);
+
+        return Rank.findRank(matchCount, matchBonus);
     }
 }
