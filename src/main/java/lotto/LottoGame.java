@@ -12,11 +12,11 @@ public class LottoGame {
         try {
             int purchaseAmount = getPurchaseAmount();
             int lottoCount = getValidatedLottoCount(purchaseAmount);
-            System.out.println(); // 구입금액 입력 후 공백
+            System.out.println();
 
             List<Lotto> purchasedLottos = generateLottos(lottoCount);
             printPurchasedLottos(purchasedLottos);
-            System.out.println(); // 로또 번호 출력 후 공백
+            System.out.println();
 
             Map<PrizeRank, Integer> resultCounts = getResultCounts(purchasedLottos);
             LottoResultPrinter.printResults(resultCounts, purchaseAmount);
@@ -27,17 +27,23 @@ public class LottoGame {
 
 
     private int getValidatedLottoCount(int purchaseAmount) {
-//        int purchaseAmount = getPurchaseAmount();
         LottoValidator.validateAmount(purchaseAmount);
         return purchaseAmount / 1000;
     }
 
     private int getPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        try {
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                int amount = Integer.parseInt(Console.readLine());
+                LottoValidator.validateAmount(amount);
+                return amount; // 올바른 경우 반환
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효한 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            // 오류 발생 시 루프 반복, 입력 다시 받음
         }
     }
 

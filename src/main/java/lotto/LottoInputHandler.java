@@ -10,26 +10,33 @@ public class LottoInputHandler {
     private static final String NUMBER_DELIMITER = ",";
 
     public static List<Integer> getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
-        String input = Console.readLine();
-        System.out.println();
-        try {
-            List<Integer> numbers = parseNumbers(input);
-            LottoValidator.validateWinningNumbers(numbers);
-            return numbers;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
+                String input = Console.readLine();
+                List<Integer> numbers = parseNumbers(input);
+                LottoValidator.validateWinningNumbers(numbers);
+                return numbers;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효한 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     public static int getBonusNumber(List<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        try {
-            int bonusNumber = Integer.parseInt(Console.readLine());
-            LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
-            return bonusNumber;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효한 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
