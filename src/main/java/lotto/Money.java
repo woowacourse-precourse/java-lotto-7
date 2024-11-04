@@ -15,15 +15,15 @@ public class Money {
         int amount;
 
         if (amountRaw == null || amountRaw.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 비거나 null이 될 수 없습니다.");
+            throw new IllegalArgumentException(MessageManager.getError("error.money.invalid_money"));
         }
         try {
             amount = Integer.parseInt(amountRaw);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 양의 정수여야 합니다.");
+            throw new IllegalArgumentException(MessageManager.getError("error.money.not_integer"));
         }
         if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 양의 정수여야 합니다.");
+            throw new IllegalArgumentException(MessageManager.getError("error.money.not_positive"));
         }
 
         return amount;

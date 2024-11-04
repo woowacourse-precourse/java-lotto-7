@@ -1,6 +1,5 @@
 package lotto;
 
-import java.text.MessageFormat;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -37,10 +36,10 @@ public class LottoStatistics {
 
     public void prettyPrintLottoStatistics(LottoGame game) {
         int totalPurchaseAmount = game.getLottoCount() * LottoRegulation.LOTTO_PRICE;
-        System.out.println("당첨 통계\n---");
+        System.out.println(MessageManager.get("message.lottostatistics.header"));
         prettyPrintEachRankStatistics();
-        System.out.println(MessageFormat.format(
-                "총 수익률은 {0,number,0.0}%입니다.", calculateYield(totalPurchaseAmount)
+        System.out.println(MessageManager.getFormatted(
+                "message.lottostatistics.yield", calculateYield(totalPurchaseAmount)
         ));
     }
 
@@ -48,11 +47,11 @@ public class LottoStatistics {
         for (LottoRank rank : LottoRank.values()) {
             String bonusBallMatch = "";
             if (rank.isMatchBonusNumber()) {
-                bonusBallMatch = ", 보너스 볼 일치";
+                bonusBallMatch = MessageManager.get("message.lottostatistics.bonus_match");
             }
             if (rank != LottoRank.LOTTO_RANK_NONE) {
-                System.out.println(MessageFormat.format(
-                        "{0}개 일치{1} ({2}원) - {3}개",
+                System.out.println(MessageManager.getFormatted(
+                        "message.lottostatistics.stats_each",
                         rank.getMatchCount(),
                         bonusBallMatch,
                         rank.getPrizeAmount(),

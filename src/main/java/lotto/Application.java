@@ -9,7 +9,7 @@ public class Application {
 
         Money money = null;
         while (money == null || game.getLottoCount() == 0) {
-            System.out.println("구입금액을 입력해 주세요.");
+            System.out.println(MessageManager.get("prompt.application.input_money"));
             String moneyInput = Console.readLine();
             try {
                 money = new Money(moneyInput);
@@ -25,7 +25,7 @@ public class Application {
         System.out.println();
 
         while (game.getWinningLotto() == null) {
-            System.out.println("당첨 번호를 입력해 주세요.");
+            System.out.println(MessageManager.get("prompt.application.input_winning_number"));
             String winningNumbersInput = Console.readLine();
             try {
                 game.assignWinningLotto(winningNumbersInput);
@@ -36,7 +36,7 @@ public class Application {
 
         while (game.getBonusNumber() == 0) {
             System.out.println();
-            System.out.println("보너스 번호를 입력해 주세요.");
+            System.out.println(MessageManager.get("prompt.application.input_bonus_number"));
             String bonusNumberInput = Console.readLine();
             try {
                 game.assignBonusNumber(bonusNumberInput);

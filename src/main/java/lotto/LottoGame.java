@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -22,11 +21,12 @@ public class LottoGame {
 
     public void purchaseLotto(Money money) {
         if (money == null) {
-            throw new IllegalStateException("[ERROR] 구입금액이 유효하지 않습니다.");
+            throw new IllegalStateException(MessageManager.getError("error.lottogame.invalid_money"));
         }
         if (money.getAmount() % LottoRegulation.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(
-                    MessageFormat.format("[ERROR] 구입금액은 {0}원 단위로 입력해야 합니다.", LottoRegulation.LOTTO_PRICE));
+            throw new IllegalArgumentException(MessageManager.getFormattedError(
+                    "error.lottogame.wrong_unit", LottoRegulation.LOTTO_PRICE
+            ));
         }
         lottoCount = money.getAmount() / LottoRegulation.LOTTO_PRICE;
         purchasedLottos = new Lotto[lottoCount];
@@ -45,7 +45,9 @@ public class LottoGame {
     }
 
     public void prettyPrintPurchasedLottos() {
-        System.out.println(MessageFormat.format("{0}개를 구매했습니다.", lottoCount));
+        System.out.println(MessageManager.getFormatted(
+                "message.lottogame.purchased_this_much", lottoCount
+        ));
         for (Lotto lotto : purchasedLottos) {
             System.out.println(Arrays.toString(lotto.getNumbers().toArray()));
         }
@@ -58,8 +60,8 @@ public class LottoGame {
             try {
                 winningNumbers.add(Integer.parseInt(winningNumber));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(MessageFormat.format(
-                        "[ERROR] 콤마로 구분된 {0}개의 로또 번호를 입력하세요.",
+                throw new IllegalArgumentException(MessageManager.getFormattedError(
+                        "error.lottogame.illegal_number_format",
                         LottoRegulation.LOTTO_NUMBERS_COUNT
                 ));
             }
@@ -68,8 +70,8 @@ public class LottoGame {
     }
 
     public void assignBonusNumber(String bonusNumberInput) {
-        String errorMessage = MessageFormat.format(
-                "[ERROR] 보너스 번호는 당첨 번호가 아닌 {0} 이상 {1} 이하의 정수여야 합니다.",
+        String errorMessage = MessageManager.getFormattedError(
+                "error.lottogame.illegal_bonus_number",
                 LottoRegulation.LOTTO_NUMBER_MIN, LottoRegulation.LOTTO_NUMBER_MAX
         );
         try {
