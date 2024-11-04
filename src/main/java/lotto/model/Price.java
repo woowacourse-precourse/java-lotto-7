@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.model.ErrorMessage.INVALID_PRICE_AMOUNT;
+import static lotto.model.ErrorMessage.INVALID_PRICE_VALUE;
+
 import java.util.Map;
 
 public class Price {
@@ -30,13 +33,13 @@ public class Price {
 
 	private void isDivisibleByThousand(int price) {
 		if (price % PRICE_DIVISIBILITY_UNIT != 0) {
-			throw new IllegalArgumentException("[ERROR] 구입금액은 1000으로 나누어 떨어져야 합니다.");
+			throw new IllegalArgumentException(INVALID_PRICE_VALUE.getMessage());
 		}
 	}
 
 	private void isPositive(int price) {
 		if (price <= 0) {
-			throw new IllegalArgumentException("[ERROR] 구입금액은 0보다 커야 합니다.");
+			throw new IllegalArgumentException(INVALID_PRICE_AMOUNT.getMessage());
 		}
 	}
 }
