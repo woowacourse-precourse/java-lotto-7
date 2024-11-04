@@ -1,11 +1,13 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
+
+import static lotto.controller.Validater.checkRange;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 import java.util.HashSet;
-import static lotto.Application.checkRange;
 
 public class Lotto {
     private final List<Integer> numbers;

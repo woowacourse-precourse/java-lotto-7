@@ -1,13 +1,20 @@
 package lotto;
 
-import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-import static camp.nextstep.edu.missionutils.Console.readLine;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.Arrays;
+
+import lotto.model.Lotto;
+import lotto.model.Rank;
+
+import static lotto.view.InputView.inputAmount;
+import static lotto.view.InputView.makeWinningLotto;
+import static lotto.view.InputView.makeBonusNum;
+import static lotto.view.OutputView.outputLottoNumbers;
+import static lotto.view.OutputView.printLottoOutput;
+import static lotto.controller.LogicControl.checkWinning;
+import static lotto.controller.LogicControl.makeLotto;
 
 public class Application {
 
@@ -16,146 +23,15 @@ public class Application {
     public static int bonusNumber;
     public static Map<Rank, Integer> rankCounter = new TreeMap<>();
 
-    public static int stringToNum(String input) {
-        try {
-            int num = Integer.parseInt(input);
-            return num;
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력가능합니다.");
-        }
-    }
-
-    public static void checkLottoCost(int cost) {
-        if (cost % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원으로 나누어 떨어지지 않습니다.");
-        }
-    }
-
-    public static int inputAmount() {
-        while (true) {
-            try {
-                System.out.println("구입금액을 입력해 주세요.");
-                int lotto_cost = stringToNum(readLine());
-                checkLottoCost(lotto_cost);
-                return lotto_cost;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
-            }
-        }
-    }
-
-    public static void makeLotto(int lotto_cost) {
-        for (int i = lotto_cost; i - 1000 >= 0; i -= 1000) {
-            Lotto element = new Lotto(pickUniqueNumbersInRange(1, 45, 6));
-            lottos.add(element);
-        }
-    }
-
-    public static void outputLottoNumbers() {
-        System.out.println(lottos.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.printNumbers());
-        }
-    }
-
     public static void buyLotto() {
         int lotto_cost = inputAmount();
         makeLotto(lotto_cost);
         outputLottoNumbers();
     }
 
-    public static void checkRange(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1부터 45까지만 입력가능합니다.");
-        }
-    }
-
-    public static List<Integer> stringToNumbers(List<String> numbers_string) {
-        List<Integer> numbers = new ArrayList<Integer>();
-        for (String e : numbers_string) {
-            int element = stringToNum(e);
-            numbers.add(element);
-        }
-        return numbers;
-    }
-
-    public static void makeWinningLotto() {
-        while (true) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String input = readLine();
-                List<Integer> numbers = stringToNumbers(Arrays.asList(input.split(",")));
-                winningLotto = new Lotto(numbers);
-                return;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
-            }
-        }
-    }
-
-    public static void checkBounsVaild(int bonus) {
-        if (winningLotto.checkNumber(bonus) == 1) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 로또 번호와 중복입니다.");
-        }
-    }
-
-    public static void makeBonusNum() {
-        while (true) {
-            try {
-                System.out.println("보너스 번호를 입력해 주세요.");
-                int n = stringToNum(readLine());
-                checkRange(n);
-                checkBounsVaild(n);
-                bonusNumber = n;
-                return;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
-            }
-        }
-    }
-
-    public static void initializeMap() {
-        for (Rank rank : Rank.values()) {
-            rankCounter.put(rank, 0);
-        }
-    }
-
-    public static void checkWinning() {
-        initializeMap();
-
-        int winningCount = 0;
-        for (Lotto lotto : lottos) {
-            winningCount = 0;
-            winningCount += winningLotto.checkLotto(lotto);
-
-            Rank rank = Rank.checkRank(winningCount, lotto.checkNumber(bonusNumber));
-            rankCounter.put(rank, rankCounter.get(rank) + 1);
-        }
-    }
-
     public static void inputWinningLotto() {
         makeWinningLotto();
         makeBonusNum();
-    }
-
-    public static double calculateBenfit() {
-        double benefit = 0;
-        for (Rank rank : rankCounter.keySet()) {
-            if (rank != Rank.MISS)
-                benefit += Rank.calculatePrize(rank, rankCounter.get(rank));
-        }
-        return benefit;
-    }
-
-    public static void printLottoOutput() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        rankCounter.forEach((rank, count) -> {
-            if (rank != Rank.MISS)
-                Rank.printRankPrize(rank, count);
-        });
-        double benefit = Math.round(calculateBenfit() / (1000 * lottos.size()) * 100 * 10);
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", benefit / 10);
     }
 
     public static void main(String[] args) {
