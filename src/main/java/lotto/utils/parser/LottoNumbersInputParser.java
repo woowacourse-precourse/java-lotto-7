@@ -26,7 +26,7 @@ public class LottoNumbersInputParser {
 
     private static void checkNotNull(String input) {
         if (input == null) {
-            throw new NullPointerException(NULL_INPUT.getMessage());
+            throw new IllegalArgumentException(NULL_INPUT.getMessage());
         }
     }
 

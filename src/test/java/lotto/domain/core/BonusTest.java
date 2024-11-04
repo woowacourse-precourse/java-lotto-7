@@ -46,7 +46,7 @@ class BonusTest {
         public void 보너스_번호_중복_예외() {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             assertThatThrownBy(() -> new Bonus(1, lotto))
-                    .isInstanceOf(IllegalStateException.class)
+                    .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }

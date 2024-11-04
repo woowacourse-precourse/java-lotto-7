@@ -38,7 +38,7 @@ public class LottoNumbersInputParserTest {
         @Test
         @DisplayName("null 입력값에 대해 예외를 발생시킨다.")
         public void null_입력값에_예외를_발생시킨다() {
-            assertThatExceptionOfType(NullPointerException.class)
+            assertThatExceptionOfType(IllegalArgumentException.class)
                     .isThrownBy(() -> LottoNumbersInputParser.parse(null))
                     .withMessage(NULL_INPUT.getMessage());
         }

@@ -33,7 +33,7 @@ public class Lotto {
     private void validateNoDuplicates(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalStateException(DUPLICATE_NUMBER.getMessage());
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
         }
     }
 

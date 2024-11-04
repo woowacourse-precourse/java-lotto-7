@@ -22,7 +22,7 @@ public class Bonus {
 
     private void validateNotDuplicate(int number, Lotto lotto) {
         if (lotto.getNumbers().contains(number)) {
-            throw new IllegalStateException(DUPLICATE_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 
