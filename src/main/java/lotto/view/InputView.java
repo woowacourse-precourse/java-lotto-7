@@ -15,9 +15,9 @@ public class InputView {
 
                 return purchaseAmount;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("구입금액은 숫자만 허용됩니다.");
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                throw new IllegalArgumentException("[ERROR] 구입금액은 숫자만 허용됩니다.");
+            } catch (IllegalArgumentException ignored) {
+
             }
         }
     }
@@ -34,9 +34,9 @@ public class InputView {
 
                 return winningNumbers;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("당첨 번호는 숫자만 허용됩니다.");
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 허용됩니다.");
+            } catch (IllegalArgumentException ignored) {
+
             }
         }
     }
@@ -51,9 +51,9 @@ public class InputView {
 
                 return bonusNumber;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("보너스 번호는 숫자만 허용됩니다.");
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 허용됩니다.");
+            } catch (IllegalArgumentException ignored) {
+
             }
         }
     }
