@@ -86,14 +86,14 @@ src
  - [x] 로또 당첨 번호 (Winning Numbers)
 
 ## 서비스 (Service)
- - [ ] 로또 결과 서비스 (Lotto Result Service)
- - [ ] 로또 서비스 (Lotto Service)
- - [ ] 수익률 계산기 서비스 (Profit Calculator Service)
+ - [x] 로또 결과 서비스 (Lotto Result Service)
+ - [x] 로또 서비스 (Lotto Service)
+ - [x] 수익률 계산기 서비스 (Profit Calculator Service)
 
 ## 검증 (Validation)
- - [ ] 로또 검증 (Lotto Validator)
- - [ ] 로또 구입 금액 검증 (Lotto Amount Validator)
- - [ ] 로또 번호 검증 (Lotto Number Validator)
+ - [x] 로또 검증 (Lotto Validator)
+ - [x] 로또 구입 금액 검증 (Lotto Amount Validator)
+ - [x] 로또 번호 검증 (Lotto Number Validator)
 
 ## 예외 처리 (Exception)
  - [x] 로또 게임 예외 (Lotto Exception)
