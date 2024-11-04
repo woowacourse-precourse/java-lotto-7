@@ -52,6 +52,45 @@
 
 - - -
 
+```
+🌐 src.main.java.lotto
+│
+├── 📦 controller
+│   └── LottoController
+│
+├── 📦 domain
+│   ├── Lotto
+│   ├── LottoGame
+│   ├── LottoResult
+│   ├── Prize
+│   └── WinningNumber
+│
+├── 📦 exception
+│   ├── ErrorMessage
+│   └── LottoException
+│
+├── 📦 factory
+│   └── LottoTicketStore
+│
+├── 📦 service
+│   ├── LottoGameService
+│   ├── LottoPurchaseService
+│   ├── LottoResultCalculator
+│   └── LottoStatisticsService
+│
+├── 📦 util
+│   ├── LottoNumberSorter
+│   ├── LottoNumberValidator
+│   └── RandomNumberGenerator
+│
+├── 📦 view
+│   ├── ConsoleMessage
+│   ├── InputView
+│   └── OutputView
+│
+└── Application
+```
+
 ## 📌 계획
 
 - - -
