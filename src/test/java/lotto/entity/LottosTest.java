@@ -1,8 +1,11 @@
 package lotto.entity;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -135,6 +138,123 @@ public class LottosTest {
             Lottos lottos = new Lottos();
             assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
+
+    @Nested
+    @DisplayName("로또 당첨 확인 Test")
+    class CheckLottosTest {
+
+        @DisplayName("로또 1등 회수율 확인 Test")
+        @Test
+        void checkReturnFirstPrizeTest() {
+            Lottos lottos = new Lottos();
+            lottos.buyLottos(1000L);
+
+            List<Lotto> lottoList = lottos.getLottos();
+            List<Integer> numbers = lottoList.getFirst().getNumbers();
+            int bonus = 1;
+            while (bonus < 45) {
+                if (!numbers.contains(bonus)) {
+                    break;
+                }
+                bonus++;
+            }
+
+            lottos.setWinningNumbers(numbers, bonus);
+            assertEquals(lottos.getRateOfReturn(), (float) 2000000000 / 1000 * 100);
+        }
+
+        @DisplayName("로또 회수율 확인 Test")
+        @Test
+        void checkReturnSecondPrizeTest() {
+            // 로또에서 번호 뽑은 뒤
+            // 하나의 숫자를 bonus 숫자로 설정
+            // list에 없던 숫자를 당첨 번호에 추가하여 2등하는 경우를 생성
+
+            Lottos lottos = new Lottos();
+            lottos.buyLottos(1000L);
+
+            List<Lotto> lottoList = lottos.getLottos();
+            List<Integer> numbers = lottoList.getFirst().getNumbers();
+
+            List<Integer> winningNumbers = new ArrayList<>();
+            for (Integer number : numbers) {
+                winningNumbers.add(number);
+            }
+            Integer bonus = winningNumbers.removeFirst();
+            int append = 1;
+            while (append < 45) {
+                if (!numbers.contains(append)) {
+                    winningNumbers.add(append);
+                    break;
+                }
+                append++;
+            }
+
+            lottos.setWinningNumbers(winningNumbers, bonus);
+            assertEquals(lottos.getRateOfReturn(), (float) 30000000 / 1000 * 100);
+        }
+
+        @DisplayName("당첨된 1등 로또 개수 확인")
+        @Test
+        void checkNumOfFirstPrizeLottos() {
+            Lottos lottos = new Lottos();
+            lottos.buyLottos(1000L);
+
+            List<Lotto> lottoList = lottos.getLottos();
+            List<Integer> numbers = lottoList.getFirst().getNumbers();
+            int bonus = 1;
+            while (bonus < 45) {
+                if (!numbers.contains(bonus)) {
+                    break;
+                }
+                bonus++;
+            }
+
+            lottos.setWinningNumbers(numbers, bonus);
+            assertEquals(lottos.getCountOfPrize(Prize.FIRST), 1);
+            assertEquals(lottos.getCountOfPrize(Prize.SECOND), 0);
+            assertEquals(lottos.getCountOfPrize(Prize.THIRD), 0);
+            assertEquals(lottos.getCountOfPrize(Prize.FOURTH), 0);
+            assertEquals(lottos.getCountOfPrize(Prize.FIFTH), 0);
+            assertEquals(lottos.getCountOfPrize(Prize.NO_PRIZE), 0);
+        }
+
+        @DisplayName("당첨된 2등 로또 개수 확인 Test")
+        @Test
+        void checkNumOfSecondPrizeLottos() {
+            // 로또에서 번호 뽑은 뒤
+            // 하나의 숫자를 bonus 숫자로 설정
+            // list에 없던 숫자를 당첨 번호에 추가하여 2등하는 경우를 생성
+
+            Lottos lottos = new Lottos();
+            lottos.buyLottos(1000L);
+
+            List<Lotto> lottoList = lottos.getLottos();
+            List<Integer> numbers = lottoList.getFirst().getNumbers();
+
+            List<Integer> winningNumbers = new ArrayList<>();
+            for (Integer number : numbers) {
+                winningNumbers.add(number);
+            }
+            Integer bonus = winningNumbers.removeFirst();
+            int append = 1;
+            while (append < 45) {
+                if (!numbers.contains(append)) {
+                    winningNumbers.add(append);
+                    break;
+                }
+                append++;
+            }
+
+            lottos.setWinningNumbers(winningNumbers, bonus);
+            assertEquals(lottos.getCountOfPrize(Prize.FIRST), 0);
+            assertEquals(lottos.getCountOfPrize(Prize.SECOND), 1);
+            assertEquals(lottos.getCountOfPrize(Prize.THIRD), 0);
+            assertEquals(lottos.getCountOfPrize(Prize.FOURTH), 0);
+            assertEquals(lottos.getCountOfPrize(Prize.FIFTH), 0);
+            assertEquals(lottos.getCountOfPrize(Prize.NO_PRIZE), 0);
         }
     }
 }
