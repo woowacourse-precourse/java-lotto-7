@@ -38,6 +38,14 @@ public class CalculateResult {
         }
     }
 
+    public float getLottoReturns(int totalCount){
+        int total = 0;
+        for (SingleResult singleResult : this.results) {
+            total += singleResult.getPrize();
+        }
+        return ((float) total / (totalCount * TICKET_UNIT_PRICE)) * 100;
+    }
+
     public List<Integer> getWinCounts(){
         List<Integer> winCounts = new ArrayList<>(Collections.nCopies(Prize.values().length, 0));
         for (SingleResult singleResult : this.results) {
@@ -45,14 +53,6 @@ public class CalculateResult {
             winCounts.set(rank, winCounts.get(rank) + 1);
         }
         return winCounts;
-    }
-
-    public float getLottoReturns(int totalCount){
-        int total = 0;
-        for (SingleResult singleResult : this.results) {
-            total += singleResult.getPrize();
-        }
-        return ((float) total / (totalCount * TICKET_UNIT_PRICE)) * 100;
     }
 
     public void getTotalResult(int totalCount){

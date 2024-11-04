@@ -18,10 +18,6 @@ public enum Prize {
         this.amount = amount;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
     public static int getIndex(int amount) {
         for (Prize prize : Prize.values()) {
             if (prize.getAmount() == amount) {
@@ -39,4 +35,9 @@ public enum Prize {
         }
         return 0;
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
 }

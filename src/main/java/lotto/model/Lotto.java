@@ -17,16 +17,16 @@ public class Lotto {
         this.numbers = sortedNumbers;
     }
 
+    protected static void checkRange(Integer number){
+        if (number > 45 || number < 1) {
+            throw new IllegalArgumentException(ErrorMessages.NUMBER_RANGE_ERROR.getMessage());
+        }
+    }
+
     private void validate(List<Integer> numbers) {
         checkDuplicateLottoNumbers(numbers);
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessages.LOTTO_COUNT_ERROR.getMessage());
-        }
-    }
-
-    protected static void checkRange(Integer number){
-        if (number > 45 || number < 1) {
-            throw new IllegalArgumentException(ErrorMessages.NUMBER_RANGE_ERROR.getMessage());
         }
     }
 

@@ -10,14 +10,6 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = 0;
     }
 
-    public void setBonusNumber(String bonusNumber) {
-        this.bonusNumber = checkBonusNumber(bonusNumber);
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
-
     private int checkBonusNumber(String number){
         int num = Integer.parseInt(number);
         checkRange(num);
@@ -25,5 +17,13 @@ public class WinningLotto extends Lotto {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_ERROR.getMessage());
         }
         return num;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public void setBonusNumber(String bonusNumber) {
+        this.bonusNumber = checkBonusNumber(bonusNumber);
     }
 }

@@ -21,8 +21,11 @@ public class LottoController {
         this.lottos = new ArrayList<>();
     }
 
-    public void setLottos(List<Lotto> lottos) {
-        this.lottos = lottos;
+    public static int checkTotalAmountIfValid(int totalAmount) {
+        if (totalAmount % TICKET_UNIT_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessages.INPUT_TOTAL_AMOUNT_ERROR.getMessage());
+        }
+        return totalAmount / TICKET_UNIT_PRICE;
     }
 
     public static int getValidInputTotalAmount() {
@@ -39,39 +42,10 @@ public class LottoController {
         }
     }
 
-    public static int checkTotalAmountIfValid(int totalAmount) {
-        if (totalAmount % TICKET_UNIT_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessages.INPUT_TOTAL_AMOUNT_ERROR.getMessage());
-        }
-        return totalAmount / TICKET_UNIT_PRICE;
-    }
-
-    public void setTotalCount(){
-        int totalCount;
-        while(true){
-            totalCount = getValidInputTotalAmount();
-            try{
-                totalCount = checkTotalAmountIfValid(totalCount);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        this.totalCount = totalCount;
-    }
-
-    public int getTotalCount() {
-        return this.totalCount;
-    }
-
-    public List<Lotto> getLottos() {
-        return this.lottos;
-    }
-
-    private void inputNullCheck(String s){
-        if (s.isEmpty()){
-            throw new IllegalArgumentException(ErrorMessages.NUMBER_FORMAT_ERROR.getMessage());
-        }
+    public static void getSummary(LottoController lottoController, WinningLotto winningLotto) {
+        CalculateResult calculator = new CalculateResult(winningLotto);
+        calculator.calculateMatches(lottoController.getLottos());
+        calculator.getTotalResult(lottoController.totalCount);
     }
 
     public List<Integer> changeStringListToIntList(List<String> stringList) {
@@ -111,9 +85,35 @@ public class LottoController {
         }
     }
 
-    public static void getSummary(LottoController lottoController, WinningLotto winningLotto) {
-        CalculateResult calculator = new CalculateResult(winningLotto);
-        calculator.calculateMatches(lottoController.getLottos());
-        calculator.getTotalResult(lottoController.totalCount);
+    private void inputNullCheck(String s){
+        if (s.isEmpty()){
+            throw new IllegalArgumentException(ErrorMessages.NUMBER_FORMAT_ERROR.getMessage());
+        }
+    }
+
+    public int getTotalCount() {
+        return this.totalCount;
+    }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
+
+    public void setLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
+
+    public void setTotalCount(){
+        int totalCount;
+        while(true){
+            totalCount = getValidInputTotalAmount();
+            try{
+                totalCount = checkTotalAmountIfValid(totalCount);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        this.totalCount = totalCount;
     }
 }
