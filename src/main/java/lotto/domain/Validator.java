@@ -11,6 +11,7 @@ public class Validator {
     public static final String INVALID_LOTTO_NUMBER_COUNT_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
     public static final String INVALID_WINNING_NUMBERS_TYPE_ERROR = "[ERROR] 당첨 번호는 숫자로 입력해야 합니다.";
     public static final String DUPLICATE_WINNING_NUMBER_ERROR = "[ERROR] 당첨 번호에 중복된 숫자가 있습니다.";
+    public static final String INVALID_WINNING_NUMBER_RANGE_ERROR = "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
 
 
     public static int validateAndParsePurchaseAmount(String input) {
@@ -51,6 +52,9 @@ public class Validator {
         }
         if (hasDuplicate(numbers)) {
             throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER_ERROR);
+        }
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE_ERROR);
         }
         return numbers;
     }
