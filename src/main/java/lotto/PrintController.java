@@ -7,6 +7,7 @@ import java.util.List;
 public class PrintController {
 
     LottoController lottoController = new LottoController();
+    StatisticsController statisticsController = new StatisticsController();
 
     //구입금액
     public int inputPurchaseNumber() {
@@ -69,7 +70,7 @@ public class PrintController {
     //당첨통계
     public LottoResult printStatistics(List<Lotto> lottos, WinNumbers winNumbers) {
         System.out.println("당첨 통계\n---");
-        LottoResult lottoResult = lottoController.calculateWinnings(lottos, winNumbers);
+        LottoResult lottoResult = statisticsController.calculateWinnings(lottos, winNumbers);
         System.out.printf("3개 일치 (5,000원) - %d개\n", lottoResult.rankCount()[4]);
         System.out.printf("4개 일치 (50,000원) - %d개\n", lottoResult.rankCount()[3]);
         System.out.printf("5개 일치 (1,500,000원) - %d개\n", lottoResult.rankCount()[2]);
@@ -80,7 +81,7 @@ public class PrintController {
 
     //수익률
     public void printRateOfReturn(LottoResult lottoResult, int purchaseNumber) {
-        double rateOfReturn = lottoController.calculateRateOfReturn(lottoResult.totalWinnings(), purchaseNumber);
+        double rateOfReturn = statisticsController.calculateRateOfReturn(lottoResult.totalWinnings(), purchaseNumber);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }
 }
