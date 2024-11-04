@@ -8,4 +8,8 @@ public enum ExceptionMessage {
     ExceptionMessage(String message) {
         this.message = "[ERROR] " + message;
     }
+
+    public String getMessage() {
+        return message;
+    }
 }
