@@ -29,4 +29,22 @@ public class LottoMachine {
     public static Lotto releaseLotto(RandomIntegersGenerator randomGenerator) {
         return new Lotto(randomGenerator.generate());
     }
+
+    public Price calculatePrice(Lotto lotto) {
+        long matchingCount = lotto.getNumbers().stream()
+                .filter(it -> winningLotto.getNumbers().stream()
+                        .anyMatch(Predicate.isEqual(it)))
+                .count();
+        if (matchingCount == 5) {
+            return matchBonusNumber(lotto);
+        }
+        return Price.getPrice(matchingCount);
+    }
+
+    private Price matchBonusNumber(Lotto lotto) {
+        if (lotto.getNumbers().contains(this.bonusNumber)) {
+            return Price.SECOND;
+        }
+        return Price.THIRD;
+    }
 }

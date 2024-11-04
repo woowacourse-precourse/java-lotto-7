@@ -10,6 +10,7 @@ public class User {
     private final long lottoCount;
 
     private final List<Lotto> lottos = new ArrayList<>();
+    private List<Price> prices = new ArrayList<>();
     public User(String userMoney) throws IllegalArgumentException {
         validateUserMoney(userMoney);
         this.money = Long.parseLong(userMoney);
@@ -33,11 +34,20 @@ public class User {
         }
     }
 
+    public void calculateFinalPrice(LottoMachine lottoMachine) {
+        for (Lotto lotto : lottos) {
+            prices.add(lottoMachine.calculatePrice(lotto));
+        }
+    }
     public List<Lotto> getLottos() {
         return lottos;
     }
 
     public long getLottoCount() {
         return lottoCount;
+    }
+
+    public List<Price> getPrices() {
+        return prices;
     }
 }

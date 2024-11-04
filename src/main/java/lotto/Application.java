@@ -9,5 +9,6 @@ public class Application {
 
         Lotto lotto = InputHandler.inputWinningNumbers();
         LottoMachine lottoMachine = InputHandler.inputBonusNumbers(lotto);
+        user.calculateFinalPrice(lottoMachine);
     }
 }
