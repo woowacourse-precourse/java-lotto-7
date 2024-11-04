@@ -1,5 +1,6 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -42,5 +43,6 @@ public class OutputView {
 
     public void printReturnOfRate(double returnOfRate) {
         System.out.println(START_RETURN_OF_RATE_MESSAGE + returnOfRate + END_RETURN_OF_RATE_MESSAGE);
+        Console.close();
     }
 }
