@@ -40,6 +40,12 @@
         - `printLottoResults()`: 로또 구매 갯수와 번호들을 출력합니다.
         - `printLottoWinningStatistics()`: 당첨 통계를 출력합니다.
         - `ProfitRate()`: 수익률을 출력합니다.
+- **InputHandler 클래스**
+    - 사용자로부터 입력받은 데이터를 검증하고, 필요에 따라 파싱하여 사용할 수 있도록 처리합니다.
+    - 주요 메서드:
+        - `getValidMoney`: 형식에 맞지 않는 값이 입력될 경우, 에러 메시지를 출력하고 다시 입력을 요청합니다.
+        - `getValidWinningNumbers`: 사용자가 입력한 당첨 번호를 파싱하고, 각각의 번호가 조건에 만족하는지 검증합니다.
+        - `getValidBonusNumber`: 보너스 번호가 로또 번호 범위에 속하고, 당첨 번호와 중복되지 않는지 검증합니다.
 
 ### 3. Controller
 
