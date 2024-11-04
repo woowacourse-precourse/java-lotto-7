@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.LotteryMachine;
+import lotto.domain.Lotto;
 import lotto.domain.LottoResultChecker;
 import lotto.domain.Money;
 import lotto.service.GameService;
@@ -32,7 +34,7 @@ public class GameController {
 
     private LottoResultChecker CheckResult(LotteryMachine lotteryMachine) {
         List<Integer> winningNumbers = getWinningNumbers();
-        int bonusBall = getBonusBall();
+        int bonusBall = getBonusBall(winningNumbers);
         return gameService.lottoResult(winningNumbers, bonusBall, lotteryMachine);
     }
 
@@ -58,15 +60,37 @@ public class GameController {
     }
 
     public List<Integer> getWinningNumbers() {
-        InputView.requestWinningNumber();
-        String winningNumber = Console.readLine();
-        return validator.validateIsNumeric(winningNumber);
+        boolean valid = false;
+        List<Integer> numbers = new ArrayList<>();
+        while(!valid){
+            try {
+                InputView.requestWinningNumber();
+                String winningNumber = Console.readLine();
+                numbers = validator.validateIsNumeric(winningNumber);
+                validator.validateWinningNumber(new Lotto(numbers));
+                valid = true;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage() + System.lineSeparator());
+            }
+        }
+        return numbers;
     }
 
-    public int getBonusBall() {
-        InputView.requestBonusNumber();
-        String bonusBall = Console.readLine();
-        return validator.validateConvertToNumber(bonusBall);
+    public int getBonusBall(List<Integer> winningNumbers) {
+        int bonusNumber = 0;
+        boolean valid = false;
+        while(!valid){
+            try {
+                InputView.requestBonusNumber();
+                String bonusBall = Console.readLine();
+                bonusNumber = validator.validateConvertToNumber(bonusBall);
+                validator.validateBonusNumber(winningNumbers,bonusNumber);
+                valid = true;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage() + System.lineSeparator());
+            }
+        }
+        return bonusNumber;
     }
 
 }

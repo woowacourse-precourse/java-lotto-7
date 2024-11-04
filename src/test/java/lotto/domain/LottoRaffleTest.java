@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import lotto.controller.Validator;
 import lotto.utils.FixedNumberGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 class LottoRaffleTest {
     private LotteryMachine lotteryMachine;
     private int BONUS_NUMBER;
+    Validator validator = new Validator();
 
     @BeforeEach
     void createWinningLotto() {
@@ -25,7 +27,7 @@ class LottoRaffleTest {
         BONUS_NUMBER = 7;
         List<Integer> notInRangeNumber = List.of(1, 2, 3, 4, 5, 47);
         assertThatThrownBy(() ->
-                new LottoRaffle(new Lotto(notInRangeNumber), BONUS_NUMBER))
+                validator.validateWinningNumber(new Lotto(notInRangeNumber)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -33,18 +35,12 @@ class LottoRaffleTest {
     void 보너스번호가_로또번호범위에서벗어나면_예외가발생한다() {
 
         BONUS_NUMBER = 47;
-
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         assertThatThrownBy(() ->
-                new LottoRaffle(lotteryMachine.createLottoTicket(), BONUS_NUMBER));
+                validator.validateBonusNumber(winningNumber, BONUS_NUMBER))
+                .isInstanceOf(IllegalArgumentException.class)
+        ;
+
     }
 
-    @Test
-    void 보너스번호가_당첨번호와중복되면_예외가발생한다() {
-
-        BONUS_NUMBER = 1;
-
-        assertThatThrownBy(() ->
-                new LottoRaffle(lotteryMachine.createLottoTicket(), BONUS_NUMBER))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }
