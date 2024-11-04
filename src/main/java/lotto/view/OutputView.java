@@ -10,8 +10,7 @@ public class OutputView {
 
     private static final String HOW_MANY_DID_YOU_PURCHASED = "%d개를 구매했습니다.\n";
     private static final String LOTTERY_RESULT = "당첨 통계\n";
-    private static final String DIVIDER = "---";
-
+    private static final String UP_AND_DOWN_DIVIDER = "---";
     private static final String THREE_NUMBERS_MATCH = "3개 일치 (5,000원) - ";
     private static final String FOUR_NUMBERS_MATCH = "4개 일치 (50,000원) - ";
     private static final String FIVE_NUMBERS_MATCH = "5개 일치 (1,500,000원) - ";
@@ -32,10 +31,10 @@ public class OutputView {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (Set<Integer> lottoResult : lottoResults) {
-            stringBuilder.append(toPrettyString(lottoResult));
+            stringBuilder.append(toPrettyString(lottoResult)).append("\n");
         }
 
-        System.out.println(stringBuilder);
+        System.out.print(stringBuilder);
     }
 
     private String toPrettyString(Set<Integer> lottoResult) {
@@ -47,7 +46,7 @@ public class OutputView {
     }
 
     public void printWinningResult(final LottoStatisticsDto lottoStatisticsDto) {
-        System.out.println(LOTTERY_RESULT + DIVIDER);
+        System.out.println(LOTTERY_RESULT + UP_AND_DOWN_DIVIDER);
         System.out.println(winningResult(lottoStatisticsDto));
         System.out.printf(RATE_OF_RETURN, rateOfReturn(lottoStatisticsDto));
     }

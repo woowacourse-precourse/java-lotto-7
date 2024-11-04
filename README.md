@@ -1,9 +1,9 @@
 ## 지난주 피드백
-- 도메인을 불변 객체로 만들어서 객체를 새로 생성할 경우 메모리 용량의 문제나 이후 Spring을 사용했을 때 Proxy 객체의 참조에 문제가 발생할 수도 있다. 도메인은 가변할 수 있도록 만들자.
+- 도메인을 불변 객체로 만들어서 객체를 새로 생성할 경우 메모리 용량의 문제나 이후 Spring을 사용했을 때 Proxy 객체의 참조에 문제가 발생할 수도 있다. 속성에 변화가 있을 수 있는 도메인은 가변할 수 있도록 만들자.
 - 도메인에서 서비스 의존성을 주입받는 것은 의존성 역전 원칙에 어긋난다. 도메인에서 서비스로 데이터가 흘러가는 계층적 흐름을 유지하자.
 - Util에는 도메인 로직이 포함되면 안된다.
 - 검증 메소드가 도메인에 존재하면 생성 로직과 함께 처리 가능해서 코드가 간결해진다.
-- 입력이 같은 타입이고 같은 반환을 테스트한다면 @ParameterizedTest를 사용해보는걸 추천한다.
+- 다른 입력에 같은 반환을 테스트한다면 @ParameterizedTest를 사용해보는걸 추천한다.
 
 ## 공통 피드백 중 해당하는 부분
 - README.md를 상세히 작성하라
@@ -64,27 +64,34 @@
 
 ### **구현할 기능 목록 정리**
 - **Model**
-    - [ ] **LotteryMachine** : AutoLotteryNumbers(자동 추첨 복권 모델)와 몇 매 구매했는지에 대한 책임을 갖는 로또 발매기 모델
-    - [ ] **AutoLotteryNumbers** : 로또를 발행했을 때 뽑는 중복되지 않는 6개의 번호에 대한 모델
-    - [ ] **Lotto** : 입력 로또 번호에 관련한 책임을 갖는 모델
+    - user
+      - [x] **LotteryMachine** : LottoNumbers(자동 추첨 복권 모델)와 몇 매 구매했는지에 대한 책임을 갖는 로또 발매기 모델
+      - [x] **LottoNumbers** : 로또를 발행했을 때 뽑는 중복되지 않는 6개의 자동 추첨 번호에 대한 모델
+    - administrator
+      - [x] **Lotto** : 입력 로또 번호에 관련한 책임을 갖는 모델
+      - [x] **LottoBonusNumber** : 입력 로또 보너스 번호에 관련한 책임을 갖는 모델
+    - statistic
+      - [x] **Match** : LotteryMachine에서 구매한 복권들과 입력한 로또 번호를 대조하여 당첨금액에 해당하는 결과들에 대한 책임을 갖는 모델
+      - [x] **MatchList** : 대조하여 일치하는 로또 번호 갯수와 보너스 번호 경우의 수를 저장한 enum class
+
 - **기능**
-    - [ ] 안내문 출력
-    - [ ] 구입금액 입력
-    - [ ] 구입금액 검증(빈값, 숫자 여부, 금액 부족, 1,000원 단위, 최대 수량 확인)
-        - [ ] 예외 발생 시 재입력
-    - [ ] 구입금액에 따른 AutoLotteryNumbers 생성 및 LotteryMachine 생성
-    - [ ] LotteryMachine 결과 출력
-    - [ ] 당첨 번호 입력
-    - [ ] 콤마(,) delimiter로 문자열 parse 기능
-    - [ ] 당첨 번호 검증(빈값, 숫자/콤마 여부, 1~45 범위 여부, 중복 여부 확인)
-        - [ ] 예외 발생 시 재입력
-    - [ ] 보너스 번호 입력
-    - [ ] 보너스 번호 검증(빈값, 숫자 여부, 1~45 범위 여부, 중복 여부 확인)
-        - [ ] 예외 발생 시 재입력
-    - [ ] LotteryMachine과 당첨 번호, 보너스 번호를 비교하여 당첨 통계 계산
-    - [ ] 당첨 통계 출력
-    - [ ] 수익률 계산
-    - [ ] 수익률 출력
+    - [x] 안내문 출력
+    - [x] 구입금액 입력
+    - [x] 구입금액 검증(빈값, 숫자 여부, 금액 부족, 1,000원 단위, 최대 수량 확인)
+        - [x] 예외 발생 시 재입력
+    - [x] 구입금액에 따른 LottoNumbers 생성 및 LotteryMachine 생성
+    - [x] LotteryMachine 결과 출력
+    - [x] 당첨 번호 입력
+    - [x] 콤마(,) delimiter로 문자열 parse 기능
+    - [x] 당첨 번호 검증(빈값, 숫자/콤마 여부, 1~45 범위 여부, 중복 여부 확인)
+        - [x] 예외 발생 시 재입력
+    - [x] 보너스 번호 입력
+    - [x] 보너스 번호 검증(빈값, 숫자 여부, 1~45 범위 여부, 중복 여부 확인)
+        - [x] 예외 발생 시 재입력
+    - [x] LotteryMachine과 당첨 번호, 보너스 번호를 비교하여 당첨 통계 계산
+    - [x] 당첨 통계 출력
+    - [x] 수익률 계산
+    - [x] 수익률 출력
 
 ### **예외 처리 목록**
 - 빈값 예외
@@ -93,8 +100,9 @@
 - 금액이 부족합니다 예외
 - 로또 최대 구매 수량 초과 예외
 - 숫자, 콤마(,)가 아닌 문자 예외
-- 로또 숫자 1~45 범위가 아닌 예외
+- 입력된 로또 숫자 1~45 범위가 아닌 예외
 - 로또 숫자 중복 예외
+- 입력된 로또 숫자 6개 아닌 예외
 
 ## **프로그래밍 요구 사항**
 - 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
@@ -140,4 +148,57 @@ private final List<Integer> numbers;
 
     // TODO: 추가 기능 구현
 }
+```
+
+### **완성 프로젝트 구조**
+```
+└─lotto
+    │  Application.java
+    │  DrawGames.java
+    │
+    ├─controller
+    │      LottoController.java
+    │      LottoControllerFactory.java
+    │
+    ├─exception
+    │  │  EmptyInputException.java
+    │  │  NotNumberException.java
+    │  │
+    │  ├─administrator
+    │  │      LottoNumbersDuplicationException.java
+    │  │      LottoNumbersMustBeSixException.java
+    │  │      NotNumberOrCommaException.java
+    │  │      OutOfRangeLottoNumberException.java
+    │  │
+    │  └─user
+    │          LottoMaximumExceededException.java
+    │          NotEnoughMoneyException.java
+    │          NotThousandUnitException.java
+    │
+    ├─model
+    │  ├─administrator
+    │  │      Lotto.java
+    │  │      LottoBonusNumber.java
+    │  │
+    │  ├─statistic
+    │  │      LottoStatisticsDto.java
+    │  │      Match.java
+    │  │      MatchList.java
+    │  │
+    │  └─user
+    │          LotteryMachine.java
+    │          LottoNumbers.java
+    │          LottoResultDto.java
+    │
+    ├─service
+    │      LottoAdministratorService.java
+    │      LottoUserService.java
+    │
+    ├─util
+    │      LottoConstant.java
+    │      ValidateUtil.java
+    │
+    └─view
+           InputView.java
+           OutputView.java
 ```
