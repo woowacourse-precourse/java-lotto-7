@@ -11,13 +11,10 @@ public class Player {
     private WinningNumbers winningNumbers; // WinningNumbers 추가
     private int winningMoney;
 
+    public static final String RETURN_RATE_FORMAT = "%.1f";
+
     public Player(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
-        this.lottos = new ArrayList<>();
-    }
-
-    public Player() {
-        this.purchaseAmount = LottoConfig.ZERO;
         this.lottos = new ArrayList<>();
     }
 
@@ -34,15 +31,15 @@ public class Player {
     }
 
     public List<String> getLottoNumbers() {
-        List<String> LottoNumbers = new ArrayList<>();
+        List<String> lottoNumbers = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            LottoNumbers.add(lotto.toFormattedString());
+            lottoNumbers.add(lotto.toFormattedString());
         }
-        return LottoNumbers;
+        return lottoNumbers;
     }
 
     public void setWinningNumbers(WinningNumbers winningNumbers) {
-        this.winningNumbers = winningNumbers; // WinningNumbers 설정
+        this.winningNumbers = winningNumbers;
     }
 
     public List<Integer> calculateWinningRanks() {
@@ -58,7 +55,14 @@ public class Player {
     }
 
     public String getRateOfReturn(int winning) {
-        String roundFormat = "%.".concat(Integer.toString(1).concat("f"));
-        return String.format(roundFormat, (double) winning * 100 / purchaseAmount).concat("%");
+        return formatRateOfReturn(calculateRateOfReturn(winning));
+    }
+
+    private double calculateRateOfReturn(int winning) {
+        return (double) winning * 100 / purchaseAmount;
+    }
+
+    private String formatRateOfReturn(double rateOfReturn) {
+        return String.format(RETURN_RATE_FORMAT, rateOfReturn).concat("%");
     }
 }

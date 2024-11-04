@@ -9,8 +9,8 @@ import lotto.model.domain.Player;
 
 public class LottoService {
     public Lotto generateLotto() {
-        List<Integer> numbers = generateRandomNumbers();
-
+        List<Integer> numbers;
+        numbers = generateRandomNumbers();
         Lotto lotto = new Lotto(numbers);
 
         return lotto;

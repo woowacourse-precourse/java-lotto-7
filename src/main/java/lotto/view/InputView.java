@@ -14,11 +14,6 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-//    public int getPurchaseAmount() {
-//        String moneyAmount = Console.readLine();
-//        return Integer.parseInt(moneyAmount);
-//    }
-
     public String getPurchaseAmount() {
         return Console.readLine();
     }

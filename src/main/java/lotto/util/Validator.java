@@ -52,10 +52,17 @@ public class Validator {
         }
     }
 
-
     public static void validateMoneyUnit(int money) {
         if (money % LottoConfig.MONEY_UNIT != LottoConfig.ZERO || money <= LottoConfig.ZERO) {
             throw new IllegalArgumentException(ValidatorErrorMessage.MONEY_UNIT_EXCEPTION.getErrorMessage());
+        }
+    }
+
+    public static void validateNumberList(List<Integer> numbers) {
+        validateNumberCount(numbers);
+        validateDuplicateNumber(numbers);
+        for (int number : numbers) {
+            validateRange(number);
         }
     }
 }

@@ -33,61 +33,58 @@ public class LottoController {
         setupLotto();
         generateLottos();
         generateBonusNumber();
-        resultLotto();
+        displayResults();
     }
 
     private void setupLotto() {
-        purchaseAmount = LottoConfig.ZERO;
         outputView.purchaseLottoAmountMesssage();
+        purchaseAmount = getValidatedPurchaseAmount();
+        player = new Player(purchaseAmount);
+        lottoService.generateLottoTickets(player);
+        outputView.purchaseLottoCountMessage(lottoService.calculateTicketCount(purchaseAmount));
+    }
+
+    private int getValidatedPurchaseAmount() {
         while (true) {
             try {
                 String input = inputView.getPurchaseAmount();
                 Validator.validateInteger(input);
-                purchaseAmount = Integer.parseInt(input);
-                Validator.validateMoneyUnit(purchaseAmount);
-
-                break;
+                int amount = Integer.parseInt(input);
+                Validator.validateMoneyUnit(amount);
+                return amount;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
-        player = new Player(purchaseAmount);
-        lottoService.generateLottoTickets(player);
-        processPurchase();
     }
 
     private void generateLottos() {
         outputView.printLottoNumbers(player.getLottoNumbers());
+        winningNumbers = getValidatedWinningNumbers();
+        player.setWinningNumbers(winningNumbersService.getWinningNumbers());
+    }
+
+    private List<Integer> getValidatedWinningNumbers() {
         outputView.enterWinningNumbers();
         while (true) {
             try {
                 winningNumbersService.inputWinningNumbers();
-                winningNumbers = winningNumbersService.getWinningNumbers().getNumbers();
-
-                Validator.validateDuplicateNumber(winningNumbers);
-                Validator.validateNumberCount(winningNumbers);
-                for (int number : winningNumbers) {
-                    Validator.validateRange(number);
-                }
-
-                break;
+                List<Integer> numbers = winningNumbersService.getWinningNumbers().getNumbers();
+                Validator.validateNumberList(numbers);
+                return numbers;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
-        player.setWinningNumbers(winningNumbersService.getWinningNumbers());
     }
 
     private void generateBonusNumber() {
         outputView.enterBonusNumber();
         while (true) {
             try {
-
                 int bonusNumber = winningNumbersService.inputBonusNumber();
-
                 Validator.validateRange(bonusNumber);
                 Validator.validateDuplicateNumber(winningNumbers, bonusNumber);
-                //TODO: bonusNumaber가 정수인지 검증 필요, a 이런게 들어올 수도 있잖아
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -95,14 +92,10 @@ public class LottoController {
         }
     }
 
-    private void resultLotto() {
+    private void displayResults() {
         outputView.WinningStatistics();
         outputView.matchWinningCount(player.calculateWinningRanks());
         outputView.promptTotalReturnRate(player.getRateOfReturn(player.getWinningMoney()));
     }
-
-    private void processPurchase() {
-        int ticketCount = lottoService.calculateTicketCount(player.getPurchaseAmount());
-        outputView.purchaseLottoCountMessage(ticketCount);
-    }
 }
+

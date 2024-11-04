@@ -30,6 +30,7 @@ public class OutputView {
     }
 
     public void printLottoNumbers(List<String> lottoNumbers) {
+        System.out.println();
         for (String lotterNumber : lottoNumbers) {
             System.out.println(lotterNumber);
         }
