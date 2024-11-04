@@ -5,8 +5,7 @@ public enum Prize {
     FOURTH_PRIZE(50_000, "4개 일치"),
     THIRD_PRIZE(1_500_000, "5개 일치"),
     SECOND_PRIZE(30_000_000, "5개 일치, 보너스 볼 일치"),
-    FIRST_PRIZE(2_000_000_000, "6개 일치"),
-    NO_PRIZE(0, "상금이 없습니다.");
+    FIRST_PRIZE(2_000_000_000, "6개 일치");
 
     private final int prize;
     private final String description;
@@ -26,7 +25,7 @@ public enum Prize {
                 yield THIRD_PRIZE;
             }
             case 6 -> FIRST_PRIZE;
-            default -> NO_PRIZE;
+            default -> null;
         };
     }
 
