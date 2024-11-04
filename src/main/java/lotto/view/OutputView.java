@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import lotto.model.Ticket;
 import lotto.util.MessageParser;
@@ -38,7 +39,10 @@ public class OutputView {
     }
 
     public void printRanks(List<Long> rankCount) {
-        for (Ranks rank : Ranks.values()) {
+        Ranks[] ranks = Ranks.values();
+        Arrays.sort(ranks, (a, b) -> b.getNumber() - a.getNumber());
+
+        for (Ranks rank : ranks) {
             if (rank == Ranks.NO_WIN) {
                 continue;
             }

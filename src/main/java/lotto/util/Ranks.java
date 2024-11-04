@@ -4,13 +4,12 @@ package lotto.util;
  * 등수와 관련된 상수
  */
 public enum Ranks {
-
-    FIFTH(5, 3, BonusCondition.NOT_APPLICABLE, 5000),
-    FOURTH(4, 4, BonusCondition.NOT_APPLICABLE, 50000),
-    THIRD(3, 5, BonusCondition.LOSE, 1500000),
-    SECOND(2, 5, BonusCondition.WIN, 30000000),
+    NO_WIN(0, 0, BonusCondition.NOT_APPLICABLE, 0),
     FIRST(1, 6, BonusCondition.NOT_APPLICABLE, 2000000000),
-    NO_WIN(0, 0, BonusCondition.NOT_APPLICABLE, 0);
+    SECOND(2, 5, BonusCondition.WIN, 30000000),
+    THIRD(3, 5, BonusCondition.LOSE, 1500000),
+    FOURTH(4, 4, BonusCondition.NOT_APPLICABLE, 50000),
+    FIFTH(5, 3, BonusCondition.NOT_APPLICABLE, 5000);
 
     private final int number; // 등수
     private final int matchCount; // 일치하는 번호 개수
