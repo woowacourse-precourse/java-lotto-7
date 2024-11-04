@@ -15,16 +15,9 @@ public class Application {
         int bonusNumber = InputView.getValidBonusNumber(lottoWinningNumbers);
 
         WinningLotto winningLotto = new WinningLotto(lottoWinningNumbers, bonusNumber);
-        LottoResult result = matchLottos(lottoPurchase.getLottos(), winningLotto);
+        LottoResult result = LottoResult.of(lottoPurchase.getLottos(), winningLotto);
 
         OutputView.printResults(result, lottoPurchase.getAmount());
-    }
-
-
-    private static LottoResult matchLottos(List<Lotto> lottos, WinningLotto winningLotto) {
-        LottoResult result = new LottoResult();
-        lottos.forEach(lotto -> result.addResult(winningLotto.match(lotto)));
-        return result;
     }
 
 

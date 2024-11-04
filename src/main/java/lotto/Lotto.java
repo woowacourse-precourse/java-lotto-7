@@ -29,5 +29,4 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    // TODO: 추가 기능 구현
 }

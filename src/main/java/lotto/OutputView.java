@@ -18,10 +18,14 @@ public class OutputView {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         for (Rank rank : Rank.values()) {
-            if (rank != Rank.NONE) {
-                System.out.printf("%s - %d개\n", rank.getDescription(), result.getCount(rank));
-            }
+            printWithoutNone(result, rank);
         }
         System.out.printf("총 수익률은 %.1f%%입니다.\n", result.calculateProfitRate(purchaseAmount));
+    }
+
+    private static void printWithoutNone(LottoResult result, Rank rank) {
+        if (rank != Rank.NONE) {
+            System.out.printf("%s - %d개\n", rank.getDescription(), result.getCount(rank));
+        }
     }
 }
