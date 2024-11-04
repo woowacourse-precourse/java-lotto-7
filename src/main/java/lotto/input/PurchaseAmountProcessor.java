@@ -8,6 +8,7 @@ public class PurchaseAmountProcessor {
 
     private static final int PURCHASE_UNIT = 1000;
     private static final int ZERO = 0;
+    private static final long MAX_PURCHASE_AMOUNT = 1_000_000_000L;
     private static final String POSITIVE_SIGN = "+";
 
     private PurchaseAmountProcessor() {
@@ -30,6 +31,12 @@ public class PurchaseAmountProcessor {
             throw new IllegalArgumentException(POSITIVE_SIGN_INPUT.getMessage());
         }
         InputUtil.validatePositiveInteger(input);
+
+        long money = Long.parseLong(trimmedInput);
+        if (money > MAX_PURCHASE_AMOUNT) {
+            throw new IllegalArgumentException(EXCEEDS_MAX_AMOUNT.getMessageWithMaxAmount(MAX_PURCHASE_AMOUNT));
+        }
+
         return Integer.parseInt(trimmedInput);
     }
 }

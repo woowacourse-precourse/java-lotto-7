@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
@@ -47,6 +48,18 @@ public class PurchaseAmountProcessorTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> calculatePurchaseCount(input))
                 .withMessage(POSITIVE_SIGN_INPUT.getMessage());
+    }
+
+    @DisplayName("1,000,000,000을 초과한 경우 - IllegalArgumentException 반환")
+    @Test
+    void testMaxAmount() {
+        // given
+        String input = "1000000001";
+
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> calculatePurchaseCount(input))
+                .withMessage(EXCEEDS_MAX_AMOUNT.getMessageWithMaxAmount(1000000000));
     }
 
     @DisplayName("1,000원 단위로 나누어 떨어지지 않는 경우 - IllegalArgumentException 반환")

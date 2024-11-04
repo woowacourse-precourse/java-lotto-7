@@ -10,7 +10,8 @@ public enum ExceptionMessage {
     OUT_OF_RANGE_NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     DUPLICATE_WITH_WINNING_NUMBER("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     LOTTO_COUNT_LIMIT("[ERROR] 로또 개수는 6개여야 합니다."),
-    DUPLICATE_LOTTO_NUMBER("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    DUPLICATE_LOTTO_NUMBER("[ERROR] 로또 번호는 중복될 수 없습니다."),
+    EXCEEDS_MAX_AMOUNT("[ERROR] 최대 구입 금액을 초과했습니다. 최대 금액은 %,d원입니다.");
 
     private final String message;
 
@@ -20,5 +21,9 @@ public enum ExceptionMessage {
 
     public String getMessage() {
         return this.message;
+    }
+
+    public String getMessageWithMaxAmount(long maxAmount){
+        return String.format(this.message, maxAmount);
     }
 }
