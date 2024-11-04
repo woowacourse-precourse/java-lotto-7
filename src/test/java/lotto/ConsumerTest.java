@@ -32,7 +32,7 @@ public class ConsumerTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException(purchaseAmount))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(IS_NOT_1000_UNIT)
+                        .hasMessage(IS_NOT_1000_UNIT.getMessage())
         );
     }
 
@@ -41,7 +41,7 @@ public class ConsumerTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("0"))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(DONT_NOT_ZERO)
+                        .hasMessage(DONT_NOT_ZERO.getMessage())
         );
     }
 
@@ -52,7 +52,7 @@ public class ConsumerTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> validateCount(winningNumbers))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(SIX_WINNING_NUMBER)
+                        .hasMessage(SIX_WINNING_NUMBER.getMessage())
         );
     }
 
@@ -63,7 +63,7 @@ public class ConsumerTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> validateRange(winningNumbers))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(NUMBER_RANGE)
+                        .hasMessage(NUMBER_RANGE.getMessage())
         );
     }
 
@@ -86,7 +86,7 @@ public class ConsumerTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> validateDuplicate(winningNumbers))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(DUPLICATE_WINNING_NUMBER)
+                        .hasMessage(DUPLICATE_WINNING_NUMBER.getMessage())
         );
     }
 
@@ -96,7 +96,7 @@ public class ConsumerTest extends NsTest {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> validateSingleNumber(Integer.parseInt(bonusNumber)))
                         .isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(NUMBER_RANGE)
+                        .hasMessage(NUMBER_RANGE.getMessage())
         );
     }
 }

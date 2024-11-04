@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoCalculator {
+    public static final int MATCH_FIVE_BONUS = 5;
+
     public static int countMatches(Lotto lotto, List<Integer> winningNumbers) {
         int matchCount = 0;
         for (int number : lotto.getNumbers()) {
@@ -22,7 +24,7 @@ public class LottoCalculator {
     public static Rank calculateRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = countMatches(lotto, winningNumbers);
         boolean matchBonus = false;
-        if (matchCount == 5) {
+        if (matchCount == MATCH_FIVE_BONUS) {
             matchBonus = countMatchesWithBonus(lotto, bonusNumber);
         }
         return Rank.of(matchCount, matchBonus);

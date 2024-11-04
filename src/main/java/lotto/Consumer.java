@@ -15,6 +15,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Consumer {
+    public static final int ONE_THOUSAND_UNIT = 1000;
+    public static final int NUMBER_COUNT = 6;
+    public static final int START_RANGE = 1;
+    public static final int END_RANGE = 45;
+
     public static String input() {
         return Console.readLine();
     }
@@ -34,14 +39,14 @@ public class Consumer {
     }
 
     public static void validRange(int purchaseAmount) {
-        if (purchaseAmount / 1000 < 1 || purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException(IS_NOT_1000_UNIT);
+        if (purchaseAmount / ONE_THOUSAND_UNIT < 1 || purchaseAmount % ONE_THOUSAND_UNIT != 0) {
+            throw new IllegalArgumentException(IS_NOT_1000_UNIT.getMessage());
         }
     }
 
     public static void isNotZero(int purchaseAmount) {
         if (purchaseAmount == 0) {
-            throw new IllegalArgumentException(DONT_NOT_ZERO);
+            throw new IllegalArgumentException(DONT_NOT_ZERO.getMessage());
         }
     }
 
@@ -69,8 +74,8 @@ public class Consumer {
     }
 
     public static void validateCount(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException(SIX_WINNING_NUMBER);
+        if (winningNumbers.size() != NUMBER_COUNT) {
+            throw new IllegalArgumentException(SIX_WINNING_NUMBER.getMessage());
         }
     }
 
@@ -83,7 +88,7 @@ public class Consumer {
     public static void validateDuplicate(List<Integer> winningNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
         if (uniqueNumbers.size() != winningNumbers.size()) {
-            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER);
+            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
 
@@ -94,20 +99,20 @@ public class Consumer {
     }
 
     public static void validateSingleNumber(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(NUMBER_RANGE);
+        if (number < START_RANGE || number > END_RANGE) {
+            throw new IllegalArgumentException(NUMBER_RANGE.getMessage());
         }
     }
 
     public static void duplicateWithWinnging(List<Integer> winningNumbers, int number) {
         if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException(DUPLICATE_BONUS_WINNING);
+            throw new IllegalArgumentException(DUPLICATE_BONUS_WINNING.getMessage());
         }
     }
 
     public static void validateInput(String input) {
         if (!input.matches("\\d+")) { // 입력이 숫자가 아닐 경우
-            throw new IllegalArgumentException(DONT_ENTER_STRING);
+            throw new IllegalArgumentException(DONT_ENTER_STRING.getMessage());
         }
     }
 }

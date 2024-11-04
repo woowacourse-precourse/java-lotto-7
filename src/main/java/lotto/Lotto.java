@@ -10,6 +10,7 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private final int NUMBER_COUNT = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -30,7 +31,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -42,7 +43,7 @@ public class Lotto {
     private void isDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBER_LOTTO);
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_LOTTO.getMessage());
         }
     }
 }
