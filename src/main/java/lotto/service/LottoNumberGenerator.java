@@ -11,11 +11,12 @@ public class LottoNumberGenerator {
     private static final int LOTTO_NUMBER_MIN = 1;
     private static final int LOTTO_NUMBER_MAX = 45;
     private static final int LOTTO_NUMBERS_COUNT = 6;
+    private static final int START_INDEX = 0;
 
     public Lottos generateLottoNumbers(int lottoCount) {
         List<Lotto> allLottoNumbers = new ArrayList<>();
 
-        for (int count = 0; count < lottoCount; count++) {
+        for (int count = START_INDEX; count < lottoCount; count++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBERS_COUNT);
             allLottoNumbers.add(new Lotto(lottoNumbers));
         }

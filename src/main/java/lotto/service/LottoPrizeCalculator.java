@@ -1,27 +1,37 @@
 package lotto.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import lotto.constatnt.WinningRank;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
-
 public class LottoPrizeCalculator {
 
-    private static final int FIRST_WINNER_PRIZE = 2_000_000_000;
-    private static final int SECOND_WINNER_PRIZE = 30_000_000;
-    private static final int THIRD_WINNER_PRIZE = 1_500_000;
-    private static final int FOURTH_WINNER_PRIZE = 50_000;
-    private static final int FIFTH_WINNER_PRIZE = 5_000;
+    private final Map<WinningRank, Integer> winningCounts = new HashMap<>();
 
-    public long calculatePrize(Lottos generatedLottos, Lotto parsedWinningNumbers, int parsedWinningBonus) {
+    public LottoPrizeCalculator() {
+        for (WinningRank rank : WinningRank.values()) {
+            winningCounts.put(rank, 0);
+        }
+    }
+
+    public long calculateTotalPrize(Lottos generatedLottos, Lotto parsedWinningNumbers, int parsedWinningBonus) {
         long totalPrize = 0;
 
         for (Lotto lotto : generatedLottos.getLottos()) {
             int matchingNumbers = countMatchingNumbers(lotto, parsedWinningNumbers);
             boolean hasBonusNumber = lotto.getNumbers().contains(parsedWinningBonus);
 
-            totalPrize += calculateIndividualPrize(matchingNumbers, hasBonusNumber);
+            WinningRank rank = WinningRank.determineRank(matchingNumbers, hasBonusNumber);
+            totalPrize += rank.getPrizeAmount();
+            updateWinningCounts(rank);
         }
         return totalPrize;
+    }
+
+    private void updateWinningCounts(WinningRank rank) {
+        winningCounts.put(rank, winningCounts.get(rank) + 1);
     }
 
     private int countMatchingNumbers(Lotto lotto, Lotto winningNumber) {
@@ -37,28 +47,12 @@ public class LottoPrizeCalculator {
         return matchCount;
     }
 
-    private int calculateIndividualPrize(int matchingNumbers, boolean hasBonusNumber) {
-        if (matchingNumbers == 6) {
-            return FIRST_WINNER_PRIZE;
-        }
-        if (matchingNumbers == 5 && hasBonusNumber) {
-            return SECOND_WINNER_PRIZE;
-        }
-        if (matchingNumbers == 5) {
-            return THIRD_WINNER_PRIZE;
-        }
-        if (matchingNumbers == 4) {
-            return FOURTH_WINNER_PRIZE;
-        }
-        if (matchingNumbers == 3) {
-            return FIFTH_WINNER_PRIZE;
-        }
-        return 0;
-    }
-
     public double calculateYield(long totalPrize, long purchaseAmount) {
-
         double yield = ((double) totalPrize / purchaseAmount) * 100;
         return Math.round(yield * 100) / 100.0;
+    }
+
+    public Map<WinningRank, Integer> getWinningCounts() {
+        return winningCounts;
     }
 }

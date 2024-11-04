@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.Map;
+import lotto.constatnt.WinningRank;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.service.LottoNumberGenerator;
@@ -18,7 +20,6 @@ public class LottoController {
     private final ResultDisplayer resultDisplayer;
     private final WinningNumberParser winningNumberParser;
     private final WinningNumberInput winningNumberInput;
-
     private final LottoPrizeCalculator lottoPrizeCalculator;
 
     public LottoController(PriceCalculator priceCalculator, PurchasePriceInput purchasePriceInput, LottoNumberGenerator lottoNumberGenerator, ResultDisplayer resultDisplayer, WinningNumberParser winningNumberParser, WinningNumberInput winningNumberInput, LottoPrizeCalculator lottoPrizeCalculator) {
@@ -36,9 +37,12 @@ public class LottoController {
         Lottos generatedLottos = generateLottos(purchaseAmount);
         Lotto parsedWinningNumbers = getParsedWinningNumbers();
         int parsedWinningBonus = getParsedWinningBonus();
-        long totalPrize = calculateTotalPrize(generatedLottos, parsedWinningNumbers, parsedWinningBonus);
-        double yield = calculateYield(totalPrize, purchaseAmount);
-        displayResults(totalPrize, yield);
+
+        long totalPrize = lottoPrizeCalculator.calculateTotalPrize(generatedLottos, parsedWinningNumbers, parsedWinningBonus);
+        double yield = lottoPrizeCalculator.calculateYield(totalPrize, purchaseAmount);
+
+        Map<WinningRank, Integer> winningCounts = lottoPrizeCalculator.getWinningCounts();
+        displayResults(winningCounts, yield);
     }
 
     private long getPurchaseAmount() {
@@ -63,15 +67,7 @@ public class LottoController {
         return winningNumberParser.parseBonusWinningNumber(winningBonusNumber);
     }
 
-    private long calculateTotalPrize(Lottos generatedLottos, Lotto parsedWinningNumbers, int parsedWinningBonus) {
-        return lottoPrizeCalculator.calculatePrize(generatedLottos, parsedWinningNumbers, parsedWinningBonus);
-    }
-
-    private double calculateYield(long totalPrize, long purchaseAmount) {
-        return lottoPrizeCalculator.calculateYield(totalPrize, purchaseAmount);
-    }
-
-    private void displayResults(long totalPrize, double yield) {
-
+    private void displayResults(Map<WinningRank, Integer> winningCounts, double yield) {
+        resultDisplayer.showWinningStatistics(winningCounts);
     }
 }

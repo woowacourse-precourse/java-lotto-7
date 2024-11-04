@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.constatnt;
 
 public enum ExceptionMessage {
     PURCHASE_PRICE_BLANK_INPUT("[ERROR] 로또 구입 금액은 빈 값이 될 수 없습니다."),
