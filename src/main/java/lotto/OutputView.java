@@ -12,4 +12,8 @@ public class OutputView {
         System.out.println("---");
         System.out.println(statisticalMachine.toString());
     }
+
+    public void printTotalProfit(double totalProfit) {
+        System.out.printf("총 수익률은 %s%%입니다.%n", totalProfit);
+    }
 }
