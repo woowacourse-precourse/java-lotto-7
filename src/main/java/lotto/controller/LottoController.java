@@ -3,11 +3,13 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
 import lotto.domain.LottoDispenser;
 import lotto.domain.LottoPurchasePrice;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
+import lotto.dto.LottoBundleDTO;
 import lotto.enums.LottoConfig;
 import lotto.handler.RetryHandler;
 import lotto.view.LottoInputView;
@@ -36,7 +38,7 @@ public class LottoController {
     public void run() {
         LottoPurchasePrice lottoPurchasePrice = retryHandler.retry(this::requestLottoPurchasePrice);
         LottoBundle lottoBundle = issueLottoBundle(lottoPurchasePrice);
-        lottoOutputView.printLottoBundle(lottoBundle);
+        lottoOutputView.printLottoBundle(createLottoBundleDTO(lottoBundle));
 
         WinningLotto winningLotto = retryHandler.retry(this::requestLottoWinningNumbers);
         BonusNumber bonusNumber = retryHandler.retry(this::requestLottoBonusNumber, winningLotto);
@@ -52,6 +54,11 @@ public class LottoController {
 
     private LottoBundle issueLottoBundle(LottoPurchasePrice lottoPurchasePrice) {
         return lottoDispenser.issueLottoBundle(lottoPurchasePrice);
+    }
+
+    private LottoBundleDTO createLottoBundleDTO(LottoBundle lottoBundle){
+        List<Lotto> lottos = lottoBundle.getLottos();
+        return LottoBundleDTO.from(lottos);
     }
 
     private WinningLotto requestLottoWinningNumbers() {

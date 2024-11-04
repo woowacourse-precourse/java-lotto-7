@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
-import lotto.domain.LottoBundle;
+import lotto.dto.LottoBundleDTO;
 import lotto.enums.LottoRank;
 import lotto.domain.LottoResult;
 
@@ -33,8 +33,10 @@ public class LottoOutputView {
         System.out.println(LOTTO_BONUS_NUMBER_REQUEST_MESSAGE);
     }
 
-    public void printLottoBundle(LottoBundle lottoBundle) {
-        printLottos(lottoBundle.getLottos());
+    public void printLottoBundle(LottoBundleDTO lottoBundleDTO) {
+        List<Lotto> lottos = lottoBundleDTO.getLottos();
+        printLottosCount(lottos.size());
+        printLottos(lottos);
     }
 
     public void printLottoResult(LottoResult lottoResult) {
@@ -44,8 +46,6 @@ public class LottoOutputView {
     }
 
     private void printLottos(List<Lotto> lottos) {
-        printLottosCount(lottos.size());
-
         lottos.stream()
                 .map(this::getLottoNumbersMessage)
                 .forEach(System.out::println);
