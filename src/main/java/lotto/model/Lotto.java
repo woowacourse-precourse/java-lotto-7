@@ -15,7 +15,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        this.numbers = numbers;
+        this.numbers = numbers
+                .stream()
+                .sorted()
+                .toList();
     }
 
     public static List<Lotto> buyLottos(int purchaseAmount) {
@@ -28,10 +31,7 @@ public class Lotto {
         return new Lotto(Randoms.pickUniqueNumbersInRange(
                 LOTTO_START_NUMBER.getValue(),
                         LOTTO_END_NUMBER.getValue(),
-                        LOTTO_NUMBER_COUNT.getValue())
-                .stream()
-                .sorted()
-                .toList());
+                        LOTTO_NUMBER_COUNT.getValue()));
     }
 
     public boolean hasBonus(int bonusNumber) {
