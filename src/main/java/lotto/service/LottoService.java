@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LottoService {
@@ -7,10 +8,18 @@ public class LottoService {
 
     // 구입 금액 입력받기
     public Integer inputPrice(){
-        System.out.println(GET_PRICE_MESSAGE);
 
         Scanner scanner = new Scanner(System.in);
-        Integer price = scanner.nextInt();
+        Integer price = 0;
+
+        while (price!=0 && price%1000==0){
+            System.out.println(GET_PRICE_MESSAGE);
+            price = scanner.nextInt();
+
+            if(price%1000!=0){
+                throw new IllegalArgumentException("");
+            }
+        }
 
         return price;
     }
