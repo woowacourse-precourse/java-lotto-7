@@ -17,20 +17,6 @@ public class UserLotto {
         lotto = new ArrayList<>();
     }
 
-    private void validate(int inputPrice) {
-        try {
-
-            if (price <= 0) {
-                throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_PRICE_UNDER_ZERO));
-            }
-            if (price % 1000 != 0) {
-                throw new IllegalArgumentException(
-                        ErrorMessages.printError(ErrorMessages.ERROR_PRICE_NOT_IN_UNITS_OF_1000));
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     public List<Lotto> getLotto() {
         return lotto;
@@ -48,14 +34,4 @@ public class UserLotto {
         return lotto;
     }
 
-    private boolean validatePriceIsString(String price) {
-        try {
-            this.price = Integer.parseInt(price);
-        }
-        catch (IllegalArgumentException e) {
-            return false;
-        }
-
-        return true;
-    }
 }

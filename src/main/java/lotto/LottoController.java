@@ -11,17 +11,19 @@ public class LottoController {
     private UserLotto userLotto;
     private WinningLotto winningLotto;
     private LottoResult lottoResult = new LottoResult();
+    Validator validator = new Validator();
 
 
     public void run() {
         try {
-            int price = inputView.printGetPurchasePrice();
+            int price = inputView.printGetPurchasePrice(validator);
             userLotto = new UserLotto(price);
             outputView.printLottoCount(price);
 
             outputView.printUserLottoNumbers(userLotto.generateLotto());
-            String winningLottoNumber = inputView.printGetWinningLottoNumber();
-            int bonusNumber = inputView.printGetBonusNumber();
+
+            String winningLottoNumber = inputView.printGetWinningLottoNumber(validator);
+            int bonusNumber = inputView.printGetBonusNumber(validator);
 
             winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
             lottoResult.checkLottoIsWinner(winningLotto, userLotto);
