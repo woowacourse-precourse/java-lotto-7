@@ -24,34 +24,64 @@ public class LottoController {
     }
 
     public void run() {
-        String costInput = viewFacade.getCost();
-        validatorFacade.validateCostInput(costInput);
-
-        int cost = Parser.parseToInt(costInput);
-        validatorFacade.validateCost(cost);
+        int cost = getValidatedCost();
 
         int purchaseAmount = Parser.parsePurchaseAmount(cost);
 
         Lottos lottos = lottoFacade.issueLottos(purchaseAmount);
         viewFacade.showLottos(purchaseAmount, lottos);
 
-        String winningNumbersInput = viewFacade.getWinningNumbers();
-        validatorFacade.validateNumbersInput(winningNumbersInput);
+        WinningNumbers winningNumbers = getValidatedWinningNumbers();
 
-        List<Integer> numbers = Parser.parseWinningNumbers(winningNumbersInput);
-
-        Lotto winningLotto = LottoFactory.creatLotto(numbers);
-        WinningNumbers winningNumbers = WinningNumbersFactory.createWinningNumbers(winningLotto);
-
-        String bonusNumberInput = viewFacade.getBonusNumber();
-        validatorFacade.validateBonusNumberInput(bonusNumberInput);
-
-        int bonusNumber = Parser.parseToInt(bonusNumberInput);
-
-        winningNumbers = winningNumbers.createWithBonusNumber(winningNumbers, bonusNumber);
+        winningNumbers = getValidatedWinningNumbersWithBonusNumber(winningNumbers);
 
         WinningStatistic winningStatistic = lottoFacade.getStatistic(cost, lottos, winningNumbers);
 
         viewFacade.showWinningStatistics(winningStatistic);
     }
+
+    private int getValidatedCost() {
+        while (true) {
+            try {
+                String costInput = viewFacade.getCost();
+                validatorFacade.validateCostInput(costInput);
+                int cost = Parser.parseToInt(costInput);
+                validatorFacade.validateCost(cost);
+                return cost;
+            } catch (IllegalArgumentException e) {
+                viewFacade.showErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private WinningNumbers getValidatedWinningNumbers() {
+        while (true) {
+            try {
+                String winningNumbersInput = viewFacade.getWinningNumbers();
+                validatorFacade.validateNumbersInput(winningNumbersInput);
+
+                List<Integer> numbers = Parser.parseWinningNumbers(winningNumbersInput);
+
+                Lotto winningLotto = LottoFactory.creatLotto(numbers);
+                return WinningNumbersFactory.createWinningNumbers(winningLotto);
+            } catch (IllegalArgumentException e) {
+                viewFacade.showErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private WinningNumbers getValidatedWinningNumbersWithBonusNumber(WinningNumbers winningNumbers) {
+        while (true) {
+            try {
+                String bonusNumberInput = viewFacade.getBonusNumber();
+                validatorFacade.validateBonusNumberInput(bonusNumberInput);
+                int bonusNumber = Parser.parseToInt(bonusNumberInput);
+                return winningNumbers.createWithBonusNumber(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                viewFacade.showErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+
 }
