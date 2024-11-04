@@ -6,6 +6,8 @@ import lotto.domain.utility.sorting.Sorter;
 
 public class LottoBundle {
 
+    private static final int INITIAL_COUNT = 0;
+
     private final List<Lotto> lottoBundle;
     private final RandomNumberListGenerator randomNumberListGenerator;
     private final Sorter sorter;
@@ -18,7 +20,7 @@ public class LottoBundle {
 
     public void generate(int lottoQuantity) {
         LottoGenerator lottoGenerator = new LottoGenerator(randomNumberListGenerator, sorter);
-        for (int count = 0; count < lottoQuantity; count++) {
+        for (int count = INITIAL_COUNT; count < lottoQuantity; count++) {
             lottoBundle.add(lottoGenerator.generate());
         }
     }

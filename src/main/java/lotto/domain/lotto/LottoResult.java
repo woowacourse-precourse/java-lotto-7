@@ -4,6 +4,11 @@ import java.math.BigInteger;
 import java.util.Map;
 
 public class LottoResult {
+
+    private static final int DEFAULT_VALUE = 0;
+    private static final int SUM_AMOUNT = 1;
+    private static final int SECOND_PRIZE_MATCH_COUNT = 5;
+
     private final Map<Rank, Integer> rankCount;
     private BigInteger totalPrize;
 
@@ -17,20 +22,20 @@ public class LottoResult {
 
         for (Lotto lotto : lottoBundle.getLottoBundle()) {
             Rank rank = determineRank(lotto, winningNumbers, bonusNumber);
-            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+            rankCount.put(rank, rankCount.getOrDefault(rank, DEFAULT_VALUE) + SUM_AMOUNT);
             totalPrize = totalPrize.add(rank.getPrize());
         }
     }
 
     private Rank determineRank(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         int matchCount = winningNumbers.calculateMatchCount(lotto);
-        boolean hasBonusNumber = matchCount == 5 && bonusNumber.hasMatchingBonusNumber(lotto);
+        boolean hasBonusNumber = matchCount == SECOND_PRIZE_MATCH_COUNT && bonusNumber.hasMatchingBonusNumber(lotto);
         return Rank.of(matchCount, hasBonusNumber);
     }
 
     private void initializeRankCount() {
         for (Rank rank : Rank.values()) {
-            rankCount.put(rank, 0);
+            rankCount.put(rank, DEFAULT_VALUE);
         }
     }
 

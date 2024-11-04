@@ -9,6 +9,9 @@ import java.util.Set;
 import lotto.common.exception.LottoException;
 
 public class WinningNumbers {
+
+    private static final int INITIAL_COUNT = 0;
+    private static final int LOTTO_SIZE = 6;
     private final List<LottoNumber> winningNumbers;
 
     public WinningNumbers(List<LottoNumber> winningNumbers) {
@@ -18,7 +21,7 @@ public class WinningNumbers {
     }
 
     public int calculateMatchCount(Lotto lotto) {
-        int count = 0;
+        int count = INITIAL_COUNT;
         for (LottoNumber lottoNumber : lotto.getLotto()) {
             if (winningNumbers.contains(lottoNumber)) {
                 count++;
@@ -28,7 +31,7 @@ public class WinningNumbers {
     }
 
     private void validateSize() {
-        if (winningNumbers.size() != 6) {
+        if (winningNumbers.size() != LOTTO_SIZE) {
             throw new LottoException(WINNING_NUMBERS_SIZE_MUST_BE_SIX);
         }
     }

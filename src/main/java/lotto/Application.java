@@ -9,8 +9,10 @@ import lotto.view.output.ConsoleOutputView;
 public class Application {
     public static void main(String[] args) {
 
+        final String CUSTOM_SPLITTER = ",";
+
         LottoController lottoController = new LottoController(new ConsoleInputView(), new ConsoleOutputView(),
-                new CustomSplitter(","), new Converter());
+                new CustomSplitter(CUSTOM_SPLITTER), new Converter());
 
         lottoController.run();
     }

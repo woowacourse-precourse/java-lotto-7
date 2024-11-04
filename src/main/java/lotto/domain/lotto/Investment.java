@@ -9,6 +9,10 @@ import lotto.common.exception.LottoException;
 
 public class Investment {
 
+    private static final int ZERO = 0;
+    private static final int LOTTO_PRICE = 1000;
+    private static final int MAX_INVESTMENT = 100000;
+
     private final BigInteger initialInvestment;
 
     public Investment(BigInteger initialInvestment) {
@@ -19,23 +23,23 @@ public class Investment {
     }
 
     public int getQuantity() {
-        return initialInvestment.divide(BigInteger.valueOf(1000)).intValue();
+        return initialInvestment.divide(BigInteger.valueOf(LOTTO_PRICE)).intValue();
     }
 
     private void validateGreaterThanZero() {
-        if (initialInvestment.compareTo(BigInteger.ZERO) < 0) {
+        if (initialInvestment.compareTo(BigInteger.ZERO) < ZERO) {
             throw new LottoException(INVESTMENT_MUST_BE_GREATER_THAN_ZERO);
         }
     }
 
     private void validateDivisibleByThousand() {
-        if (initialInvestment.mod(BigInteger.valueOf(1000)).compareTo(BigInteger.ZERO) != 0) {
+        if (initialInvestment.mod(BigInteger.valueOf(LOTTO_PRICE)).compareTo(BigInteger.ZERO) != ZERO) {
             throw new LottoException(INVESTMENT_MUST_BE_DIVISIBLE_BY_THOUSAND);
         }
     }
 
     private void validateLessThanOneHundredThousand() {
-        if (initialInvestment.compareTo(BigInteger.valueOf(100000)) > 0) {
+        if (initialInvestment.compareTo(BigInteger.valueOf(MAX_INVESTMENT)) > ZERO) {
             throw new LottoException(INVESTMENT_MUST_BE_LESS_THAN_OR_EQUAL_ONE_HUNDRED_THOUSAND);
         }
     }

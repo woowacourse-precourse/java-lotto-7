@@ -7,6 +7,9 @@ import lotto.common.exception.LottoException;
 
 public class LottoNumber {
 
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+
     private final Integer number;
 
     public LottoNumber(Integer number) {
@@ -15,7 +18,7 @@ public class LottoNumber {
     }
 
     private void validate(Integer number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new LottoException(LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }

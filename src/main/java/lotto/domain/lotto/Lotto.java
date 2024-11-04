@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 import lotto.common.exception.LottoException;
 
 public class Lotto {
+
+    private static final String TO_STRING_DELIMITER = ", ";
+    private static final int LOTTO_SIZE = 6;
+
     private final List<LottoNumber> numbers;
 
     public Lotto(List<LottoNumber> numbers) {
@@ -19,7 +23,7 @@ public class Lotto {
     }
 
     private void validateSize() {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new LottoException(LOTTO_SIZE_MUST_BE_SIX);
         }
     }
@@ -39,7 +43,7 @@ public class Lotto {
     public String toString() {
         return numbers.stream()
                 .map(LottoNumber::toString)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(TO_STRING_DELIMITER));
 
     }
 }
