@@ -13,6 +13,7 @@ public class LottoGenerator {
     private RandomGenerator randomGenerator;
 
     public LottoGenerator(RandomGenerator randomGenerator) {
+
         this.randomGenerator = randomGenerator;
     }
 
@@ -33,4 +34,12 @@ public class LottoGenerator {
     public List<Integer> getRandomNumber() {
         return randomGenerator.getRandomNumber();
     }
+
+    public void displayLottoBatch(List<Lotto> lottoBatch) {
+        lottoBatch.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
+    public void displayLottoBatchSize(int purchaseAmount) {
+        System.out.println(purchaseAmount + "개를 구매했습니다.");
+    };
 }

@@ -16,13 +16,14 @@ public interface InputValidator<T, U> {
         System.err.println(e.getMessage());
     }
 
-    default T promptAndGetValidatedInput(U context){
+    default T promptAndGetValidatedInput(U context) {
         displayPrompt();
-        try {
-            return validateInput(getInput(), context);
-        } catch (IllegalArgumentException e) {
-            displayError(e);
-            return promptAndGetValidatedInput(context);
+        while (true) {
+            try {
+                return validateInput(getInput(), context);
+            } catch (IllegalArgumentException e) {
+                displayError(e);
+            }
         }
     }
 

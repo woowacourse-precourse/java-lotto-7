@@ -7,29 +7,55 @@ import lotto.input.WinningNumbersValidator;
 
 import java.util.List;
 
-import static lotto.enums.LottoConstants.*;
-
 public class LottoController {
-    PurchaseAmountValidator purchaseAmountValidator;
-    WinningNumbersValidator winningNumbersValidator;
-    BonusNumberValidator bonusNumberValidator;
+    private final PurchaseAmountValidator purchaseAmountValidator;
+    private final WinningNumbersValidator winningNumbersValidator;
+    private final BonusNumberValidator bonusNumberValidator;
+    private final LottoGenerator lottoGenerator;
 
     public LottoController() {
         this.purchaseAmountValidator = new PurchaseAmountValidator();
         this.winningNumbersValidator = new WinningNumbersValidator();
         this.bonusNumberValidator = new BonusNumberValidator();
+        this.lottoGenerator = new LottoGenerator(new RandomLottoNumberGenerator());
     }
 
-    public void start(){
-        LottoGenerator lottoGenerator = new LottoGenerator(new RandomLottoNumberGenerator());
-        int purchaseAmount = purchaseAmountValidator.promptAndGetValidatedInput();
-        List<Integer> winningNumbers = winningNumbersValidator.promptAndGetValidatedInput();
-        int bonusAmount = bonusNumberValidator.promptAndGetValidatedInput(winningNumbers);
-        List<Lotto> lottoBatch = lottoGenerator.generateLottoBatch(lottoGenerator.getLottoBatchSize(purchaseAmount));
+    public void start() {
+        int purchaseAmount = getPurchaseAmount();
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+
+        List<Lotto> lottoBatch = generateLottoBatchAndDisplay(purchaseAmount);
+
+        calculateAndDisplayResults(purchaseAmount, lottoBatch, winningNumbers, bonusNumber);
+    }
+
+    private int getPurchaseAmount() {
+        return purchaseAmountValidator.promptAndGetValidatedInput();
+    }
+
+    private List<Integer> getWinningNumbers() {
+        return winningNumbersValidator.promptAndGetValidatedInput();
+    }
+
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        return bonusNumberValidator.promptAndGetValidatedInput(winningNumbers);
+    }
+
+    private List<Lotto> generateLottoBatchAndDisplay(int purchaseAmount) {
+        int lottoCount = lottoGenerator.getLottoBatchSize(purchaseAmount);
+        List<Lotto> lottoBatch = lottoGenerator.generateLottoBatch(lottoCount);
+        lottoGenerator.displayLottoBatchSize(lottoBatch.size());
+        lottoGenerator.displayLottoBatch(lottoBatch);
+        return lottoBatch;
+    }
+
+    private void calculateAndDisplayResults(int purchaseAmount, List<Lotto> lottoBatch, List<Integer> winningNumbers, int bonusNumber) {
         Player player = new Player(purchaseAmount, lottoBatch);
-        LottoMachine lottoMachine = new LottoMachine(winningNumbers, bonusAmount);
+        LottoMachine lottoMachine = new LottoMachine(winningNumbers, bonusNumber);
         lottoMachine.calculateWinningStatistics(player.getLottoBatch());
-
-
+        lottoMachine.displayWinningStatistics();
+        double profitRate = player.getProfitRate(lottoMachine.getTotalPrize());
+        player.displayProfitRate(profitRate);
     }
 }

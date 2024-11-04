@@ -11,6 +11,7 @@ import static lotto.enums.LottoConstants.LOTTO_PRICE;
 public class Player {
     private int purchaseAmount;
     private List<Lotto> lottoBatch;
+    private double profitRate;
 
     public Player(int purchaseAmount, List<Lotto> lottoBatch) {
         this.purchaseAmount = purchaseAmount;
@@ -23,6 +24,10 @@ public class Player {
 
     public List<Lotto> getLottoBatch() {
         return this.lottoBatch;
+    }
+
+    public void displayProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "%입니다." );
     }
 
     public double getProfitRate(int totalPrize){
