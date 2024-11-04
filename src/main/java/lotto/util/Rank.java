@@ -17,11 +17,11 @@ public enum Rank {
         this.winningPrize = winningPrize;
     }
 
-    int getBalls() {
+    public int getBalls() {
         return balls;
     }
 
-    int getWinningPrize() {
+    public int getWinningPrize() {
         return winningPrize;
     }
 
