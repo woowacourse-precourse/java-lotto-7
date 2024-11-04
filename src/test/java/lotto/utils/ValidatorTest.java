@@ -39,4 +39,14 @@ public class ValidatorTest {
 
         assertThatThrownBy(()->Validator.validateBlankString(blankString)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {100,2222,333330,44444444})
+    void testValidateDivisible(int value){
+        int divisor = 1000;
+        assertThatThrownBy(()->Validator.validateDivisible(value,divisor)).isInstanceOf(IllegalArgumentException.class);
+        int validValue = (value / divisor) * divisor;
+
+        Validator.validateDivisible(validValue,divisor);
+    }
 }
