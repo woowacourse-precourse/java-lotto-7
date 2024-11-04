@@ -88,6 +88,32 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또_발급_테스트() {
+        assertSimpleTest(() -> {
+            run("8000");
+            String result = output();
+
+            // 구매한 로또 개수가 올바르게 출력되는지 확인
+            assertThat(result).contains("8개를 구매했습니다.");
+
+            // 로또 번호가 모두 오름차순으로 정렬되어 있는지 확인
+            String[] lines = result.split("\n");
+            for (String line : lines) {
+                if (line.startsWith("[") && line.endsWith("]")) {
+                    String numbers = line.substring(1, line.length() - 1); // 대괄호 제거
+                    String[] numArray = numbers.split(", ");
+
+                    for (int i = 0; i < numArray.length - 1; i++) {
+                        int current = Integer.parseInt(numArray[i]);
+                        int next = Integer.parseInt(numArray[i + 1]);
+                        assertThat(current).isLessThanOrEqualTo(next); // 오름차순 확인
+                    }
+                }
+            }
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
