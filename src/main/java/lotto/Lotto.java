@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -31,5 +32,11 @@ public class Lotto {
 
     public List<Integer> getLottoNumbers() {
         return this.numbers;
+    }
+
+    public Float countCommonNumbers(List<Integer> drawnNumbers) {
+        List<Integer> intersection = new ArrayList<>(this.numbers);
+        intersection.retainAll(drawnNumbers);
+        return (float) intersection.size();
     }
 }
