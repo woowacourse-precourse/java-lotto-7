@@ -14,7 +14,7 @@ public class WinningLottoWithBonus {
     private final LottoNumber bonusNumber;
 
     public WinningLottoWithBonus(Lotto winningLotto, LottoNumber bonusNumber) {
-        validate();
+        validate(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
@@ -57,11 +57,11 @@ public class WinningLottoWithBonus {
         return lotto.contains(bonusNumber);
     }
 
-    public void validate() {
-        validateUnique();
+    public void validate(Lotto winningLotto, LottoNumber bonusNumber) {
+        validateUnique(winningLotto, bonusNumber);
     }
 
-    public void validateUnique() {
+    public void validateUnique(Lotto winningLotto, LottoNumber bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
         }
