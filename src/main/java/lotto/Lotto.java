@@ -8,7 +8,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        sort();
     }
 
     private void validate(List<Integer> numbers) {
@@ -21,10 +20,6 @@ public class Lotto {
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
         }
-    }
-
-    private void sort() {
-        numbers.sort(Integer::compareTo);
     }
 
     public Integer get(int index) {
