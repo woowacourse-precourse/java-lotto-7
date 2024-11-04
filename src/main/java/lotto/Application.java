@@ -4,7 +4,6 @@ import static java.util.Arrays.*;
 
 import camp.nextstep.edu.missionutils.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
