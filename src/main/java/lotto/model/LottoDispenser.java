@@ -53,7 +53,7 @@ public class LottoDispenser {
     private LottoCollection dispenseTicket(int NumberOfTickets) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < NumberOfTickets; i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             randomNumbers.sort(null);
             Lotto ticket = new Lotto(randomNumbers);
             lottos.add(ticket);

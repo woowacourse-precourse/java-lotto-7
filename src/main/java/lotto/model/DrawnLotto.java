@@ -17,12 +17,12 @@ public class DrawnLotto {
     private List<Integer> parseDrawnNumbers(String input) {
         String[] numbers = input.split(",");
         if (numbers.length != 6) {
-            throw new IllegalArgumentException("당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표로 구분된 6개의 숫자여야 합니다.");
         }
         try {
             return Arrays.stream(numbers).map(String::trim).map(Integer::parseInt).collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("당첨 번호는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력 가능합니다.");
         }
     }
 
@@ -30,16 +30,16 @@ public class DrawnLotto {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("보너스 번호는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
         }
     }
 
     private void validateBonusNumber() {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
         if (drawnLotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
         }
     }
 
