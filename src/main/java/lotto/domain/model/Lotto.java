@@ -16,6 +16,18 @@ public class Lotto {
         this.numbers = numbers.stream().map(LottoNumber::new).toList();
     }
 
+    private static void verifyNumbersSize(List<Integer> numbers) {
+        if (numbers.size() != FIXED_LOTTO_SIZE) {
+            throw new IllegalArgumentException(VIOLATION_FIXED_SIZE);
+        }
+    }
+
+    private static void verifyUniqueNumbers(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != FIXED_LOTTO_SIZE) {
+            throw new IllegalArgumentException(VIOLATION_UNIQUE_NUMBERS);
+        }
+    }
+
     public boolean isContain(LottoNumber number) {
         return this.numbers.stream().anyMatch(v -> v.equals(number));
     }
@@ -36,17 +48,5 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         verifyNumbersSize(numbers);
         verifyUniqueNumbers(numbers);
-    }
-
-    private static void verifyNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != FIXED_LOTTO_SIZE) {
-            throw new IllegalArgumentException(VIOLATION_FIXED_SIZE);
-        }
-    }
-
-    private static void verifyUniqueNumbers(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != FIXED_LOTTO_SIZE) {
-            throw new IllegalArgumentException(VIOLATION_UNIQUE_NUMBERS);
-        }
     }
 }

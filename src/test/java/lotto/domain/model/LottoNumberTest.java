@@ -5,7 +5,6 @@ import static lotto.domain.constant.LottoConstraintProperties.MINIMUM_NUMBER_VAL
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

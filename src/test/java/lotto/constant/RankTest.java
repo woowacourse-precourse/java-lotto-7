@@ -19,6 +19,36 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class RankTest {
 
+    private static Stream<Arguments> provideRanks() {
+        return Stream.of(
+                Arguments.of(THIRDS, 2, 10_000),
+                Arguments.of(FOURTH, 2, 100_000),
+                Arguments.of(FIFTH, 2, 3_000_000),
+                Arguments.of(FIFTH_WITH_BONUS, 2, 60_000_000),
+                Arguments.of(SIX, 1, 2_000_000_000)
+        );
+    }
+
+    private static Stream<Arguments> provideMatchCountAndBonus() {
+        return Stream.of(
+                Arguments.of(3, false, THIRDS),
+                Arguments.of(4, false, FOURTH),
+                Arguments.of(5, false, FIFTH),
+                Arguments.of(4, true, FIFTH_WITH_BONUS),
+                Arguments.of(6, false, SIX)
+        );
+    }
+
+    private static Stream<Arguments> provideInvalidMatchCountAndBonus() {
+        return Stream.of(
+                Arguments.of(3, true),
+                Arguments.of(5, true),
+                Arguments.of(6, true),
+                Arguments.of(2, true),
+                Arguments.of(1, true)
+        );
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5, 6})
     void _3이상_6이하의_수는_당첨순위에_포함되어있다(int matchCount) {
@@ -69,37 +99,6 @@ class RankTest {
         int reward = rank.calculateReward(matchCount);
         //then
         assertThat(reward).isEqualTo(expectedReward);
-    }
-
-    private static Stream<Arguments> provideRanks() {
-        return Stream.of(
-                Arguments.of(THIRDS, 2, 10_000),
-                Arguments.of(FOURTH, 2, 100_000),
-                Arguments.of(FIFTH, 2, 3_000_000),
-                Arguments.of(FIFTH_WITH_BONUS, 2, 60_000_000),
-                Arguments.of(SIX, 1, 2_000_000_000)
-        );
-    }
-
-
-    private static Stream<Arguments> provideMatchCountAndBonus() {
-        return Stream.of(
-                Arguments.of(3, false, THIRDS),
-                Arguments.of(4, false, FOURTH),
-                Arguments.of(5, false, FIFTH),
-                Arguments.of(4, true, FIFTH_WITH_BONUS),
-                Arguments.of(6, false, SIX)
-        );
-    }
-
-    private static Stream<Arguments> provideInvalidMatchCountAndBonus() {
-        return Stream.of(
-                Arguments.of(3, true),
-                Arguments.of(5, true),
-                Arguments.of(6, true),
-                Arguments.of(2, true),
-                Arguments.of(1, true)
-        );
     }
 
 }

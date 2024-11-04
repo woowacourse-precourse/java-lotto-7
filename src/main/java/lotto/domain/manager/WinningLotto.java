@@ -15,18 +15,18 @@ public class WinningLotto {
         this.bonus = bonus;
     }
 
+    private static void validates(Lotto lotto, LottoNumber bouns) {
+        boolean exist = lotto.isContain(bouns);
+        if (exist) {
+            throw new IllegalArgumentException(VIOLATION_UNIQUE_WINNING_NUMBERS_WITH_BONUS_NUMBER);
+        }
+    }
+
     int match(Lotto lotto) {
         return this.lotto.match(lotto);
     }
 
     boolean isMatchBonus(Lotto lotto) {
         return lotto.isContain(bonus);
-    }
-
-    private static void validates(Lotto lotto, LottoNumber bouns) {
-        boolean exist = lotto.isContain(bouns);
-        if (exist) {
-            throw new IllegalArgumentException(VIOLATION_UNIQUE_WINNING_NUMBERS_WITH_BONUS_NUMBER);
-        }
     }
 }

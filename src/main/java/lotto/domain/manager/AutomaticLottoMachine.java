@@ -29,6 +29,15 @@ public class AutomaticLottoMachine {
         this.lottos = issueAutomatic(quantity);
     }
 
+    private static List<Integer> getUniqueLotto(Set<List<Integer>> uniqueLottos) {
+        List<Integer> automaticLotto;
+        do {
+            automaticLotto = pickUniqueNumbersInRange(MINIMUM_NUMBER_VALUE, MAXIMUM_NUMBER_VALUE, FIXED_LOTTO_SIZE);
+        } while (uniqueLottos.contains(automaticLotto));
+
+        return automaticLotto;
+    }
+
     public int getQuantity() {
         return lottos.size();
     }
@@ -59,15 +68,6 @@ public class AutomaticLottoMachine {
                 .limit(quantity)
                 .map(Lotto::new)
                 .toList();
-    }
-
-    private static List<Integer> getUniqueLotto(Set<List<Integer>> uniqueLottos) {
-        List<Integer> automaticLotto;
-        do {
-            automaticLotto = pickUniqueNumbersInRange(MINIMUM_NUMBER_VALUE, MAXIMUM_NUMBER_VALUE, FIXED_LOTTO_SIZE);
-        } while (uniqueLottos.contains(automaticLotto));
-
-        return automaticLotto;
     }
 
     private void verifyAmount(int amount) {

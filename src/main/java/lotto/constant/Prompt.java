@@ -50,17 +50,17 @@ public enum Prompt {
         this.text = text;
     }
 
-    @Override
-    public String toString() {
-        return this.text;
-    }
-
     public static void display(String errorMessage) {
         System.out.println(errorMessage);
     }
 
     public static void displayEmptyLine() {
         System.out.println();
+    }
+
+    @Override
+    public String toString() {
+        return this.text;
     }
 
     public abstract void display(Object... args);
