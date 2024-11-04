@@ -11,6 +11,8 @@ public class LottoShop {
     private static final int LOTTO_PRIZE = 1_000;
     private static final int PERCENTAGE = 100;
     private static final String ANNOUNCE_TEMPLATE = """
+            당첨 통계
+            ---
             3개 일치 (5,000원) - %d개
             4개 일치 (50,000원) - %d개
             5개 일치 (1,500,000원) - %d개
