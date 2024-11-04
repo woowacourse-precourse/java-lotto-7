@@ -59,3 +59,6 @@
   - OutputHelper.java
 - validate
   - Validator.java
+
+## UML
+![InputHelper](https://github.com/user-attachments/assets/8771e0f8-1d6e-4704-bc51-bf36ddc838d8)
