@@ -24,12 +24,12 @@ public enum Ranking {
 
     public static Ranking findBy(int matchCount, boolean isMatchBonus) {
         return Arrays.stream(Ranking.values())
-                .filter(ranking -> ranking.match(matchCount, isMatchBonus))
+                .filter(ranking -> ranking.isMatch(matchCount, isMatchBonus))
                 .min((rank1, rank2) -> Integer.compare(rank1.grade, rank2.grade))
                 .orElse(MISS);
     }
 
-    private boolean match(int matchCount, boolean isMatchBonus) {
+    private boolean isMatch(int matchCount, boolean isMatchBonus) {
         if (this.matchCount != matchCount) {
             return false;
         }
