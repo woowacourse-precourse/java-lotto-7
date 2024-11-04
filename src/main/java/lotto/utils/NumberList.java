@@ -8,11 +8,11 @@ import java.util.List;
 
 public class NumberList extends ArrayList<Integer> {
 
-    static final int[] NUMBER_RANGE = {1,45};
-    static final int NUMBER_RANGE_START = 0;
-    static final int NUMBER_RANGE_END = 1;
+    public static final int[] NUMBER_RANGE = {1,45};
+    public static final int NUMBER_RANGE_START = 0;
+    public static final int NUMBER_RANGE_END = 1;
 
-    static final int  MAX_SIZE = 6;
+    public static final int  MAX_SIZE = 6;
 
     public NumberList(){
         super();
