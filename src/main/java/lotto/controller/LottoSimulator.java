@@ -3,6 +3,8 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Rank;
+import lotto.model.Result;
 import lotto.model.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -10,6 +12,7 @@ import lotto.view.OutputView;
 public class LottoSimulator {
 
     private User user;
+    private Result result;
     private List<Lotto> lottos;
 
     public void run() {
@@ -19,10 +22,12 @@ public class LottoSimulator {
         displayPublishedLottos();
         getCorrectInput(() -> user.setLotto(new Lotto(InputView.inputWinningNumbers())));
         getCorrectInput(() -> user.setBonusNumber(InputView.inputBonusNumber()));
+        matchUserLotto();
     }
 
     private void init() {
         user = new User();
+        result = new Result();
         lottos = new ArrayList<>();
     }
 
@@ -48,6 +53,15 @@ public class LottoSimulator {
             } catch (IllegalArgumentException e) {
                 OutputView.outputMessage(e.getMessage());
             }
+        }
+    }
+
+    private void matchUserLotto() {
+        for (Lotto lotto : lottos) {
+            int matchedNumbers = lotto.matchNumbers(user.getLotto());
+            boolean matchedBonus = lotto.matchBonusNumber(user.getBonusNumber());
+            Rank rank = Rank.getMatchedRank(matchedNumbers, matchedBonus);
+            result.updateMatchedRank(rank);
         }
     }
 }

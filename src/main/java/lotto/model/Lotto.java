@@ -48,4 +48,15 @@ public class Lotto {
                 .sorted()
                 .toList();
     }
+
+    public int matchNumbers(Lotto lotto) {
+        return (int) this.numbers
+                .stream()
+                .filter(lotto.getNumbers()::contains)
+                .count();
+    }
+
+    public boolean matchBonusNumber(int bonusNumber) {
+        return this.numbers.contains(bonusNumber);
+    }
 }
