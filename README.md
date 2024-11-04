@@ -11,3 +11,6 @@
 
 ### exception
 - [x] IllegalArgument, IllegalState 커스텀에러 작성
+
+### view
+- [x] 출력 포맷을 위한 View 작성

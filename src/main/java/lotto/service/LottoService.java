@@ -1,7 +1,6 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.LottoWinningTable;
 
 import java.util.*;
@@ -13,7 +12,7 @@ public class LottoService {
         this.userLottoWallet = userLottoWallet;
     }
 
-    public Map<LottoWinningTable, Integer> getWinningResultTable(final List<Integer> winningNumbers, final int bonusNumber) {
+    public Map<LottoWinningTable, Integer> getWinningResultTable(final List<Integer> winningNumbers,int bonusNumber) {
         List<LottoWinningTable> validTable = filterValidWallet(winningNumbers, bonusNumber);
         Map<LottoWinningTable, Integer> result = new HashMap<>();
 

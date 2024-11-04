@@ -43,6 +43,10 @@ public enum LottoWinningTable {
         return this.matchCount;
     }
 
+    public int getReward() {
+        return this.reward;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
