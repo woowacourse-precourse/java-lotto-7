@@ -28,9 +28,7 @@ public class LottoPlayTest {
         // then
         assertAll(
                 () -> assertEquals(user.getLottos().size(), user.getRanks().size()),
-                () -> assertThat(user.getRanks()).containsExactlyInAnyOrder(
-                        Rank.FIFTH
-                )
+                () -> assertThat(user.getRanks()).containsExactlyInAnyOrder(Rank.FIFTH)
         );
     }
 
