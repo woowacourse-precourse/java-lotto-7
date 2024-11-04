@@ -2,7 +2,6 @@ package lotto.io;
 
 import lotto.Lotto;
 import lotto.WinningStandard;
-
 import java.util.Map;
 import java.util.stream.Collectors;
 
