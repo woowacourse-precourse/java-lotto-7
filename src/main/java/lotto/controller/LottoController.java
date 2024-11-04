@@ -34,6 +34,9 @@ public class LottoController {
 
         List<PrizeResponse> winningResult = lottoService.findWinningResult(winningLotto, bonusNumber);
         outputView.printWinningResult(winningResult);
+
+        double profitRate = lottoService.calculateProfitRate(purchaseAmount, winningResult);
+        outputView.printProfitRate(profitRate);
     }
 
 
