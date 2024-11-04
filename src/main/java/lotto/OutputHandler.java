@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 
+
 public class OutputHandler {
     public static void printPurchasedLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
