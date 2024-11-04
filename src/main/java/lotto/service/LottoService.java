@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.util.ValidationUtils;
 
 public class LottoService {
     private static final int LOTTO_PRICE = 1000;
@@ -16,15 +17,23 @@ public class LottoService {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
-            lottos.add(generateSingleLotto());
+            try {
+                lottos.add(generateSingleLotto());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                i--; // 재시도
+            }
         }
 
         return lottos;
     }
 
-    // Randoms.pickUniqueNumbersInRange 자체에서 숫자의 범위 검증과 중복 여부를 검증하고 있다.
     private Lotto generateSingleLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_PER_LOTTO);
         return new Lotto(numbers);
+    }
+
+    private boolean hasDuplicates(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
     }
 }
