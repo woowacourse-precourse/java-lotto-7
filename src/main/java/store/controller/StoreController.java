@@ -11,21 +11,21 @@ public class StoreController {
         this.storeService = storeService;
     }
 
-    public void setWeeklyNumbers() {
+    public void setUpWeeklyNumbers() {
         String inputWeeklyNumbers = InputView.inputWeeklyNumbers();
         try {
             storeService.tryUpdateWeeklyNumbers(inputWeeklyNumbers);
         } catch (Exception e) {
-            setWeeklyNumbers();
+            setUpWeeklyNumbers();
         }
     }
 
-    public void setBonusNumber() {
+    public void setUpBonusNumber() {
         String inputBonusNumber = InputView.inputBonusNumber();
         try {
             storeService.tryUpdateBonusNumber(inputBonusNumber);
         } catch (Exception e) {
-            setBonusNumber();
+            setUpBonusNumber();
         }
     }
 }

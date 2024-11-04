@@ -12,8 +12,8 @@ public class Application {
         StoreController storeController = appDIConfig.getStoreController();
 
         lottoController.payingForLotto();
-        storeController.setWeeklyNumbers();
-        storeController.setBonusNumber();
+        storeController.setUpWeeklyNumbers();
+        storeController.setUpBonusNumber();
         lottoController.checkLottoResult();
     }
 }
