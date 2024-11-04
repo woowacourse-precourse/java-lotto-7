@@ -24,11 +24,8 @@ public final class LottoValidateUtil {
         }
     }
 
-    public static void validateNumberRange(List<Integer> numbers) {
-        boolean isAllInRange = numbers.stream()
-                .allMatch(number -> number >= LottoConstants.MIN_NUMBER && number <= LottoConstants.MAX_NUMBER);
-
-        if (!isAllInRange) {
+    public static void validateNumberRange(int number) {
+        if (!(number >= LottoConstants.MIN_NUMBER && number <= LottoConstants.MAX_NUMBER)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }

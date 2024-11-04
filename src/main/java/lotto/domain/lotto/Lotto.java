@@ -1,6 +1,5 @@
 package lotto.domain.lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.common.LottoValidateUtil;
 
@@ -18,6 +17,8 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         LottoValidateUtil.validateLottoNumbersCount(numbers);
-        LottoValidateUtil.validateNumberRange(numbers);
+        for (Integer number : numbers) {
+            LottoValidateUtil.validateNumberRange(number);
+        }
     }
 }
