@@ -35,6 +35,7 @@ public class LottoController {
     int bonusNumber=inputMessageService.winningNumbersAddBonusNumberAndValidation(winningNumbers);
     Map<LottoPrize, Integer> statistics =lottoService.calculatingWinningStatistics(lottos,winningNumbers,bonusNumber);
     outputMessageView.winningStatistics(statistics);
+    outputMessageView.rateOfReturn(outputMessageService.rateOfReturn(statistics,purchaseAmount));
 
   }
 
