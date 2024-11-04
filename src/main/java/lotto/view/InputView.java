@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.view.validation.PriceValidator;
+import lotto.view.validation.WinningNumbersValidator;
 
 public class InputView {
 
@@ -14,9 +16,9 @@ public class InputView {
         return PriceValidator.validate(Console.readLine());
     }
 
-    public static String winningNumbers() {
+    public static List<Integer> winningNumbers() {
         System.out.println(WINNING_NUMBER_MESSAGE);
-        return Console.readLine();
+        return WinningNumbersValidator.validate(Console.readLine());
     }
 
     public static String bonusNumber() {
