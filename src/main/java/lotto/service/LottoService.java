@@ -31,21 +31,29 @@ public class LottoService {
     public String toStringResult(List<WinningResult> results) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         StringBuilder stringBuilder = new StringBuilder();
-        for(WinningResult rank : WinningResult.values()){
-            if(rank.isMatchBonusNumber()) {
-                stringBuilder.append(rank.getMatchNumberCount()).append("개 일치, 보너스 볼 일치 ")
-                        .append("(").append(formatter.format(rank.getPrize())).append("원)").append(" - ")
-                        .append(countWinningResult(results, rank)).append("개")
-                        .append("\n");
-                continue;
-            }
-            stringBuilder.append(rank.getMatchNumberCount()).append("개 일치").append("(")
-                    .append(formatter.format(rank.getPrize())).append("원)").append(" - ")
-                    .append(countWinningResult(results, rank)).append("개")
-                    .append("\n");
+
+        for (WinningResult rank : WinningResult.values()) {
+            stringBuilder.append(formatRankInfo(rank, results, formatter));
         }
+
         return stringBuilder.toString();
     }
+
+    private String formatRankInfo(WinningResult rank, List<WinningResult> results, DecimalFormat formatter) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(rank.getMatchNumberCount()).append("개 일치");
+
+        // 보너스 볼 일치 여부에 따른 처리
+        if (rank.isMatchBonusNumber()) {
+            sb.append(", 보너스 볼 일치 ");
+        }
+
+        sb.append("(").append(formatter.format(rank.getPrize())).append("원) - ")
+                .append(countWinningResult(results, rank)).append("개\n");
+
+        return sb.toString();
+    }
+
 
     public int countWinningResult(List<WinningResult> results, WinningResult rank) {
         return results.stream()
