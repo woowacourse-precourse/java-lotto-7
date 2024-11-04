@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.ERROR_MESSAGE;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,20 +26,20 @@ public class Lotto {
                 .filter(number -> number > 45)
                 .findAny()
                 .ifPresent(invalidNumber -> {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 45 이하 양수여야 합니다.");
+                    throw new IllegalArgumentException(ERROR_MESSAGE + "로또 번호는 45 이하 양수여야 합니다.");
                 });
     }
 
     private static void checkSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + "로또 번호는 6개여야 합니다.");
         }
     }
 
     private static void checkDuplicated(List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (distinctNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE + "로또 번호는 중복되면 안됩니다.");
         }
     }
 

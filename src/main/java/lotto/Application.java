@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.constants.Constants.*;
+
 import lotto.controller.LottoController;
 
 public class Application {
@@ -8,7 +10,7 @@ public class Application {
             LottoController lottoController = new LottoController();
             lottoController.start();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println(ERROR_MESSAGE + e.getMessage());
         }
     }
 }
