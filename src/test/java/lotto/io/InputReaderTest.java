@@ -33,6 +33,16 @@ class InputReaderTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("보너스 번호 문자 입력 테스트")
+    void 보너스_번호_문자_입력_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(
+                    ERROR_MESSAGE + "숫자를 입력하지 않았습니다.");
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
