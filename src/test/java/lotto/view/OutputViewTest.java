@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.DrawNumberHacker;
+import lotto.constants.OutputViewConstant;
 import lotto.model.Winning;
 import lotto.model.lotto.Lotto;
 import lotto.constants.LottoNumberPrintFormat;
@@ -71,21 +72,22 @@ public class OutputViewTest {
         double revenueRate = lottoChecker.calcRevenueRate(lottos, LOTTO_COUNT);
         double roundRevenueRate = Math.round(revenueRate * 100) / 100.0;
 
-        StringBuilder sb = new StringBuilder();
-        makeExpectResult(sb, roundRevenueRate);
+        String str = makeExpectResult(roundRevenueRate);
 
-        Assertions.assertEquals(outputView.resultToString(revenueRate), sb.toString());
+        Assertions.assertEquals(outputView.resultToString(revenueRate), str);
     }
 
     private LottoPublisher makeLottoPublisher() {
         return new LottoPublisher(testNumberGenerator);
     }
 
-    private static void makeExpectResult(StringBuilder sb, double roundRevenueRate) {
-        sb.append("당첨 통계\n")
-                .append("---\n");
+    private static String makeExpectResult(double roundRevenueRate) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(OutputViewConstant.RESULT_HEADER);
         Arrays.stream(Winning.values()).forEach(winning -> sb.append(winning.toString()));
-        sb.append("총 수익률은 ").append(roundRevenueRate).append("%입니다.");
+        sb.append(String.format(OutputViewConstant.REVENUE_RATE_MESSAGE, roundRevenueRate));
+
+        return sb.toString();
     }
 
     private static String createExpect(List<Integer> numbers) {
