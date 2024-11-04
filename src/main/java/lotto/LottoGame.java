@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.exception.LottoException;
 import lotto.view.LottoInput;
 import lotto.view.LottoOutput;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -30,7 +31,7 @@ public class LottoGame {
         try {
             String input = LottoInput.inputCost();
             return LottoCost.valueOf(input);
-        } catch (IllegalArgumentException e) {
+        } catch (LottoException e) {
             System.out.println(e.getMessage());
             return creatLottoCost();
         }
@@ -46,7 +47,7 @@ public class LottoGame {
     private Lotto createCorrectNumbers() {
         try {
             return CorrectLotto.createCorrectNumber(LottoInput.inputCorrectNumbers());
-        } catch (IllegalArgumentException e) {
+        } catch (LottoException e) {
             System.out.println(e.getMessage());
             return createCorrectNumbers();
         }
@@ -56,7 +57,7 @@ public class LottoGame {
         try {
             String input = LottoInput.inputBonusNumber();
             return BonusNumber.from(input, lotto);
-        } catch (IllegalArgumentException e) {
+        } catch (LottoException e) {
             System.out.println(e.getMessage());
             return createBonusNumber(lotto);
         }
