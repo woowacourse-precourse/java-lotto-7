@@ -21,7 +21,7 @@ public class InputValidator {
     public static int parsePositiveNumber(String input) {
         validateEmpty(input);
         validateInputLength(input);
-        validateNoSpecialCharacters(input);
+        validateSpecialCharacters(input);
         String trimmedInput = input.trim();
         validateNumeric(trimmedInput);
         return Integer.parseInt(trimmedInput);
@@ -30,10 +30,18 @@ public class InputValidator {
     public static List<Integer> parseNumbers(String input) {
         validateEmpty(input);
         validateInputLength(input);
-        validateNoSpecialCharacters(input);
+        validateSpecialCharacters(input); // 먼저 전체 입력값에 대해 특수문자 검증
+
         String[] values = input.trim().split(DELIMITER);
         validateNumberCount(values);
-        return parseNumberList(values);
+
+        List<Integer> numbers = new ArrayList<>();
+        for (String value : values) {
+            String trimmedValue = value.trim();
+            validateNumeric(trimmedValue);
+            numbers.add(Integer.parseInt(trimmedValue));
+        }
+        return numbers;
     }
 
     private static void validateEmpty(String input) {
@@ -48,17 +56,18 @@ public class InputValidator {
         }
     }
 
-    private static void validateNoSpecialCharacters(String input) {
+    private static void validateSpecialCharacters(String input) {
         if (containsSpecialCharacters(input)) {
             throw new IllegalArgumentException(ERROR_INVALID_INPUT);
         }
-        validateNumeric(input);
     }
 
     private static boolean containsSpecialCharacters(String input) {
         return input.matches(".*[<>\\\\;'\"].*") ||
                 input.contains("script") ||
-                input.matches(".*[\\x00-\\x1F\\x7F].*");
+                input.contains("--") ||
+                input.matches(".*[\\x00-\\x1F\\x7F].*") ||
+                input.contains("\u0000");
     }
 
     private static void validateNumberCount(String[] values) {
@@ -71,16 +80,5 @@ public class InputValidator {
         if (!Pattern.matches(VALID_NUMBER_PATTERN, value)) {
             throw new IllegalArgumentException(ERROR_NOT_NUMBER);
         }
-    }
-
-    private static List<Integer> parseNumberList(String[] values) {
-        List<Integer> numbers = new ArrayList<>();
-        for (String value : values) {
-            String trimmedValue = value.trim();
-            validateNoSpecialCharacters(trimmedValue);
-            validateNumeric(trimmedValue);
-            numbers.add(Integer.parseInt(trimmedValue));
-        }
-        return numbers;
     }
 }
