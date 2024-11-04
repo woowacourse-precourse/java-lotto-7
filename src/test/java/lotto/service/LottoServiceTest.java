@@ -113,4 +113,46 @@ class LottoServiceTest {
         assertThatIllegalArgumentException().isThrownBy(() -> lottoService.buyLotto(null))
                 .withMessage("[ERROR] 정수를 입력해주세요.");
     }
+
+    @Test
+    @DisplayName("정상적인 보너스 번호 입력 테스트")
+    void 정상적인_보너스_번호_입력_테스트() {
+        //given
+        String number1 = "1";
+        String number2 = " 1 2 ";
+
+        //when
+        lottoService.assignBonus(number1);
+        int bonusNumber1 = lottoService.getBonusDto().getNumber();
+        lottoService.assignBonus(number2);
+        int bonusNumber2 = lottoService.getBonusDto().getNumber();
+
+        //then
+        assertThat(bonusNumber1).isEqualTo(1);
+        assertThat(bonusNumber2).isEqualTo(12);
+    }
+
+    @Test
+    @DisplayName("로또 번호와 중복되는 보너스 번호 입력 테스트")
+    void 로또_번호에_보너스_번호가_있으면_예외가_발생한다() {
+        lottoService.assignWinningLotto("1, 2, 3, 4, 5, 6");
+        assertThatIllegalArgumentException().isThrownBy(() -> lottoService.assignBonus("1"))
+                .withMessage("[ERROR] 로또 번호는 중복되면 안됩니다.");
+    }
+
+    @Test
+    @DisplayName("정수가 아닌 보너스 번호 입력 테스트")
+    void 정수가_아닌_보너스_번호가_입력된_경우_예외를_발생시킨다() {
+        assertThatIllegalArgumentException().isThrownBy(() -> lottoService.assignBonus("a"))
+                .withMessage("[ERROR] 정수를 입력해주세요.");
+
+        assertThatIllegalArgumentException().isThrownBy(() -> lottoService.assignBonus("4.4"))
+                .withMessage("[ERROR] 정수를 입력해주세요.");
+
+        assertThatIllegalArgumentException().isThrownBy(() -> lottoService.assignBonus(""))
+                .withMessage("[ERROR] 정수를 입력해주세요.");
+
+        assertThatIllegalArgumentException().isThrownBy(() -> lottoService.assignBonus(null))
+                .withMessage("[ERROR] 정수를 입력해주세요.");
+    }
 }
