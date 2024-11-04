@@ -13,6 +13,7 @@ public class LottoService {
     private static final int MIN_NUM = 1;
     private static final int MAX_NUM = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int LOTTO_PRICE = 1000;
     private final SoldLotto soldLotto;
     private final WinningLotto winningLotto;
     private final WinningResult winningResult;
@@ -49,5 +50,9 @@ public class LottoService {
 
     public List<LottoResultDto> getWinningResult() {
         return winningResult.getWinningResult();
+    }
+
+    public int getLottoCount(int purchasePrice) {
+        return purchasePrice / LOTTO_PRICE;
     }
 }

@@ -9,8 +9,6 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
-
-    private static final int LOTTO_PRICE = 1000;
     private static final String COMMA = ",";
     private final OutputView outputView;
     private final InputView inputView;
@@ -30,12 +28,12 @@ public class LottoController {
         int purchasePrice = getPurchasePrice();
 
         //로또 번호 구매
-        int lottoCount = getLottoCount(purchasePrice);
+        int lottoCount = lottoService.getLottoCount(purchasePrice);
         outputView.lottoPurchasedCount(lottoCount);
-        String lottos = lottoService.buyLotto(lottoCount);
 
         //구매한 로또 번호 출력
-        printLottoPurchasedDetail(lottos);
+        String lottoReceipt = lottoService.buyLotto(lottoCount);
+        outputView.lottoPurchasedDetail(lottoReceipt);
 
         //당첨 번호 입력
         outputView.askWinningNumber();
@@ -67,14 +65,6 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private int getLottoCount(int purchasePrice) {
-        return purchasePrice / LOTTO_PRICE;
-    }
-
-    private void printLottoPurchasedDetail(String lottos) {
-        outputView.lottoPurchasedDetail(lottos);
     }
 
     private void getValidWinningNumber() {
