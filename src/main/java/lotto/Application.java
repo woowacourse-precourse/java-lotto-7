@@ -11,7 +11,6 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int purchaseAmount = parsePurchaseAmount();
-        System.out.println();
 
         List<Lotto> tickets = Lotto.generateLottoTickets(purchaseAmount);
         System.out.printf("%d개를 구매했습니다.%n", tickets.size());
