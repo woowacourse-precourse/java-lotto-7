@@ -1,7 +1,15 @@
 package lotto;
 
+import static lotto.constant.RequestUrl.*;
+
+import lotto.controller.DispatcherServlet;
+import lotto.model.Request;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        DispatcherServlet servlet = new DispatcherServlet();
+        servlet.doService(new Request(PURCHASE_RANDOM_LOTTO));
+        servlet.doService(new Request(INIT_WINNING_LOTTO));
+        servlet.doService(new Request(CALCULATE_RESULT));
     }
 }
