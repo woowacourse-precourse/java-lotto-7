@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class PurchaseLotto {
@@ -79,6 +80,7 @@ class MainController {
 		for (int i = 0; i < purchaseCount; i++) {
 			Lotto newPrintedLotto = new Lotto(
 					camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6));
+			Collections.sort(newPrintedLotto.getLottoNumber());
 			userLottoPackage.add(new PurchaseLotto(newPrintedLotto));
 		}
 
