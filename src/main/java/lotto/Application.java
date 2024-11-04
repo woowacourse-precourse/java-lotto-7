@@ -3,34 +3,25 @@ package lotto;
 import java.util.*;
 
 public class Application {
-    private static int getCost() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = camp.nextstep.edu.missionutils.Console.readLine();
-
-        try {
-            int cost = Integer.parseInt(input);
-            return cost;
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
-        }
-    }
-
-    private static void vaildateCost(int cost) {
-        if (cost <= 0 || cost % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000 단위의 자연수만 입력할 수 있습니다.");
-        }
-    }
-
     private static int getAmount() {
         while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String input = camp.nextstep.edu.missionutils.Console.readLine();
+
             try {
-                int cost = getCost();
-                vaildateCost(cost);
+                int cost = parseNumber(input);
+                validateCost(cost);
                 int amount = cost / 1000;
                 return amount;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static void validateCost(int cost) {
+        if (cost <= 0 || cost % 1000 != 0) {
+            throw new IllegalArgumentException(ERROR.UNIT.getMessage());
         }
     }
 
@@ -58,7 +49,7 @@ public class Application {
 
             try {
                 List<Integer> winningNumbers = parseWinningNumbers(inputs);
-                vaildateWinningNumbers(winningNumbers);
+                validateWinningNumbers(winningNumbers);
                 return flagWinningNumbers(winningNumbers);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -74,16 +65,16 @@ public class Application {
                 int winningNumber = Integer.parseInt(input);
                 winningNumbers.add(winningNumber);
             } catch (Exception e) {
-                throw new IllegalArgumentException("[ERROR] 입력 형식이 잘못되었습니다.");
+                throw new IllegalArgumentException(ERROR.FORMAT.getMessage());
             }
         }
 
         return winningNumbers;
     }
 
-    private static void vaildateWinningNumbers(List<Integer> winningNumbers) {
+    private static void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 6개 입력해주세요.");
+            throw new IllegalArgumentException(ERROR.COUNT.getMessage());
         }
 
         for (int winningNumber : winningNumbers) {
@@ -101,7 +92,7 @@ public class Application {
         return winningNumberFlags;
     }
 
-    private static int getBonusNumber() {
+    private static int getBonusNumber(boolean[] winningNumberFlags) {
         while (true) {
             System.out.println("보너스 번호를 입력해 주세요.");
             String input = camp.nextstep.edu.missionutils.Console.readLine();
@@ -109,6 +100,7 @@ public class Application {
             try {
                 int bonusNumber = parseNumber(input);
                 Lotto.validateNumber(bonusNumber);
+                validateBonusNumber(winningNumberFlags, bonusNumber);
                 return bonusNumber;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -117,13 +109,43 @@ public class Application {
 
     }
 
+    private static void validateBonusNumber(boolean[] winningNumberFlags, int bonusNumber) {
+        if (winningNumberFlags[bonusNumber]) {
+            throw new IllegalArgumentException(ERROR.DUPLICATE.getMessage());
+        }
+    }
+
     private static int parseNumber(String input) {
         try {
             int number = Integer.parseInt(input);
             return number;
         } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ERROR.PARSE.getMessage());
         }
+    }
+
+    private static long checkWinnings(List<Lotto> lottos, boolean[] winningNumberFlags, int bonusNumber) {
+        long prizeSum = 0;
+        int[] winningCount = new int[6];
+
+        for (Lotto lotto : lottos) {
+            RANK rank = lotto.checkWinning(winningNumberFlags, bonusNumber);
+            winningCount[rank.getIndex()]++;
+            prizeSum += rank.getPrize();
+        }
+
+        printWinnings(winningCount);
+        return prizeSum;
+    }
+
+    private static void printWinnings(int[] winningCount) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.printf("3개 일치 (5,000원) - %d개\n", winningCount[5]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n", winningCount[4]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", winningCount[3]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", winningCount[2]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", winningCount[1]);
     }
 
     public static void main(String[] args) {
@@ -141,7 +163,10 @@ public class Application {
         System.out.println();
 
         //보너스 번호 입력
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(winningNumberFlags);
         System.out.println();
+
+        //당첨 통계 출력
+        checkWinnings(lottos, winningNumberFlags, bonusNumber);
     }
 }
