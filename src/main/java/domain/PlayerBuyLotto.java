@@ -16,6 +16,8 @@ public class PlayerBuyLotto {
 
         int amount = Integer.parseInt(purchaseAmount);
 
+        validate.validateMoney(amount);
+
         return amount / LOTTO_AMOUNT;
     }
 

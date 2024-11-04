@@ -9,8 +9,7 @@ public enum Message {
     INPUT_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     WINNING_STATISTICS("당첨 통계"),
-    WAITING("---"),
-    TOTAL_PROFIT_RATE("총 수익률은 %s%%입니다.");
+    WAITING("---");
 
     private final String message;
 
@@ -20,10 +19,5 @@ public enum Message {
 
     public String getMessage() {
         return message;
-    }
-
-    public String format(double rate) {
-        BigDecimal roundedRate = new BigDecimal(rate).setScale(1, BigDecimal.ROUND_HALF_UP);
-        return String.format(this.message, roundedRate.toPlainString());
     }
 }

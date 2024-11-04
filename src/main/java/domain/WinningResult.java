@@ -3,6 +3,7 @@ package domain;
 import message.Prize;
 import view.Output;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,69 +12,45 @@ public class WinningResult {
 
     public final int LOTTO_AMOUNT = 1000;
 
-    public Map<Prize, Integer> calculateResult(List<Lotto> lottos, List<Integer> winning, int bonus) {
+    public void results(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
 
         Output output = new Output();
 
-        Map<Prize, Integer> result = new HashMap<>();
-        Prize prize;
+        Map<Prize, Integer> result = calculateResult(lottos, winningNumbers, bonusNumber);
+        int lottoTotalNum = lottos.size();
 
-        output.printStaticGuide();
-        for (Lotto lotto : lottos) {
-            prize = matches(lotto, winning, bonus);
+        output.printResult(result);
+        output.printProfitRate(result, lottoTotalNum * LOTTO_AMOUNT);
+    }
+
+    public static Map<Prize, Integer> calculateResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+
+        Map<Prize, Integer> result = new EnumMap<>(Prize.class);
+
+        for(Prize prize : Prize.values()) {
+
+            result.put(prize, 0);
+        }
+
+        for(Lotto lotto : lottos) {
+
+            int matchCount = lotto.getMatchCount(winningNumbers);
+            boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+
+            Prize prize = getPrizeByMatch(matchCount, matchBonus);
             result.put(prize, result.getOrDefault(prize, 0) + 1);
         }
 
         return result;
     }
 
-    public double calculateRate(Map<Prize, Integer> result, int lottoAmount) {
+    public static Prize getPrizeByMatch(int matchCount, boolean matchBonus) {
 
-        double rate = 0.0;
-        long totalProfit = 0L;
-        long totalConsume = (long)lottoAmount * LOTTO_AMOUNT;
-
-        for(Prize prize : result.keySet()) {
-            totalProfit += result.get(prize) * prize.getMoney();
-        }
-        rate = (double)(totalProfit / totalConsume) * 100.0 ;
-
-        return rate;
-    }
-
-    private Prize matches(Lotto lotto, List<Integer> winning, int bonus) {
-
-        int count = compareWinning(lotto, winning);
-        boolean isBonus = compareBonus(lotto, bonus);
-
-        return Ranking.valueOf(count, isBonus);
-    }
-
-    private int compareWinning(Lotto lotto, List<Integer> winning) {
-
-        int matchCount = 0;
-        List<Integer> lottoNumbers = lotto.getNumbers();
-
-        for(Integer number : lottoNumbers) {
-            if(winning.contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
-    }
-
-    private boolean compareBonus(Lotto lotto, int bonus) {
-
-
-        boolean isBonus = false;
-        List<Integer> lottoNumbers = lotto.getNumbers();
-
-        for(Integer number : lottoNumbers) {
-            if(number == bonus) {
-                isBonus = true;
-            }
-        }
-
-        return isBonus;
+        if(matchCount == 6) return Prize.ALL_MATCHES;
+        if(matchCount == 5 && matchBonus) return Prize.FIVE_BONUS_MATCHES;
+        if(matchCount == 5) return Prize.FIVE_MATCHES;
+        if(matchCount == 4) return Prize.FOUR_MATCHES;
+        if(matchCount == 3) return Prize.THREE_MATCHES;
+        return Prize.MISS;
     }
 }

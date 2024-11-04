@@ -24,18 +24,15 @@ public class RunApplication {
             try {
                 String purchaseAmount = input.inputPurchaseAmount();
                 int lottoPurchased = playerBuyLotto.purchasedLottoNums(purchaseAmount);
-                List<Lotto> LottosObject = output.printPurchasedLotto(lottoPurchased);
+                List<Lotto> lottery = output.printPurchasedLotto(lottoPurchased);
                 String inputtedWinningNumbers = input.inputWinningNumbers();
                 List<Integer> winningNumbers = winningNum.generateWinningNumbers(inputtedWinningNumbers);
                 String inputtedBonusNumber = input.inputBonusNumber();
                 int bonusNumber = bonusNum.generateBonusNumber(inputtedBonusNumber);
                 validate.validateBonusNumAndWinningNum(winningNumbers, bonusNumber);
-                Map<Prize, Integer> result = winningResult.calculateResult(LottosObject, winningNumbers, bonusNumber);
-                double rate = winningResult.calculateRate(result, lottoPurchased);
-                output.printResult(result);
-                output.printProfitRate(rate);
+                output.printStaticGuide();
+                winningResult.results(lottery, winningNumbers, bonusNumber);
                 break;
-
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

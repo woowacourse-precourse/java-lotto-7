@@ -5,6 +5,7 @@ import domain.PlayerBuyLotto;
 import message.Message;
 import message.Prize;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,8 @@ public class Output {
 
         System.out.println(lottoPurchased + Message.AMOUNT_PURCHASED.getMessage());
 
-        List<Lotto> lottos = playerBuyLotto.buyLotto(lottoPurchased);
+        List<Lotto> lottos = new ArrayList<>();
+        lottos = playerBuyLotto.buyLotto(lottoPurchased);
 
         for(Lotto lotto : lottos) {
             System.out.println(lotto.toString());
@@ -36,13 +38,24 @@ public class Output {
 
     public void printResult(Map<Prize, Integer> result) {
 
-        for (Prize prize : result.keySet()) {
-            System.out.println(prize.getResult() + result.get(prize) + count);
+        for (Prize prize : Prize.values()) {
+
+            if (prize != Prize.MISS) {
+                System.out.println(prize.getResult() + result.getOrDefault(prize, 0) + count);
+            }
         }
     }
 
-    public void printProfitRate(double rate) {
+    public void printProfitRate(Map<Prize, Integer> result, int lottoAmount) {
 
-        System.out.println(Message.TOTAL_PROFIT_RATE.format(rate));
+        long totalProfit = 0;
+
+        for(Prize prize : Prize.values()) {
+
+            totalProfit += prize.getMoney() * result.get(prize);
+        }
+
+        double profitRate = (double) totalProfit / lottoAmount *100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 }

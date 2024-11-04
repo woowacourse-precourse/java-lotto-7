@@ -65,4 +65,10 @@ public class Validate {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_BONUS.getErrorMessage());
         }
     }
+
+    public void validateMoney(int money) {
+        if(money <= 0){
+            throw new IllegalArgumentException(ErrorMessage.LOWER_THAN_ZERO.getErrorMessage());
+        }
+    }
 }

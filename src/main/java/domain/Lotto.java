@@ -17,8 +17,8 @@ public class Lotto {
         validate.validateIsInRange(numbers);
         validate.validateIsDuplicate(numbers);
 
+        this.numbers = new ArrayList<>(numbers);
         Collections.sort(numbers);
-        this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
@@ -29,6 +29,10 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    public int getMatchCount(List<Integer> winning) {
+        return (int) numbers.stream().filter(winning::contains).count();
     }
 
     // TODO: 추가 기능 구현

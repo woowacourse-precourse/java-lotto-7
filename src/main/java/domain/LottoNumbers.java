@@ -2,6 +2,7 @@ package domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoNumbers {
@@ -12,7 +13,7 @@ public class LottoNumbers {
 
     public Lotto generateLotto() {
 
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMS);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMS));
 
         return new Lotto(numbers);
     }
