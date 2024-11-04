@@ -18,7 +18,7 @@ public class OutputView {
                     "5개 일치 (1,500,000원) - %d개\n" +
                     "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" +
                     "6개 일치 (2,000,000,000원) - %d개";
-
+    private static final String DISPLAY_YIELD_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public void displayPurchasedLottoCount(int count) {
         System.out.printf(DISPLAY_LOTTO_COUNT_MESSAGE_FORMAT + "%n", count);
@@ -53,5 +53,9 @@ public class OutputView {
 
         String joinedNumbers = String.join(", ", numbers);
         return String.format(DISPLAY_LOTTO_NUMBER_MESSAGE_FORMAT, joinedNumbers);
+    }
+
+    public void displayYieldRate(Double yieldRate) {
+        System.out.printf(DISPLAY_YIELD_RATE_FORMAT + "%n", yieldRate);
     }
 }

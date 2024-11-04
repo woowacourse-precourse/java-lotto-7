@@ -44,7 +44,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
   - [X] 당첨 통계(당첨 순위, 개수) 반환
 - [X] 당첨 통계 출력
 - [X] 수익률 계산
-- [ ] 수익률 출력
+- [X] 수익률 출력
 - [ ] 에러 메시지 출력
 
 # 책임 분리
