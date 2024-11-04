@@ -12,7 +12,17 @@ public class LottoInputView {
     }
 
     public String inputPurchaseAmount() {
-        lottoOutputView.printMessage(LottoConstant.INPUT_PURCHASE_AMOUNT);
+        lottoOutputView.printMessage(LottoConstant.INPUT_PURCHASE_AMOUNT_MESSAGE);
+        return Console.readLine();
+    }
+
+    public String inputWinningNumbers() {
+        lottoOutputView.printEnterAndMessage(LottoConstant.INPUT_WINNING_NUMBERS_MESSAGE);
+        return Console.readLine();
+    }
+
+    public String inputBonusNumber() {
+        lottoOutputView.printEnterAndMessage(LottoConstant.INPUT_BONUS_NUMBER_MESSAGE);
         return Console.readLine();
     }
 }

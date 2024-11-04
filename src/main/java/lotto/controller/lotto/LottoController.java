@@ -2,6 +2,7 @@ package lotto.controller.lotto;
 
 import java.util.List;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoDto;
 import lotto.io.lotto.LottoInputView;
 import lotto.io.lotto.LottoOutputView;
 import lotto.service.lotto.LottoService;
@@ -24,10 +25,23 @@ public class LottoController {
     }
 
     public void startProgram() {
+        LottoDto lottoDto = new LottoDto();
         String inputPurchaseAmount = lottoInputView.inputPurchaseAmount();
         lottoValidator.validatePurchaseAmount(inputPurchaseAmount);
+        //dto에 세팅
 
         List<Lotto> lottoes = lottoService.createLottoes(Integer.parseInt(inputPurchaseAmount));
         lottoOutputView.printPurchaseResult(lottoes);
+
+        String inputWinningNumbers = lottoInputView.inputWinningNumbers();
+        lottoValidator.validateWinningNumbers(inputWinningNumbers);
+        lottoDto.updateWinningNumbers(inputWinningNumbers);
+        //dto에 세팅
+
+        String inputBonusNumber = lottoInputView.inputBonusNumber();
+        lottoValidator.validateBonusNumber(lottoDto.getWinningNumbers(), inputBonusNumber);
+        lottoDto.updateBonusNumber(inputBonusNumber);
+        //dto에 세팅
+
     }
 }

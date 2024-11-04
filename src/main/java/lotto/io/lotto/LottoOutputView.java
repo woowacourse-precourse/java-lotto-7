@@ -10,6 +10,11 @@ public class LottoOutputView {
         System.out.println(message);
     }
 
+    public void printEnterAndMessage(String message) {
+        System.out.println();
+        System.out.println(message);
+    }
+
     public void printPurchaseResult(List<Lotto> lottoes) {
         System.out.println();
         System.out.println(lottoes.size() + LottoConstant.PURCHASE_COUNT_MESSAGE);
