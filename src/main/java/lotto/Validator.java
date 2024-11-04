@@ -38,17 +38,15 @@ public class Validator {
         }
     }
 
-    private void checkIsDuplicateNumber(Set<Integer> base, int num) {
-        if (base.contains(num)) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
+    private void checkIsInputEmpty(String string) {
+        if (string.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE);
         }
     }
 
     public void validatePurchaseAmount(String purchaseInput) {
         try {
-            if (purchaseInput.isEmpty()) {
-                throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE);
-            }
+            checkIsInputEmpty(purchaseInput);
             checkIsNumber(purchaseInput);
             int num = Integer.parseInt(purchaseInput);
             checkIsPositiveNumber(num);
@@ -62,9 +60,7 @@ public class Validator {
 
     public void validateWinningNumbers(String winningNumbersInput) {
         try {
-            if (winningNumbersInput.isEmpty()) {
-                throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE);
-            }
+            checkIsInputEmpty(winningNumbersInput);
             String[] splitInputs = winningNumbersInput.split(WINNING_NUMBER_OPERATOR);
             Arrays.stream(splitInputs).forEach(this::checkIsNumber);
 
@@ -89,9 +85,7 @@ public class Validator {
 
     public void validateBonusNumber(String bonusNumberInput, List<Integer> winningNumbers) {
         try {
-            if (bonusNumberInput.isEmpty()) {
-                throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE);
-            }
+            checkIsInputEmpty(bonusNumberInput);
             checkIsNumber(bonusNumberInput);
             int num = Integer.parseInt(bonusNumberInput);
             checkIsPositiveNumber(num);
