@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -49,6 +46,11 @@ public class Lotto {
         return lottoPurchaseAmount / 1000;
     }
 
+    // 랜덤으로 선택된 로또 번호 오름차순 정렬
+    public static void SortRandomPickPurchaseLottoNumbers(List<Integer> numbers){
+        Collections.sort(numbers);
+    }
+
     // 로또 번호 랜덤으로 선택
     public static List<Integer> randomPickPurchaseLottoNumbers(){
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -58,7 +60,9 @@ public class Lotto {
     public static List<List<Integer>> purchaseLottoNumbers(int lottoCount){
         List<List<Integer>> lottoNumbers = new ArrayList<>(lottoCount);
         for (int i = 0; i < lottoCount; i++) {
-            lottoNumbers.add(randomPickPurchaseLottoNumbers());
+            List<Integer> numbers = randomPickPurchaseLottoNumbers();
+            SortRandomPickPurchaseLottoNumbers(numbers);
+            lottoNumbers.add(numbers);
         }
         return lottoNumbers;
     }
