@@ -4,7 +4,6 @@ import static lotto.global.ErrorMessage.*;
 
 public class Money {
 	private static final int ZERO_MONEY = 0;
-
 	private final int amount;
 
 	public Money(int amount) {

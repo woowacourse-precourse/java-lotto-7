@@ -16,9 +16,7 @@ public class LottoMachine {
 		validatePurchaseMoneyUnit(money);
 		int lottoCount = money.getAmount() / LOTTO_PRICE;
 
-		List<Lotto> lottos = generateLottos(lottoCount, randoms);
-
-		return lottos;
+		return generateLottos(lottoCount, randoms);
 	}
 
 	private void validatePurchaseMoneyUnit(Money money) {
