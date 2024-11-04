@@ -16,12 +16,12 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateLottoNumberSize(numbers);
+        validateLottoCountSize(numbers);
         validateDuplication(numbers);
     }
 
-    private void validateLottoNumberSize(List<Integer> numbers) {
-        if (isLottoNumberSize(numbers)) {
+    private void validateLottoCountSize(List<Integer> numbers) {
+        if (isLottoCountSize(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -32,8 +32,8 @@ public class Lotto {
         }
     }
 
-    private boolean isLottoNumberSize (List<Integer> numbers) {
-        return numbers.size() != 6;
+    private boolean isLottoCountSize (List<Integer> numbers) {
+        return numbers.size() != LottoPublisher.LOTTO_COUNT_SIZE;
     }
 
     private boolean isDuplication (List<Integer> numbers) {

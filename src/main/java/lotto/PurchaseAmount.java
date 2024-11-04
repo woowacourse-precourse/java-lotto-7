@@ -42,7 +42,7 @@ public record PurchaseAmount(int value) {
     }
 
     private static boolean isPurchasableLottoAmount(int purchaseAmount) {
-        return purchaseAmount % 1000 != 0;
+        return purchaseAmount % LottoPublisher.LOTTO_PRICE != 0;
     }
 
     private static int parseInt(String input) {
