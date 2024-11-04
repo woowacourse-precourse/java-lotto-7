@@ -29,19 +29,12 @@ public class OutputView {
         System.out.println("\n당첨 통계\n" + "---");
 
         Map<Rank, Integer> rankCount = lottoResultChecker.getRankCount();
-        List<Rank> reverseRank = Arrays.stream(Rank.values())
-                .sorted(Comparator.reverseOrder())
-                .toList();
-        for (Rank rank : reverseRank) {
-            Integer matchCount = rankCount.get(rank);
-            if (rank.equals(Rank.NONE)) {
-                continue;
-            }
-            if (rankCount.get(rank) == null) {
-                matchCount = 0;
-            }
+
+        Arrays.stream(Rank.values()).sorted(Comparator.reverseOrder()).toList().forEach(rank -> {
+            Integer matchCount = rankCount.getOrDefault(rank, 0);
+            if (rank.equals(Rank.NONE)) return;
             System.out.printf("%s - %d개\n", rank.getMessage(), matchCount);
-        }
+        });
     }
 
     public static void printLottoProfit(double profit) {
