@@ -22,6 +22,13 @@ public enum LottoRange {
         return true;
     }
 
+    public static boolean isAvailableRange(Integer number) {
+        if (number < MIN_LOTTO_RANGE.value || number > MAX_LOTTO_RANGE.value) {
+            return false;
+        }
+        return true;
+    }
+
     public Integer getValue() {
         return value;
     }
