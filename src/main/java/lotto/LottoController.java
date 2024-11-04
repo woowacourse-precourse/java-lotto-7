@@ -35,7 +35,7 @@ public class LottoController {
         // 발행한 로또 수량 및 번호 출력
         LottoView.printLottos(lottoCount, lottos);
 
-        // 당첨 번호 입력 받기
+        // 당첨 번호 및 보너스 번호 입력 받기
         List<Integer> winningNumbers = null;
         while (true) {
             try {
@@ -47,7 +47,15 @@ public class LottoController {
         }
 
         // 보너스 번호 입력 받기
-        Integer bonusNumber = LottoView.getBonusNumber();
+        Integer bonusNumber;
+        while (true) {
+            try {
+                bonusNumber = LottoView.getBonusNumber();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         // 당첨 여부 확인
 
