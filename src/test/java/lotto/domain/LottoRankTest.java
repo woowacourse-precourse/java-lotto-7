@@ -34,4 +34,11 @@ class LottoRankTest {
         LottoRank rank = LottoRank.valueOf(4, false);
         assertEquals(LottoRank.FOURTH, rank);
     }
+
+    @DisplayName("다섯 번째 순위인 경우")
+    @Test
+    void 다섯번째순위_테스트() {
+        LottoRank rank = LottoRank.valueOf(3, false);
+        assertEquals(LottoRank.FIFTH, rank);
+    }
 }
