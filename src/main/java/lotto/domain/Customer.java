@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Customer {
 
@@ -30,6 +32,13 @@ public class Customer {
     }
 
     public Lottos getLottos() {
+        return lottos;
+    }
+
+    public Lottos purchaseLottos() {
+        IntStream.rangeClosed(1, price.getCount())
+                .mapToObj(i -> Lotto.from(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+                .forEach(lotto -> lottos.addLotto(lotto));
         return lottos;
     }
 }
