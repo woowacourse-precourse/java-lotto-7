@@ -1,10 +1,12 @@
 package lotto.validator;
 
+import lotto.exception.LottoErrorMessage;
+import lotto.exception.LottoException;
+
 public class WinningNumberInputValidator {
 
-    public static final String NUMERIC_REGEX = "\\d+";
-    public static final String COMMA = ",";
-    public static final String ERROR_MESSAGE_WINNING_NUMBER_IS_NOT_POSITIVE_NUMBER = "[ERROR] 로또 당첨 번호는 양의 숫자로만 입력해야 합니다.";
+    private static final String NUMERIC_REGEX = "\\d+";
+    private static final String COMMA = ",";
 
     public static void validateWinningNumberInput(String input) {
         CommonInputValidator.validateCommonInput(input);
@@ -15,7 +17,7 @@ public class WinningNumberInputValidator {
         String[] splitInput = input.split(COMMA);
         for (String s : splitInput) {
             if (isNotNumeric(s)) {
-                throw new IllegalArgumentException(ERROR_MESSAGE_WINNING_NUMBER_IS_NOT_POSITIVE_NUMBER);
+                throw new LottoException(LottoErrorMessage.INVALID_WINNING_NUMBER_FORMAT);
             }
         }
     }

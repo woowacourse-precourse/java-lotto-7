@@ -1,13 +1,11 @@
 package lotto.validator;
 
 import java.util.List;
+import lotto.exception.LottoErrorMessage;
+import lotto.exception.LottoException;
 import lotto.model.LottoConstants;
 
 public class LottoValidator {
-
-    public static final String ERROR_MESSAGE_LOTTO_NUMBER_RANGE = "[ERROR] 로또 번호는 1부터 45까지의 숫자여야 합니다.";
-    public static final String ERROR_MESSAGE_LOTTO_NUMBER_DUPLICATION = "[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.";
-    public static final String ERROR_MESSAGE_LOTTO_NUMBER_COUNT = "[ERROR] 로또 번호는 6개여야 합니다.";
 
     public static void validateLotto(List<Integer> numbers) {
         validateLottoNumbersSize(numbers);
@@ -17,7 +15,7 @@ public class LottoValidator {
 
     private static void validateLottoNumberRange(List<Integer> numbers) {
         if (hasOutOfRangeNumber(numbers)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_NUMBER_RANGE);
+            throw new LottoException(LottoErrorMessage.OUT_OF_LOTTO_NUMBER_RANGE);
         }
     }
 
@@ -35,7 +33,7 @@ public class LottoValidator {
         long distinctCount = getDistinctCount(numbers);
         int totalCount = numbers.size();
         if (distinctCount != totalCount) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_NUMBER_DUPLICATION);
+            throw new LottoException(LottoErrorMessage.LOTTO_NUMBER_DUPLICATION);
         }
     }
 
@@ -47,7 +45,7 @@ public class LottoValidator {
 
     private static void validateLottoNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LottoConstants.LOTTO_COUNT.getValue()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_NUMBER_COUNT);
+            throw new LottoException(LottoErrorMessage.INVALID_LOTTO_NUMBER_COUNT);
         }
     }
 }
