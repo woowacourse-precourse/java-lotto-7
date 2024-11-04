@@ -47,10 +47,9 @@ public class OutputHandler {
     }
 
     private void showEachWinner(WinningStatistic statistic) {
-        for (WinnerFrequency winnerFrequency : statistic.getWinnerFrequency()) {
-            String winnerTemplate = winnerFrequency.getMessage();
-            System.out.println(winnerTemplate);
-        }
+        statistic.getWinnerFrequencies().stream()
+                .map(WinnerFrequency::getMessage)
+                .forEach(System.out::println);
     }
 
     private void showProfitRate(WinningStatistic statistic) {

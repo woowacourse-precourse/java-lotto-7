@@ -28,7 +28,7 @@ public class WinningStatistic {
         return new WinningStatistic(results, price);
     }
 
-    public List<WinnerFrequency> getWinnerFrequency() {
+    public List<WinnerFrequency> getWinnerFrequencies() {
         List<WinnerFrequency> frequencies = new ArrayList<>();
         for (ResultState state : stateFrequencyAccumulator.keySet()) {
             Integer frequency = stateFrequencyAccumulator.get(state);

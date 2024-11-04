@@ -20,7 +20,7 @@ class WinningStatisticTest {
         results.addAll(generateFailureResults());
         WinningStatistic winningStatistic = WinningStatistic.from(results, generatePrice(8000));
 
-        List<WinnerFrequency> winnerFrequencies = winningStatistic.getWinnerFrequency();
+        List<WinnerFrequency> winnerFrequencies = winningStatistic.getWinnerFrequencies();
 
         assertThat(winnerFrequencies.size()).isSameAs(5);
     }
