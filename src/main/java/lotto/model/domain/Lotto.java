@@ -3,7 +3,7 @@ package lotto.model.domain;
 import static lotto.model.domain.LottoConstant.MAX_NUM;
 import static lotto.model.domain.LottoConstant.MIN_NUM;
 import static lotto.model.domain.LottoConstant.SIZE;
-import static lotto.model.domain.LottoError.*;
+import static lotto.exception.LottoError.*;
 
 import java.util.List;
 import java.util.Set;
@@ -43,5 +43,12 @@ public class Lotto {
         if (numbers.size() != numbersSet.size()) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_ERR);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "[" +
+                String.join(", ", numbers.stream().map(String::valueOf).toList()) +
+                "]";
     }
 }

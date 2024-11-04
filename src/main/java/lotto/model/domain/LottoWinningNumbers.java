@@ -2,8 +2,8 @@ package lotto.model.domain;
 
 import static lotto.model.domain.LottoConstant.MAX_NUM;
 import static lotto.model.domain.LottoConstant.MIN_NUM;
-import static lotto.model.domain.LottoError.DUPLICATE_BONUS_NUMBER_ERR;
-import static lotto.model.domain.LottoError.LOTTO_NUM_OUT_OF_RANGE_ERR;
+import static lotto.exception.LottoError.DUPLICATE_BONUS_NUMBER_ERR;
+import static lotto.exception.LottoError.LOTTO_NUM_OUT_OF_RANGE_ERR;
 
 import java.util.List;
 
