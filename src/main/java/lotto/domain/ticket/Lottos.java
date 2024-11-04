@@ -11,11 +11,13 @@ public class Lottos {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final String ERROR_NULL = "[ERROR] 로또 목록이 null일 수 없습니다.";
+    private static final String ERROR_EMPTY = "[ERROR] 최소 1개 이상의 로또를 구매해야 합니다.";
 
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
         validateNull(lottos);
+        validateEmpty(lottos);
         this.lottos = new ArrayList<>(lottos);
     }
 
@@ -39,6 +41,12 @@ public class Lottos {
     private void validateNull(List<Lotto> lottos) {
         if (lottos == null) {
             throw new IllegalArgumentException(ERROR_NULL);
+        }
+    }
+
+    private void validateEmpty(List<Lotto> lottos) {
+        if (lottos.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_EMPTY);
         }
     }
 

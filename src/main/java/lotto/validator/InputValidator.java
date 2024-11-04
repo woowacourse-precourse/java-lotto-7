@@ -52,6 +52,7 @@ public class InputValidator {
         if (containsSpecialCharacters(input)) {
             throw new IllegalArgumentException(ERROR_INVALID_INPUT);
         }
+        validateNumeric(input);
     }
 
     private static boolean containsSpecialCharacters(String input) {
@@ -76,6 +77,7 @@ public class InputValidator {
         List<Integer> numbers = new ArrayList<>();
         for (String value : values) {
             String trimmedValue = value.trim();
+            validateNoSpecialCharacters(trimmedValue);
             validateNumeric(trimmedValue);
             numbers.add(Integer.parseInt(trimmedValue));
         }
