@@ -30,7 +30,7 @@ public class LottoGeneratorTest {
     @DisplayName("입금액이 올바르지 않을 경우 발행매수를 계산할 수 없다.")
     void failGetTicketCountTest(){
         Assertions.assertThatThrownBy(()->lottoGenerator.getTicketCount(null))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 입금액이 입력되지 않았습니다.");
 
         Assertions.assertThatThrownBy(()->lottoGenerator.getTicketCount(""))
