@@ -24,7 +24,6 @@ public class LottoService implements Service{
         this.lottoes = lottoes;
 
         //output
-        OutputView.printNumberOfLotto(lottoes.getLottoesCount());
         lottoes.printLottoesInfo();
     }
 

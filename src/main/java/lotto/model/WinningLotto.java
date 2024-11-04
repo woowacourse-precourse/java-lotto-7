@@ -25,7 +25,6 @@ public class WinningLotto {
 
     public WinningInfo matchWithLotto(List<Integer> lottoNumbers) {
         Long matchCount = winningLottoNumber.getMatchCountWithWinningLottoNumber(lottoNumbers);
-
         if (checkSecondPrize(matchCount, lottoNumbers)) {
             return WinningInfo.getWinningInfoMatchWithCount(matchCount, true);
         }

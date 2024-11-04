@@ -8,6 +8,7 @@ public class OutputView {
     private static final String unit = "개";
     private static final String messageOfRateOfReturnPrefix = "총 수익률은 ";
     private static final String messageOfRateOfReturnSuffix = "%입니다.";
+    private static final String newLine = "\n";
 
     private OutputView(){
     }
@@ -17,19 +18,19 @@ public class OutputView {
     }
 
     public static void printNumberOfLotto(final Integer numberOfLotto) {
-        System.out.println(numberOfLotto + messageOfNumberOfLottoSuffix);
+        System.out.println(newLine + numberOfLotto + messageOfNumberOfLottoSuffix);
     }
 
     public static void printPromptMessageForWinningLotto() {
-        System.out.println(PROMPT_MESSAGE_FOR_WINNING_LOTTO.getPromptMessage());
+        System.out.println(newLine + PROMPT_MESSAGE_FOR_WINNING_LOTTO.getPromptMessage());
     }
 
     public static void printPromptMessageForBonusNumber() {
-        System.out.println(PROMPT_MESSAGE_FOR_BONUS_NUMBER.getPromptMessage());
+        System.out.println(newLine + PROMPT_MESSAGE_FOR_BONUS_NUMBER.getPromptMessage());
     }
 
     public static void printPromptMessageForWinningResult() {
-        System.out.println(PROMPT_MESSAGE_FOR_WINNING_RESULT.getPromptMessage());
+        System.out.println(newLine + PROMPT_MESSAGE_FOR_WINNING_RESULT.getPromptMessage());
     }
 
     public static void printWinningResult(final String prefix, final Integer winningLottoNumber) {
