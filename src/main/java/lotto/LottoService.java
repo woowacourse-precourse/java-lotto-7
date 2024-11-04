@@ -10,6 +10,7 @@ public class LottoService {
     public Map<LottoRank, Integer> calculateStatistic(List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottos) {
 
         Map<LottoRank, Integer> result = new HashMap<>();
+
         for (List<Integer> lotto : lottos) {
             LottoRank lottoRank = prizeWinningDiscriminationPerLotto(winningNumbers, bonusNumber, lotto);
             result.put(lottoRank, result.getOrDefault(lottoRank, 0) + 1);
@@ -53,7 +54,7 @@ public class LottoService {
     }
 
     public int calCulateLottoAmount(int purchaseAmount) {
-        return purchaseAmount / 1000;
+        return purchaseAmount / Lotto.lottoPrice;
     }
 
 

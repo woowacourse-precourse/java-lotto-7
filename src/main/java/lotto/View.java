@@ -64,7 +64,7 @@ public class View {
 
     private void validatePurchaseAmount(int purchaseAmount){
         if(purchaseAmount < 1000){
-            throw new IllegalArgumentException("로또 구입 금액은 1000원 이상이어야 합니다.");
+            throw new IllegalArgumentException("[Error] 로또 구입 금액은 1000원 이상이어야 합니다.");
         }
     }
 

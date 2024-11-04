@@ -16,9 +16,11 @@ public class LottoController {
     public void run() {
 
         int purchaseAmount = view.printAndgetPurchaseAmount();
-        view.printNumberOfLotto(purchaseAmount);
+        int lottoAmount = lottoService.calCulateLottoAmount(purchaseAmount);
+        view.printNumberOfLotto(lottoAmount);
 
-        List<List<Integer>> lottos = lottoService.publishLotto(purchaseAmount);
+
+        List<List<Integer>> lottos = lottoService.publishLotto(lottoAmount);
         view.printLottos(lottos);
 
 
@@ -27,6 +29,7 @@ public class LottoController {
         String bonusNumber = view.getBonusNumber();
 
         Map<LottoRank, Integer> lottoRankMap = lottoService.calculateStatistic(lotto.getNumbers(), Integer.parseInt(bonusNumber), lottos);
+        System.out.println(lottoRankMap.toString());
         view.printStaticsOfWinning(lottoRankMap.get(LottoRank.Fifth), lottoRankMap.get(LottoRank.Fourth), lottoRankMap.get(LottoRank.Third), lottoRankMap.get(LottoRank.Second), lottoRankMap.get(LottoRank.First));
 
         double rateOfReturnMoney = lottoService.calculateRateOfReturnMoney(lottoRankMap, purchaseAmount);

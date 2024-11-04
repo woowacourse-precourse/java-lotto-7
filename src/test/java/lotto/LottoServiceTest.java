@@ -135,4 +135,15 @@ public class LottoServiceTest {
                 () -> Assertions.assertEquals(1, result.get(LottoRank.None))
         );
     }
+
+    @DisplayName("로또 갯수 반환 테스트")
+    @Test
+    void 로또_갯수_반환_테스트() {
+        //given
+        int purchaseAmount = 10000;
+        //when
+        int result = lottoService.calCulateLottoAmount(purchaseAmount);
+        //then
+        Assertions.assertEquals(10, result);
+    }
 }
