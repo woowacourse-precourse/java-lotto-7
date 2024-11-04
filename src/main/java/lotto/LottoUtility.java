@@ -21,14 +21,21 @@ public class LottoUtility {
         return numbers;
     }
 
-    public String getWinningInfoMessage(LottoWinningStandard standard, int matchedCount) {
+    /**
+     * 등수별 당첨건수 정보를 반환
+     * @param standard 등수
+     * @param lottoCount 당첨건수
+     * @return 등수별 당첨정보 (예시 : 6개 일치 ( 2,000,000,000원) - 1개)
+     */
+
+    public String getWinningInfoMessage(LottoWinningStandard standard, int lottoCount) {
         if(standard.equals(LottoWinningStandard.SECOND_PRIZE)) {
-            return "5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchedCount + "개";
+            return "5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoCount + "개";
         }
 
         DecimalFormat formatter = new DecimalFormat("#,###");
         String prize = formatter.format(standard.getPrizeMoney());
-        return standard.getMatchedNumberCount() + "개 일치 (" + prize + "원) - " + matchedCount + "개";
+        return standard.getMatchedNumberCount() + "개 일치 (" + prize + "원) - " + lottoCount + "개";
     }
 
     public LottoWinningStandard getLottoWinningStandard(int matchedNumberCount, int matchedBonusNumberCount) {
@@ -106,7 +113,7 @@ public class LottoUtility {
         return bonus;
     }
 
-    public boolean bonusDuplicate(Lotto winningLotto, int bonus) {
+    private boolean bonusDuplicate(Lotto winningLotto, int bonus) {
         boolean isDuplicated = winningLotto.getNumbers().stream().anyMatch(number -> number == bonus);
         if (isDuplicated) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
