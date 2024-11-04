@@ -28,34 +28,7 @@ class CalculateServiceTest {
         );
 
         //random drawn numbers set
-        DrawNumbers threeMatchNumber = new DrawNumbers(
-                ListEnum.THREE_MATCH_LOTTO_NUMBERS.getList(),
-                IntEnum.NOT_MATCH_BONUS_NUMBERS.getNumber()
-        );
-        DrawNumbers fourMatchNumber = new DrawNumbers(
-                ListEnum.FOUR_MATCH_LOTTO_NUMBERS.getList(),
-                IntEnum.NOT_MATCH_BONUS_NUMBERS.getNumber()
-        );
-        DrawNumbers fiveMatchNumber = new DrawNumbers(
-                ListEnum.FIVE_MATCH_LOTTO_NUMBERS.getList(),
-                IntEnum.NOT_MATCH_BONUS_NUMBERS.getNumber()
-        );
-        DrawNumbers fiveMatchWithBonusNumber = new DrawNumbers(
-                ListEnum.FIVE_MATCH_LOTTO_NUMBERS.getList(),
-                IntEnum.WINNING_BONUS_NUMBERS.getNumber()
-        );
-        DrawNumbers sixMatchNumber = new DrawNumbers(
-                ListEnum.WINNING_LOTTO_NUMBERS.getList(),
-                IntEnum.NOT_MATCH_BONUS_NUMBERS.getNumber()
-        );
-
-        drawSets = List.of(
-                threeMatchNumber,
-                fourMatchNumber,
-                fiveMatchNumber,
-                fiveMatchWithBonusNumber,
-                sixMatchNumber
-        );
+        drawSets = ListEnum.getDrawSets();
     }
 
     @DisplayName("당첨 금액 리스트 일치 테스트")
