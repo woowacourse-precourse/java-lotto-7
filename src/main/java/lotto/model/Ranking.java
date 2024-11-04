@@ -10,12 +10,12 @@ public enum Ranking {
     LOSE(0, false, 0);
 
     public final int numberOfHits;
-    public final boolean bonusNumberHit;
+    public final boolean requiresBonus;
     public final int award;
 
-    private Ranking(int numberOfHits, boolean bonusNumberHit, int award) {
+    private Ranking(int numberOfHits, boolean requiresBonus, int award) {
         this.numberOfHits = numberOfHits;
-        this.bonusNumberHit = bonusNumberHit;
+        this.requiresBonus = requiresBonus;
         this.award = award;
     }
 
@@ -23,11 +23,23 @@ public enum Ranking {
         int numberOfHits = drawnLotto.countHits(lotto);
         boolean bonusNumberHit = drawnLotto.isBonusNumberHit(lotto);
 
-        for (Ranking ranking : Ranking.values()) {
-            if (ranking.numberOfHits == numberOfHits && ranking.bonusNumberHit == bonusNumberHit) {
+        Ranking[] rankings = Ranking.values();
+        for (int i = rankings.length - 1; i >= 0; i--) {
+            Ranking ranking = rankings[i];
+            if (isMatchingRanking(ranking, numberOfHits, bonusNumberHit)) {
                 return ranking;
             }
         }
         return LOSE;
+    }
+
+    private static boolean isMatchingRanking(Ranking ranking, int numberOfHits, boolean bonusNumberHit) {
+        if (ranking.numberOfHits != numberOfHits) {
+            return false;
+        }
+        if (ranking.requiresBonus) {
+            return bonusNumberHit;
+        }
+        return true;
     }
 }
