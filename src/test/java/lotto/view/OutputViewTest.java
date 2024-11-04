@@ -33,6 +33,26 @@ public class OutputViewTest extends NsTest {
         );
     }
 
+    @DisplayName("당첨 결과를 출력한다.")
+    @Test
+    void printResultTest() {
+        // given
+        Result result = new Result();
+        result.addThreeNumberMatch();
+        result.addFourNumberMatch();
+        // when
+        outputView.printResult(result);
+        // then
+        assertThat(output()).contains(
+                "당첨 통계",
+                "---",
+                "3개 일치 (5,000원) - 1개",
+                "4개 일치 (50,000원) - 1개",
+                "5개 일치 (1,500,000원) - 0개",
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                "6개 일치 (2,000,000,000원) - 0개"
+        );
+    }
 
     @Override
     protected void runMain() {
