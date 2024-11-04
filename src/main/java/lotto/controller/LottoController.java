@@ -11,7 +11,6 @@ public class LottoController {
     public LottoController(LottoTickets lottoTickets) {
         this.lottoTickets = lottoTickets;
     }
-
     public TicketResponse buyTicket(MoneyRequest money) {
         return lottoTickets.buyTicket(money.money());
     }
@@ -20,4 +19,7 @@ public class LottoController {
         return lottoTickets.draw(drawInfo.tickets(), drawInfo.winningNumbers(), drawInfo.bonusNumber());
     }
 
+    public Double calculateProfitRate(int money, int[] result) {
+        return lottoTickets.calculateProfitRate(money, result);
+    }
 }
