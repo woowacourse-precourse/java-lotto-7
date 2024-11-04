@@ -1,7 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constant.LottoNumbersConstant;
+import lotto.constant.LottoConstant;
 import lotto.model.Lotto;
 
 import java.util.*;
@@ -23,11 +23,12 @@ public class LottoService {
 
     public static Lotto createLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
-                LottoNumbersConstant.MIN_LOTTO_NUMBER.getValue(),
-                LottoNumbersConstant.MAX_LOTTO_NUMBER.getValue(),
-                LottoNumbersConstant.LOTTO_NUMBERS_LENGTH.getValue());
-        Collections.sort(randomNumbers);
-        return new Lotto(randomNumbers);
+                LottoConstant.MIN_LOTTO_NUMBER.getValue(),
+                LottoConstant.MAX_LOTTO_NUMBER.getValue(),
+                LottoConstant.LOTTO_NUMBERS_LENGTH.getValue());
+        List<Integer> lottoNumbers = new ArrayList<>(randomNumbers);
+        Collections.sort(lottoNumbers);
+        return new Lotto(lottoNumbers);
     }
 
     public LinkedHashMap<String, Integer> calculateUserLottoStatistics(List<Lotto> userLottos) {
