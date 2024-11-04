@@ -20,15 +20,17 @@ public class LottoController {
         try {
             // 구입 금액 입력
             PurchaseRequestDto purchaseAmount = InputHandler.purchaseInputHandler();
+           // System.out.println("금액 확인 해볼게 : " + purchaseAmount.getMoney());
 
             // 로또 발행
             LottoMatching matching = lottoService.generatorLottos(purchaseAmount);
+
+            OutputView.lottoOutput(matching.getLottos());
+
             WinningNumberRequestDto winningNumberRequestDto = InputHandler.winningNumberRequestDto();
 
             // 뽀너스 입력, 당첨 번호 입력
             lottoService.calculateWinningStatistics(matching, winningNumberRequestDto);
-
-            OutputView.lottoOutput(matching.getLottos());
 
             /*
             로또 번호 매칭 - > 당첨번호랑 자동 발급된 번호 매칭 -> 확률 구현
