@@ -46,5 +46,14 @@ public class LottoGame {
         }
     }
 
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(camp.nextstep.edu.missionutils.Console.readLine());
+        if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 하며, 당첨 번호와 중복되지 않아야 합니다.");
+        }
+        return bonusNumber;
+    }
+
 
 }
