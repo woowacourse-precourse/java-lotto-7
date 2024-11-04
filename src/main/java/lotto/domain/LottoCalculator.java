@@ -22,9 +22,12 @@ public class LottoCalculator {
         for (Lotto lotto : lottos) {
             int matchedCount = countWinningNumber(lotto);
             boolean isBonusMatched = lotto.getNumbers().contains(bonusNumber);
-            ResultMessage resultMessage = ResultMessage.getMessageByResult(matchedCount, isBonusMatched);
+            ResultMessage resultMessage;
+            if(matchedCount >= 3){
+                resultMessage = ResultMessage.getMessageByResult(matchedCount, isBonusMatched);
+                winningResults.put(resultMessage, winningResults.getOrDefault(resultMessage, 0) + 1);
+            }
 
-            winningResults.put(resultMessage, winningResults.getOrDefault(resultMessage, 0) + 1);
         }
         return winningResults;
     }
