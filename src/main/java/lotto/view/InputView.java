@@ -11,4 +11,10 @@ public class InputView {
         return inputAmount;
     }
 
+    public String promptWinningNumbers(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String inputWinningNumbers = Console.readLine();
+        return inputWinningNumbers;
+    }
+
 }
