@@ -5,6 +5,7 @@ import java.util.List;
 
 public class RandomNumberGenerator {
     public List<Integer> generateUniqueRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LottoConfig.LOTTO_MIN_NUMBER.getValue(),
+                LottoConfig.LOTTO_MAX_NUMBER.getValue(), LottoConfig.LOTTO_PICK_COUNT.getValue());
     }
 }
