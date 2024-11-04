@@ -63,12 +63,15 @@ class WinningNumberValidatorTest {
                 .hasMessageContaining(ExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
     }
 
-//    @DisplayName("보너스 번호가 당첨 번호와 중복될 때 예외 발생")
-//    @Test
-//    void shouldThrowExceptionWhenBonusNumberIsDuplicateWithWinningNumber() {
-//        List<Integer> winningNumbers = List.of(3, 12, 25, 8, 10, 22);
-//        assertThatThrownBy(() -> validator.validateBonusNumber(8, winningNumbers))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessageContaining(ExceptionMessage.BONUS_NUMBER_DUPLICATE_WITH_WINNING.getMessage());
-//    }
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 때 예외 발생")
+    @Test
+    void shouldThrowExceptionWhenBonusNumberIsDuplicateWithWinningNumber() {
+        List<Integer> winningNumbers = List.of(3, 12, 25, 8, 10, 22);
+
+        validator.validateNumbers(winningNumbers);
+
+        assertThatThrownBy(() -> validator.validateBonusNumber("8"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.BONUS_NUMBER_DUPLICATE_WITH_WINNING.getMessage());
+    }
 }
