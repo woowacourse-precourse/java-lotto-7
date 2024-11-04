@@ -1,5 +1,28 @@
 # java-lotto-precourse
 
+## 프로젝트 구조
+
+```
+main
+└── java
+    └── lotto
+        ├── Application.java
+        ├── controller
+        │   ├── LottoTransactionController.java
+        │   └── MainController.java
+        ├── model
+        │   ├── Lotto.java
+        │   ├── LottoTransaction.java
+        │   └── PrizeRank.java
+        ├── validator
+        │   ├── InputValidator.java
+        │   ├── LottoValidator.java
+        │   ├── PurchaseAmountValidator.java
+        │   └── Validator.java
+        └── view
+            ├── InputView.java
+            └── LottoTransactionView.java
+```
 ## 기능 리스트
 
 ### 입력 기능
