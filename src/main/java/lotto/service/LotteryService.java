@@ -31,8 +31,8 @@ public class LotteryService {
         outputView.printRequirePurchaseAmount();
         final int purchaseAmount = inputView.readPurchaseAmount();
         int lottoPurchaseAmount = purchaseAmount / 1000;
-        outputView.printPurchaseAmount(lottoPurchaseAmount);
         lottoBuyer.setLottoPurchaseAmount(lottoPurchaseAmount);
+        outputView.printLottoPurchaseAmount(lottoPurchaseAmount);
         issueLottoTickets(lottoBuyer, lottoPurchaseAmount);
     }
 
@@ -40,12 +40,11 @@ public class LotteryService {
         outputView.printRequireWinningNumber();
         List<Integer> lottoWinningNumbers = inputView.readLottoNumbers();
         winningLottery.addWinningNumbers(lottoWinningNumbers);
-        System.out.println();
     }
 
     public void setLottoBonusNumber() {
         outputView.printRequireBonusNumber();
-        int lottoBonusNumber = Integer.parseInt(Console.readLine());
+        int lottoBonusNumber = inputView.readLottoBonusNumber();
         lottoBonus.setLottoBonusNumber(lottoBonusNumber);
         System.out.println();
     }

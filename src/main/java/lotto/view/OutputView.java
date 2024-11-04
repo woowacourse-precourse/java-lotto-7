@@ -10,6 +10,7 @@ public class OutputView {
     }
 
     public void printRequireBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
@@ -18,7 +19,7 @@ public class OutputView {
         System.out.println("---");
     }
 
-    public void printPurchaseAmount(final int lottoPurchaseAmount) {
+    public void printLottoPurchaseAmount(final int lottoPurchaseAmount) {
         System.out.println();
         System.out.println(lottoPurchaseAmount + "개를 구매했습니다.");
     }
