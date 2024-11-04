@@ -57,6 +57,7 @@ public class LottoService {
         List<List<Integer>> lottos = new ArrayList<>();
         for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lotto.sort(Comparator.naturalOrder());
             lottos.add(lotto);
         }
         return lottos;

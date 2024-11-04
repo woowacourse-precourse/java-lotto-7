@@ -173,4 +173,9 @@ public class LottoServiceTest {
         //then
         Assertions.assertEquals(10, result);
     }
+
+
+
+
+
 }
