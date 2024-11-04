@@ -34,4 +34,7 @@ public enum Rank {
                 .orElse(NONE);
     }
 
+    public long getPrize() {
+        return prize;
+    }
 }
