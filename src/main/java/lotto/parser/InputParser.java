@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.exception.InputException;
 import lotto.message.ErrorMessage;
-import lotto.model.WinningLotto;
 import lotto.validator.InputValidator;
 
 public class InputParser {
