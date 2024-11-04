@@ -1,11 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
 import java.util.Set;
-import lotto.domain.BonusNumberValidator;
+import lotto.validator.BonusNumberValidator;
 import lotto.domain.WinningNumber;
-import lotto.domain.WinningNumberValidator;
+import lotto.validator.WinningNumberValidator;
 import lotto.message.ErrorMessage;
 import lotto.validator.LottoAmountValidator;
 
