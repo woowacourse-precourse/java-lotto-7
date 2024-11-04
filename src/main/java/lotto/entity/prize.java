@@ -15,4 +15,12 @@ public enum prize {
         this.description = description;
         this.amount = amount;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 }
