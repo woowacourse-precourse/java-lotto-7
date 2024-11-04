@@ -15,6 +15,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
 	private static final LottoController instance = new LottoController();
+
 	private final LottoService lottoService;
 
 	private LottoController() {
@@ -27,52 +28,56 @@ public class LottoController {
 
 	public void start() {
 		PurchaseMoney purchaseMoney = getPurchaseMoney();
-		int lottoCount = getLottoCount(purchaseMoney);
-		LottoBundle lottoBundle = getLottoBundle(lottoCount);
-		WinningNumber winningNumber = getWinningNumber();
-		BonusNumber bonusNumber = getBonusNumber(winningNumber);
+		int lottoCount = lottoService.calculateLottoCount(purchaseMoney);
 
-		WinningDTO winningDTO = new WinningDTO(winningNumber, bonusNumber);
-		Winning winning = lottoService.checkWinningNumber(lottoBundle, winningDTO);
+		OutputView.promptPurchaseCount(lottoCount);
+		Winning winning = getWinning(lottoCount);
 
-		OutputView.printWinningStatistics(winning.getRankCounts());
-
-		ReturnRate returnRate = lottoService.displayWinningStatistics(winning, purchaseMoney);
-		double resultRate = returnRate.calculate();
-		OutputView.printReturnRate(resultRate);
+		displayWinningStatistics(winning);
+		displayReturnRate(winning, purchaseMoney);
 	}
 
 	private PurchaseMoney getPurchaseMoney() {
 		while (true) {
 			try {
 				OutputView.promptPurchaseMoney();
-				int purchaseMoney = InputView.purchaseMoney();
-				return new PurchaseMoney(purchaseMoney);
+				int purchaseAmount = InputView.purchaseMoney();
+
+				return lottoService.createPurchaseMoney(purchaseAmount);
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
 	}
 
-	private static int getLottoCount(PurchaseMoney purchaseMoney) {
-		int lottoCount = purchaseMoney.getLottoCount();
-		OutputView.promptPurchaseCount(lottoCount);
-		return lottoCount;
-	}
+	private Winning getWinning(int lottoCount) {
+		LottoBundle lottoBundle = createLottoBundle(lottoCount);
+		WinningDTO winningDTO = createWinningDTO();
 
-	private LottoBundle getLottoBundle(int lottoCount) {
+		return lottoService.checkWinningNumber(lottoBundle, winningDTO);
+	}
+	
+	private LottoBundle createLottoBundle(int lottoCount) {
 		LottoBundle lottoBundle = lottoService.createLottoBundle(lottoCount);
 		OutputView.promptLottoNumbers(lottoBundle);
 
 		return lottoBundle;
 	}
 
+	private WinningDTO createWinningDTO() {
+		WinningNumber winningNumber = getWinningNumber();
+		BonusNumber bonusNumber = getBonusNumber(winningNumber);
+
+		return lottoService.createWinningDTO(winningNumber, bonusNumber);
+	}
+
 	private WinningNumber getWinningNumber() {
 		while (true) {
 			try {
 				OutputView.promptWinningNumber();
-				List<Integer> winningNumber = InputView.winningNumber();
-				return new WinningNumber(winningNumber);
+				List<Integer> winningNumbers = InputView.winningNumber();
+
+				return lottoService.createWinningNumber(winningNumbers);
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
@@ -84,10 +89,20 @@ public class LottoController {
 			try {
 				OutputView.promptBonusNumber();
 				int bonusNumber = InputView.bonusNumber();
-				return new BonusNumber(winningNumber.getWinningNumber(), bonusNumber);
+
+				return lottoService.createBonusNumber(winningNumber, bonusNumber);
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			}
 		}
+	}
+
+	private void displayWinningStatistics(Winning winning) {
+		OutputView.printWinningStatistics(winning.getRankCounts());
+	}
+
+	private void displayReturnRate(Winning winning, PurchaseMoney purchaseMoney) {
+		ReturnRate returnRate = lottoService.calculateReturnRate(winning, purchaseMoney);
+		OutputView.printReturnRate(returnRate.calculate());
 	}
 }
