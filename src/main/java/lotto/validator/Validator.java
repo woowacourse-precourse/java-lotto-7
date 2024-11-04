@@ -24,6 +24,20 @@ public class Validator {
         return true;
     }
 
+    public boolean validateBonusNumber(String input, Lotto lotto) {
+        try {
+            isNotNull(input);
+            isNumber(input);
+            int number = Integer.parseInt(input);
+            isInLottoNumberRange(number);
+            isUnique(number, lotto);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
     public boolean validateLotto(String input) {
         try {
             isNotNull(input);
@@ -46,7 +60,7 @@ public class Validator {
         return true;
     }
 
-    public boolean isNumber(String input) {
+    public static boolean isNumber(String input) {
         try {
             Integer.parseInt(input);
         } catch (Exception e) {
@@ -69,17 +83,23 @@ public class Validator {
         return true;
     }
 
-    public boolean isInLottoNumberRange(Integer input) {
+    public static boolean isInLottoNumberRange(Integer input) {
         if (input <= 0 || input > 45) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
         }
         return true;
     }
 
-    public boolean isUnique(List<Integer> numbers) {
+    public boolean isAllUnique(List<Integer> numbers) {
         if (numbers.stream().distinct().toList().size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_UNIQUE_NUMBER.getMessage());
         }
+        return true;
+    }
+
+    public boolean isUnique(Integer number, Lotto lotto) {
+        if (lotto.haveNumber(number))
+            throw new IllegalArgumentException(ErrorMessage.INPUT_UNIQUE_NUMBER.name());
         return true;
     }
 }
