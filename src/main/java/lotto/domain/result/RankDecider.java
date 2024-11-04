@@ -8,7 +8,7 @@ public class RankDecider {
 
         if(matchedNumberCount < FIFTH.getMatchCount()){ return NO_LUCK.getRank();}
         if(matchedNumberCount == FIFTH.getMatchCount()){ return FIFTH.getRank();}
-        if(matchedNumberCount == FOURTH.getMatchCount()){ return FIRST.getRank();}
+        if(matchedNumberCount == FOURTH.getMatchCount()){ return FOURTH.getRank();}
         if(matchedNumberCount == THIRD.getMatchCount() && !isBonusNumberMatched){ return THIRD.getRank();}
         if(matchedNumberCount == SECOND.getMatchCount()){ return SECOND.getRank();}
 
