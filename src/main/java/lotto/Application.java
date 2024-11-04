@@ -6,7 +6,7 @@ public class Application {
     public static void main(String[] args) {
         UserLottos userLottos = createUserLottos();
         showUserLottos(userLottos);
-        inputWinningNumbers();
+        Lotto winningLottoNumbers = getWinningLottoNumbers();
     }
 
     private static UserLottos createUserLottos() {
@@ -37,6 +37,17 @@ public class Application {
             sb.append(lotto.getNumbers().toString()).append("\n");
         }
         return sb.toString();
+    }
+
+    private static Lotto getWinningLottoNumbers() {
+        while (true) {
+            try {
+                String input = inputWinningNumbers();
+                return new Lotto(LottoNumbersCreator.createWinningNumbers(input));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static String inputWinningNumbers() {
