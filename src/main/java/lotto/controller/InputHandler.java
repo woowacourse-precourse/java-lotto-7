@@ -23,6 +23,12 @@ public class InputHandler {
         return new Lotto(number);
     }
 
+    public int readBonusNumber() {
+        final int bonusNumber = parseToInteger(readLine());
+        validatePositive(bonusNumber);
+        return bonusNumber;
+    }
+
     private static int parseToInteger(String input) {
         try {
             return Integer.parseInt(input);
