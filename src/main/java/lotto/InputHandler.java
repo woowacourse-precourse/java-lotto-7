@@ -16,7 +16,7 @@ public class InputHandler {
     private static final String WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-    public static int getCredit() {
+    public int getCredit() {
         System.out.println(CREDIT);
         try {
             return parseInt(Console.readLine());
@@ -26,7 +26,7 @@ public class InputHandler {
         }
     }
 
-    public static int getPieces(int credit) {
+    public int getPieces(int credit) {
         try {
             return checkCredit(credit);
         } catch (IllegalArgumentException e) {
@@ -35,7 +35,7 @@ public class InputHandler {
         }
     }
 
-    private static int parseInt(String input) {
+    private int parseInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -43,14 +43,14 @@ public class InputHandler {
         }
     }
 
-    public static int checkCredit(int credit) {
+    public int checkCredit(int credit) {
         if (credit % 1000 != 0) {
             throw new IllegalArgumentException(NOT_MULTIPLE_1000);
         }
         return credit / 1000;
     }
 
-    public static List<Integer> getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         System.out.println(WINNING_NUMBER);
         List<Integer> winningNumbers;
         try {
@@ -68,7 +68,7 @@ public class InputHandler {
         return winningNumbers;
     }
 
-    private static List<Integer> parseNumbers(String[] inputNumbers) {
+    private List<Integer> parseNumbers(String[] inputNumbers) {
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number : inputNumbers) {
             try {
@@ -81,7 +81,7 @@ public class InputHandler {
         return winningNumbers;
     }
 
-    private static String[] readNumbers() {
+    private String[] readNumbers() {
         String[] inputNumbers = Console.readLine().split(",");
         if (inputNumbers.length != 6) {
             throw new IllegalArgumentException(NOT_SIX);
@@ -89,13 +89,13 @@ public class InputHandler {
         return inputNumbers;
     }
 
-    private static void checkSameNumber(List<Integer> winningNumbers) {
+    private void checkSameNumber(List<Integer> winningNumbers) {
         if(new HashSet<>(winningNumbers).size() != winningNumbers.size()) {
             throw new IllegalArgumentException(SAME_NUMBER);
         }
     }
 
-    public static int getBonusNumber(List<Integer> winningNumbers) {
+    public int getBonusNumber(List<Integer> winningNumbers) {
         System.out.println(BONUS_NUMBER);
         int bonusNumber;
         try {
@@ -113,7 +113,7 @@ public class InputHandler {
         return bonusNumber;
     }
 
-    private static void checkBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+    private void checkBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if(winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(SAME_BONUS_NUMBER);
         }

@@ -4,13 +4,13 @@ import java.util.List;
 
 
 public class OutputHandler {
-    public static void printPurchasedLottos(List<Lotto> lottos) {
+    public void printPurchasedLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             printLottoNumbers(lotto);
         }
     }
 
-    private static void printLottoNumbers(Lotto lotto) {
+    private void printLottoNumbers(Lotto lotto) {
         StringBuilder lottoNumbers = new StringBuilder("[");
         List<Integer> numbers = lotto.getNumbers();
         for (int number : numbers) {
@@ -21,7 +21,7 @@ public class OutputHandler {
         System.out.println(lottoNumbers);
     }
 
-    public static void printResult(int[] matchCount, double revenueRate) {
+    public void printResult(int[] matchCount, double revenueRate) {
         StringBuilder result = new StringBuilder();
         result.append("당첨 통계\n");
         result.append("---\n");
