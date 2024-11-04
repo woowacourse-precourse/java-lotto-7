@@ -17,13 +17,13 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void addLottoList(int amount, List<Integer> winNumbers, int bonusNumber) {
-        lottoService.addLottoList(amount, winNumbers, bonusNumber);
+    public void addLottoes(int amount, List<Integer> winNumbers, int bonusNumber) {
+        lottoService.addLottoes(amount, winNumbers, bonusNumber);
     }
 
-    public void showLottoList() {
-        List<Lotto> lottoList = lottoService.getLottoList();
-        printRandomNumbersList(lottoList.size(), lottoList);
+    public void showLottoes() {
+        List<Lotto> lottoes = lottoService.getLottoes();
+        printRandomNumbersList(lottoes.size(), lottoes);
     }
 
     public void showLottoResult(int amount, List<Integer> winNumbers, int bonusNumber) {

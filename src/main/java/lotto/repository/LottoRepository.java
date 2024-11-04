@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 import java.util.List;
 
 public interface LottoRepository {
-    List<Lotto> findAllLottoList();
+    List<Lotto> findAllLottoes();
 
     void addLottoNumbers(List<Integer> lottoNumbers);
 }

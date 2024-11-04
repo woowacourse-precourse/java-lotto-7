@@ -22,8 +22,8 @@ public class FrontController {
         List<Integer> winNumbers = printAndGetWinNumbers();
         int bonusNumber = printAndGetBonusNumber(winNumbers);
 
-        lottoController.addLottoList(amount, winNumbers, bonusNumber);
-        lottoController.showLottoList();
+        lottoController.addLottoes(amount, winNumbers, bonusNumber);
+        lottoController.showLottoes();
         lottoController.showLottoResult(amount, winNumbers, bonusNumber);
     }
 }

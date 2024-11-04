@@ -21,7 +21,7 @@ public class LottoRepositoryImpl implements LottoRepository {
     }
 
     @Override
-    public List<Lotto> findAllLottoList() {
+    public List<Lotto> findAllLottoes() {
         return lottoList;
     }
 

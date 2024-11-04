@@ -16,15 +16,15 @@ import java.util.stream.Collectors;
 
 public class LottoServiceImpl implements LottoService {
     private final LottoRepository lottoRepository;
-    private final int ONE_LOTTO_PRICE = 1_000;
+    private static final int LOTTO_PRICE = 1_000;
 
     public LottoServiceImpl(LottoRepository lottoRepositoryImpl) {
         this.lottoRepository = lottoRepositoryImpl;
     }
 
     @Override
-    public void addLottoList(int amount, List<Integer> winNumbers, int bonusNumber) {
-        int count = amount / ONE_LOTTO_PRICE;
+    public void addLottoes(int amount, List<Integer> winNumbers, int bonusNumber) {
+        int count = amount / LOTTO_PRICE;
 
         while (count-- > 0) {
             lottoRepository.addLottoNumbers(Randoms.pickUniqueNumbersInRange(1, 45, 6)
@@ -35,15 +35,15 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public List<Lotto> getLottoList() {
-        return lottoRepository.findAllLottoList();
+    public List<Lotto> getLottoes() {
+        return lottoRepository.findAllLottoes();
     }
 
     @Override
     public void getLottoResult(Result result, List<Integer> winNumbers, int bonusNumber) {
-        List<Lotto> lottoList = lottoRepository.findAllLottoList();
+        List<Lotto> lottoes = lottoRepository.findAllLottoes();
 
-        for (Lotto lotto : lottoList) {
+        for (Lotto lotto : lottoes) {
             int matchCount = getMatchCount(lotto.getNumbers(), winNumbers);
             boolean matchBonus = false;
             if (matchCount == 5) {

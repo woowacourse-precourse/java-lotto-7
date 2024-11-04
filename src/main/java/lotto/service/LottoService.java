@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface LottoService {
 
-    void addLottoList(int amount, List<Integer> winNumbers, int bonusNumber);
+    void addLottoes(int amount, List<Integer> winNumbers, int bonusNumber);
 
-    List<Lotto> getLottoList();
+    List<Lotto> getLottoes();
 
     void getLottoResult(Result result, List<Integer> winNumbers, int bonusNumber);
 }
