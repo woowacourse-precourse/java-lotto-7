@@ -17,7 +17,7 @@ public class Lotto {
         CommonValidation.validateNumbersRange(numbers);
     }
 
-    private static void validateNumberSize(List<Integer> numbers) {
+    private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LottoInfo.NUMBER_COUNT.getInfo()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_COUNT_ERROR.getMessage());
         }
