@@ -11,7 +11,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
     public void run() {
-        int lottosAmount = InputView.inputPurchase();
+        int lottosAmount = getValidPurchaseAmount();
         List<Lotto> purchaseLottos = generateLotto(lottosAmount);
         OutputView.printLottoTicket(purchaseLottos);
 
@@ -23,6 +23,16 @@ public class LottoController {
         double earningRate = calculateEarningRate(rankCount, lottosAmount * 1000);
 
         OutputView.printWinningStatistics(rankCount, earningRate);
+    }
+
+    private int getValidPurchaseAmount() {
+        while (true) {
+            try {
+                return InputView.inputPurchase();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 잘못된 형식입니다. 다시 입력해주세요.");
+            }
+        }
     }
 
     public List<Lotto> generateLotto(int lottosAmount) {
