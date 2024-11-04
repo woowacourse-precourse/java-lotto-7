@@ -1,19 +1,19 @@
 package lotto.dto;
 
 public class LottoResult {
-    private final int purchaseAmount;
-    private final String lottoNumbers;
+    private final double returnOnInvestment;
+    private final String winningResult;
 
-    public LottoResult(int purchaseAmount, String lottoNumbers) {
-        this.purchaseAmount = purchaseAmount;
-        this.lottoNumbers = lottoNumbers;
+    public LottoResult(double returnOnInvestment, String winningResult) {
+        this.returnOnInvestment = returnOnInvestment;
+        this.winningResult = winningResult;
     }
 
-    public int getPurchaseAmount() {
-        return purchaseAmount;
+    public double getReturnOnInvestment() {
+        return returnOnInvestment;
     }
 
-    public String getLottoNumbers() {
-        return lottoNumbers;
+    public String getWinningResult() {
+        return winningResult;
     }
 }

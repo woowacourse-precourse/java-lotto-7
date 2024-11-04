@@ -2,10 +2,10 @@ package lotto.view;
 
 import static lotto.view.ViewMessages.ENTER_NUMBER_OR_PURCHASES;
 
-import lotto.dto.LottoResult;
+import lotto.dto.LottoDraw;
 
 public class OutputView {
-    public static void printLottoResult(LottoResult lottoResult) {
+    public static void printLottoResult(LottoDraw lottoResult) {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(System.lineSeparator());
