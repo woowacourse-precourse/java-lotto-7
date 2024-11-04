@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class InputValidator extends Validator {
     static final String INVALID_NUMBER_PARSE = "입력하신 숫자가 유효하지 않습니다, 양수만 입력 가능합니다";
-    static final String INVALID_NON_NUMERIC_INPUT = "양수인 숫자만 입력 가능합니다."; // TODO "ex) 1,2,3,4,5,6  추가하기
+    static final String INVALID_NON_NUMERIC_INPUT = "양수인 숫자만 입력 가능합니다. ex) 1,2,3,4,5,6";
     static final String INVALID_BLANK = "공백은 입력 할 수 없습니다.";
     static final String INVALID_ALREADY_EXISTING_NUMBER = "당첨 번호에 존재하는 번호는 입력 불가";
 
