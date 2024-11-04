@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class Purchase {
     private static final int PRICE_OF_LOTTO = 1000;

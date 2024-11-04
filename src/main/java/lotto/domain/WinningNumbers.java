@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import lotto.domain.BonusNumber;
 
 public class WinningNumbers {
     private static final int COUNTS_OF_LOTTO = 6;

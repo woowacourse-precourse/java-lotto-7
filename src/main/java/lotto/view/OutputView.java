@@ -1,6 +1,7 @@
-package lotto;
+package lotto.view;
 
 import java.util.List;
+import lotto.domain.Result;
 
 public class OutputView {
     private static final int DIGITS_TWO = 10;

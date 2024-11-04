@@ -1,10 +1,18 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.domain.Purchase;
+import lotto.domain.Result;
+import lotto.domain.WinningNumbers;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoMachine {
     private static final int COUNTS_OF_LOTTO = 6;
@@ -12,7 +20,7 @@ public class LottoMachine {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
-    Result gameResult = Result.OUTOFRANK;
+    public Result gameResult = Result.OUTOFRANK;
 
     public void playMachine() {
         Purchase purchase = makePurchase();
