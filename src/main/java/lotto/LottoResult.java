@@ -20,7 +20,7 @@ public class LottoResult {
     }
 
     //로또 당첨 금액 확인
-    private void checkPrizeCount() {
+    public void checkPrizeCount() {
         prizeCount.put(3, 0);
         prizeCount.put(4, 0);
         prizeCount.put(5, 0);
@@ -28,7 +28,7 @@ public class LottoResult {
         prizeCount.put(7, 0);
     }
     //당첨 결과 계산
-    private void calculateResult() {
+    public void calculateResult() {
         for (Lotto lotto : purchasedLottos) {
             int matchCount = getMatchCount(lotto);
             if (matchCount >= 3) {
@@ -39,7 +39,7 @@ public class LottoResult {
         }
     }
     //구매한 로또 번호와 당첨번호 비교
-    private int getMatchCount(Lotto lotto) {
+    public int getMatchCount(Lotto lotto) {
         int matchCount = 0;
         for (int number : lotto.getNumbers()) {
             if (winningLotto.getNumbers().contains(number)) {
@@ -63,7 +63,7 @@ public class LottoResult {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", rateOfReturn);
     }
     //수익률 계산 추가 기능
-    private double calculateTotalEarnings() {
+    public double calculateTotalEarnings() {
         return prizeCount.get(3) * 5000
                 + prizeCount.get(4) * 50000
                 + prizeCount.get(5) * 1500000
