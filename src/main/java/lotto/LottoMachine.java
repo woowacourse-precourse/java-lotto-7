@@ -8,7 +8,7 @@ import java.util.List;
 public class LottoMachine {
     private static final int LOTTO_PER_PRICE = 1000;
     private int userMoney;
-    private List<List<Integer>> lotto = new ArrayList<>();
+    private List<Lotto> lotto = new ArrayList<>();
     private static InputReader inputReader = new InputReader();
     private static LottoRandomNumberGenerator lottoRandomNumberGenerator = new LottoRandomNumberGenerator();
 
@@ -27,7 +27,7 @@ public class LottoMachine {
         return userMoney / LOTTO_PER_PRICE;
     }
 
-    public List<Integer> purchaseLotto() {
+    public Lotto purchaseLotto() {
         return lottoRandomNumberGenerator.generateLottoNumbers();
     }
 
