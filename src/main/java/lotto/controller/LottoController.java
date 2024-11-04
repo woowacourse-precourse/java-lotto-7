@@ -1,12 +1,14 @@
 package lotto.controller;
 
 import java.util.Map;
+import java.util.function.Consumer;
 import lotto.constatnt.WinningRank;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.service.LottoNumberGenerator;
 import lotto.service.LottoPrizeCalculator;
 import lotto.service.PriceCalculator;
+import lotto.service.RetryRunner;
 import lotto.service.WinningNumberParser;
 import lotto.view.input.PurchasePriceInput;
 import lotto.view.input.WinningNumberInput;
@@ -21,8 +23,13 @@ public class LottoController {
     private final WinningNumberParser winningNumberParser;
     private final WinningNumberInput winningNumberInput;
     private final LottoPrizeCalculator lottoPrizeCalculator;
+    private final RetryRunner retryRunner;
 
-    public LottoController(PriceCalculator priceCalculator, PurchasePriceInput purchasePriceInput, LottoNumberGenerator lottoNumberGenerator, ResultDisplayer resultDisplayer, WinningNumberParser winningNumberParser, WinningNumberInput winningNumberInput, LottoPrizeCalculator lottoPrizeCalculator) {
+    private int purchaseAmount;
+    private Lotto parsedWinningNumbers;
+    private int parsedWinningBonus;
+
+    public LottoController(PriceCalculator priceCalculator, PurchasePriceInput purchasePriceInput, LottoNumberGenerator lottoNumberGenerator, ResultDisplayer resultDisplayer, WinningNumberParser winningNumberParser, WinningNumberInput winningNumberInput, LottoPrizeCalculator lottoPrizeCalculator, RetryRunner retryRunner) {
         this.purchasePriceInput = purchasePriceInput;
         this.priceCalculator = priceCalculator;
         this.lottoNumberGenerator = lottoNumberGenerator;
@@ -30,14 +37,15 @@ public class LottoController {
         this.winningNumberParser = winningNumberParser;
         this.winningNumberInput = winningNumberInput;
         this.lottoPrizeCalculator = lottoPrizeCalculator;
+        this.retryRunner = retryRunner;
     }
 
     public void start() {
-        int purchaseAmount = getValidPurchaseAmount();
-        Lottos generatedLottos = generateLottos(purchaseAmount);
-        Lotto parsedWinningNumbers = getValidParsedWinningNumbers();
-        int parsedWinningBonus = getValidParsedWinningBonus();
+        retryRunner.runWithRetry(() -> purchaseAmount = getValidPurchaseAmount());
+        retryRunner.runWithRetry(() -> parsedWinningNumbers = getValidParsedWinningNumbers());
+        retryRunner.runWithRetry(() -> parsedWinningBonus = getValidParsedWinningBonus());
 
+        Lottos generatedLottos = generateLottos(purchaseAmount);
         long totalPrize = lottoPrizeCalculator.calculateTotalPrize(generatedLottos, parsedWinningNumbers, parsedWinningBonus);
         double yield = lottoPrizeCalculator.calculateYield(totalPrize, purchaseAmount);
 
@@ -46,36 +54,18 @@ public class LottoController {
     }
 
     private int getValidPurchaseAmount() {
-        while (true) {
-            try {
-                String price = purchasePriceInput.getPurchasePrice();
-                return priceCalculator.parsePrice(price);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String price = purchasePriceInput.getPurchasePrice();
+        return priceCalculator.parsePrice(price);
     }
 
     private Lotto getValidParsedWinningNumbers() {
-        while (true) {
-            try {
-                String winningNumber = winningNumberInput.getNumber();
-                return winningNumberParser.splitWinningNumber(winningNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String winningNumber = winningNumberInput.getNumber();
+        return winningNumberParser.splitWinningNumber(winningNumber);
     }
 
     private int getValidParsedWinningBonus() {
-        while (true) {
-            try {
-                String winningBonusNumber = winningNumberInput.getBonusNumber();
-                return winningNumberParser.parseBonusWinningNumber(winningBonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        String winningBonusNumber = winningNumberInput.getBonusNumber();
+        return winningNumberParser.parseBonusWinningNumber(winningBonusNumber);
     }
 
     private Lottos generateLottos(int purchaseAmount) {

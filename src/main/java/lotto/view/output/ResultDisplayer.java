@@ -61,4 +61,8 @@ public class ResultDisplayer {
     public void showYield(double yield) {
         System.out.printf("%s" + YIELD_FORMAT, YIELD_MESSAGE, yield);
     }
+
+    public void showErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

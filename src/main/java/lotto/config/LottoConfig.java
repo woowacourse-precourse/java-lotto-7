@@ -5,6 +5,7 @@ import lotto.controller.LottoController;
 import lotto.service.LottoNumberGenerator;
 import lotto.service.LottoPrizeCalculator;
 import lotto.service.PriceCalculator;
+import lotto.service.RetryRunner;
 import lotto.service.WinningNumberParser;
 import lotto.view.input.PromptDisplayer;
 import lotto.view.input.PurchasePriceInput;
@@ -21,8 +22,9 @@ public class LottoConfig {
         WinningNumberParser winningNumberParser = new WinningNumberParser();
         WinningNumberInput winningNumberInput = new WinningNumberInput(promptDisplayer);
         LottoPrizeCalculator lottoPrizeCalculator = new LottoPrizeCalculator();
+        RetryRunner retryRunner = new RetryRunner(resultDisplayer);
 
         return new LottoController(priceCalculator, purchasePriceInput, lottoNumberGenerator, resultDisplayer,
-                winningNumberParser, winningNumberInput, lottoPrizeCalculator);
+                winningNumberParser, winningNumberInput, lottoPrizeCalculator, retryRunner);
     }
 }
