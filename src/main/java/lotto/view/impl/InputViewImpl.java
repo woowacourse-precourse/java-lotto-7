@@ -22,6 +22,7 @@ public class InputViewImpl implements InputView {
         String winningNumbers = Console.readLine();
         return Arrays.stream(winningNumbers.split(","))
                 .map(String::trim)
+                .filter(value -> !value.isEmpty())
                 .map(Integer::parseInt)
                 .toList();
     }
