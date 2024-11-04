@@ -21,7 +21,7 @@ public class Analyst {
             FIRST_WINNINGS_MONEY
     };
 
-    public Analyst(List<LottoResult> results, String inputMoney) {
+    public Analyst(List<LottoResult> results, int inputMoney) {
         calculateWinLotto(results);
         calculateTotalEarn(results);
         calculateYield(inputMoney);
@@ -51,9 +51,8 @@ public class Analyst {
                 .sum();
     }
 
-    private void calculateYield(String inputMoney) {
-        int money = Integer.parseInt(inputMoney);
-        double earningsRate = ((double) totalEarn / money) * 100;
+    private void calculateYield(int inputMoney) {
+        double earningsRate = ((double) totalEarn / inputMoney) * 100;
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.0#%");
         yield = decimalFormat.format(earningsRate / 100);
     }
