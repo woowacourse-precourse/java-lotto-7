@@ -17,4 +17,6 @@ public interface ApplicationView {
     void printWinningResult(WinningInfo winningInfo);
 
     void printProfitRate(float profitRate);
+
+    void printError(String message);
 }

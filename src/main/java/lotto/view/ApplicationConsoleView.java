@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.common.ConsoleMessage.*;
+import static lotto.common.ExceptionMessage.EXCEPTION_PREFIX;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
@@ -55,6 +56,11 @@ public class ApplicationConsoleView implements ApplicationView {
     @Override
     public void printProfitRate(float profitRate) {
         System.out.printf(PROFIT_RATE_RESULT, profitRate);
+    }
+
+    @Override
+    public void printError(String message) {
+        println(EXCEPTION_PREFIX + message);
     }
 
     private void println(String message) {

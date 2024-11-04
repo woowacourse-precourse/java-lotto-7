@@ -28,13 +28,17 @@ public class LottoApplication {
     }
 
     public void execute() {
-        purchaseLotto();
+        try {
+            purchaseLotto();
 
-        showPurchasedLotto();
+            showPurchasedLotto();
 
-        drawWinner();
+            drawWinner();
 
-        showResult();
+            showResult();
+        } catch (IllegalArgumentException e) {
+            applicationView.printError(e.getMessage());
+        }
     }
 
     private void purchaseLotto() {
