@@ -35,12 +35,14 @@ public class Application {
         lottoController.run();
     }
 
+    // ViewFacade 객체 생성 (View)
     private static ViewFacade createViewFacade() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         return new ViewFacade(inputView, outputView);
     }
 
+    // LottoFacade 객체 생성 (Service)
     private static LottoFacade createLottoFacade() {
         LottoNumberGeneratorStrategy lottoNumberGeneratorStrategy = new RandomLottoNumberGenerator();
         LottoIssuingService lottoIssuingService = new LottoIssuingServiceImpl(lottoNumberGeneratorStrategy);
@@ -53,6 +55,7 @@ public class Application {
         return new LottoFacadeImpl(lottoIssuingService, winningStatisticService);
     }
 
+    // ValidatorFacade 객체 생성 (Validator)
     private static ValidatorFacade createValidatorFacade() {
         Validator<String> bonusNumberInputValidator = new BonusNumberInputValidator();
         Validator<String> costInputValidator = new CostInputValidator();
