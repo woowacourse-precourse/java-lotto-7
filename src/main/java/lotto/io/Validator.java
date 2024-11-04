@@ -27,9 +27,8 @@ public abstract class Validator {
     public static void validateWinningNumbersFormat(String input) {
         try {
             Arrays.stream(input.split(","))
-                    .map(Integer::parseInt)
-                    .toList();
-        }catch (NumberFormatException e) {
+                    .forEach(Integer::parseInt);
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(WINNING_NUMBER_FORMAT_ERROR);
         }
     }

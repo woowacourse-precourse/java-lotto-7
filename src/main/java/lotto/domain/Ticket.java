@@ -19,10 +19,6 @@ public class Ticket {
         this.result = makeResult();
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
     public EnumMap<Prize, Integer> getResult() {
         return this.result;
     }
