@@ -8,6 +8,7 @@ import java.util.Set;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.WinningLotto;
+import lotto.util.Config;
 
 public class LottoService {
     private final List<Lotto> lottoTickets = new ArrayList<>();
@@ -42,19 +43,18 @@ public class LottoService {
             try {
                 int number = Integer.parseInt(num.trim());
                 if (number < 1 || number > 45) {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    throw new IllegalArgumentException(Config.ERROR_OUT_OF_RANGE_NUMBER);
                 }
                 if (!uniqueNumbers.add(number)) {
-                    throw new IllegalArgumentException("[ERROR] 중복된 번호는 허용되지 않습니다.");
+                    throw new IllegalArgumentException(Config.ERROR_DUPLICATE_NUMBER);
                 }
                 numbers.add(number);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 숫자 형식의 번호를 입력해 주세요.");
+                throw new IllegalArgumentException(Config.ERROR_INVALID_NUMBER_FORMAT);
             }
         }
-
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 쉼표로 구분하여 입력해 주세요.");
+            throw new IllegalArgumentException(Config.ERROR_INVALID_WINNING_NUMBER_COUNT);
         }
 
         return numbers;
