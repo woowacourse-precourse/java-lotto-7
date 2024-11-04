@@ -1,0 +1,12 @@
+package lotto.util;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
+
+public class LottoGenerator implements NumberGenerate {
+
+    @Override
+    public List<Integer> randomGenerateInRange(int start, int end, int count) {
+        return Randoms.pickUniqueNumbersInRange(start, end, count);
+    }
+}
