@@ -62,7 +62,7 @@ class LottoTest {
                 .hasMessage("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
     }
 
-    @DisplayName("로또 번호가 올바르게 정렬된다.")
+    @DisplayName("로또 생성 성공: 로또 번호가 올바르게 정렬된다.")
     @Test
     void lottoSortTest() {
         List<Integer> unsortedNumbers = List.of(6, 3, 5, 1, 4, 2);
@@ -71,7 +71,7 @@ class LottoTest {
         assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
-    @DisplayName("올바른 로또 양식을 만든다.")
+    @DisplayName("로또 생성 성공: 올바른 로또 양식을 만든다.")
     @Test
     void toStringTest() {
         List<Integer> numbers = List.of(3, 1, 4, 6, 5, 2);
