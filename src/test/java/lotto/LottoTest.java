@@ -1,13 +1,22 @@
 package lotto;
-
+import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LottoTest {
+
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -22,4 +31,45 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다.")
+    void 구입_금액이_1000원_단위가_아니면_예외가_발생한다() {
+        System.setIn(new java.io.ByteArrayInputStream("1500".getBytes()));
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)).getPurchaseAmount())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1,2,3,4,5,6, 6"})
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    void 보너스_번호_중복_예외_테스트(String winningNumbers, int bonusNumber) {
+        assertThatThrownBy(() -> {
+            List<Integer> winningNumberList = Arrays.stream(winningNumbers.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+            if (winningNumberList.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            } else {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 예외가 발생하지 않았습니다.");
+            }
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46})
+    @DisplayName("보너스 번호가 1에서 45 사이가 아니면 예외가 발생한다.")
+    void 보너스_번호_범위_예외_테스트(int bonusNumber) {
+        assertThatThrownBy(() -> {
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이여야 합니다.");
+            }
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는");
+    }
+
+
 }
