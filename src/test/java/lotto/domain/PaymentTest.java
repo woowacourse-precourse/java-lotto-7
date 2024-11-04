@@ -41,7 +41,7 @@ class PaymentTest {
 
     @DisplayName("로또 구입 금액은 100,000원을 넘을 수 없다.")
     @ParameterizedTest
-    @ValueSource(ints = {100_100, 101_000, 1_000_000})
+    @ValueSource(ints = {101_000, 103_000, 1_000_000})
     void 최대_구입_금액_예외(int money) {
         assertThatThrownBy(() -> Payment.of(money, LottoDetail.PRICE))
                 .isInstanceOf(IllegalArgumentException.class)
