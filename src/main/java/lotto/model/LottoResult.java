@@ -28,7 +28,7 @@ public class LottoResult {
 
     public int calculateTotalPrizeMoney() {
         return rankCount.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .mapToInt(entry -> entry.getKey().calculateTotalPrize(entry.getValue()))
                 .sum();
     }
 }

@@ -62,8 +62,7 @@ public class LottoController {
     }
 
     private void updateLottoGameResults(LottoGame lottoGame, List<Lotto> purchasedLottos, WinningLotto winningLotto) {
-        List<Rank> ranks = determineRanks(purchasedLottos, winningLotto);
-        addRanksToGame(lottoGame, ranks);
+        addRanksToGame(lottoGame, determineRanks(purchasedLottos, winningLotto));
     }
 
     private List<Rank> determineRanks(List<Lotto> purchasedLottos, WinningLotto winningLotto) {

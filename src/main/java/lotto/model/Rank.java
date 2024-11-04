@@ -22,8 +22,8 @@ public enum Rank {
         return matchingCount;
     }
 
-    public int getPrize() {
-        return prize;
+    public int calculateTotalPrize(int count) {
+        return prize * count;
     }
 
     public static Rank determineRank(int matchingCount, boolean hasBonus) {
