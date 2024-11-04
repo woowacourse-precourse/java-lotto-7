@@ -40,4 +40,17 @@ public class LottoServiceTest {
         // then
         assertThat(returnOnInvestment).isEqualTo("62.5");
     }
+
+    @Test
+    @DisplayName("구입 금액이 8,000원이면 로또 수량은 8개이다.")
+    void 구입_금액에_따른_로또_수량_계산() {
+        // given
+        BigDecimal purchaseAmount = BigDecimal.valueOf(8000);
+
+        // when
+        BigDecimal purchaseQuantity = lottoService.calculatePurchaseQuantity(purchaseAmount);
+
+        // then
+        assertThat(purchaseQuantity).isEqualTo("8");
+    }
 }
