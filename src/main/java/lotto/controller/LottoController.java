@@ -29,6 +29,9 @@ public class LottoController {
             LottoResult result = lottoService.calculateResult(lottos, winningInfo);
             outputController.printGameResult(result);
 
+            double profit = lottoService.calculateProfit(result, money);
+            outputController.printProfit(profit);
+
         } catch (IllegalStateException e) {
             outputController.printError(e.getMessage());
         }
