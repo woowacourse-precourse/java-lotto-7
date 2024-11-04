@@ -1,8 +1,13 @@
 package lotto.model;
 
+import lotto.enumerate.Rank;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static lotto.enumerate.Rank.*;
+import static lotto.enumerate.Rank.NONE;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,23 +22,35 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         Set<Integer> set = new HashSet<>(numbers);
-        if(set.size()!=numbers.size()){
+        if (set.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복된 숫자가 존재하지 않아야합니다.");
         }
     }
 
     // TODO: 추가 기능 구현
-    public int countMatchingNumbers(List<Integer> winNumbers) {
-        int total = 0;
-        for (Integer winNumber : winNumbers) {
-            if (isContains(winNumber)) {
-                total++;
-            }
+    public Rank findRank(WinNumber winNumber) {
+        int countOfWin = winNumber.countMatchingNumbers(numbers);
+        boolean matchBonus = winNumber.isMatchBonus(numbers);
+        if (countOfWin == 3) {
+            return FIFTH;
         }
-        return total;
+        if (countOfWin == 4) {
+            return FOURTH;
+        }
+        if (countOfWin == 5 && !matchBonus) {
+            return THIRD;
+        }
+        if (countOfWin == 5) {
+            return SECOND;
+        }
+        if (countOfWin == 6) {
+            return FIRST;
+        }
+        return NONE;
     }
 
-    public boolean isContains(Integer number) {
-        return numbers.contains(number);
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
