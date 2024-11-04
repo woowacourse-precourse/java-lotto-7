@@ -9,13 +9,16 @@ import lotto.domain.util.parser.StringParser;
 public class LottoService {
 
     private final StringParser<List<Integer>> delimitedNumberParser;
+    private final StringParser<Integer> bonusNumberParser;
     private final StringParser<Integer> moneyParser;
 
     private static LottoService instance;
 
     private LottoService(StringParser<List<Integer>> delimitedNumberParser,
+                         StringParser<Integer> bonusNumberParser,
                          StringParser<Integer> moneyParser) {
         this.delimitedNumberParser = delimitedNumberParser;
+        this.bonusNumberParser = bonusNumberParser;
         this.moneyParser = moneyParser;
     }
 
@@ -25,9 +28,10 @@ public class LottoService {
     }
 
     public static void init(StringParser<List<Integer>> delimitedNumberParser,
-                     StringParser<Integer> moneyParser) {
+                            StringParser<Integer> bonusNumberParser,
+                            StringParser<Integer> moneyParser) {
         assert instance == null : "Already initialized";
-        instance = new LottoService(delimitedNumberParser, moneyParser);
+        instance = new LottoService(delimitedNumberParser, bonusNumberParser, moneyParser);
     }
 
     public Lotteries purchaseLotteries(String input) {
@@ -39,7 +43,7 @@ public class LottoService {
     }
 
     public Integer setBonusNumber(String input) {
-        return Integer.parseInt(input.trim());
+        return bonusNumberParser.parse(input);
     }
 
     public Statistics calculateProfit(Lotteries lotteries, Lotto winningLotto, Integer bonusNumber) {
