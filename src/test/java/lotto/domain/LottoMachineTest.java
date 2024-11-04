@@ -66,4 +66,19 @@ class LottoMachineTest {
         assertThat(result.getResults().get(LottoRank.FIRST)).isEqualTo(1); // 6개 일치
         assertThat(result.getResults().get(LottoRank.SECOND)).isEqualTo(1); // 5개 일치 + 보너스 볼 일치
     }
+
+    @DisplayName("모든 티켓이 번호를 맞추지 못한 경우 로또 결과를 올바르게 계산한다.")
+    @Test
+    void 모든_티켓이_번호를_맞추지_못한_경우_계산한다() {
+        List<Lotto> tickets = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(7, 8, 9, 10, 11, 12))
+        );
+        List<Integer> winningNumbers = List.of(13, 14, 15, 16, 17, 18);
+        int bonusNumber = 19;
+
+        LottoResult result = lottoMachine.calculateResult(tickets, winningNumbers, bonusNumber);
+
+        assertThat(result.getResults().get(LottoRank.NONE)).isEqualTo(2); // 0개 일치
+    }
 }
