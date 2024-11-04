@@ -8,14 +8,8 @@ public interface LottoWinningStrategy {
     boolean isBonusNumberRequired();
 
     default int getMatchCount(WinningLotto winningLotto, Lotto myLotto) {
-        int count = 0;
-        for (int i = 0; i < winningLotto.getSize(); i++) {
-            for (int j = 0; j < myLotto.getSize(); j++) {
-                if (winningLotto.getWinNumbers().get(i).equals(myLotto.getNumbers().get(j))) {
-                    count++;
-                }
-            }
-        }
-        return count;
+        return (int) winningLotto.getWinNumbers().stream()
+                .filter(winNum -> myLotto.getNumbers().contains(winNum))
+                .count();
     }
 }
