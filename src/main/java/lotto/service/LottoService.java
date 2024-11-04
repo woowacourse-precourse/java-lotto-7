@@ -11,6 +11,7 @@ import lotto.domain.LottoReceipt;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoSeller;
+import lotto.domain.LottoTicket;
 import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningReport;
@@ -38,8 +39,12 @@ public class LottoService {
         return lottoSeller.sellAsMuchAs(amount);
     }
 
-    public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        return lottoSeller.createWinningLotto(winningNumbers, bonusNumber);
+    public LottoTicket createWinningTicket(List<Integer> winningNumbers) {
+        return lottoSeller.createLottoTicketFor(winningNumbers);
+    }
+
+    public WinningLotto createWinningLotto(LottoTicket winningTicket, int bonusNumber) {
+        return lottoSeller.createWinningLotto(winningTicket, bonusNumber);
     }
 
     public WinningReport createWinningReport(LottoReceipt lottoReceipt, WinningLotto winningLotto) {

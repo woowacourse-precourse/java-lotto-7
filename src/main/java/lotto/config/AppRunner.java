@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import lotto.controller.LottoController;
 import lotto.domain.LottoReceipt;
+import lotto.domain.LottoTicket;
 import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningReport;
@@ -33,10 +34,9 @@ public class AppRunner {
         outputView.printIssuedLottoQuantity(lottoReceipt.getIssuedLottoQuantity());
         outputView.printIssuedLottoDetails(lottoReceipt.toString());
 
-        String inputNumbers = inputView.requestWinningLottoNumbers();
-        inputValidator.validateDigitAndDelimiterOnly(inputNumbers);
+        LottoTicket lottoTicket = readWinningNumbers();
         String inputBonusNumber = inputView.requestBonusNumber();
-        WinningLotto winningLotto = controller.readWinningLottoNumbers(inputNumbers, inputBonusNumber);
+        WinningLotto winningLotto = controller.getWinningLotto(lottoTicket, inputBonusNumber);
 
         WinningReport winningReport = controller.getReport(lottoReceipt, winningLotto);
         String winningDetails = controller.sendWinningDetails(winningReport.getWinningCounts());
@@ -61,5 +61,21 @@ public class AppRunner {
             break;
         }
         return lottoReceipt;
+    }
+
+    private LottoTicket readWinningNumbers() {
+        LottoTicket lottoTicket;
+        while (true) {
+            String inputNumbers = inputView.requestWinningNumbers();
+            try {
+                inputValidator.validateDigitAndDelimiterOnly(inputNumbers);
+                lottoTicket = controller.readWinningNumbers(inputNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
+        return lottoTicket;
     }
 }

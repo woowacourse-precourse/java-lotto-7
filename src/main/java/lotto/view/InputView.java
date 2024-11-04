@@ -13,7 +13,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public String requestWinningLottoNumbers() {
+    public String requestWinningNumbers() {
         System.out.println(NEW_LINE + ENTER_WINNING_LOTTO_NUMBERS);
         return Console.readLine();
     }

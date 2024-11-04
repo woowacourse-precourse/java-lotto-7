@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.LottoReceipt;
+import lotto.domain.LottoTicket;
 import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningReport;
@@ -27,8 +28,12 @@ public class LottoController {
         return lottoService.createLottoReceipt(toBigInteger(input));
     }
 
-    public WinningLotto readWinningLottoNumbers(String winningNumbers, String bonusNumber) {
-        return lottoService.createWinningLotto(extractNumbers(winningNumbers), toInt(bonusNumber));
+    public LottoTicket readWinningNumbers(String inputNumbers) {
+        return lottoService.createWinningTicket(extractNumbers(inputNumbers));
+    }
+
+    public WinningLotto getWinningLotto(LottoTicket winningTicket, String bonusNumber) {
+        return lottoService.createWinningLotto(winningTicket, toInt(bonusNumber));
     }
 
     public WinningReport getReport(LottoReceipt lottoReceipt, WinningLotto winningLotto) {

@@ -27,9 +27,7 @@ public class LottoSeller {
         }
     }
 
-    //테스트 미작성
-    public WinningLotto createWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        LottoTicket winningTicket = createLottoTicketFor(winningNumbers);
+    public WinningLotto createWinningLotto(LottoTicket winningTicket, int bonusNumber) {
         return new WinningLotto(winningTicket, bonusNumber);
     }
 
