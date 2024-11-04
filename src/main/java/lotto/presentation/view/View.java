@@ -8,10 +8,12 @@ import lotto.model.Rank;
 
 public class View {
     public void printGuide(String message) {
+        System.out.println();
         System.out.println(message);
     }
 
     public void printPurchaseCount(Integer count) {
+        System.out.println();
         System.out.println(count + "개를 구매했습니다.");
     }
 
