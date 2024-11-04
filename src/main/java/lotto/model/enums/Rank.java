@@ -29,13 +29,13 @@ public enum Rank {
         return message;
     }
 
-    public boolean isNone() {
-        return this == NONE;
+    public boolean isNotNone() {
+        return this != NONE;
     }
 
     public static Map<Rank, Long> groupByRank(List<Rank> ranks) {
         return ranks.stream()
-                .filter(rank -> !rank.isNone())
+                .filter(Rank::isNotNone)
                 .collect(Collectors.groupingBy(rank -> rank,
                         () -> new EnumMap<>(Rank.class),
                         Collectors.counting()));

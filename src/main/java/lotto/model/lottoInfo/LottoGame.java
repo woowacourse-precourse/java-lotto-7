@@ -60,7 +60,7 @@ public class LottoGame {
 
     private List<PrizeResultInfo> generatePrizeInfo(Map<Rank, Long> rankCounting) {
         return Arrays.stream(Rank.values())
-                .filter(rank -> !rank.isNone())
+                .filter(Rank::isNotNone)
                 .map(rank -> {
                     int count = rankCounting.getOrDefault(rank, 0L).intValue();
                     return PrizeResultInfo.from(rank, priceByRank.getByRank(rank), count);
