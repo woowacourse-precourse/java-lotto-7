@@ -10,11 +10,12 @@ import lotto.model.LottoManager;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import lotto.util.GenerateNumbers;
-import lotto.util.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private static final String SEPARATOR = ",";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final GenerateNumbers generateNumbers;
@@ -53,7 +54,7 @@ public class LottoController {
 
     private WinningNumbers createWinningNumbersFromInput() {
         String input = inputView.requestWinningNumbers();
-        List<Integer> winningNumbers = Arrays.stream(input.split(","))
+        List<Integer> winningNumbers = Arrays.stream(input.split(SEPARATOR))
                 .map(Integer::parseInt)
                 .toList();
 
