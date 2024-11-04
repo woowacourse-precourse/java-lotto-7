@@ -10,7 +10,8 @@ public class Application {
     public static void main(String[] args) {
         int attempts= validateBetAmount();
         printEntries(attempts);
-        enterLottoNumbers();
+        List<Integer> lottoNumbers = enterLottoNumbers();
+        enterBonusNumber(lottoNumbers);
     }
 
     private static int validateBetAmount(){
@@ -43,7 +44,7 @@ public class Application {
         }
     }
 
-    public static List<Integer> enterLottoNumbers(){
+    private static List<Integer> enterLottoNumbers(){
         List<Integer> lottoNumbers = new ArrayList<>();
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
@@ -54,5 +55,18 @@ public class Application {
         lottoNumbers.sort(Comparator.naturalOrder());
         Lotto lotto = new Lotto(lottoNumbers);
         return lottoNumbers;
+    }
+
+    private static int enterBonusNumber(List<Integer> enterLottoNumbers){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        boolean containNumber = enterLottoNumbers.contains(bonusNumber);
+        if(containNumber){
+            throw new IllegalArgumentException("당첨 번호와 중복된 숫자입니다");
+        }
+        if(bonusNumber>45 || bonusNumber<1){
+            throw new IllegalArgumentException("보너스 숫자는 1 이상, 45 이하입니다.");
+        }
+        return bonusNumber;
     }
 }
