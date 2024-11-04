@@ -8,37 +8,21 @@ public class InputView implements InputViewInterface {
   final static String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력하세요";
   final static String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력하세요";
 
-  // 모든 메시지를 출력하는 공통 메서드
-  private void printMessage(String message) {
-    System.out.println(message);
-  }
-
-  public void printPurchaseMessage() {
-    printMessage(PURCHASE_MESSAGE);
-  }
-
-  public void printWinningNumbersMessage() {
-    printMessage(WINNING_NUMBERS_MESSAGE);
-  }
-
-  public void printBonusNumberMessage() {
-    printMessage(BONUS_NUMBER_MESSAGE);
-  }
   @Override
   public String readPurchaseAmount() {
-    printPurchaseMessage();
+    System.out.println(PURCHASE_MESSAGE);
     return Console.readLine();
   }
 
   @Override
   public String readWinningNumbers() {
-    printWinningNumbersMessage();
+    System.out.println(WINNING_NUMBERS_MESSAGE);
     return Console.readLine();
   }
 
   @Override
   public String readBonusNumber() {
-    printBonusNumberMessage();
+    System.out.println(BONUS_NUMBER_MESSAGE);
     return Console.readLine();
   }
 }
