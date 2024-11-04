@@ -5,6 +5,7 @@ import static lotto.constants.Constants.MAX_LOTTO_NUMBER;
 import static lotto.constants.Constants.MIN_LOTTO_NUMBER;
 
 public class Validator {
+
     public static void validatePurchaseAmount(int amount) {
         if (amount < LOTTO_PRICE) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 최소 1,000원 이상이어야 합니다.");
