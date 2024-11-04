@@ -23,6 +23,7 @@ public class WinningResult {
         int[] rankCount = calculateRankCount(); // 등수 카운트 계산
         printRankResults(rankCount);            // 결과 출력
         double profitRate = calculateProfitRate(rankCount, total); // 수익률 계산
+        printProfitRate(profitRate);            // 수익률 출력
     }
 
     int[] calculateRankCount() {
@@ -58,6 +59,9 @@ public class WinningResult {
         return totalPrize;
     }
 
+    private void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+    }
 
     int countMatches(List<Integer> ticket) {
         int count = 0;
