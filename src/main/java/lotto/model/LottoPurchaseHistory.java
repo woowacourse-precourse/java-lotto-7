@@ -11,6 +11,10 @@ public class LottoPurchaseHistory {
         initializePurchaseHistory(amount);
     }
 
+    public LottoPurchaseHistory(List<Lotto> purchaseHistory) {
+        this.purchaseHistory = purchaseHistory;
+    }
+
     private void initializePurchaseHistory(int amount) {
         purchaseHistory = new ArrayList<>();
         for (int total = 0; total < amount; total++) {
