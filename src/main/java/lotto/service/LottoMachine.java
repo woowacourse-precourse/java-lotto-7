@@ -20,7 +20,8 @@ public class LottoMachine {
     public void buyLotto(Long money) {
         Long lottoCount = money / Value.lottoPrice;
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumber = pickUniqueNumbersInRange(Value.lottoStartNumber, Value.lottoEndNumber, Value.lottoNumberCount);
+            List<Integer> lottoNumber = pickUniqueNumbersInRange(Value.lottoStartNumber, Value.lottoEndNumber, Value.lottoNumberCount)
+                    .stream().sorted().toList();
             database.purchaseLottoList.add(new Lotto(lottoNumber));
         }
     }
