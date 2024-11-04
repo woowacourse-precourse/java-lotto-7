@@ -1,8 +1,6 @@
 package lotto;
 
-import dto.Rank;
-import java.util.ArrayList;
-import java.util.ArrayList;
+import lotto.dto.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
