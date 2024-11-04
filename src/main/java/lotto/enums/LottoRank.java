@@ -1,11 +1,11 @@
-package lotto;
+package lotto.enums;
 
 public enum LottoRank {
-    FIFTH(LottoGameInformation.LOTTO_SIZE.getValue() - 3, false, 5_000),
-    FOURTH(LottoGameInformation.LOTTO_SIZE.getValue() - 2, false, 50_000),
-    THIRD(LottoGameInformation.LOTTO_SIZE.getValue() - 1, false, 1_500_000),
-    SECOND(LottoGameInformation.LOTTO_SIZE.getValue() - 1, true, 30_000_000),
-    FIRST(LottoGameInformation.LOTTO_SIZE.getValue(), false, 2_000_000_000),
+    FIFTH(LottoGameInformation.LOTTO_SIZE - 3, false, 5_000),
+    FOURTH(LottoGameInformation.LOTTO_SIZE - 2, false, 50_000),
+    THIRD(LottoGameInformation.LOTTO_SIZE - 1, false, 1_500_000),
+    SECOND(LottoGameInformation.LOTTO_SIZE - 1, true, 30_000_000),
+    FIRST(LottoGameInformation.LOTTO_SIZE, false, 2_000_000_000),
     NONE(0, false, 0);
 
     private final int matchCount;
