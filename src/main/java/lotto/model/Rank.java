@@ -24,4 +24,22 @@ public enum Rank {
         return prize;
     }
 
+    public static Rank determineRank(int matchCount, boolean bonusMatched) {
+        if (matchCount == FIRST.matchCount) {
+            return FIRST;
+        }
+        if (matchCount == SECOND.matchCount && bonusMatched) {
+            return SECOND;
+        }
+        if (matchCount == THIRD.matchCount) {
+            return THIRD;
+        }
+        if (matchCount == FOURTH.matchCount) {
+            return FOURTH;
+        }
+        if (matchCount == FIFTH.matchCount) {
+            return FIFTH;
+        }
+        return NONE;
+    }
 }
