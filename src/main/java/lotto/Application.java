@@ -6,7 +6,8 @@ public class Application {
     public static void main(String[] args) {
         LottoPurchase lottoPurchase = new LottoPurchase();
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        InputSixNumbers inputNumbers = new InputSixNumbers();
+        InputSixNumbers inputSixNumbers = new InputSixNumbers();
+        InputBonusNumber inputBonusNumber = new InputBonusNumber();
 
         //1. 구입 금액 입력, 로또 구입 개수
         int lottoCount = lottoPurchase.inputPurchaseAmount();
@@ -18,6 +19,13 @@ public class Application {
         lottoNumberGenerator.printLottos(lottos);
 
         //4. 당첨 번호 6개 입력받기
-        Lotto lottoNumbers = inputNumbers.inputLottoNumbers();
+        Lotto winningLotto = inputSixNumbers.inputLottoNumbers();
+        List<Integer> lottoNumbers = winningLotto.getNumbers(); // Lotto 객체로부터 번호 가져오기
+
+        //5. 보너스 번호 1개 입력받기
+        int bonusNumber = inputBonusNumber.inputBonusNumber(lottoNumbers);
+
+        System.out.println("입력한 로또 번호: " + lottoNumbers);
+        System.out.println("입력한 보너스 번호: " + bonusNumber);
     }
 }
