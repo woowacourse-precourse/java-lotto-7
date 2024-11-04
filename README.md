@@ -42,8 +42,7 @@ lotto
 ├── view
 │   ├── InputView.java
 │   └── ResultView.java
-└── util
-    └── LottoNumberGenerator.java
+
 ```
 
 ### 클래스 설명
@@ -58,8 +57,6 @@ lotto
 - **View**
     - `InputView`: 사용자 입력을 처리하고 검증
     - `ResultView`: 결과를 출력
-- **Util**
-    - `LottoNumberGenerator`: 로또 번호 생성 유틸리티
 
 ## 🎮 실행 예시
 ```
