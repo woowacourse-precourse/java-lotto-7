@@ -11,6 +11,10 @@ import lotto.validator.LottoAmountValidator;
 public class InputView {
     public static int inputLottoAmount() {
         OutputView.printLottoAmountInput();
+        return getValidatedLottoAmount();
+    }
+
+    private static int getValidatedLottoAmount() {
         while (true) {
             try {
                 String purchaseAmount = Console.readLine().trim();
@@ -23,12 +27,14 @@ public class InputView {
 
     public static Set<Integer> inputWinningNumber() {
         OutputView.printWinningNumberInput();
+        return getValidatedWinningNumbers();
+    }
+
+    private static Set<Integer> getValidatedWinningNumbers() {
         while (true) {
             try {
                 String winningNumber = Console.readLine().trim();
-                if (winningNumber.startsWith(",") || winningNumber.endsWith(",") || winningNumber.contains(",,")) {
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_COMMA_FORMAT.getMessage());
-                }
+                validateCommaFormat(winningNumber);
                 String[] winningNumbers = winningNumber.split(",");
                 return WinningNumberValidator.validateWinningNumber(winningNumbers);
             } catch (IllegalArgumentException e) {
@@ -37,8 +43,18 @@ public class InputView {
         }
     }
 
+    private static void validateCommaFormat(String winningNumber) {
+        if (winningNumber.startsWith(",") || winningNumber.endsWith(",") || winningNumber.contains(",,")) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_COMMA_FORMAT.getMessage());
+        }
+    }
+
     public static int inputBonusNumber() {
         OutputView.printBonusNumberInput();
+        return getValidatedBonusNumber();
+    }
+
+    private static int getValidatedBonusNumber() {
         while (true) {
             try {
                 String bonusNumber = Console.readLine().trim();
@@ -48,5 +64,4 @@ public class InputView {
             }
         }
     }
-
 }
