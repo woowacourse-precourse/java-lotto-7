@@ -38,4 +38,8 @@ public class Statistic {
     public int getFrequencyOf(Rank rank) {
         return statistics.get(rank);
     }
+
+    public Money getProfit() {
+        return profit;
+    }
 }

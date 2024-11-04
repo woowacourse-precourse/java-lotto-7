@@ -17,4 +17,12 @@ public class StatisticTest {
         assertThat(statistic.getFrequencyOf(Rank.THIRD)).isEqualTo(0);
     }
 
+    @Test
+    void 수익을_계산할_수_있다() {
+        List<Rank> ranks = List.of(Rank.FOURTH, Rank.FIFTH, Rank.FIFTH);
+        Statistic statistic = new Statistic(ranks);
+        Money expected = new Money(60000);
+
+        assertThat(statistic.getProfit()).isEqualTo(expected);
+    }
 }
