@@ -12,7 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = new ArrayList<>(numbers); // 수정 가능한 리스트로 복사
+        this.numbers = new ArrayList<>(numbers);
         Collections.sort(this.numbers);
     }
 
@@ -44,8 +44,6 @@ public class Lotto {
                 .filter(winningNumbers::contains)
                 .count();
     }
-
-
 
 
 }
