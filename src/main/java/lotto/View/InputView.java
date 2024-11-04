@@ -38,6 +38,7 @@ public class InputView {
 
     //사용자에게 당첨번호 받는 로직
     public static Lotto getWinningLottoNumber() {
+        System.out.println(SET_WINNING_NUMBER);
         while (true) {
             try {
                 String lotto = Console.readLine();

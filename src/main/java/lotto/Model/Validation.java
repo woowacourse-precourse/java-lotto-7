@@ -38,12 +38,14 @@ public class Validation {
             throw new IllegalArgumentException(ErrorCode.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
+
     //로또가 6자리인지 검증하는 메서드
     private void validateNumberCount(int count) {
         if (count != Constants.LOTTO_NUMBER_LENGTH) {
             throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
+
     //중복여부를 판단하는 메서드
     private void validateNoDuplicates(String[] numbers) {
         Set<String> uniqueNumbers = new HashSet<>(List.of(numbers));
@@ -51,6 +53,7 @@ public class Validation {
             throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
         }
     }
+
     //로또의 숫자 범위 검증 메소드
     private void validateRange(int num) {
         if (num < 1 || num > 45) {
