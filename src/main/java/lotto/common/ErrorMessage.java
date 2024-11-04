@@ -1,6 +1,6 @@
 package lotto.common;
 
-public class ErrorMessage {
+public final class ErrorMessage {
 
     public static final String INPUT_NOT_BLANK = "[ERROR] 입력값은 비어 있지 않아야 합니다.";
     public static final String INPUT_INTEGER = "[ERROR] 입력값은 정수여야 합니다.";
