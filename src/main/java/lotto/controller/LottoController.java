@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.model.Lotto;
+import lotto.model.LottoBudget;
 import lotto.model.LottoPrize;
 import lotto.model.LottoPrizes;
 import lotto.view.InputView;
@@ -22,9 +23,9 @@ public class LottoController {
 
     public void run() {
         String lottoBudgetInput = inputView.readLottoBudget();
-        int lottoBudget = Integer.parseInt(lottoBudgetInput);
+        LottoBudget lottoBudget = new LottoBudget(lottoBudgetInput);
 
-        int lottoCount = lottoBudget / 1000;
+        int lottoCount = lottoBudget.getLottoCount();
         System.out.println(lottoCount + "개를 구매했습니다.");
 
         List<Lotto> lottos = Stream.generate(() ->
@@ -58,7 +59,7 @@ public class LottoController {
             return LottoPrize.getLottoPrize(matchCount, containsBonusNumber);
         }).toList());
 
-        String yield = lottoPrizes.calculateYield(lottoBudget);
+        String yield = lottoPrizes.calculateYield(lottoBudget.getValue());
         System.out.println("당첨 통계" + System.lineSeparator() + "---");
 
         List<String> matchStatistics = lottoPrizes.calculateMatchStatistics();
