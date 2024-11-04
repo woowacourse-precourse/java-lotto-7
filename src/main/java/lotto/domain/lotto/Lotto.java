@@ -17,8 +17,7 @@ public class Lotto {
     }
 
     protected boolean contains(LottoNumber number) {
-        return numbers.stream()
-                .anyMatch(lottoNumber -> lottoNumber == number);
+        return numbers.contains(number);
     }
 
     protected boolean contains(int number) {
