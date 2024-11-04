@@ -13,7 +13,7 @@ public class LottoResult {
         this.revenue = revenue;
     }
 
-    public static LottoResult calculate(Map<Ranking, Integer> lottoResults) {
+    public static LottoResult from(Map<Ranking, Integer> lottoResults) {
         double revenue = calculateRevenue(lottoResults);
         return new LottoResult(lottoResults, revenue);
     }

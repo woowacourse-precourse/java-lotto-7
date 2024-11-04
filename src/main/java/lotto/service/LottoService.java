@@ -25,6 +25,6 @@ public class LottoService {
 
     public LottoResult calculateLottoResult(Lottos purchasedLottos, WinningLotto winningLotto) {
         Map<Ranking, Integer> lottoResult = purchasedLottos.calculateLottoResult(winningLotto);
-        return LottoResult.calculate(lottoResult);
+        return LottoResult.from(lottoResult);
     }
 }
