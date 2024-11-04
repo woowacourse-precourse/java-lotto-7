@@ -11,6 +11,7 @@ import static lotto.exception.LottoExceptionStatus.*;
 import static lotto.properties.LottoProperties.*;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

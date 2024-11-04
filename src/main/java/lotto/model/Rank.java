@@ -21,14 +21,6 @@ public enum Rank {
         this.winningPrice = winningPrice;
     }
 
-    public int getMatchedNumberCount() {
-        return matchingCount;
-    }
-
-    public boolean isContainsBonusNumber() {
-        return containsBonusNumber;
-    }
-
     public int getWinningPrice() {
         return winningPrice;
     }

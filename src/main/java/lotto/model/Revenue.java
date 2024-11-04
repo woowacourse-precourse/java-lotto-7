@@ -1,26 +1,22 @@
 package lotto.model;
 
+import java.util.List;
+
 import static lotto.properties.LottoProperties.LOTTO_REVENUE_RATE;
 import static lotto.properties.LottoProperties.SCALE_FACTOR;
 
 public class Revenue {
 
     private int revenueAmount;
-    private int invest;
     private double revenueRate;
 
-    private Revenue(int purchaseAmount) {
-        this.revenueAmount = 0;
+    private Revenue(int revenueAmount) {
+        this.revenueAmount = revenueAmount;
         this.revenueRate = 0;
-        this.invest = purchaseAmount;
     }
 
-    public void updateRevenue(Rank rank) {
-        revenueAmount += rank.getWinningPrice();
-    }
-
-    public void updateRevenueRate() {
-        revenueRate = ((double) revenueAmount / (double) invest) * LOTTO_REVENUE_RATE;
+    public void updateRevenueRate(int purchaseAmount) {
+        revenueRate = ((double) revenueAmount / (double) purchaseAmount) * LOTTO_REVENUE_RATE;
         revenueRate = Math.round(revenueRate * SCALE_FACTOR) / SCALE_FACTOR;
     }
 
@@ -28,7 +24,10 @@ public class Revenue {
         return revenueRate;
     }
 
-    public static Revenue init(int invest){
-        return new Revenue(invest);
+    public static Revenue from(List<Rank> ranks){
+        int revenueAmount = ranks.stream()
+                .mapToInt(Rank::getWinningPrice)
+                .sum();
+        return new Revenue(revenueAmount);
     }
 }
