@@ -5,7 +5,7 @@ import lotto.error.ErrorMessage;
 
 public class Validation {
 
-    public static void validateWinningLotto(List<Integer> winningNumbers) {
+    public static void validateLotto(List<Integer> winningNumbers) {
         long uniqueCount = winningNumbers.stream().distinct().count();
         boolean isOutOfRange = winningNumbers.stream()
                 .anyMatch(number -> number < 1 || number > 45);
