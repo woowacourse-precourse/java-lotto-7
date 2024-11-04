@@ -1,12 +1,15 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        LottoController lottoController = new LottoController(new OutputView(), new InputView());
+        // TODO: 프로그램 구현
+
+        LottoController lottoController = new LottoController(new LottoNumberGenerator(), new InputView(), new OutputView());
         lottoController.run();
     }
 }

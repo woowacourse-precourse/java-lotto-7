@@ -1,44 +1,59 @@
 package lotto.view;
 
+import lotto.domain.LottoMatchType;
+import lotto.domain.Lotto;
+
+import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
+
 public class OutputView {
-    public static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    public static final String RATE_OF_RETURN_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
-    public static final String WINNING_STATISTIC_HEADER = "당첨 통계\n---";
 
-    private static final String LINE_BREAK = "\n";
-    private static final String REQUEST_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
-    private static final String LOTTO_COUNT_MESSAGE_FORMAT = "%d개를 구매했습니다.";
-    private static final String REQUEST_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String PURCHASE_MESSAGE = "\n%d개를 구매했습니다.\n";
+    private static final String LOTTO_NUMBERS_DELIMITER = ", ";
+    private static final String LOTTO_NUMBERS_PREFIX = "[";
+    private static final String LOTTO_NUMBERS_SUFFIX = "]\n";
+    private static final String MATCH_STATISTICS_MESSAGE = "\n당첨 통계\n---";
+    private static final String MATCH_STATISTICS_FORMAT = "%d개 일치 (%,d원) - %d개\n";
+    private static final String MATCH_STATISTICS_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
+    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
 
-    public void printMessage(String message) {
-        System.out.print(message);
+    public void printPurchaseMessage(int lottoCount) {
+        System.out.printf(PURCHASE_MESSAGE, lottoCount);
     }
 
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
+    public void printLottos(List<Lotto> lottos) {
+        lottos.forEach(this::printLotto);
+        System.out.println();
     }
 
-    public void requestPurchaseAmount() {
-        System.out.println(REQUEST_PURCHASE_AMOUNT);
+    private void printLotto(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        StringJoiner result = new StringJoiner(LOTTO_NUMBERS_DELIMITER, LOTTO_NUMBERS_PREFIX, LOTTO_NUMBERS_SUFFIX);
+        numbers.forEach(number -> result.add(String.valueOf(number)));
+        System.out.print(result);
     }
 
-    public void printLottoCount(int lottoCount) {
-        System.out.printf(LINE_BREAK + LOTTO_COUNT_MESSAGE_FORMAT + LINE_BREAK, lottoCount);
+    public void printMatchStatistics(Map<LottoMatchType, Integer> matchResult) {
+        System.out.println(MATCH_STATISTICS_MESSAGE);
+        matchResult.forEach(this::printMatchType);
     }
 
-    public void requestWinningNumbers() {
-        System.out.println(LINE_BREAK + REQUEST_WINNING_NUMBERS);
+    private void printMatchType(LottoMatchType matchType, int count) {
+        if (matchType != LottoMatchType.NONE) {
+            System.out.printf(findMessageFormatByBonus(matchType),
+                    matchType.getMatchCount(), matchType.getWinningPrice(), count);
+        }
     }
 
-    public void requestBonusNumber() {
-        System.out.println(LINE_BREAK + REQUEST_BONUS_NUMBER);
+    private String findMessageFormatByBonus(LottoMatchType matchType) {
+        if (matchType.hasBonus()) {
+            return MATCH_STATISTICS_BONUS_FORMAT;
+        }
+        return MATCH_STATISTICS_FORMAT;
     }
 
-    public void printWinningStatisticHeader() {
-        System.out.println(LINE_BREAK + WINNING_STATISTIC_HEADER);
-    }
-
-    public void printRateOfReturn(double rateOfReturn) {
-        System.out.printf(RATE_OF_RETURN_MESSAGE_FORMAT + LINE_BREAK, rateOfReturn);
+    public void printProfitRate(double profitRate) {
+        System.out.printf(PROFIT_RATE_FORMAT, profitRate);
     }
 }
