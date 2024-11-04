@@ -1,15 +1,12 @@
 package lotto.model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        Set<Integer> numberSet = new HashSet<>(numbers);
         this.numbers = numbers;
     }
 
@@ -27,7 +24,6 @@ public class Lotto {
         return count;
     }
 
-    @Override
     public String toString() {
         return numbers.toString();
     }
