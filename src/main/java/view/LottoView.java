@@ -14,6 +14,7 @@ public class LottoView {
     public String inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
+        System.out.println();
         return purchaseAmount;
     }
 
@@ -21,7 +22,6 @@ public class LottoView {
         int count = purchaseCount.getPurchaseCount();
         String result = count + "개를 구매했습니다.";
         System.out.println(result);
-        System.out.println();
         return result;
     }
 
