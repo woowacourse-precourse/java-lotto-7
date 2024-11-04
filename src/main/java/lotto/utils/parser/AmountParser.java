@@ -7,7 +7,7 @@ import static lotto.constants.ErrorMessage.UNDER_MIN_AMOUNTS;
 import static lotto.constants.LottoConstant.PURCHASABLE_MAX_AMOUNTS;
 import static lotto.constants.LottoConstant.WON_1000;
 
-public class AmountsParser {
+public class AmountParser {
 
     public static int getAmounts(String amounts) {
         int lottoAmounts;

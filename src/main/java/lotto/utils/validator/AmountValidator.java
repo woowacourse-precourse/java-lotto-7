@@ -2,7 +2,7 @@ package lotto.utils.validator;
 
 import static lotto.constants.ErrorMessage.*;
 
-public class AmountsValidator {
+public class AmountValidator {
 
     public static void validateLottoAmount(String amounts) {
         checkEmptyAmounts(amounts);

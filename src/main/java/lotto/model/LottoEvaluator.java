@@ -10,29 +10,25 @@ import lotto.dto.LottoNumbers;
 import lotto.dto.LottoEvaluatedStatus;
 
 public class LottoEvaluator {
-    private final LottoTicket lottoTicket;
-    private final Lotto winningNumbers;
+    private final LottoBundle lottoTicket;
+    private final LottoNumbers winningNumbers;
     private final int bonusNumber;
 
     public LottoEvaluator(LottoTicket lottoTicket, Lotto winningNumbers, int bonusNumber) {
-        this.lottoTicket = lottoTicket;
-        this.winningNumbers = winningNumbers;
+        this.lottoTicket = lottoTicket.getLottoBundle();
+        this.winningNumbers = winningNumbers.getLottoNumbers();
         this.bonusNumber = bonusNumber;
     }
 
     public LottoEvaluatedStatus getEvaluatedStatus() {
         HashMap<LottoPrize, Integer> prize = getPrize();
 
-        LottoBundle lottoBundle = lottoTicket.getLottoBundle();
-        int lottoAmount = lottoBundle.getLottoNumbers().size() * WON_1000;
-        double returnOnInvestment = calculateReturnOnInvestment(prize, lottoAmount);
-
+        double returnOnInvestment = calculateReturnOnInvestment(prize, lottoTicket.getLottoNumbers());
         return new LottoEvaluatedStatus(prize, returnOnInvestment);
     }
 
     private HashMap<LottoPrize, Integer> getPrize() {
-        LottoBundle lottoBundle = lottoTicket.getLottoBundle();
-        List<LottoNumbers> lottoNumbers = lottoBundle.getLottoNumbers();
+        List<LottoNumbers> lottoNumbers = lottoTicket.getLottoNumbers();
 
         return evaluateTicket(lottoNumbers);
     }
@@ -43,8 +39,8 @@ public class LottoEvaluator {
         initializePrizeStatus(prizeStatus);
         for (LottoNumbers lottoNumber : lottoNumbers) {
             int matchingWinningCount = countMatchingWinningNumbers(lottoNumber);
-            int bonusCount = countMatchingBonusNumber(lottoNumber);
-            LottoPrize prize = checkPrize(matchingWinningCount, bonusCount);
+            int matchingBonusCount = countMatchingBonusNumber(lottoNumber);
+            LottoPrize prize = checkPrize(matchingWinningCount, matchingBonusCount);
             updatePrizeStatus(prizeStatus, prize);
         }
 
@@ -58,12 +54,13 @@ public class LottoEvaluator {
     }
 
     private int countMatchingWinningNumbers(LottoNumbers lottoNumbers) {
-        List<Integer> lottoNumber = lottoNumbers.getLottoNumbers();
-        List<Integer> winningNumber = winningNumbers.getLottoNumbers().getLottoNumbers();
+        List<Integer> winningLottoNumbers = winningNumbers.getLottoNumbers();
+        List<Integer> userLottoNumbers = lottoNumbers.getLottoNumbers();
+
         int count = 0;
 
-        for (Integer number : lottoNumber) {
-            if (winningNumber.contains(number)) {
+        for (Integer number : userLottoNumbers) {
+            if (winningLottoNumbers.contains(number)) {
                 count++;
             }
         }
@@ -72,9 +69,9 @@ public class LottoEvaluator {
     }
 
     private int countMatchingBonusNumber(LottoNumbers lottoNumbers) {
-        List<Integer> lottoNumber = lottoNumbers.getLottoNumbers();
+        List<Integer> userLottoNumbers = lottoNumbers.getLottoNumbers();
 
-        if (lottoNumber.contains(bonusNumber)) {
+        if (userLottoNumbers.contains(bonusNumber)) {
             return 1;
         }
         return 0;
@@ -95,12 +92,13 @@ public class LottoEvaluator {
         }
     }
 
-    private double calculateReturnOnInvestment(HashMap<LottoPrize, Integer> prizeStatus, int lottoAmount) {
+    private double calculateReturnOnInvestment(HashMap<LottoPrize, Integer> prizeStatus, List<LottoNumbers> bundleLottoNumbers) {
         Set<LottoPrize> lottoPrizes = prizeStatus.keySet();
+        int lottoAmount = bundleLottoNumbers.size() * WON_1000;
 
         long totalPrize = 0;
         for (LottoPrize lottoPrize : lottoPrizes) {
-            long prize = lottoPrize.getPrizeAmounts();
+            long prize = lottoPrize.getPrizeAmount();
             totalPrize += prize * prizeStatus.get(lottoPrize);
         }
 
