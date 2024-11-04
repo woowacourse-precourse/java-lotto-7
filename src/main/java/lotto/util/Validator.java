@@ -74,7 +74,9 @@ public class Validator {
 
     private static boolean isLottoNumberRangeValid(List<Integer> lottoNumbers) {
         for (int number : lottoNumbers) {
-            return number >= LOTTO_NUMBER_MIN && number <= LOTTO_NUMBER_MAX;
+            if(number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
+                return false;
+            }
         }
         return true;
     }
