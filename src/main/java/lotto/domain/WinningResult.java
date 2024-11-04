@@ -33,4 +33,14 @@ public class WinningResult {
         }
         return profit;
     }
+
+    public String displayWinningResult() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (LottoRank lottoRank : LottoRank.values()) {
+            stringBuilder.append(String.format(lottoRank.getPrintMessages(),
+                    lottoResult.get(lottoRank)));
+            stringBuilder.append(System.lineSeparator());
+        }
+        return stringBuilder.toString();
+    }
 }
