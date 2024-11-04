@@ -11,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicateLotto(numbers);
         this.numbers = numbers;
     }
 
@@ -20,6 +21,12 @@ public class Lotto {
         }
     }
 
+    private void validateDuplicateLotto(List<Integer> lottoNumbers) {
+        HashSet<Integer> nonDuplicateLottoNumbers = new HashSet<>(lottoNumbers);
+        if (nonDuplicateLottoNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복을 허용하지 않습니다.");
+        }
+    }
     public void printLottoNumbers() {
         System.out.println(numbers);
     }
