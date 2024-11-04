@@ -44,6 +44,22 @@ public class Validator {
         }
     }
 
+    private Set<Integer> checkDuplicatesAndSize(String[] splitInputs) {
+        Set<Integer> winningDigits = new HashSet<>();
+
+        for (String splitInput : splitInputs) {
+            Integer parseInt = Integer.parseInt(splitInput);
+            if (winningDigits.contains(parseInt)) {
+                throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
+            }
+            winningDigits.add(parseInt);
+        }
+        if (winningDigits.size() != LottoConstants.LOTTERY_NUMBER_COUNT) {
+            throw new IllegalArgumentException(LOTTERY_NUMBER_COUNT_ERROR_MESSAGE);
+        }
+        return winningDigits;
+    }
+
     public void validatePurchaseAmount(String purchaseInput) {
         try {
             checkIsInputEmpty(purchaseInput);
@@ -64,15 +80,7 @@ public class Validator {
             String[] splitInputs = winningNumbersInput.split(WINNING_NUMBER_OPERATOR);
             Arrays.stream(splitInputs).forEach(this::checkIsNumber);
 
-            Set<Integer> winningDigits = new HashSet<>();
-            for (String splitInput : splitInputs) {
-                Integer parseInt = Integer.parseInt(splitInput);
-                checkIsDuplicateNumber(winningDigits, parseInt);
-                winningDigits.add(parseInt);
-            }
-            if (winningDigits.size() != LottoConstants.LOTTERY_NUMBER_COUNT) {
-                throw new IllegalArgumentException(LOTTERY_NUMBER_COUNT_ERROR_MESSAGE);
-            }
+            Set<Integer> winningDigits = checkDuplicatesAndSize(splitInputs);
             winningDigits.forEach(winningDigit -> {
                 checkIsPositiveNumber(winningDigit);
                 checkIsLotteryRange(winningDigit);
