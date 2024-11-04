@@ -35,7 +35,7 @@ public class OutputView {
 	}
 
 	public void printBonusNumberInputMessage() {
-		System.out.println("보너스 번호를 입력해 주세요.");
+		System.out.println("\n" + "보너스 번호를 입력해 주세요.");
 	}
 
 	public void printWinningResultMessage(WinningResultsDto winningResults) {
