@@ -87,6 +87,29 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    @Test
+    void 예외_테스트_하루_구매량_초과() {
+        assertSimpleTest(() -> {
+            runException("101000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 예외_테스트_로또_번호_범위_초과() {
+        assertSimpleTest(() -> {
+            runException("10000");
+            runException("1,2,66,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 예외_테스트_로또_구매_입력_X() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Override
     public void runMain() {
