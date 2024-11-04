@@ -2,7 +2,7 @@ package lotto.lottoMachine.lottoRank;
 
 import lotto.lottoMachine.calculateManager.LottoPrizeManager;
 
-public class LottoRankResultProcessor {
+public class LottoRankResultManager {
     private final LottoRankStore rankStore = new LottoRankStore();
     private final LottoRankStatisticsPrinter statisticsPrinter = new LottoRankStatisticsPrinter();
 

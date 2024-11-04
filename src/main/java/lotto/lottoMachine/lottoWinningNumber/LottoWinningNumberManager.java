@@ -3,12 +3,12 @@ package lotto.lottoMachine.lottoWinningNumber;
 import java.util.List;
 import lotto.utils.StaticFinalMessages;
 
-public class LottoWinningNumberController {
+public class LottoWinningNumberManager {
     private final LottoWinningNumberInputter lottoWinningNumberInputter;
     private final LottoWinningNumberDelimiter lottoWinningNumberDelimiter;
     private final LottoWinningNumberValidator lottoWinningNumberValidator;
 
-    public LottoWinningNumberController() {
+    public LottoWinningNumberManager() {
         this.lottoWinningNumberInputter = new LottoWinningNumberInputter();
         this.lottoWinningNumberDelimiter = new LottoWinningNumberDelimiter();
         this.lottoWinningNumberValidator = new LottoWinningNumberValidator();

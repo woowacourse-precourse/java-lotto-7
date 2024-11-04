@@ -4,36 +4,36 @@ import lotto.lottoMachine.calculateManager.LotteryResultManager;
 import lotto.lottoMachine.calculateManager.LottoTotalReturnManager;
 import java.util.List;
 import lotto.Lotties;
-import lotto.lottoMachine.lottoBonusNumber.LottoBonusNumberController;
-import lotto.lottoMachine.lottoPurchaseAmount.LottoPurchaseAmountController;
-import lotto.lottoMachine.lottoRank.LottoRankResultProcessor;
-import lotto.lottoMachine.lottoWinningNumber.LottoWinningNumberController;
+import lotto.lottoMachine.lottoBonusNumber.LottoBonusNumberManager;
+import lotto.lottoMachine.lottoPurchaseAmount.LottoPurchaseAmountManager;
+import lotto.lottoMachine.lottoRank.LottoRankResultManager;
+import lotto.lottoMachine.lottoWinningNumber.LottoWinningNumberManager;
 import lotto.lottoMachine.calculateManager.LottoQuantityManager;
 
-public class LottoMachineController {
-    private final LottoPurchaseAmountController lottoPurchaseAmountController;
+public class LottoMachineManager {
+    private final LottoPurchaseAmountManager lottoPurchaseAmountManager;
     private final LottoNumberGenerator lottoNumberGenerator;
     private final Lotties lotties;
-    private final LottoWinningNumberController lottoWinningNumberController;
+    private final LottoWinningNumberManager lottoWinningNumberManager;
     private final LottoNumberPrinter LottoNumberPrinter;
-    private final LottoRankResultProcessor lottoRankResultProcessor;
+    private final LottoRankResultManager lottoRankResultManager;
 
-    public LottoMachineController() {
-        lottoPurchaseAmountController = new LottoPurchaseAmountController();
+    public LottoMachineManager() {
+        lottoPurchaseAmountManager = new LottoPurchaseAmountManager();
         lottoNumberGenerator = new LottoNumberGenerator();
         lotties = new Lotties();
-        lottoWinningNumberController = new LottoWinningNumberController();
+        lottoWinningNumberManager = new LottoWinningNumberManager();
         LottoNumberPrinter = new LottoNumberPrinter();
-        lottoRankResultProcessor = new LottoRankResultProcessor();
+        lottoRankResultManager = new LottoRankResultManager();
     }
 
     public void run() {
-        int lottoPurchaseAmount = lottoPurchaseAmountController.getPurchaseAmount();
+        int lottoPurchaseAmount = lottoPurchaseAmountManager.getPurchaseAmount();
         issueLottoTickets(lottoPurchaseAmount);
 
-        List<Integer> lottoWinningNumber = lottoWinningNumberController.getWinningNumbers();
-        LottoBonusNumberController lottoBonusNumberController = new LottoBonusNumberController(lottoWinningNumber);
-        int lottoBonusNumber = lottoBonusNumberController.getBonusNumber();
+        List<Integer> lottoWinningNumber = lottoWinningNumberManager.getWinningNumbers();
+        LottoBonusNumberManager lottoBonusNumberManager = new LottoBonusNumberManager(lottoWinningNumber);
+        int lottoBonusNumber = lottoBonusNumberManager.getBonusNumber();
 
         issueLotteryResult(lottoPurchaseAmount, lottoWinningNumber, lottoBonusNumber);
     }
@@ -57,12 +57,12 @@ public class LottoMachineController {
 
     private void issueLotteryResult(int lottoPurchaseAmount, List<Integer> lottoWinningNumber, int lottoBonusNumber) {
         LotteryResultManager lotteryResultManager = new LotteryResultManager(lottoWinningNumber,
-                lottoBonusNumber, lottoRankResultProcessor, lotties);
+                lottoBonusNumber, lottoRankResultManager, lotties);
         lotteryResultManager.manageLotteryResults();
 
-        lottoRankResultProcessor.printStatistics();
+        lottoRankResultManager.printStatistics();
 
-        long totalWinningAmount = lottoRankResultProcessor.calculateTotalPrize();
+        long totalWinningAmount = lottoRankResultManager.calculateTotalPrize();
 
         LottoTotalReturnManager lottoTotalReturnManager = new LottoTotalReturnManager(totalWinningAmount,
                 lottoPurchaseAmount);

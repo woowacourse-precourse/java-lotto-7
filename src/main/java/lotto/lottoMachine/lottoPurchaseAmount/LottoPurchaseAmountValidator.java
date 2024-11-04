@@ -5,7 +5,7 @@ import lotto.utils.StaticFinalMessages;
 public class LottoPurchaseAmountValidator {
     public boolean validateAllThing(String lottoPurchaseAmount) {
         return validateIsNumeric(lottoPurchaseAmount)
-                && validateExceed50000(lottoPurchaseAmount)
+                && validateMoreThan1000LessThan50000(lottoPurchaseAmount)
                 && validateUnit1000(lottoPurchaseAmount);
     }
 
@@ -19,7 +19,7 @@ public class LottoPurchaseAmountValidator {
         }
     }
 
-    private boolean validateExceed50000(String lottoPurchaseAmount) {
+    private boolean validateMoreThan1000LessThan50000(String lottoPurchaseAmount) {
         int convertedInputToInt = Integer.parseInt(lottoPurchaseAmount);
         return convertedInputToInt <= StaticFinalMessages.MAXIMUM_NUM_OF_LOTTO_PURCHASE_AMOUNT && convertedInputToInt >= StaticFinalMessages.MINIMUM_NUM_OF_LOTTO_PURCHASE_AMOUNT;
     }

@@ -3,18 +3,18 @@ package lotto.lottoMachine.calculateManager;
 import java.util.List;
 import lotto.Lotties;
 import lotto.Lotto;
-import lotto.lottoMachine.lottoRank.LottoRankResultProcessor;
+import lotto.lottoMachine.lottoRank.LottoRankResultManager;
 
 public class LotteryResultManager {
     private static final int NUMBER_MATCH_TO_BE_SECOND_IN_THE_LOTTERY = 5;
 
     private final List<Integer> lottoWinningNumber;
     private final int lottoBonusNumber;
-    private LottoRankResultProcessor lottoRankResultProcessor;
+    private LottoRankResultManager lottoRankResultProcessor;
     private Lotties lotties;
 
     public LotteryResultManager(List<Integer> lottoWinningNumber, int lottoBonusNumber,
-                                LottoRankResultProcessor lottoRankResultProcessor, Lotties lotties) {
+                                LottoRankResultManager lottoRankResultProcessor, Lotties lotties) {
         this.lottoWinningNumber = lottoWinningNumber;
         this.lottoBonusNumber = lottoBonusNumber;
         this.lottoRankResultProcessor = lottoRankResultProcessor;

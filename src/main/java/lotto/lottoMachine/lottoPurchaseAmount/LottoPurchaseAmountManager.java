@@ -2,11 +2,11 @@ package lotto.lottoMachine.lottoPurchaseAmount;
 
 import lotto.utils.StaticFinalMessages;
 
-public class LottoPurchaseAmountController {
+public class LottoPurchaseAmountManager {
     private final LottoPurchaseAmountInputter lottoPurchaseAmountInputter;
     private final LottoPurchaseAmountValidator lottoPurchaseAmountValidator;
 
-    public LottoPurchaseAmountController() {
+    public LottoPurchaseAmountManager() {
         lottoPurchaseAmountInputter = new LottoPurchaseAmountInputter();
         lottoPurchaseAmountValidator = new LottoPurchaseAmountValidator();
     }
