@@ -26,8 +26,6 @@ public class Lotto {
     public int getMatchCount(Lotto otherLotto) {
         List<Integer> curwinningLotto = this.numbers;
         List<Integer> tempLotto = otherLotto.getNumbers();
-
-
         int match = 0;
 
         for (Integer number : curwinningLotto) {
@@ -36,6 +34,6 @@ public class Lotto {
             }
         }
 
-        return match;
+        return match; // 일치하는 번호 개수 반환
     }
 }

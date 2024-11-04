@@ -17,6 +17,7 @@ public class LottoGame {
     }
 
     public void calculateLotto(List<Lotto> makePurchasedLottos) {
+
         for (Lotto lotto : makePurchasedLottos) {
             int matchCount = lotto.getMatchCount(winningLotto);
             boolean matchBonus = lotto.getNumbers().contains(bonusNumber);

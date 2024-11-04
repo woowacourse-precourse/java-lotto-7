@@ -44,7 +44,12 @@ public enum LottoRank{
         if (matchCount == FOURTH.matchCount) {
             return FOURTH;
         }
+        if (matchCount == FIFTH.matchCount) {
             return FIFTH;
+        }
+
+        return null;
+
 
     }
 
