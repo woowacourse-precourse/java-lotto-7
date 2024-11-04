@@ -12,6 +12,7 @@ public class InputHandler {
         System.out.println("구입금액을 입력해 주세요.");
         String inputPurchaseAmount = readLine();
         Validation.validatedPurchaseAmount(inputPurchaseAmount);
+        Validation.validatedThousandUnitAmount(inputPurchaseAmount);
         return Integer.parseInt(readLine());
     }
     public String inputWinningNumbers() {
