@@ -33,4 +33,18 @@ public class Lotto {
     public boolean contains(int number) {
         return numbers.contains(number);
     }
+
+    public int compare(Lotto winningLotto) {
+        return this.numbers.stream()
+                .filter(winningLotto::contains)
+                .toList()
+                .size();
+    }
+
+    public int compare(int bonusNumber) {
+        if (contains(bonusNumber)) {
+            return 1;
+        }
+        return 0;
+    }
 }
