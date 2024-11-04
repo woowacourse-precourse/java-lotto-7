@@ -4,6 +4,8 @@ import lotto.constants.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputValidatorTest {
@@ -62,5 +64,16 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.parseNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorCode.WINNING_NUMBER_TYPE_ERROR.getMessage());
+    }
+
+    @DisplayName("입력 된 로또 당첨 번호의 개수가 6개가 아닌 경우 예외 발생.")
+    @Test
+    void validWinningNumberTest_lottoNumberCount() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+        // when // then
+        assertThatThrownBy(() -> inputValidator.validWinningNumber(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.LOTTO_NUMBER_COUNT_ERROR.getMessage());
     }
 }
