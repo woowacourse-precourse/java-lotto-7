@@ -14,8 +14,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
-        validateDuplicate(numbers);
         validateRange(numbers);
+        validateDuplicate(numbers);
         this.numbers = AscNumberList(numbers);
     }
 
@@ -23,7 +23,7 @@ public class Lotto {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
 
-    private void validateSize(List<Integer> numbers) {
+    protected static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
@@ -39,7 +39,7 @@ public class Lotto {
         return numbers.stream().distinct().toList().size();
     }
 
-    private void validateRange(List<Integer> numbers) {
+    protected static void validateRange(List<Integer> numbers) {
         numbers.forEach(num -> {
             if (num < lowerBound || num > upperBound) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 숫자만 가능합니다.");

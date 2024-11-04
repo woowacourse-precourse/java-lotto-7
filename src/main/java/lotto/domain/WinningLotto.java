@@ -28,6 +28,8 @@ public class WinningLotto extends Lotto {
         private Integer bonusNumber;
 
         public Builder numbers(List<Integer> numbers) {
+            validateSize(numbers);
+            validateRange(numbers);
             validateDuplicate(numbers);
             this.numbers = numbers;
             return this;
