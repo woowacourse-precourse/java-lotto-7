@@ -2,6 +2,9 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,5 +27,14 @@ public class LottoPurchaseTest {
         LottoPurchase lottoPurchase = new LottoPurchase();
 
         assertThat(lottoPurchase.inputPurchaseAmount("5000")).isEqualTo(5000);
+    }
+
+    @Test
+    @DisplayName("구매한 로또 개수 확인")
+    public void testGenerateLottos() {
+        LottoPurchase lottoPurchase = new LottoPurchase();
+        List<Lotto> lottos = lottoPurchase.generateLottos(3);
+        assertThat(lottos.size()).isEqualTo(3);
+        lottos.forEach(lotto -> assertThat(lotto.getNumbers().size()).isEqualTo(6));
     }
 }
