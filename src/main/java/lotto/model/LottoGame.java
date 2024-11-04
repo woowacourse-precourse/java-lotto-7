@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.constant.ExceptionMessage.INVALID_BONUS_DUPLICATE;
+
 import java.util.HashMap;
 import java.util.Map;
 import lotto.constant.DrawType;
@@ -13,6 +15,7 @@ public class LottoGame {
     private final int bonusNum;
 
     public LottoGame(Lottos lottos, Lotto winningLotto, int bonusNum) {
+        validateDuplicate(winningLotto, bonusNum);
         this.lottos = lottos;
         this.winningLotto = winningLotto;
         this.bonusNum = bonusNum;
@@ -48,5 +51,11 @@ public class LottoGame {
         }
 
         return Math.round(((double) totalEarnings / purchasePrice) * 100);
+    }
+
+    private void validateDuplicate(Lotto winningLotto, int bonusNum) {
+        if (winningLotto.getNumbers().contains(bonusNum)) {
+            throw new IllegalArgumentException(INVALID_BONUS_DUPLICATE.getMessage());
+        }
     }
 }

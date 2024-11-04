@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import static lotto.constant.ExceptionMessage.INVALID_BONUS_CHAR;
+import static lotto.constant.ExceptionMessage.INVALID_BONUS_RANGE;
 import static lotto.constant.ExceptionMessage.INVALID_LOTTO_CHAR;
 import static lotto.constant.ExceptionMessage.INVALID_LOTTO_DELIMITER;
 
@@ -25,6 +26,25 @@ public class WinningNumValidator {
     }
 
     public void validateBonusNum(String bonusNum) {
+        validateNum(bonusNum);
+        validateRange(bonusNum);
+    }
+
+    private void validateChar(String input) {
+        for (char c : input.toCharArray()) {
+            if ((c < MIN_NUM_CHAR || c > MAX_NUM_CHAR) && c != ',') {
+                throw new IllegalArgumentException(INVALID_LOTTO_CHAR.getMessage());
+            }
+        }
+    }
+
+    private void validateContinuousDelimiter(String input) {
+        if (input.matches(INVALID_NUM_PATTERN)) {
+            throw new IllegalArgumentException(INVALID_LOTTO_DELIMITER.getMessage());
+        }
+    }
+
+    private static void validateNum(String bonusNum) {
         for (char c : bonusNum.toCharArray()) {
             if (c < MIN_NUM_CHAR || c > MAX_NUM_CHAR) {
                 throw new IllegalArgumentException(INVALID_BONUS_CHAR.getMessage());
@@ -32,17 +52,9 @@ public class WinningNumValidator {
         }
     }
 
-    private void validateChar(String purchasePrice) {
-        for (char c : purchasePrice.toCharArray()) {
-            if ((c < MIN_NUM_CHAR || c > MAX_NUM_CHAR) && c != ',') {
-                throw new IllegalArgumentException(INVALID_LOTTO_CHAR.getMessage());
-            }
-        }
-    }
-
-    private void validateContinuousDelimiter(String winningNum) {
-        if (winningNum.matches(INVALID_NUM_PATTERN)) {
-            throw new IllegalArgumentException(INVALID_LOTTO_DELIMITER.getMessage());
+    private void validateRange(String input) {
+        if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 45) {
+            throw new IllegalArgumentException(INVALID_BONUS_RANGE.getMessage());
         }
     }
 

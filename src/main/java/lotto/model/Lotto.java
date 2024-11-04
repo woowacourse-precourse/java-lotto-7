@@ -2,6 +2,7 @@ package lotto.model;
 
 import static lotto.constant.ExceptionMessage.INVALID_LOTTO_COUNT;
 import static lotto.constant.ExceptionMessage.INVALID_LOTTO_DUPLICATE;
+import static lotto.constant.ExceptionMessage.INVALID_LOTTO_RANGE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
@@ -24,12 +25,21 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
+        validateRange(numbers);
         validateDuplicate(numbers);
     }
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(INVALID_LOTTO_COUNT.getMessage());
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(INVALID_LOTTO_RANGE.getMessage());
+            }
         }
     }
 

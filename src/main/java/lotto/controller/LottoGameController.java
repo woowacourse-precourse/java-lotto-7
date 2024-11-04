@@ -39,11 +39,9 @@ public class LottoGameController {
         Lottos purchasedLottos = Lottos.randomFrom(purchasePrice / LOTTO_PRICE);
         outputView.showCreatedLottos(purchasedLottos.getLottos());
 
-        List<Integer> winningNum = getWinningNum();
-        Lotto winningLotto = new Lotto(winningNum);
+        Lotto winningLotto = createWinningLotto();
 
-        int bonusNum = Integer.parseInt(getBonusNum());
-        lottoGame = new LottoGame(purchasedLottos, winningLotto, bonusNum);
+        createLottoGame(purchasedLottos, winningLotto);
         lottoGame.draw();
 
         Map<DrawType, Integer> drawResult = lottoGame.generateDrawResult();
@@ -52,7 +50,7 @@ public class LottoGameController {
     }
 
     private String getPurchasePrice() {
-        String purchasePrice = "";
+        String purchasePrice;
         while (true) {
             try {
                 purchasePrice = inputView.getPurchasePrice();
@@ -66,7 +64,7 @@ public class LottoGameController {
     }
 
     private List<Integer> getWinningNum() {
-        List<Integer> winningNum = new ArrayList<>();
+        List<Integer> winningNum;
         while (true) {
             try {
                 String winningNumInput = inputView.getWinningNum();
@@ -79,8 +77,21 @@ public class LottoGameController {
         return winningNum;
     }
 
+    private Lotto createWinningLotto() {
+        Lotto winningLotto;
+        while (true) {
+            try {
+                winningLotto = new Lotto(getWinningNum());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningLotto;
+    }
+
     private String getBonusNum() {
-        String bonusNum = "";
+        String bonusNum;
         while (true) {
             try {
                 bonusNum = inputView.getBonusNum();
@@ -91,6 +102,19 @@ public class LottoGameController {
             }
         }
         return bonusNum;
+    }
+
+    private void createLottoGame(Lottos purchasedLottos, Lotto winningLotto) {
+        int bonusNum;
+        while (true) {
+            try {
+                bonusNum = Integer.parseInt(getBonusNum());
+                lottoGame = new LottoGame(purchasedLottos, winningLotto, bonusNum);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void showDrawResults(Map<DrawType, Integer> drawResult, double earns) {
@@ -109,7 +133,7 @@ public class LottoGameController {
         outputView.showDrawResults(result, earns);
     }
 
-    private static Map<DrawType, Integer> formatFinalResult(Map<DrawType, Integer> drawResult) {
+    private Map<DrawType, Integer> formatFinalResult(Map<DrawType, Integer> drawResult) {
         List<Map.Entry<DrawType, Integer>> entryList = new ArrayList<>(drawResult.entrySet());
 
         entryList.sort(Comparator.comparingInt(entry -> getMatchNum(entry.getKey())));
@@ -125,7 +149,7 @@ public class LottoGameController {
         return formattedResult;
     }
 
-    private static int getMatchNum(DrawType drawType) {
+    private int getMatchNum(DrawType drawType) {
         int matchNum;
         try {
             matchNum = Integer.parseInt(drawType.getValue());
