@@ -1,6 +1,18 @@
 # java-lotto-precourse
 
-## 
+## Controller
+
+
+
+## Domain
+
+## Service
+
+
+## Util
+
+
+## View
 
 - [ ] Lotto의 가격을 받은 다음 1000원 단위인지 확인하는 객체
 

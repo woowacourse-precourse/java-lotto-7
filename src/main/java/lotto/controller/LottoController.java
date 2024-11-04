@@ -11,43 +11,28 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
-    private final InputView inputView;
-    private final OutputView outputView;
-    private final CreateLottoService createLottoService;
-    private final LottoStatisticsService statisticsService;
-    private final BuyingPriceService buyingPriceService;
-    private final WinningCalculateService winningCalculateService;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final CreateLottoService createLottoService = new CreateLottoService();
+    private final LottoStatisticsService statisticsService = new LottoStatisticsService();
+    private final BuyingPriceService buyingPriceService = new BuyingPriceService();
+    private final WinningCalculateService winningCalculateService = new WinningCalculateService();
 
-    public LottoController(
-            InputView inputView,
-            OutputView outputView,
-            CreateLottoService createLottoService,
-            LottoStatisticsService statisticsService,
-            BuyingPriceService buyingPriceService,
-            WinningCalculateService winningCalculateService
-    ) {
-        this.inputView = inputView;
-        this.outputView = outputView;
-        this.createLottoService = createLottoService;
-        this.statisticsService = statisticsService;
-        this.buyingPriceService = buyingPriceService;
-        this.winningCalculateService = winningCalculateService;
-    }
 
     public void start() {
-        BuyingPrice buyingPrice = processPayment();
-        List<Lotto> purchasedLottos = purchaseLottos(buyingPrice);
+        BuyingPrice buyingPrice = lottoPayment();
+        List<Lotto> purchasedLottos = publishLottos(buyingPrice);
         WinningLotto winningLotto = getWinningLotto();
         displayResults(purchasedLottos, winningLotto, buyingPrice);
     }
 
-    private BuyingPrice processPayment() {
+    private BuyingPrice lottoPayment() {
         outputView.askBuyingPriceView();
         int price = inputView.inputBuyingPriceView();
         return new BuyingPrice(price);
     }
 
-    private List<Lotto> purchaseLottos(BuyingPrice buyingPrice) {
+    private List<Lotto> publishLottos(BuyingPrice buyingPrice) {
         int numberOfLotto = buyingPriceService.returnNumberOfLotto(buyingPrice);
         outputView.responseBuyingQuantity(numberOfLotto);
 

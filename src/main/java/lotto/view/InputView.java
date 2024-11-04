@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.BuyingPriceValidator;
 
 public class InputView {
 
