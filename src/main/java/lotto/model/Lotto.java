@@ -55,11 +55,7 @@ public class Lotto {
                 .count();
     }
 
-    public int calculateBonusResult(int bonusNum) {
-        int count = 0;
-        if (this.numbers.contains(bonusNum)) {
-            count++;
-        }
-        return count;
+    public boolean hasBonusNum(int bonusNum) {
+        return this.numbers.contains(bonusNum);
     }
 }

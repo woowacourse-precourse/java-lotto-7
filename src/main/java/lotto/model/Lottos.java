@@ -44,8 +44,8 @@ public class Lottos {
         int calculateResult = singleLotto.calculateDrawResult(winningLotto);
         boolean hasBonusNum = false;
 
-        if (calculateResult == 5) {
-            calculateResult += singleLotto.calculateBonusResult(bonusNum);
+        if (calculateResult == 5 && singleLotto.hasBonusNum(bonusNum)) {
+            calculateResult++;
             hasBonusNum = true;
         }
 

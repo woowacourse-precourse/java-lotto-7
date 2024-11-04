@@ -64,7 +64,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when
-        int result = lotto.calculateBonusResult(number);
+        boolean result = lotto.hasBonusNum(number);
 
         // then
         assertThat(result).isEqualTo(expectedResult);
