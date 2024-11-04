@@ -9,16 +9,16 @@ public class InputHandler {
         this.input = input;
     }
 
-    public LottoPurchase handleAmount() {
-        return handle(input::getAmountWithGuide);
+    public LottoPurchase handleLottoPurchase() {
+        return handle(input::promptLottoPurchase);
     }
 
     public Lotto handleWinNumbers() {
-        return handle(input::getWinNumbersWithGuide);
+        return handle(input::promptWinningNumbers);
     }
 
     public WinningNumbers handleBonusNumber(Lotto lotto) {
-        return handle(() -> input.getBonusNumberWithGuide(lotto));
+        return handle(() -> input.promptBonusNumber(lotto));
     }
 
     private <T> T handle(Supplier<T> supplier) {

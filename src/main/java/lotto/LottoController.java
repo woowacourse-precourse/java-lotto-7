@@ -32,7 +32,7 @@ public class LottoController {
     }
 
     public LottoPurchase purchaseLotto() {
-        return inputHandler.handleAmount();
+        return inputHandler.handleLottoPurchase();
     }
 
     public WinningNumbers getWinningNumbers() {

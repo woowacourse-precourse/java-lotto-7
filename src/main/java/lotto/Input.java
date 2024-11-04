@@ -13,17 +13,17 @@ public class Input {
         this.view = view;
     }
 
-    public LottoPurchase getAmountWithGuide() {
+    public LottoPurchase promptLottoPurchase() {
         view.printGuide(INPUT_AMOUNT_GUIDE);
-        return getValidatedAmount();
+        return getAmount();
     }
 
-    private LottoPurchase getValidatedAmount() {
+    private LottoPurchase getAmount() {
         Integer amount = StringParser.toInteger(Console.readLine());
         return new LottoPurchase(amount);
     }
 
-    public Lotto getWinNumbersWithGuide() {
+    public Lotto promptWinningNumbers() {
         view.printGuide(INPUT_WINNING_NUMBERS_GUIDE);
         return new Lotto(getWinNumbers());
     }
@@ -32,12 +32,12 @@ public class Input {
         return StringParser.splitByDelimiter(Console.readLine());
     }
 
-    public WinningNumbers getBonusNumberWithGuide(Lotto lotto) {
+    public WinningNumbers promptBonusNumber(Lotto lotto) {
         view.printGuide(INPUT_BONUS_NUMBER_GUIDE);
-        return getValidatedBonusNumber(lotto);
+        return getBonusNumber(lotto);
     }
 
-    private WinningNumbers getValidatedBonusNumber(Lotto lotto) {
+    private WinningNumbers getBonusNumber(Lotto lotto) {
         String input = Console.readLine();
         Bonus bonus = new Bonus(StringParser.toInteger(input));
         return new WinningNumbers(lotto, bonus);
