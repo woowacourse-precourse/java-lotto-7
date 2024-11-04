@@ -16,10 +16,10 @@ public class WinningLotto {
 
     private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] " + ErrorMessages.BONUS_RANGE.message);
+            throw new IllegalArgumentException(ErrorMessages.BONUS_RANGE.message);
         }
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] " + ErrorMessages.BONUS_DUPLICATE.message);
+            throw new IllegalArgumentException(ErrorMessages.BONUS_DUPLICATE.message);
         }
     }
 

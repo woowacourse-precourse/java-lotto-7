@@ -22,8 +22,7 @@ public class OutputView {
     public void printProfitRate(double rate) {
         System.out.println(String.format("총 수익률은 %.1f%%입니다.", rate));
     }
-
     public void printError(String message) {
-        System.out.println("[ERROR] " + message);
+        System.out.println("[ERROR] "+ message);
     }
 }

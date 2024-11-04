@@ -16,13 +16,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] " + ErrorMessages.NUMBERS_SIZE.message);
+            throw new IllegalArgumentException(ErrorMessages.NUMBERS_SIZE.message);
         }
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR] " + ErrorMessages.NUMBERS_RANGE.message);
+            throw new IllegalArgumentException(ErrorMessages.NUMBERS_RANGE.message);
         }
         if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] " + ErrorMessages.NUMBERS_DUPLICATE.message);
+            throw new IllegalArgumentException(ErrorMessages.NUMBERS_DUPLICATE.message);
         }
     }
 
