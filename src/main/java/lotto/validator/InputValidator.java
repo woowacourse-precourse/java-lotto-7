@@ -1,7 +1,9 @@
 package lotto.validator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputValidator {
     public static void checkInput(String input) {
@@ -39,24 +41,25 @@ public class InputValidator {
     }
 
     public static void checkDuplicateWinningNumbers(List<Integer> numbers) {
-        if(numbers.size()!=numbers.stream().distinct().count())
+        Set<Integer> temp = new HashSet<>(numbers);
+        if (numbers.size() != temp.size())
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 숫자로 이루어져야 합니다.");
     }
 
     public static void checkRangeWinningNumbers(List<Integer> numbers) {
-        for(Integer number:numbers) {
-            if(number < 1 || number > 45)
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45)
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 범위여야 합니다." + number);
         }
     }
 
     public static void checkRangeBonusNumber(Integer number) {
-        if(number < 1 || number > 45)
+        if (number < 1 || number > 45)
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 범위여야 합니다." + number);
     }
 
     public static void checkWinningNumbersContainsBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
-        if(winningNumbers.contains(bonusNumber))
+        if (winningNumbers.contains(bonusNumber))
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다." + bonusNumber);
     }
 }
