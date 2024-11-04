@@ -48,7 +48,7 @@ public class LottoResult {
             return Rank.FIRST_PLACE;
         }
         if (matchedCount == 5) {
-            return lotto.getNumbers().contains(bonusNumber) ? Rank.SECOND_PLACE : Rank.THIRD_PLACE;
+            return getSecondOrThirdPlaceRank(lotto);
         }
         if (matchedCount == 4) {
             return Rank.FOURTH_PLACE;
@@ -57,6 +57,13 @@ public class LottoResult {
             return Rank.FIFTH_PLACE;
         }
         return Rank.NOT_MATCH;
+    }
+
+    private Rank getSecondOrThirdPlaceRank(Lotto lotto) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            return Rank.SECOND_PLACE;
+        }
+        return Rank.THIRD_PLACE;
     }
 
     public long calculateWinningPrize() {
