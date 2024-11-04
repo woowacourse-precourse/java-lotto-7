@@ -33,4 +33,8 @@ public class LottoBuyer {
         }
         System.out.println();
     }
+
+    public int ownLottoTicketCount(){
+        return lottoTickets.size();
+    }
 }
