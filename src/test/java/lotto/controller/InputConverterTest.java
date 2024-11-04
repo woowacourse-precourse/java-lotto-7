@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import static lotto.validator.ValidatorUtils.BONUS_NUMBER_ERROR_MESSAGE;
-import static lotto.validator.ValidatorUtils.PRICE_ERROR_MESSAGE;
+import static lotto.validator.ValidatorUtils.PURCHASE_AMOUNT_ERROR_MESSAGE;
 import static lotto.validator.ValidatorUtils.WINNING_NUMBER_ERROR_MESSAGE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -21,17 +21,17 @@ public class InputConverterTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1000", "2000", "3000", "4000"})
-    void 구입금액_숫자_입력(String price) {
-        assertThatCode(() -> inputConverter.convertPrice(price))
+    void 구입금액_숫자_입력(String purchaseAmount) {
+        assertThatCode(() -> inputConverter.convertPurchaseAmount(purchaseAmount))
                 .doesNotThrowAnyException();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"hello", "", "!@#$%", "   "})
-    void 구입금액_숫자_외_입력(String price) {
-        assertThatThrownBy(() -> inputConverter.convertPrice(price))
+    void 구입금액_숫자_외_입력(String purchaseAmount) {
+        assertThatThrownBy(() -> inputConverter.convertPurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(PRICE_ERROR_MESSAGE);
+                .hasMessageContaining(PURCHASE_AMOUNT_ERROR_MESSAGE);
     }
 
     @ParameterizedTest
