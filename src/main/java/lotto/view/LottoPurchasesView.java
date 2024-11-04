@@ -6,7 +6,7 @@ import lotto.model.domain.Lotto;
 
 public class LottoPurchasesView implements View {
 
-    private static final String LOTTO_PURCHASES_OUTPUT_HEADLINE = "\n%d개를 구매했습니다.";
+    private static final String LOTTO_PURCHASES_OUTPUT_HEADLINE = "%n%d개를 구매했습니다.";
     private final LottosDto lottosDto;
 
     public LottoPurchasesView(LottosDto lottosDto) {
@@ -14,8 +14,7 @@ public class LottoPurchasesView implements View {
     }
 
     private void showHeadLine(List<Lotto> myLottos) {
-
-        System.out.println(String.format(LOTTO_PURCHASES_OUTPUT_HEADLINE, myLottos.size()));
+        System.out.printf((LOTTO_PURCHASES_OUTPUT_HEADLINE) + "%n", myLottos.size());
     }
 
 
