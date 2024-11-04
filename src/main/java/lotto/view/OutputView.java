@@ -6,8 +6,11 @@ import lotto.model.Lotto;
 
 public class OutputView implements OutputViewInterface {
 
+  public static final String PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";
+  public static final String WINNING_COUNT_MESSAGE = "당첨 통계\n" + "---";
+
   public void printPurchaseCount(int count) {
-    System.out.println(count + "개를 구매했습니다.");
+    System.out.println(count + PURCHASE_COUNT_MESSAGE);
   }
 
   public void printGeneratedLottos(List<Lotto> lottos) {
@@ -17,8 +20,7 @@ public class OutputView implements OutputViewInterface {
   }
 
   public void printWinningResults(List<Integer> winningCounts) {
-    System.out.println("당첨 통계");
-    System.out.println("---");
+    System.out.println(WINNING_COUNT_MESSAGE);
 
     LottoPrize[] prizes = LottoPrize.values();
     for (int i = 0; i < prizes.length; i++) {
