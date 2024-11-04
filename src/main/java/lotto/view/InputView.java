@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class InputView {
 
     private static final String PURCHASE_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String NUMBER_REGEX = "^-?\\d+$";
 
     public static void printPurchaseAmountInputMessage() {
@@ -18,6 +19,10 @@ public class InputView {
         validateInputIsNull(input);
         validateIsNumber(input);
         return Integer.parseInt(input);
+    }
+
+    public static void printWinningNumbersInputMessage() {
+        System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
     }
 
     private static void validateInputIsNull(String input) {
