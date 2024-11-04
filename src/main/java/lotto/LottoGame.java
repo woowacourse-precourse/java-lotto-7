@@ -1,6 +1,8 @@
 package lotto;
 
 import java.util.List;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGame {
     private final InputView inputView;

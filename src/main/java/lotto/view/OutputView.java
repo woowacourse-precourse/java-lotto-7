@@ -1,9 +1,12 @@
-package lotto;
+package lotto.view;
 
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import lotto.Lotto;
+import lotto.LottoResult;
+import lotto.enums.LottoRank;
 
 public class OutputView {
     public void printLottos(List<Lotto> lottos) {

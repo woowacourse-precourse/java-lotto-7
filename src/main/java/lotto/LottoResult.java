@@ -3,6 +3,7 @@ package lotto;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.enums.LottoRank;
 
 public class LottoResult {
     private final Map<LottoRank, Integer> result;

@@ -1,12 +1,12 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.LottoGameInformation;
+import lotto.LottoPrize;
 
 public class InputView {
-    private final int PURCHASE_AMOUNT = LottoGameInformation.PURCHASE_PRICE.getValue();
-
     public int inputPurchaseAmount() {
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
@@ -51,11 +51,11 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자여야 합니다.");
         }
 
-        if (money < PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + PURCHASE_AMOUNT + "원 이상이어야 합니다.");
+        if (money < LottoGameInformation.PURCHASE_PRICE) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + LottoGameInformation.PURCHASE_PRICE + "원 이상이어야 합니다.");
         }
-        if (money % PURCHASE_AMOUNT != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + PURCHASE_AMOUNT + " 단위로 입력해야 합니다.");
+        if (money % LottoGameInformation.PURCHASE_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + LottoGameInformation.PURCHASE_PRICE + " 단위로 입력해야 합니다.");
         }
         return money;
     }

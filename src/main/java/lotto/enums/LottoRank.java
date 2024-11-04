@@ -1,5 +1,7 @@
 package lotto.enums;
 
+import lotto.LottoGameInformation;
+
 public enum LottoRank {
     FIFTH(LottoGameInformation.LOTTO_SIZE - 3, false, 5_000),
     FOURTH(LottoGameInformation.LOTTO_SIZE - 2, false, 50_000),
