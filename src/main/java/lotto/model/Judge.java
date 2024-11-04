@@ -20,22 +20,22 @@ public class Judge {
     }
 
     public Grade assignGrade(int matchCount, boolean bonusMatching) {
-        if(matchCount == 6) {
+        if (matchCount == 6) {
             return Grade.FIRST;
         }
-        if(bonusMatching && matchCount == 5) {
+        if (bonusMatching && matchCount == 5) {
             return Grade.SECOND;
         }
-        if(!bonusMatching && matchCount == 5) {
+        if (!bonusMatching && matchCount == 5) {
             return Grade.THIRD;
         }
-        if(matchCount == 4) {
+        if (matchCount == 4) {
             return Grade.FORTH;
         }
-        if(matchCount == 3) {
+        if (matchCount == 3) {
             return Grade.FIFTH;
         }
-        if(matchCount >= 0) {
+        if (matchCount >= 0) {
             return null;
         }
         throw new IllegalArgumentException("[ERROR] 유효하지 않은 matchCount입니다.");
