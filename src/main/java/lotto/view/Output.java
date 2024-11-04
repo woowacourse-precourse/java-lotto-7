@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -15,12 +18,15 @@ public class Output {
 
     public void result(Map<Ranking, Integer> rankingCounts, int totalSpent, int totalPrize) {
         System.out.println("\n당첨 통계\n---");
+        String formatPrize;
+        List<Ranking> rankings = Arrays.asList(Ranking.values());
+        Collections.reverse(rankings);
         for (Ranking rank : Ranking.values()) {
             int count = rankingCounts.get(rank);
-            System.out.printf("%d개 일치%s (%d원) - %d개\n",
+            System.out.printf("%d개 일치%s (%s원) - %d개\n",
                     rank.getMatchCount(),
                     rank.isBonus() ? ", 보너스 볼 일치" : "",
-                    rank.getPrize(),
+                    formatPrize = NumberFormat.getInstance().format(rank.getPrize()),
                     count
             );
         }

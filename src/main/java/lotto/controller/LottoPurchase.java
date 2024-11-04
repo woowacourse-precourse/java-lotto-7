@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.validation.Validation;
@@ -39,6 +40,7 @@ public class LottoPurchase {
 
     private List<Integer> generateLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_NUM_COUNT);
+        Collections.sort(numbers);
         lotto = new Lotto(numbers);
         return numbers;
     }
