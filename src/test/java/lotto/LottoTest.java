@@ -22,4 +22,10 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("당첨 번호가 1~45 사이 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void 당첨_번호가_1_45_사이_숫자가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 65)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
