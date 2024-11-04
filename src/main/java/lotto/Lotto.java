@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,5 +25,13 @@ public class Lotto {
 
     public int getLottoCount(int payment) {
         return payment / 1000;
+    }
+
+    public List<Lotto> getLotto(int lottoCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i=0; i < lottoCount; i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return lottos;
     }
 }
