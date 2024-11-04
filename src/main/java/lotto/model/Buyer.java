@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Buyer {
     private List<Lotto> lottos;
-    private HashMap<Rank, Integer> resultLotto = new HashMap<>();
+    private final HashMap<Rank, Integer> resultLotto = new HashMap<>();
 
     public Buyer() {
         initResultLotto();

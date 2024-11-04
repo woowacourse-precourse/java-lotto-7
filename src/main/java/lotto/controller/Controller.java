@@ -14,9 +14,9 @@ public class Controller {
     private final Input input;
     private final Output output;
     private final Seller seller;
+    private final WinningNumber winningNumber;
+    private final BonusNumber bonusNumber;
     private Buyer buyer;
-    private WinningNumber winningNumber;
-    private BonusNumber bonusNumber;
 
     public Controller(Input input, Output output, Seller seller, WinningNumber winningNumber, BonusNumber bonusNumber) {
         this.input = input;

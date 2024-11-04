@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BonusNumber {
-    private final String BONUS_NUMBER_PATTERN = "[1-9][0-9]{0,1}";
+    private static final String BONUS_NUMBER_PATTERN = "[1-9][0-9]{0,1}";
     private int number;
 
     public void validate(String input) {
