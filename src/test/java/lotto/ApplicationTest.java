@@ -54,6 +54,30 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 천원_단위가_아닌_금액_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 잘못된_당첨_번호_형식_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,46"); // 46은 범위를 벗어남
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 잘못된_보너스_번호_형식_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "47"); // 47은 범위를 벗어남
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
