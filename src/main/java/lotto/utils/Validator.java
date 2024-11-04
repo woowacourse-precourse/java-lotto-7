@@ -3,6 +3,8 @@ package lotto.utils;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Validator {
     private static final int MIN_LOTTO_NUMBER = 1;
@@ -52,6 +54,28 @@ public class Validator {
     public static void validateBonusNumber(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
+        }
+    }
+
+    /**
+     * 유효한 입력을 반복적으로 요청하는 메서드
+     * @param inputSupplier 입력 값을 제공하는 Supplier
+     * @param validation 검증 로직을 담당하는 Predicate
+     * @param errorMessage 유효하지 않은 경우 출력할 에러 메시지
+     * @param <T> 입력 값의 타입
+     * @return 유효한 입력 값
+     */
+    public static <T> T getValidInput(Supplier<T> inputSupplier, Predicate<T> validation, String errorMessage) {
+        while (true) {
+            try {
+                T input = inputSupplier.get();
+                if (validation.test(input)) {
+                    return input;
+                }
+                System.out.println(errorMessage);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
