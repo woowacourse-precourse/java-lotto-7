@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,30 +12,43 @@ public class Application {
     public static void main(String[] args) {
         try {
             int purchaseAmount = getPurchaseAmount();
-            List<Integer> lottoNumbers = getLottoNumbers();
+            List<List<Integer>> lottoNumbers = makeLottoNumbers(purchaseAmount);
+            List<Integer> winningNumbers = getWinningNumbers();
+
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static List<Integer> getLottoNumbers() {
+    private static List<List<Integer>> makeLottoNumbers(int purchaseAmount) {
+        List<List<Integer>> lottoNumbersList = new ArrayList<>();
+        for (int i = 0; i < purchaseAmount; i++) {
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottoNumbers.sort(Integer::compareTo);
+            System.out.println(lottoNumbers);
+            lottoNumbersList.add(lottoNumbers);
+        }
+        return lottoNumbersList;
+    }
+
+    private static List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        List<Integer> lottoNumbers = new ArrayList<>();
+        List<Integer> winningNumbers = new ArrayList<>();
         String[] numbers = input.split(",");
 
         for (String number : numbers) {
-                lottoNumbers.add(Integer.parseInt(number.trim()));
+                winningNumbers.add(Integer.parseInt(number.trim()));
         }
-        lottoNumbers.sort(Integer::compareTo);
+        winningNumbers.sort(Integer::compareTo);
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusInput = Console.readLine();
 
         Integer bonusNumber = Integer.parseInt(bonusInput.trim());
-        lottoNumbers.add(bonusNumber);
+        winningNumbers.add(bonusNumber);
 
-        return lottoNumbers;
+        return winningNumbers;
     }
 
     private static int getPurchaseAmount() {
