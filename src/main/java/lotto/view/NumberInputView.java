@@ -11,19 +11,31 @@ public class NumberInputView extends InputView {
     private static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public static List<Integer> getWinningNumbers() {
-        System.out.println(REQUEST_WINNING_NUMBER);
-        String input = inputValue();
+        while (true) {
+            try {
+                System.out.println(REQUEST_WINNING_NUMBER);
+                String input = inputValue();
 
-        Validator.validateNotBlank(input);
-        return Converter.convertLottoNumber(input);
+                Validator.validateNotBlank(input);
+                return Converter.convertLottoNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static int getBonusNumber() {
-        System.out.println(REQUEST_BONUS_NUMBER);
-        String input = inputValue();
+        while (true) {
+            try {
+                System.out.println(REQUEST_BONUS_NUMBER);
+                String input = inputValue();
 
-        Validator.validateNotBlank(input);
-        Validator.validateIsNumeric(input);
-        return Integer.parseInt(input);
+                Validator.validateNotBlank(input);
+                Validator.validateIsNumeric(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
