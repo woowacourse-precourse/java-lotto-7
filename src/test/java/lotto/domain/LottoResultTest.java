@@ -61,4 +61,22 @@ class LottoResultTest {
         double expectedYield = (LottoRank.FIRST.getPrize() + LottoRank.SECOND.getPrize() + LottoRank.THIRD.getPrize()) / (double) purchaseAmount * 100;
         assertEquals(expectedYield, yield);
     }
+
+    @DisplayName("모든 등급 당첨 시 정확한 수익률 반환")
+    @Test
+    void 수익률_모든등급당첨일때_정확한수익률반환() {
+        LottoResult lottoResult = new LottoResult();
+        for (LottoRank rank : LottoRank.values()) {
+            lottoResult.addResult(rank);
+        }
+        int purchaseAmount = 10000;
+        double yield = lottoResult.calculateYield(purchaseAmount);
+
+        double expectedYield = (LottoRank.FIRST.getPrize() +
+                LottoRank.SECOND.getPrize() +
+                LottoRank.THIRD.getPrize() +
+                LottoRank.FOURTH.getPrize() +
+                LottoRank.FIFTH.getPrize()) / (double) purchaseAmount * 100;
+        assertThat(yield).isEqualTo(expectedYield);
+    }
 }
