@@ -51,4 +51,12 @@ public class ValidationUtilsTest {
     public void testValidateThousandUnit_InvalidUnit() {
         assertThrows(IllegalArgumentException.class, () -> validateThousandUnit(1500));
     }
+
+    @Test
+    public void testParseLong_InputExceedsLongMaxValue() {
+        // 아주 큰 숫자 (long 범위를 초과하는 값)
+        String largeNumber = "9223372036854775808"; // Long.MAX_VALUE + 1
+
+        assertThrows(NumberFormatException.class, () -> Long.parseLong(largeNumber));
+    }
 }
