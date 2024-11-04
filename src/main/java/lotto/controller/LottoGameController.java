@@ -13,7 +13,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.ResultFormatter;
 
-public final class LottoGameController {
+public class LottoGameController {
 
     private final ResultFormatter resultFormatter;
     private final InputView inputView;
@@ -26,17 +26,6 @@ public final class LottoGameController {
     }
 
     public void run() {
-        while (true) {
-            try {
-                play();
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    private void play() {
         LottoPurchase lottoPurchase = buyLotto();
         LottoGame lottoGame = playLottoGame(lottoPurchase);
         showLottoGameResult(lottoGame);
@@ -62,7 +51,7 @@ public final class LottoGameController {
     private LottoGame playLottoGame(LottoPurchase lottoPurchase) {
         Lotto lotto = drawWinningLotto();
         WinningLotto winningLotto = createWinningLottoWithBonus(lotto);
-        
+
         return new LottoGame(lottoPurchase.getLottoTickets(), winningLotto,
                 lottoPurchase.getMoney());
     }
