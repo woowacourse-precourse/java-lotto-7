@@ -3,6 +3,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,7 +17,6 @@ public class Lotto {
 
     public Lotto() {
         this.numbers = generateRandomNumbers();
-        this.numbers.sort(Integer::compareTo);
     }
 
     private void validate(List<Integer> numbers) {
@@ -26,7 +26,11 @@ public class Lotto {
     }
     // TODO: 추가 기능 구현
     private List<Integer> generateRandomNumbers() {
-         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+         List<Integer> mutableNumbers = new ArrayList<>(randomNumbers);
+         mutableNumbers.sort(Integer::compareTo);
+         return mutableNumbers;
+
     }
 
     // 로또 번호 중복 테스트
