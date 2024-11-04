@@ -25,8 +25,8 @@ public class LottoController {
             BonusNumber bonusNumber = getBonusNumber(winningNumbers);
             LottoStatistics calculate = calculate(lottoMachine, winningNumbers, bonusNumber, purchaseAmount);
             OutputView.printStatistics(LottoStatisticsDto.from(calculate));
-        } catch (NullPointerException e) {
-            OutputView.printErrorMessage("[ERROR] 입력값이 존재하지 않아 로또가 종료됩니다.");
+        } catch (NoSuchElementException e) {
+            OutputView.printErrorMessage("[ERROR] 실제로 불가능한 상황에서 의미없는 반복 실행을 방지하기 위해 종료됩니다.");
         }
     }
 
@@ -37,8 +37,7 @@ public class LottoController {
                 String input = InputView.readInput();
                 return parser.apply(input);
             } catch (NoSuchElementException e) {
-                OutputView.printErrorMessage(e.getMessage());
-                return null;
+                throw new NoSuchElementException(e.getMessage());
             } catch (RuntimeException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
