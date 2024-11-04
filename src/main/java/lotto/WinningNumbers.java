@@ -37,7 +37,7 @@ public class WinningNumbers {
 
     private void isSizeSix(List<String> numbers) {
         if (numbers.size() != COUNTS_OF_LOTTO) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다. ',' 로 구분해주세요.");
         }
     }
 
@@ -45,7 +45,7 @@ public class WinningNumbers {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 입력이 존재합니다.");
         }
     }
 

@@ -13,10 +13,10 @@ public class Purchase {
         try{
             int moneyAmount = Integer.parseInt(money);
             if(moneyAmount % 1000 != 0 || moneyAmount == 0) {
-                throw new IllegalArgumentException("[ERROR] 0이 아닌 1000으로 나누어지는 수를 입력해 주세요");
+                throw new IllegalArgumentException("[ERROR] 0이 아닌 1000으로 나누어지는 수를 입력해 주세요.");
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요");
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 입력이 존재합니다.");
         }
     }
 
