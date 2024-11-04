@@ -26,12 +26,12 @@ public class LottoController {
         // to output -> "당첨 번호를 입력해 주세요."
         String winningNumbersString = Console.readLine();
         List<Integer> winningNumbers = changeStringToNumberList(winningNumbersString);
+        lottos.setWinningNumbers(winningNumbers);
 
         // to output -> "보너스 번호를 입력해 주세요."
         String bonusNumberString = Console.readLine();
         Integer bonusNumber = changeStringToNumber(bonusNumberString);
-
-        lottos.setWinningNumbers(winningNumbers, bonusNumber);
+        lottos.setBonusNumber(bonusNumber);
 
         // to output -> "당첨 통계 ~~"
     }
