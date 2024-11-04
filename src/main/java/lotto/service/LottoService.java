@@ -8,7 +8,7 @@ import lotto.domain.WinningLotto;
 
 public class LottoService {
     public Lottos generateLottos(int purchaseAmount) {
-        List<Lotto> lottos = Stream.generate(() -> new Lotto(LottoNumberGenerator.generate()))
+        List<Lotto> lottos = Stream.generate(() -> new Lotto(LottoGenerator.generate()))
                 .limit(purchaseAmount)
                 .toList();
         return new Lottos(lottos);
