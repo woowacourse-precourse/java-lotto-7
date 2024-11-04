@@ -8,6 +8,9 @@ import lotto.model.LottoRule;
 import lotto.model.Lottos;
 
 public class LottoMatcher {
+
+    private static final int MATCH_COUNT_FOR_BONUS = 5;
+
     public Map<LottoRule, Integer> calculateMatchResult(Lottos lottos, List<Integer> winNumbers, int bonusNumber) {
         Map<LottoRule, Integer> matchInfo = new HashMap<>();
 
@@ -30,7 +33,7 @@ public class LottoMatcher {
     }
 
     private boolean isBonusMatch(Lotto lotto, int bonusNumber, int matchCount) {
-        return (matchCount == 5) && lotto.getNumbers().contains(bonusNumber);
+        return (matchCount == MATCH_COUNT_FOR_BONUS) && lotto.getNumbers().contains(bonusNumber);
     }
 
     private void updateMatchInfo(Map<LottoRule, Integer> matchInfo, int matchCount, boolean bonusMatch) {
