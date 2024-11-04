@@ -12,23 +12,22 @@ import java.util.Map;
 
 public class GameStatisticService {
     public LottoStatistic calculateLottoResult(LottoTicket ticket, WinningNumbers winningNumbers) {
-        Map<Rank, Integer> rankCount = initializeRankCount();
+        Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
         List<Lotto> purchasedLotteries = ticket.getLotteries();
-
-        for (Lotto lottery : purchasedLotteries) {
-            Rank rank = calculateRank(lottery, winningNumbers);
-            rankCount.put(rank, rankCount.get(rank) + 1);
-        }
+        calculateRankCounts(winningNumbers, rankCount, purchasedLotteries);
         double returnRate = calculateRateOfReturn(rankCount, ticket.getPurchase());
         return new LottoStatistic(rankCount, returnRate);
     }
 
-    private Map<Rank, Integer> initializeRankCount() {
-        Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
-        for (Rank rank : Rank.values()) {
-            rankCount.put(rank, 0);
+    private void calculateRankCounts(WinningNumbers winningNumbers, Map<Rank, Integer> rankCount, List<Lotto> purchasedLotteries) {
+        for (Lotto lottery : purchasedLotteries) {
+            updateRanks(winningNumbers, rankCount, lottery);
         }
-        return rankCount;
+    }
+
+    private void updateRanks(WinningNumbers winningNumbers, Map<Rank, Integer> rankCount, Lotto lottery) {
+        Rank rank = calculateRank(lottery, winningNumbers);
+        rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
     }
 
     private Rank calculateRank(Lotto lottery, WinningNumbers winningNumbers) {
