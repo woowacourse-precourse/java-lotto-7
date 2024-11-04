@@ -16,6 +16,6 @@ public class InputView {
 
     public static void requestWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        enterMessage();
+        InputValidator.validateWinningNumbers(enterMessage());
     }
 }
