@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
 import lotto.dto.LottoResponse;
+import lotto.dto.PrizeResponse;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -27,6 +29,8 @@ public class LottoController {
         outputView.printFormattedLottoNumbers(findGeneratedLottos());
 
         Lotto winningLotto = readWinningLottoNumbers();
+
+        LottoNumber bonusNumber = readBonusNumber();
     }
 
 
@@ -56,5 +60,12 @@ public class LottoController {
                 .toList();
 
         return new Lotto(winningLottoNumbers);
+    }
+
+    private LottoNumber readBonusNumber() {
+        outputView.promptBonusNumber();
+        int bonusNumberInput = inputView.readBonusNumberInput();
+
+        return new LottoNumber(bonusNumberInput);
     }
 }
