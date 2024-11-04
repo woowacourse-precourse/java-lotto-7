@@ -16,6 +16,19 @@ public class OutputViewTest {
     private OutputView outputView = new OutputView();
 
     @Test
+    void 발행_로또_수량_출력_테스트() {
+        //given & when
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        int publishCount = 7;
+        outputView.printPublishCountMessage(publishCount);
+
+        //then
+        String expected = "7개를 구매했습니다.";
+        assertThat(outputStream.toString()).isEqualTo(expected);
+    }
+
+    @Test
     void 당첨_통계_출력_테스트() {
         //given
         Map<Prize, Integer> winningCounts = new HashMap<>();
