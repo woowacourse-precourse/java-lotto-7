@@ -10,6 +10,20 @@ import lotto.view.message.ErrorMessage;
 public class Validator {
 
     private final OutputView outputView = new OutputView();
+
+    public boolean validateMoneyAmount(String input) {
+        try {
+            isNotNull(input);
+            isNumber(input);
+            int number = Integer.parseInt(input);
+            isOverMinimumPurchaseAmount(number);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
     public boolean validateLotto(String input) {
         try {
             isNotNull(input);
