@@ -31,5 +31,12 @@ public class Validation {
         }
     }
 
+    public static void validateNoDuplicatesWithBonusNumber(List<Integer> winnings,int bonusNumber) {
+        Set<Integer> uniqueNumbers = new HashSet<>(winnings);
+        uniqueNumbers.add(bonusNumber);
+        if (uniqueNumbers.size() != winnings.size()+1) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호와 보너스 번호 사이에 중복이 있습니다.");
+        }
+    }
 
 }

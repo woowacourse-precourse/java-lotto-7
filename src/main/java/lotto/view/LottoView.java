@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
+import lotto.model.PrizeAmount;
 import lotto.model.YieldCalculator;
 
 import java.util.List;
@@ -43,16 +44,16 @@ public class LottoView {
     }
 
     public void printStat(LottoResult result){
-        int[] prizeAmounts = result.getPrizeAmounts();
+
         int[] rankCounts = result.getRankCounts();
 
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("3개 일치 (%,d원) - %d개\n", prizeAmounts[4], rankCounts[4]); // 3개 일치 => 5등
-        System.out.printf("4개 일치 (%,d원) - %d개\n", prizeAmounts[3], rankCounts[3]); // 4개 일치
-        System.out.printf("5개 일치 (%,d원) - %d개\n", prizeAmounts[2], rankCounts[2]); // 5개 일치
-        System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개\n", prizeAmounts[1], rankCounts[1]); // 5개 일치, 보너스
-        System.out.printf("6개 일치 (%,d원) - %d개\n", prizeAmounts[0], rankCounts[0]); // 6개 일치 => 1등
+        System.out.printf("3개 일치 (%,d원) - %d개\n", PrizeAmount.FIFTH.getPrizeAmount(), rankCounts[4]); // 3개 일치 => 5등
+        System.out.printf("4개 일치 (%,d원) - %d개\n", PrizeAmount.FOURTH.getPrizeAmount(), rankCounts[3]); // 4개 일치
+        System.out.printf("5개 일치 (%,d원) - %d개\n", PrizeAmount.THIRD.getPrizeAmount(), rankCounts[2]); // 5개 일치
+        System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개\n", PrizeAmount.SECOND.getPrizeAmount(), rankCounts[1]); // 5개 일치, 보너스
+        System.out.printf("6개 일치 (%,d원) - %d개\n", PrizeAmount.FIRST.getPrizeAmount(), rankCounts[0]); // 6개 일치 => 1등
     }
 
     public void printYield(float yield){

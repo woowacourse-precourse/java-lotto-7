@@ -43,6 +43,7 @@ public class LottoController {
         String bonusInput = lottoView.bonusInput();
         int bonus = Integer.parseInt(bonusInput);
         Validation.validateOneNumBoundary(bonus);
+        Validation.validateNoDuplicatesWithBonusNumber(numbers,bonus);
 
         lottoManagementSystem.setWinningNumbers(numbers);
         lottoManagementSystem.setBonusNumber(bonus);
