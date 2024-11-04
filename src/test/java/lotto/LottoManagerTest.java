@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LottoManagerTest {
     private LottoManager lottoManager;
@@ -21,12 +22,29 @@ public class LottoManagerTest {
     }
 
     @Test
+    void 로또_생성_번호가_오름차순인지_검증하는_테스트() {
+        Lotto lotto = lottoManager.generateLottoNumbers();
+        List<Integer> lottoNumbers = lotto.getLotto();
+
+        boolean isSorted = true;
+
+        for (int i = 0; i < lottoNumbers.size() - 1; i++) {
+            if (lottoNumbers.get(i) > lottoNumbers.get(i + 1)) {
+                isSorted = false;
+                break;
+            }
+        }
+        assertTrue(isSorted);
+    }
+
+    @Test
     void 로또번호를_Lotto_인스턴스로_변환하는_기능() {
         String input = "1, 2, 3 ,4 ,5 ,6";
         Lotto lottoResult = lottoManager.parseWinningNumbersToLotto(input);
         List<Integer> expectedNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         assertThat(lottoResult.getLotto()).isEqualTo(expectedNumber);
     }
+
     @Test
     void 로또_당첨_분석_기능() {
         Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
@@ -38,7 +56,7 @@ public class LottoManagerTest {
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 15)),
                 new Lotto(Arrays.asList(1, 2, 3, 4, 14, 15)),
                 new Lotto(Arrays.asList(1, 2, 3, 12, 33, 44)),
-                new Lotto(Arrays.asList(11, 12, 13, 15, 16,17))
+                new Lotto(Arrays.asList(11, 12, 13, 15, 16, 17))
         );
 
         Map<LottoRank, Long> expectedResults = new HashMap<>();
@@ -49,8 +67,25 @@ public class LottoManagerTest {
         expectedResults.put(LottoRank.FIFTH, 1L);
         expectedResults.put(LottoRank.MISS, 1L);
 
-        Map<LottoRank,Long> result = lottoManager.analyzeLottoResults(lottoSets, winningNumbers, bonusNumber);
+        Map<LottoRank, Long> result = lottoManager.analyzeLottoResults(lottoSets, winningNumbers, bonusNumber);
         assertThat(result).isEqualTo(expectedResults);
+    }
+
+    @Test
+    void 수익률_분석_기능_테스트() {
+        Map<LottoRank, Long> lottoResults = new HashMap<>();
+        lottoResults.put(LottoRank.FIRST, 0L);
+        lottoResults.put(LottoRank.SECOND, 0L);
+        lottoResults.put(LottoRank.THIRD, 0L);
+        lottoResults.put(LottoRank.FOURTH, 0L);
+        lottoResults.put(LottoRank.FIFTH, 1L);
+        lottoResults.put(LottoRank.MISS, 1L);
+
+        int payment = 8000;
+
+        String returnRate = lottoManager.getReturnRate(lottoResults, payment);
+
+        assertThat(returnRate).isEqualTo("62.5%");
     }
 
 
