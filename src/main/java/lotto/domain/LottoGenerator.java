@@ -14,9 +14,7 @@ public class LottoGenerator {
         );
     }
 
-    public static List<Lotto> generateLottos(String purchaseAmountInput) {
-        int purchaseAmount = Validator.validateAndParsePurchaseAmount(purchaseAmountInput);
-
+    public static List<Lotto> generateLottos(int purchaseAmount) {
         int numberOfTickets = purchaseAmount / LottoConstant.LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 

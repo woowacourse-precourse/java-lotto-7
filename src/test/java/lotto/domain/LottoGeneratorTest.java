@@ -23,7 +23,7 @@ class LottoGeneratorTest {
     @Test
     void 구입_금액에_따라_로또_번호가_생성된다() {
         // given
-        String purchaseAmount = "3000";
+        int purchaseAmount = 3000;
         // when
         List<Lotto> lottos = LottoGenerator.generateLottos(purchaseAmount);
         // then
