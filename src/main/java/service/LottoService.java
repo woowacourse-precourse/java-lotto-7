@@ -17,6 +17,7 @@ public class LottoService {
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
+    private static final int LOTTO_PRICE_UNIT = 1000;
 
     public PurchaseCount getCount(String purchaseAmountFromView) {
         int purchaseAmount = validatePurchaseAmount(purchaseAmountFromView);
@@ -53,10 +54,10 @@ public class LottoService {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력해야 합니다.");
         }
-        if (purchaseAmount < 1000) {
+        if (purchaseAmount < LOTTO_PRICE_UNIT) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000 이상이어야 합니다.");
         }
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % LOTTO_PRICE_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해야 합니다.");
         }
         return purchaseAmount;
