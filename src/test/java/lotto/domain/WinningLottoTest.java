@@ -17,9 +17,9 @@ class WinningLottoTest {
     @MethodSource("lottoWinningResultTestData")
     void lottoWinningResultTest(List<Lotto> lottoList, Map<Rank, Integer> expectedResults) {
         LottoTicket lottoTicket = new LottoTicket(lottoList);
-        BonusNumber bonusNumber = new BonusNumber("7");
+        Bonus bonus = new Bonus("7");
         WinningLotto winningLotto = new WinningLotto(
-                List.of(1, 2, 3, 4, 5, 6), bonusNumber
+                List.of(1, 2, 3, 4, 5, 6), bonus
         );
 
         Map<Rank, Integer> result = winningLotto.lottoWinningResult(lottoTicket);

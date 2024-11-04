@@ -6,11 +6,11 @@ import java.util.Map;
 
 public class WinningLotto extends Lotto {
 
-    private final BonusNumber bonusNumber;
+    private final Bonus bonus;
 
-    public WinningLotto(List<Integer> winningNumbers, BonusNumber bonusNumber) {
+    public WinningLotto(List<Integer> winningNumbers, Bonus bonus) {
         super(winningNumbers);
-        this.bonusNumber = bonusNumber;
+        this.bonus = bonus;
     }
 
     public Map<Rank, Integer> lottoWinningResult(LottoTicket lottoTicket) {
@@ -21,7 +21,7 @@ public class WinningLotto extends Lotto {
                     .filter(super.getNumbers()::contains)
                     .count();
 
-            boolean hasBonusNumber = lotto.getNumbers().contains(bonusNumber.getBonusNumber());
+            boolean hasBonusNumber = lotto.getNumbers().contains(bonus.getNumber());
 
             Rank rank = Rank.findRank(matchCount, hasBonusNumber);
 
