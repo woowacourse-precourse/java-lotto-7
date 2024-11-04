@@ -20,18 +20,13 @@ public class OutputView {
         System.out.println(price / 1000 + PRINT_LOTTO_COUNT);
     }
 
-    private void printUserLottoNumbers(List<Lotto> lottos) {
-        int lastIndex = lottos.size() - 1;
-        System.out.print("[");
+    public void printUserLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            if (lottos.get(lastIndex) == lotto) {
-                System.out.print(lottos + "]");
-            }
-            System.out.print(lottos + ", ");
+            System.out.println(lotto.getNumbers());
         }
     }
 
-    private void printResultStatistics(UserLotto userLotto) {
+    public void printResultStatistics(UserLotto userLotto) {
         int n = 0; // UserLotto 구현후 수정예정
         System.out.println(PRINT_RESULT_STATISTICS_TITLE);
         System.out.println(PRINT_3LINES);
