@@ -15,40 +15,15 @@ public class Application {
 
         int money = input.askPurchaseAmount();
         LottoMachine lottoMachine = new LottoMachine();
-        List<Lotto> lottos = lottoMachine.purchaseLotto(money);
-        output.printPurchaseLotto(lottos);
+        List<Lotto> playerLottos = lottoMachine.purchaseLotto(money);
+        output.printPurchaseLotto(playerLottos);
 
         //당첨 번호 입력
         List<Integer> winningNumbers = input.askWinningNumbers();
         int bonusNumber = input.askBonusNumber();
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+        Map<String, Integer> winningResult = winningLotto.getWinningResult(playerLottos);
 
-
-        Map<String, Integer> winningResult = new HashMap<>();
-        winningResult.put("MATCH_3", 0);
-        winningResult.put("MATCH_4", 0);
-        winningResult.put("MATCH_5", 0);
-        winningResult.put("MATCH_5_BONUS", 0);
-        winningResult.put("MATCH_6", 0);
-
-
-        for (Lotto lotto : lottos) {
-            List<Integer> numbers = lotto.getNumbers();
-            long count = numbers.stream().filter(winningNumbers::contains).count();
-            boolean hasBonusNumber = numbers.contains(bonusNumber);
-
-            switch ((int) count) {
-                case 3 -> winningResult.put("MATCH_3", winningResult.getOrDefault("MATCH_3", 0) + 1);
-                case 4 -> winningResult.put("MATCH_4", winningResult.getOrDefault("MATCH_4", 0) + 1);
-                case 5 -> {
-                    if (hasBonusNumber) {
-                        winningResult.put("MATCH_5_BONUS", winningResult.getOrDefault("MATCH_5_BONUS", 0) + 1);
-                    } else {
-                        winningResult.put("MATCH_5", winningResult.getOrDefault("MATCH_5", 0) + 1);
-                    }
-                }
-                case 6 -> winningResult.put("MATCH_6", winningResult.getOrDefault("MATCH_6", 0) + 1);
-            }
-        }
 
         String result = """
                 
