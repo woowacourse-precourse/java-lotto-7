@@ -12,12 +12,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO.getMessage());
         }
 
         for (int number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자 6개여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO.getMessage());
             }
         }
 
@@ -25,7 +25,7 @@ public class Lotto {
 
         for (int i = 1; i < numbers.size(); i++) {
             if (number == numbers.get(i)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않은 숫자 6개여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO.getMessage());
             }
 
             number = numbers.get(i);

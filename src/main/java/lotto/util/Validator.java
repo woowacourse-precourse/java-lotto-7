@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.ErrorMessage;
 import lotto.Lotto;
 
 public class Validator {
@@ -10,13 +11,13 @@ public class Validator {
 
             return purchasePrice;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위의 숫자만 허용됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_PRICE.getMessage());
         }
     }
 
     public void validatePurchasePriceMultipleOfThousand(int purchasePrice) {
         if (purchasePrice % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위만 허용됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_PRICE.getMessage());
         }
     }
 
@@ -24,13 +25,13 @@ public class Validator {
         try{
             return Integer.parseInt(numberInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.(쉼표(,)로 구분)");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS.getMessage());
         }
     }
 
     public void validateWinningNumber(String[] winningNumbersInput) {
         if (winningNumbersInput.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.(쉼표(,)로 구분)");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS.getMessage());
         }
     }
 
@@ -42,19 +43,19 @@ public class Validator {
 
             return bonusNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
         }
     }
 
     public void validateBonusNumberInRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
         }
     }
 
     public void validateBonusNumberDuplicate(int bonusNumber, Lotto winningNumbersLotto) {
         if (winningNumbersLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 }
