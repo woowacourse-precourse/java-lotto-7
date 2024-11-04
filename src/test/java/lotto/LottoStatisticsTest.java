@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.model.LottoRank;
+import lotto.statistics.LottoStatistics;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

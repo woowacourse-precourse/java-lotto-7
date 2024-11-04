@@ -1,4 +1,6 @@
-package lotto;
+package lotto.statistics;
+
+import lotto.model.LottoRank;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

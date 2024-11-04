@@ -1,8 +1,8 @@
 package lotto.io;
 
-import lotto.Lotto;
-import lotto.LottoPool;
-import lotto.LottoStatistics;
+import lotto.model.Lotto;
+import lotto.model.LottoPool;
+import lotto.statistics.LottoStatistics;
 
 public class LottoIOHandler {
 
