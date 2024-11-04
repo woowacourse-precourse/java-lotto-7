@@ -5,7 +5,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoMachine {
-    private static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
 
     public static List<Lotto> publishRandomLotteryNumbers(int lotteryPurchaseAmount) {
         int lotteryCount = lotteryPurchaseAmount / LOTTO_PRICE;
