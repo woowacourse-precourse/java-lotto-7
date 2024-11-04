@@ -20,11 +20,14 @@ public class LottoController {
     private final LottoService lottoService;
     private final LottoInputView inputView;
     private final LottoOutputView outputView;
+    private final LottoErrorView errorView;
 
-    public LottoController(LottoService lottoService, LottoInputView inputView, LottoOutputView outputView) {
+    public LottoController(LottoService lottoService, LottoInputView inputView, LottoOutputView outputView,
+                           LottoErrorView errorView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
         this.outputView = outputView;
+        this.errorView = errorView;
     }
 
     public void run() {
@@ -48,7 +51,7 @@ public class LottoController {
 
             return Parser.parseToInt(priceInput);
         } catch (LottoExceptionBase e) {
-            LottoErrorView.printErrorMessage(e.getMessage());
+            errorView.printErrorMessage(e.getMessage());
 
             return requestPrice();
         }
@@ -58,7 +61,7 @@ public class LottoController {
         try {
             return TicketMaker.make(price);
         } catch (LottoExceptionBase e) {
-            LottoErrorView.printErrorMessage(e.getMessage());
+            errorView.printErrorMessage(e.getMessage());
 
             return requestPrice();
         }
@@ -76,7 +79,7 @@ public class LottoController {
 
             return lottoService.createWinningLottoNumbers(winningNumberInput);
         } catch (LottoExceptionBase e) {
-            LottoErrorView.printErrorMessage(e.getMessage());
+            errorView.printErrorMessage(e.getMessage());
 
             return requestWinningNumber();
         }
@@ -88,7 +91,7 @@ public class LottoController {
 
             return new LottoNumber(Parser.parseToInt(bonusInput));
         } catch (LottoExceptionBase e) {
-            LottoErrorView.printErrorMessage(e.getMessage());
+            errorView.printErrorMessage(e.getMessage());
 
             return requestBonus();
         }
@@ -98,7 +101,7 @@ public class LottoController {
         try {
             return lottoService.createWinningLotto(winningNumbers, bonus);
         } catch (LottoExceptionBase e) {
-            LottoErrorView.printErrorMessage(e.getMessage());
+            errorView.printErrorMessage(e.getMessage());
             LottoNumber newBonus = requestBonus();
 
             return createWinningLotto(winningNumbers, newBonus);
