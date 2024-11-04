@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 public record WinningResultsDto(
-	List<WinningResultDto> winningResults
+	List<WinningResultDto> winningResults,
+	double profitRate
 ) {
 
 	public static WinningResultsDto from(Map<Winning, Integer> winningResult) {
