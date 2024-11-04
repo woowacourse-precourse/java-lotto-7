@@ -79,6 +79,12 @@ public class DrawServiceImpl implements DrawService {
 
     @Override
     public void saveStatistics(Map<Rank, Integer> result) {
+        vendingMachineRepository.saveWinningStatistics(result);
+        double earningRate = calculateEarningRate(result);
+        vendingMachineRepository.saveEarningRate(earningRate);
+    }
+
+    private double calculateEarningRate(Map<Rank, Integer> result) {
 
     }
 
