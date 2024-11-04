@@ -3,12 +3,12 @@ package lotto.model.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Rate {
+public class LottoResult {
     private final Map<String, Integer> matchStatus;
     private final Map<String, Integer> prizeAmounts;
     private int totalPrize;
 
-    public Rate() {
+    public LottoResult() {
         matchStatus = new HashMap<>();
         prizeAmounts = new HashMap<>();
         totalPrize = 0;

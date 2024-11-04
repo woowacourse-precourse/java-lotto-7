@@ -4,12 +4,12 @@ import lotto.model.domain.*;
 
 import java.util.List;
 
-public class LottoRateService {
+public class LottoResultService {
 
-    private Rate rate;
+    private LottoResult lottoResult;
 
-    public Rate calculateRate(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonus) {
-        rate = new Rate();
+    public LottoResult calculateRate(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonus) {
+        lottoResult = new LottoResult();
 
         for (Lotto lotto : lottos.getLottos()) {
             List<Integer> lottoNumbers = lotto.getNumbers();
@@ -22,31 +22,31 @@ public class LottoRateService {
 
             updateRateStatus(matchCount, lottoNumbers, bounsNumber);
         }
-        return rate;
+        return lottoResult;
     }
 
     private void updateRateStatus(int matchCount, List<Integer> lottoNumbers, int bonusNumber) {
         if (matchCount == 3) {
-            rate.updateMatchStatus("three_match");
+            lottoResult.updateMatchStatus("three_match");
         }
         if (matchCount == 4) {
-            rate.updateMatchStatus("four_match");
+            lottoResult.updateMatchStatus("four_match");
         }
         if (matchCount == 5) {
             if (lottoNumbers.contains(bonusNumber)) {
-                rate.updateMatchStatus("five_bonus_match");
+                lottoResult.updateMatchStatus("five_bonus_match");
             }
             if (!lottoNumbers.contains(bonusNumber)) {
-                rate.updateMatchStatus("five_match");
+                lottoResult.updateMatchStatus("five_match");
             }
         }
         if (matchCount == 6) {
-            rate.updateMatchStatus("six_match");
+            lottoResult.updateMatchStatus("six_match");
         }
     }
 
-    public double caculateRateReturn(Rate rate, Money money) {
-        int totalPirze = rate.getTotalPrize();
+    public double caculateRateReturn(LottoResult lottoResult, Money money) {
+        int totalPirze = lottoResult.getTotalPrize();
         int amount = money.getAmount();
         double rateReturn = (double) totalPirze / amount;
         return rateReturn * 100;

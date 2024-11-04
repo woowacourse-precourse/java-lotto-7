@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.model.domain.*;
 import lotto.model.service.LottoCreationService;
-import lotto.model.service.LottoRateService;
+import lotto.model.service.LottoResultService;
 import lotto.utils.InputParser;
 import lotto.utils.InputValidator;
 import lotto.view.InputView;
@@ -12,23 +12,23 @@ public class LottoController {
     private InputView inputView;
     private OutputView lottoView;
     private LottoCreationService lottoCreationService;
-    private LottoRateService lottoRateService;
+    private LottoResultService lottoResultService;
 
     private Money money;
     private Lottos lottos;
     private WinningNumbers winningNumbers;
     private BonusNumber bonus;
-    private Rate rate;
+    private LottoResult lottoResult;
 
     public LottoController(
             InputView inputView,
             OutputView lottoView,
             LottoCreationService lottoCreationService,
-            LottoRateService lottoRateService) {
+            LottoResultService lottoResultService) {
         this.inputView = inputView;
         this.lottoView = lottoView;
         this.lottoCreationService = lottoCreationService;
-        this.lottoRateService = lottoRateService;
+        this.lottoResultService = lottoResultService;
     }
 
     public void run() {
@@ -37,8 +37,8 @@ public class LottoController {
         printLottos();
         winningNumbers = createWinningNumbers();
         bonus = createBonusNumber();
-        rate = calculateRateStatus(lottos, winningNumbers, bonus);
-        printRateStatus(rate, money);
+        lottoResult = calculateRateStatus(lottos, winningNumbers, bonus);
+        printRateStatus(lottoResult, money);
     }
 
     private Money createMoney() {
@@ -90,13 +90,13 @@ public class LottoController {
         }
     }
 
-    private Rate calculateRateStatus(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonus) {
-        return lottoRateService.calculateRate(lottos, winningNumbers, bonus);
+    private LottoResult calculateRateStatus(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonus) {
+        return lottoResultService.calculateRate(lottos, winningNumbers, bonus);
     }
 
-    private void printRateStatus(Rate rate, Money money) {
-        lottoView.printRateStatus(rate);
-        double returnPrize = lottoRateService.caculateRateReturn(rate, money);
+    private void printRateStatus(LottoResult lottoResult, Money money) {
+        lottoView.printRateStatus(lottoResult);
+        double returnPrize = lottoResultService.caculateRateReturn(lottoResult, money);
         lottoView.printRateReturn(returnPrize);
     }
 }

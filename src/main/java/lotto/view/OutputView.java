@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.model.domain.Lotto;
 import lotto.model.domain.Lottos;
-import lotto.model.domain.Rate;
+import lotto.model.domain.LottoResult;
 
 import java.util.Map;
 
@@ -21,9 +21,9 @@ public class OutputView implements OutputViewInterface{
     }
 
     @Override
-    public void printRateStatus(Rate rate) {
+    public void printRateStatus(LottoResult lottoResult) {
         StringBuilder rateOutput = new StringBuilder();
-        Map<String, Integer> matchStatus = rate.getMatchStatus();
+        Map<String, Integer> matchStatus = lottoResult.getMatchStatus();
 
         rateOutput.append("\n당첨 통계\n");
         rateOutput.append("---\n");
