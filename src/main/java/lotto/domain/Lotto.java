@@ -43,19 +43,22 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < MIN_NUMBER.getNumber() || number > MAX_NUMBER.getNumber()) {
-                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
-            }
+        boolean outOfRangeExists = numbers.stream()
+                .anyMatch(this::isOutOfRange);
+
+        if (outOfRangeExists) {
+            throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 
+    private boolean isOutOfRange(Integer number) {
+        return number < MIN_NUMBER.getNumber() || number > MAX_NUMBER.getNumber();
+    }
+
     private void validateDuplicatedNumber(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        for (Integer number : numbers) {
-            if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
-            }
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }
 }
