@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class GameStatisticService {
+    private static final double PERCENT_MULTIPLIER = 100.0;
+    private static final int DEFAULT = 0;
+    private static final int INCREASE_COUNT = 1;
+
     public LottoStatistic calculateLottoResult(LottoTicket ticket, WinningNumbers winningNumbers) {
         Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
         List<Lotto> purchasedLotteries = ticket.getLotteries();
@@ -27,7 +31,7 @@ public class GameStatisticService {
 
     private void updateRanks(WinningNumbers winningNumbers, Map<Rank, Integer> rankCount, Lotto lottery) {
         Rank rank = calculateRank(lottery, winningNumbers);
-        rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+        rankCount.put(rank, rankCount.getOrDefault(rank, DEFAULT) + INCREASE_COUNT);
     }
 
     private Rank calculateRank(Lotto lottery, WinningNumbers winningNumbers) {
@@ -51,7 +55,7 @@ public class GameStatisticService {
         long totalPrize = rankCount.entrySet().stream()
                 .mapToLong(entry -> entry.getValue() * entry.getKey().getPrize())
                 .sum();
-        return (totalPrize * 100.0) / purchaseAmount;
+        return (totalPrize * PERCENT_MULTIPLIER) / purchaseAmount;
     }
 
 
