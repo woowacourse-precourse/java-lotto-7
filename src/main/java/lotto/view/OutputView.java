@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
-import lotto.domain.number.Number;
+import lotto.domain.lotto.Number;
 import lotto.domain.rank.Rank;
 import lotto.domain.rank.Result;
 import lotto.global.contents.ViewMessage;

@@ -5,7 +5,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.number.Number;
 import lotto.domain.winning.BonusNumber;
 import lotto.domain.winning.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
