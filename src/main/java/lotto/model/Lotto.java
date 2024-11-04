@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,7 +11,10 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+
+        List<Integer> sortedNumbers = new ArrayList<>(numbers); // 새로운 ArrayList로 복사
+        Collections.sort(sortedNumbers); // 정렬
+        this.numbers = Collections.unmodifiableList(sortedNumbers);
     }
 
     private void validate(List<Integer> numbers) {
