@@ -6,15 +6,15 @@ import lotto.model.draw_numbers.DrawNumbers;
 import java.util.List;
 import java.util.Optional;
 
-public class LottoMachine {
+public class LottoChecker {
 
     private final DrawNumbers drawNumbers;
 
-    public LottoMachine(DrawNumbers drawNumbers) {
+    public LottoChecker(DrawNumbers drawNumbers) {
         this.drawNumbers = drawNumbers;
     }
 
-    public double examineLotto(List<Lotto> lottos, long lottoCount) {
+    public double calcRevenueRate(List<Lotto> lottos, long lottoCount) {
         Long totalPrize = calcTotalPrize(lottos);
         return ((double) totalPrize * 100) / (lottoCount * Lotto.PRICE);
     }

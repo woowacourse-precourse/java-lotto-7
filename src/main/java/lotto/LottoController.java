@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoMachine;
+import lotto.model.lotto.LottoChecker;
 import lotto.model.lotto.LottoPublisher;
 import lotto.model.draw_numbers.DrawNumbers;
 import lotto.model.draw_numbers.DrawNumbersBuilder;
@@ -15,7 +15,7 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private LottoMachine lottoMachine;
+    private LottoChecker lottoChecker;
     private LottoPublisher lottoPublisher;
 
     public LottoController(InputView inputView, OutputView outputView) {
@@ -36,9 +36,9 @@ public class LottoController {
         outputView.printLottos(lottos);
 
         DrawNumbers drawNumbers = getDrawNumbers();
-        lottoMachine = new LottoMachine(drawNumbers);
+        lottoChecker = new LottoChecker(drawNumbers);
 
-        double revenueRate = lottoMachine.examineLotto(lottos, lottoCount);
+        double revenueRate = lottoChecker.calcRevenueRate(lottos, lottoCount);
         System.out.println(outputView.resultToString(revenueRate));
     }
 

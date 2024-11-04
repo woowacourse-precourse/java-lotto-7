@@ -3,7 +3,7 @@ package lotto;
 import lotto.model.Winning;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.constant.LottoNumberPrintFormat;
-import lotto.model.lotto.LottoMachine;
+import lotto.model.lotto.LottoChecker;
 import lotto.model.lotto.LottoPublisher;
 import lotto.model.number_generator.NumberGenerator;
 import lotto.model.number_generator.TestNumberGenerator;
@@ -52,10 +52,10 @@ public class OutputViewTest {
     @Test
     void winningCountTest() {
         LottoPublisher lottoPublisher = makeLottoPublisher();
-        LottoMachine lottoMachine = new LottoMachine(HACKED_PLACE.getDrawNumbers());
+        LottoChecker lottoChecker = new LottoChecker(HACKED_PLACE.getDrawNumbers());
 
         List<Lotto> lottos = lottoPublisher.publishLotto(LOTTO_COUNT);
-        lottoMachine.examineLotto(lottos, LOTTO_COUNT);
+        lottoChecker.calcRevenueRate(lottos, LOTTO_COUNT);
         Assertions.assertEquals(LOTTO_COUNT, Winning.THIRD_PLACE.getCount());
     }
 
@@ -64,10 +64,10 @@ public class OutputViewTest {
         OutputView outputView = new OutputView();
 
         LottoPublisher lottoPublisher = makeLottoPublisher();
-        LottoMachine lottoMachine = new LottoMachine(HACKED_PLACE.getDrawNumbers());
+        LottoChecker lottoChecker = new LottoChecker(HACKED_PLACE.getDrawNumbers());
 
         List<Lotto> lottos = lottoPublisher.publishLotto(LOTTO_COUNT);
-        double revenueRate = lottoMachine.examineLotto(lottos, LOTTO_COUNT);
+        double revenueRate = lottoChecker.calcRevenueRate(lottos, LOTTO_COUNT);
         double roundRevenueRate = Math.round(revenueRate * 100) / 100.0;
 
         StringBuilder sb = new StringBuilder();
