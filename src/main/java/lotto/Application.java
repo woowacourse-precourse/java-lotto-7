@@ -23,41 +23,10 @@ public class Application {
         OutputView.printCount(count);
         OutputView.printLottos(lottos);
 
-//
-//        // 4. 로또 당첨 번호 입력
-//        System.out.println("당첨 번호를 입력해 주세요.");
-//        List<String> numbers = List.of(Console.readLine().split(","));
-//
-//        List<Integer> winningNumbers = new ArrayList<>();
-//
-//        // 4-1. 먼저 숫자로 변환할 수 있는지를 확인
-//        for (String number : numbers) {
-//            try {
-//                int winningNumber = Integer.parseInt(number);
-//                winningNumbers.add(winningNumber);
-//            } catch (NumberFormatException e) {
-//                throw new IllegalArgumentException("[ERROR] 로또 번호는 정수여야 합니다.");
-//            }
-//        }
-//
-//        // 4-2. 숫자가 1-45 사이에 있는 숫자인지 확인
-//        for (int winningNumber : winningNumbers) {
-//            if (winningNumber > 45 || winningNumber < 1) {
-//                throw new IllegalArgumentException("[ERROR] 로또 번호는 1-45 사이의 정수여야 합니다.");
-//            }
-//        }
-//
-//        // 4-3. 입력된 모든 숫자가 서로 다른지 확인
-//        for (int winningNumber : winningNumbers) {
-//            if (Collections.frequency(winningNumbers, winningNumber) != 1) {
-//                throw new IllegalArgumentException("[ERROR] 로또 번호의 모든 숫자는 서로 다른 숫자여야 합니다.");
-//            }
-//        }
-//
-//        // 4-4. 6개의 숫자가 입력되었는지 확인
-//        if (numbers.size() != 6) {
-//            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-//        }
+        // 4. 로또 당첨 번호 입력
+        List<Integer> numbers = IntegerValidator.lottoValidator(InputView.inputNumbers());
+        Lotto winningNumbers = new Lotto(numbers);
+
 //
 //        // 5. 보너스 번호 입력
 //        int bonusNumber;

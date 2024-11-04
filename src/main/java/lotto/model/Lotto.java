@@ -34,7 +34,7 @@ public class Lotto {
 
     public static void validateDuplication(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (numbers.contains(number)) {
+            if (Collections.frequency(numbers, number) != 1) {
                 throw new IllegalArgumentException(INVALID_NUMBER);
             }
         }
