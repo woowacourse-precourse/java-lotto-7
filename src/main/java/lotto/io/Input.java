@@ -50,7 +50,7 @@ public class Input {
 		}
 	}
 
-	private static int validateLottoNumberRange(int number) {
+	public static int validateLottoNumberRange(int number) {
 		if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
 			throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
 		}
