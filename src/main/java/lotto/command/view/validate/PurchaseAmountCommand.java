@@ -18,12 +18,7 @@ public class PurchaseAmountCommand implements ValidateCommand {
 
   @Override
   public UserInput execute(String input) {
-    try {
-      return validate(input);
-    } catch (IllegalArgumentException | IllegalStateException e) {
-      view.displayOutput(e.getMessage());
-      return redo();
-    }
+    return validate(input);
   }
 
   private PurchaseAmountUserInput validate (String input) {
