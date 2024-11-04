@@ -61,7 +61,7 @@ public class Result {
         earningsRate = Math.round(earningsRate * 100 / 100.0);
     }
 
-    public List<Integer> getRankCount() {
+    public static List<Integer> getRankCount() {
         List<Integer> rankCount = new ArrayList<>();
         rankCount.add(first);
         rankCount.add(second);
@@ -71,5 +71,7 @@ public class Result {
         return rankCount;
     }
 
-
+    public static double getEarningsRate() {
+        return earningsRate;
+    }
 }

@@ -35,5 +35,6 @@ public class Application {
         }
 
         Result.calculateEarningsRate(money.getMoney());
+        OutputView.printResult(Result.getRankCount(), Result.getEarningsRate());
     }
 }
