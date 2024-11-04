@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputUtil {
+    private InputUtil() {}
 
     public static int insertMoney() {
         String inputMoney = Console.readLine();
