@@ -48,4 +48,19 @@ class MoneyTest {
                 .hasMessage(NOT_THOUSAND_UNIT_PURCHASE_AMOUNT.getMessage());
     }
 
+    @DisplayName("수익률 계산")
+    @Test
+    void 수익률_정상계산() {
+        // given
+        money = new Money(8000);
+        long totalPrize = 5000;
+        String expectedReturnRate = "62.5%";
+
+        // when
+        String actualReturnRate = money.calculateReturnRate(totalPrize);
+
+        // then
+        Assertions.assertThat(actualReturnRate).isEqualTo(expectedReturnRate);
+    }
+
 }
