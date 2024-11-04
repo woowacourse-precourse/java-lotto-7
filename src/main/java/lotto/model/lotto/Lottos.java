@@ -1,5 +1,6 @@
 package lotto.model.lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,6 @@ public class Lottos {
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return new ArrayList<>(lottos);
     }
 }
