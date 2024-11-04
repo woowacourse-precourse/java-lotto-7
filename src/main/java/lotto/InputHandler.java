@@ -28,6 +28,7 @@ public class InputHandler {
     public List<Integer> getWinnerNumber() {
         while (true) {
             try {
+                System.out.println("당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 List<Integer> winnerNumbers = Arrays.stream(input.split(","))
                         .map(Integer::parseInt)
@@ -44,6 +45,7 @@ public class InputHandler {
     public int getBonusNumber(List<Integer> winnerNumbers) {
         while (true) {
             try {
+                System.out.println("보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(Console.readLine());
                 checkNumber(bonusNumber);
                 checkBonusNumberDuplicateWithWinnerNumbers(winnerNumbers, bonusNumber);
