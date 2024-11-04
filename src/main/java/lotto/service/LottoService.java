@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.global.string.AnswerConstants;
 import lotto.global.string.ErrorConstants;
 import lotto.model.Lotto;
@@ -62,6 +63,23 @@ public class LottoService {
     private void validateAmountIsMultipleOfThousand(int money) {
         if(money % 1000 != 0) {
             throw new IllegalArgumentException(ErrorConstants.THOUSAND_UNITS_ERROR_MSG);
+        }
+    }
+
+    /*
+    당첨 통계 내보내기
+     */
+    public void getResult() {
+        List<Integer> getLotto = lotto.getNumbers();
+
+        for (List<Integer> ticket : lottoTickets) {
+            List<Integer> matchedNumbersList = ticket.stream()
+                    .filter(getLotto::contains)
+                    .collect(Collectors.toList());
+
+            boolean containsBonus = ticket.contains(lotto.getBonusNumber());
+            int winningAmount = matchedNumbersList.size();
+
         }
     }
 

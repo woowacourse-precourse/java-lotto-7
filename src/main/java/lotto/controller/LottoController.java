@@ -35,4 +35,8 @@ public class LottoController {
 
         lottoService.saveBonusNumber(bonusNum);
     }
+
+    public void getResult() {
+        lottoService.getResult();
+    }
 }
