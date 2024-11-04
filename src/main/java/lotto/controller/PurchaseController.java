@@ -1,39 +1,31 @@
 package lotto.controller;
 
 import lotto.service.TicketService;
-import lotto.temp.IoController;
-import lotto.util.CommonIo;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.temp.IoComponent;
 
 import static lotto.util.RepeatInput.repeatUntilValid;
 
 public class PurchaseController {
-    private final InputView inputView;
-    private final OutputView outputView;
-    private final IoController ioController;
     private final TicketService ticketService;
-    private final CommonIo commonIo = new CommonIo();
+    private final IoComponent ioComponent;
 
-    public PurchaseController(TicketService ticketService) {
-        this.inputView = new InputView(commonIo);
-        this.outputView = new OutputView(commonIo);
-        this.ioController = new IoController(commonIo);
+    public PurchaseController(TicketService ticketService, IoComponent ioComponent) {
         this.ticketService = ticketService;
+        this.ioComponent = ioComponent;
     }
 
     public void purchaseLottos() {
-        inputView.printRequestPurchase();
+        ioComponent.getInputView().printRequestPurchase();
         repeatCreation();
-        outputView.printTicketCount(ticketService.getTicketCount());
+        ioComponent.getOutputView().printTicketCount(ticketService.getTicketCount());
     }
 
-    private void repeatCreation(){
+    private void repeatCreation() {
         repeatUntilValid(() -> {
-            String rawAmount = ioController.inputPurchaseAmount();
-            int amount = ioController.convertInputToInt(rawAmount);
+            String rawAmount = ioComponent.getIoController().inputPurchaseAmount();
+            int amount = ioComponent.getIoController().convertInputToInt(rawAmount);
             ticketService.createTicket(amount);
             return null;
-        }, commonIo);
+        }, ioComponent.getCommonIo());
     }
 }

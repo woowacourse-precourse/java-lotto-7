@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.RankCalculator;
 import lotto.model.WinningNumber;
+import lotto.temp.IoComponent;
 import lotto.temp.Statics;
 import lotto.util.CommonIo;
 import lotto.view.OutputView;
@@ -16,12 +17,12 @@ import java.util.Map;
 public class RankCalculatorController {
     private final RankCalculator rankCalculator;
     private final WinningNumber winningNumber;
-    private final OutputView outputView;
+    private final IoComponent ioComponent;
 
-    public RankCalculatorController(WinningNumber winningNumber) {
+    public RankCalculatorController(WinningNumber winningNumber, IoComponent ioComponent) {
         this.rankCalculator = new RankCalculator();
         this.winningNumber = winningNumber;
-        this.outputView = new OutputView(new CommonIo());
+        this.ioComponent = ioComponent;
     }
 
     public Map<Rank, Integer> calculateResult(List<Lotto> lottos) {
@@ -30,7 +31,7 @@ public class RankCalculatorController {
     }
 
     public void printResult(Map<Rank, Integer> result) {
-        outputView.printStaticsFormat();
+        ioComponent.getOutputView().printStaticsFormat();
 
         List<Rank> sortedRanks = Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.MISS)
@@ -39,7 +40,7 @@ public class RankCalculatorController {
 
         for (Rank rank : sortedRanks) {
             int rankCount = result.getOrDefault(rank, 0);
-            outputView.printWinningResult(rank.getCountOfMatch(), rank.getPrize(), rankCount);
+            ioComponent.getOutputView().printWinningResult(rank.getCountOfMatch(), rank.getPrize(), rankCount);
         }
     }
 

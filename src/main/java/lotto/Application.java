@@ -10,12 +10,10 @@ import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.Rank;
 import lotto.model.WinningNumber;
-import lotto.service.TicketService;
-import lotto.temp.IoController;
 import lotto.model.WinningNumberGenerator;
+import lotto.service.TicketService;
+import lotto.temp.IoComponent;
 import lotto.util.CommonIo;
-import lotto.view.InputView;
-import lotto.view.OutputView;
 
 import java.util.List;
 import java.util.Map;
@@ -25,39 +23,37 @@ import static lotto.util.RepeatInput.repeatUntilValid;
 public class Application {
     public static void main(String[] args) {
         TicketService ticketService = new TicketService();
-        PurchaseController purchaseController = new PurchaseController(ticketService);
+        CommonIo commonIo = new CommonIo();
+        IoComponent ioComponent = new IoComponent(commonIo);
+        PurchaseController purchaseController = new PurchaseController(ticketService, ioComponent);
         purchaseController.purchaseLottos();
 
         LottoGenerator lottoGenerator = new LottoGenerator();
 
         LottoController lottoController = new LottoController(ticketService, lottoGenerator);
-        IoController ioController = new IoController(new CommonIo());
 
         List<Lotto> lottos = lottoController.excuteLottos();
 
-        ioController.printPurchaseLottoNumbers(lottos);
+        ioComponent.getIoController().printPurchaseLottoNumbers(lottos);
 
-        CommonIo commonIo = new CommonIo();
-        InputView inputView = new InputView(commonIo);
-        OutputView outputView = new OutputView(commonIo);
-
-        WinningNumberGenerationController winningNumberGenerationController = new WinningNumberGenerationController(new WinningNumberGenerator());
-        BonusNumberController bonusNumberController = new BonusNumberController(inputView,ioController,commonIo);
+        WinningNumberGenerationController winningNumberGenerationController =
+                new WinningNumberGenerationController(new WinningNumberGenerator(), ioComponent);
+        BonusNumberController bonusNumberController = new BonusNumberController(ioComponent);
 
         WinningNumber winningNumber = repeatUntilValid(() -> {
             Lotto winningNumbers = winningNumberGenerationController.createWinningNumber();
             BonusNumber bonusNumber = bonusNumberController.createBonusNumber();
             return new WinningNumber(winningNumbers, bonusNumber);
-        }, new CommonIo());
+        }, ioComponent.getCommonIo());
 
-        RankCalculatorController rankCalculatorController = new RankCalculatorController(winningNumber);
+        RankCalculatorController rankCalculatorController = new RankCalculatorController(winningNumber,ioComponent);
 
         Map<Rank,Integer> result = rankCalculatorController.calculateResult(lottos);
 
         rankCalculatorController.printResult(result);
         float profit = rankCalculatorController.calculateProfit(result, ticketService.getTicketCount());
 
-        new OutputView(new CommonIo()).printProfit(profit);
+        ioComponent.getOutputView().printProfit(profit);
 
     }
 }

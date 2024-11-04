@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.WinningNumberGenerator;
+import lotto.temp.IoComponent;
 import lotto.temp.IoController;
 import lotto.util.CommonIo;
 import lotto.view.InputView;
@@ -10,22 +11,19 @@ import static lotto.util.RepeatInput.repeatUntilValid;
 
 public class WinningNumberGenerationController {
     private final WinningNumberGenerator winningNumberGenerator;
-    private final InputView inputView;
-    private final IoController ioController;
-    private final CommonIo commonIo = new CommonIo();
+    private final IoComponent ioComponent;
 
-    public WinningNumberGenerationController(WinningNumberGenerator winningNumberGenerator) {
-        this.inputView = new InputView(commonIo);
-        this.ioController = new IoController(commonIo);
+    public WinningNumberGenerationController(WinningNumberGenerator winningNumberGenerator, IoComponent ioComponent) {
+        this.ioComponent = ioComponent;
         this.winningNumberGenerator = winningNumberGenerator;
     }
 
     public Lotto createWinningNumber() {
-        inputView.printRequestWinningNumbers();
+        ioComponent.getInputView().printRequestWinningNumbers();
         return repeatUntilValid(() -> {
-            String rawWinningNumbers = ioController.inputWinningNumbers();
+            String rawWinningNumbers = ioComponent.getIoController().inputWinningNumbers();
             return winningNumberGenerator.createWinningNumbers(rawWinningNumbers);
-        },commonIo);
+        },ioComponent.getCommonIo());
     }
 
 }
