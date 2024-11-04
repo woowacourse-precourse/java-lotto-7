@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.exception.InvalidInputException;
-import lotto.exception.LottoStateException;
 
 public class WinningNumbers {
 
@@ -15,7 +14,6 @@ public class WinningNumbers {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
-
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
