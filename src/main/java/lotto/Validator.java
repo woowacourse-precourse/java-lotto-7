@@ -23,13 +23,9 @@ public class Validator {
         if (input.isEmpty()) {
             throw new NullPriceException();
         }
-        try {
-            int price = Integer.parseInt(input);
-            checkMinimumPrice(price);
-            checkIsDivisibleByThousand(price);
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-        }
+        int price = Integer.parseInt(input);
+        checkMinimumPrice(price);
+        checkIsDivisibleByThousand(price);
     }
 
     public void isValidLottoNumbers(String input) {
