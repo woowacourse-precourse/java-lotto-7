@@ -10,7 +10,8 @@ public class Application {
         List<Lotto> lottos;
         try {
             lottos = lottoGenerator.generateLottos(purchaseAmount);
-            // 로또 번호 출력 등 추가 로직
+            OutputView.printPurchaseCount(lottos.size());
+            OutputView.printLottoNumbers(lottos);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return;
