@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.contants.message.ErrorMessage;
 import lotto.contants.value.LottoValue;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class LottoResult {
     }
 
     public void updateLottoRankSize(int rank) {
+        validatorRank(rank);
         int rankSize = lottoSameSize.get(rank - 1);
         lottoSameSize.set(rank - 1, rankSize + 1);
     }
@@ -36,5 +38,14 @@ public class LottoResult {
         sum += lottoSameSize.get(4) * LottoValue.RANK_FIFTH_PRIZE.getValue();
 
         return sum;
+    }
+
+    public void validatorRank(int rank) {
+        if (rank < 1) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_RANK.getMessage());
+        }
+        if (rank > 5) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_RANK.getMessage());
+        }
     }
 }
