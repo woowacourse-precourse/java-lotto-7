@@ -43,7 +43,7 @@ public class Controller {
     private void displayLottoDraw(ScoreBoard scoreBoard) {
         outputView.printMessage(STATISTICS);
         List<LottoResultDto> lottoResultDtos = scoreBoard.returnStatistics();
-        lottoResultDtos.forEach(s -> outputView.printResult(s.getDescription()));
+        lottoResultDtos.forEach(lottoResultDto -> outputView.printResult(lottoResultDto.getDescription()));
         outputView.printResult(scoreBoard.getRate().getDescription());
     }
 
