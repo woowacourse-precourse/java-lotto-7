@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.NUMBER_DUPLICATE_ERROR_MESSAGE;
+import static lotto.constant.ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE;
+import static lotto.constant.ErrorMessage.NUMBER_SIZE_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,7 +25,7 @@ class LottoTest {
         void lottoSizeOver6ErrorTest() {
             assertThatThrownBy(() -> Lotto.of(List.of(1, 2, 3, 4, 5, 6, 7)))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+                    .hasMessage(NUMBER_SIZE_ERROR_MESSAGE.getMessage());
         }
 
         @ParameterizedTest
@@ -31,7 +34,7 @@ class LottoTest {
         void LottoTest(List<Integer> invalidNumbers) {
             assertThatThrownBy(() -> Lotto.of(invalidNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 로또 번호는 1와 45사이 숫자여야합니다.");
+                    .hasMessage(String.format(NUMBER_RANGE_ERROR_MESSAGE.getMessage(), 1, 45));
         }
 
         @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다")
@@ -39,7 +42,7 @@ class LottoTest {
         void lottoDuplicateNumberErrorTest() {
             assertThatThrownBy(() -> Lotto.of(List.of(1, 2, 3, 4, 5, 5)))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                    .hasMessage(NUMBER_DUPLICATE_ERROR_MESSAGE.getMessage());
         }
 
         public static Stream<List<Integer>> provideInvalidNumbers() {
