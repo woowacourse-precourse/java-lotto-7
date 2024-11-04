@@ -27,7 +27,6 @@ public class LottoGame {
             int matchCount = ticket.countMatchingNumbers(winningNumbers.getWinningNumbers());
             boolean bonusMatch = ticket.containsBonusNumber(winningNumbers.getBonusNumber());
 
-            // Enum을 사용해 일치하는 결과 찾기
             MatchResult result = MatchResult.valueOf(matchCount, bonusMatch);
 
             if (result != null) {
@@ -43,10 +42,11 @@ public class LottoGame {
 
         for (MatchResult result : MatchResult.values()) {
             int count = matchResults.getOrDefault(result, 0);
-            System.out.printf("%d개 일치%s (%d원) - %d개\n",
+            String prizeFormatted = String.format("%,d원", result.getPrize()); // 천 단위 구분 기호 추가
+            System.out.printf("%d개 일치%s (%s) - %d개\n",
                     result.getMatchCount(),
                     result.isBonusMatch() ? ", 보너스 볼 일치" : "",
-                    result.getPrize(),
+                    prizeFormatted,
                     count);
         }
 
