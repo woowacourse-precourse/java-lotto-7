@@ -102,13 +102,28 @@ public class Lotto {
 
 
 
-    private List<Integer> pickNewLotto() {
+    public List<Integer> pickNewLotto() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public void printNewLotto(int cnt, List<List<Integer>> lottos) {
         printL(cnt + "개를 구매했습니다.");
+        for (List<Integer> lotto : lottos) {
+            printLottoLine(lotto);
+        }
+    }
 
+    public void printLottoLine(List<Integer> lotto) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < lotto.size(); i++) {
+            sb.append(lotto.get(i));
+            if (i < lotto.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        printL(sb.toString());
     }
 
     public void printL(String message) {
