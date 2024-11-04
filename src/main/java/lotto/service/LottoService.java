@@ -16,8 +16,8 @@ public class LottoService {
     }
 
     public double calculateEarningRage(LottoMachine lottoMachine, WinnerLotto winnerLotto) {
-        long totalprize = totalPrize(lottoMachine.getLottoTickets(), winnerLotto);
-        return totalReturn(lottoMachine, totalprize);
+        long totalPrize = totalPrize(lottoMachine.getLottoTickets(), winnerLotto);
+        return totalReturn(lottoMachine, totalPrize);
     }
 
     private long totalPrize(List<Lotto> lottoTickets, WinnerLotto winnerLotto) {
