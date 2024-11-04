@@ -11,6 +11,11 @@ import static java.lang.Integer.parseInt;
 
 public class Lotto {
     private final List<Integer> numbers;
+    int tickets = 0;
+    int bonusNum = 0;
+
+    int price = 0;
+    int prize = 0;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -34,12 +39,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     public void main() {
-        //입력받기
         System.out.println("구입금액을 입력해 주세요.");
-        int tickets = 0;
-        int price = 0;
 
         try {
             price = parseInt(Console.readLine());
@@ -60,6 +61,11 @@ public class Lotto {
             System.out.println(randomTickets.get(i));
         }
 
+        lottoNumInput();
+        printMethod(randomTickets);
+    }
+
+    public void lottoNumInput(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         for (String num : input.split(",")) {
@@ -72,7 +78,6 @@ public class Lotto {
         }
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNum = 0;
         try {
             bonusNum = parseInt(Console.readLine());
             if (bonusNum < 1 || bonusNum > 45) {
@@ -81,24 +86,26 @@ public class Lotto {
         } catch (IllegalArgumentException e) {
             System.out.println("보너스번호는 1~45의 정수 입니다.");
         }
+    }
 
+    public void printMethod(List<List<Integer>> randomTickets){
         LottoChecker lottoChecker = new LottoChecker();
         lottoChecker.lottoChecker(numbers, randomTickets, bonusNum);
 
-        ProfitCalc profit = new ProfitCalc();
-        float profit_ = profit.profitCalc(price);
-
         List<Integer> winTickets = lottoChecker.getWinTickets();
 
-        //출력하기
         System.out.println("당첨통계");
         System.out.println("---");
-
-
+        for(LottoRank rank : LottoRank.values()){
+            if (rank != LottoRank.NONE) {
+                int count = winTickets.get(rank.ordinal());
+                System.out.println(rank.getMessage() + count + "개");
+            }
+        }
+        ProfitCalc profit = new ProfitCalc();
+        float profit_ = profit.profitCalc(price);
         System.out.println("총 수익률은 " + String.format(".1f", profit_) + "% 입니다.");
-
     }
 
-
-
 }
+
