@@ -12,9 +12,10 @@ import lotto.enums.LottoRank;
 public class LottoService {
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int DIVISOR = 1000;
 
     public int calculateLottoTickets(PurchaseAmount purchaseAmount) {
-        return purchaseAmount.getMoney() / 1000;
+        return purchaseAmount.getMoney() / DIVISOR;
     }
 
     public List<Lotto> generateTotalLottoNumbers(int ticketCount) {
@@ -83,8 +84,8 @@ public class LottoService {
         for (int rank = 1; rank <= 5; rank++) {
             LottoRank lottoRank = LottoRank.getEnumsValue(rank);
             int count = results.get(lottoRank);
-            sum += (long)lottoRank.getPrize() * count;
+            sum += (long) lottoRank.getPrize() * count;
         }
-        return sum / (double)purchaseAmount.getMoney();
+        return sum / (double) purchaseAmount.getMoney();
     }
 }
