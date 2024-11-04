@@ -16,4 +16,11 @@ public class NumberUtils {
             throw new IllegalArgumentException("[ERROR] 0 또는 음수는 입력할 수 없습니다");
         }
     }
+
+    public static void validateFormat(String numbers, int size, String delimiter) {
+        int count = numbers.length() - numbers.replace(delimiter, "").length(); // 구분자의 개수
+        if (count + 1 != size) {
+            throw new IllegalArgumentException("[ERROR] 입력 형식이 올바르지 않습니다.");
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.dto.WinningNumberDto;
+import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.Prize;
 import lotto.model.WinningNumber;
@@ -13,7 +14,7 @@ public class LottoMachineController {
     public void start() {
         LottoMachine lottoMachine = createLottoMachine();
 
-        OutputView.printLottoNumbers(lottoMachine.displayLottos());
+        OutputView.printLottoNumbers(lottoMachine.toSortedLottoStrings());
 
         WinningNumber winningNumber = createWinningNumber();
 
@@ -36,13 +37,25 @@ public class LottoMachineController {
         }
     }
 
-    // 당첨 번호 및 보너스 번호 입력
-    private WinningNumber createWinningNumber() {
+    // 당첨 번호 입력
+    private Lotto createWinningLotto() {
         while (true) {
             try {
                 String numbers = InputView.inputWinningNumbers();
+                return Lotto.from(numbers);
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    // 보너스 번호 입력
+    private WinningNumber createWinningNumber() {
+        Lotto lotto = createWinningLotto();
+        while (true) {
+            try {
                 int bonus = InputView.inputBonusNumber();
-                return new WinningNumber(numbers, bonus);
+                return new WinningNumber(lotto, bonus);
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e.getMessage());
             }

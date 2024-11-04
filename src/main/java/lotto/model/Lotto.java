@@ -1,15 +1,30 @@
 package lotto.model;
 
 import lotto.dto.LottoDto;
+import lotto.utils.NumberUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Lotto {
+    private static final String DELIMITER = ",";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto from(String input) {
+        List<Integer> numbers = Stream.of(input.split(DELIMITER))
+                .map(String::trim)
+                .map(NumberUtils::parseNumber)
+                .collect(Collectors.toList());
+
+        NumberUtils.validateFormat(input, numbers.size(), DELIMITER);
+        return new Lotto(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -45,7 +60,7 @@ public class Lotto {
         return Prize.getPrize(countMatchNumber(winningNumber), contains(bonus));
     }
 
-    private int countMatchNumber(Lotto other) {
+    public int countMatchNumber(Lotto other) {
         return (int) this.numbers.stream()
                 .filter(other::contains)
                 .count();

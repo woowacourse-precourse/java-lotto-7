@@ -53,7 +53,7 @@ public class LottoMachineTest {
     @DisplayName("로또 리스트 내 로또 번호가 오름차순으로 정렬되어 문자열로 표시되는지 확인한다.")
     @Test
     void 로또_리스트_내_로또_번호가_오름차순_문자열로_표시() {
-        List<String> lottos = lottoMachine.displayLottos();
+        List<String> lottos = lottoMachine.toSortedLottoStrings();
 
         List<String> expected = List.of(
                 "[1, 2, 3, 4, 5, 6]",
@@ -69,7 +69,7 @@ public class LottoMachineTest {
     @DisplayName("당첨된 내역을 계산한다.")
     @Test
     void 당첨_내역_계산() {
-        WinningNumberDto winningNumber = new WinningNumber("1,2,3,4,5,6", 7).toWinningNumberDto();
+        WinningNumberDto winningNumber = new WinningNumber(Lotto.from("1,2,3,4,5,6"), 7).toWinningNumberDto();
 
         Map<Prize, Integer> prizeCountResult = lottoMachine.calculateWinningCounts(winningNumber);
 

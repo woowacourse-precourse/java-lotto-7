@@ -6,7 +6,7 @@ import lotto.utils.NumberUtils;
 public class InputView {
     public static int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        return NumberUtils.parseNumber(Console.readLine());
+        return NumberUtils.parseNumber(Console.readLine().trim());
     }
 
     public static String inputWinningNumbers() {
@@ -18,6 +18,6 @@ public class InputView {
     public static int inputBonusNumber() {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        return NumberUtils.parseNumber(Console.readLine());
+        return NumberUtils.parseNumber(Console.readLine().trim());
     }
 }

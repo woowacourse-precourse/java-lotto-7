@@ -22,7 +22,8 @@ public enum Prize {
 
     public static Prize getPrize(int count, boolean hasBonus) {
         if (count == 5) {
-            return hasBonus ? BONUS : FIVE;
+            if (hasBonus) return BONUS;
+            return FIVE;
         }
         return Stream.of(Prize.values())
                 .filter(prize -> prize.match == count)

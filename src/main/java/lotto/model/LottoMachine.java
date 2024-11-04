@@ -1,7 +1,6 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.dto.LottoDto;
 import lotto.dto.LottoMachineDto;
 import lotto.dto.WinningNumberDto;
 
@@ -17,7 +16,7 @@ public class LottoMachine {
 
     public LottoMachine(int money) {
         validateMoney(money);
-        this.lottos = createLotto(money);
+        this.lottos = createLottos(money);
         this.money = money;
     }
 
@@ -33,7 +32,7 @@ public class LottoMachine {
         }
     }
 
-    private List<Lotto> createLotto(int money) {
+    private List<Lotto> createLottos(int money) {
         List<Lotto> lottos = new ArrayList<>();
         int quantity = money / LottoIntConst.PRICE.getValue();
         for (int i = 0; i < quantity; i++) {
@@ -47,7 +46,7 @@ public class LottoMachine {
         return lottos;
     }
 
-    public List<String> displayLottos() {
+    public List<String> toSortedLottoStrings() {
         return lottos.stream()
                 .map(Lotto::toLottoDto)
                 .map(lotto -> lotto.numbers().stream()
