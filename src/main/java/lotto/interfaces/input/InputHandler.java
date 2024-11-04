@@ -1,7 +1,6 @@
 package lotto.interfaces.input;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.common.exception.InvalidLottoMoneyException;
@@ -21,12 +20,13 @@ public class InputHandler {
         } catch (NumberFormatException e) {
             throw new InvalidLottoMoneyException(input, e);
         }
+        System.out.println();
         return new LottoMoney(purchaseAmount);
     }
 
     public Lotto readWinningLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningLotto = new ArrayList<>();
+        List<Integer> winningLotto;
         String input = read();
         try {
             winningLotto = Arrays.stream(input.split(","))
@@ -39,6 +39,7 @@ public class InputHandler {
         List<LottoNumber> lottoNumbers = winningLotto.stream()
                 .map(LottoNumber::new)
                 .toList();
+        System.out.println();
         return new Lotto(lottoNumbers);
     }
 
@@ -51,6 +52,7 @@ public class InputHandler {
         } catch (NumberFormatException e) {
             throw new InvalidLottoNumberException(input, e);
         }
+        System.out.println();
         return new LottoNumber(bonusNumber);
     }
 
