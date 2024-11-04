@@ -25,4 +25,19 @@ public class OutputView {
         Map<Reward, Integer> result = totalResult.getUnmodifiableTotalResult();
         result.forEach(this::printEachStatistic);
     }
+
+    private void printEachStatistic(Reward reward, int amount) {
+        int hitCount = reward.getHitCount();
+        long prizeAmount = reward.getPrizeAmount();
+
+        if (reward.isSecondPlace()) {
+            System.out.printf(STATISTICS_SECOND_PLACE_FORMAT, hitCount, prizeAmount, amount);
+            return;
+        }
+        System.out.printf(STATISTICS_FORMAT, hitCount, prizeAmount, amount);
+    }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.printf(RATE_OF_RETURN_FORMAT, rateOfReturn);
+    }
 }
