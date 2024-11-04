@@ -10,4 +10,8 @@ public class InputView {
     public static String inputLottoNumbers() {
         return Console.readLine();
     }
+
+    public static String inputBonusNumber() {
+        return Console.readLine();
+    }
 }

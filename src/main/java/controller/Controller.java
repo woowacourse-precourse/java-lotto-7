@@ -14,6 +14,8 @@ public class Controller {
     LottoGenerator generator = new LottoGenerator();
     List<List<Integer>> lottoLists = new ArrayList<>();//로또 발행 번호
     List<Integer> lottoNumbers;
+    private static int bonusNumber; //보너스 번호
+
 
 
     public void run() {
@@ -21,6 +23,7 @@ public class Controller {
         quantity();
         generator();
         getLottoNumbers();
+        getBonusNumber();
     }
 
     private void buying() {
@@ -80,6 +83,43 @@ public class Controller {
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException();
             }
+        }
+    }
+
+    private void getBonusNumber() {
+        OutputView.outBonusNumber();
+        String bonus = InputView.inputBonusNumber();
+        lottoNumbers = lotto.getLottoNumbers();
+        try {
+            checkExceptionBonusNumber(bonus, lottoNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 올바른 보너스 번호를 입력해주세요.");
+            getBonusNumber();
+        }
+    }
+
+    private void checkExceptionBonusNumber(String bonus, List<Integer> lottoNumbers) {
+        try {
+            bonusNumber = Integer.parseInt(bonus);
+            numberRange();
+            duplicateNumber(lottoNumbers);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 올바른 보너스 번호를 입력해주세요.");
+            getBonusNumber();
+        }
+    }
+
+    private void duplicateNumber(List<Integer> lottoNumbers) {
+        for (Integer lottoNumber : lottoNumbers) {
+            if (lottoNumber == bonusNumber) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    private void numberRange() {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException();
         }
     }
 
