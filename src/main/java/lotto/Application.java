@@ -64,18 +64,14 @@ public class Application {
     }
 
     private static int drawBonus(List<Integer> winningNumbers) {
-        int bonus = inputBonusNumber();
-        InputValidator.validateBonusNotInWinningNumbers(winningNumbers, bonus);
-        return bonus;
-    }
-
-    private static int inputBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요");
         String rawNumber = Console.readLine().trim();
 
         InputValidator.validateNumberInLottoRange(rawNumber);
 
-        return Integer.parseInt(rawNumber);
+        int bonus = Integer.parseInt(rawNumber);
+        InputValidator.validateBonusNotInWinningNumbers(winningNumbers, bonus);
+        return bonus;
     }
 
     private static <T> T repeatUntilSuccess(Supplier<T> inputFunction) {
