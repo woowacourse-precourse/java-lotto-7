@@ -9,6 +9,7 @@ public class Controller {
 
     public void run() {
         buying();
+        quantity();
     }
 
     private void buying() {
@@ -23,4 +24,10 @@ public class Controller {
             buying();
         }
     }
+
+    private void quantity() {
+        OutputView.outBuyingQuantityView(user.getBuyingQuantity());
+    }
+
+
 }
