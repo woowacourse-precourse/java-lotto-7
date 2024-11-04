@@ -17,7 +17,7 @@ public class BonusNumber {
 
 	private void overInRange(List<Integer> winningNumber) {
 		if (!winningNumber.stream().allMatch(number -> number >= 1 && number <= 45)) {
-			throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다.");
+			throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이여야 합니다.");
 		}
 	}
 
