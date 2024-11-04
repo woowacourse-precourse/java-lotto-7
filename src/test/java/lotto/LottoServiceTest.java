@@ -136,6 +136,33 @@ public class LottoServiceTest {
         );
     }
 
+
+    @Test
+    void 특정_랭크에_해당하는_로또가_없는_경우_확인() {
+        //given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        List<List<Integer>> lottos = List.of(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(1, 2, 3, 4, 5, 8),
+                List.of(1, 2, 3, 4, 7, 8),
+                List.of(1, 2, 3, 4, 8, 9),
+                List.of(10, 20, 30, 40, 50, 60)
+        );
+        //when
+        var result = lottoService.calculateStatistic(winningNumbers, bonusNumber, lottos);
+        //then
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(1, result.get(LottoRank.First)),
+                () -> Assertions.assertEquals(1, result.get(LottoRank.Second)),
+                () -> Assertions.assertEquals(1, result.get(LottoRank.Third)),
+                () -> Assertions.assertEquals(2, result.get(LottoRank.Fourth)),
+                () -> Assertions.assertEquals(0, result.get(LottoRank.Fifth)),
+                () -> Assertions.assertEquals(1, result.get(LottoRank.None))
+        );
+    }
+
     @DisplayName("로또 갯수 반환 테스트")
     @Test
     void 로또_갯수_반환_테스트() {

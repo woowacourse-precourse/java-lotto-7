@@ -9,19 +9,21 @@ public class LottoService {
 
     public Map<LottoRank, Integer> calculateStatistic(List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottos) {
 
-        Map<LottoRank, Integer> result = Map.of(
+        // 가변 맵으로 초기화
+        Map<LottoRank, Integer> result = new HashMap<>(Map.of(
                 LottoRank.First, 0,
                 LottoRank.Second, 0,
                 LottoRank.Third, 0,
                 LottoRank.Fourth, 0,
                 LottoRank.Fifth, 0,
                 LottoRank.None, 0
-        );
+        ));
 
         for (List<Integer> lotto : lottos) {
             LottoRank lottoRank = prizeWinningDiscriminationPerLotto(winningNumbers, bonusNumber, lotto);
-            result.put(lottoRank, result.getOrDefault(lottoRank, 0) + 1);
+            result.put(lottoRank, result.get(lottoRank) + 1); // 기존 값 증가
         }
+
         return result;
     }
 
