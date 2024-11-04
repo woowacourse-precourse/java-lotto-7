@@ -53,4 +53,10 @@ public class LottoMachine {
         Lotto winningLotto = new Lotto(winningLottoNumbers);
         return winningLotto;
     }
+
+    public int readBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String userInput = inputReader.readUserInput();
+        return Integer.parseInt(userInput);
+    }
 }
