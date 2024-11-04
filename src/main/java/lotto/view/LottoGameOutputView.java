@@ -19,11 +19,12 @@ public class LottoGameOutputView {
     }
 
     public static void printLottoStatistics(LottoStatisticsDto lottoStatisticsDto) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
         lottoStatisticsDto.getSortedRankCounts().forEach(LottoGameOutputView::printRankCount);
-        
+
         System.out.printf("총 수익률은 %.1f%%입니다.%n", lottoStatisticsDto.getProfitRate());
     }
 
