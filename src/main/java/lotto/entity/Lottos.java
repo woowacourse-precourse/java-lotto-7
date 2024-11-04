@@ -28,6 +28,7 @@ public class Lottos {
     }
 
     public void setWinningNumbers(List<Integer> numbers, Integer bonus) {
+        validateWinningNumbers(numbers, bonus);
         this.winningNumbers = numbers;
         this.bonusNumber = bonus;
     }
@@ -41,6 +42,13 @@ public class Lottos {
         // 로또 구입 금액이 1,000원 단위가 아닌 경우
         if (money % 1000 != 0) {
             throw new IllegalArgumentException(ErrorStatus.INVALID_MONEY_AMOUNT.getMessage());
+        }
+    }
+
+    private void validateWinningNumbers(List<Integer> numbers, Integer bonusNumber) {
+        // 로또 개수 체크
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorStatus.INVALID_COUNT_OF_LOTTO_NUMBERS.getMessage());
         }
     }
 }
