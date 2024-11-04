@@ -63,7 +63,7 @@ public class LottoController {
 
     private void testMethod() {
         double value = customer.getWinningsYield(customer.getLottoTickets() * 1000);
-        System.out.printf("총 수익률은 %.1f%% 입니다.", value);
+        System.out.printf("총 수익률은 %.1f%%입니다.", value);
     }
 
 

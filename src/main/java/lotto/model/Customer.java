@@ -36,7 +36,7 @@ public class Customer {
         if (getResultSum() == 0) {
             return 0;
         }
-        double yield = ((double) clientMoney / getResultSum()) * 100.0;
+        double yield = ((double) getResultSum() / clientMoney) * 100.0;
         return Math.round(yield * 10) / 10.0;
     }
 
