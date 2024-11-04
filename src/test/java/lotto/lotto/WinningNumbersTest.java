@@ -93,4 +93,12 @@ class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 1부터 45 사이의 정수여야 합니다.");
     }
+
+    @Test
+    @DisplayName("당첨 번호는 서로 중복되면 안 된다")
+    void duplicatedThrowException() {
+        assertThatThrownBy(() -> WinningNumbers.of("1", "2", "4", "4", "5", "6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 서로 중복되면 안 됩니다.");
+    }
 }
