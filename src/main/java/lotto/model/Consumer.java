@@ -31,10 +31,10 @@ public class Consumer {
     }
 
     private List<Integer> getNumbers() {
-        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+        return Randoms.pickUniqueNumbersInRange(
                 CompareInteger.LOTTO_NUMBER_MINIMUM.getNumber(),
                 CompareInteger.LOTTO_NUMBER_MAXIMUM.getNumber(),
-                CompareInteger.LOTTO_NUMBER_COUNT.getNumber()));
+                CompareInteger.LOTTO_NUMBER_COUNT.getNumber());
     }
 
     public List<Lotto> getLottoTicket() {

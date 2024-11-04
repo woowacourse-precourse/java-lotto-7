@@ -5,6 +5,7 @@ import lotto.constant.LottoGuide;
 import lotto.constant.WinningNumberRule;
 import lotto.validator.NumberValidator;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -16,8 +17,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        numbers.sort(Comparator.naturalOrder());
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        this.numbers.sort(Comparator.naturalOrder());
     }
 
 
@@ -35,7 +36,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != CompareInteger.LOTTO_NUMBER_COUNT.getNumber()) {
-            throw new IllegalArgumentException(LottoGuide.ERROR.getMessage() + WinningNumberRule.COUNT);
+            throw new IllegalArgumentException(LottoGuide.ERROR.getMessage() + WinningNumberRule.COUNT.getMessage());
         }
         validateDuplication(numbers);
         for (Integer number : numbers) {
