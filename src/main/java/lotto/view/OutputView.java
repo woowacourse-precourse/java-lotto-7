@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import static lotto.view.message.OutputMessage.*;
 public class OutputView {
     public static void printTicketAmount(int ticketAmount) {
-        System.lineSeparator();
+        System.out.println();
         formatAndPrint(PURCHASE_AMOUNT, ticketAmount);
     }
 
@@ -25,8 +25,9 @@ public class OutputView {
     }
 
     public static void printResult(List<Integer> winningCount, double profitRate) {
-        System.out.println(WINNING_STATISTICS);
-        System.out.println(SEPARATOR);
+        System.out.println();
+        System.out.println(WINNING_STATISTICS.getMessage());
+        System.out.println(SEPARATOR.getMessage());
         formatAndPrint(THREE_MATCH, winningCount.get(0));
         formatAndPrint(FOUR_MATCH, winningCount.get(1));
         formatAndPrint(FIVE_MATCH, winningCount.get(2));

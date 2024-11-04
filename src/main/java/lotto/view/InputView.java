@@ -14,12 +14,12 @@ public class InputView {
     }
 
     public static String inputMainNumber() {
-        System.lineSeparator();
+        System.out.println();
         return readAndValidate(ENTER_MAIN_NUMBER);
     }
 
     public static String inputBonusNumber() {
-        System.lineSeparator();
+        System.out.println();
         return readAndValidate(ENTER_BONUS_NUMBER);
     }
 
