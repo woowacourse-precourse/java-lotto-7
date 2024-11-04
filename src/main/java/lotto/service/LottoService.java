@@ -55,6 +55,7 @@ public class LottoService {
             Prize foundPrize = Prize.findPrize(matchingCount, hasNumber);
             prizeResult.increaseCountOf(foundPrize);
         }
+        prizeResult.removeNoPrize();
 
         return prizeResult;
     }

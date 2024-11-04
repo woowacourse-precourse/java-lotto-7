@@ -27,4 +27,8 @@ public class PrizeResult {
     public void increaseCountOf(Prize prize) {
         prizes.put(prize, prizes.get(prize) + COUNT);
     }
+
+    public void removeNoPrize() {
+        prizes.remove(Prize.NO_PRIZE);
+    }
 }
