@@ -41,12 +41,13 @@ class HandlerTest {
     System.setIn(setReadLine(readLine));
 
     // 구매액만큼 로또수를 요청하고
-    int request = 14;
-    int givenRequest = input.getLottoCounts(request);
-    this.handler = new Handler(request);
+    int amount = input.readAmount();
+    int request = input.getLottoCounts(amount);
+    Handler handler = new Handler(request);
     // when : 요청 수만큼 로또 생성을 반복해서 이중리스트에 추가
-    // 로또 자동 생성시 중복되는 문제
-    Lotto lotto = new Lotto(handler.generateLotto());  //  java.lang.NumberFormatException at HandlerTest.java:89
+    // 로또 자동 생성시 중복되는 문제 -> 해결
+    List<Integer> generated = handler.generateLotto(); // 왜 null???
+    Lotto lotto = new Lotto(generated);
 
 
     List<List<Integer>> lottoRequest = lotto.responseLottoCounts(request);
@@ -88,7 +89,7 @@ class HandlerTest {
     // 구매 금액 만큼의 로또 수 조회
     String readAmount = "8000";
     System.setIn(setReadLine(readAmount));
-    this.input = new Input(given);
+    this.input = new Input(readAmount);
 
 //    new Lo
 

@@ -11,6 +11,7 @@ public class Input {
 
   public Input(String enteredValue) {
     // 10만원이 넘는 로또 구매는 도박입니다. 도박은 중독입니다
+    //
     validate(enteredValue);
     this.enteredValue = enteredValue;
   }
