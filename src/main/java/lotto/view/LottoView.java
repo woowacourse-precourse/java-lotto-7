@@ -136,9 +136,10 @@ public class LottoView {
      */
     public String toStringWithRound(double decimal, int roundPosition){
         String format = "%.0f";
-        int defaultPosition = 0;
-        if(roundPosition != defaultPosition){
-           format = format.replaceFirst(Integer.toString(defaultPosition),Integer.toString(roundPosition));
+        int defaultDecimalPosition = 0;
+        int decimalPosition = --roundPosition;
+        if(decimalPosition != defaultDecimalPosition){
+           format = format.replaceFirst(Integer.toString(defaultDecimalPosition),Integer.toString(decimalPosition));
         }
         return String.format(format,decimal);
     }
