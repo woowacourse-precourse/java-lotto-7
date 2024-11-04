@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.util.Constant.LOTTO_PRICE;
 import static lotto.util.Constant.ZERO;
 
 public class Money {
@@ -37,7 +38,7 @@ public class Money {
     }
 
     private void checkMultiple(int money) {
-        if (money % 1000 != 0) {
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(NOT_1000_MULTIPLE);
         }
     }
