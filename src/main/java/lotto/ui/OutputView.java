@@ -8,10 +8,10 @@ import lotto.ui.dto.WinningCountByPrize;
 public class OutputView {
 
     private static final String WINNING_COUNT_BY_PRIZE_MESSAGE_FORMAT = "%d개 일치%s (%,d원) - %d개%n";
-    private static final String PURCHASE_COUNT_MESSAGE_FORMAT = "%d개를 구매했습니다.%n";
+    private static final String PURCHASE_COUNT_MESSAGE_FORMAT = "%n%d개를 구매했습니다.%n";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.%n";
     private static final String MATCH_BONUS_MESSAGE = ", 보너스 볼 일치";
-    private static final String WINNING_STATISTICS_MESSAGE = "당첨통계";
+    private static final String WINNING_STATISTICS_MESSAGE = "\n당첨통계";
     private static final String DIVIDER = "---";
     private static final String EMPTY = "";
 
