@@ -1,11 +1,11 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.LOTTO_PRICE;
+
 import lotto.exception.PaymentException;
 import lotto.exception.message.PaymentExceptionMessage;
 
 public class Payment {
-
-    private static final int LOTTO_PRICE = 1000;
 
     private final int money;
     private final int lottoCount;
