@@ -6,12 +6,14 @@ import java.util.Map;
 import lotto.domain.LottoPrize;
 
 public class LottoStatistics {
+
   private final Map<LottoPrize, Integer> statistics = new LinkedHashMap<>();
 
   public void addResult(int matchCount, boolean hasBonus) {
     LottoPrize prize = getPrize(matchCount, hasBonus);
     statistics.put(prize, statistics.getOrDefault(prize, 0) + 1);
   }
+
   public Map<LottoPrize, Integer> getStatistics() {
     return statistics;
   }

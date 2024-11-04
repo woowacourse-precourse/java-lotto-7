@@ -16,26 +16,28 @@ public class LottoController {
   private final OutputMessageService outputMessageService;
   private final OutputMessageView outputMessageView;
   private final LottoService lottoService;
+
   public LottoController(InputMessageService inputMessageService,
-      OutputMessageService outputMessageService,OutputMessageView outputMessageView,
+      OutputMessageService outputMessageService, OutputMessageView outputMessageView,
       LottoService lottoService) {
-    this.inputMessageService=inputMessageService;
-    this.outputMessageService=outputMessageService;
-    this.outputMessageView=outputMessageView;
-    this.lottoService=lottoService;
+    this.inputMessageService = inputMessageService;
+    this.outputMessageService = outputMessageService;
+    this.outputMessageView = outputMessageView;
+    this.lottoService = lottoService;
   }
 
-  public void run(){
-    long purchaseAmount= inputMessageService.enterPurchaseAmountAndValidation();
-    long numberOfPurchases=outputMessageService.numberOfPurchases(purchaseAmount);
+  public void run() {
+    long purchaseAmount = inputMessageService.enterPurchaseAmountAndValidation();
+    long numberOfPurchases = outputMessageService.numberOfPurchases(purchaseAmount);
     outputMessageView.numberOfPurchases(numberOfPurchases);
-    List<Lotto> lottos=lottoService.lottoResults(numberOfPurchases);
+    List<Lotto> lottos = lottoService.lottoResults(numberOfPurchases);
     outputMessageView.lottoResults(lottos);
-    List<Integer> winningNumbers=inputMessageService.enterWinningNumberAndValidation();
-    int bonusNumber=inputMessageService.winningNumbersAddBonusNumberAndValidation(winningNumbers);
-    Map<LottoPrize, Integer> statistics =lottoService.calculatingWinningStatistics(lottos,winningNumbers,bonusNumber);
+    List<Integer> winningNumbers = inputMessageService.enterWinningNumberAndValidation();
+    int bonusNumber = inputMessageService.winningNumbersAddBonusNumberAndValidation(winningNumbers);
+    Map<LottoPrize, Integer> statistics = lottoService.calculatingWinningStatistics(lottos,
+        winningNumbers, bonusNumber);
     outputMessageView.winningStatistics(statistics);
-    outputMessageView.rateOfReturn(outputMessageService.rateOfReturn(statistics,purchaseAmount));
+    outputMessageView.rateOfReturn(outputMessageService.rateOfReturn(statistics, purchaseAmount));
 
   }
 

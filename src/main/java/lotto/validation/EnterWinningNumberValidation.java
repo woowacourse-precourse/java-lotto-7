@@ -18,7 +18,7 @@ public class EnterWinningNumberValidation {
       checkNumberCount(enterNumbers);
       checkDuplicateNumbers(enterNumbers);
       return true;
-    }catch (NumberFormatException e) {
+    } catch (NumberFormatException e) {
       System.out.println("[ERROR] 번호는 1~45의 숫자여야 합니다.");
       return false;
     } catch (IllegalArgumentException e) {
@@ -55,7 +55,6 @@ public class EnterWinningNumberValidation {
       throw new IllegalArgumentException("[ERROR] 로또 번호는 중복해서 적을수 없습니다");
     }
   }
-
 
 
 }

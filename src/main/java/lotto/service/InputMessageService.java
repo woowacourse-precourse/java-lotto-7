@@ -21,7 +21,7 @@ public class InputMessageService {
     this.inputMessageView = inputMessageView;
     this.purchaseAmountValidation = purchaseAmountValidation;
     this.enterWinningNumberValidation = enterWinningNumberValidation;
-    this.enterBonusNumberValidation=enterBonusNumberValidation;
+    this.enterBonusNumberValidation = enterBonusNumberValidation;
   }
 
   public Long enterPurchaseAmountAndValidation() {
@@ -49,13 +49,14 @@ public class InputMessageService {
     }
     return enterNumbers;
   }
-  public int winningNumbersAddBonusNumberAndValidation(List<Integer> winningNumbers){
-      boolean isValid = false;
-      String bonusNumber ="";
-      while (!isValid) {
-        bonusNumber = inputMessageView.enterBonusNumber();
-        isValid = enterBonusNumberValidation.validateEnterBonusNumber(winningNumbers,bonusNumber);
-      }
+
+  public int winningNumbersAddBonusNumberAndValidation(List<Integer> winningNumbers) {
+    boolean isValid = false;
+    String bonusNumber = "";
+    while (!isValid) {
+      bonusNumber = inputMessageView.enterBonusNumber();
+      isValid = enterBonusNumberValidation.validateEnterBonusNumber(winningNumbers, bonusNumber);
+    }
     return Integer.parseInt(bonusNumber);
   }
 

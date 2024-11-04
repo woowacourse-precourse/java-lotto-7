@@ -12,22 +12,23 @@ import lotto.util.LottoStatistics;
 
 public class LottoService {
 
-  public List<Lotto> lottoResults(long numberOfPurchases){
-    List<Lotto> lottos=new ArrayList<>();
-    for(int i=0;i<numberOfPurchases;i++){
+  public List<Lotto> lottoResults(long numberOfPurchases) {
+    List<Lotto> lottos = new ArrayList<>();
+    for (int i = 0; i < numberOfPurchases; i++) {
       lottos.add(new Lotto(numberLottery()));
     }
     return lottos;
   }
 
-  List<Integer> numberLottery(){
-      List<Integer> numbers=new ArrayList<>();
-      numbers.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+  List<Integer> numberLottery() {
+    List<Integer> numbers = new ArrayList<>();
+    numbers.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     Collections.sort(numbers);
-      return numbers;
+    return numbers;
   }
 
-  public Map<LottoPrize, Integer> calculatingWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+  public Map<LottoPrize, Integer> calculatingWinningStatistics(List<Lotto> lottos,
+      List<Integer> winningNumbers, int bonusNumber) {
     LottoStatistics statistics = new LottoStatistics(); // LottoStatistics 인스턴스 생성
 
     for (Lotto lotto : lottos) {
@@ -38,9 +39,10 @@ public class LottoService {
 
     return statistics.getStatistics();
   }
+
   int countMatches(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-    int matchCount=0;
-    for(int number:lottoNumbers){
+    int matchCount = 0;
+    for (int number : lottoNumbers) {
       if (winningNumbers.contains(number)) {
         matchCount++;
       }

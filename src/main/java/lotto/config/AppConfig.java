@@ -11,33 +11,42 @@ import lotto.view.InputMessageView;
 import lotto.view.OutputMessageView;
 
 public class AppConfig {
-  public LottoController lottoController(){
-    return new LottoController(inputMessageService(),outputMessageService(),outputMessageView(),lottoService());
+
+  public LottoController lottoController() {
+    return new LottoController(inputMessageService(), outputMessageService(), outputMessageView(),
+        lottoService());
   }
-  public LottoService lottoService(){
+
+  public LottoService lottoService() {
     return new LottoService();
   }
-  public InputMessageService inputMessageService(){
-    return new InputMessageService(inputMessageView(),purchaseAmountValidation(),enterWinningNumberValidation(),enterBonusNumberValidation());
+
+  public InputMessageService inputMessageService() {
+    return new InputMessageService(inputMessageView(), purchaseAmountValidation(),
+        enterWinningNumberValidation(), enterBonusNumberValidation());
   }
-  public InputMessageView inputMessageView(){
+
+  public InputMessageView inputMessageView() {
     return new InputMessageView();
   }
 
-  public PurchaseAmountValidation purchaseAmountValidation(){
+  public PurchaseAmountValidation purchaseAmountValidation() {
     return new PurchaseAmountValidation();
   }
-  public OutputMessageView outputMessageView(){
+
+  public OutputMessageView outputMessageView() {
     return new OutputMessageView();
   }
-  public OutputMessageService outputMessageService(){
+
+  public OutputMessageService outputMessageService() {
     return new OutputMessageService();
   }
 
-  public EnterWinningNumberValidation enterWinningNumberValidation(){
+  public EnterWinningNumberValidation enterWinningNumberValidation() {
     return new EnterWinningNumberValidation();
   }
-  public EnterBonusNumberValidation enterBonusNumberValidation(){
+
+  public EnterBonusNumberValidation enterBonusNumberValidation() {
     return new EnterBonusNumberValidation();
   }
 }
