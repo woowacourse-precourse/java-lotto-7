@@ -19,7 +19,9 @@ public class LottoController {
     public void run() {
         outputService.printAmountMessage();
         AMOUNT = Integer.parseInt(Console.readLine());
+
         int numberOfLottoes = lottoService.lottoPurchase(AMOUNT);
         outputService.printNumberOfLottoesMessage(numberOfLottoes);
+        lottoService.lottoIssues(numberOfLottoes);
     }
 }
