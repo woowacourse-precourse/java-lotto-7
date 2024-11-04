@@ -9,14 +9,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class RankTest {
     @ParameterizedTest
-    @MethodSource("checkRankArgs")
-    void checkRank(Rank rank, int matchCount, boolean isOk) {
+    @MethodSource("checkRank")
+    void 당첨_순위_정상적으로_반환되는지(Rank rank, int matchCount, boolean isOk) {
         assertThat(rank.checkRank(matchCount, isOk))
                 .isEqualTo(true);
-
     }
 
-    static Stream<Arguments> checkRankArgs() {
+    static Stream<Arguments> checkRank() {
         return Stream.of(
                 Arguments.arguments(Rank.FIFTH, 3, false, 1),
                 Arguments.arguments(Rank.FOURTH, 4, false, 1),
