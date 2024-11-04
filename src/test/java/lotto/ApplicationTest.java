@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.run.Lotto;
+import lotto.run.ResultLotto;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -53,6 +55,52 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void 구입_금액이_0일_경우_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains("구입 금액은 1,000원 단위여야 합니다.");
+        });
+    }
+
+    @Test
+    void 구입_금액이_1000의_배수가_아닐_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("2222");
+            assertThat(output()).contains("구입 금액은 1,000원 단위여야 합니다.");
+        });
+    }
+
+    @Test
+    void 수익률_계산_테스트() {
+        assertSimpleTest(() -> {
+            long purchaseAmount = 12000;
+            List<Lotto> lottos = List.of(
+                    new Lotto(List.of(1,2,3,41,15,6)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26)),
+                    new Lotto(List.of(11,21,31,41,25,26))
+            );
+            List<Integer> winningNumbers = List.of(1,2,3,4,5,34);
+            int bonusNumber = 7;
+            ResultLotto lottoResults = new ResultLotto(purchaseAmount, lottos, winningNumbers, bonusNumber);
+            lottoResults.calResult();
+            double expectedValue = 41.7;
+            double result = lottoResults.getTotalProfitRate();
+            assertThat(result).isEqualTo(expectedValue);
+        });
+    }
+
 
     @Override
     public void runMain() {
