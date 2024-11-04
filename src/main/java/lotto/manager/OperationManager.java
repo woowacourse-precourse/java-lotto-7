@@ -28,7 +28,7 @@ public class OperationManager {
             try {
                 String writeNumber = io.winningNumber();
                 validator.winningNumber(writeNumber);
-                lottoManager.createWinningNumber(writeNumber);
+                lottoManager.createWinningLotto(writeNumber);
 
                 break;
             } catch (IllegalArgumentException e) {

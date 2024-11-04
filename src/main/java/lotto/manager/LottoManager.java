@@ -24,7 +24,7 @@ public class LottoManager {
         return lottos;
     }
 
-    public void createWinningNumber(String writeNumber) {
+    public void createWinningLotto(String writeNumber) {
         List<Integer> winningNumbers = new ArrayList<>();
         String[] writeNumbers = writeNumber.split(",");
         for (String s : writeNumbers) {
@@ -84,5 +84,9 @@ public class LottoManager {
         if (input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 형식입니다.");
         }
+    }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
     }
 }
