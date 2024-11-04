@@ -11,7 +11,6 @@ import lotto.service.UserLottoService;
 public class Application {
 
     public static void main(String[] args) {
-
         MoneyController moneyController = new MoneyController();
         UserLottoController userLottoController = new UserLottoController(new LottoService(),
             new UserLottoService());
