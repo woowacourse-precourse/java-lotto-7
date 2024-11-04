@@ -1,7 +1,10 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import lotto.exception.ErrorStatus;
 import lotto.view.LottoOutput;
 import lotto.entity.Lottos;
 
@@ -61,6 +64,10 @@ public class LottoController {
     }
 
     private void validateMoney(String moneyString) throws IllegalArgumentException {
+        // 값이 없는 경우
+        if (moneyString.isEmpty()) {
+            throw new IllegalArgumentException(ErrorStatus.NO_VALUE.getMessage());
+        }
 
         moneyString = moneyString.trim();
         // 숫자가 아닌 입력이 들어온 경우
@@ -87,6 +94,10 @@ public class LottoController {
     }
 
     private void validateLottoNumbersString(String numberString) throws IllegalArgumentException {
+        // 값이 없는 경우
+        if (numberString.isEmpty()) {
+            throw new IllegalArgumentException(ErrorStatus.NO_VALUE.getMessage());
+        }
 
         // 숫자만으로 구성되었는지 확인
         numberString = numberString.trim();
@@ -96,6 +107,10 @@ public class LottoController {
     }
 
     private void validateBonusNumberString(String numberString) throws IllegalArgumentException {
+        // 값이 없는 경우
+        if (numberString.isEmpty()) {
+            throw new IllegalArgumentException(ErrorStatus.NO_VALUE.getMessage());
+        }
 
         // 숫자만으로 구성되었는지 확인
         numberString = numberString.trim();
