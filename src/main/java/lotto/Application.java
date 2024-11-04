@@ -14,5 +14,7 @@ public class Application {
         List<Integer> winningNumbers = WinningNumberInput.requestWinningNumbers();
         int bonusNumber = BonusNumberInput.requestBonusNumber(winningNumbers);
 
+        LottoResultChecker.checkLottoResults(lottos, winningNumbers, bonusNumber);
+
     }
 }
