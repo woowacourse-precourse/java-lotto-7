@@ -13,7 +13,6 @@ public class RandomLotto {
     private static RandomLotto instance;
     private final List<List<Integer>> randomLottos;
     private final Map<Prise, Integer> prizeCount;
-    IOManager ioManager;
 
     private RandomLotto() {
         randomLottos = new ArrayList<>();
@@ -51,8 +50,7 @@ public class RandomLotto {
             List<Integer> lotto = pickNewLotto();
             randomLottos.add(lotto);
         }
-
-        ioManager.printNewLotto(cnt, randomLottos);
+        new IOManager().printNewLotto(cnt, randomLottos);
     }
 
     public void lottoCheck(Lotto lotto, int bonusNumber) {
@@ -63,7 +61,9 @@ public class RandomLotto {
             boolean bonus = bonusCheck(randomLotto, bonusNumber);
             Prise prise = priseCheck(cnt, bonus);
 
-            prizeCount.put(prise, prizeCount.get(prise) + 1);
+            if (prise != null) {
+                prizeCount.put(prise, prizeCount.get(prise) + 1);
+            }
         }
     }
 
@@ -100,18 +100,10 @@ public class RandomLotto {
         int totalPrize = 0;
 
         for (Prise prize : Prise.values()) {
-            int cnt = prize.getMatch();
+            int cnt = prizeCount.getOrDefault(prize, 0);
             int money = prize.getMoney();
             totalPrize += cnt * money;
         }
-
-        return roundUp(totalPrize , lottoCount);
-    }
-
-    public double roundUp(int totalPrize, int lottoCount) {
-        double rate = (double) totalPrize / lottoCount;
-        BigDecimal roundedValue = new BigDecimal(rate).setScale(2, RoundingMode.HALF_UP);
-
-        return roundedValue.doubleValue();
+        return (double) totalPrize / lottoCount * 100;
     }
 }

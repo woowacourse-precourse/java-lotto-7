@@ -2,8 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +23,7 @@ public class IOManager {
         List<Integer> winningNumbers = new ArrayList<>();
 
         for (String number : numbersString) {
-            int numberInt = integerParser(number);
+            int numberInt = integerParser(number.trim());
             winningNumbers.add(numberInt);
         }
 
@@ -65,9 +63,23 @@ public class IOManager {
         printL("---");
         Map<Prise, Integer> prizeCount = randomLotto.getPrizeCount();
         for (Prise prize : Prise.values()) {
-            printL(prize.getMatch() + "개 일치: " + prize.getMoneyString() + " - " + prizeCount.get(prize) + "개");
+            String message = messageBuilder(prize);
+            printL(message + prizeCount.get(prize) + "개");
         }
-        printL("총 수익률은 " + rate + "%입니다.");
+        printL("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");
+    }
+
+    public String messageBuilder(Prise prize) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(prize.getMatch());
+        sb.append("개 일치");
+        if (prize == Prise.SECOND) {
+            sb.append(", 보너스 볼 일치");
+        }
+        sb.append(" ");
+        sb.append(prize.getMoneyString());
+        sb.append(" - ");
+        return sb.toString();
     }
 
     public void printL(String message) {
