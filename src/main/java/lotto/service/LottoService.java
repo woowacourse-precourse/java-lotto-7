@@ -13,7 +13,7 @@ public class LottoService {
         this.lotto = lotto;
     }
 
-    public int calculateNumberOfLotteryTickets(String purchaseAmountInput) {
+    public static int calculateNumberOfLotteryTickets(String purchaseAmountInput) {
         PurchaseAmount.validateInput(purchaseAmountInput);
         int castedPurchaseAmount = PurchaseAmount.validatePurchaseAmount(purchaseAmountInput);
         int numberOfTickets = PurchaseAmount.calculateNumberOfLotteryTickets(castedPurchaseAmount);
@@ -21,9 +21,9 @@ public class LottoService {
         return numberOfTickets;
     }
 
-    public List<List<Integer>> makeLotteryTickets(int numberOfTickets) {
-        List<List<Integer>> lotteryTickets = lotto.generateLotteryTickets(numberOfTickets);
+    public static List<List<Integer>> makeLotteryTickets(int numberOfTickets) {
+        List<List<Integer>> lotteryTickets = Lotto.generateLotteryTickets(numberOfTickets);
         return lotteryTickets;
     }
-    
+
 }
