@@ -1,7 +1,13 @@
 package lotto;
 
+import lotto.controller.LottoGameController;
+import lotto.view.LottoGameView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoGameView lottoGameView = new LottoGameView();
+        LottoGameController lottoGameController = new LottoGameController(lottoGameView);
+
+        lottoGameController.playGame();
     }
 }
