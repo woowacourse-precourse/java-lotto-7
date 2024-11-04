@@ -18,19 +18,25 @@ public class Lotto {
         }
     }
 
-    public int countWinningNumber(List<Integer> winningNumbers){
+    public WinningCount countWinningNumber(List<Integer> winningNumbers, int bonusNumber){
         int count = 0;
 
         for (int idx = 0; idx < numbers.size(); idx++) {
             if(winningNumbers.contains(numbers.get(idx))){
                 count++;
+
             }
         }
+        boolean isBonusNumberMatched = checkBonusNumberMatch(bonusNumber);
 
-        return count;
+        if(isBonusNumberMatched){
+            count++;
+        }
+
+        return WinningCount.from(count, isBonusNumberMatched);
     }
 
-    public boolean checkBonusNumberMatch(int bonusNumber){
+    private boolean checkBonusNumberMatch(int bonusNumber){
         return numbers.contains(bonusNumber);
     }
 

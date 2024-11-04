@@ -21,10 +21,8 @@ public class Application {
         for (int i = 0; i < numOfLotto; i++) {
             Lotto lotto = lottos.get(i);
 
-            int numberOfWinningNumber = lotto.countWinningNumber(winningNumbers);
-            boolean isBonusMatched = lotto.checkBonusNumberMatch(bonusNumber);
+            WinningCount winningCount = lotto.countWinningNumber(winningNumbers, bonusNumber);
 
-            WinningCount winningCount = WinningCount.from(numberOfWinningNumber, isBonusMatched);
             if(winningCount == null) continue;
 
             lottoCountByWinning.put(winningCount, lottoCountByWinning.get(winningCount) + 1);
@@ -128,11 +126,11 @@ public class Application {
     private static double calculateRateOfGain(){
         double sumOfGain = 0;
 
-        for(WinningCount winningCount : lottoCountByWinning.keySet()){
-            sumOfGain = winningCount.getAmountToWin() * lottoCountByWinning.get(winningCount);
+        for(WinningCount winningCount : WinningCount.values()){
+            sumOfGain += winningCount.getAmountToWin() * lottoCountByWinning.get(winningCount);
         }
 
-        return Math.round(sumOfGain / amountToPurchase * 100.0) / 100.0;
+        return Math.round(sumOfGain / amountToPurchase * 10000.0) / 100.0;
     }
 
     private static void printResult(double rateOfGain){
@@ -142,7 +140,7 @@ public class Application {
         String result;
         NumberFormat formatter = NumberFormat.getInstance();
 
-        for (WinningCount winningCount:lottoCountByWinning.keySet()){
+        for (WinningCount winningCount:WinningCount.values()){
             result = "";
 
             result += winningCount.getCountOfWinningNumber() + "개 일치";
@@ -156,6 +154,6 @@ public class Application {
             System.out.println(result);
         }
 
-        System.out.println("총 수익률은" + rateOfGain + "%입니다.");
+        System.out.println("총 수익률은 " + rateOfGain + "%입니다.");
     }
 }
