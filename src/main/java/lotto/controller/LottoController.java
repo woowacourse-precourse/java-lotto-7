@@ -21,8 +21,6 @@ public class LottoController {
     public LottoController() {
         this.purchasePrice = InputParser.parsePurchasePrice(LottoView.inputPurchasePrice());
         this.turn = purchasePrice / PRICE;
-        this.winningNumbers = InputParser.parseWinningNumbers(LottoView.inputWinningNumbers());
-        this.bonusNumber = InputParser.parseBonusNumber(LottoView.inputBonusNumber());
         results = new HashMap<>();
         for (WinningState state : WinningState.values()) {
             results.put(state.name(), 0);
@@ -36,6 +34,11 @@ public class LottoController {
         for (int i = 0; i < turn; i++) {
             lottos[i] = new Lotto(RandomNumbersGenerator.create());
             LottoView.printLotto(lottos[i].toString());
+        }
+        this.winningNumbers = InputParser.parseWinningNumbers(LottoView.inputWinningNumbers());
+        this.bonusNumber = InputParser.parseBonusNumber(LottoView.inputBonusNumber());
+
+        for (int i = 0; i < turn; i++) {
             String result = lottos[i].checkWinner(winningNumbers, bonusNumber);
             int count = results.get(result);
             results.put(result, ++count);
