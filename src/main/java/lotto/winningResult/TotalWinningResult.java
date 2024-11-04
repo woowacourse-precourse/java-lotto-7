@@ -42,4 +42,24 @@ public class TotalWinningResult {
 
         return initialMap;
     }
+
+    public Map<String, Long> getPrintableWinningResultMap() {
+        Map<WinningResultInfo, Long> initialMap = Arrays.stream(WinningResultInfo.values())
+                .collect(Collectors.toMap(
+                        Function.identity(),
+                        v -> 0L
+                ));
+
+        Map<WinningResultInfo, Long> winningResult = winningResultInfos.stream()
+                .collect(groupingBy(
+                        Function.identity(),
+                        counting()
+                ));
+
+        initialMap.putAll(winningResult);
+
+        return initialMap.entrySet().stream()
+                .collect(Collectors.toMap(entry -> entry.getKey().getDescription(),
+                        Map.Entry::getValue));
+    }
 }
