@@ -9,6 +9,7 @@ public enum LottoPrice {
     SIX_WINNING_PRICE(2000000000);
 
     private final int price;
+
     LottoPrice(int price) {
         this.price = price;
     }

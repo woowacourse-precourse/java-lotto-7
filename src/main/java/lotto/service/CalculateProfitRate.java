@@ -17,7 +17,7 @@ public class CalculateProfitRate {
         return calculateNetProfit() / purchaseAmount * 100.0;
     }
 
-    private double calculateNetProfit () {
+    private double calculateNetProfit() {
         double netProfit = 0;
         for (Map.Entry<String, Integer> entry : winningLotto.entrySet()) {
             Integer prize = prizes.get(entry.getKey());

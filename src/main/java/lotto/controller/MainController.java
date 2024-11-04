@@ -48,7 +48,7 @@ public class MainController {
     }
 
     private void inputWinningNumbers() {
-        while(true){
+        while (true) {
             try {
                 winningNumbers = new Lotto(InputView.inputLottoNumbers());
                 return;
@@ -59,7 +59,7 @@ public class MainController {
     }
 
     private void inputBonusNumber() {
-        while(true){
+        while (true) {
             try {
                 bonusNumber = InputView.inputLottoBonusNumber(winningNumbers);
                 return;
