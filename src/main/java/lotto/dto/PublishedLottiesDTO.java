@@ -6,8 +6,8 @@ import lotto.domain.Lotto;
 import lotto.domain.Ticket;
 
 public class PublishedLottiesDTO {
-    private Lotties randomLotties;
-    private Ticket publishedTicket;
+    private final Lotties randomLotties;
+    private final Ticket publishedTicket;
 
     private PublishedLottiesDTO(Lotties randomLotties, Ticket publishedTicket) {
         this.publishedTicket = publishedTicket;
