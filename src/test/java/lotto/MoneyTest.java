@@ -19,4 +19,10 @@ public class MoneyTest {
     void 잔돈의_유무를_알_수_있다(int amount, int price, boolean expected) {
         assertThat(new Money(amount).hasChangesWith(price)).isEqualTo(expected);
     }
+
+    @ParameterizedTest(name = "{0}으로 {1}짜리를 {2}개 살 수 있다")
+    @CsvSource(value = {"15000,1500,10", "10000,1100,9"}, delimiter = ',')
+    void 투입_금액으로_살_수_있는_양을_알_수_있다(int amount, int price, int expected) {
+        assertThat(new Money(amount).countAffordableFor(price)).isEqualTo(expected);
+    }
 }
