@@ -33,11 +33,15 @@ public class Buyer {
     public int getMatchCount(List<Integer> winningNumber, Lotto lotto) {
         int matchCount = 0;
         for (int number : lotto.getNumbers()) {
-            if (winningNumber.contains(number)) {
+            if (hasWinningNumber(winningNumber, number)) {
                 matchCount++;
             }
         }
         return matchCount;
+    }
+
+    public boolean hasWinningNumber(List<Integer> winningNumber, int number) {
+        return winningNumber.contains(number);
     }
 
     public boolean hasBonusNumber(int number, Lotto lotto) {
