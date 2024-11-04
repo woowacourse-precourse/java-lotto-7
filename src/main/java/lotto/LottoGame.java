@@ -33,7 +33,7 @@ public class LottoGame {
             checkUnitOfPurchaseAmount(purchaseAmount);
             checkPurchasedAmountExceeded(purchaseAmount);
 
-            lottoIssuance(purchaseAmount);
+            lottoIssuance(lottoIssuesCount(purchaseAmount));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             purchaseAmountInput();
@@ -131,10 +131,7 @@ public class LottoGame {
     }
 
     // 금액에 맞게 로또를 발급하는 메서드
-    public void lottoIssuance(int purchaseAmount) {
-        int numberOfLottoPurchases = purchaseAmount / MIN_LOTTO_PRICE;
-        System.out.println("\n" + numberOfLottoPurchases + "개를 구매했습니다.");
-
+    public void lottoIssuance(int numberOfLottoPurchases) {
         for (int i = 0; i < numberOfLottoPurchases; i++) {
             List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(randomNumbers);
@@ -144,5 +141,10 @@ public class LottoGame {
         for (List<Integer> lottoNumber : lottoNumbers) {
             System.out.println(lottoNumber);
         }
+    }
+
+    // 구입 금액에 맞는 로또 발급 건수를 계산하는 메서드
+    public int lottoIssuesCount(int purchaseAmount) {
+        return purchaseAmount / MIN_LOTTO_PRICE;
     }
 }
