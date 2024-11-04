@@ -1,8 +1,11 @@
 package lotto.domain;
 
 
+import static lotto.exception.printException.throwIllegalArgException;
+
 import java.util.ArrayList;
 import java.util.List;
+import lotto.exception.ErrorMessage;
 
 public class Game {
     private static final int LOTTO_MAX_COUNT = 100;
@@ -72,7 +75,7 @@ public class Game {
 
     private void validateLottoMaxCount(List<Lotto> lottos) {
         if (lottos.size() > LOTTO_MAX_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또는 최대 100개까지만 발행할 수 있습니다.");
+            throwIllegalArgException(ErrorMessage.MAX_LOTTO_COUNT_ERROR);
         }
     }
 }
