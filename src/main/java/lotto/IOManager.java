@@ -2,17 +2,21 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class IOManager {
     RandomLotto randomLotto = RandomLotto.getInstance();
 
-    public void moneyInput() {
+    public int moneyInput() {
         printL("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         int money = integerParser(input);
         randomLotto.countCalculator(money);
+        return money;
     }
 
     public List<Integer> numbersInput() {
@@ -54,6 +58,16 @@ public class IOManager {
         }
         sb.append("]");
         printL(sb.toString());
+    }
+
+    public void printPrizeCount(double rate) {
+        printL("당첨 통계");
+        printL("---");
+        Map<Prise, Integer> prizeCount = randomLotto.getPrizeCount();
+        for (Prise prize : Prise.values()) {
+            printL(prize.getMatch() + "개 일치: " + prize.getMoneyString() + " - " + prizeCount.get(prize) + "개");
+        }
+        printL("총 수익률은 " + rate + "%입니다.");
     }
 
     public void printL(String message) {

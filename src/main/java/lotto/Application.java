@@ -7,10 +7,13 @@ public class Application {
         RandomLotto randomLotto = RandomLotto.getInstance();
         IOManager ioManager = new IOManager();
 
-        ioManager.moneyInput();
+        int inputMoney = ioManager.moneyInput();
         List<Integer> numbers = ioManager.numbersInput();
         Lotto lotto = new Lotto(numbers);
         int bonusNumber = ioManager.bonusInput();
 
+        randomLotto.lottoCheck(lotto, bonusNumber);
+        double rate = randomLotto.winningRateCalculator(inputMoney);
+        ioManager.printPrizeCount(rate);
     }
 }
