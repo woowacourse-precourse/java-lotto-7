@@ -18,7 +18,8 @@ public class UserLottos {
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount == 0 || purchaseAmount % LottoInfo.PRICE.getInfo() != 0) {
+        boolean condition = purchaseAmount > 0 && purchaseAmount % LottoInfo.PRICE.getInfo() == 0;
+        if (!condition) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_THOUSAND_UNIT_ERROR.getMessage());
         }
     }
