@@ -106,7 +106,7 @@
 
 ### **view**
 - InputView - 사용자로부터 문자열 입력
-- OutputView - 모든 출력 시스템 담당
+- OutputView - 출력 시스템 담당
   
 ### **model**
 - LottoExchanger - 사용자가 입력한 금액을 기반으로 로또 구매 횟수로 반환
