@@ -25,6 +25,7 @@ class LottoStatisticsTest {
         Map<LottoPrize, Integer> prizeCount = lottoStatistics.getPrizeCount();
         double rateOfReturn = lottoStatistics.getRateOfReturn();
 
+        // then
         Assertions.assertThat(prizeCount.get(LottoPrize.FIRST)).isEqualTo(1);
         Assertions.assertThat(prizeCount.get(LottoPrize.SECOND)).isEqualTo(1);
         Assertions.assertThat(prizeCount.get(LottoPrize.THIRD)).isEqualTo(3);
@@ -34,9 +35,11 @@ class LottoStatisticsTest {
 
     @Test
     void 로또_낱개_매칭_개수_테스트() {
+        // given
         Lotto purchased = new Lotto(List.of(1, 2, 3, 11, 22, 33));
         Lotto winningLotto = new Lotto(List.of(1, 2, 33, 4, 5, 6));
 
+        // when & then
         Assertions.assertThat(LottoStatistics.calcMatchCount(purchased, winningLotto)).isEqualTo(3);
     }
 }
