@@ -16,25 +16,22 @@ public class LottoController {
     }
 
     public void run() {
-        try {
-            int purchaseAmount = handlePurchaseAmountInput();  // Step 1: 구입 금액 입력 및 검증
-            List<Lotto> lottos = handleLottoGeneration(purchaseAmount); // Step 2: 티켓 개수에 맞게 로또 생성
-            List<Integer> winningNumbers = handleWinningNumbersInput(); // Step 3: 당첨 번호 입력 및 검증
-            int bonusNumber = handleBonusNumberInput(winningNumbers); // Step 4: 보너스 번호 입력 및 검증
-            handleLottoResults(lottos, winningNumbers, bonusNumber, purchaseAmount); // Step 5: 로또 결과 계산 및 출력
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-        }
+        int purchaseAmount = handlePurchaseAmountInput();  // Step 1: 구입 금액 입력 및 검증
+        List<Lotto> lottos = handleLottoGeneration(purchaseAmount); // Step 2: 티켓 개수에 맞게 로또 생성
+        List<Integer> winningNumbers = handleWinningNumbersInput(); // Step 3: 당첨 번호 입력 및 검증
+        int bonusNumber = handleBonusNumberInput(winningNumbers); // Step 4: 보너스 번호 입력 및 검증
+        handleLottoResults(lottos, winningNumbers, bonusNumber, purchaseAmount); // Step 5: 로또 결과 계산 및 출력
     }
 
     private int handlePurchaseAmountInput() {
-        OutputView.promptPurchaseAmount();
-        String purchaseAmountInput = InputView.requestPurchaseAmount();
-        try {
-            return lottoService.validateAndParsePurchaseAmount(purchaseAmountInput);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return -1;
+        while (true) {
+            try {
+                OutputView.promptPurchaseAmount();
+                String purchaseAmountInput = InputView.requestPurchaseAmount();
+                return lottoService.validateAndParsePurchaseAmount(purchaseAmountInput);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 
@@ -46,24 +43,26 @@ public class LottoController {
     }
 
     private List<Integer> handleWinningNumbersInput() {
-        OutputView.promptWinningNumbersInput();
-        String winningNumbersInput = InputView.requestWinningNumbers();
-        try {
-            return lottoService.validateAndParseWinningNumbers(winningNumbersInput);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return null;
+        while (true) {
+            try {
+                OutputView.promptWinningNumbersInput();
+                String winningNumbersInput = InputView.requestWinningNumbers();
+                return lottoService.validateAndParseWinningNumbers(winningNumbersInput);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 
     private int handleBonusNumberInput(List<Integer> winningNumbers) {
-        OutputView.promptBonusNumberInput();
-        String bonusNumberInput = InputView.requestBonusNumber();
-        try {
-            return lottoService.validateAndParseBonusNumber(bonusNumberInput, winningNumbers);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return -1;
+        while (true) {
+            try {
+                OutputView.promptBonusNumberInput();
+                String bonusNumberInput = InputView.requestBonusNumber();
+                return lottoService.validateAndParseBonusNumber(bonusNumberInput, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 
