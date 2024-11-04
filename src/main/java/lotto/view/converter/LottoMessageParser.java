@@ -19,11 +19,9 @@ public class LottoMessageParser implements MessageParser<Lotto> {
     @Override
     public List<Integer> toNumbers(String message) {
         List<String> numbersString = List.of(message.split(NUMBER_SEPARATOR_TO_OBJECT));
-        List<Integer> numbers = numbersString.stream()
+        return numbersString.stream()
                 .map(NumberParser::toInt)
                 .toList();
-
-
     }
 
     private String toMessage(Lotto lotto) {
