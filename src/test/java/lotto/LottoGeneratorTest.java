@@ -1,5 +1,6 @@
 package lotto;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -36,12 +37,14 @@ public class LottoGeneratorTest {
     @DisplayName("로또 번호가 오름차순으로 정렬되는지 확인")
     @Test
     void 로또_번호가_오름차순으로_정렬되는지_확인() {
-        int lottoCount = 1;
-
-        List<Lotto> lottos = lottoGenerator.generateLottos(lottoCount);
-        List<Integer> numbers = lottos.get(0).getNumbers();
-
-        assertThat(numbers).isSorted();
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    List<Lotto> lottos = lottoGenerator.generateLottos(1);
+                    List<Integer> numbers = lottos.get(0).getNumbers();
+                    assertThat(numbers).containsExactly(1, 2, 3, 4, 5, 6);
+                },
+                List.of(6, 3, 1, 4, 5, 2)
+        );
     }
 
     @DisplayName("요청한 수량만큼 로또를 생성하는지 확인")
