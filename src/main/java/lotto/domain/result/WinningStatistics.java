@@ -10,6 +10,9 @@ import lotto.domain.LottoRank;
 import lotto.domain.number.WinningNumbers;
 
 public class WinningStatistics {
+    private static final int INITIAL_COUNT = 0;
+    private static final int INCREMENT_COUNT = 1;
+
     private final Map<LottoRank, Integer> rankCounts;
 
     private WinningStatistics(Map<LottoRank, Integer> rankCounts) {
@@ -30,7 +33,7 @@ public class WinningStatistics {
     private static void updateRankCount(Lotto lotto, WinningNumbers winningNumbers,
                                         Map<LottoRank, Integer> rankCounts) {
         LottoRank rank = calculateRank(lotto, winningNumbers);
-        rankCounts.merge(rank, 1, Integer::sum);
+        rankCounts.merge(rank, INCREMENT_COUNT, Integer::sum);
     }
 
     private static LottoRank calculateRank(Lotto lotto, WinningNumbers winningNumbers) {
@@ -43,7 +46,7 @@ public class WinningStatistics {
     private static Map<LottoRank, Integer> initializeRankCounts() {
         Map<LottoRank, Integer> rankCounts = new EnumMap<>(LottoRank.class);
         Arrays.stream(LottoRank.values())
-                .forEach(rank -> rankCounts.put(rank, 0));
+                .forEach(rank -> rankCounts.put(rank, INITIAL_COUNT));
         return rankCounts;
     }
 

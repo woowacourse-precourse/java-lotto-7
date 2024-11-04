@@ -7,6 +7,8 @@ import lotto.domain.PurchaseAmount;
 import lotto.domain.number.WinningNumbers;
 
 public class LottoResult {
+    private static final double PERCENTAGE_MULTIPLIER = 100.0;
+
     private final WinningStatistics statistics;
     private final PurchaseAmount purchaseAmount;
 
@@ -26,6 +28,6 @@ public class LottoResult {
 
     public double calculateProfitRate() {
         long totalPrize = statistics.calculateTotalPrize();
-        return (totalPrize * 100.0) / purchaseAmount.getAmount();
+        return (totalPrize * PERCENTAGE_MULTIPLIER) / purchaseAmount.getAmount();
     }
 }
