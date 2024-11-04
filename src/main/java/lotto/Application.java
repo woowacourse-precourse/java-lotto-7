@@ -71,7 +71,6 @@ public class Application {
     }
 
     private static Lotto getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> winningNumbers = parseNumbers();
         System.out.println();
         return new Lotto(winningNumbers);
@@ -79,13 +78,16 @@ public class Application {
 
     private static List<Integer> parseNumbers() {
         try {
-            List<Integer> numbers = Arrays.stream(Console.readLine().split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+            System.out.println("당첨 번호를 입력해 주세요.");
+            List<Integer> numbers = Arrays.stream(Console.readLine().split(",")).map(String::trim)
+                    .map(Integer::parseInt).collect(Collectors.toList());
+            LottoValidator.validateWinningNumbers(numbers);
             return numbers;
         } catch (NumberFormatException e) {
             printErrorMessage("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            return parseNumbers();
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
             return parseNumbers();
         }
     }
