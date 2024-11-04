@@ -50,4 +50,20 @@ class LottoMachineTest {
         assertThat(result.getResults().get(LottoRank.FIFTH)).isEqualTo(1); // 3개 일치
         assertThat(result.getResults().get(LottoRank.NONE)).isEqualTo(1);  // 0개 일치
     }
+
+    @DisplayName("로또 티켓이 보너스 번호를 맞춘 경우 로또 결과를 올바르게 계산한다.")
+    @Test
+    void 로또_티켓이_보너스_번호를_맞춘_경우_계산한다() {
+        List<Lotto> tickets = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7))
+        );
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        LottoResult result = lottoMachine.calculateResult(tickets, winningNumbers, bonusNumber);
+
+        assertThat(result.getResults().get(LottoRank.FIRST)).isEqualTo(1); // 6개 일치
+        assertThat(result.getResults().get(LottoRank.SECOND)).isEqualTo(1); // 5개 일치 + 보너스 볼 일치
+    }
 }
