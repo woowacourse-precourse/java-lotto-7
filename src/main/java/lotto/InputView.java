@@ -11,31 +11,50 @@ public class InputView {
     }
 
     public int buyLotto() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String amount = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String amount = Console.readLine();
 
-        inputValidator.validateBuyLotto(amount);
+                inputValidator.validateBuyLotto(amount);
 
-        return Integer.parseInt(amount);
+                return Integer.parseInt(amount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public String enterWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요");
-        String winningNumbers = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요");
+                String winningNumbers = Console.readLine();
 
-        inputValidator.validateWinningNumber(winningNumbers);
+                inputValidator.validateWinningNumber(winningNumbers);
 
-        return winningNumbers;
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int enterBonusNumber() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String bonusNumber = Console.readLine();
 
-        inputValidator.validateBonusNumber(bonusNumber);
+                inputValidator.validateBonusNumber(bonusNumber);
 
-        return Integer.parseInt(bonusNumber);
+                return Integer.parseInt(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
 }
