@@ -24,7 +24,7 @@ public class InputViewTest extends NsTest {
     @DisplayName("구입금액이 정수가 아닌경우")
     public void NotNumberBuyAmount() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("k"))
+                assertThatThrownBy(() -> runException("1000j"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(ErrorMessage.NOTNUMBERBUYAMOUNT.getMessage())
         );

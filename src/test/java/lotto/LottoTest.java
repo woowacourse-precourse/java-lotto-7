@@ -40,10 +40,18 @@ class LottoTest {
     @DisplayName("로또 번호 발행기능 테스트")
     public void createLotto() {
 
-        Lottos lottos = new Lottos(List.of("1", "2", "3", "4", "5", "6"), 2000, 1);
+        Lottos lottos = new Lottos(List.of("1", "2", "3", "4", "5", "6"), 2000, 7);
 
         lottos.generateLotto();
 
         assertThat(lottos.getLottos().size()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("당첨 번호와 보너스 번호 중복 테스트")
+    public void overlapBonusNumber() {
+        assertThatThrownBy(() -> new Lottos(List.of("1", "2", "3", "4", "5", "6"), 2000, 1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.OVERLAPBONUSNUMBER.getMessage());
     }
 }
