@@ -48,15 +48,8 @@ public class InputValidator {
             winningNumbers.add(converted);
         }
         checkSize(winningNumbers);
-        checkDuplicated(winningNumbers);
 
         return winningNumbers;
-    }
-
-    private static void checkDuplicated(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != new HashSet<>(winningNumbers).size()) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBERS);
-        }
     }
 
     private static void checkSize(List<Integer> winningNumbers) {
