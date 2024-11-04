@@ -15,10 +15,8 @@ public class LottoGenerator {
     return lottoPaper;
   }
 
-  public void printLotto(List<Lotto> lottoPaper)
-  {
-    for(Lotto lotto : lottoPaper)
-    {
+  public void printLotto(List<Lotto> lottoPaper) {
+    for (Lotto lotto : lottoPaper) {
       lotto.lottoToString();
     }
   }

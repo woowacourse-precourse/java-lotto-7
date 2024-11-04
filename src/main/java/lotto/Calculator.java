@@ -1,26 +1,59 @@
 package lotto;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Calculator {
 
-  private int purchaseCount;
-
-  private enum winningType{
-
+  public enum WinningType {
+    FIRST_PRIZE, SECOND_PRIZE, THIRD_PRIZE, FORTH_PRIZE, FIFTH_PRIZE
   }
 
-  private float winningStats;
+  private final Map<String, WinningType> winningConditions;
 
-  private float profitRate;
+  public Calculator() {
+    winningConditions = new HashMap<>();
+    winningConditions.put("6,false", WinningType.FIRST_PRIZE);
+    winningConditions.put("5,true", WinningType.SECOND_PRIZE);
+    winningConditions.put("5,false", WinningType.THIRD_PRIZE);
+    winningConditions.put("4,false", WinningType.FORTH_PRIZE);
+    winningConditions.put("3,false", WinningType.FIFTH_PRIZE);
+  }
 
-  private Input mola;
+  public WinningType calculateWinningSize(Lotto lotto, int[] winningNumbers, int bonusNumber) {
+    int matchCount = lotto.countMatchingNumbers(winningNumbers);
+    boolean bonusMatch = lotto.matchBonusNumber(bonusNumber);
+    String key = matchCount + "," + bonusMatch;
+    return winningConditions.getOrDefault(key, null); // 기본값 null 설정
+  }
 
+  public PrizeCounter calculatePrizes(List<Lotto> lottoPaper,
+      LottoWinningNumbers lottoWinningNumbers) {
+    PrizeCounter prizeCounter = new PrizeCounter();
+    for (Lotto lotto : lottoPaper) {
+      WinningType result = calculateWinningSize(
+          lotto,
+          lottoWinningNumbers.getWinningNumber(),
+          lottoWinningNumbers.getBonusNumber()
+      );
+      if (result != null) {
+        prizeCounter.incrementPrizeCount(result);
+      }
+    }
+    return prizeCounter;
+  }
 
-  public int calculatePurchaseCount(int purchaseCount){return 0;}
+  public float CalculateProfit(PurchaseAmount purchaseAmount, PrizeCounter prizeCounter) {
+    int totalPrizeMoney = 0;
+    totalPrizeMoney += prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 2_000_000_000;
+    totalPrizeMoney += prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 30_000_000;
+    totalPrizeMoney += prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE) * 1_500_000;
+    totalPrizeMoney += prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE)* 50_000;
+    totalPrizeMoney += prizeCounter.getPrizeCount().get(Calculator.WinningType.SECOND_PRIZE)* 5_000;
+    int totalSpent = purchaseAmount.getPurchaseQuantity() * 1000;
+    return ((float) totalPrizeMoney / totalSpent) * 100;
+  }
 
-  private String assignWinningType(Lotto lotto){ return ""; }
-
-  private String assignWinningStats(Lotto lotto){return "";}
-
-  private String assignProfitRate(Lotto lotto){return "";}
 
 }
