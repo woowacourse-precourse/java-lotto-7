@@ -23,7 +23,7 @@ class LottoBankTest {
         BonusNumber bonusNumber = new BonusNumber(12);
         LottoBank lottoBank = new LottoBank();
         LottoResult lottoResult = lottoBank.evaluate(winningLotto, myLottos, bonusNumber);
-        assertThat(lottoResult.getResult())
+        assertThat(lottoResult).extracting("prizes")
                 .isEqualTo(List.of(Prize.THIRD_PRIZE, Prize.THIRD_PRIZE, Prize.THIRD_PRIZE, Prize.THIRD_PRIZE,
                         Prize.THIRD_PRIZE, Prize.THIRD_PRIZE));
     }
@@ -42,9 +42,16 @@ class LottoBankTest {
         BonusNumber bonusNumber = new BonusNumber(12);
         LottoBank lottoBank = new LottoBank();
         LottoResult lottoResult = lottoBank.evaluate(winningLotto, myLottos, bonusNumber);
-        assertThat(lottoResult.getResult())
-                .isEqualTo(List.of(Prize.FIRST_PRIZE, Prize.NO_PRIZE, Prize.NO_PRIZE, Prize.NO_PRIZE,
-                        Prize.NO_PRIZE, Prize.NO_PRIZE));
+        assertThat(lottoResult)
+                .extracting("prizes")
+                .isEqualTo(
+                        List.of(Prize.FIRST_PRIZE,
+                                Prize.NO_PRIZE,
+                                Prize.NO_PRIZE,
+                                Prize.NO_PRIZE,
+                                Prize.NO_PRIZE,
+                                Prize.NO_PRIZE)
+                );
     }
 
     @DisplayName("복권 5개 중 1개가 1등에 당첨됬을 경우")
