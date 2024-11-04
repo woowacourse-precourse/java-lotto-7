@@ -23,6 +23,7 @@ public class InputView {
     }
 
     public int readBonusNumber() {
+        System.out.println();
         System.out.println(BONUS_NUMBER_MESSAGE);
         return inputHandler.getBonusNumber();
     }
