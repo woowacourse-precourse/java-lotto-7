@@ -188,6 +188,18 @@
 - [x] 추첨한 로또의 번호를 가져오는 기능 (getWinningNumbers)
 - [x] 추첨한 로또의 보너스 번호를 가져오는 기능 (getBonusNumber)
 
+### WinningStatistics
+
+- [x] 당첨 결과 통계 객체를 생성하는 기능 (of)
+- [x] 당첨 결과를 통계에 적용하는 기능 (calculateWinningStatistics)
+- [x] 수익률을 반환하는 기능 (getReturnRate)
+  - 백분율로 표현한다.
+  - 소수 둘째 자리에서 반올림한다.
+- [x] 통계 자료를 반환하는 기능 (getStatistics)
+- [x] 당첨 결과 통계를 문자열로 출력하는 기능 (toString)
+  - 등수를 오름차순으로(일치한 번호 수의 내림차순)으로 정렬한다.
+  - 당첨되지 않은 결과를 출력하지 않는다.
+
 ---
 
 # 예외 목록
