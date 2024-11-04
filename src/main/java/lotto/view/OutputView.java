@@ -49,6 +49,8 @@ public class OutputView {
 		stringBuilder.append(winningResults.winningResults().stream()
 				.map(this::getWinningResult)
 				.collect(Collectors.joining()));
+		stringBuilder.append(getProfitRateMessage(winningResults.profitRate()));
+		System.out.println(stringBuilder);
 	}
 
 	private String getLottoCountMessage(int count) {
