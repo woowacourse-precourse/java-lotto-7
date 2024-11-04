@@ -28,5 +28,20 @@ class LottoTest {
         assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호의 개수가 6보다 작으면 예외가 발생한다.")
+    @Test
+    void 적은_당첨_번호_개수_예외_테스트() {
+        assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호의 개수가 6보다 크면 예외가 발생한다.")
+    @Test
+    void 많은_당첨_번호_개수_예외_테스트() {
+        assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
 
