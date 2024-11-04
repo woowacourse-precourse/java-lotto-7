@@ -3,6 +3,8 @@ package lotto.presentation;
 import static lotto.common.ExceptionMessage.INVALID_NUMBER_FORMAT;
 
 import java.util.List;
+import lotto.common.validator.LottoResultValidator;
+import lotto.common.validator.LottoValidator;
 import lotto.domain.IssuedLotto;
 import lotto.domain.LottoResult;
 import lotto.dto.LottoStatisticsDto;
@@ -34,10 +36,7 @@ public class LottoController {
     private IssuedLotto purchaseAmountProcess() {
         try {
             String purchaseAmount = inputView.getValidPurchaseAmount();
-            return lottoService.createIssuedRandomLotto(Integer.parseInt(purchaseAmount));
-        } catch (NumberFormatException e) {
-            System.out.println(INVALID_NUMBER_FORMAT.getMessage());
-            return purchaseAmountProcess();
+            return lottoService.createIssuedRandomLotto(parseToInt(purchaseAmount));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return purchaseAmountProcess();
@@ -46,18 +45,35 @@ public class LottoController {
 
     private LottoResult lottoResultProcess() {
         try {
-            List<String> inputWinningNumbers = inputView.getValidWinningNumbers();
-            List<Integer> winningNumbers = inputWinningNumbers.stream()
-                    .map(winningNumber -> Integer.parseInt(winningNumber))
-                    .toList();
-            String inputBonusNumber = inputView.getValidBonusNumber(winningNumbers);
-            return lottoService.createLottoResult(winningNumbers, Integer.parseInt(inputBonusNumber));
-        } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
-            return lottoResultProcess();
+            List<Integer> winningNumbers = winningNumbersProcess();
+            int bonusNumber = bonusNumberProcess(winningNumbers);
+            return lottoService.createLottoResult(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return lottoResultProcess();
+        }
+    }
+
+    private List<Integer> winningNumbersProcess() {
+        List<String> inputWinningNumbers = inputView.getValidWinningNumbers();
+        List<Integer> winningNumbers = inputWinningNumbers.stream()
+                .map(winningNumber -> Integer.parseInt(winningNumber))
+                .toList();
+        LottoValidator.validate(winningNumbers);
+        return winningNumbers;
+    }
+
+    private int bonusNumberProcess(List<Integer> winningNumbers) {
+        String inputBonusNumber = inputView.getValidBonusNumber(winningNumbers);
+        LottoResultValidator.bonusNumberValidate(parseToInt(inputBonusNumber), winningNumbers);
+        return parseToInt(inputBonusNumber);
+    }
+
+    private int parseToInt(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 }

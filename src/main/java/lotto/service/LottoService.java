@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import lotto.common.RandomNumberGenerator;
+import lotto.common.validator.LottoResultValidator;
 import lotto.domain.IssuedLotto;
 import lotto.domain.IssuedRandomLotto;
 import lotto.domain.LottoProfitCalculator;
