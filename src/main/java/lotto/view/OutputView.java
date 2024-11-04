@@ -4,6 +4,7 @@ import static lotto.domain.LottosResult.*;
 import static lotto.domain.Rank.*;
 import static lotto.message.ViewMessage.*;
 
+import java.sql.SQLOutput;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -15,6 +16,7 @@ public class OutputView {
     public static final String PRINT_LOTTO_NUMBER_FORMAT_SUFFIX = "]";
 
     public static void printLottosResult(LottosResult lottoResult) {
+        System.out.println();
         System.out.println(OUTPUT_RESULT_TITLE.getMessage());
         System.out.println(FIFTH.format(lottoResult.get(FIFTH.getName())));
         System.out.println(FOURTH.format(lottoResult.get(FOURTH.getName())));
@@ -27,9 +29,10 @@ public class OutputView {
         System.out.printf(OUTPUT_LOTTOS_RETURNS.getMessage(), returnsByLottos);
     }
     public static void printLottosInfo(Lottos lottos) {
+        System.out.println();
         System.out.println(OUTPUT_LOTTOS_COUNT.format(lottos.getLotto().size()));
 
-        for (Lotto lotto : lottos.getLotto())
+        for (Lotto lotto : lottos.getLotto()){
             System.out.println(
                     PRINT_LOTTO_NUMBER_FORMAT_PREFIX+
                     lotto.getNumbers().stream()
@@ -37,5 +40,7 @@ public class OutputView {
                     .map(String::valueOf)
                     .collect(Collectors.joining(LOTTO_NUMBER_JOINNING_MARK))
                     +PRINT_LOTTO_NUMBER_FORMAT_SUFFIX);
+        }
+        System.out.println();
     }
 }

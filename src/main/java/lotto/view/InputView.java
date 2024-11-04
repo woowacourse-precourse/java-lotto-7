@@ -46,6 +46,7 @@ public class InputView {
     }
 
     public static int readBonusNumber(Lotto lotto) {
+        System.out.println();
         System.out.println(INPUT_BONUS_NUMBER.getMessage());
         int bonusNumber;
         try {
