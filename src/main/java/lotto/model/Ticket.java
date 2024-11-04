@@ -1,3 +1,4 @@
 package lotto.model;
 
-public record Ticket(int ticketCount) {}
+public record Ticket(int ticketCount) {
+}

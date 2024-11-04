@@ -22,18 +22,18 @@ public class WinningNumberGenerator {
     private List<Integer> convertWinningNumbers(List<String> rawWinningNumbers) {
         try {
             return rawWinningNumbers.stream().map(Integer::parseInt).toList();
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
                     + ErrorMessage.INVALID_NUMBER.getError());
         }
     }
 
-    private void validate(String rawWinningNumbers){
+    private void validate(String rawWinningNumbers) {
         validateFormat(rawWinningNumbers);
     }
 
-    private void validateFormat(String rawWinningNumbers){
-        if(!rawWinningNumbers.matches(Regex.ONLY_DIGIT_WITH_COMMA.getRegex())){
+    private void validateFormat(String rawWinningNumbers) {
+        if (!rawWinningNumbers.matches(Regex.ONLY_DIGIT_WITH_COMMA.getRegex())) {
             throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
                     + ErrorMessage.WINNING_NUMBER_FORMAT.getError());
         }

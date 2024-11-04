@@ -13,23 +13,23 @@ public class OutputView {
         this.io = io;
     }
 
-    public void printTicketCount(int ticketCount){
+    public void printTicketCount(int ticketCount) {
         io.printMessage(ticketCount + Message.TICKET_PURCHASE_RESULT.getSentence());
     }
 
-    public void printStaticsFormat(){
+    public void printStaticsFormat() {
         io.printMessage(Message.STATICS.getSentence());
         io.printMessage(Message.THREE_DASH.getSentence());
     }
 
-    public void printWinningResult(int matchCount, int prize, int rankCount){
+    public void printWinningResult(int matchCount, int prize, int rankCount) {
         String formattedPrize = NumberFormat.getInstance().format(prize);
-        if(prize == Rank.SECOND.getPrize()){
+        if (prize == Rank.SECOND.getPrize()) {
             io.printMessage(matchCount + Message.MATCH_COUNT_WITH_BONUS_NUMBER.getSentence()
                     + formattedPrize + Message.MONEY_UNIT.getSentence() + rankCount + Message.COUNT_UNIT.getSentence());
         }
-        if(prize != Rank.SECOND.getPrize()){
-            io.printMessage(matchCount +Message.MATCH_COUNT.getSentence()
+        if (prize != Rank.SECOND.getPrize()) {
+            io.printMessage(matchCount + Message.MATCH_COUNT.getSentence()
                     + formattedPrize + Message.MONEY_UNIT.getSentence() + rankCount + Message.COUNT_UNIT.getSentence());
         }
     }

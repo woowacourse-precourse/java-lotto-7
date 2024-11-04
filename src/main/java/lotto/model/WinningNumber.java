@@ -21,8 +21,8 @@ public class WinningNumber {
         return bonusNumber;
     }
 
-    private void validateDuplication(Lotto winningNumber, BonusNumber bonusNumber){
-        if(winningNumber.getNumbers().contains(bonusNumber.getBonusNumber())){
+    private void validateDuplication(Lotto winningNumber, BonusNumber bonusNumber) {
+        if (winningNumber.getNumbers().contains(bonusNumber.getBonusNumber())) {
             throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
                     + ErrorMessage.UNIQUE_BONUS_NUMBER.getError());
         }

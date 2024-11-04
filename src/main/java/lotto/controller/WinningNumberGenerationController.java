@@ -3,9 +3,6 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.WinningNumberGenerator;
 import lotto.temp.IoComponent;
-import lotto.temp.IoController;
-import lotto.util.CommonIo;
-import lotto.view.InputView;
 
 import static lotto.util.RepeatInput.repeatUntilValid;
 
@@ -23,7 +20,7 @@ public class WinningNumberGenerationController {
         return repeatUntilValid(() -> {
             String rawWinningNumbers = ioComponent.getIoController().inputWinningNumbers();
             return winningNumberGenerator.createWinningNumbers(rawWinningNumbers);
-        },ioComponent.getCommonIo());
+        }, ioComponent.getCommonIo());
     }
 
 }

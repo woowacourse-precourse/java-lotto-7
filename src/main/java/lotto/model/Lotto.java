@@ -15,11 +15,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto createUserLotto(List<Integer> numbers){
+    public static Lotto createUserLotto(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 
-    public static Lotto createWinningLotto(List<Integer> numbers){
+    public static Lotto createWinningLotto(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 
@@ -33,14 +33,14 @@ public class Lotto {
         return numbers;
     }
 
-    private void validateSize(List<Integer> numbers){
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != Limit.LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
                     + ErrorMessage.LOTTO_NUMBER_COUNT.getError());
         }
     }
 
-    private void validateUnique(List<Integer> numbers){
+    private void validateUnique(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
                     + ErrorMessage.UNIQUE_LOTTO_NUMBER.getError());
@@ -48,8 +48,8 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        if(numbers.stream().anyMatch(integer ->
-                integer < Limit.MIN_LOTTO_NUMBER.getValue() || integer > Limit.MAX_LOTTO_NUMBER.getValue())){
+        if (numbers.stream().anyMatch(integer ->
+                integer < Limit.MIN_LOTTO_NUMBER.getValue() || integer > Limit.MAX_LOTTO_NUMBER.getValue())) {
             throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
                     + ErrorMessage.LOTTO_NUMBER_RANGE.getError());
         }

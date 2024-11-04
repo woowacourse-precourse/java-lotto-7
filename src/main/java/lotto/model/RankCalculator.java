@@ -9,10 +9,10 @@ import java.util.Map;
 public class RankCalculator {
     public List<Rank> compareLottos(List<Lotto> lottos, WinningNumber winningNumber) {
         return lottos.stream()
-                .map(lotto ->{
+                .map(lotto -> {
                     int matchedNumbersCount = compareSingleLotto(lotto, winningNumber);
-                        return determineRank(matchedNumbersCount,checkBonusNumber(lotto, winningNumber));
-                        })
+                    return determineRank(matchedNumbersCount, checkBonusNumber(lotto, winningNumber));
+                })
                 .toList();
     }
 
@@ -30,8 +30,8 @@ public class RankCalculator {
         return Rank.valueOf(matchCount, isBonusContain);
     }
 
-    public Map<Rank, Integer> finalRank(List<Rank> ranking){
-        Map<Rank,Integer> ranks = new HashMap<>();
+    public Map<Rank, Integer> finalRank(List<Rank> ranking) {
+        Map<Rank, Integer> ranks = new HashMap<>();
 
         for (Rank rank : Rank.values()) {
             ranks.put(rank, Limit.DEFAULT.getValue());

@@ -16,12 +16,12 @@ public class BonusNumber {
         return bonusNumber;
     }
 
-    private void validate(int bonusNumber){
+    private void validate(int bonusNumber) {
         validateRange(bonusNumber);
     }
 
-    private void validateRange(int bonusNumber){
-        if(bonusNumber < Limit.MIN_LOTTO_NUMBER.getValue() || bonusNumber > Limit.MAX_LOTTO_NUMBER.getValue()){
+    private void validateRange(int bonusNumber) {
+        if (bonusNumber < Limit.MIN_LOTTO_NUMBER.getValue() || bonusNumber > Limit.MAX_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(Message.ERROR_TAG.getSentence()
                     + ErrorMessage.BONUS_NUMBER_RANGE.getError());
         }

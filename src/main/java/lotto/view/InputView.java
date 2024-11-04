@@ -14,11 +14,11 @@ public class InputView {
         io.printMessage(Message.REQUEST_MONEY_INPUT.getSentence());
     }
 
-    public void printRequestWinningNumbers(){
+    public void printRequestWinningNumbers() {
         io.printMessage(Message.REQUEST_WINNING_NUMBER_INPUT.getSentence());
     }
 
-    public void printRequestBonusNumber(){
+    public void printRequestBonusNumber() {
         io.printMessage(Message.REQUEST_BONUS_NUMBER_INPUT.getSentence());
     }
 

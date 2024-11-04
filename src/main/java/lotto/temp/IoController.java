@@ -27,7 +27,7 @@ public class IoController {
         }
     }
 
-    public void printPurchaseLottoNumbers(List<Lotto> lottos){
+    public void printPurchaseLottoNumbers(List<Lotto> lottos) {
         lottos.forEach(lotto -> io.printMessage(lotto.getNumbers()));
     }
 
