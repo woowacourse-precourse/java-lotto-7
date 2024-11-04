@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import constants.ErrorMessage;
-import lotto.core.LottoNumber;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -26,6 +25,14 @@ public class LottoNumberTest {
         assertThatThrownBy(() -> LottoNumber.from(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_NUMBER_RANGE);
+    }
+
+    @Test
+    void 숫자로_바꿀_수_없는_문자일_때_예외() {
+        assertThatThrownBy(() -> LottoNumber.toLottoNumber("a"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ENTERED_INVALID_NUMBER);
+
     }
 
     @Test

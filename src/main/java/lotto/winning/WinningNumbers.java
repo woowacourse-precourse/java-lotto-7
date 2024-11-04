@@ -19,7 +19,7 @@ public class WinningNumbers {
 
     private List<LottoNumber> parse(String winningNumbers) {
         List<LottoNumber> lottoNumbers = splitBySeparator(winningNumbers).stream()
-                .map(this::toLottoNumber)
+                .map(LottoNumber::toLottoNumber)
                 .toList();
 
         LottoValidator.validate(lottoNumbers);
@@ -29,18 +29,6 @@ public class WinningNumbers {
 
     private List<String> splitBySeparator(String winningNumbers) {
         return Arrays.stream(winningNumbers.split(SEPARATOR)).toList();
-    }
-
-    private LottoNumber toLottoNumber(String textNumber) {
-        int number;
-
-        try {
-            number = Integer.parseInt(textNumber);
-        } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException(ErrorMessage.ENTERED_INVALID_NUMBER);
-        }
-
-        return LottoNumber.from(number);
     }
 
     public int countNumbers(List<LottoNumber> numbers) {
