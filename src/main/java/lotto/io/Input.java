@@ -1,11 +1,11 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.error.ErrorMessage;
-import lotto.domain.error.InputErrorMessage;
+import lotto.domain.errorMessage.ErrorMessage;
+import lotto.domain.errorMessage.InputErrorMessage;
 import lotto.Lotto;
-import lotto.LottoCondition;
-import lotto.LottoPrice;
+import lotto.domain.LottoCondition;
+import lotto.domain.LottoPrice;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,12 +1,13 @@
-package lotto;
+package domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.consumer.Consumer;
-import lotto.domain.error.ErrorMessage;
-import lotto.domain.error.InputErrorMessage;
-import lotto.domain.error.LottoErrorMessage;
+import lotto.Lotto;
+import lotto.domain.Consumer;
+import lotto.domain.errorMessage.ErrorMessage;
+import lotto.domain.errorMessage.InputErrorMessage;
+import lotto.domain.errorMessage.LottoErrorMessage;
 import lotto.io.InputMessage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,8 +16,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoMachin;
+import lotto.domain.LottoMachin;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

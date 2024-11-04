@@ -1,6 +1,7 @@
 package lotto;
 
-import lotto.domain.consumer.Consumer;
+import lotto.domain.WoowahanLottoCompany;
+import lotto.domain.Consumer;
 
 public class Application {
     public static void main(String[] args) {

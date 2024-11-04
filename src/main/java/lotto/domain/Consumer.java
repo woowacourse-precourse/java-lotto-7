@@ -1,9 +1,7 @@
-package lotto.domain.consumer;
+package lotto.domain;
 
-import lotto.domain.error.InputErrorMessage;
+import lotto.domain.errorMessage.InputErrorMessage;
 import lotto.Lotto;
-import lotto.LottoMachin;
-import lotto.LottoPrice;
 import lotto.domain.rank.MatchCount;
 import lotto.domain.rank.MatchCountCondition;
 import lotto.io.Output;

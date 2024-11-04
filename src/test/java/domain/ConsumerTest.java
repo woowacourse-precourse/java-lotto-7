@@ -1,11 +1,11 @@
-package domain.consumer;
+package domain;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.consumer.Consumer;
-import lotto.domain.error.InputErrorMessage;
+import lotto.domain.Consumer;
+import lotto.domain.errorMessage.InputErrorMessage;
 import lotto.Lotto;
 import lotto.io.Input;
 import java.io.ByteArrayInputStream;

@@ -1,6 +1,5 @@
-package lotto;
+package lotto.domain;
 
-import lotto.domain.consumer.Consumer;
 import lotto.io.Output;
 
 public class WoowahanLottoCompany {

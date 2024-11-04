@@ -1,4 +1,4 @@
-package lotto.domain.error;
+package lotto.domain.errorMessage;
 
 public enum InputErrorMessage {
     ONLY_NUMBERS_ALLOWED("입력값은 숫자만 허용됩니다. 21억보다 적은 숫자를 입력해주세요."),

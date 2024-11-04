@@ -1,4 +1,4 @@
-package lotto.domain.error;
+package lotto.domain.errorMessage;
 
 public enum ErrorMessage {
     EMPTY_MESSAGE("입력값이 비어있습니다."),

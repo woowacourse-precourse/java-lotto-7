@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.consumer.Consumer;
+import lotto.Lotto;
 import lotto.domain.rank.MatchCount;
 import lotto.io.Input;
 import lotto.io.InputMessage;
@@ -15,7 +15,9 @@ import lotto.strategy.LottoMatchCounter;
 import lotto.strategy.LottoMatchCounterImpl;
 
 public class LottoMachin {
-
+    private static final int PERCENTAGE_MULTIPLIER = 100;
+    private static final int ROUNDING_SCALE = 10;
+    private static final Long INIT_TOTAL_MONEY = 0L;
     private final LottoMatchCounter counter = new LottoMatchCounterImpl();
 
     public void sellTo(Consumer consumer) {
@@ -95,7 +97,7 @@ public class LottoMachin {
     }
 
     private Long calculatePriceTotalAs(Map<MatchCount, Integer> matchCountResult) {
-        Long totalPrice = 0L;
+        Long totalPrice = INIT_TOTAL_MONEY;
         for (Map.Entry<MatchCount, Integer> entrySet : matchCountResult.entrySet()) {
             if (entrySet.getValue() != 0) {
                 totalPrice += entrySet.getKey().getPriceMoney() * entrySet.getValue();
@@ -107,7 +109,7 @@ public class LottoMachin {
 
     // ((총 수익률) / (로또 구매 금액)) * 100
     public static Double calculateRounded(Long priceTotal, int purchasedLottoCount) {
-        double result = ((double) priceTotal / (purchasedLottoCount * LottoPrice.LOTTO_PRICE.getPrice())) * 100;
-        return Math.round(result * 10) / 10.0;
+        double result = ((double) priceTotal / (purchasedLottoCount * LottoPrice.LOTTO_PRICE.getPrice())) * PERCENTAGE_MULTIPLIER;
+        return Math.round(result * ROUNDING_SCALE) / (double)ROUNDING_SCALE;
     }
 }
