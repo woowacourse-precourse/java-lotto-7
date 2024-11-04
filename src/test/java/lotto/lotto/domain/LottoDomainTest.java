@@ -20,7 +20,6 @@ class LottoDomainTest {
         Assertions.assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
-    // 6자리 숫자가 아니면 Lotto 생성이 되지 않고 IllegalArgumentException을 던진다.
     @Test
     @DisplayName("Lotto 번호가 1과 45사이의 정수가 아니면 IllegalArgumentException을 던진다.")
     void createNumberOutboundExceptionTest() {
