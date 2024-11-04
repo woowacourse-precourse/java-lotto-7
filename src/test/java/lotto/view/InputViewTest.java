@@ -97,7 +97,6 @@ class InputViewTest {
     @Test
     void 보너스번호_숫자가아닌값_예외발생() {
         String input = "a";
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertThatThrownBy(() -> InputView.parseBonusNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
