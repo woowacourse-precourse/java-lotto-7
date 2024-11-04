@@ -37,10 +37,10 @@ public class LottoResult {
         return this.winningStatistics;
     }
 
-    public int profit(){
+    public long profit(){
 
         return winningStatistics.keySet().stream()
-                .mapToInt(correctStatus -> correctStatus.getReward() * winningStatistics.get(correctStatus))
+                .mapToLong(correctStatus -> (long) correctStatus.getReward() * winningStatistics.get(correctStatus))
                 .sum();
     }
 

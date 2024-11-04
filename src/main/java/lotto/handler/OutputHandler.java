@@ -28,7 +28,7 @@ public class OutputHandler {
         });
     }
 
-    public void printProfitRate(final int profit,final int money){
+    public void printProfitRate(final long profit,final int money){
         double profitRate = (double) profit / money * 100;
 
         DecimalFormat df = new DecimalFormat("#,###.0");
