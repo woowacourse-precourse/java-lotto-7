@@ -8,10 +8,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoRound {
+    private int issuedCount;
     private List<Lotto> lottos;
 
     private List<Integer> gradingNumbers;
     private int bonusNumbers;
+
+    private List<Integer> winHistory;
 
     public LottoRound() {
         this.lottos = new ArrayList<>();
@@ -44,7 +47,25 @@ public class LottoRound {
                     winHistory.set(i, wonHistoryCount + 1);
                 });
 
+        this.winHistory = winHistory;
         return winHistory;
+    }
+
+    /**
+     * 계산된 우승내역을 토대로 수익률을 계산합니다
+     *
+     * @return 소수점 둘째자리에서 반올림된 수익률
+     */
+    public float getProfitRate() {
+        int profit = 0;
+        int totalIssuePrice = issuedCount * LottoConstant.LOTTO_PRICE;
+
+        for (int i = 4; i >= 0; i--) {
+            int wonHistoryCount = this.winHistory.get(5 - i);
+            profit += LottoConstant.WINNING_PRIZE_VALUES[i] * wonHistoryCount;
+        }
+
+        return roundRate((float) profit / totalIssuePrice);
     }
 
     public void setWinNumbers(List<Integer> gradingNumbers, int bonusNumbers) {
@@ -62,6 +83,7 @@ public class LottoRound {
      * @param count 발행할 로또 수
      */
     public void issueLottoes(int count) {
+        this.issuedCount = count;
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(createLottoNumber());
             addLotto(lotto);
@@ -79,5 +101,14 @@ public class LottoRound {
                 LottoConstant.MAX_LOTTO_NUMBER,
                 LottoConstant.LOTTO_DIGITS
         );
+    }
+
+    /**
+     * 값을 소수 둘째자리에서 반올림합니다
+     * @param rate 반올림할 값
+     * @return 소수 둘째자리에서 반올림된 값
+     */
+    private float roundRate(float rate) {
+        return (float) Math.round(rate * 10) / 10;
     }
 }
