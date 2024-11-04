@@ -6,17 +6,17 @@ import java.util.List;
 
 // 결과 출력 용
 public enum Lottery {
-    THREE(3, false, "(5,000원)"),
-    FOUR(4, false, "(50,000원)"),
-    FIVE(5, false, "(1,500,000원)"),
-    FIVE_BONUS(5, true, ", 보너스 볼 일치 (30,000,000원)"),
-    SIX(6, false, "(2,000,000,000원)");
+    THREE(3, false, 5000),
+    FOUR(4, false, 50000),
+    FIVE(5, false, 1500000),
+    FIVE_BONUS(5, true, 30000000),
+    SIX(6, false, 2000000000);
 
     private final int match;
     private final boolean isBonus;
-    private final String price;
+    private final int price;
 
-    Lottery(int match, boolean isBonus, String price) {
+    Lottery(int match, boolean isBonus, int price) {
         this.match = match;
         this.isBonus = isBonus;
         this.price = price;
@@ -26,8 +26,12 @@ public enum Lottery {
         return match;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
+    }
+
+    public boolean getBonus() {
+        return isBonus;
     }
 
     public static Lottery getPriceByMatch(int match, boolean isBonus) {

@@ -30,19 +30,25 @@ public class LottoView {
 
     public static void printPurchaseCount(int count) {
         System.out.println(count + "개를 구매했습니다.");
+        System.out.println();
     }
 
     public static void printLottos(List<Integer> lotto) {
         System.out.println(lotto.toString());
     }
 
-    public static void printResult(HashMap<Lottery, Integer> result) {
+    public static void printResult(HashMap<Lottery, Integer> result, double price) {
+
+        System.out.println("당첨 통계\n---");
         List<Lottery> key = Lottery.getSortedByMatch();
 
         for(Lottery lottery : key) {
-            // 3개 일치 (5,000원) - 1개
-            System.out.println(lottery.getMatch() + "개 일치" + lottery.getPrice() + " - " + result.get(lottery) + "개");
+            if(lottery.getBonus()) {
+                System.out.println(String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", lottery.getMatch(), lottery.getPrice(), result.get(lottery)));
+                continue;
+            }
+            System.out.println(String.format("%d개 일치 (%,d원) - %d개", lottery.getMatch(), lottery.getPrice(), result.get(lottery)));
         }
-
+        System.out.println(String.format("총 수익률은 %,.1f%%입니다.", (price * 100)));
     }
 }

@@ -12,12 +12,16 @@ public class LottoController {
     private static List<Lotto> lottos = new ArrayList<>();
     private static Lotto winNumber;
     private static int bonusNumber;
+    private static int price = 0;
+    private static int winPrice = 0;
     private static HashMap<Lottery, Integer> result = new HashMap<>();
 
     // 로또 구매
     public void purchaseLottery() {
-        String price = LottoView.inputPrice();
-        createLotto(purchaseNumber(price));
+        String val = LottoView.inputPrice();
+        System.out.println();
+        Validator.priceValidate(val);
+        createLotto(purchaseNumber(val));
     }
 
     // 로또 번호 출력
@@ -38,14 +42,22 @@ public class LottoController {
 
         this.winNumber = new Lotto(winnings);
         String bonusNumber = LottoView.inputBonusNumber();
+        System.out.println();
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
     // 결과 출력
     public void result() {
-        LottoView.printResult(result);
+        resultInit();
+        winningMatch();
+        LottoView.printResult(result, winPrice/(double)price);
     }
 
+    private void resultInit() {
+        List<Lottery> key = Lottery.getSortedByMatch();
+        for(Lottery lottery : key)
+            result.put(lottery, 0);
+    }
     // 당첨 개수 확인
     private void winningMatch() {
         for(Lotto lotto : lottos) {
@@ -58,14 +70,17 @@ public class LottoController {
                 isBonus = lotto.getNumbers().stream()
                         .anyMatch(number -> number == bonusNumber);
             }
-
+            // 3개 미만인 경우 pass
+            if(cnt < 3) continue;
             Lottery lottery = Lottery.getPriceByMatch(cnt, isBonus);
+            winPrice += lottery.getPrice();
             result.put(lottery, result.getOrDefault(lottery, 0) + 1);
         }
     }
 
-    private int purchaseNumber(String price) {
-        return Integer.parseInt(price) / 1000;
+    private int purchaseNumber(String val) {
+        this.price = Integer.parseInt(val);
+        return price / 1000;
     }
 
     private void createLotto(int count) {
