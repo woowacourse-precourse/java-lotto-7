@@ -1,23 +1,25 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 
 public class UserLotto {
-    private List<Lotto> randomLottoNumbers;
-    private Integer LottoMoneyCount;
+    private static List<Lotto> randomLottoNumbers;
+    private static Integer LottoMoneyCount;
 
-    public UserLotto( List<Lotto> randomLottoNumbers, Integer LottoMoneyCount) {
-        this.randomLottoNumbers = randomLottoNumbers;
+    public UserLotto( Integer LottoMoneyCount) {
+        this.randomLottoNumbers = new ArrayList<>();
         this.LottoMoneyCount = LottoMoneyCount;
     }
 
-    public List<Lotto> getRandomLottoNumbers() {
+    public static List<Lotto> getRandomLottoNumbers() {
         return randomLottoNumbers;
     }
 
-    public Integer getPurchasedLottoCount() {
+    public static Integer getLottoMoneyCount() {
         return LottoMoneyCount;
     }
+
 
 }

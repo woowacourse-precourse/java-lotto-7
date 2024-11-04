@@ -7,17 +7,17 @@ import lotto.Lotto;
 import lotto.exception.ExceptionCode;
 
 public class PrizeNumbers {
-    private final Lotto prizeNumbers;
-    private final Integer bonus;
+    private Lotto prizeLotto;
+    private Integer bonus;
 
     public PrizeNumbers(Lotto prizeNumbers, Integer bonus) {
-        this.prizeNumbers = prizeNumbers;
+        this.prizeLotto = prizeNumbers;
         this.bonus = bonus;
         validBonus();
     }
 
-    public Lotto getLotto() {
-        return prizeNumbers;
+    public Lotto getPrizeLotto() {
+        return prizeLotto;
     }
 
     public Integer getBonus() {

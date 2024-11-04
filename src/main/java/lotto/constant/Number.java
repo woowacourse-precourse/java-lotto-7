@@ -9,11 +9,13 @@ public class Number {
     public static int LOTTO_TICKET_PRIZE = 7;
 
 
-    public static int FIRST_PRIZE_MONEY = 2000000000;
-    public static int SECOND_PRIZE_MONEY = 30000000;
-    public static int THIRD_PRIZE_MONEY = 1500000;
+    public static int SIXTH_PRIZE_MONEY = 2000000000;
+    public static int FIFTH_BONUS_PRIZE_MONEY = 30000000;
+    public static int FIFTH_PRIZE_MONEY = 1500000;
     public static int FOURTH_PRIZE_MONEY = 50000;
-    public static int FIFTH_PRIZE_MONEY = 5000;
+    public static int THIRD_PRIZE_MONEY = 5000;
+
+
 
 
 
