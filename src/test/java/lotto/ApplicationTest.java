@@ -206,7 +206,7 @@ class ApplicationTest extends NsTest {
         expected += exactsforWin[2]*1500000;
         expected += exactsforWin[3]*50000;
         expected += exactsforWin[4]*5000;
-        expected = Math.round((expected / 8000) * 100)/100.0;
+        expected = Math.round((expected / 8000) * 1000)/10.0;
         System.out.println(expected);
 
         assertThat(exact).isEqualTo(expected);
