@@ -2,6 +2,7 @@ package lotto.entity;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import lotto.exception.ErrorStatus;
 
@@ -49,6 +50,11 @@ public class Lottos {
         // 로또 개수 체크
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorStatus.INVALID_COUNT_OF_LOTTO_NUMBERS.getMessage());
+        }
+
+        // 중복 값 체크
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException(ErrorStatus.DUPLICATE_NUMBER.getMessage());
         }
     }
 }
