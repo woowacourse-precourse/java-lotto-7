@@ -16,22 +16,15 @@ public class LottoController {
     }
 
     public void play() {
-        /*
-        1. 금액 받아오기
-        2. 로또 발행
-        3. 추첨
-        4. 매치
-        5. 통계 보여주기
-         */
         Money capital = attempt(() -> new Money(inputView.promptAmount()));
-        List<Lotto> lottos = issueLottoesWith(capital);
+        List<Lotto> lottos = issueLottosWith(capital);
 
         List<Rank> ranks = pickLotto().match(lottos);
 
         statisticsView.printStatistics(new Statistics(ranks), capital);
     }
 
-    private List<Lotto> issueLottoesWith(Money money) {
+    private List<Lotto> issueLottosWith(Money money) {
         List<Lotto> lottos = new Seller().issueLottoesWith(money);
         outputView.printPurchase(lottos);
         outputView.printIssuedLottoes(lottos);
