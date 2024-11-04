@@ -1,6 +1,7 @@
 package lotto.wrapper;
 
 import lotto.util.Parse;
+import lotto.util.constants.LottoConstants;
 import lotto.util.validator.LottoValidator;
 
 public class Amount {
@@ -23,7 +24,7 @@ public class Amount {
     }
 
     public int toLottoCount() {
-        return amount / 1000;
+        return amount / LottoConstants.PER_AMOUNT.getValue();
     }
 
 }
