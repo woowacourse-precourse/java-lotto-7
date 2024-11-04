@@ -18,7 +18,7 @@ public class WinningLottoValidator {
 
     private static void validateNumberCount(List<Integer> winningNumbers) {
         if (winningNumbers.size() != REQUIRED_LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 정확히 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
     }
 

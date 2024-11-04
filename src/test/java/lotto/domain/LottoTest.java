@@ -1,16 +1,15 @@
 package lotto.domain;
 
+import static lotto.TestConstants.ERROR_MESSAGE;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
+
+import java.util.List;
 import lotto.validator.LottoValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
-
 class LottoTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
