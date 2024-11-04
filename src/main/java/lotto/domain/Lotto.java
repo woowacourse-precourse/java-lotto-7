@@ -1,17 +1,15 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        List<Integer> validNumbers = new ArrayList<>(numbers);
+        Collections.sort(validNumbers);
+        this.numbers = validNumbers;
     }
 
     public boolean contains(Integer number) {
@@ -23,6 +21,11 @@ public class Lotto {
         return (int) other.numbers.stream()
                 .filter(uniqueNumbers::contains)
                 .count();
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 
     private void validate(List<Integer> numbers) {
