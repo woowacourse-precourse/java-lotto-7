@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.Constant.LOTTO_NUMBERS_LENGTH;
+import static lotto.domain.Constant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.domain.Constant.MINIMUM_LOTTO_NUMBER;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,9 +12,6 @@ public class Lotto {
     private static final String SHOULD_HAVE_SIX_NUMBER_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String NOT_DUPLICATE_MESSAGE = "[ERROR] 로또 번호는 중복되지 않아야 합니다.";
     private static final String SHOULD_IN_RANGE_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이여야 합니다.";
-    private static final int LOTTO_NUMBERS_LENGTH = 6;
-    private static final int MINIMUM_LOTTO_NUMBER = 1;
-    private static final int MAXIMUM_LOTTO_NUMBER = 45;
 
     private final List<Integer> numbers;
 
