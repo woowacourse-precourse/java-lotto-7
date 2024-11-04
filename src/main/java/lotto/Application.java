@@ -1,11 +1,11 @@
 package lotto;
 
 import lotto.config.LottoConfig;
-import lotto.controller.LottoContoller;
+import lotto.controller.LottoController;
 
 public class Application {
     public static void main(String[] args) {
-        LottoContoller lottoContoller = LottoConfig.getLottoContoller();
-        lottoContoller.run();
+        LottoController lottoController = LottoConfig.getLottoController();
+        lottoController.run();
     }
 }
