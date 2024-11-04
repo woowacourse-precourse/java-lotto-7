@@ -6,7 +6,9 @@ import java.util.Objects;
 
 public class Won {
 
-    public static final String PATTERN_OF_THOUSANDS_UNIT = "#,###";
+    public static final Integer MIN_VALUE = 0;
+    public static final Integer MAX_VALUE = 100_000;
+    private static final String PATTERN_OF_THOUSANDS_UNIT = "#,###";
 
     private final BigInteger amount;
 

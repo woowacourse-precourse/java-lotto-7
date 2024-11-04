@@ -8,6 +8,8 @@ import java.util.StringTokenizer;
 public final class ConsoleInput {
 
     public static final char DEFAULT_DELIMITER = ',';
+    public static final int MIN_INTEGER_VALUE = Integer.MIN_VALUE;
+    public static final int MAX_INTEGER_VALUE = Integer.MAX_VALUE;
 
     private ConsoleInput() {
 
@@ -35,28 +37,42 @@ public final class ConsoleInput {
 
         List<String> list = new ArrayList<>();
         while (tokenizer.hasMoreTokens()) {
-            list.add(tokenizer.nextToken());
+            list.add(tokenizer.nextToken().strip());
         }
         return list;
     }
 
     public static Integer readInteger() {
-        return parseIntegerFrom(readString());
+        return readInteger(MIN_INTEGER_VALUE, MAX_INTEGER_VALUE);
+    }
+
+    public static Integer readInteger(int min, int max) {
+        return parseIntegerFrom(readString(), min, max);
     }
 
     public static List<Integer> readIntegers() {
-        return readIntegers(DEFAULT_DELIMITER);
+        return readIntegers(DEFAULT_DELIMITER, MIN_INTEGER_VALUE, MAX_INTEGER_VALUE);
     }
 
-    public static List<Integer> readIntegers(char delimiter) {
+    public static List<Integer> readIntegers(int min, int max) {
+        return readIntegers(DEFAULT_DELIMITER, min, max);
+    }
+
+    public static List<Integer> readIntegers(char delimiter, int min, int max) {
         return readStrings(delimiter).stream()
-                .map(ConsoleInput::parseIntegerFrom)
+                .map((String string) -> parseIntegerFrom(string, min, max))
                 .toList();
     }
 
-    private static Integer parseIntegerFrom(String string) {
+    private static Integer parseIntegerFrom(String string, int min, int max) {
         try {
-            return Integer.valueOf(string);
+            Integer parsed = Integer.valueOf(string);
+
+            if (parsed < min || max < parsed) {
+                throw new IllegalArgumentException(String.format("이곳에 입력할 수 있는 정수의 범위는 %d~%d입니다.", min, max));
+            }
+
+            return parsed;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("정수를 입력해 주세요.");
         }
