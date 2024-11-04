@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -23,8 +25,44 @@ public class LottoService {
     }
 
     private void purchaseLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        lottos.add(new Lotto(numbers));
+        int price = -1;
+        // IllegalArgumentException 발생 시 오류 메시지 출력하고 다시 입력 받도록 함
+        while (price == -1) {
+            try {
+                price = inputPrice();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        generateLotto(price / 1000);
+    }
+
+    private void generateLotto(int count) {
+        System.out.println("\n" + count + "개를 구매했습니다.");
+        for (int i = 0; i < count; i++) {
+            List<Integer> numbers = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(numbers);
+            lottos.add(new Lotto(numbers));
+            System.out.println(numbers);
+        }
+    }
+
+    private int inputPrice() {
+        System.out.println("\n구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+        try {
+            int price = Integer.parseInt(input.trim());
+            if (price % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1000원 단위여야 합니다.");
+            }
+            if (price / 1000 < 1) {
+                throw new IllegalArgumentException("[ERROR] 로또 구입금액은 최소 1000원 이상이어야 합니다.");
+            }
+            return price;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
+        }
     }
 
     private void inputWinningNumbersAndBonusNumber() {
