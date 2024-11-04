@@ -1,7 +1,7 @@
 package lotto.view;
 
-import java.util.Collections;
 import java.util.List;
+import lotto.constants.LottoPrize;
 import lotto.model.Lotto;
 
 public class OutputView implements OutputViewInterface {
@@ -19,11 +19,25 @@ public class OutputView implements OutputViewInterface {
   public void printWinningResults(List<Integer> winningCounts) {
     System.out.println("당첨 통계");
     System.out.println("---");
-    System.out.println("3개 일치 (5,000원) - " + winningCounts.get(0) + "개");
-    System.out.println("4개 일치 (50,000원) - " + winningCounts.get(1) + "개");
-    System.out.println("5개 일치 (1,500,000원) - " + winningCounts.get(2) + "개");
-    System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningCounts.get(3) + "개");
-    System.out.println("6개 일치 (2,000,000,000원) - " + winningCounts.get(4) + "개");
+
+    LottoPrize[] prizes = LottoPrize.values();
+    for (int i = 0; i < prizes.length; i++) {
+      LottoPrize prize = prizes[i];
+      System.out.println(formatWinningResult(prize, winningCounts.get(i)));
+    }
+  }
+
+  public String formatWinningResult(LottoPrize prize, int winningCount) {
+    if (prize == LottoPrize.SECOND) {
+      return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개",
+          prize.getMatchCount(),
+          String.format("%,d", prize.getPrizeAmount()),
+          winningCount);
+    }
+    return String.format("%d개 일치 (%s원) - %d개",
+        prize.getMatchCount(),
+        String.format("%,d", prize.getPrizeAmount()),
+        winningCount);
   }
 
   public void printYield(double yield) {
