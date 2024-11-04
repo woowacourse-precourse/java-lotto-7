@@ -105,6 +105,7 @@ public class Application {
             }
             int count = result.getOrDefault(rank, 0);
             totalPrize += rank.getPrize() * count;
+
             System.out.printf("%s - %d개\n", rank.getMatchMessage(), count);
         }
 
