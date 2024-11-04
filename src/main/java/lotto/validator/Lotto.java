@@ -21,9 +21,11 @@ public class Lotto {
         }
     }
 
-    private void validateNumberContainsNull(List<Integer> numbers) {
-        if (numbers.contains(null) || numbers.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 6개의 당첨 번호를 입력해 주세요.");
+    public void validateNumberContainsNull(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number == null) {
+                throw new IllegalArgumentException("[ERROR] 6개의 당첨 번호를 입력해 주세요.");
+            }
         }
     }
 

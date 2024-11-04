@@ -5,8 +5,7 @@ import java.util.*;
 public class WinningResultExtractor {
 
     public Map<Integer, Integer> totalMatchCounts = new HashMap<>();
-    public int bonusCount = 0;
-    int winningAmount;
+    public int bonusCount=0;
 
     public void getWinningResult(List<Set<Integer>> totalLottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
         initializeMatchCounts(totalMatchCounts);
@@ -35,8 +34,8 @@ public class WinningResultExtractor {
         }
     }
 
-    private void getWinningAmount() {
-        winningAmount = totalMatchCounts.get(3) * 5000
+    private int getWinningAmount() {
+        return totalMatchCounts.get(3) * 5000
                 + totalMatchCounts.get(4) * 50000
                 + totalMatchCounts.get(5) * 1500000
                 + totalMatchCounts.get(6) * 2000000000
@@ -44,7 +43,7 @@ public class WinningResultExtractor {
     }
 
     public String getWinningRate(int purchaseAmount) {
-        double winningRate = (double) winningAmount /purchaseAmount * 100;
+        double winningRate = (double) getWinningAmount() /purchaseAmount * 100;
         return String.format("%.1f",winningRate);
     }
 }
