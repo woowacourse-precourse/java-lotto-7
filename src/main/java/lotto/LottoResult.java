@@ -9,13 +9,17 @@ public class LottoResult {
 
     Map<CorrectStatus,Integer> winningStatistics = new LinkedHashMap<>();
 
+    private static final int DEFAULT_COUNT = 0;
+
+    private static final int DEFAULT_CORRECT_COUNT = 3;
+
     public LottoResult(){
 
-        winningStatistics.put(CorrectStatus.THREE_CORRECT,0);
-        winningStatistics.put(CorrectStatus.FOUR_CORRECT,0);
-        winningStatistics.put(CorrectStatus.FIVE_CORRECT_WITH_NO_SPECIAL_NUMBER,0);
-        winningStatistics.put(CorrectStatus.FIVE_CORRECT_WITH_SPECIAL_NUMBER,0);
-        winningStatistics.put(CorrectStatus.SIX_CORRECT,0);
+        winningStatistics.put(CorrectStatus.THREE_CORRECT,DEFAULT_COUNT);
+        winningStatistics.put(CorrectStatus.FOUR_CORRECT,DEFAULT_COUNT);
+        winningStatistics.put(CorrectStatus.FIVE_CORRECT_WITH_NO_SPECIAL_NUMBER,DEFAULT_COUNT);
+        winningStatistics.put(CorrectStatus.FIVE_CORRECT_WITH_SPECIAL_NUMBER,DEFAULT_COUNT);
+        winningStatistics.put(CorrectStatus.SIX_CORRECT,DEFAULT_COUNT);
 
     }
 
@@ -23,7 +27,7 @@ public class LottoResult {
 
         winningLottoNumberSelector.getPurchasedLottos().forEach(purchasedLotto ->{
             int matchNumber = winningLottoNumberSelector.matchNumber(purchasedLotto);
-            if(matchNumber>=3){
+            if(matchNumber>=DEFAULT_CORRECT_COUNT){
 
                 CorrectStatus correctStatus = getCorrectStatus(winningLottoNumberSelector, matchNumber,purchasedLotto);
                 winningStatistics.put(correctStatus, winningStatistics.get(correctStatus)+1);

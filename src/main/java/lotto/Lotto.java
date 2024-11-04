@@ -15,6 +15,8 @@ public class Lotto {
     private static final int LOTTO_START_NUM = 1;
     private static final int LOTTO_FINAL_NUM = 45;
 
+    private static final String DEFAULT_DELIM = ",";
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -43,7 +45,7 @@ public class Lotto {
     public static Lotto createWinningRegularLotto(String numbers){
 
         try{
-            List<Integer> winningNumber = Arrays.stream(numbers.split(","))
+            List<Integer> winningNumber = Arrays.stream(numbers.split(DEFAULT_DELIM))
                     .map(String::trim)  // 각 숫자 문자열의 앞뒤 공백 제거
                     .map(Integer::parseInt)  // 문자열을 Integer로 변환
                     .toList();

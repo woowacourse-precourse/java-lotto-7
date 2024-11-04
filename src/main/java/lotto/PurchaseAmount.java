@@ -36,7 +36,7 @@ public class PurchaseAmount {
 
     private void checkMoneyDivideBy1000(final int parsedMoney){
 
-        if (parsedMoney % 1000 != 0){
+        if (parsedMoney % ticketPrice != 0){
             throw new IllegalArgumentException(ErrorCode.CANT_PURCHASE_AMOUNT_DIVIDE_BY_1000.getMessage());
         }
     }
