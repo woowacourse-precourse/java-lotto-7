@@ -7,8 +7,6 @@ import lotto.exception.LottoException.InvalidLottoPriceTypeException;
 
 public class Parse {
 
-    private static final String COMMA = ",";
-
     public static int stringToInt(String value) {
         try {
             return Integer.parseInt(value);
@@ -21,10 +19,6 @@ public class Parse {
         NumberFormat formatter = NumberFormat.getInstance(Locale.US);
 
         return formatter.format(number);
-    }
-
-    public static String[] splitByComma(String value) {
-        return value.split(COMMA);
     }
 
 }

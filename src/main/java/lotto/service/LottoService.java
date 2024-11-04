@@ -13,6 +13,8 @@ import lotto.util.Parse;
 
 public class LottoService {
 
+    private static final String COMMA = ",";
+
     public Lottos createLottos(Amount amount) {
         int lottoCount = amount.toLottoCount();
 
@@ -30,7 +32,7 @@ public class LottoService {
     }
 
     public Lotto parseWinningNumberForLotto(String winningNumber) {
-        String[] numbers = Parse.splitByComma(winningNumber);
+        String[] numbers = winningNumber.split(COMMA);
 
         return new Lotto(Arrays.stream(numbers)
                 .map(String::trim)
