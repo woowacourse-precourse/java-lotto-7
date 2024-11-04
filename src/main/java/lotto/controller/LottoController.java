@@ -22,7 +22,7 @@ public class LottoController {
 
             printWinningResult(purchasedLottos, winningNumbers, bonusNumber, purchasedPrice);
         } catch (IllegalStateException e) {
-            OutputView.printIllegalStateException(e);
+            System.out.println(e.getMessage());
             throw e;
         }
         catch (Exception e) { //예상하지 못한 예외가 발생하는 경우 stack trace 를 출력하고 종료합니다.

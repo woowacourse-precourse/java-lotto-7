@@ -44,8 +44,4 @@ public class OutputView {
 
         System.out.print(output);
     }
-
-    public static void printIllegalStateException(IllegalStateException ise) {
-        System.out.println(ise.getMessage());
-    }
 }
