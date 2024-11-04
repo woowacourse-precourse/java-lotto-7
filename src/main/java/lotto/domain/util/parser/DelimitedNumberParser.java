@@ -5,11 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.domain.exception.DelimitedNumberFormatException;
+import lotto.domain.util.LottoNumberGenerator;
 
 public final class DelimitedNumberParser implements StringParser<List<Integer>> {
 
     public final static String NUMBER_DELIMITER = ",";
-    public final static int NUMBERS_LENGTH = 6;
 
     public static DelimitedNumberParser instance;
 
@@ -27,19 +28,40 @@ public final class DelimitedNumberParser implements StringParser<List<Integer>> 
                 .map(String::trim)
                 .collect(Collectors.toCollection(HashSet<String>::new));
 
-        if (collect.size() != NUMBERS_LENGTH) {
-            throw new IllegalArgumentException();
-        }
+        validateCount(collect);
+        validateNumeric(collect);
+        List<Integer> parsed = parseIntList(collect);
+        validateRange(parsed);
 
-        return parseIntList(collect);
+        return parsed;
     }
 
     private List<Integer> parseIntList(final Set<String> collect) {
-        collect.forEach(this::validateNumeric);
-
         return List.copyOf(collect.stream()
                 .map(Integer::parseInt)
                 .toList());
+    }
+
+    private void validateCount(final Set<String> collect) {
+        if (collect.size() != LottoNumberGenerator.LOTTO_NUMBERS_SIZE) {
+            throw DelimitedNumberFormatException.invalidCount();
+        }
+    }
+
+    private void validateRange(final List<Integer> collect) {
+        for (Integer i : collect) {
+            if (i <= LottoNumberGenerator.MIN_LOTTO_NUMBER || i > LottoNumberGenerator.MAX_LOTTO_NUMBER) {
+                throw DelimitedNumberFormatException.outOfRange();
+            }
+        }
+    }
+
+    private void validateNumeric(final Set<String> collect) {
+        for (String s : collect) {
+            if (isNotNumeric(s)) {
+                throw DelimitedNumberFormatException.invalidNumber();
+            }
+        }
     }
 
 }

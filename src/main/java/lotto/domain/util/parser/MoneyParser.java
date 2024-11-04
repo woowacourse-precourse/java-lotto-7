@@ -2,6 +2,8 @@ package lotto.domain.util.parser;
 
 import static lotto.domain.Lotto.TICKET_PRICE;
 
+import lotto.domain.exception.MoneyFormatException;
+
 public final class MoneyParser implements StringParser<Integer> {
 
     private final static String DECIMAL_COMMA = ",";
@@ -18,25 +20,36 @@ public final class MoneyParser implements StringParser<Integer> {
     }
 
     public Integer parse(String input) {
+        validateNumeric(input);
         int money = parseInt(input);
 
-        if (money < 0) {
-            throw new IllegalArgumentException();
-        }
-
-        if (money % TICKET_PRICE != 0) {
-            throw new IllegalArgumentException();
-        }
+        validateRange(money);
+        validateDivisible(money);
 
         return money / TICKET_PRICE;
     }
 
     public int parseInt(String input) {
-        validateNumeric(input);
         return Integer.parseInt(removeComma(input));
     }
 
-    //TODO: export validator method
+    private void validateNumeric(String input) {
+        if (isNotNumeric(input)) {
+            throw MoneyFormatException.invalidNumber();
+        }
+    }
+
+    private void validateRange(int value) {
+        if (value < 0) {
+            throw MoneyFormatException.notPositive();
+        }
+    }
+
+    private void validateDivisible(int value) {
+        if (value % TICKET_PRICE != 0) {
+            throw MoneyFormatException.notDivisible();
+        }
+    }
 
     private String removeComma(String input) {
         return String.join("", input.split(DECIMAL_COMMA));
