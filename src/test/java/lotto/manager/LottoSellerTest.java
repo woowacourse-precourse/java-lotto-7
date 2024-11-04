@@ -13,12 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LottoSellerTest {
-
     private static LottoSeller lottoSeller;
 
     @BeforeAll
     static void setUpTrueSeller() {
-
         lottoSeller = new LottoSeller(() -> List.of(1, 2, 3, 4, 5, 6));
     }
 

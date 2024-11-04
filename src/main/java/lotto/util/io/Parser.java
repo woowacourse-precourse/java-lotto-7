@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
-
     private static final String NUMBER_DELIMITER = ",";
 
     public static int parseInputToMoney(String moneyInput) {

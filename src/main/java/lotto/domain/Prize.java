@@ -1,7 +1,6 @@
 package lotto.domain;
 
 public enum Prize {
-
     FAIL(-1, false, 0),
     FIFTH(3, false, 5000),
     FOURTH(4, false, 50000),

@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.Map;
 
 public class Result {
-
     private final Map<Prize, Integer> prizeCount;
     private final float returnRate;
 

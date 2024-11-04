@@ -14,7 +14,6 @@ public class BonusNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 42, 43, 44, 45})
     void 보너스_번호가_1_45_범위면_정상_생성된다(int inboundNumber) {
-
         BonusNumber bonusNumber = new BonusNumber(inboundNumber);
 
         assertThat(bonusNumber.getNumber()).isEqualTo(inboundNumber);
@@ -24,7 +23,6 @@ public class BonusNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46, 47, 100})
     void 보너스_번호가_1_45_범위를_벗어나면_예외가_발생한다(int outboundNumber) {
-
         assertThatThrownBy(() -> new BonusNumber(outboundNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith(ERROR_PREFIX);

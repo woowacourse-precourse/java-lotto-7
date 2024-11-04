@@ -24,7 +24,6 @@ public class ResultManager {
     }
 
     private Map<Prize, Integer> getPrizeCountFrom(Player player) {
-
         return player.getLottos().stream()
                 .map(this::getPrizeOf)
                 .collect(Collectors.groupingBy(
@@ -34,7 +33,6 @@ public class ResultManager {
     }
 
     private Prize getPrizeOf(Lotto lotto) {
-
         int matchCount = countMatchNumberWith(lotto);
         boolean bonusFlag = matchBonusNumberWith(lotto);
 
@@ -54,12 +52,10 @@ public class ResultManager {
     }
 
     private boolean matchBonusNumberWith(Lotto lotto) {
-
         return lotto.getImmutableNumbers().contains(winningLotto.getImmutableBonusNumber().getNumber());
     }
 
     private float getReturnRate(Player player, Map<Prize, Integer> prizeCount) {
-
         int prizeMoneySum = prizeCount.entrySet().stream()
                 .mapToInt((e) -> e.getKey().getMoney() * e.getValue())
                 .sum();
