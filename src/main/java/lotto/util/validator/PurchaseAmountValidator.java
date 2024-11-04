@@ -20,4 +20,13 @@ public class PurchaseAmountValidator {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
         }
     }
+
+    public static void validateInput(String input) {
+
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력이 비어 있습니다.");
+        }
+
+    }
+
 }

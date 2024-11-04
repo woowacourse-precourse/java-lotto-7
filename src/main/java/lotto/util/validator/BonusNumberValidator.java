@@ -18,4 +18,13 @@ public class BonusNumberValidator {
             throw new NumberFormatException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
     }
+
+    public static void validateInput(String input) {
+
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력이 비어 있습니다.");
+        }
+
+    }
+
 }
