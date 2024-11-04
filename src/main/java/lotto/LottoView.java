@@ -43,7 +43,20 @@ public class LottoView {
     public static void printLottoResult(Map<LottoRank, Integer> rankCount) {
         System.out.println("당첨 통계\n---");
         for (LottoRank rank : LottoRank.values()) {
-            System.out.println(rank.getDescription() + rankCount.get(rank) + "개");
+
+            if (rank == LottoRank.SECOND) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n",
+                        rank.getMatchCount(),
+                        String.format("%,d", rank.getPrize()),
+                        rankCount.get(rank));
+                continue;
+            }
+
+            System.out.printf("%d개 일치 (%s원) - %d개%n",
+                    rank.getMatchCount(),
+                    String.format("%,d", rank.getPrize()),
+                    rankCount.get(rank));
+
         }
     }
 
