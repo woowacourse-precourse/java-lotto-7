@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.util.Map;
+import lotto.domain.BonusNumber;
 import lotto.domain.LottoDrawer;
 import lotto.domain.LottoTicket;
 import lotto.domain.NumbersGenerator;
@@ -45,8 +46,10 @@ public class LottoGame {
         List<Integer> winningNumbers = input.readWinningLotto();
         String rawBonusNumber = input.readBonusNumber();
 
+        BonusNumber bonusNumber = new BonusNumber(rawBonusNumber);
+
         WinningLotto winningLotto = new WinningLotto(
-                winningNumbers, 7
+                winningNumbers, bonusNumber
         );
 
         Map<Rank, Integer> lottoResult = winningLotto.lottoWinningResult(lottoTicket);
