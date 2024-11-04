@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.service.LottoMachine;
 import lotto.util.ErrorMessage;
-import lotto.util.LottoGenerator;
 import lotto.util.LottoValidator;
 
 public class Lotto {
@@ -29,7 +29,7 @@ public class Lotto {
     }
 
     private void validateLottoNumberSizeIn(List<Integer> numbers) {
-        if (numbers.size() != LottoGenerator.LOTTO_NUM_SIZE) {
+        if (numbers.size() != LottoMachine.LOTTO_NUM_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_OUT_OF_RANGE.getMsg());
         }
     }
