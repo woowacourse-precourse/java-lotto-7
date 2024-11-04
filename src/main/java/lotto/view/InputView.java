@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.global.Error.LOTTO_NUMBER_COMMA_COUNT_IS_NOT_FIVE;
 import static lotto.global.Error.NOT_INTEGER;
 import static lotto.global.Message.BONUS_NUMBER_MESSAGE;
 import static lotto.global.Message.BUY_LOTTO_MESSAGE;
@@ -34,7 +35,8 @@ public class InputView {
     public Lotto inputWinningLottoNumbers() {
         System.out.println(WINNING_NUMBER_MESSAGE.getMsg());
         try {
-            List<Integer> lottoNumbers = convertToIntList(splitNumbersByComma(readLine()));
+            List<String> splitNumbersByComma = splitNumbersByComma(validateCommaSizeIsFive(readLine()));
+            List<Integer> lottoNumbers = convertToIntList(splitNumbersByComma);
             return new Lotto(lottoNumbers);
         } catch (NumberFormatException e) {
             System.out.println(NOT_INTEGER.getErrorMsg());
@@ -43,6 +45,14 @@ public class InputView {
             System.out.println(e.getMessage());
             return inputWinningLottoNumbers();
         }
+    }
+
+    private String validateCommaSizeIsFive(String winningLottoNumber) {
+        long commaCount = winningLottoNumber.chars().filter(ch -> ch == COMMA.charAt(0)).count();
+        if (commaCount != 5) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_COMMA_COUNT_IS_NOT_FIVE.getErrorMsg());
+        }
+        return winningLottoNumber;
     }
 
     public LottoBonus inputLottoBonusNumber(List<Integer> winningLottoNumbers) {
