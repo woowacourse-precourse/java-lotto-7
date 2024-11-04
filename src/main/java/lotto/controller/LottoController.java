@@ -4,6 +4,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.PrizeResult;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.validation.InputValidator;
@@ -26,12 +27,15 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void startLottoDraw() {
+    public void lottoDraw() {
         Money money = getMoney();
         Lottos lottos = lottoService.makeLottos(money.money());
         outputView.printLottos(lottos);
 
         WinningLotto winningLotto = getWinningLotto(getWinningNumbers());
+        PrizeResult prizeResult = new PrizeResult();
+        prizeResult.calculatePrizes(winningLotto, lottos);
+
     }
 
     private Money getMoney() {
