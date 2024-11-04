@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.application.service.LottoMachine;
 import lotto.application.service.LottoAnchor;
+import lotto.application.service.LottoProfitCalculator;
 import lotto.application.service.LottoService;
 import lotto.application.support.LottoInputParser;
 import lotto.controller.LottoController;
@@ -36,7 +37,8 @@ public class Application {
     private static LottoService lottoService(){
         return new LottoService(
                 new LottoMachine(),
-                new LottoAnchor()
+                new LottoAnchor(),
+                new LottoProfitCalculator()
         );
     }
 }

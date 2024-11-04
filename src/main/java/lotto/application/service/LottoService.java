@@ -11,10 +11,12 @@ public class LottoService {
 
     private final LottoMachine lottoMachine;
     private final LottoAnchor lottoAnchor;
+    private final LottoProfitCalculator profitCalculator;
 
-    public LottoService(LottoMachine lottoMachine, LottoAnchor lottoAnchor) {
+    public LottoService(LottoMachine lottoMachine, LottoAnchor lottoAnchor, LottoProfitCalculator profitCalculator) {
         this.lottoMachine = lottoMachine;
         this.lottoAnchor = lottoAnchor;
+        this.profitCalculator = profitCalculator;
     }
 
     public Set<Lotto> buyLotto(int amount){
@@ -31,5 +33,9 @@ public class LottoService {
 
     public EnumMap<WinningRanking, Integer> getResult(Collection<Lotto> lottos){
         return lottoAnchor.announce(lottos);
+    }
+
+    public double getProfitRaio(EnumMap<WinningRanking, Integer> result){
+        return profitCalculator.execute(result);
     }
 }
