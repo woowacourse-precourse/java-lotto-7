@@ -6,4 +6,5 @@ public class LottoController {
         System.out.println("실행");
     }
 
+
 }

@@ -24,9 +24,13 @@ public class InputView {
         return Console.readLine();
     }
 
-    public String getLottoNumbers(){
+    public String getLottoNumbers() {
         System.out.println(messages.LOTTO_INPUT_MSG.getMessage());
         return Console.readLine();
     }
 
+    public String getBonusNumber() {
+        System.out.println(messages.BONUS_INPUT_MSG.getMessage());
+        return Console.readLine();
+    }
 }
