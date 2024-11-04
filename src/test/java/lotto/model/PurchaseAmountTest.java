@@ -1,7 +1,5 @@
-package lotto;
+package lotto.model;
 
-import lotto.model.PurchaseAmount;
-import lotto.enums.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
