@@ -28,11 +28,11 @@ public class MyWallet {
         return winnings;
     }
 
-    public void saveMoney(int money){
+    public void saveMoney(int money) {
         this.money = money;
     }
 
-    public void saveWinnings(long winnings){
+    public void saveWinnings(long winnings) {
         this.winnings = winnings;
     }
 

@@ -22,8 +22,7 @@ class InputParserTest {
     @DisplayName("잘못된 형식의 입력 시 예외가 발생한다.")
     @Test
     void 잘못된_입력_예외발생() {
-        String input = "1,2,3,4,5,6,7"; // 7개 이상의 숫자
-
+        String input = "1,2,3,4,5,6,7";
         assertThatThrownBy(() -> InputParser.winningNumParse(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -31,7 +30,7 @@ class InputParserTest {
     @DisplayName("빈 입력 시 예외가 발생한다.")
     @Test
     void 빈_입력_예외발생() {
-        String input = ""; // 빈 문자열
+        String input = "";
 
         assertThatThrownBy(() -> InputParser.winningNumParse(input))
                 .isInstanceOf(IllegalArgumentException.class);

@@ -7,7 +7,7 @@ public class LottoManagementSystem {
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    public LottoManagementSystem(){
+    public LottoManagementSystem() {
 
     }
 

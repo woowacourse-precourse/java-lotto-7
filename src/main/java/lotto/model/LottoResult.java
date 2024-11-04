@@ -16,7 +16,6 @@ public class LottoResult {
     }
 
 
-
     public long getTotalPrizeAmount() {
         long totalPrize = 0;
 

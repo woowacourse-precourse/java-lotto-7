@@ -4,7 +4,7 @@ import lotto.util.Validation;
 
 public class YieldCalculator {
 
-    public static float calculateYield(MyWallet myWallet){
+    public static float calculateYield(MyWallet myWallet) {
         int money = myWallet.getMoney();
         long winnings = myWallet.getWinnings();
         Validation.validateMoneyInMyWallet(money);
