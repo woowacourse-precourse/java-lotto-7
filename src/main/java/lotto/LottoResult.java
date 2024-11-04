@@ -7,9 +7,9 @@ public enum LottoResult {
     FOURTH(4, false, 50_000),
     FIFTH(3, false, 5_000);
 
-    private int match;
-    private boolean bonusMatch;
-    private int winningMoney;
+    private final int match;
+    private final boolean bonusMatch;
+    private final int winningMoney;
 
     LottoResult(int match, boolean bonusMatch, int winningMoney) {
         this.match = match;
@@ -20,8 +20,10 @@ public enum LottoResult {
     public int getWinningMoney() {
         return this.winningMoney;
     }
+    public int getMatch () { return this.match; }
+    public boolean getBonusMatch() { return this.bonusMatch; }
 
     public boolean isMatch(int match, boolean bonusMatch) {
         return match == this.match && (!this.bonusMatch || bonusMatch);
     }
-};
+}
