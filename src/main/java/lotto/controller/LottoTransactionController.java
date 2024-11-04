@@ -13,7 +13,7 @@ import lotto.model.PrizeRank;
 import lotto.view.LottoTransactionView;
 
 public class LottoTransactionController {
-    final int LOTTO_PRICE = Lotto.getLottoPrice(); // TODO MainController 말고 다른 곳에 정의할지 생각
+    final int LOTTO_PRICE = Lotto.getLottoPrice();
 
     final LottoTransaction lottoTransaction;
     final LottoTransactionView view;

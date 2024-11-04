@@ -12,8 +12,6 @@ public class InputValidator extends Validator {
     static final String INVALID_BLANK = "공백은 입력 할 수 없습니다.";
     static final String INVALID_ALREADY_EXISTING_NUMBER = "당첨 번호에 존재하는 번호는 입력 불가";
 
-
-    //TODO 다른 validator 사용
     private InputValidator() {
         // 인스턴스화 방지를 위해서 사용
     }

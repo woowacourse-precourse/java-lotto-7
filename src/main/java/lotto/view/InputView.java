@@ -6,9 +6,6 @@ import java.util.List;
 import lotto.validator.InputValidator;
 import lotto.validator.LottoValidator;
 
-// TODO 유용성 검사 기능 추가
-// 1. 숫자인지 확인하는 유용성 검사 필요
-// 2. amount 1000원 단윈인지 확인 필요 => InputView말고 LottoTransaction 에서 필요
 public class InputView {
     static private final String PURCHASE_AMOUNT_GUIDE = "\n구입금액을 입력해 주세요.";
     static private final String WINNING_NUMBERS_GUIDE = "\n당첨 번호를 입력해 주세요";
@@ -35,7 +32,6 @@ public class InputView {
         }
     }
 
-    // TODO 함수 분할하기 & 하드코딩 제거
     public List<Integer> requestWinningNumbers() {
         while (true) {
             printInputMessage(WINNING_NUMBERS_GUIDE);
