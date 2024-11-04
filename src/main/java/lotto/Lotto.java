@@ -1,12 +1,7 @@
 package lotto;
 
-import static lotto.provider.LottoProvider.*;
-
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import lotto.answer.Answer;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -30,14 +25,6 @@ public class Lotto {
         }
     }
 
-    // private void validateLottoNumberRange(List<Integer> lottoNumbers) {
-    //     boolean isInRange = lottoNumbers.stream()
-    //         .allMatch(number -> number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER);
-    //
-    //     if (!isInRange) {
-    //         throw new IllegalArgumentException("[ERROR] 로또 번호 범위를 확인해주세요");
-    //     }
-    // }
     public void printLottoNumbers() {
         System.out.println(numbers);
     }
