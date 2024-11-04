@@ -64,9 +64,8 @@ public class LottosTest {
         @Test
         void countOfWinningNumbersError1() {
             List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
-            Integer bonusNumber = 9;
             Lottos lottos = new Lottos();
-            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers, bonusNumber))
+            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -74,9 +73,8 @@ public class LottosTest {
         @Test
         void countOfWinningNumbersError2() {
             List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5);
-            Integer bonusNumber = 9;
             Lottos lottos = new Lottos();
-            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers, bonusNumber))
+            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -84,9 +82,8 @@ public class LottosTest {
         @Test
         void duplicationOfWinningNumbersError() {
             List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 6, 6);
-            Integer bonusNumber = 9;
             Lottos lottos = new Lottos();
-            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers, bonusNumber))
+            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -94,9 +91,8 @@ public class LottosTest {
         @Test
         void winningNumbersOutOfRangeError1() {
             List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 46);
-            Integer bonusNumber = 9;
             Lottos lottos = new Lottos();
-            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers, bonusNumber))
+            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -104,9 +100,8 @@ public class LottosTest {
         @Test
         void winningNumbersOutOfRangeError2() {
             List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 0);
-            Integer bonusNumber = 9;
             Lottos lottos = new Lottos();
-            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers, bonusNumber))
+            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -116,7 +111,8 @@ public class LottosTest {
             List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
             Integer bonusNumber = 55;
             Lottos lottos = new Lottos();
-            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers, bonusNumber))
+            lottos.setWinningNumbers(winningNumbers);
+            assertThatThrownBy(() -> lottos.setBonusNumber(bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -126,7 +122,8 @@ public class LottosTest {
             List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
             Integer bonusNumber = 0;
             Lottos lottos = new Lottos();
-            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers, bonusNumber))
+            lottos.setWinningNumbers(winningNumbers);
+            assertThatThrownBy(() -> lottos.setBonusNumber(bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -136,7 +133,8 @@ public class LottosTest {
             List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
             Integer bonusNumber = 1;
             Lottos lottos = new Lottos();
-            assertThatThrownBy(() -> lottos.setWinningNumbers(winningNumbers, bonusNumber))
+            lottos.setWinningNumbers(winningNumbers);
+            assertThatThrownBy(() -> lottos.setBonusNumber(bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
@@ -161,7 +159,9 @@ public class LottosTest {
                 bonus++;
             }
 
-            lottos.setWinningNumbers(numbers, bonus);
+            lottos.setWinningNumbers(numbers);
+            lottos.setBonusNumber(bonus);
+
             assertEquals(lottos.getRateOfReturn(), (float) 2000000000 / 1000 * 100);
         }
 
@@ -192,7 +192,9 @@ public class LottosTest {
                 append++;
             }
 
-            lottos.setWinningNumbers(winningNumbers, bonus);
+            lottos.setWinningNumbers(winningNumbers);
+            lottos.setBonusNumber(bonus);
+
             assertEquals(lottos.getRateOfReturn(), (float) 30000000 / 1000 * 100);
         }
 
@@ -212,7 +214,9 @@ public class LottosTest {
                 bonus++;
             }
 
-            lottos.setWinningNumbers(numbers, bonus);
+            lottos.setWinningNumbers(numbers);
+            lottos.setBonusNumber(bonus);
+
             assertEquals(lottos.getCountOfPrize(Prize.FIRST), 1);
             assertEquals(lottos.getCountOfPrize(Prize.SECOND), 0);
             assertEquals(lottos.getCountOfPrize(Prize.THIRD), 0);
@@ -248,7 +252,9 @@ public class LottosTest {
                 append++;
             }
 
-            lottos.setWinningNumbers(winningNumbers, bonus);
+            lottos.setWinningNumbers(winningNumbers);
+            lottos.setBonusNumber(bonus);
+
             assertEquals(lottos.getCountOfPrize(Prize.FIRST), 0);
             assertEquals(lottos.getCountOfPrize(Prize.SECOND), 1);
             assertEquals(lottos.getCountOfPrize(Prize.THIRD), 0);

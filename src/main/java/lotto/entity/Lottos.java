@@ -28,10 +28,18 @@ public class Lottos {
         }
     }
 
-    public void setWinningNumbers(List<Integer> numbers, Integer bonus) {
-        validateWinningNumbers(numbers, bonus);
+    public Integer getNumberOfLottos() {
+        return lottos.size();
+    }
+
+    public void setWinningNumbers(List<Integer> numbers) {
+        validateWinningNumbers(numbers);
         this.winningNumbers = numbers;
-        this.bonusNumber = bonus;
+    }
+
+    public void setBonusNumber(Integer bonusNumber) {
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public float getRateOfReturn() {
@@ -66,7 +74,7 @@ public class Lottos {
         }
     }
 
-    private void validateWinningNumbers(List<Integer> numbers, Integer bonusNumber) {
+    private void validateWinningNumbers(List<Integer> numbers) {
         // 로또 개수 체크
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorStatus.INVALID_COUNT_OF_LOTTO_NUMBERS.getMessage());
@@ -83,12 +91,16 @@ public class Lottos {
                 throw new IllegalArgumentException(ErrorStatus.NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
+    }
+
+    private void validateBonusNumber(Integer bonusNumber) {
+        // 로또 숫자 값 1~45 사이의 값인지 체크
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ErrorStatus.NUMBER_OUT_OF_RANGE.getMessage());
         }
 
         // 보너스 숫자에 중복이 있는지 체크
-        if (numbers.contains(bonusNumber)) {
+        if (this.winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorStatus.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
