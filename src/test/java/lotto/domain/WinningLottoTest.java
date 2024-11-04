@@ -19,7 +19,7 @@ class WinningLottoTest {
         LottoTicket lottoTicket = new LottoTicket(lottoList);
         Bonus bonus = new Bonus("7");
         WinningLotto winningLotto = new WinningLotto(
-                List.of(1, 2, 3, 4, 5, 6), bonus
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)), bonus
         );
 
         Map<Rank, Integer> result = winningLotto.lottoWinningResult(lottoTicket);

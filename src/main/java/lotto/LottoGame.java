@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import lotto.domain.Bonus;
+import lotto.domain.Lotto;
 import lotto.domain.LottoDrawer;
 import lotto.domain.LottoTicket;
 import lotto.domain.NumbersGenerator;
@@ -35,7 +36,7 @@ public class LottoGame {
 
     private void draw(PurchaseAmount purchaseAmount) {
         NumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
-        
+
         LottoDrawer lottoDrawer = new LottoDrawer(purchaseAmount, randomNumbersGenerator);
 
         LottoTicket lottoTicket = lottoDrawer.generateLottos();
@@ -46,14 +47,14 @@ public class LottoGame {
     }
 
     public void result(LottoTicket lottoTicket) {
-
         List<Integer> winningNumbers = input.readWinningLotto();
-        String rawBonusNumber = input.readBonusNumber();
+        Lotto winningLottoTemp = new Lotto(winningNumbers);
 
+        String rawBonusNumber = input.readBonusNumber();
         Bonus bonus = new Bonus(rawBonusNumber);
 
         WinningLotto winningLotto = new WinningLotto(
-                winningNumbers, bonus
+                winningLottoTemp, bonus
         );
 
         Map<Rank, Integer> lottoResult = winningLotto.lottoWinningResult(lottoTicket);
