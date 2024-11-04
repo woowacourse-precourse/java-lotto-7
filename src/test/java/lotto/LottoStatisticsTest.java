@@ -16,7 +16,7 @@ class LottoStatisticsTest {
     void calculateYieldWithNoWinning() {
         // given
         LottoStatistics statistics = new LottoStatistics();
-        Map<String, Integer> winningResult = createWinningResult(0, 0, 0, 0, 0);
+        Map<LottoPrize, Integer> winningResult = createWinningResult(0, 0, 0, 0, 0);
 
         // when
         double yield = statistics.calculateYield(1000, winningResult);
@@ -30,8 +30,7 @@ class LottoStatisticsTest {
     void calculateYieldWithEqualMoneyAndPrize() {
         // given
         LottoStatistics statistics = new LottoStatistics();
-        Map<String, Integer> winningResult = createWinningResult(0, 0, 0, 0, 0);
-        winningResult.put("MATCH_3", 2);  // 5,000 * 2 = 10,000원
+        Map<LottoPrize, Integer> winningResult = createWinningResult(0, 0, 0, 0, 2);// 5,000 * 2 = 10,000원
 
         // when
         double yield = statistics.calculateYield(10000, winningResult);
@@ -45,7 +44,7 @@ class LottoStatisticsTest {
     void calculateYieldWithFirstPrize() {
         // given
         LottoStatistics statistics = new LottoStatistics();
-        Map<String, Integer> winningResult = createWinningResult(1, 0, 0, 0, 0);
+        Map<LottoPrize, Integer> winningResult = createWinningResult(1, 0, 0, 0, 0);
 
         // when
         double yield = statistics.calculateYield(1000, winningResult);
@@ -60,7 +59,7 @@ class LottoStatisticsTest {
     void calculateYieldWithMultiplePrizes() {
         // given
         LottoStatistics statistics = new LottoStatistics();
-        Map<String, Integer> winningResult = createWinningResult(0, 0, 1, 1, 1);
+        Map<LottoPrize, Integer> winningResult = createWinningResult(0, 0, 1, 1, 1);
         // 5,000 + 50,000 + 1,500,000 = 1,555,000원
 
         // when
@@ -71,13 +70,14 @@ class LottoStatisticsTest {
         assertThat(yield).isEqualTo(15_550.0);
     }
 
-    private Map<String, Integer> createWinningResult(int match6, int match5Bonus, int match5, int match4, int match3) {
-        Map<String, Integer> result = new HashMap<>();
-        result.put("MATCH_6", match6);
-        result.put("MATCH_5_BONUS", match5Bonus);
-        result.put("MATCH_5", match5);
-        result.put("MATCH_4", match4);
-        result.put("MATCH_3", match3);
+    private Map<LottoPrize, Integer> createWinningResult(int match6, int match5Bonus, int match5, int match4, int match3) {
+        Map<LottoPrize, Integer> result = new HashMap<>();
+        result.put(LottoPrize.FIRST, match6);
+        result.put(LottoPrize.SECOND, match5Bonus);
+        result.put(LottoPrize.THIRD, match5);
+        result.put(LottoPrize.FOURTH, match4);
+        result.put(LottoPrize.FIFTH, match3);
+        result.put(LottoPrize.NONE, 0);
         return result;
     }
 
