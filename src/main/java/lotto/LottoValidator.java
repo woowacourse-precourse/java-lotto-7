@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LottoValidator {
 
@@ -19,10 +21,17 @@ public class LottoValidator {
         if (numbers.size() != REQUIRED_COUNT) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에는 중복된 숫자가 있으면 안 됩니다.");
+        }
         for (int number : numbers) {
-            if (number < MIN_NUMBER || number > MAX_NUMBER) { throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."); }
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         }
     }
+
 
     public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
