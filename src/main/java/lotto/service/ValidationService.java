@@ -1,15 +1,14 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.PatternSyntaxException;
-import lotto.exception.LottoErrorMessages;
+import lotto.message.LottoErrorMessages;
 import lotto.generator.LottoGenerator;
-import lotto.view.LottoInfoMessages;
+import lotto.message.LottoInfoMessages;
 
 public class ValidationService {
     private static final String MANUAL = "manual";
@@ -116,8 +115,20 @@ public class ValidationService {
 
     public int validateBonusNumber(List<Set<Integer>> winnerLotto) {
         String bonusInput = Console.readLine();
+        if (bonusInput.isEmpty()) {
+            return validateDuplicatedBonusNumber(winnerLotto, bonusInput);
+        }
         return validateIsNumber(winnerLotto, bonusInput);
     }
+
+    private int validateDuplicatedBonusNumber(List<Set<Integer>> winnerLotto, String bonusInput) {
+        int bonusNumber = lottoGenerator.getBonusNumber();
+        while (winnerLotto.getFirst().contains(bonusNumber)) {
+            bonusNumber = lottoGenerator.getBonusNumber();
+        }
+        return bonusNumber;
+    }
+
 
     private int validateIsNumber(List<Set<Integer>> winnerLotto, String bonusInput) {
         try {
@@ -130,11 +141,11 @@ public class ValidationService {
     }
 
     private int validateCorrectRange(List<Set<Integer>> winnerLotto, int bonusNumber) {
-        if(bonusNumber>45 || bonusNumber<1){
+        if (bonusNumber > 45 || bonusNumber < 1) {
             printService.printWrongRange();
             return validateBonusNumber(winnerLotto);
         }
-        if(winnerLotto.getFirst().contains(bonusNumber)){
+        if (winnerLotto.getFirst().contains(bonusNumber)) {
             printService.printWrongBonusNumber(bonusNumber);
             return validateBonusNumber(winnerLotto);
         }
