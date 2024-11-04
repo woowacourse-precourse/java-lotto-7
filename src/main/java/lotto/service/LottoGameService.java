@@ -30,7 +30,7 @@ public class LottoGameService {
     }
 
     public List<Lotto> generateLottoTickets(LottoPurchase lottoPurchase) {
-        int count = lottoPurchase.getAmount() / 1000;
+        int count = lottoPurchase.amount() / 1000;
         List<Lotto> tickets = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {

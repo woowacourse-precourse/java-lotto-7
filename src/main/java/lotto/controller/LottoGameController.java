@@ -23,7 +23,7 @@ public class LottoGameController {
         int bonusNumber = lottoGameService.inputBonusNumber(winningNumbers);
 
         Map<Rank, Integer> results = lottoResultService.calculateResults(purchasedLottos, winningNumbers, bonusNumber);
-        double profitRate = lottoResultService.calculateProfitRate(results, lottoPurchase.getAmount());
+        double profitRate = lottoResultService.calculateProfitRate(results, lottoPurchase.amount());
 
         printWinResults(results, profitRate);
     }
