@@ -1,6 +1,9 @@
 package validator;
 
 import common.ErrorMessage;
+import java.util.Arrays;
+import java.util.List;
+import model.Lotto;
 
 public class InputValidator {
     public static void validataPurchaseAmount(String purchaseAmount) {
@@ -9,6 +12,44 @@ public class InputValidator {
         inputNegative(purchaseAmount);
         inputZero(purchaseAmount);
         inputUnpayableValue(purchaseAmount);
+    }
+
+    public static void validateWinningNumbers(String winningNumbers) {
+        inputEmptyCheck(winningNumbers);
+        List<Integer> LottoNumbers = checkWinningNumbers(winningNumbers);
+        new Lotto(LottoNumbers);
+    }
+
+    public static void validateWinningBonusNumbers(String winningBonusNumber, String winningNumbers) {
+        inputEmptyCheck(winningBonusNumber);
+        inputNotInteger(winningBonusNumber);
+
+        List<Integer> parseWinningNumbers = checkWinningNumbers(winningNumbers);
+        int parseBonusNumber = Integer.parseInt(winningBonusNumber);
+
+        checkBonusNumberDuplicate(parseWinningNumbers, parseBonusNumber);
+        checkRangeNumber(parseBonusNumber);
+    }
+
+    private static List<Integer> checkWinningNumbers(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(","))
+                .map(String::trim)
+                .map(number -> {
+                    try {
+                        int parsednumber = Integer.parseInt(number);
+                        checkRangeNumber(parsednumber);
+                        return parsednumber;
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
+                    }
+                })
+                .toList();
+    }
+
+    private static void checkRangeNumber(int parsednumber) {
+        if (parsednumber < 1 || parsednumber > 45) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SCOPE.getMessage());
+        }
     }
 
     private static void inputEmptyCheck(String purchaseAmount) {
@@ -43,6 +84,12 @@ public class InputValidator {
         int result = Integer.parseInt(purchaseAmount);
         if (result % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PRICE.getMessage());
+        }
+    }
+
+    private static void checkBonusNumberDuplicate(List<Integer> parseWinningNumbers, int parseBonusNumber) {
+        if (parseWinningNumbers.contains(parseBonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_CONTAINS.getMessage());
         }
     }
 }

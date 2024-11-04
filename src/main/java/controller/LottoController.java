@@ -25,6 +25,19 @@ public class LottoController {
         List<Lotto> lottos = lottoService.generateLotto(purchaseAmount);
 
         outputView.printLottoNumbers(lottos);
+
+        String pickLottoNumbers = getValidatedWinningNumbers();
+        String pickBonusLottoNumber = getValidatedBonusNumber(pickLottoNumbers);
+    }
+
+    private String getValidatedBonusNumber(String pickLottoNumbers) {
+        outputView.showPrompt(InputMessage.SYSTEM_PICK_BONUS_LOTTO.getMessage());
+        return getInput(input -> InputValidator.validateWinningBonusNumbers(input, pickLottoNumbers));
+    }
+
+    private String getValidatedWinningNumbers() {
+        outputView.showPrompt(InputMessage.SYSTEM_PICK_LOTTO.getMessage());
+        return getInput(InputValidator::validateWinningNumbers);
     }
 
     private String getUserPayment() {
