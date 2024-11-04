@@ -23,12 +23,16 @@ public enum LottoPrize {
     public static LottoPrize of(int matchingNumbers, boolean isBonusMatched) {
         return Arrays.stream(values())
             .filter(prize -> prize.matchingNumberCount == matchingNumbers &&
-                (matchingNumbers < 5 || prize.isBonusMatched == isBonusMatched))
+	(matchingNumbers < 5 || prize.isBonusMatched == isBonusMatched))
             .findFirst()
             .orElse(LOSE);
     }
 
     public int getPrizeAmount() {
         return prizeAmount;
+    }
+
+    public int getMatchingNumberCount() {
+        return matchingNumberCount;
     }
 }

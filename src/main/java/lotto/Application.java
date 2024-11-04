@@ -6,8 +6,6 @@ import lotto.infrastructure.config.AppConfig;
 
 public class Application {
 
-    public static final UUID userId = UUID.randomUUID();
-
     public static void main(String[] args) {
         AppConfig appConfig = new AppConfig();
 

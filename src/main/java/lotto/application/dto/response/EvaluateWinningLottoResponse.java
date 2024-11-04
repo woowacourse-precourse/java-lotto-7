@@ -6,6 +6,4 @@ import lotto.domain.lotto.vo.LottoPrize;
 public record EvaluateWinningLottoResponse(
     Map<LottoPrize, Integer> winningResult,
     double earningRate
-) {
-
-}
+) implements Response {}

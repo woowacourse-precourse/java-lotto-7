@@ -12,6 +12,7 @@ import lotto.application.validation.InputValidator;
 import lotto.domain.lotto.repository.LottoRepository;
 import lotto.domain.lotto.service.LottoMachine;
 import lotto.domain.lotto.service.WinningLottoEvaluator;
+import lotto.infrastructure.format.LottoFormatter;
 import lotto.infrastructure.persistence.LottoMemoryRepository;
 
 public class AppConfig {
@@ -27,13 +28,15 @@ public class AppConfig {
 
     public AppConfig() {
         this.inputValidator = new InputValidator();
-        this.outputPort = new CliOutputAdapter();
-        this.lottoCliInputAdapter = new LottoCliInputAdapter(inputValidator, outputPort);
+        this.outputPort = new CliOutputAdapter(new LottoFormatter());
         this.lottoMemoryRepository = new LottoMemoryRepository();
         this.lottoRepository = new LottoPersistenceAdapter(lottoMemoryRepository);
         this.lottoMachine = new LottoMachine();
         this.purchaseLottoUsecase = new PurchaseLottoCommand(lottoRepository, lottoMachine);
-        this.evaluateWinningLottoUsecase = new EvaluateWinningLottoCommand(new WinningLottoEvaluator(), lottoRepository);
+        this.evaluateWinningLottoUsecase = new EvaluateWinningLottoCommand(
+            new WinningLottoEvaluator(), lottoRepository);
+        this.lottoCliInputAdapter = new LottoCliInputAdapter(inputValidator, outputPort,
+            purchaseLottoUsecase, evaluateWinningLottoUsecase);
     }
 
     public LottoCliInputAdapter getLottoCliInputAdapter() {

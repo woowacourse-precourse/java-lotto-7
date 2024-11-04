@@ -3,7 +3,6 @@ package lotto.application.service;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import lotto.application.dto.request.EvaluateWinningLottoRequest;
 import lotto.application.dto.response.EvaluateWinningLottoResponse;
@@ -27,7 +26,7 @@ public class EvaluateWinningLottoCommand implements EvaluateWinningLottoUsecase 
 
     @Override
     public EvaluateWinningLottoResponse execute(EvaluateWinningLottoRequest request) {
-        List<Lotto> lottos = getLottosByBuyerId(request.buyerId());
+        List<Lotto> lottos = getLottos();
 
         List<LottoPrize> prizes = evaluatePrizes(lottos, request.winningNumber());
         Map<LottoPrize, Integer> prizeStatistics = calculatePrizeStatistics(prizes);
@@ -36,8 +35,8 @@ public class EvaluateWinningLottoCommand implements EvaluateWinningLottoUsecase 
         return new EvaluateWinningLottoResponse(prizeStatistics, earningRate);
     }
 
-    private List<Lotto> getLottosByBuyerId(UUID buyerId) {
-        return lottoRepository.findAllByBuyerId(buyerId);
+    private List<Lotto> getLottos() {
+        return lottoRepository.findAll();
     }
 
     private List<LottoPrize> evaluatePrizes(List<Lotto> lottos, WinningNumber winningNumber) {

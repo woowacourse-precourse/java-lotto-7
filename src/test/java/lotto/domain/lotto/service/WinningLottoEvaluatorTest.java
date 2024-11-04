@@ -1,9 +1,13 @@
 package lotto.domain.lotto.service;
 
-import static lotto.domain.lotto.vo.LottoPrize.*;
+import static lotto.domain.lotto.vo.LottoPrize.FIFTH;
+import static lotto.domain.lotto.vo.LottoPrize.FIRST;
+import static lotto.domain.lotto.vo.LottoPrize.FOURTH;
+import static lotto.domain.lotto.vo.LottoPrize.LOSE;
+import static lotto.domain.lotto.vo.LottoPrize.SECOND;
+import static lotto.domain.lotto.vo.LottoPrize.THIRD;
 
 import java.util.List;
-import java.util.UUID;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.WinningNumber;
 import lotto.domain.lotto.vo.LottoPrize;
@@ -15,7 +19,6 @@ import org.junit.jupiter.api.Test;
 class WinningLottoEvaluatorTest {
 
     private final WinningLottoEvaluator winningLottoEvaluator = new WinningLottoEvaluator();
-    private final UUID buyerId = UUID.randomUUID();
 
     @Test
     void 번호가_여섯개가_동일하다면_1등을_반환한다() {
@@ -24,7 +27,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 3, 4, 5, 6), buyerId));
+            Lotto.of(List.of(1, 2, 3, 4, 5, 6)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(FIRST);
@@ -37,7 +40,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 3, 4, 5, 7), buyerId));
+            Lotto.of(List.of(1, 2, 3, 4, 5, 7)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(SECOND);
@@ -50,7 +53,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 3, 4, 5, 8), buyerId));
+            Lotto.of(List.of(1, 2, 3, 4, 5, 8)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(THIRD);
@@ -63,7 +66,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 3, 4, 9, 10), buyerId));
+            Lotto.of(List.of(1, 2, 3, 4, 9, 10)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(FOURTH);
@@ -76,7 +79,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 3, 8, 9, 10), buyerId));
+            Lotto.of(List.of(1, 2, 3, 8, 9, 10)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(FIFTH);
@@ -89,7 +92,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 2, 7, 8, 9, 10), buyerId));
+            Lotto.of(List.of(1, 2, 7, 8, 9, 10)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(LOSE);
@@ -102,7 +105,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(1, 7, 8, 9, 10, 11), buyerId));
+            Lotto.of(List.of(1, 7, 8, 9, 10, 11)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(LOSE);
@@ -115,7 +118,7 @@ class WinningLottoEvaluatorTest {
 
         // when
         LottoPrize lottoPrize = winningLottoEvaluator.evaluate(winningNumber,
-            Lotto.of(List.of(7, 8, 9, 10, 11, 12), buyerId));
+            Lotto.of(List.of(7, 8, 9, 10, 11, 12)));
 
         // then
         Assertions.assertThat(lottoPrize).isEqualTo(LOSE);

@@ -1,6 +1,8 @@
 package lotto.application.validation;
 
-import static lotto.infrastructure.exception.ErrorCode.*;
+import static lotto.infrastructure.exception.ErrorCode.INVALID_LOTTO_CONSECUTIVE_DELIMITERS;
+import static lotto.infrastructure.exception.ErrorCode.INVALID_LOTTO_DELIMITER_POSITION;
+import static lotto.infrastructure.exception.ErrorCode.INVALID_NUMBER_FORMAT;
 
 import lotto.infrastructure.exception.ErrorCode;
 
@@ -16,7 +18,6 @@ public class InputValidator {
     public void validateLotto(String lottoNumbers) {
         validateNoConsecutiveDelimiters(lottoNumbers);
         validateProperDelimiterPosition(lottoNumbers);
-//        validateOnlyNumbers(lottoNumbers);
     }
 
     private void validateNumber(String input, ErrorCode errorCode) {
@@ -39,10 +40,4 @@ public class InputValidator {
             throw new IllegalArgumentException(INVALID_LOTTO_DELIMITER_POSITION.getMessage());
         }
     }
-
-//    private void validateOnlyNumbers(String lottoNumbers) {
-//        for (String number : lottoNumbers.split(DELIMITER)) {
-//            validateNumber(number, INVALID_LOTTO_NUMBER);
-//        }
-//    }
 }

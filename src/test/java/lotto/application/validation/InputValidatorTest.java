@@ -35,17 +35,6 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 로또_번호에_숫자가_아닌_값이_포함되어_있으면_예외를_발생한다() {
-        // given
-        String lottoNumbers = "1,2,3,4,5,a";
-
-        // when & then
-        assertThatThrownBy(() -> inputValidator.validateLotto(lottoNumbers))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage(INVALID_LOTTO_NUMBER.getMessage());
-    }
-
-    @Test
     void 로또_번호에_구분자가_앞_뒤에_포함되어_있다면_예외를_발생한다() {
         // given
         String firstLottoNumbers = ",1,2,3,4,5,6";

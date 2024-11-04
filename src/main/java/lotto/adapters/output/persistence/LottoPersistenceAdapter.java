@@ -21,12 +21,7 @@ public class LottoPersistenceAdapter implements LottoRepository {
 
     @Override
     public List<Lotto> findAll() {
-        return null;
-    }
-
-    @Override
-    public List<Lotto> findAllByBuyerId(UUID uuid) {
-        return lottoMemoryRepository.findAllByBuyerId(uuid);
+        return lottoMemoryRepository.findAll();
     }
 
     @Override

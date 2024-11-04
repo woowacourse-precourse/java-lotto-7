@@ -10,7 +10,5 @@ public interface LottoRepository {
 
     List<Lotto> findAll();
 
-    List<Lotto> findAllByBuyerId(UUID uuid);
-
     void saveAll(List<Lotto> lottos);
 }

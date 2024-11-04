@@ -1,11 +1,17 @@
 package lotto.adapters.input.cli;
 
-import static lotto.infrastructure.constants.AnnounceMessages.*;
+import static lotto.infrastructure.constants.AnnounceMessages.PROMPT_BONUS_NUMBER;
+import static lotto.infrastructure.constants.AnnounceMessages.PROMPT_PURCHASE_AMOUNT;
+import static lotto.infrastructure.constants.AnnounceMessages.PROMPT_WINNING_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import java.util.UUID;
-import lotto.Application;
+import lotto.application.dto.request.EvaluateWinningLottoRequest;
+import lotto.application.dto.request.PurchaseLottoRequest;
+import lotto.application.dto.response.EvaluateWinningLottoResponse;
+import lotto.application.dto.response.PurchaseLottoResponse;
+import lotto.application.port.input.EvaluateWinningLottoUsecase;
+import lotto.application.port.input.PurchaseLottoUsecase;
 import lotto.application.port.output.OutputPort;
 import lotto.application.validation.InputValidator;
 import lotto.domain.amount.PurchaseAmount;
@@ -16,24 +22,43 @@ public class LottoCliInputAdapter {
 
     private final InputValidator inputValidator;
     private final OutputPort outputPort;
-    private final UUID buyerId = Application.userId;
+    private final PurchaseLottoUsecase purchaseLottoUsecase;
+    private final EvaluateWinningLottoUsecase evaluateWinningLottoUsecase;
 
-    public LottoCliInputAdapter(InputValidator inputValidator, OutputPort outputPort) {
+    public LottoCliInputAdapter(InputValidator inputValidator,
+        OutputPort outputPort,
+        PurchaseLottoUsecase purchaseLottoUsecase,
+        EvaluateWinningLottoUsecase evaluateWinningLottoUsecase
+    ) {
         this.inputValidator = inputValidator;
         this.outputPort = outputPort;
+        this.purchaseLottoUsecase = purchaseLottoUsecase;
+        this.evaluateWinningLottoUsecase = evaluateWinningLottoUsecase;
     }
 
     public void run() {
         purchaseLotto();
-        getWinningNumber();
+        analyzeLottoResult();
     }
 
     private void purchaseLotto() {
         PurchaseAmount purchaseAmount = promptPurchaseAmount();
+        PurchaseLottoResponse purchaseLottoResponse = purchaseLottoUsecase.execute(
+            new PurchaseLottoRequest(purchaseAmount)
+        );
+
+        outputPort.writeNewline();
+        outputPort.writeResponse(purchaseLottoResponse);
     }
 
-    private void getWinningNumber() {
+    private void analyzeLottoResult() {
         WinningNumber winningNumber = promptWinningNumber();
+        EvaluateWinningLottoResponse evaluateWinningLottoResponse = evaluateWinningLottoUsecase.execute(
+            new EvaluateWinningLottoRequest(winningNumber)
+        );
+
+        outputPort.writeNewline();
+        outputPort.writeResponse(evaluateWinningLottoResponse);
     }
 
     private PurchaseAmount promptPurchaseAmount() {
@@ -48,7 +73,7 @@ public class LottoCliInputAdapter {
         List<Integer> numbers = promptNumbers();
         Integer bonusNumber = promptBonusNumber();
 
-        return new WinningNumber(numbers, bonusNumber);
+        return WinningNumber.of(numbers, bonusNumber);
     }
 
     private List<Integer> promptNumbers() {

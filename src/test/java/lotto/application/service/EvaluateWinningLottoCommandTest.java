@@ -23,7 +23,6 @@ class EvaluateWinningLottoCommandTest {
 
     private EvaluateWinningLottoUsecase evaluateWinningLottoUsecase;
     private LottoRepository lottoRepository;
-    private final UUID buyerId = UUID.randomUUID();
 
     @BeforeEach
     void setup() {
@@ -36,9 +35,9 @@ class EvaluateWinningLottoCommandTest {
     void 당첨_여부를_확인한다() {
         // given
         WinningNumber winningNumber = WinningNumber.of(List.of(1, 2, 3, 4, 5, 6), 7);
-        List<Lotto> lottos = List.of(Lotto.of(List.of(1, 2, 3, 4, 5, 6), buyerId));
+        List<Lotto> lottos = List.of(Lotto.of(List.of(1, 2, 3, 4, 5, 6)));
 
-        EvaluateWinningLottoRequest evaluateWinningLottoRequest = new EvaluateWinningLottoRequest(winningNumber, buyerId);
+        EvaluateWinningLottoRequest evaluateWinningLottoRequest = new EvaluateWinningLottoRequest(winningNumber);
 
         lottoRepository.saveAll(lottos);
 

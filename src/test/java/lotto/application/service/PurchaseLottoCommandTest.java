@@ -18,25 +18,21 @@ import org.junit.jupiter.api.Test;
 class PurchaseLottoCommandTest {
 
     private PurchaseLottoUsecase purchaseLottoUsecase;
-    private LottoRepository lottoRepository;
 
     @BeforeEach
     void setup() {
-        lottoRepository = new FakeLottoRepository();
-        purchaseLottoUsecase = new PurchaseLottoCommand(lottoRepository, new LottoMachine());
+        purchaseLottoUsecase = new PurchaseLottoCommand(new FakeLottoRepository(), new LottoMachine());
     }
 
     @Test
     void 구매_금액_만큼의_로또를_구매한다() {
         // given
-        PurchaseLottoRequest purchaseLottoRequest = new PurchaseLottoRequest(PurchaseAmount.from(5000),
-            UUID.randomUUID());
+        PurchaseLottoRequest purchaseLottoRequest = new PurchaseLottoRequest(PurchaseAmount.from(5000));
 
         // when
         PurchaseLottoResponse response = purchaseLottoUsecase.execute(purchaseLottoRequest);
 
         // then
         assertThat(response.lottos().size()).isEqualTo(5);
-        assertThat(lottoRepository.findAll()).hasSize(5);
     }
 }

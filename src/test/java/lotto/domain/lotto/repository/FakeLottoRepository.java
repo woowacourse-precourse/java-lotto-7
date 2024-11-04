@@ -2,13 +2,13 @@ package lotto.domain.lotto.repository;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import lotto.domain.lotto.Lotto;
 
 public class FakeLottoRepository implements LottoRepository {
 
-    private static Map<UUID, Lotto> storage = new ConcurrentHashMap<>();
+    private static Map<Long, Lotto> storage = new ConcurrentHashMap<>();
+    private static Long sequence = 0L;
 
     @Override
     public void save(Lotto lotto) {
@@ -16,19 +16,12 @@ public class FakeLottoRepository implements LottoRepository {
             throw new IllegalArgumentException();
         }
 
-        storage.put(lotto.getId(), lotto);
+        storage.put(sequence++, lotto);
     }
 
     @Override
     public List<Lotto> findAll() {
         return List.copyOf(storage.values());
-    }
-
-    @Override
-    public List<Lotto> findAllByBuyerId(UUID uuid) {
-        return storage.values().stream()
-            .filter(lotto -> lotto.isOwnedBy(uuid))
-            .toList();
     }
 
     @Override
