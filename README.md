@@ -2,9 +2,47 @@
 <hr>
 
 ## ⛓️ 패키지 구조
-```
-
-```
+````
+.
+├── Application.java
+├── controller
+│   └── LottoController.java
+├── domain
+│   ├── Lotto.java
+│   ├── Money.java
+│   ├── Prize.java
+│   ├── PrizeResult.java
+│   ├── ProfitCalculator.java
+│   ├── WinningLotto.java
+│   └── generator
+│       └── LottoGenerator.java
+├── exception
+│   ├── Money
+│   │   ├── DivideMoneyException.java
+│   │   └── NegativeMoneyException.java
+│   ├── input
+│   │   └── NotIntegerException.java
+│   ├── lotto
+│   │   ├── DuplicatedLottoNumberException.java
+│   │   ├── InvalidRangeLottoNumberException.java
+│   │   └── InvalidSizeLottoNumberException.java
+│   └── winningLotto
+│       ├── DuplicatedWinningNumberException.java
+│       └── InvalidRangeWinningNumberException.java
+├── parsers
+│   └── Parser.java
+└── view
+    ├── input
+    │   ├── InputBonusNumberView.java
+    │   ├── InputMoneyView.java
+    │   ├── InputView.java
+    │   └── InputWinningNumberView.java
+    └── output
+        ├── LottoOutputView.java
+        ├── PrizeOutputView.java
+        ├── ProfitOutputView.java
+        └── TicketOutputView.java
+````
 
 <hr>
 
