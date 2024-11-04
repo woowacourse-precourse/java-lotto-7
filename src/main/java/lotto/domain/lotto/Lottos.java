@@ -35,8 +35,8 @@ public class Lottos {
     public String toString() {
         StringBuilder buyLottos = new StringBuilder();
 
-        buyLottos.append("\n")
-                .append(lottos.size()).append(PURCHASE_MESSAGE.getMessage());
+        buyLottos.append("\n").append(lottos.size())
+                .append(PURCHASE_MESSAGE.getMessage()).append("\n");
 
         for (Lotto lotto : lottos) {
             buyLottos.append(lotto.toString());

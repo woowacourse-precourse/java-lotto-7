@@ -18,7 +18,7 @@ public class Numbers {
 
     public static Numbers of(final List<Integer> numbers) {
         List<Number> createdNumbers = numbers.stream()
-                .map(Number::from)
+                .map(NumberFactory::from)
                 .toList();
 
         return new Numbers(createdNumbers);

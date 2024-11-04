@@ -17,6 +17,7 @@ import lotto.domain.lotto.LottoFactory;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.LottosFactory;
 import lotto.domain.number.Number;
+import lotto.domain.number.NumberFactory;
 import lotto.domain.number.Numbers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,7 +52,7 @@ class WinningStatisticsTest {
 
         // 로또 추첨 번호 : 1, 2, 3, 4, 5, 6, 7(보너스번호)
         Numbers winningNumbers = Numbers.of(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Number bonusNumber = Number.from(7);
+        Number bonusNumber = NumberFactory.from(7);
 
         winningInfo = WinningInfo.of(winningNumbers, bonusNumber);
 
@@ -127,7 +128,7 @@ class WinningStatisticsTest {
 
         // 로또 추첨 번호 : 1, 2, 3, 4, 5, 6, 7(보너스번호)
         Numbers winningNumbers = Numbers.of(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Number bonusNumber = Number.from(7);
+        Number bonusNumber = NumberFactory.from(7);
 
         winningInfo = WinningInfo.of(winningNumbers, bonusNumber);
 
@@ -142,24 +143,28 @@ class WinningStatisticsTest {
     }
 
     private String getExpectedWinningStatisticsString() {
-        return "\n당첨 통계\n"
-                + "---\n"
-                + "3개 일치 (5,000원) - 1개\n"
-                + "4개 일치 (50,000원) - 1개\n"
-                + "5개 일치 (1,500,000원) - 1개\n"
-                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
-                + "6개 일치 (2,000,000,000원) - 1개\n"
-                + "총 수익률은 25394437.5%입니다.";
+        return """
+
+                당첨 통계
+                ---
+                3개 일치 (5,000원) - 1개
+                4개 일치 (50,000원) - 1개
+                5개 일치 (1,500,000원) - 1개
+                5개 일치, 보너스 볼 일치 (30,000,000원) - 1개
+                6개 일치 (2,000,000,000원) - 1개
+                총 수익률은 25394437.5%입니다.""";
     }
 
     private String getExpectedPartialWinningStatisticsString() {
-        return "\n당첨 통계\n"
-                + "---\n"
-                + "3개 일치 (5,000원) - 1개\n"
-                + "4개 일치 (50,000원) - 1개\n"
-                + "5개 일치 (1,500,000원) - 0개\n"
-                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n"
-                + "6개 일치 (2,000,000,000원) - 0개\n"
-                + "총 수익률은 1833.3%입니다.";
+        return """
+
+                당첨 통계
+                ---
+                3개 일치 (5,000원) - 1개
+                4개 일치 (50,000원) - 1개
+                5개 일치 (1,500,000원) - 0개
+                5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+                6개 일치 (2,000,000,000원) - 0개
+                총 수익률은 1833.3%입니다.""";
     }
 }

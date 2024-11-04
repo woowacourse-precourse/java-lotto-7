@@ -66,12 +66,10 @@ public class WinningStatistics {
     }
 
     private String formatStatistics(final Rank rank, final int count) {
-        StringBuilder entryBuilder = new StringBuilder();
-
-        return entryBuilder.append(getMatchCountString(rank))
-                .append(getBonusMatchString(rank))
-                .append(getPrizeString(rank))
-                .append(getCountString(count)).toString();
+        return getMatchCountString(rank)
+                + getBonusMatchString(rank)
+                + getPrizeString(rank)
+                + getCountString(count);
     }
 
     private String getMatchCountString(final Rank rank) {
@@ -100,7 +98,7 @@ public class WinningStatistics {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(RESULT_MESSAGE.getMessage());
+        sb.append("\n").append(RESULT_MESSAGE.getMessage()).append("\n");
 
         List<Entry<Rank, Integer>> sortedStatistics = getSortedStatistics();
 

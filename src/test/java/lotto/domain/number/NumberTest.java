@@ -18,16 +18,16 @@ class NumberTest {
     void 정상_범위의_숫자를_생성해_본다() {
         int validNumber = LOTTO_MIN_NUMBER;
 
-        Number number = Number.from(validNumber);
+        Number number = NumberFactory.from(validNumber);
 
-        assertThat(number).isEqualTo(Number.from(validNumber));
+        assertThat(number).isEqualTo(NumberFactory.from(validNumber));
     }
 
     @DisplayName("숫자가 로또번호 범위를 벗어나면 예외가 발생한다.")
     @ParameterizedTest(name = "입력값: \"{0}\"")
     @ValueSource(ints = {LOTTO_MIN_NUMBER - 1, LOTTO_MAX_NUMBER + 1})
     void 랜덤_숫자가_로또번호_범위를_벗어나면_예외가_발생한다(int number) {
-        Assertions.assertThatThrownBy(() -> Number.from(number))
+        Assertions.assertThatThrownBy(() -> NumberFactory.from(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_RANGE_LOTTO_NUMBER.getMessage());
     }
@@ -35,7 +35,7 @@ class NumberTest {
     @DisplayName("난수는 로또 번호의 범위 안에서 생성된다.")
     @Test
     void 난수는_로또_번호의_범위_안에서_생성된다() {
-        Number randomNumber = Number.generateRandomNumber();
+        Number randomNumber = NumberFactory.generateRandomNumber();
 
         assertTrue(randomNumber.getNumber() >= LOTTO_MIN_NUMBER && randomNumber.getNumber() <= LOTTO_MAX_NUMBER);
     }

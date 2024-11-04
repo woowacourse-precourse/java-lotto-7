@@ -1,43 +1,69 @@
 package lotto.controller;
 
 import lotto.domain.buyer.Buyer;
-import lotto.domain.buyer.BuyerFactory;
 import lotto.domain.number.Number;
 import lotto.domain.number.Numbers;
-import lotto.domain.winning.LottoMatcher;
 import lotto.domain.winning.WinningInfo;
 import lotto.domain.winning.WinningStatistics;
-import lotto.view.InputHandler;
+import lotto.service.LottoNumberService;
+import lotto.service.LottoService;
+import lotto.service.WinningStatisticsService;
 import lotto.view.InputView;
 
 public class Controller {
-    private final InputHandler inputHandler;
     private final InputView inputView;
+    private final LottoService lottoService;
+    private final LottoNumberService lottoNumberService;
+    private final WinningStatisticsService winningStatisticsService;
 
-    public Controller(final InputHandler inputHandler, final InputView inputView) {
-        this.inputHandler = inputHandler;
+    public Controller(final InputView inputView, final LottoService lottoService,
+                      final LottoNumberService lottoNumberService,
+                      final WinningStatisticsService winningStatisticsService) {
         this.inputView = inputView;
+        this.lottoService = lottoService;
+        this.lottoNumberService = lottoNumberService;
+        this.winningStatisticsService = winningStatisticsService;
     }
 
     public void run() {
+        Buyer buyer = purchaseLotto();
+        WinningInfo winningInfo = inputWinningNumbers();
+        WinningStatistics winningStatistics = calculateStatistics(buyer, winningInfo);
+        displayStatistics(winningStatistics);
+    }
+
+    private Buyer purchaseLotto() {
         String inputMoney = inputView.inputMoney();
-        int money = inputHandler.stringToNumber(inputMoney);
+        Buyer buyer = lottoService.createBuyer(inputMoney);
+        System.out.println(buyer.getbuyLottos().toString());
+        return buyer;
+    }
 
-        Buyer buyer = BuyerFactory.createBuyer(money);
-        System.out.print(buyer.getbuyLottos().toString());
-
+    private WinningInfo inputWinningNumbers() {
         String inputWinningNumbers = inputView.inputWinningNumbers();
-        String inputBonusNumber = inputView.inputBonusNumber();
-        int bonusNumber = inputHandler.stringToNumber(inputBonusNumber);
+        Numbers winningNumbers = lottoNumberService.createWinningNumbers(inputWinningNumbers);
 
-        Numbers lottoNumbers = inputHandler.splitLottoNumbers(inputWinningNumbers);
-        Number bonus = Number.from(bonusNumber);
+        Number bonus = inputBonusNumber(inputWinningNumbers);
 
-        WinningInfo winningInfo = WinningInfo.of(lottoNumbers, bonus);
-        LottoMatcher lottoMatcher = new LottoMatcher();
-        WinningStatistics winningStatistics = WinningStatistics.of(lottoMatcher, buyer);
-        winningStatistics.calculateWinningStatistics(buyer, winningInfo);
+        return WinningInfo.of(winningNumbers, bonus);
+    }
 
-        System.out.print(winningStatistics.toString());
+    private Number inputBonusNumber(String inputWinningNumbers) {
+        while (true) {
+            try {
+                String inputBonusNumber = inputView.inputBonusNumber();
+                return lottoNumberService.createBonusNumber(inputBonusNumber, inputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private WinningStatistics calculateStatistics(final Buyer buyer, final WinningInfo winningInfo) {
+        return winningStatisticsService.calculateWinningStatistics(buyer, winningInfo);
+    }
+
+    private void displayStatistics(WinningStatistics winningStatistics) {
+        System.out.println(winningStatistics.toString());
     }
 }

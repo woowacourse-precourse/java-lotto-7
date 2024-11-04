@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.number.Number;
+import lotto.domain.number.NumberFactory;
 import lotto.domain.number.Numbers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,9 +45,13 @@ class LottoMatcherTest {
     @BeforeEach
     void setUp() {
         lottoMatcher = new LottoMatcher();
-        // 로또 번호: 1, 2, 3, 4, 5, 6
+        // 추첨 로또 번호: 1, 2, 3, 4, 5, 6
+        Numbers winningLottoNumbers = Numbers.of(Arrays.asList(1, 2, 3, 4, 5, 6));
+
         // 보너스 번호: 7
-        winningInfo = WinningInfo.of(Numbers.of(Arrays.asList(1, 2, 3, 4, 5, 6)), Number.from(7));
+        Number bonusNumber = NumberFactory.createBonusNumber(7, winningLottoNumbers);
+
+        winningInfo = WinningInfo.of(winningLottoNumbers, bonusNumber);
     }
 
     @DisplayName("발행한 로또의 등수를 확인한다.")
