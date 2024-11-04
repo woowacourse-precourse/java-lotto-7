@@ -39,25 +39,52 @@ class WinningLottoTest {
 
     static Stream<Arguments> 당첨결과데이터() {
         return Stream.of(
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6).stream()
-                        .map(LottoNumber::new).collect(Collectors.toList())), LottoResults.FIRST),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 45).stream()
-                        .map(LottoNumber::new).collect(Collectors.toList())), LottoResults.SECOND),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7).stream()
-                        .map(LottoNumber::new).collect(Collectors.toList())), LottoResults.THIRD),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 8, 9).stream()
-                        .map(LottoNumber::new).collect(Collectors.toList())), LottoResults.FORTH),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 7, 8, 9).stream()
-                        .map(LottoNumber::new).collect(Collectors.toList())), LottoResults.FIFTH),
+                Arguments.of(
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6).stream()
+                                .map(LottoNumber::new)
+                                .collect(Collectors.toList())),
+                        LottoResults.FIRST),
+                Arguments.of(
+                        new Lotto(List.of(1, 2, 3, 4, 5, 45).stream()
+                                .map(LottoNumber::new)
+                                .collect(Collectors.toList())),
+                        LottoResults.SECOND),
+                Arguments.of(
+                        new Lotto(List.of(1, 2, 3, 4, 5, 7).stream()
+                                .map(LottoNumber::new)
+                                .collect(Collectors.toList())),
+                        LottoResults.THIRD),
+                Arguments.of(
+                        new Lotto(List.of(1, 2, 3, 4, 8, 9).stream()
+                                .map(LottoNumber::new)
+                                .collect(Collectors.toList())),
+                        LottoResults.FORTH),
+                Arguments.of(
+                        new Lotto(List.of(1, 2, 3, 7, 8, 9).stream()
+                                .map(LottoNumber::new)
+                                .collect(Collectors.toList())),
+                        LottoResults.FIFTH),
 
-                Arguments.of(new Lotto(List.of(11, 12, 13, 17, 18, 19).stream()
-                        .map(LottoNumber::new).collect(Collectors.toList())), LottoResults.NONE),
-                Arguments.of(new Lotto(List.of(1, 7, 8, 9, 10, 11).stream()
-                        .map(LottoNumber::new).collect(Collectors.toList())), LottoResults.NONE),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 8, 45).stream()
-                        .map(LottoNumber::new).collect(Collectors.toList())), LottoResults.NONE),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 7, 8, 45).stream()
-                        .map(LottoNumber::new).collect(Collectors.toList())), LottoResults.NONE)
+                Arguments.of(
+                        new Lotto(List.of(11, 12, 13, 17, 18, 19).stream()
+                                .map(LottoNumber::new)
+                                .collect(Collectors.toList())),
+                        LottoResults.NONE),
+                Arguments.of(
+                        new Lotto(List.of(1, 7, 8, 9, 10, 11).stream()
+                                .map(LottoNumber::new)
+                                .collect(Collectors.toList())),
+                        LottoResults.NONE),
+                Arguments.of(
+                        new Lotto(List.of(1, 2, 3, 4, 8, 45).stream()
+                                .map(LottoNumber::new)
+                                .collect(Collectors.toList())),
+                        LottoResults.NONE),
+                Arguments.of(
+                        new Lotto(List.of(1, 2, 3, 7, 8, 45).stream()
+                                .map(LottoNumber::new)
+                                .collect(Collectors.toList())),
+                        LottoResults.NONE)
         );
     }
 }
