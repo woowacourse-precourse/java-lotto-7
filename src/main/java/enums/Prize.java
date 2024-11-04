@@ -21,7 +21,7 @@ public enum Prize {
         DecimalFormat df = new DecimalFormat("#,###");
         String moneyFormat = df.format(money);
 
-        return description + " (" + moneyFormat + ") - ";
+        return description + " (" + moneyFormat + "원) - ";
     }
 
     public int getMoney() {
