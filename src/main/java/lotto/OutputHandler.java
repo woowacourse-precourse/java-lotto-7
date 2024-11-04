@@ -1,6 +1,7 @@
 package lotto;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +15,9 @@ public class OutputHandler {
     public void printLottoNumbers(int purchaseCount, List<List<Integer>> lottoNumbers) {
         System.out.printf((PURCHASE_COUNT_MESSAGE) + "%n", purchaseCount);
         for (List<Integer> numbers : lottoNumbers) {
-            numbers.sort(Integer::compareTo);
-            System.out.println(numbers);
+            List<Integer> sortableNumbers = new ArrayList<>(numbers);
+            sortableNumbers.sort(Integer::compareTo);
+            System.out.println(sortableNumbers);
         }
     }
 
