@@ -14,9 +14,9 @@ import lotto.exception.MoneyExceptionType;
 public class LottoService {
     private static final int LOTTO_PRIZE = 1000;
 
-    Money money;
     private final RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
+    private Money money;
     private int numOfLottos;
     private List<Lotto> lottos = new ArrayList<>();
     private Lotto winningNumber;
