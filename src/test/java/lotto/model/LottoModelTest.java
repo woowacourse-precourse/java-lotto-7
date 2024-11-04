@@ -47,23 +47,31 @@ public class LottoModelTest {
     @DisplayName("The winning Info should return number of each prize tier")
     @Test
     void testCheckPrizeTier(){
-
-            /*TODO
-            *  - assertRandomUniqueNumbersInRangeTest()를 사용하여 복수의 로또 번호 당첨을 확인해야함
-            * */
-
+        assertRandomUniqueNumbersInRangeTest(()->{
             LottoModel lottoModel = new LottoModel();
-            List<Lotto> createdLottos = lottoModel.createLotto(1);
-
-            List<Integer> winLottoNumber = createdLottos.getFirst().getNumbers();
+            List<Lotto> createdLottos = lottoModel.createLotto(8);
+            List<Integer> winLottoNumber = List.of(1,2,3,4,5,6);
             int bonusNumber = 7;
 
-
             lottoModel.setWinLottoWithBonusNumber(winLottoNumber,bonusNumber);
-
             Map<PrizeTier,Integer> result = lottoModel.getWinningInfo();
-            assertThat(result.get(PrizeTier.FIRST)).isEqualTo(1);
 
+            assertThat(result.get(PrizeTier.FIRST)).isEqualTo(2);
+            assertThat(result.get(PrizeTier.SECOND)).isEqualTo(1);
+            assertThat(result.get(PrizeTier.THIRD)).isEqualTo(1);
+            assertThat(result.get(PrizeTier.FORTH)).isEqualTo(1);
+            assertThat(result.get(PrizeTier.FIFTH)).isEqualTo(1);
+            assertThat(result.get(PrizeTier.NONE)).isEqualTo(2);
+
+        },
+                List.of(1,2,3,4,5,6),
+                List.of(1,2,3,4,5,7),
+                List.of(1,2,3,4,5,45),
+                List.of(1,2,3,4,44,45),
+                List.of(1,2,3,43,44,45),
+                List.of(1,2,42,43,44,45),
+                List.of(1,41,42,43,44,45),
+                List.of(1,2,3,4,5,6));
     }
 
 
