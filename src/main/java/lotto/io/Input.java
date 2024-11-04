@@ -37,7 +37,7 @@ public class Input {
 
 	private static List<Integer> parseLottoNumbers(String input) {
 			return Arrays.stream(input.split(","))
-				.map((number) -> validateLottoPurchaseAmountFormat(number))
+				.map(Input::validateLottoPurchaseAmountFormat)
 				.map(Input::validateLottoNumberRange)
 				.collect(Collectors.toList());
 	}
