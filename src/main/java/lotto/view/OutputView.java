@@ -1,5 +1,6 @@
 package lotto.view;
 import lotto.domain.Lotto;
+import lotto.domain.Winning;
 
 import java.util.Collections;
 import java.util.List;
@@ -32,4 +33,18 @@ public class OutputView {
     public void bonusNumberPrint(){
         System.out.println("\n"+BONUSNUMBER_OUTPUT);
     }
+
+    public void resultPrint(List<Winning> results) {
+        System.out.println("\n"+"당첨통계"+"\n"+"---");
+        for (Winning result : Winning.values()) {
+            if (result == Winning.SECOND) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", result.getNumberOfMatches(), result.getPrizeMoney(), result.getNumberOfLottos());
+                continue;
+            }
+
+            System.out.printf("%d개 일치 (%s원) - %d개\n",
+                    result.getNumberOfMatches(), result.getPrizeMoney(), result.getNumberOfLottos());
+        }
+    }
+
 }

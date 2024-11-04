@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Winning {
-    FIRST(6,"2,000,000,000", 0),
-    SECOND(5,"30,000,000", 0),
-    THIRD(5,"1,500,000", 0),
+    FIFTH(3,"5,000",0),
     FOURTH(4,"50,000",0),
-    FIFTH(3,"5,000",0);
+    THIRD(5,"1,500,000", 0),
+    SECOND(5,"30,000,000", 0),
+    FIRST(6,"2,000,000,000", 0);
 
     private int numberOfMatches;
     private String prizeMoney;
@@ -20,6 +20,18 @@ public enum Winning {
         this.numberOfMatches = numberOfMatches;
         this.prizeMoney = prizeMoney;
         this.numberOfLottos = numberOfLottos;
+    }
+
+    public int getNumberOfMatches() {
+        return numberOfMatches;
+    }
+
+    public String getPrizeMoney() {
+        return prizeMoney;
+    }
+
+    public int getNumberOfLottos() {
+        return numberOfLottos;
     }
 
     public List<Winning> findWinningDetail(List<Lotto> lottos, String winningNumberInput, String bonusNumberInput) {
