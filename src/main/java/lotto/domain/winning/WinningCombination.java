@@ -1,7 +1,10 @@
-package lotto.domain;
+package lotto.domain.winning;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoTicket;
+import lotto.domain.lotto.PurchaseAmount;
 
 public class WinningCombination {
     public static final String NOT_BONUS_IN_WINNING_NUMBER = "[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.";

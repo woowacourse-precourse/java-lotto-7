@@ -1,7 +1,7 @@
-package lotto.domain;
+package lotto.domain.winning;
 
-import static lotto.domain.Constant.MAXIMUM_LOTTO_NUMBER;
-import static lotto.domain.Constant.MINIMUM_LOTTO_NUMBER;
+import static lotto.domain.lotto.Constant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.domain.lotto.Constant.MINIMUM_LOTTO_NUMBER;
 
 public class Bonus {
     private static final String SHOULD_INTEGER_MESSAGE = "[ERROR] 보너스 넘버를 숫자로 입력해주세요.";

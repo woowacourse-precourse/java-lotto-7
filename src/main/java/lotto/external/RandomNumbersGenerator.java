@@ -2,7 +2,7 @@ package lotto.external;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.domain.NumbersGenerator;
+import lotto.domain.lotto.NumbersGenerator;
 
 public class RandomNumbersGenerator implements NumbersGenerator {
     private static final int LOTTO_MIN_NUMBER = 1;

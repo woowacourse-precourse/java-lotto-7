@@ -1,8 +1,8 @@
 package lotto.view;
 
 import java.util.Map;
-import lotto.domain.LottoTicket;
-import lotto.domain.Rank;
+import lotto.domain.lotto.LottoTicket;
+import lotto.domain.winning.Rank;
 
 public class Output {
 

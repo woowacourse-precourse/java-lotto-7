@@ -1,8 +1,8 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
-import static lotto.domain.Constant.LOTTO_NUMBERS_LENGTH;
-import static lotto.domain.Constant.MAXIMUM_LOTTO_NUMBER;
-import static lotto.domain.Constant.MINIMUM_LOTTO_NUMBER;
+import static lotto.domain.lotto.Constant.LOTTO_NUMBERS_LENGTH;
+import static lotto.domain.lotto.Constant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.domain.lotto.Constant.MINIMUM_LOTTO_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Collections;

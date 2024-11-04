@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 public class Constant {
     public static final int LOTTO_NUMBERS_LENGTH = 6;
