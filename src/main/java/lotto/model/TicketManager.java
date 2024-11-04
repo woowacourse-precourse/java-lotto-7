@@ -30,4 +30,8 @@ public class TicketManager { // TODO: 이름 개선
                 .mapToObj(amount -> new Ticket())
                 .collect(Collectors.toList());
     }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
 }
