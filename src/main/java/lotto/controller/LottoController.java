@@ -8,6 +8,7 @@ import lotto.dto.MatchResults;
 import lotto.dto.PurchaseAmountUserInput;
 import lotto.dto.UserInput;
 import lotto.dto.WinningLottoUserInput;
+import lotto.model.amount.ProfitAmount;
 import lotto.model.amount.ProfitRate;
 import lotto.model.amount.PurchaseAmount;
 import lotto.model.lotto.PurchasedLottos;
@@ -86,6 +87,7 @@ public class LottoController {
   }
 
   private ProfitRate retrieveProfitRate(PurchaseAmount purchaseAmount, MatchResults matchResults) {
-    return amountService.calculateProfitRate(purchaseAmount, matchResults);
+    ProfitAmount profitAmount = amountService.calculateProfitAmount(matchResults);
+    return amountService.calculateProfitRate(purchaseAmount, profitAmount);
   }
 }
