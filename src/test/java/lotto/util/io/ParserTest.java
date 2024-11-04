@@ -17,4 +17,13 @@ public class ParserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith(ERROR_PREFIX);
     }
+
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(strings = {"", " ", "1.0,2,3", "1, 2, 3", "1f,2f,3f"})
+    void 당첨_번호가_숫자와_구분자_외_문자가_있으면_예외가_발생한다(String input) {
+        assertThatThrownBy(() -> Parser.parseInputToNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith(ERROR_PREFIX);
+    }
 }
