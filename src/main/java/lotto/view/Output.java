@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Map;
 import lotto.domain.lotto.LottoTicket;
 import lotto.domain.winning.Rank;
@@ -10,18 +12,19 @@ public class Output {
         System.out.println(lottoTicket);
     }
 
-    public void printLottoStatistics(Map<Rank, Integer> lottoResult) {
-        print("\n" + "당첨 통계");
+    public void printWinningStatistics(Map<Rank, Integer> lottoResult) {
+        print("\n당첨 통계");
         print("---");
 
-        for (Rank rank : Rank.values()) {
-            if (rank == Rank.NONE) {
-                continue;
-            }
+        Arrays.stream(Rank.values())
+                .sorted(Comparator.reverseOrder())
+                .filter(rank -> rank != Rank.NONE)
+                .forEach(rank -> printRankStatistics(rank, lottoResult));
+    }
 
-            int count = lottoResult.getOrDefault(rank, 0);
-            print(rank.formatWinningStatistics(count));
-        }
+    private void printRankStatistics(Rank rank, Map<Rank, Integer> lottoResult) {
+        int count = lottoResult.getOrDefault(rank, 0);
+        print(rank.formatWinningStatistics(count));
     }
 
     public void printProfitRate(double profitRate) {

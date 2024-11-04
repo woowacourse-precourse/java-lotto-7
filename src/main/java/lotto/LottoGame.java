@@ -65,7 +65,7 @@ public class LottoGame {
 
     private void match(LottoTicket lottoTicket, WinningCombination winningCombination, PurchaseAmount purchaseAmount) {
         Map<Rank, Integer> lottoResult = winningCombination.lottoWinningResult(lottoTicket);
-        output.printLottoStatistics(lottoResult);
+        output.printWinningStatistics(lottoResult);
 
         double profitRate = winningCombination.calculateProfitRate(lottoResult, purchaseAmount);
         output.printProfitRate(profitRate);
