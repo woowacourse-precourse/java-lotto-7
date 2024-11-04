@@ -82,14 +82,14 @@ class LottoServiceTest {
                 () -> {
                     lottoService.buyLotto(8000); // 로또 8장 구매
                 },
-                List.of(1, 2, 3, 4, 5, 6),
-                List.of(7, 8, 9, 10, 11, 12),
-                List.of(1, 2, 3, 4, 5, 7),
-                List.of(1, 2, 3, 4, 5, 8),
-                List.of(1, 2, 3, 4, 7, 8),
-                List.of(1, 2, 3, 7, 8, 9),
-                List.of(8, 9, 10, 11, 12, 13),
-                List.of(14, 15, 16, 17, 18, 19)
+                List.of(1, 2, 3, 4, 5, 6), // 1등
+                List.of(7, 8, 9, 10, 11, 12), // NONE
+                List.of(1, 2, 3, 4, 5, 7), // 2등
+                List.of(1, 2, 3, 4, 5, 8), // 3등
+                List.of(1, 2, 3, 4, 7, 8), // 4등
+                List.of(1, 2, 3, 7, 8, 9), // 5등
+                List.of(8, 9, 10, 11, 12, 13), // NONE
+                List.of(14, 15, 16, 17, 18, 19) // NONE
         );
 
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
@@ -102,5 +102,29 @@ class LottoServiceTest {
         assertThat(results.get(Rank.FOURTH)).isEqualTo(1);
         assertThat(results.get(Rank.FIFTH)).isEqualTo(1);
         assertThat(results.get(Rank.NONE)).isEqualTo(3);
+    }
+
+    @DisplayName("수익률 계산 테스트")
+    @Test
+    void calculateProfitTest() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    lottoService.buyLotto(5000); // 로또 5장 구매
+                },
+                List.of(1, 2, 3, 4, 5, 6), // 1등
+                List.of(8, 9, 10, 11, 12, 13), // NONE
+                List.of(1, 2, 3, 4, 5, 7), // 2등
+                List.of(1, 2, 3, 4, 8, 9), // 4등
+                List.of(2, 3, 4, 5, 6, 8)  // 3등
+        );
+
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        Map<Rank, Integer> results = lottoService.calculateResults(winningNumbers, bonusNumber);
+        double profit = lottoService.calculateProfit(results);
+
+        // 예상 수익률: (2,000,000,000 + 30,000,000 + 1,500,000 + 50,000) / (5 * 1000) * 100
+        double expectedProfit = ((2_000_000_000 + 30_000_000 + 1_500_000 + 50_000) / (5 * 1000.0)) * 100;
+        assertThat(profit).isEqualTo(expectedProfit);
     }
 }

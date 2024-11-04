@@ -55,4 +55,13 @@ public class LottoServiceImpl implements LottoService {
         }
         return results;
     }
+
+    @Override
+    public double calculateProfit(Map<Rank, Integer> results) {
+        long totalPrize = results.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        long totalCost = lottoList.size() * ticketPrice;
+        return (double) totalPrize / totalCost * 100;
+    }
 }

@@ -11,4 +11,6 @@ public interface LottoService {
     Rank checkWinning(Lotto lotto, List<Integer> winningNumbers, int bonusNumber);
 
     Map<Rank, Integer> calculateResults(List<Integer> winningNumbers, int bonusNumber);
+
+    double calculateProfit(Map<Rank, Integer> results);
 }
