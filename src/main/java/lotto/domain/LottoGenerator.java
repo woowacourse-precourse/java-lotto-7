@@ -18,7 +18,7 @@ public class LottoGenerator {
     }
 
     private void validateMoney(int money) {
-        if (isZeroOrNegativeNumber(money) || isDividedByOneThousand(money)) {
+        if (isZeroOrNegativeNumber(money) || !isDividedByOneThousand(money)) {
             throw new IllegalArgumentException(MONEY_SOULD_BE_DIVIDED_BY_ONE_THOUSAND);
         }
     }
