@@ -11,6 +11,9 @@ public record PurchaseAmount(int amount) {
         validateLetter(input);
         int purchaseAmount = parseInt(input);
         validatePositive(purchaseAmount);
+        if (purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        }
         return purchaseAmount;
     }
 
