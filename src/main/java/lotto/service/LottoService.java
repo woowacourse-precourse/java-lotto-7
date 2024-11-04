@@ -61,8 +61,9 @@ public class LottoService {
 
     private List<Integer> generateSortedAutoNumbers() {
         List<Integer> autoNumbers = generateAutoNumbers();
-        Collections.sort(autoNumbers);
-        return autoNumbers;
+        List<Integer> modifiableNumbers = new ArrayList<>(autoNumbers);
+        Collections.sort(modifiableNumbers);
+        return modifiableNumbers;
     }
 
     private List<Integer> generateAutoNumbers() {
@@ -75,7 +76,7 @@ public class LottoService {
         }
 
         String[] numbers = winningNumbers.split(Constants.DELIMITER);
-        if (numbers.length == 0) {
+        if (numbers.length == 1) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 , 로 구분되는 문자열이어야 합니다.");
         }
         return numbers;
