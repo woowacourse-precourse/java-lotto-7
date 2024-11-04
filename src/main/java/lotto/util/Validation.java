@@ -50,7 +50,7 @@ public class Validation {
         return numbersWithoutDuplicate.size() == numbers.size();
     }
 
-    private boolean hasDuplicate(int bonusNumber, List<Integer> winningNumbers) {
+    private boolean isDuplicate(int bonusNumber, List<Integer> winningNumbers) {
         return winningNumbers.contains(bonusNumber);
     }
 }

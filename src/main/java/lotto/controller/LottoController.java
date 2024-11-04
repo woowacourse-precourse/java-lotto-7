@@ -9,7 +9,7 @@ public class LottoController {
     public void play() {
         List<Integer> winningNumber = getWinningNumber();
     }
-    
+
     private List<Integer> getWinningNumber() {
         try {
             return InputView.getWinningNumbers();
