@@ -13,6 +13,10 @@ public class Lottos {
         this.lottos = lottos;
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     public static Lottos fromCount(int count) {
         List<Lotto> lottos = Stream.generate(() ->
                         {
@@ -31,13 +35,5 @@ public class Lottos {
                 .map(Lotto::getNumbers)
                 .map(String::valueOf)
                 .toList();
-    }
-
-    public LottoPrizes getPrizes(List<Integer> winningNumbers, int bonusNumber) {
-        return new LottoPrizes(lottos.stream().map(lotto -> {
-            int matchCount = lotto.countMatchingNumbers(winningNumbers);
-            boolean containsBonusNumber = lotto.containsNumber(bonusNumber);
-            return LottoPrize.getLottoPrize(matchCount, containsBonusNumber);
-        }).toList());
     }
 }

@@ -9,9 +9,25 @@ import java.util.stream.Collectors;
 public class LottoPrizes {
 
     private final List<LottoPrize> lottoPrizes;
+    private final WinningNumbers winningNumbers;
 
-    public LottoPrizes(List<LottoPrize> lottoPrizes) {
-        this.lottoPrizes = lottoPrizes;
+    public LottoPrizes(Lottos lottos, WinningNumbers winningNumbers) {
+        this.winningNumbers = winningNumbers;
+        this.lottoPrizes = getPrizes(lottos);
+    }
+
+    private List<LottoPrize> getPrizes(Lottos lottos) {
+        return lottos
+                .getLottos()
+                .stream()
+                .map(this::getPrize)
+                .toList();
+    }
+
+    private LottoPrize getPrize(Lotto lotto) {
+        int matchCount = winningNumbers.countMatchingNumbers(lotto);
+        boolean containsBonusNumber = winningNumbers.containsNumber(lotto);
+        return LottoPrize.getLottoPrize(matchCount, containsBonusNumber);
     }
 
     public String calculateYield(int lottoBudget) {
