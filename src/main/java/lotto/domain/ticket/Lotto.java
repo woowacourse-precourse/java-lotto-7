@@ -3,12 +3,13 @@ package lotto.domain.ticket;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.validator.LottoNumberValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoValidator.validateLottoNumbers(numbers);
+        LottoNumberValidator.validate(numbers);
         this.numbers = new ArrayList<>(numbers);
         sort();
     }
