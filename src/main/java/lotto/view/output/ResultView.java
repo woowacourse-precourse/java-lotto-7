@@ -26,7 +26,7 @@ public class ResultView {
                 return;
             }
 
-            stringBuilder.append(rank.getMatchCount())
+            stringBuilder.append(rank.getMatchDescription())
                     .append(String.format(" (%,d원) - ", rank.getPrize()))
                     .append(count).append("개\n");
         });
