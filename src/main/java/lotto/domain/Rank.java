@@ -33,9 +33,6 @@ public enum Rank {
     public int getPrize(){
         return prize;
     }
-    public boolean hasBonus(){
-        return hasBonus;
-    }
 
     public static Rank from(int matchCount, boolean bonusMatch) {
         return Arrays.stream(Rank.values())
