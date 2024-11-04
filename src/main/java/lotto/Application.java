@@ -39,10 +39,11 @@ public class Application {
         for (Lotto lotto : userLottos.getLottos()) {
             sb.append(lotto.getNumbers().toString()).append("\n");
         }
-        return sb.toString();
+        return sb.toString().trim();
     }
 
     private static Lotto getWinningLotto() {
+        System.out.println();
         while (true) {
             try {
                 String input = inputWinningNumbers();
@@ -59,6 +60,7 @@ public class Application {
     }
 
     private static int getBonusNumber(Lotto winningNumbers) {
+        System.out.println();
         while (true) {
             try {
                 int bonusNumber = CommonValidation.convertStringToInt(inputBonusNumber());
@@ -77,7 +79,7 @@ public class Application {
     }
 
     private static void showResult(Result result, UserLottos userLottos) {
-        System.out.printf("%s\n%s\n", IOMessage.STATISTICS.getMessage(), IOMessage.DIVIDER.getMessage());
+        System.out.printf("\n%s\n%s\n", IOMessage.STATISTICS.getMessage(), IOMessage.DIVIDER.getMessage());
         System.out.println(result.getResult());
         System.out.println("총 수익률은 " + result.calculateStatistic(userLottos.getPurchaseAmount()) + "%입니다.");
     }
