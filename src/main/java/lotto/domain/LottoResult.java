@@ -27,7 +27,7 @@ public class LottoResult {
 
     private String computeProfitRate() {
         double profitRate = (double) totalEarning / inputMoney.amount() * 100;
-        return String.format("%.1f", Math.round(profitRate * 10) / 10.0); // 첫째 자리만 표시하고 둘째 자리 반올림
+        return String.format("%.1f", profitRate); // 첫째 자리만 표시하고 둘째 자리 반올림
     }
 
     private Map<LottoPrize,Integer> updateMap(List<LottoPrize> result) {
