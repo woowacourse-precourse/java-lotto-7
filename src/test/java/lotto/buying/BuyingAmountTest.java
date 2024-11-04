@@ -9,7 +9,7 @@ class BuyingAmountTest {
 
     @Test
     @DisplayName("로또의 구입금액은 최소 천원이다")
-    void lessThanMinimumAmountThrowEException() {
+    void lessThanMinimumAmountThrowsException() {
         // given
         int lessNumber = 900;
 
@@ -21,7 +21,7 @@ class BuyingAmountTest {
 
     @Test
     @DisplayName("로또는 천원 단위로만 구입한다")
-    void notAmountUnitThrowException() {
+    void notAmountUnitThrowsException() {
         // given
         int notUnit = 1550;
 
@@ -29,5 +29,17 @@ class BuyingAmountTest {
         assertThatThrownBy(() -> BuyingAmount.from(notUnit))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 천원 단위여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("로또는 십만원까지만 구입 가능하다")
+    void moreThanMaximumAmountThrowsException() {
+        // given
+        int tooLarge = 200000;
+
+        // when then
+        assertThatThrownBy(() -> BuyingAmount.from(tooLarge))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 구입은 한 번에 10만원까지만 가능합니다.");
     }
 }
