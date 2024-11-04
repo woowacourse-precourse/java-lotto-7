@@ -24,7 +24,7 @@ class LottoNumberGeneratorTest {
     void 랜덤으로_테스트해도_통과하면_성공() {
         //given
         //when
-        List<Integer> numbers = lottoNumberGenerator.createLottoNumbers(1,45,6);
+        List<Integer> numbers = lottoNumberGenerator.createLottoNumbers(RANGE_START_NUMBER,RANGE_END_NUMBER,LOTTO_COUNT_NUMBER);
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         //then
         assertEquals(LOTTO_COUNT_NUMBER, numbers.size(), "로또 번호 개수는 6개여야 합니다.");

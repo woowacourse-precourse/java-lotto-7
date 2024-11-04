@@ -29,5 +29,16 @@ class ParserTest {
         //then
         Assertions.assertThat(parsedInput).isEqualTo(expected);
     }
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "19999", "20000"})
+    @DisplayName("ParseStringToInt 테스트")
+    void String이_long으로_변환되면_성공한다(String input) {
+        //given
+        long expected = Long.parseLong(input);
+        //when
+        long parsedInput = parser.parseStringToLong(input);
+        //then
+        Assertions.assertThat(parsedInput).isEqualTo(expected);
+    }
 
 }

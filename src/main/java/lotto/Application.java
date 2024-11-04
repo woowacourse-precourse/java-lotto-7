@@ -24,13 +24,13 @@ public class Application {
         LottoStatisticsCalculator lottoStatisticsCalculator = new LottoStatisticsCalculator();
 
         String buyingAmount;
-        int amount;
+        long amount;
         List<Lotto> lottos;
         while (true) {
             try {
                 buyingAmount = view.getInputAmount();
                 inputValidator.validateInputAmount(buyingAmount);
-                amount = parser.parseStringToInt(buyingAmount);
+                amount = parser.parseStringToLong(buyingAmount);
                 lottos = lottoMarket.sellLottos(amount);
                 view.printBuyingLottoCount(amount);
                 view.printLottos(lottos);

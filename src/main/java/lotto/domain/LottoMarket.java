@@ -10,12 +10,12 @@ public class LottoMarket {
         this.lottoFactory = lottoFactory;
     }
 
-    public List<Lotto> sellLottos(int amount) {
-        int lottoQuantity = purchasableLottoQuantity(amount);
+    public List<Lotto> sellLottos(long amount) {
+        long lottoQuantity = purchasableLottoQuantity(amount);
         return lottoFactory.createAllLottos(lottoQuantity);
     }
 
-    private int purchasableLottoQuantity(int amount) {
+    private long purchasableLottoQuantity(long amount) {
         return amount / LOTTO_PRICE;
     }
 

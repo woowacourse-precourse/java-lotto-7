@@ -16,4 +16,7 @@ public class Parser {
     public int parseStringToInt(String input) {
         return Integer.parseInt(input);
     }
+    public long parseStringToLong(String input) {
+        return Long.parseLong(input);
+    }
 }

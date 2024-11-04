@@ -30,8 +30,8 @@ public class View {
         System.out.println();
         return input;
     }
-    public void printBuyingLottoCount(int amount) {
-        int count = amount / 1000;
+    public void printBuyingLottoCount(long amount) {
+        long count = amount / 1000;
         System.out.printf("%d개를 구매했습니다.", count);
         System.out.println();
     }

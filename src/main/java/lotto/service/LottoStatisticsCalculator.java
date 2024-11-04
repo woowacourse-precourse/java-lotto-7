@@ -10,7 +10,7 @@ import java.util.Map;
 public class LottoStatisticsCalculator {
     private static final long INITIALIZED_TOTAL_PRIZE = 0L;
 
-    public LottoResult calculateStatistic(Map<Lotto, LottoRank> lottoRankResults, int buyAmount) {
+    public LottoResult calculateStatistic(Map<Lotto, LottoRank> lottoRankResults, long buyAmount) {
         Map<LottoRank, Integer> rankCounts = new HashMap<>();
         long totalPrize = INITIALIZED_TOTAL_PRIZE;
 
@@ -27,7 +27,7 @@ public class LottoStatisticsCalculator {
         return new LottoResult(rankCounts, profitRate, totalPrize);
     }
 
-    private double calculateProfitRate(int buyAmount, long totalPrize) {
+    private double calculateProfitRate(long buyAmount, long totalPrize) {
         double profitRate = ((double) totalPrize / buyAmount) * 100;
         return Math.round(profitRate * 100) / 100.0;
     }

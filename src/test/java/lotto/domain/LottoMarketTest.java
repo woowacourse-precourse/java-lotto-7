@@ -46,7 +46,7 @@ class LottoMarketTest {
         }
 
         @Override
-        public List<Lotto> createAllLottos(int quantity) {
+        public List<Lotto> createAllLottos(long quantity) {
             List<Lotto> lottos = new ArrayList<>();
             for (int i = 0; i < quantity; i++) {
                 lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6))); // 동일한 번호의 로또 객체 생성

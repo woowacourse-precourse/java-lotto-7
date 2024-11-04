@@ -6,26 +6,26 @@ import java.util.Set;
 
 
 public class InputValidator {
+    private static final int LOTTO_LENGTH = 6;
     private static final String DELIMITER = ",";
     private static final String NUMBER_RANGE_PATTERN = "^(?:[1-9]|[1-3][0-9]|4[0-5])$";
     private static final String VALID_NUMBERS_PATTERN = "^[0-9]+(,[0-9]+)*$";
-    /*
-    TODO 입력값을 검증한다
-    1. String input을 int로 변환 시도(숫자가 아니면 안됨)
-    2. int 중 1000 단위로 나눠떨어지는 지 확인(금액은 1000원 단위로 입력해야 함)
+    private static final String VALID_ONLY_NUMBERS_PATTERN = "^[1-9][0-9]*$";
 
-    * */
+    private static final String SIX_NUMBERS_REQUIRED_MESSAGE = "[ERROR] 6개의 숫자를 입력해야 합니다.";
+    private static final String DUPLICATE_NUMBER_NOT_ALLOWED_MESSAGE = "[ERROR] 중복된 NUMBER가 존재하면 안됩니다.";
+    private static final String ONLY_NUMBERS_ALLOWED_MESSAGE = "[ERROR] 숫자만 입력할 수 있습니다.";
+    private static final String EMPTY_OR_ZERO_NOT_ALLOWED_MESSAGE = "[ERROR] 빈 값 혹은 0은 입력할 수 없습니다.";
+    private static final String ONLY_DIVISIBLE_BY_1000_ALLOWED_MESSAGE = "[ERROR] 1000으로 나눠지는 값만 입력할 수 있습니다.";
+    private static final String BONUS_NUMBER_DUPLICATE_NOT_ALLOWED_MESSAGE = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
+
     public void validateInputAmount(String input) {
-        // null 이나 0을 입력하면?
         validateNullAndEmptyValue(input);
-        // 숫자만 입력받기
         validateOnlyNumber(input);
-        // 1000 단위로 나눠떨어지나? 체크
         validateIsDivisibleByThousand(input);
     }
 
     public void validateInputNumbers(String input) {
-        //구분자로 나누기
         validateDelimitedNumbersFormat(input);
         String[] numbers = input.split(DELIMITER);
         validateEnterSixNumbers(numbers);
@@ -49,46 +49,46 @@ public class InputValidator {
     }
 
     private void validateEnterSixNumbers(String[] numbers) {
-        if (numbers.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.");
+        if (numbers.length != LOTTO_LENGTH) {
+            throw new IllegalArgumentException();
         }
     }
 
     private void validateNumberInRange(String number) {
         if (!number.matches(NUMBER_RANGE_PATTERN)) {
-            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(SIX_NUMBERS_REQUIRED_MESSAGE);
         }
     }
 
     private void validateDuplicateNumber(String number, Set<String> uniqueNumbers) {
         if (!uniqueNumbers.add(number)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 NUMBER가 존재하면 안됩니다.");
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_NOT_ALLOWED_MESSAGE);
         }
     }
 
     private void validateOnlyNumber(String input) {
-        if (!input.matches("^[1-9][0-9]*$")) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
+        if (!input.matches(VALID_ONLY_NUMBERS_PATTERN)) {
+            throw new IllegalArgumentException(ONLY_NUMBERS_ALLOWED_MESSAGE);
         }
     }
 
     private void validateNullAndEmptyValue(String input) {
         if (input == null || input.isEmpty() || input.equals("0")) {
-            throw new IllegalArgumentException("[ERROR] 빈 값 혹은 0은 입력할 수 없습니다.");
+            throw new IllegalArgumentException(EMPTY_OR_ZERO_NOT_ALLOWED_MESSAGE);
         }
     }
 
     private void validateIsDivisibleByThousand(String input) {
         int number = Integer.parseInt(input);
         if (number <= 0 || number % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000으로 나눠지는 값만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ONLY_DIVISIBLE_BY_1000_ALLOWED_MESSAGE);
         }
     }
 
     private void validateBonusNumberNotInWinnerNumbers(List<Integer> winnerNumbers, String input) {
         int bonusNumber = Integer.parseInt(input);
         if (winnerNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_NOT_ALLOWED_MESSAGE);
         }
     }
 }
