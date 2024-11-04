@@ -2,6 +2,7 @@ package lotto;
 
 import static lotto.Constants.ERROR_HEADER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,8 @@ class BonusTest {
     @DisplayName("보너스 번호의 숫자 범위는 1~45이다.")
     @Test
     void 보너스_번호의_숫자_범위는_일에서_사십오_사이이다() {
-        Bonus.from("1");
-        Bonus.from("45");
+        assertDoesNotThrow(() -> Bonus.from("1"));
+        assertDoesNotThrow(() -> Bonus.from("45"));
     }
 
     @DisplayName("보너스 번호가 1 미만일 경우 예외가 발생한다.")
