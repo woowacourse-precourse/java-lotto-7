@@ -39,9 +39,9 @@ public class InputValidator {
     /**
      * 당첨번호 유효한 범위 체크
      */
-    public static void isWinningNumbersRangeIn(int winningNumber) {
+    public static void isLottoNumbersRangeIn(int winningNumber) {
         if (winningNumber < 1 || winningNumber > 45) {
-           throw new InputException(ErrorMessage.UNAVAILABLE_WINNING_LOTTO_NUMBERS.getMessage());
+           throw new InputException(ErrorMessage.UNAVAILABLE_LOTTO_NUMBERS.getMessage());
         }
     }
 
@@ -52,7 +52,7 @@ public class InputValidator {
         HashSet<Integer> numberSet = new HashSet<>();
         for (Integer number : winningNumbers) {
             if (!numberSet.add(number)) {
-                throw new InputException(ErrorMessage.HAS_DUPLICATED_NUMBER_WINNING_LOTTO.getMessage() + number);
+                throw new InputException(ErrorMessage.HAS_DUPLICATED_NUMBER_LOTTO.getMessage());
             }
         }
     }

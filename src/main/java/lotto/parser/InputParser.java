@@ -43,11 +43,11 @@ public class InputParser {
                     .toList();
 
             InputValidator.hasDuplicateNumbers(winningNumberList);
-            winningNumberList.forEach(InputValidator::isWinningNumbersRangeIn);
+            winningNumberList.forEach(InputValidator::isLottoNumbersRangeIn);
 
             return winningNumberList;
         } catch(NumberFormatException e) {
-            throw new InputException(ErrorMessage.UNAVAILABLE_WINNING_LOTTO_NUMBERS.getMessage());
+            throw new InputException(ErrorMessage.UNAVAILABLE_LOTTO_NUMBERS.getMessage());
         }
     }
 
@@ -73,7 +73,7 @@ public class InputParser {
         try{
             return new WinningLotto(winningNumbers, bonusNumber);
         } catch (NumberFormatException e) {
-            throw new InputException(ErrorMessage.UNAVAILABLE_WINNING_LOTTO_NUMBERS.getMessage());
+            throw new InputException(ErrorMessage.UNAVAILABLE_LOTTO_NUMBERS.getMessage());
         }
     }
 }
