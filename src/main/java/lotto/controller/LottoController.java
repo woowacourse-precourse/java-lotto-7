@@ -1,16 +1,11 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Stream;
-import lotto.model.Lotto;
 import lotto.model.LottoBudget;
-import lotto.model.LottoPrize;
 import lotto.model.LottoPrizes;
+import lotto.model.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -32,19 +27,10 @@ public class LottoController {
         outputView.printLottoCount(lottoCount);
 
         int lottoCountNumber = Integer.parseInt(lottoCount);
-        List<Lotto> lottos = Stream.generate(() ->
-                        {
-                            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-                            randomNumbers.sort(Comparator.naturalOrder());
-                            return new Lotto(randomNumbers);
-                        }
-                )
-                .limit(lottoCountNumber)
-                .toList();
+        Lottos lottos = Lottos.fromCount(lottoCountNumber);
 
-        lottos.stream()
-                .map(Lotto::getNumbers)
-                .forEach(System.out::println);
+        List<String> lottoNumbers = lottos.getLottoNumbers();
+        outputView.printLottoNumbers(lottoNumbers);
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String WinningNumbersInput = Console.readLine();
@@ -57,11 +43,7 @@ public class LottoController {
         String BonusNumberInput = Console.readLine();
         int bonusNumber = Integer.parseInt(BonusNumberInput);
 
-        LottoPrizes lottoPrizes = new LottoPrizes(lottos.stream().map(lotto -> {
-            int matchCount = lotto.countMatchingNumbers(winningNumbers);
-            boolean containsBonusNumber = lotto.containsNumber(bonusNumber);
-            return LottoPrize.getLottoPrize(matchCount, containsBonusNumber);
-        }).toList());
+        LottoPrizes lottoPrizes = lottos.getPrizes(winningNumbers, bonusNumber);
 
         String yield = lottoPrizes.calculateYield(lottoBudget.getValue());
         System.out.println("당첨 통계" + System.lineSeparator() + "---");
