@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import lotto.util.enums.ErrorMessage;
+import lotto.util.ErrorMessage;
 
 public class InputException {
     public static void notNumericException(boolean isNumeric) {

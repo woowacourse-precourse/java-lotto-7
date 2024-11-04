@@ -1,4 +1,4 @@
-package lotto.util.enums;
+package lotto.util;
 
 public enum ErrorMessage {
     INPUT_ERROR("소수점이 없는 양수만 입력해주세요.(여려개의 숫자는 쉼표(,)로 구분)"),

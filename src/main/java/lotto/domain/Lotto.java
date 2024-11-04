@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.Set;
-import lotto.util.enums.ErrorMessage;
+import lotto.util.ErrorMessage;
 
 public class Lotto {
     private static final int FORTY_FIVE = 45;

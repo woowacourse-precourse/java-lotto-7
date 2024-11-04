@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.util.enums.ErrorMessage;
+import lotto.util.ErrorMessage;
 
 public class Purchase {
     private final int priceAmount;

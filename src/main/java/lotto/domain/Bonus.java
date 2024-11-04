@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.util.enums.ErrorMessage;
+import lotto.util.ErrorMessage;
 
 public class Bonus {
     private static final int FORTY_FIVE = 45;
