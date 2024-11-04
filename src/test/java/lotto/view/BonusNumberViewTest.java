@@ -25,7 +25,7 @@ public class BonusNumberViewTest {
     void validateDuplicateExceptionTest(){
         System.setIn(IoMock.consoleReadLine("1"));
 
-        assertThatThrownBy(view::read)
+        assertThatThrownBy(() -> view.read("보너스 번호를 입력해 주세요."))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -34,7 +34,7 @@ public class BonusNumberViewTest {
     void validateNumericExceptionTest(){
         System.setIn(IoMock.consoleReadLine("a"));
 
-        assertThatThrownBy(view::read)
+        assertThatThrownBy(() -> view.read("보너스 번호를 입력해 주세요."))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -43,7 +43,7 @@ public class BonusNumberViewTest {
     void validateEmptryExceptionTest() {
         System.setIn(IoMock.consoleReadLine("\n"));
 
-        Assertions.assertThatThrownBy(view::read)
+        Assertions.assertThatThrownBy(() -> view.read("보너스 번호를 입력해 주세요."))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
