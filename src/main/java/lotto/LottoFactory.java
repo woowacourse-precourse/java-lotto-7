@@ -10,11 +10,9 @@ public class LottoFactory {
     private final int LOTTO_LENGTH = 6;
 
     private RandomCreator randomCreator;
-    private final LottoValidator lottoValidator;
 
     public LottoFactory() {
         this.randomCreator = new RandomCreator(RANDOM_START_NUMBER, RANDOM_END_NUMBER, LOTTO_LENGTH);
-        this.lottoValidator = new LottoValidator();
     }
 
     public Lotto createLottoByNumbers(List<Integer> numbers) {
