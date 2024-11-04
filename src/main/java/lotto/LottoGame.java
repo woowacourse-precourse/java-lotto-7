@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGame {
     public int getPurchaseAmount() {
@@ -27,5 +29,22 @@ public class LottoGame {
         }
         return lottos;
     }
+
+    public List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = camp.nextstep.edu.missionutils.Console.readLine();
+        List<Integer> numbers = Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        validateNumbers(numbers);
+        return numbers;
+    }
+
+    private void validateNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6 || numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 6개의 숫자여야 합니다.");
+        }
+    }
+
 
 }
