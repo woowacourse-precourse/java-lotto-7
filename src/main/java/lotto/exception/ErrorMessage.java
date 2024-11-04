@@ -9,7 +9,6 @@ public enum ErrorMessage {
     INVALID_PURCHASE_AMOUNT("[ERROR] 구매 금액은 1000원 단위여야 합니다."),
     BONUS_NUM_DUPLICATE("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     EMPTY_INPUT_VALUE("[ERROR] 아무런 값이 입력되지 않았습니다.");
-
     private final String errorMessage;
 
     ErrorMessage(final String errorMessage) {
