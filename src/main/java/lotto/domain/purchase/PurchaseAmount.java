@@ -11,6 +11,7 @@ public class PurchaseAmount {
     }
 
     private int validate(String purchaseAmount) {
+        PurchaseAmountValidator.validateNullOrEmpty(purchaseAmount);
         PurchaseAmountValidator.validateNumeric(purchaseAmount);
         int amount = Integer.parseInt(purchaseAmount);
         PurchaseAmountValidator.validateMultipleOfThousand(amount);

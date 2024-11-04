@@ -18,6 +18,7 @@ public class WinningNumbers {
     }
 
     private List<Integer> validateAndConvertWinningNumbers(String winningNumbers) {
+        WinningValidator.validateNullOrEmpty(winningNumbers);
         WinningValidator.validateIsNumericWithCommas(winningNumbers);
         List<Integer> numbers = convertStringToIntList(winningNumbers);
         WinningValidator.validateWinningNumberCount(numbers);

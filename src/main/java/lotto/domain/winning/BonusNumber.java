@@ -10,6 +10,7 @@ public class BonusNumber {
     }
 
     private int validateAndConvertBonusNumber(String bonusNumber) {
+        WinningValidator.validateNullOrEmpty(bonusNumber);
         WinningValidator.validateBonusNumberIsNumeric(bonusNumber);
         int number = Integer.parseInt(bonusNumber);
         WinningValidator.validateNumberInRange(number);

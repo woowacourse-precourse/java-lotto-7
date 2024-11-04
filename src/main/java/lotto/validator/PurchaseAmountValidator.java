@@ -5,9 +5,9 @@ import lotto.constants.LottoConstants;
 
 public class PurchaseAmountValidator {
 
-    public static void validateMultipleOfThousand(int purchaseAmount) {
-        if (purchaseAmount % LottoConstants.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_MULTIPLE_OF_THOUSAND.getMessage());
+    public static void validateNullOrEmpty(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY_INPUT.getMessage());
         }
     }
 
@@ -16,6 +16,12 @@ public class PurchaseAmountValidator {
             Integer.parseInt(input);
         } catch (NumberFormatException ignored) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_NUMBER.getMessage());
+        }
+    }
+
+    public static void validateMultipleOfThousand(int purchaseAmount) {
+        if (purchaseAmount % LottoConstants.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_MULTIPLE_OF_THOUSAND.getMessage());
         }
     }
 }

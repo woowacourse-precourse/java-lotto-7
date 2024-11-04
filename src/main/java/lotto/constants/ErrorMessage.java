@@ -2,6 +2,7 @@ package lotto.constants;
 
 
 public enum ErrorMessage {
+    NULL_OR_EMPTY_INPUT("입력값이 비어있습니다."),
     PURCHASE_AMOUNT_MUST_BE_NUMBER("로또 구입 금액은 숫자여야 합니다."),
     PURCHASE_AMOUNT_MUST_BE_MULTIPLE_OF_THOUSAND("로또 구입 금액은 1,000원 단위여야 합니다."),
     WINNING_NUMBER_MUST_BE_NUMBER("당첨 번호는 숫자여야 합니다."),

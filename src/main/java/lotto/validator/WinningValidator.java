@@ -8,9 +8,14 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningValidator {
-
     private static final String NUMERIC_REGEX = "\\d+";
     private static final int REQUIRED_WINNING_NUMBER_COUNT = 6;
+
+    public static void validateNullOrEmpty(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY_INPUT.getMessage());
+        }
+    }
 
     public static void validateIsNumericWithCommas(String winningNumbers) {
         String withoutCommas = winningNumbers.replace(",", "");
