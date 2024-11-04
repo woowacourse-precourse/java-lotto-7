@@ -63,9 +63,17 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 로또_번호의_형식이_올바르지_않으면_예외가_발생한다() {
+    void 당첨_번호가_6개_미만이면_예외_발생() {
         assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5", "7"); // 6개가 아닌 경우
+            runException("8000", "1,2,3,4,5", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호가_6개_초과면_예외_발생() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6,7", "8");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
