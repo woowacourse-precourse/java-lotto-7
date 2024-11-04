@@ -19,7 +19,7 @@ public class InputValidation {
 
         for (String number : winningNumberBeforeCheck.split(",")) {
             if (!number.matches(InputRegix.LOTTO.getRegix())) {
-                throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 모든 숫자는 1~45 사이여야 합니다.");
             }
 
             winningNumber.add(Integer.parseInt(number));
