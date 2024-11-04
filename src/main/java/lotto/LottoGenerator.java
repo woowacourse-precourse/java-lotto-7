@@ -17,7 +17,7 @@ public class LottoGenerator {
         this.randomGenerator = randomGenerator;
     }
 
-    public List<Lotto> generateLottoTicketBatch(int lottoCount) {
+    public List<Lotto> generateLottoBatch(int lottoCount) {
         return IntStream.range(0, lottoCount)
                 .mapToObj(i -> generateLotto(getRandomNumber()))
                 .toList();
@@ -33,6 +33,5 @@ public class LottoGenerator {
 
     public List<Integer> getRandomNumber() {
         return randomGenerator.getRandomNumber();
-
     }
 }
