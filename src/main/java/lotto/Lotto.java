@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -12,6 +13,14 @@ public class Lotto {
         validateNumberRange(numbers);
         validateNumberDuplication(numbers);
         this.numbers = numbers;
+    }
+
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 
     public void validateDuplicateByBonusNumber(int bonusNumber) {
