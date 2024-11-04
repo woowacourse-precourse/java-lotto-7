@@ -26,7 +26,7 @@ public class LottoMachineController {
     public void run() {
         CustomerLotto customerLotto = createCustomerLotto();
         printCustomerLotto(customerLotto);
-        WinningLotto winningLotto = createWinningLotto(inputWinningLottoNumbers());
+        WinningLotto winningLotto = createWinningLotto();
         displayLottoResults(customerLotto, winningLotto);
     }
 
@@ -39,14 +39,22 @@ public class LottoMachineController {
         outputView.printGeneratedTickets(GeneratedTickets.from(customerLotto));
     }
 
-    private List<Integer> inputWinningLottoNumbers() {
-        return inputView.readWinningLottoNumbers();
+    private WinningLotto createWinningLotto() {
+        Lotto winningLotto = readValidLotto();
+        BonusNumber bonusNumber = createBonusNumber(winningLotto.getNumbers());
+        return WinningLotto.of(winningLotto, bonusNumber);
     }
 
-    private WinningLotto createWinningLotto(List<Integer> winningLottoNumbers) {
-        Lotto winningLotto = createValidLotto(winningLottoNumbers);
-        BonusNumber bonusNumber = createBonusNumber(winningLottoNumbers);
-        return WinningLotto.of(winningLotto, bonusNumber);
+    private Lotto readValidLotto() {
+        try {
+            return createValidLotto(inputWinningLottoNumbers());
+        } catch (IllegalArgumentException e) {
+            return readValidLotto();
+        }
+    }
+
+    private List<Integer> inputWinningLottoNumbers() {
+        return inputView.readWinningLottoNumbers();
     }
 
     private void displayLottoResults(CustomerLotto customerLotto, WinningLotto winningLotto) {
@@ -64,7 +72,7 @@ public class LottoMachineController {
             return Lotto.of(winningLottoNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
-            return createValidLotto(winningLottoNumbers);
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
