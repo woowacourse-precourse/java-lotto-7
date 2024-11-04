@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.exception.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -143,6 +144,22 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 숫자_분자열_배열에_중복된_숫자가_있으면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,5", "6");
+            assertThat(output()).contains(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE.getMessage());
+        });
+    }
+
+    @Test
+    void 입력된_보너스_번호가_int의_범위가_아니면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", Integer.MAX_VALUE + "1");
+            assertThat(output()).contains(ErrorMessage.INPUT_VALUE_TOO_LARGE.getMessage());
         });
     }
 
