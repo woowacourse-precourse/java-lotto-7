@@ -1,10 +1,7 @@
 package lotto.presentation;
 
-import static lotto.common.ExceptionMessage.INVALID_NUMBER_FORMAT;
-
 import java.util.List;
-import lotto.domain.validator.LottoResultValidator;
-import lotto.domain.validator.LottoValidator;
+import lotto.common.IntegerParser;
 import lotto.domain.IssuedLotto;
 import lotto.domain.LottoResult;
 import lotto.dto.LottoStatisticsDto;
@@ -36,7 +33,7 @@ public class LottoController {
     private IssuedLotto generateLottoFromPurchaseAmount() {
         try {
             String purchaseAmount = inputView.getValidPurchaseAmount();
-            return lottoService.createIssuedRandomLotto(parseToInt(purchaseAmount));
+            return lottoService.createIssuedRandomLotto(IntegerParser.parseToInt(purchaseAmount));
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
             return generateLottoFromPurchaseAmount();
@@ -56,24 +53,11 @@ public class LottoController {
 
     private List<Integer> getValidatedWinningNumbers() {
         List<String> inputWinningNumbers = inputView.getValidWinningNumbers();
-        List<Integer> winningNumbers = inputWinningNumbers.stream()
-                .map(winningNumber -> Integer.parseInt(winningNumber))
-                .toList();
-        LottoValidator.validate(winningNumbers);
-        return winningNumbers;
+        return lottoService.parseAndValidateWinningNumbers(inputWinningNumbers);
     }
 
     private int getValidatedBonusNumber(List<Integer> winningNumbers) {
         String inputBonusNumber = inputView.getValidBonusNumber(winningNumbers);
-        LottoResultValidator.bonusNumberValidate(parseToInt(inputBonusNumber), winningNumbers);
-        return parseToInt(inputBonusNumber);
-    }
-
-    private int parseToInt(String number) {
-        try {
-            return Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
-        }
+        return lottoService.parseAndValidateBonusNumber(inputBonusNumber, winningNumbers);
     }
 }

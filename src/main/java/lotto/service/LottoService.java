@@ -1,11 +1,14 @@
 package lotto.service;
 
 import java.util.List;
+import lotto.common.IntegerParser;
 import lotto.common.RandomNumberGenerator;
 import lotto.domain.IssuedLotto;
 import lotto.domain.IssuedRandomLotto;
 import lotto.domain.LottoProfitCalculator;
 import lotto.domain.LottoResult;
+import lotto.domain.validator.LottoResultValidator;
+import lotto.domain.validator.LottoValidator;
 import lotto.dto.LottoStatisticsDto;
 
 public class LottoService {
@@ -31,5 +34,19 @@ public class LottoService {
         double lottoRateOfProfit = calculator.calculateRateOfProfit();
 
         return LottoStatisticsDto.of(calculator.getLottoRanks(), lottoRateOfProfit);
+    }
+
+    public List<Integer> parseAndValidateWinningNumbers(List<String> inputWinningNumbers) {
+        List<Integer> winningNumbers = inputWinningNumbers.stream()
+                .map(winningNumber -> IntegerParser.parseToInt(winningNumber))
+                .toList();
+        LottoValidator.validate(winningNumbers);
+        return winningNumbers;
+    }
+
+    public int parseAndValidateBonusNumber(String inputBonusNumber, List<Integer> winningNumbers) {
+        int bonusNumber = IntegerParser.parseToInt(inputBonusNumber);
+        LottoResultValidator.bonusNumberValidate(bonusNumber, winningNumbers);
+        return bonusNumber;
     }
 }
