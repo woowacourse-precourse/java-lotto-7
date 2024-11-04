@@ -95,11 +95,11 @@ public class LottoGame {
 
     private List<Integer> parseWinningNumbers(String input) {
         if (!input.contains(",")) {
-            throw new IllegalArgumentException("[ERROR] 번호는 쉼표(,)를 기준으로 구분합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)를 기준으로 구분합니다.");
         }
         String[] splitInput = input.split(",");
         if (splitInput.length != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
         List<Integer> winningNumbers = new ArrayList<>();
@@ -108,18 +108,18 @@ public class LottoGame {
                 int number = Integer.parseInt(numStr.trim());
                 winningNumbers.add(number);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 숫자 형식이 잘못되었습니다.");
+                throw new IllegalArgumentException("[ERROR] 입력에 유효하지 않은 문자가 포함되어 있습니다. 숫자만 입력해 주세요.");
             }
         }
         return winningNumbers;
     }
     private void validateWinningNumbers(List<Integer> numbers) {
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
         for (int num : numbers) {
             if (num < LOTTO_MIN_NUMBER || num > LOTTO_MAX_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }
