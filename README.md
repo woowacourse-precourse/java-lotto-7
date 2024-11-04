@@ -77,10 +77,10 @@
     - 에시 형식대로 출력하고 로또 게임 종료
 ---
 # 📢 예외 처리
-- [ ] 예외 상황시 에러 문구를 출력해야한다.
+- [x] 예외 상황시 에러 문구를 출력해야한다.
     - "[ERROR] ~"로 시작하며 문구 출력
 
 
-- [ ] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생
+- [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생
     - `[ERROR]`로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - Exception이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리
