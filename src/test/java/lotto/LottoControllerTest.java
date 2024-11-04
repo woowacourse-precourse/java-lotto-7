@@ -7,6 +7,7 @@ import lotto.controller.LottoController;
 import lotto.global.message.ErrorMessage;
 import lotto.global.message.InputMessage;
 import lotto.global.message.OutputMessage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoControllerTest extends NsTest {
@@ -22,6 +23,7 @@ class LottoControllerTest extends NsTest {
         return count;
     }
 
+    @DisplayName("보너스 번호를 잘못 입력 했을 때 보너스 번호 부터 입력을 다시 받는다.")
     @Test
     void completeGameAfterRetryBonusNumber() {
         // given & when
