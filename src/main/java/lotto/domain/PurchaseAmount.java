@@ -1,7 +1,10 @@
 package lotto.domain;
 
+import lotto.constants.ErrorMessage;
+
 public class PurchaseAmount {
     private static final int UNIT_PRICE = 1000;
+    private static final int MAX_PURCHASE_AMOUNT = 2000000000;
     private final int amount;
 
     private PurchaseAmount(int amount) {
@@ -11,16 +14,17 @@ public class PurchaseAmount {
 
     public static PurchaseAmount from(String input) {
         validateNumberFormat(input);
-        try {
-            return new PurchaseAmount(Integer.parseInt(input));
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 너무 큽니다.");
+        long amount = Long.parseLong(input);
+        if (amount > MAX_PURCHASE_AMOUNT) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getMessage());
         }
+        return new PurchaseAmount((int) amount);
+
     }
 
     private static void validateNumberFormat(String input) {
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 
@@ -31,13 +35,14 @@ public class PurchaseAmount {
 
     private void validatePositiveAmount(int amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_ZERO.getMessage());
         }
     }
 
     private void validateThousandUnit(int amount) {
         if (amount % UNIT_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException(
+                    ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getFormattedMessage(UNIT_PRICE));
         }
     }
 

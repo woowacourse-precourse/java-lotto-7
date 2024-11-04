@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constants.ErrorMessage;
+
 public class BonusNumber {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
@@ -16,13 +18,14 @@ public class BonusNumber {
             int number = Integer.parseInt(input);
             return new BonusNumber(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(
+                    ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getFormattedMessage(MIN_NUMBER, MAX_NUMBER));
         }
     }
 
     private void validate(int number) {
         if (isInvalidRange(number)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 

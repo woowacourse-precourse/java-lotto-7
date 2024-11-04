@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.constants.ErrorMessage;
 
 public class WinningLottoNumbers {
     private static final int WINNING_NUMBERS_SIZE = 6;
@@ -42,19 +43,19 @@ public class WinningLottoNumbers {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            ErrorMessage.INVALID_WINNING_NUMBERS_SIZE.getFormattedMessage(WINNING_NUMBERS_SIZE);
         }
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(this::isInvalidRange)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getFormattedMessage(MIN_NUMBER, MAX_NUMBER);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+            ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage();
         }
     }
 
