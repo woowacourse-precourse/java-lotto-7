@@ -1,11 +1,11 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -21,5 +21,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 오름차순으로 정렬되어 저장된다")
+    @Test
+    void 로또번호가_오름차순으로_정렬되어_저장된다() {
+        List<Integer> unorderedNumbers = List.of(45, 12, 23, 8, 34, 2);
+        Lotto lotto = new Lotto(unorderedNumbers);
+
+        List<Integer> sortedNumbers = lotto.getNumbers();
+        assertThat(sortedNumbers).containsExactly(2, 8, 12, 23, 34, 45);
+    }
 }
