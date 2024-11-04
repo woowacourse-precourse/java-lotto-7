@@ -8,6 +8,8 @@ import lotto.model.WinningResultsDto;
 
 public class OutputView {
 
+	private static final String DECIMAL_FORMAT = "#,###.#";
+
 	public void printPurchasePriceInputMessage() {
 		System.out.println("구입금액을 입력해 주세요.");
 	}
