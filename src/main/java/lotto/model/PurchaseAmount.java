@@ -13,10 +13,6 @@ public class PurchaseAmount {
         validate(value);
     }
 
-    public int getValue() {
-        return value;
-    }
-
     private int parseInput(String input) {
         try {
             return Integer.parseInt(input);

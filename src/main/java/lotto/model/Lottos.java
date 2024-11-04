@@ -38,4 +38,8 @@ public class Lottos {
                 .map(String::valueOf)
                 .toList();
     }
+
+    public int getTotalPrice() {
+        return lottos.size() * Lotto.PRICE;
+    }
 }

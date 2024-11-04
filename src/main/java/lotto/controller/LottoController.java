@@ -41,7 +41,7 @@ public class LottoController {
         List<String> matchStatistics = lottoPrizes.calculateMatchStatistics();
         outputView.printMatchStatistics(matchStatistics);
 
-        String yield = lottoPrizes.calculateYield(purchaseAmount.getValue());
+        String yield = lottoPrizes.calculateYield(lottos.getTotalPrice());
         outputView.printYield(yield);
     }
 
