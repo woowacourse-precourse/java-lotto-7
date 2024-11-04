@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import lotto.enums.LottoConfig;
 import lotto.exception.LottoExceptionMessage;

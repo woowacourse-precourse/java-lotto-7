@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import lotto.enums.LottoConfig;
 import lotto.exception.LottoExceptionMessage;
@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
-    private final NumberGenerator numberGenerator;
+    private final lotto.util.model.NumberGenerator numberGenerator;
 
     public LottoGenerator() {
-        this.numberGenerator = new NumberGenerator();
+        this.numberGenerator = new lotto.util.model.NumberGenerator();
     }
 
     public Lotto generate() {

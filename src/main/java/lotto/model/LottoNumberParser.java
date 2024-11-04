@@ -1,12 +1,11 @@
-package lotto;
+package lotto.model;
 
-import lotto.enums.LottoConfig;
 import lotto.exception.ParserExceptionMessage;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class LottoNumberParser implements Parser<String, List<Integer>> {
+public class LottoNumberParser implements lotto.util.model.Parser<String, List<Integer>> {
     @Override
     public List<Integer> parse(String givenInput) {
         String[] lottoNumbers = givenInput.split(",");
