@@ -18,7 +18,6 @@ public class LottoManager {
         long purchaseAmount = payment / 1000;
         for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(lotto);
             lottos.add(new Lotto(lotto));
         }
         return lottos;

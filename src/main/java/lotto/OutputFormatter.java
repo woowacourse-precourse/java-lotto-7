@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 
 public class OutputFormatter {
     public String lotto(Lotto lotto) {
-        String purchaseLotto =
-                lotto.getNumbers()
+        String purchaseLotto = lotto.getNumbers()
                 .stream()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
         return String.format("[" + purchaseLotto + "]");
@@ -16,7 +16,7 @@ public class OutputFormatter {
     public String result(Map<WinningStandard, Integer> winningResult, WinningStandard place) {
         int count = winningResult.get(place);
         String bonus = "";
-        if(place.isMatchingBonusNumber()) {
+        if (place.isMatchingBonusNumber()) {
             bonus = ", 보너스 볼 일치";
         }
 
