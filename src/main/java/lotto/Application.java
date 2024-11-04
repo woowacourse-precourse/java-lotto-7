@@ -15,6 +15,9 @@ public class Application {
         List<Lotto> lottos = generateLottos(numberOfLottos);
         printLottos(lottos);
 
+        List<Integer> winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber();
+
         // TODO: 로또 번호 출력
     }
 
@@ -58,6 +61,51 @@ public class Application {
             List<Integer> numbers = lotto.getNumbers();
             Collections.sort(numbers);
             System.out.println(numbers);
+        }
+    }
+
+    public static List<Integer> inputWinningNumbers() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                String[] inputs = input.split(",");
+                if (inputs.length != 6) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+                }
+                List<Integer> winningNumbers = new ArrayList<>();
+                for (String number : inputs) {
+                    int num = Integer.parseInt(number.trim());
+                    validateNumber(num);
+                    if (winningNumbers.contains(num)) {
+                        throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
+                    }
+                    winningNumbers.add(num);
+                }
+                return winningNumbers;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static int inputBonusNumber() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                int bonusNumber = Integer.parseInt(input);
+                validateNumber(bonusNumber);
+                return bonusNumber;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static void validateNumber(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }
