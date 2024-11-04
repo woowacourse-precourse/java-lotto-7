@@ -13,12 +13,14 @@ public class ResultDisplayer {
     private static final String PRIZE_MESSAGE = "(%,d원) - %d개%n";
     private static final String STATISTICS_HEADER = "당첨 통계";
     private static final String SEPARATOR = "---";
+    private static final String YIELD_FORMAT = "%.1f%%입니다.%n";
+    private static final String NUMBER_FORMAT = "%s%n";
 
     public void showPurchasedLottos(int lottoCount, Lottos lottos) {
         System.out.println();
-        System.out.println(lottoCount + LOTTO_COUNT_MESSAGE_SUFFIX);
+        System.out.printf(NUMBER_FORMAT, lottoCount + LOTTO_COUNT_MESSAGE_SUFFIX);
         lottos.getLottos().forEach(lotto -> {
-            System.out.println(lotto.getNumbers());
+            System.out.printf(NUMBER_FORMAT, lotto.getNumbers());
         });
     }
 
@@ -33,8 +35,7 @@ public class ResultDisplayer {
                         rank.getRequiredMatchingCount(),
                         rank.getPrizeAmount(),
                         winningCounts.getOrDefault(rank, 0));
-            }
-            if (rank != WinningRank.NO_PRIZE && rank != WinningRank.SECOND_PRIZE_WITH_BONUS) {
+            } else if (rank != WinningRank.NO_PRIZE) {
                 System.out.printf(MATCH_COUNT_MESSAGE + " " + PRIZE_MESSAGE,
                         rank.getRequiredMatchingCount(),
                         rank.getPrizeAmount(),
@@ -44,6 +45,6 @@ public class ResultDisplayer {
     }
 
     public void showYield(double yield) {
-        System.out.printf("%s%.1f%%입니다.%n", YIELD_MESSAGE, yield);
+        System.out.printf("%s" + YIELD_FORMAT, YIELD_MESSAGE, yield);
     }
 }

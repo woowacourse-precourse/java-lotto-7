@@ -4,6 +4,8 @@ import lotto.validation.LottoPurchaseValidator;
 
 public class PriceCalculator {
 
+    private static final int LOTTO_PRICE = 1000;
+
     private final LottoPurchaseValidator lottoPurchaseValidator;
 
     public PriceCalculator() {
@@ -11,7 +13,7 @@ public class PriceCalculator {
     }
 
     public int calculateLotto(int price) {
-        return price / 1000;
+        return price / LOTTO_PRICE;
     }
 
     public int parsePrice(String input) {
@@ -20,6 +22,6 @@ public class PriceCalculator {
     }
 
     private void validatePrice(String input){
-        lottoPurchaseValidator.validate(input);;
+        lottoPurchaseValidator.validate(input);
     }
 }

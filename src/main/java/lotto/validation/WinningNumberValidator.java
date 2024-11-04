@@ -7,6 +7,10 @@ import lotto.constatnt.ExceptionMessage;
 
 public class WinningNumberValidator {
 
+    private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
+
     private List<Integer> winningNumbers;
 
     public void validateNumber(String winningLottoNumber) {
@@ -37,13 +41,13 @@ public class WinningNumberValidator {
     }
 
     private void checkSize(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
+        if (lottoNumbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_SIZE_INSUFFICIENT.getMessage());
         }
     }
 
     private void checkRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(n -> n < 1 || n > 45)) {
+        if (numbers.stream().anyMatch(n -> n < LOTTO_MIN_NUMBER || n > LOTTO_MAX_NUMBER)) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
@@ -70,7 +74,7 @@ public class WinningNumberValidator {
     }
 
     private void checkRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }

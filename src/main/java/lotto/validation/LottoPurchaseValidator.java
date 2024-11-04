@@ -4,6 +4,9 @@ import lotto.constatnt.ExceptionMessage;
 
 public class LottoPurchaseValidator {
 
+    private static final int PURCHASE_PRICE_UNIT = 1000;
+    private static final int PURCHASE_PRICE_MAX = 100_000_000;
+
     public void validate(String input) {
         checkBlankInput(input);
         checkIsNumber(input);
@@ -35,14 +38,14 @@ public class LottoPurchaseValidator {
 
     private void checkMultipleOfThousand(String input) {
         int price = Integer.parseInt(input);
-        if (price % 1000 != 0) {
+        if (price % PURCHASE_PRICE_UNIT != 0) {
             throw new IllegalArgumentException(ExceptionMessage.PURCHASE_PRICE_NOT_MULTIPLE_OF_THOUSAND.getMessage());
         }
     }
 
     private void checkUpperLimit(String input) {
         int price = Integer.parseInt(input);
-        if (price >= 100_000_000) {
+        if (price >= PURCHASE_PRICE_MAX) {
             throw new IllegalArgumentException(ExceptionMessage.PURCHASE_PRICE_UPPER_LIMIT.getMessage());
         }
     }

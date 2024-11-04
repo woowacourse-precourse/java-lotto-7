@@ -9,6 +9,9 @@ import lotto.model.Lottos;
 
 public class LottoPrizeCalculator {
 
+    private static final int ROUNDING_SCALE = 100;
+    private static final int PERCENTAGE_CONVERSION = 100;
+
     private final Map<WinningRank, Integer> winningCounts = new HashMap<>();
 
     public LottoPrizeCalculator() {
@@ -49,8 +52,8 @@ public class LottoPrizeCalculator {
     }
 
     public double calculateYield(long totalPrize, int purchaseAmount) {
-        double yield = ((double) totalPrize / purchaseAmount) * 100;
-        return Math.round(yield * 100) / 100.0;
+        double yield = ((double) totalPrize / purchaseAmount) * PERCENTAGE_CONVERSION;
+        return Math.round(yield * ROUNDING_SCALE) / (double) ROUNDING_SCALE;
     }
 
     public Map<WinningRank, Integer> getWinningCounts() {
