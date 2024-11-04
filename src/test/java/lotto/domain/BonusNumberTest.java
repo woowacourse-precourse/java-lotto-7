@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_DUPLICATE_MESSAGE;
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_RANGE_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -17,7 +19,7 @@ class BonusNumberTest {
     void winningLottoInitErrorTest(String outOfRangeNumber) {
         assertThatThrownBy(() -> BonusNumber.of(Integer.parseInt(outOfRangeNumber), ticket))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 1와 45사이 숫자여야합니다.");
+                .hasMessage(String.format(BONUS_NUMBER_RANGE_ERROR_MESSAGE.getMessage(), 1, 45));
     }
 
     @Test
@@ -25,7 +27,7 @@ class BonusNumberTest {
     void winningLottoDuplicateErrorTest() {
         assertThatThrownBy(() -> BonusNumber.of(1, ticket))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
+                .hasMessage(BONUS_NUMBER_DUPLICATE_MESSAGE.getMessage());
     }
 
 }

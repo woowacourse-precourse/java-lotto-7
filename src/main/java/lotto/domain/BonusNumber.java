@@ -1,13 +1,14 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_DUPLICATE_MESSAGE;
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_RANGE_ERROR_MESSAGE;
+
 import java.util.List;
 import java.util.Objects;
 
 public class BonusNumber {
     public static final int MIN_RANGE = 1;
     public static final int MAX_RANGE = 45;
-    public static final String BONUS_NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 보너스 번호는 %d와 %d사이 숫자여야합니다.";
-    public static final String BONUS_NUMBER_DUPLICATE_MESSAGE = "[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.";
 
     private final int value;
 
@@ -27,13 +28,14 @@ public class BonusNumber {
 
     private void validateRange(int value) {
         if (value < MIN_RANGE || value > MAX_RANGE) {
-            throw new IllegalArgumentException(String.format(BONUS_NUMBER_RANGE_ERROR_MESSAGE, MIN_RANGE, MAX_RANGE));
+            throw new IllegalArgumentException(
+                    String.format(BONUS_NUMBER_RANGE_ERROR_MESSAGE.getMessage(), MIN_RANGE, MAX_RANGE));
         }
     }
 
     private void validateDuplicate(int value, List<Integer> ticket) {
         if (containsDuplicateNumbers(value, ticket)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_MESSAGE);
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_MESSAGE.getMessage());
         }
     }
 

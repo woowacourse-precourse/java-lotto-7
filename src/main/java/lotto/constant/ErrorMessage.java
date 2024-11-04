@@ -6,7 +6,9 @@ public enum ErrorMessage {
     EMPTY_INPUT_ERROR_MESSAGE("[ERROR] 번호를 입력해주세요."),
     NUMBER_SIZE_ERROR_MESSAGE("[ERROR] 로또 번호는 6개여야 합니다."),
     NUMBER_RANGE_ERROR_MESSAGE("[ERROR] 로또 번호는 %d와 %d사이 숫자여야합니다."),
-    NUMBER_DUPLICATE_ERROR_MESSAGE("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    NUMBER_DUPLICATE_ERROR_MESSAGE("[ERROR] 로또 번호는 중복될 수 없습니다."),
+    BONUS_NUMBER_RANGE_ERROR_MESSAGE("[ERROR] 보너스 번호는 %d와 %d사이 숫자여야합니다."),
+    BONUS_NUMBER_DUPLICATE_MESSAGE("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.");
 
     private final String message;
 
