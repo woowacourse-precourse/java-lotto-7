@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -20,6 +21,7 @@ public class LottoResultServiceTest {
     }
 
     @Test
+    @DisplayName("1등 당첨자 수가 올바르게 산출되는지 테스트")
     public void testCalculateWinningResults_FirstPlace() {
         List<Lotto> purchasedLottos = List.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -31,6 +33,7 @@ public class LottoResultServiceTest {
     }
 
     @Test
+    @DisplayName("2등(보너스 맞춤) 당첨자 수가 올바르게 산출되는지 테스트")
     public void testCalculateWinningResults_SecondPlace() {
         List<Lotto> purchasedLottos = List.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)));
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -42,6 +45,7 @@ public class LottoResultServiceTest {
     }
 
     @Test
+    @DisplayName("2등(보너스 맞추지 못함) 당첨자 수가 올바르게 산출되는지 테스트")
     public void testCalculateWinningResults_ThirdPlace() {
         List<Lotto> purchasedLottos = List.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)));
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -53,6 +57,7 @@ public class LottoResultServiceTest {
     }
 
     @Test
+    @DisplayName("3등 당첨자 수가 올바르게 산출되는지 테스트")
     public void testCalculateWinningResults_FourthPlace() {
         List<Lotto> purchasedLottos = List.of(new Lotto(Arrays.asList(1, 2, 3, 4, 7, 8)));
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -64,6 +69,7 @@ public class LottoResultServiceTest {
     }
 
     @Test
+    @DisplayName("4등 당첨자 수가 올바르게 산출되는지 테스트")
     public void testCalculateWinningResults_FifthPlace() {
         List<Lotto> purchasedLottos = List.of(new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9)));
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -75,6 +81,7 @@ public class LottoResultServiceTest {
     }
 
     @Test
+    @DisplayName("당첨자가 없을때 당첨자가 발생하면 예외를 던진다.")
     public void testCalculateWinningResults_NoWin() {
         List<Lotto> purchasedLottos = List.of(new Lotto(Arrays.asList(10, 20, 30, 40, 41, 42)));
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -90,6 +97,7 @@ public class LottoResultServiceTest {
     }
 
     @Test
+    @DisplayName("총 당첨 금액이 올바르게 계산되는지 테스트")
     public void testCalculateTotalPrize() {
         Map<Rank, Integer> resultCount = Map.of(
                 Rank.FIRST, 1, // 1등 1장

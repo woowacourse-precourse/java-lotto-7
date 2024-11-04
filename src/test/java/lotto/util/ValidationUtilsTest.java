@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static lotto.util.ValidationUtils.*;
@@ -30,6 +31,7 @@ public class ValidationUtilsTest {
         assertThrows(IllegalArgumentException.class, () -> validateIsNumber("abc"));
     }
 
+    @Test
     public void testValidatePositive_PositiveValue() {
         assertDoesNotThrow(() -> validateIsNumber("3000"));
     }
@@ -55,8 +57,8 @@ public class ValidationUtilsTest {
     }
 
     @Test
+    @DisplayName("아주 큰 숫자 (long 범위를 초과하는 값)")
     public void testParseLong_InputExceedsLongMaxValue() {
-        // 아주 큰 숫자 (long 범위를 초과하는 값)
         String largeNumber = "9223372036854775808"; // Long.MAX_VALUE + 1
 
         assertThrows(NumberFormatException.class, () -> Long.parseLong(largeNumber));
@@ -127,8 +129,8 @@ public class ValidationUtilsTest {
     }
 
     @Test
+    @DisplayName("보너스 번호가 최소 경계값 (1)인 경우")
     public void testValidateBonusNumber_MinBoundary() {
-        // 보너스 번호가 최소 경계값 (1)인 경우
         List<Integer> winningNumbers = Arrays.asList(5, 10, 15, 20, 25, 30);
         int minBoundaryBonusNumber = 1;
 
@@ -136,8 +138,8 @@ public class ValidationUtilsTest {
     }
 
     @Test
+    @DisplayName("보너스 번호가 최대 경계값 (45)인 경우")
     public void testValidateBonusNumber_MaxBoundary() {
-        // 보너스 번호가 최대 경계값 (45)인 경우
         List<Integer> winningNumbers = Arrays.asList(5, 10, 15, 20, 25, 30);
         int maxBoundaryBonusNumber = 45;
 
