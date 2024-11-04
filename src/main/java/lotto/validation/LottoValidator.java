@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import lotto.exception.LottoException;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -16,13 +18,13 @@ public class LottoValidator {
 
     private static void throwExceptionIfListSizeIsInvalid(List<Integer> numbers) {
         if (numbers.size() != lottoNumberSize) {
-            throw new IllegalArgumentException(LOTTO_SHOULD_BE_SIX.getErrorMessage());
+            throw new LottoException(LOTTO_SHOULD_BE_SIX);
         }
     }
 
     private static void throwExceptionIfThereIsDuplicateNumber(List<Integer> numbers) {
         if(numbers.size() != new HashSet<>(numbers).size()){
-            throw new IllegalArgumentException(THERE_IS_DUPLICATE_NUMBER_IN_LOTTO.getErrorMessage());
+            throw new LottoException(THERE_IS_DUPLICATE_NUMBER_IN_LOTTO);
         }
     }
 }

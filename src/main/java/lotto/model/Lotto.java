@@ -14,7 +14,7 @@ public class Lotto {
     }
 
     public static Lotto drawLotto(){
-        List<Integer> numberOfLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(numberOfLotto.stream().sorted().toList());
+        List<Integer> numberValueOfLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numberValueOfLotto.stream().sorted().toList());
     }
 }
