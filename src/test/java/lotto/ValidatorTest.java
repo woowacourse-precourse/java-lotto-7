@@ -5,120 +5,97 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
 class ValidatorTest {
     // 금액 입력 테스트
-    private void assertMoneyInputValidation(
-            String moneyInput, boolean isExceptionExpected) {
-        if (isExceptionExpected) {
-            assertThatThrownBy(() -> Validator.validateMoneyInput(moneyInput))
-                    .isInstanceOf(IllegalArgumentException.class);
-        } else {
-            assertThatCode(() -> Validator.validateMoneyInput(moneyInput))
-                    .doesNotThrowAnyException();
-        }
-    }
-
     @DisplayName("금액 입력에 빈 값이 들어올 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {
-            "'' : true",
-            "'   ' : true",
-            "1000 : false"
-    }, delimiter = ':')
-    void validateMoneyInput_빈_값_입력_테스트(
-            String moneyInput, boolean isExceptionTriggerValue) {
-        assertMoneyInputValidation(moneyInput, isExceptionTriggerValue);
+    @ValueSource(strings = {
+            "",
+            "   "
+    })
+    void validateMoneyInput_빈_값_입력_테스트(String moneyInput) {
+        assertThatThrownBy(() -> Validator.validateMoneyInput(moneyInput))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("금액 입력에 숫자가 아닌 문자가 들어올 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {
-            "a : true",
-            "1000j : true",
-            "천원 : true",
-            "]000 : true",
-            "2000 : false"
-    }, delimiter = ':')
+    @ValueSource(strings = {
+            "a ",
+            "1000j",
+            "천원",
+            "]000"
+    })
     void validateMoneyInput_숫자가_아닌_문자_입력_테스트(
-            String moneyInput, boolean isExceptionTriggerValue) {
-        assertMoneyInputValidation(moneyInput, isExceptionTriggerValue);
+            String moneyInput) {
+        assertThatThrownBy(() -> Validator.validateMoneyInput(moneyInput))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("금액 입력에 음수나 0이 들어올 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {
-            "0 : true",
-            "-2000 : true",
-            "1000 : false"
-    }, delimiter = ':')
+    @ValueSource(strings = {
+            "0",
+            "-2000"
+    })
     void validateMoneyInput_양수가_아닌_숫자_입력_테스트(
-            String moneyInput, boolean isExceptionTriggerValue) {
-        assertMoneyInputValidation(moneyInput, isExceptionTriggerValue);
+            String moneyInput) {
+        assertThatThrownBy(() -> Validator.validateMoneyInput(moneyInput))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("금액 입력에 1000단위가 아닌 숫자가 들어올 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {
-            "500 : true",
-            "1700 : true",
-            "3000 : false"
-    }, delimiter = ':')
+    @ValueSource(strings = {
+            "500",
+            "1700"
+    })
     void validateMoneyInput_1000으로_나누어_떨어지지_않는_숫자_입력_테스트(
-            String moneyInput, boolean isExceptionTriggerValue) {
-        assertMoneyInputValidation(moneyInput, isExceptionTriggerValue);
+            String moneyInput) {
+        assertThatThrownBy(() -> Validator.validateMoneyInput(moneyInput))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     // 당첨 번호 입력 테스트
-    private void assertWinningNumberValidation(
-            String number, boolean isExceptionExpected) {
-        if (isExceptionExpected) {
-            assertThatThrownBy(() -> Validator.validateIndividualLottoNumber(number))
-                    .isInstanceOf(IllegalArgumentException.class);
-        } else {
-            assertThatCode(() -> Validator.validateIndividualLottoNumber(number))
-                    .doesNotThrowAnyException();
-        }
-    }
-
     @DisplayName("당첨 번호에 빈 값이 들어올 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {
-            "'' : true",
-            "'   ' : true",
-            "1 : false"
-    }, delimiter = ':')
+    @ValueSource(strings = {
+            "",
+            "   "
+    })
     void validateIndividualLottoNumber_빈_값_입력_테스트(
-            String number, boolean isExceptionTriggerValue) {
-        assertWinningNumberValidation(number, isExceptionTriggerValue);
+            String number) {
+        assertThatThrownBy(() -> Validator.validateIndividualLottoNumber(number))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호에 숫자가 아닌 값이 들어올 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {
-            "일 : true",
-            "one : true",
-            "- : true",
-            "1 : false"
-    }, delimiter = ':')
+    @ValueSource(strings = {
+            "일",
+            "one",
+            "-"
+    })
     void validateIndividualLottoNumber_숫자가_아닌_문자_입력_테스트(
-            String number, boolean isExceptionTriggerValue) {
-        assertWinningNumberValidation(number, isExceptionTriggerValue);
+            String number) {
+        assertThatThrownBy(() -> Validator.validateIndividualLottoNumber(number))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호에 음수나 0이 들어올 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {
-            "-1 : true",
-            "0 : true",
-            "1 : false"
-    }, delimiter = ':')
+    @ValueSource(strings = {
+            "-1",
+            "0"
+    })
     void validateIndividualLottoNumber_양수가_아닌_숫자_입력_테스트(
-            String number, boolean isExceptionTriggerValue) {
-        assertWinningNumberValidation(number, isExceptionTriggerValue);
+            String number) {
+        assertThatThrownBy(() -> Validator.validateIndividualLottoNumber(number))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호 입력에 1~45 범위를 벗어나는 숫자가 들어올 경우 예외가 발생한다.")
@@ -171,41 +148,37 @@ class ValidatorTest {
 
     // 보너스 번호 입력 테스트
     private void assertBonusNumberValidation(
-            String bonusNumber, boolean isExceptionExpected) {
+            String bonusNumber) {
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         int number = Integer.parseInt(bonusNumber);
 
-        if (isExceptionExpected) {
-            assertThatThrownBy(() -> Validator.validateBonusNumber(lotto, number))
-                    .isInstanceOf(IllegalArgumentException.class);
-        } else {
-            assertThatCode(() -> Validator.validateBonusNumber(lotto, number))
-                    .doesNotThrowAnyException();
-        }
+        assertThatThrownBy(() -> Validator.validateBonusNumber(lotto, number))
+                .isInstanceOf(IllegalArgumentException.class);
+
     }
 
     @DisplayName("보너스 번호 입력에 1~45 범위를 벗어나는 숫자가 들어올 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {
-            "0 : true",
-            "46 : true",
-            "7 : false"
-    }, delimiter = ':')
+    @ValueSource(strings = {
+            "0",
+            "46",
+            "1000"
+    })
     void validateBonusNumber_범위를_벗어나는_숫자_입력_테스트(
-            String bonusNumber, boolean isExceptionTriggerValue) {
-        assertBonusNumberValidation(bonusNumber, isExceptionTriggerValue);
+            String bonusNumber) {
+        assertBonusNumberValidation(bonusNumber);
     }
 
     @DisplayName("보너스 번호 입력에 당첨 번호와 중복되는 값이 들어올 경우 예외가 발생한다.")
     @ParameterizedTest
-    @CsvSource(value = {
-            "1 : true",
-            "2 : true",
-            "6 : true",
-            "7 : false",
-    }, delimiter = ':')
+    @ValueSource(strings = {
+            "1",
+            "2",
+            "5",
+            "6",
+    })
     void validateBonusNumber_당첨_번호와_중복되는_숫자_입력_테스트(
-            String bonusNumber, boolean isExceptionTriggerValue) {
-        assertBonusNumberValidation(bonusNumber, isExceptionTriggerValue);
+            String bonusNumber) {
+        assertBonusNumberValidation(bonusNumber);
     }
 }
