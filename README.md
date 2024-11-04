@@ -19,3 +19,4 @@
 - Console 클래스 안에 close 메서드 구현되어 있는 내용을 확인. 따라서 리소스 절약을 위해 CloseInput 기능을 추가 구현
 - 기존 Data를 Collection으로 하나 하나 관리하는 방식이 아닌 DTO로 통합 관리하는 방식으로 변경
   - 그에 따라 WinningResultDTO, UserInputDTO를 구현
+- Switch Case문을 쓰지 않고 더 깔끔히 결과를 관리하기 위해 Enum으로 MatchResult를 구현
