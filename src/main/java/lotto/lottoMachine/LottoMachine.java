@@ -1,71 +1,31 @@
 package lotto.lottoMachine;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
-import lotto.view.InputController;
-import lotto.view.OutputController;
+import lotto.controller.InputController;
+import lotto.controller.OutputController;
 
 public class LottoMachine {
     private final InputController inputController = new InputController();
     private final OutputController outputController = new OutputController();
+    private final LottoGenerator lottoGenerator = new LottoGenerator();
+    private final LottoCalculator lottoCalculator = new LottoCalculator();
 
-    private final Integer purchaseNum;
-    private final List<Lotto> userLottos;
-    private final Lotto winLotto;
-    private final Integer bonusNum;
-    private final Map<LottoResult, Integer> resultMap;
-
-    public LottoMachine() {
-        this.purchaseNum = inputController.getPurchaseNumber();
-        this.userLottos = getUserLottos();
-        this.winLotto = inputController.getLotto();
-        this.bonusNum = inputController.getBonusNumber(winLotto);
-        this.resultMap = getResultMap();
-    }
+    public LottoMachine() { }
 
     public void run() {
-        matchUserLottosWithWinLotto();
-        outputController.printResult(resultMap, getRatioOfProfit());
-    }
+        //1. 구매 정보 입력
+        Integer purchaseNumber = inputController.getPurchaseNumber();
 
-    protected Map<LottoResult, Integer> getResultMap() {
-        final Map<LottoResult, Integer> resultMap;
-        resultMap = new EnumMap<>(LottoResult.class);
-        for(LottoResult result : LottoResult.values()) {
-            resultMap.put(result, 0);
-        }
-        return resultMap;
-    }
+        //2. 구매 로또 생성 및 출력
+        List<Lotto> userLottos = lottoGenerator.generateLottos(purchaseNumber);
+        outputController.printUserLottos(purchaseNumber, userLottos);
 
-    private void matchUserLottosWithWinLotto() {
-        for(Lotto userLotto : userLottos) {
-            LottoResult lottoResult = userLotto.getMatchCount(winLotto, bonusNum);
-            if(lottoResult != null) {
-                resultMap.put(lottoResult, resultMap.get(lottoResult) + 1);
-            }
-        }
-    }
+        //3. 당첨 로또 입력
+        Lotto winningLotto = inputController.getLotto();
+        Integer bonusNumber = inputController.getBonusNumber(winningLotto);
 
-    protected Double getRatioOfProfit() {
-        double totalProfit = 0;
-        for(LottoResult lottoResult : resultMap.keySet()) {
-            totalProfit += (lottoResult.getWinningAmount() * resultMap.get(lottoResult));
-        }
-
-        return totalProfit / (purchaseNum * 1000) * 100;
-    }
-
-    protected List<Lotto> getUserLottos () {
-        List<Lotto> userLottos = new ArrayList<>();
-        for(int i = 0; i < purchaseNum; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            userLottos.add(new Lotto(numbers));
-        }
-
-        outputController.printUserLottos(purchaseNum, userLottos);
-        return userLottos;
+        //4. 당첨 결과 계산 및 출력
+        LottoResult lottoResult = lottoCalculator.getResult(userLottos, winningLotto, bonusNumber, purchaseNumber);
+        outputController.printResult(lottoResult);
     }
 }
