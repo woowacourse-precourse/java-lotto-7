@@ -7,6 +7,10 @@ public record WinningResultsDto(
 	List<WinningResultDto> winningResults
 ) {
 
+	public static WinningResultsDto from(Map<Winning, Integer> winningResult) {
+		return new WinningResultsDto(getWinningResults(winningResult));
+	}
+
 	private static List<WinningResultDto> getWinningResults(Map<Winning, Integer> winningResult) {
 		return winningResult.entrySet().stream()
 				.map(winning -> WinningResultDto.from(winning.getKey(), winning.getValue()))
