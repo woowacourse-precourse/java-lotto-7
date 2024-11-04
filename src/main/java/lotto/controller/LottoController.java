@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.function.Supplier;
 import lotto.domain.LottoResult;
 import lotto.domain.Numbers;
 import lotto.domain.Number;
@@ -23,21 +24,15 @@ public class LottoController {
 
     public void run() {
         purchase();
-        winNumbersInfo();
-        bonusNumberInfo();
+        winInformation();
         Console.close();
         result();
     }
 
     private void purchase() {
-        while (true) {
-            try {
-                purchasePrice = lottoService.getPurchasePrice(InputView.inputPurchasePrice());
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        purchasePrice = executeWithRetry(
+            () -> lottoService.getPurchasePrice(InputView.inputPurchasePrice())
+        );
 
         OutputView.printPurchasedLottoAmount(purchasePrice.getLottoAmount());
 
@@ -46,26 +41,14 @@ public class LottoController {
         OutputView.printPurchasedLottoNumbers(lottoService.getPurchasedLotteries());
     }
 
-    private void winNumbersInfo() {
-        while (true) {
-            try {
-                winNumbers = lottoService.getWinNumbers(InputView.inputWinNumbers());
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
+    private void winInformation() {
+        winNumbers = executeWithRetry(
+            () -> lottoService.getWinNumbers(InputView.inputWinNumbers())
+        );
 
-    private void bonusNumberInfo() {
-        while (true) {
-            try {
-                bonusNumber = lottoService.getBonusNumber(winNumbers, InputView.inputBonusNumber());
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        bonusNumber = executeWithRetry(
+            () -> lottoService.getBonusNumber(winNumbers, InputView.inputBonusNumber())
+        );
     }
 
     private void result() {
@@ -78,5 +61,15 @@ public class LottoController {
         });
 
         OutputView.printProfitRate(lottoService.getProfitRate(purchasePrice));
+    }
+
+    private <T> T executeWithRetry(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
