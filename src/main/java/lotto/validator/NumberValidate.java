@@ -25,7 +25,16 @@ public class NumberValidate {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-    
+
+    public static void validateBonus(String input) {
+        try {
+            isEmpty(input);
+            isNumeric(input);
+            isOutOfRange(input);
+        } catch (NullPointerException | NumberFormatException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
 
     public static void isOverThousand(String input) {
         int amount = Integer.parseInt(input);
@@ -61,7 +70,12 @@ public class NumberValidate {
         }
     }
 
-
+    public static void isOutOfRange(String input) {
+        int convert = Integer.parseInt(input);
+        if (convert < 1 || convert > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
 
     public static void isOutOfRange(List<Integer> input) {
         for (int number : input) {
