@@ -42,7 +42,6 @@ public class OutputView {
         System.out.printf(ResultMessage.FIVE_MATCH_MESSAGE.getMessage(), fiveMatches);
         System.out.printf(ResultMessage.FIVE_WITH_BONUS_MATCH_MESSAGE.getMessage(), fiveMatchesWithBonus);
         System.out.printf(ResultMessage.SIX_MATCH_MESSAGE.getMessage(), sixMatches);
-        System.out.println();
         System.out.printf(ResultMessage.PROFIT_RATE_MESSAGE.getMessage(), profitRate);
     }
 
