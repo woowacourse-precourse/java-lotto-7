@@ -36,7 +36,7 @@ public class Output {
         for (Rank rank : winningRanks) {
             int winningNumberMatchCount = rank.getWinningNumberMatchCount();
             int winningAmount = rank.getWinningAmount();
-            int rankCount = winningRecord.get(rank);
+            int rankCount = winningRecord.getRankCount(rank);
             printRankStatistic(getRankStatisticFormat(rank), winningNumberMatchCount, winningAmount, rankCount);
         }
     }

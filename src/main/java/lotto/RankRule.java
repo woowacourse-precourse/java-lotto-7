@@ -15,18 +15,18 @@ public class RankRule {
         addRule();
     }
 
-    private static void addRule() {
-        for (Rank rank : Rank.values()) {
-            int winningNumberMatchCount = rank.getWinningNumberMatchCount();
-            rankRule.put(winningNumberMatchCount, rank);
-        }
-    }
-
     public static Rank checkRank(final int winningNumberMatchCount, final boolean isBonusNumberMatched) {
         if (winningNumberMatchCount == SECOND.getWinningNumberMatchCount()) {
             return checkSecondOrThird(isBonusNumberMatched);
         }
         return rankRule.getOrDefault(winningNumberMatchCount, NONE);
+    }
+
+    private static void addRule() {
+        for (Rank rank : Rank.values()) {
+            int winningNumberMatchCount = rank.getWinningNumberMatchCount();
+            rankRule.put(winningNumberMatchCount, rank);
+        }
     }
 
     private static Rank checkSecondOrThird(final boolean isBonusNumberMatched) {
