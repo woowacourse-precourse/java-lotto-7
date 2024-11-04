@@ -2,7 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -12,7 +14,7 @@ public class InputView {
     private static final String REQUEST_BONUS_NUM = "\n보너스 번호를 입력해 주세요.";
     private static final String INPUT_NUMBER_OUT_OF_BOUND = "[ERROR] 1에서 45까지의 숫자만 입력해 주세요.";
     private static final String ARRAY_OUT_OF_BOUND = "[ERROR] 로또번호는 6개 입력해 주세요.";
-    private static final String BONUS_SAME_WITH_WINNING_NUM = "[ERROR] 중복이 아닌 보너스 번호를 다시 입력해 주세요.";
+    private static final String SAME_INPUT_NUMBER = "[ERROR] 중복이 아닌 번호를 다시 입력해 주세요.";
     private int paidMoney;
 
     public int purchaseLotto() {
@@ -45,6 +47,11 @@ public class InputView {
                 throw new IllegalArgumentException(INPUT_NUMBER_OUT_OF_BOUND);
             }
         }
+
+        Set<Integer> checkerSet = new HashSet<>(winningNumbers);
+        if (checkerSet.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException(SAME_INPUT_NUMBER);
+        }
     }
 
     public int inputBonusNumber(List<Integer> winningNumbers) {
@@ -56,7 +63,7 @@ public class InputView {
         }
 
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_SAME_WITH_WINNING_NUM);
+            throw new IllegalArgumentException(SAME_INPUT_NUMBER);
         }
 
         return bonusNumber;

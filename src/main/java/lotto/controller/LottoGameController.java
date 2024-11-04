@@ -28,7 +28,7 @@ public class LottoGameController {
         outputView.printLottos(machine.getLottos());
 
         List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(winningNumbers);
 
         LottoChecker checker = new LottoChecker(winningNumbers, bonusNumber);
         WinningRank.winningCounts(machine.getLottos(), checker);
@@ -62,10 +62,10 @@ public class LottoGameController {
         }
     }
 
-    private int getBonusNumber() {
+    private int getBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                return inputView.inputBonusNumber();
+                return inputView.inputBonusNumber(winningNumbers);
             } catch (NumberFormatException e) {
                 System.out.println(WRONG_INPUT_STRING);
             } catch (IllegalArgumentException e) {
