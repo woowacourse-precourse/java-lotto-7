@@ -6,7 +6,8 @@ import lotto.service.LottoNumberGenerator;
 import lotto.service.LottoRankDeterminer;
 import lotto.service.LottoStatisticsCalculator;
 import lotto.validator.InputValidator;
-import lotto.view.View;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,8 @@ import java.util.Map;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        View view = new View();
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
         InputValidator inputValidator = new InputValidator();
         Parser parser = new Parser();
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
@@ -28,12 +30,12 @@ public class Application {
         List<Lotto> lottos;
         while (true) {
             try {
-                buyingAmount = view.getInputAmount();
+                buyingAmount = inputView.getInputAmount();
                 inputValidator.validateInputAmount(buyingAmount);
                 amount = parser.parseStringToLong(buyingAmount);
                 lottos = lottoMarket.sellLottos(amount);
-                view.printBuyingLottoCount(amount);
-                view.printLottos(lottos);
+                outputView.printBuyingLottoCount(amount);
+                outputView.printLottos(lottos);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -43,7 +45,7 @@ public class Application {
         List<Integer> winnerNumbers;
         while (true) {
             try {
-                inputWinnerNumbers = view.getInputWinnerNumbers();
+                inputWinnerNumbers = inputView.getInputWinnerNumbers();
                 inputValidator.validateInputNumbers(inputWinnerNumbers);
                 winnerNumbers = parser.parseInputToNumbers(inputWinnerNumbers);
                 break;
@@ -57,7 +59,7 @@ public class Application {
         int bonusNum;
         while (true) {
             try {
-                bonusNumber = view.getInputBonusNumber();
+                bonusNumber = inputView.getInputBonusNumber();
                 inputValidator.validateInputBonusNumber(winnerNumbers, bonusNumber);
                 bonusNum = parser.parseStringToInt(bonusNumber);
                 break;
@@ -70,6 +72,6 @@ public class Application {
         Map<Lotto, LottoRank> lottoRankResults = lottoRankDeterminer.determineLottoRanks(lottos, winnerLotto, bonusNum);
         LottoResult lottoResult = lottoStatisticsCalculator.calculateStatistic(lottoRankResults, amount);
 
-        view.printLottoResults(lottoResult);
+        outputView.printLottoResults(lottoResult);
     }
 }

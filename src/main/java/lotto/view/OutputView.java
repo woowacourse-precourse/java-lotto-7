@@ -10,26 +10,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public class View {
-    public String getInputAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        return readLineWithBlank();
-    }
+public class OutputView {
 
-    public String getInputWinnerNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        return readLineWithBlank();
-    }
-    public String getInputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return readLineWithBlank();
-    }
-
-    private String readLineWithBlank() {
-        String input = Console.readLine();
-        System.out.println();
-        return input;
-    }
     public void printBuyingLottoCount(long amount) {
         long count = amount / 1000;
         System.out.printf("%d개를 구매했습니다.", count);
