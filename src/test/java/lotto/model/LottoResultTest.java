@@ -13,13 +13,13 @@ class LottoResultTest {
     private final LottoTickets lottoTickets = new LottoTickets(Arrays.asList(
             Arrays.asList(1, 2, 3, 4, 5, 6),
             Arrays.asList(1, 2, 3, 4, 5, 13),
-            Arrays.asList(1, 2, 3, 4, 23, 24),
+            Arrays.asList(1, 2, 3, 4, 5, 24),
             Arrays.asList(1, 2, 3, 4, 34, 35),
             Arrays.asList(1, 2, 3, 42, 43, 44))
     );
     private final Set<Integer> winningNumbers = new HashSet<>(
             Arrays.asList(1, 2, 3, 4, 5, 6));
-    private final int bonusNumber = 23;
+    private final int bonusNumber = 24;
     private Map<Rank, Integer> ranks;
 
     @Test
