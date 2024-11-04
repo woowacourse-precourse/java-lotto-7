@@ -21,6 +21,18 @@ public class LottoTicketRepository {
         totalGameCount += GameStatus.ADDED_GAME_COUNT.get();
     }
 
+    public Long getTotalGameCount() {
+        return totalGameCount;
+    }
+
+    public Boolean unrevealedGameExist() {
+        return !lottoReceipt.isEmpty();
+    }
+
+    public Integer unrevealedGameCount() {
+        return lottoReceipt.size();
+    }
+
     public static LottoTicketRepository getTicket() {
         if (instance == null) {
             instance = new LottoTicketRepository();
