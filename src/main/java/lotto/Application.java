@@ -29,6 +29,15 @@ public class Application {
             int bonusNumber = Integer.parseInt(Console.readLine());
             validateBonusNumber(bonusNumber, winningNumbers);
 
+            // 당첨 결과 계산 및 출력
+            LottoResult lottoResult = new LottoResult();
+            for (Lotto lotto : purchasedLottos) {
+                int matchingCount = countMatchingNumbers(lotto.getNumbers(), winningNumbers);
+                boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+                lottoResult.addResult(matchingCount, bonusMatch);
+            }
+            lottoResult.printStatistics(purchaseAmount);
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             }
@@ -83,5 +92,16 @@ public class Application {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
+    }
+
+    // 일치하는 숫자 개수 계산
+    private static int countMatchingNumbers(List<Integer> ticketNumbers, List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : ticketNumbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 }
