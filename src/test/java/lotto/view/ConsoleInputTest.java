@@ -20,7 +20,7 @@ public class ConsoleInputTest {
 
             // when
             ConsoleInput consoleInput = new ConsoleInput(new MockInputProvider(inputs));
-            String result = consoleInput.getPurchasedAmount();
+            String result = consoleInput.getPaymentAmount();
 
             // then
             assertThat(result).isEqualTo(expect);
@@ -33,7 +33,7 @@ public class ConsoleInputTest {
 
             // when
             ConsoleInput consoleInput = new ConsoleInput(new MockInputProvider(inputs));
-            String result = consoleInput.getPurchasedAmount();
+            String result = consoleInput.getPaymentAmount();
 
             assertThat(result).isEqualTo(expect);
         }

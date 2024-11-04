@@ -17,7 +17,7 @@ public class ConsoleInput {
 
     // public methods
 
-    public String getPurchasedAmount() {
+    public String getPaymentAmount() {
         return readUserInput(PURCHASE_AMOUNT_HINT);
     }
 

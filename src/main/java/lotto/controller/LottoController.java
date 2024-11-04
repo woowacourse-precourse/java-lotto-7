@@ -38,12 +38,12 @@ public class LottoController {
 
     private LottoControllerInputDto getUserInputs() {
         InputRetryUtil inputRetryUtil = new InputRetryUtil(consoleInput, consoleOutput);
-        int purchaseAmount = inputRetryUtil.getValidatedPurchaseAmount();
+        int paymentAmount = inputRetryUtil.getValidatedPaymentAmount();
         List<Integer> winningNumbers = inputRetryUtil.getValidatedWinningNumbers();
         int bonusNumber = inputRetryUtil.getValidatedBonusNumber(winningNumbers);
 
         return new LottoControllerInputDto.Builder()
-                .paymentAmount(purchaseAmount)
+                .paymentAmount(paymentAmount)
                 .winnerNumbers(winningNumbers)
                 .bonusNumber(bonusNumber)
                 .build();

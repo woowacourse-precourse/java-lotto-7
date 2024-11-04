@@ -23,8 +23,8 @@ public class InputRetryUtil {
 
     // public methods
 
-    public int getValidatedPurchaseAmount() {
-        return readValidatedInput(consoleInput::getPurchasedAmount, InputParser::parseInteger,
+    public int getValidatedPaymentAmount() {
+        return readValidatedInput(consoleInput::getPaymentAmount, InputParser::parseInteger,
                 PaymentAmountValidator::validate);
     }
 
