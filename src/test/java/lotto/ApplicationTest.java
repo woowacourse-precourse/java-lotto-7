@@ -1,12 +1,16 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.constant.LottoValues.PRICE;
+import static lotto.message.ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT;
+import static lotto.message.ErrorMessage.LOTTO_NUMBERS_DUPLICATE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
@@ -46,11 +50,21 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("구매 금액이 정수가 아니면 예외가 발생한다.")
     @Test
-    void 예외_테스트() {
+    void nonIntegerPriceExceptionTest() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("로또 구매 금액이 1,000으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @Test
+    void priceUnitExceptionTest() {
+        assertSimpleTest(() -> {
+            runException("16345");
+            assertThat(output()).contains(INVALID_PURCHASE_AMOUNT_UNIT.formatCost(PRICE.value()));
         });
     }
 
