@@ -26,7 +26,7 @@ public class WinningStatisticsOutput {
         double profitRate = ((double) totalWinningAmount / purchaseAmount) * 100;
 
         // 수익률 출력
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
     private int calculateTotalWinningAmount(WinningResultDTO winningResultDTO) {
