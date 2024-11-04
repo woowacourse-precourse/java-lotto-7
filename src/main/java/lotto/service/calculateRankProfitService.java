@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.EnumMap;
 import java.util.Map;
-import lotto.constants.Rank;
+import lotto.model.Rank;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.PurchasedLottos;

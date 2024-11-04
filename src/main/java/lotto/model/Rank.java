@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.model;
 
 import java.util.Map;
 import java.util.function.Function;
