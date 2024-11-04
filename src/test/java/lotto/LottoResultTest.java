@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,5 +48,12 @@ public class LottoResultTest {
 
         // then
         assertThat(totalPrize).isEqualTo(expectedTotalPrize);
+    }
+
+    @Test
+    void 등수별_당첨_횟수의_초기값은_모두_0이다() {
+        Map<LottoRank, Integer> rankCounts = lottoResult.getRankCounts();
+
+        assertThat(rankCounts.values()).allMatch(count -> count == 0);
     }
 }
