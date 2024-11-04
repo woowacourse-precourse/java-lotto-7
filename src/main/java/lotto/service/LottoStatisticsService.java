@@ -1,40 +1,40 @@
 package lotto.service;
 
-import lotto.dto.LottoResult;
-import lotto.dto.LottoResultDto;
+import lotto.dto.LottoWinningResult;
+import lotto.dto.LottoGameResultDto;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoStatisticsService {
-    public Map<LottoResult, Integer> getLottoStatistics(List<Map<Integer, Boolean>> resultList) {
-        Map<LottoResult, Integer> resultCounts = new HashMap<>();
+    public Map<LottoWinningResult, Integer> getLottoStatistics(List<Map<Integer, Boolean>> resultList) {
+        Map<LottoWinningResult, Integer> resultCounts = new HashMap<>();
         resultList.forEach(result -> result.forEach((matchCount, bonusMatch) -> {
-            LottoResult lottoResult = findByMatch(matchCount, bonusMatch);
-            if (lottoResult != null) {
-                resultCounts.put(lottoResult, resultCounts.getOrDefault(lottoResult, 0) + 1);
+            LottoWinningResult lottoWinningResult = findByMatch(matchCount, bonusMatch);
+            if (lottoWinningResult != null) {
+                resultCounts.put(lottoWinningResult, resultCounts.getOrDefault(lottoWinningResult, 0) + 1);
             }
         }));
         return resultCounts;
     }
 
-    private LottoResult findByMatch(int matchCount, boolean bonusMatched) {
-        for (LottoResult lottoResult : LottoResult.values()) {
-            if (lottoResult.getMatchCount() == matchCount && lottoResult.isBonusMatched() == bonusMatched) {
-                return lottoResult;
+    private LottoWinningResult findByMatch(int matchCount, boolean bonusMatched) {
+        for (LottoWinningResult lottoWinningResult : LottoWinningResult.values()) {
+            if (lottoWinningResult.getMatchCount() == matchCount && lottoWinningResult.isBonusMatched() == bonusMatched) {
+                return lottoWinningResult;
             }
         }
         return null;
     }
 
-    public double calculateWinningRate(LottoResultDto lottoResultDto, Map<LottoResult, Integer> printResultList) {
+    public double calculateWinningRate(LottoGameResultDto lottoGameResultDto, Map<LottoWinningResult, Integer> printResultList) {
         long totalPrize = getTotalPrize(printResultList);
-        int cost = lottoResultDto.getPurchaseQuantity() * 1000;
+        int cost = lottoGameResultDto.getPurchaseQuantity() * 1000;
         return getWinningRate(cost, totalPrize);
     }
 
-    private long getTotalPrize(Map<LottoResult, Integer> printResultList) {
+    private long getTotalPrize(Map<LottoWinningResult, Integer> printResultList) {
         return printResultList.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();

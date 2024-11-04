@@ -2,7 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
-import lotto.dto.LottoResultDto;
+import lotto.dto.LottoGameResultDto;
 import lotto.validator.LottoValidator;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class LottoService {
     private static final int LOTTO_COUNT = 6;
     private static final int LOTTO_BONUS_MATCH = 5;
 
-    public LottoResultDto createLottoList(int price) {
+    public LottoGameResultDto createLottoList(int price) {
         LottoValidator.validateLottoPurchaseAmount(price);
         int purchaseQuantity = calculatePurchaseQuantity(price);
         return getLottoResult(purchaseQuantity);
@@ -31,11 +31,11 @@ public class LottoService {
         LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
     }
 
-    public List<Map<Integer, Boolean>> getLottoWinningResults(LottoResultDto lottoDto) {
+    public List<Map<Integer, Boolean>> getLottoWinningResults(LottoGameResultDto lottoDto) {
         return checkLottoMatches(lottoDto);
     }
 
-    private List<Map<Integer, Boolean>> checkLottoMatches(LottoResultDto lottoDto) {
+    private List<Map<Integer, Boolean>> checkLottoMatches(LottoGameResultDto lottoDto) {
         List<Integer> winningNumbers = lottoDto.getWinningNumbers();
         return lottoDto.getLottoList().stream()
                 .map(lotto -> createMatchResult(lotto, winningNumbers, lottoDto.getBonusNumber()))
@@ -69,9 +69,9 @@ public class LottoService {
         return price / LOTTO_PRICE;
     }
 
-    private LottoResultDto getLottoResult(int purchaseQuantity) {
+    private LottoGameResultDto getLottoResult(int purchaseQuantity) {
         List<Lotto> lottoList = getLottoList(purchaseQuantity);
-        return new LottoResultDto(purchaseQuantity, lottoList);
+        return new LottoGameResultDto(purchaseQuantity, lottoList);
     }
 
     private List<Lotto> getLottoList(int purchaseQuantity) {

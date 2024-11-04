@@ -5,14 +5,14 @@ import lotto.Lotto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LottoResultDto {
+public class LottoGameResultDto {
 
     private final int purchaseQuantity;
     private final List<Lotto> lottoList;
     private int bonusNumber;
     private List<Integer> winningNumbers;
 
-    public LottoResultDto(int purchaseQuantity, List<Lotto> lottoList) {
+    public LottoGameResultDto(int purchaseQuantity, List<Lotto> lottoList) {
         this.purchaseQuantity = purchaseQuantity;
         this.lottoList = lottoList;
     }

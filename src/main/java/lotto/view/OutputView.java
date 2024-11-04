@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.dto.LottoResult;
-import lotto.dto.LottoResultDto;
+import lotto.dto.LottoWinningResult;
+import lotto.dto.LottoGameResultDto;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println(e.getMessage());
     }
 
-    public void printPurchaseLottoList(LottoResultDto lottoDto) {
+    public void printPurchaseLottoList(LottoGameResultDto lottoDto) {
         System.out.println();
         System.out.println(lottoDto.getPurchaseQuantity() + "개를 구매했습니다.");
         lottoDto.getLottoList().forEach(System.out::println);
@@ -30,9 +30,9 @@ public class OutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void printLottoStatistics(Map<LottoResult, Integer> printResultList) {
+    public void printLottoStatistics(Map<LottoWinningResult, Integer> printResultList) {
         System.out.println("당첨 통계\n" + "---");
-        for (LottoResult resultType : LottoResult.values()) {
+        for (LottoWinningResult resultType : LottoWinningResult.values()) {
             int count = printResultList.getOrDefault(resultType, 0);
             System.out.println(resultType.getMessage() + " - " + count + "개");
         }

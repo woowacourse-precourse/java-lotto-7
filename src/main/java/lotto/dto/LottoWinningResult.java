@@ -1,6 +1,6 @@
 package lotto.dto;
 
-public enum LottoResult {
+public enum LottoWinningResult {
     MATCH_3(3, false, 5000, "3개 일치 (5,000원)"),
     MATCH_4(4, false, 50000, "4개 일치 (50,000원)"),
     MATCH_5(5, false, 1500000, "5개 일치 (1,500,000원)"),
@@ -12,7 +12,7 @@ public enum LottoResult {
     private final long prize;
     private final String message;
 
-    LottoResult(int matchCount, boolean bonusMatched, long prize, String message) {
+    LottoWinningResult(int matchCount, boolean bonusMatched, long prize, String message) {
         this.matchCount = matchCount;
         this.bonusMatched = bonusMatched;
         this.prize = prize;

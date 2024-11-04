@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.dto.LottoResult;
-import lotto.dto.LottoResultDto;
+import lotto.dto.LottoWinningResult;
+import lotto.dto.LottoGameResultDto;
 import lotto.service.LottoService;
 import lotto.service.LottoStatisticsService;
 import lotto.view.InputView;
@@ -15,7 +15,7 @@ public class LottoController {
     private final LottoStatisticsService lottoStatisticsService;
     private final InputView inputView;
     private final OutputView outputView;
-    private LottoResultDto lottoDto;
+    private LottoGameResultDto lottoDto;
 
     public LottoController(LottoService lottoService, LottoStatisticsService lottoStatisticsService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
@@ -25,13 +25,13 @@ public class LottoController {
     }
 
     public void run() {
-        lottoDto = purchaseLotto();
+        lottoDto = receivePurchaseLotto();
         outputView.printPurchaseLottoList(lottoDto);
         List<Integer> winningNumbers = receiveWinningNumbers();
         int bonusNumber = receiveBonusNumber(winningNumbers);
         setLottoResultDto(bonusNumber, winningNumbers);
         List<Map<Integer, Boolean>> resultList = lottoService.getLottoWinningResults(lottoDto);
-        Map<LottoResult, Integer> printResultList = lottoStatisticsService.getLottoStatistics(resultList);
+        Map<LottoWinningResult, Integer> printResultList = lottoStatisticsService.getLottoStatistics(resultList);
         double winningRate = lottoStatisticsService.calculateWinningRate(lottoDto, printResultList);
         outputView.printLottoStatistics(printResultList);
         outputView.printWinningRate(winningRate);
@@ -42,7 +42,7 @@ public class LottoController {
         lottoDto.setWinningNumbers(winningNumbers);
     }
 
-    private LottoResultDto purchaseLotto() {
+    private LottoGameResultDto receivePurchaseLotto() {
         while (true) {
             try {
                 outputView.printPurchaseAmount();

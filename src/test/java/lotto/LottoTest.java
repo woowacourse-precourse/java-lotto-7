@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.dto.LottoResultDto;
+import lotto.dto.LottoGameResultDto;
 import lotto.exception.ErrorMessage;
 import lotto.service.LottoService;
 import lotto.validator.LottoValidator;
@@ -55,7 +55,7 @@ class LottoTest {
         int purchaseQuantity = input / 1000;
 
         LottoService lottoService = new LottoService();
-        LottoResultDto dto = lottoService.createLottoList(input);
+        LottoGameResultDto dto = lottoService.createLottoList(input);
 
         assertThat(dto.getLottoList().size() == purchaseQuantity).isTrue();
     }
@@ -119,7 +119,7 @@ class LottoTest {
         userNumbers.add(userNumber1);
         userNumbers.add(userNumber2);
 
-        LottoResultDto resultDto = new LottoResultDto(2, userNumbers);
+        LottoGameResultDto resultDto = new LottoGameResultDto(2, userNumbers);
         resultDto.setWinningNumbers(winningList);
         LottoService lottoService = new LottoService();
         List<Map<Integer, Boolean>> list = lottoService.getLottoWinningResults(resultDto);
