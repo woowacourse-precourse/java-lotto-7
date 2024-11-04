@@ -3,7 +3,7 @@ package lotto;
 import java.util.*;
 
 public class Application {
-    private static int getAmount() {
+    private static int getCost() {
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
             String input = camp.nextstep.edu.missionutils.Console.readLine();
@@ -11,8 +11,7 @@ public class Application {
             try {
                 int cost = parseNumber(input);
                 validateCost(cost);
-                int amount = cost / 1000;
-                return amount;
+                return cost;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -86,6 +85,9 @@ public class Application {
         boolean[] winningNumberFlags = new boolean[46];
 
         for (int winningNumber : winningNumbers) {
+            if (winningNumberFlags[winningNumber]) {
+                throw new IllegalArgumentException(ERROR.DUPLICATE.getMessage());
+            }
             winningNumberFlags[winningNumber] = true;
         }
 
@@ -124,18 +126,15 @@ public class Application {
         }
     }
 
-    private static long checkWinnings(List<Lotto> lottos, boolean[] winningNumberFlags, int bonusNumber) {
-        long prizeSum = 0;
+    private static int[] checkWinnings(List<Lotto> lottos, boolean[] winningNumberFlags, int bonusNumber) {
         int[] winningCount = new int[6];
 
         for (Lotto lotto : lottos) {
             RANK rank = lotto.checkWinning(winningNumberFlags, bonusNumber);
             winningCount[rank.getIndex()]++;
-            prizeSum += rank.getPrize();
         }
 
-        printWinnings(winningCount);
-        return prizeSum;
+        return winningCount;
     }
 
     private static void printWinnings(int[] winningCount) {
@@ -148,9 +147,25 @@ public class Application {
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", winningCount[1]);
     }
 
+    private static long sumPrize(int[] winningCount) {
+        long prizeSum = 0;
+
+        for (RANK rank : RANK.values()) {
+            prizeSum += rank.getPrize() * winningCount[rank.getIndex()];
+        }
+
+        return prizeSum;
+    }
+
+    private static void printROR(int cost, long prizeSum) {
+        double ROR = (double)prizeSum / cost * 100;
+        System.out.printf("총 수익률은 %s입니다.\n", String.format("%.1f", ROR));
+    }
+
     public static void main(String[] args) {
         //구입 금액 입력
-        int amount = getAmount();
+        int cost = getCost();
+        int amount = cost / 1000;
         System.out.println();
 
         //발행한 로또 출력
@@ -167,6 +182,11 @@ public class Application {
         System.out.println();
 
         //당첨 통계 출력
-        checkWinnings(lottos, winningNumberFlags, bonusNumber);
+        int[] winningCount = checkWinnings(lottos, winningNumberFlags, bonusNumber);
+        printWinnings(winningCount);
+
+        //수익률 출력
+        long prizeSum = sumPrize(winningCount);
+        printROR(cost, prizeSum);
     }
 }

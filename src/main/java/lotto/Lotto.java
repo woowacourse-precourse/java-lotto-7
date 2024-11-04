@@ -8,11 +8,11 @@ enum ERROR {
     FORMAT("[ERROR] 입력 형식이 잘못되었습니다."),
     PARSE("[ERROR] 숫자만 입력할 수 있습니다."),
     UNIT("[ERROR] 1000 단위의 자연수만 입력할 수 있습니다."),
-    DUPLICATE("[ERROR] 중복된 번호입니다.");
+    DUPLICATE("[ERROR] 번호가 중복됩니다.");
 
     private final String message;
 
-    private ERROR(String message) {
+    ERROR(String message) {
         this.message = message;
     }
 
@@ -30,9 +30,9 @@ enum RANK {
     NONE(0, 0);
 
     private final int index;
-    private final int prize;
+    private final long prize;
 
-    private RANK(int index, int prize) {
+    RANK(int index, long prize) {
         this.index = index;
         this.prize = prize;
     }
@@ -41,7 +41,7 @@ enum RANK {
         return index;
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 }
