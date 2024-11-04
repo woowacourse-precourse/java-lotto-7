@@ -24,7 +24,7 @@ public class LottoController {
         // 당첨 로또 번호 입력
         List<Integer> winningNumber = InputView.getWinLottoNumbers();
 
-        //보너스 금액 입력
+        //보너스 넘버 입력
         int bonusNumber = InputView.getBonusNumber();
 
         // 당첨 결과 계산

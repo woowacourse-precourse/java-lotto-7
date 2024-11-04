@@ -48,6 +48,11 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
+    // 보너스 번호 유효성
+    public boolean isBonusNumberValid(int bonusNumber) {
+        return !numbers.contains(bonusNumber);
+    }
+
     @Override
     public String toString() {
         return numbers.stream()

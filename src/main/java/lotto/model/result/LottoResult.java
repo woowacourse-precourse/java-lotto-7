@@ -18,11 +18,6 @@ public class LottoResult {
         }
     }
 
-//    // 당첨 등수별 개수를 가져오는 메서드
-//    public int getRankCount(Rank rank) {
-//        return rankCounts.getOrDefault(rank, 0);
-//    }
-
     // 총 당첨 금액을 계산하는 메서드
     public static int getTotalPrize() {
         return rankCounts.entrySet().stream()
