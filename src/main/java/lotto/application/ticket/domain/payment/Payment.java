@@ -13,7 +13,7 @@ public class Payment {
     private final PaymentStatus status;
     private final LottoPrice lottoPrice;
 
-    public Payment(Long id, ThousandWons money, LottoPrice lottoPrice, PaymentStatus status) {
+    private Payment(Long id, ThousandWons money, LottoPrice lottoPrice, PaymentStatus status) {
         this.id = id;
         this.money = money;
         this.lottoPrice = lottoPrice;
