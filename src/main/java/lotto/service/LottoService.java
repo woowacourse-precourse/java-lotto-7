@@ -11,6 +11,8 @@ import lotto.model.Pay;
 public class LottoService {
     private static final int MATCHED_LIST_LENGTH = 5;
     private static final int BONUS_CHECK_NUMBER = 5;
+    private static final int MAX_NUMBER = 45;
+    private static final int MIN_NUMBER = 1;
     private static final int THREE_MATCHED = 0;
     private static final int FOUR_MATCHED = 1;
     private static final int FIVE_MATCHED = 2;
@@ -152,7 +154,7 @@ public class LottoService {
     }
 
     private int validateCorrectRange(Lotto winnerLotto, int bonusNumber) {
-        if (bonusNumber > 45 || bonusNumber < 1) {
+        if (bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER) {
             printService.printWrongRange();
             return validateBonusNumber(winnerLotto);
         }
