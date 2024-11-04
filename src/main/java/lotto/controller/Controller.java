@@ -55,6 +55,7 @@ public class Controller {
         outputView.printWinningStatics();
         winningLotto.findWinningLottery(lottoGroup, winningLotto);
         outputView.printTotal(winningLotto.getWinnerResult());
-        outputView.printFinalRate(LottoCalculator.calculateFinalRate(winningLotto.getWinnerResult(), player.getMoney()));
+        outputView.printFinalRate(
+                LottoCalculator.calculateFinalRate(winningLotto.getWinnerResult(), player.getMoney()));
     }
 }

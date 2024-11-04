@@ -70,7 +70,7 @@ public class InputView {
         return inputNumbers;
     }
 
-    protected void validateDuplicatedFromWinningNumbers(int bonusNumber, List<Integer> winningNumbers){
+    protected void validateDuplicatedFromWinningNumbers(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE.getMessage());
         }

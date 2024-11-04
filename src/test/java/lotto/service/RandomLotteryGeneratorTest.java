@@ -18,7 +18,7 @@ class RandomLotteryGeneratorTest {
 
     @Test
     @DisplayName("1 ~ 45 사이의 숫자 중 중복되지 않는 6개의 숫자를 뽑아서 로또를 랜덤으로 생성할 수 있다.")
-    void 중복되지_않는_6개의_숫자를_뽑아서_로또를_랜덤으로_생성할_수_있다(){
+    void 중복되지_않는_6개의_숫자를_뽑아서_로또를_랜덤으로_생성할_수_있다() {
         //given
         //when
         Lotto lotto = randomLotteryGenerator.generateEachLotto();

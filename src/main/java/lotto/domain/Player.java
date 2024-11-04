@@ -12,7 +12,7 @@ public class Player {
         this.ticketQuantity = ticketQuantity;
     }
 
-    private void validate(int money){
+    private void validate(int money) {
         if (money <= 0 || money % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_OUT_OF_RANGE.getMessage());
         }
