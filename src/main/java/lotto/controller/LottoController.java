@@ -29,7 +29,7 @@ public class LottoController {
         while (true) {
             try {
                 String input = lottoView.purchaseInput();
-                Validation.validateInteger(input); // 입력값 유효성 검사
+                Validation.validateInteger(input);
                 int money = Integer.parseInt(input);
                 Validation.validateMoney(money);
 
@@ -60,10 +60,9 @@ public class LottoController {
 
                 lottoManagementSystem.setWinningNumbers(numbers);
                 lottoManagementSystem.setBonusNumber(bonus);
-                break; // 모든 검증이 통과하면 루프를 종료
+                break;
             } catch (IllegalArgumentException e) {
-                lottoView.printError(e.getMessage()); // 에러 메시지를 출력하는 메서드
-                // 다시 입력을 받기 위해 루프를 계속함
+                lottoView.printError(e.getMessage());
             }
         }
     }

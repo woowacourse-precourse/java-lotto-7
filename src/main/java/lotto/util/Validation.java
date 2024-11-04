@@ -1,5 +1,7 @@
 package lotto.util;
 
+import lotto.model.PrizeAmount;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -53,6 +55,18 @@ public class Validation {
         uniqueNumbers.add(bonusNumber);
         if (uniqueNumbers.size() != winnings.size()+1) {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호와 보너스 번호 사이에 중복이 있습니다.");
+        }
+    }
+
+    public static void validateRank(int rank) {
+        if (rank < 1 || rank > PrizeAmount.values().length) {
+            throw new IllegalArgumentException("[Error] 로또 결과는 1등에서 6등 사이어야 합니다.");
+        }
+    }
+
+    public static void validateMoneyUnit(int money) {
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 입력한 금액은 1000원 단위어야 합니다.");
         }
     }
 

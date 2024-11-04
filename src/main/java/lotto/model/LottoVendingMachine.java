@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.util.Validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class LottoVendingMachine {
 
     public static List<Lotto> issueNewLottos(int money) {
-        checkMoney(money);
+        Validation.validateMoneyUnit(money);
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < money / 1000; i++) {
@@ -24,9 +25,6 @@ public class LottoVendingMachine {
         return new Lotto(lottoNumbers);
     }
 
-    private static void checkMoney(int money) {
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 입력한 금액은 1000원 단위어야 합니다.");
-        }
-    }
+
+
 }
