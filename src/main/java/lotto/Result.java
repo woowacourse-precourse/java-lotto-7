@@ -47,6 +47,18 @@ public class Result {
                 .collect(Collectors.joining("\n"));
     }
 
+    public String calculateStatistic(int purchaseAmount) {
+        double percentage = getTotalPrize() / purchaseAmount * 100;
+        return String.format("%.1f", percentage);
+    }
+
+    private double getTotalPrize() {
+        return Arrays.stream(Ranking.values())
+                .filter(rank -> !rank.name().equals(Ranking.NO_RANK.name()))
+                .mapToDouble(rank -> rank.getPrize() * this.hitResult.getOrDefault(rank.name(), 0))
+                .sum();
+    }
+
     public Map<String, Integer> getHitResult() {
         return this.hitResult;
     }

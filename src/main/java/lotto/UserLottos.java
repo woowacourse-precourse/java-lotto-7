@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +42,10 @@ public class UserLottos {
             lottos.add(new Lotto(LottoNumbersCreator.createRandomLottoNumbers()));
         }
         return lottos;
+    }
+
+    public int getPurchaseAmount() {
+        return this.purchaseAmount;
     }
 
     public int getQuantity() {

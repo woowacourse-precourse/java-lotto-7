@@ -9,7 +9,7 @@ public class Application {
         Lotto winningLotto = getWinningLotto();
         int bonusNumber = getBonusNumber(winningLotto);
         Result result  = new Result(winningLotto, bonusNumber, userLottos.getLottos());
-        showResult(result);
+        showResult(result, userLottos);
     }
 
     private static UserLottos createUserLottos() {
@@ -76,8 +76,9 @@ public class Application {
         return readLine();
     }
 
-    private static void showResult(Result result) {
+    private static void showResult(Result result, UserLottos userLottos) {
         System.out.printf("%s\n%s\n", IOMessage.STATISTICS.getMessage(), IOMessage.DIVIDER.getMessage());
         System.out.println(result.getResult());
+        System.out.println("총 수익률은 " + result.calculateStatistic(userLottos.getPurchaseAmount()) + "%입니다.");
     }
 }

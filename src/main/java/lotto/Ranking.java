@@ -35,4 +35,8 @@ public enum Ranking {
 
         return String.format("%d개 일치%s (%,d원) - %d개", this.hitCount, bonus, this.prize, count);
     }
+
+    public long getPrize() {
+        return this.prize;
+    }
 }
