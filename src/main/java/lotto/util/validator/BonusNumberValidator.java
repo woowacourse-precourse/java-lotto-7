@@ -1,0 +1,21 @@
+package lotto.util.validator;
+
+import java.util.InputMismatchException;
+import java.util.List;
+
+public class BonusNumberValidator {
+
+    public static void validateBonusNumber(String input, List<Integer> winningNumbers) {
+        try {
+            int bonusNumber = Integer.parseInt(input.trim());
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new InputMismatchException("[ERROR] 보너스 번호는 1~45 범위 내의 숫자여야 합니다.");
+            }
+            if (winningNumbers.contains(bonusNumber)) {
+                throw new IllegalStateException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        }
+    }
+}
