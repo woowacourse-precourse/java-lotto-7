@@ -9,8 +9,8 @@ import lotto.dto.WinningLottoDto;
 import lotto.model.domain.InputValidator;
 import lotto.model.domain.Lotto;
 import lotto.model.service.GenerateMessageService;
-import lotto.model.service.LottoGenerateService;
 import lotto.model.service.LottoResultService;
+import lotto.model.service.MyLottosGenerateService;
 import lotto.view.InputView;
 import lotto.view.InputViewFactory;
 import lotto.view.LottoPurchasesView;
@@ -21,11 +21,11 @@ public class LottoController {
 
     private InputView inputView;
     private OutputView outputView;
-    private final LottoGenerateService lottoGenerateService;
+    private final MyLottosGenerateService lottoGenerateService;
     private final LottoResultService lottoResultService;
 
     public LottoController(InputView inputView, OutputView outputView,
-                           LottoGenerateService lottoGenerateService,
+                           MyLottosGenerateService lottoGenerateService,
                            LottoResultService lottoResultService) {
         this.inputView = inputView;
         this.outputView = outputView;

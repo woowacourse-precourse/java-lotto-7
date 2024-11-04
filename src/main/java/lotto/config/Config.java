@@ -1,8 +1,8 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
-import lotto.model.service.LottoGenerateService;
 import lotto.model.service.LottoResultService;
+import lotto.model.service.MyLottosGenerateService;
 import lotto.view.InputView;
 import lotto.view.InputViewFactory;
 import lotto.view.LottoPurchasesView;
@@ -25,8 +25,8 @@ public class Config {
         return InputViewFactory.createInputView(InputViewFactory.AMOUNT);
     }
 
-    private static LottoGenerateService lottoGenerateService() {
-        return new LottoGenerateService();
+    private static MyLottosGenerateService lottoGenerateService() {
+        return new MyLottosGenerateService();
     }
 
     private static LottoResultService lottoResultService() {

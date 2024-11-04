@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.domain.Lotto;
 
-public class LottoGenerateService {
+public class MyLottosGenerateService {
 
     public List<Lotto> generateLottos(int amount) {
         int countOfGenerate = amount / 1000;
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> myLottos = new ArrayList<>();
         for (int count = 0; count < countOfGenerate; count++) {
-            lottos.add(generateLotto());
+            myLottos.add(generateLotto());
         }
-        return lottos;
+        return myLottos;
     }
 
     private Lotto generateLotto() {

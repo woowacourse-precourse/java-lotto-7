@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoGenerateServiceTest {
 
-    private final LottoGenerateService lottoGenerator = new LottoGenerateService();
+    private final MyLottosGenerateService lottoGenerator = new MyLottosGenerateService();
 
     @DisplayName("로또 생성 테스트")
     @ParameterizedTest
