@@ -2,29 +2,20 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class InputView {
-    private static final String lottoNumberDelimiter = ",";
 
-    public static int getPurchaseAmount() {
+    public static String getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
-    public static List<Integer> getWinningNumbers() {
+    public static String getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String[] inputs = Console.readLine().split(lottoNumberDelimiter);
-        List<Integer> winningNumbers = new ArrayList<>();
-        for (String input : inputs) {
-            winningNumbers.add(Integer.parseInt(input.trim()));
-        }
-        return winningNumbers;
+        return Console.readLine();
     }
 
-    public static int getBonusNumber() {
+    public static String getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 }
