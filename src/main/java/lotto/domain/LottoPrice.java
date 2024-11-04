@@ -12,6 +12,7 @@ public class LottoPrice {
     private final BigDecimal price;
 
     public LottoPrice(int price) {
+        validate(price);
         this.price = BigDecimal.valueOf(price);
     }
 
