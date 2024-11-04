@@ -1,14 +1,13 @@
 package lotto.model.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.PrizeRank;
+import lotto.dto.LottoWinningNumbersDto;
+import lotto.dto.LottosDto;
+import lotto.dto.RankResultDto;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoWinningNumbers;
 import lotto.model.domain.Lottos;
 import lotto.model.domain.Money;
-import lotto.dto.LottoWinningNumbersDto;
-import lotto.dto.LottosDto;
-import lotto.dto.RankResultDto;
 import lotto.util.BigDecimalUtil;
 
 import java.math.BigDecimal;
@@ -35,10 +34,7 @@ public class LottoService {
         Lottos purchasedLottos = new Lottos(purchasedLottosDto);
 
         return purchasedLottos.getLottos().stream()
-                .map(lotto -> {
-                    PrizeRank prizeRank = lotto.calculateResult(winningNumbers);
-                    return new RankResultDto(prizeRank.getRank());
-                })
+                .map(lotto -> new RankResultDto(lotto.calculateResult(winningNumbers).getRank()))
                 .toList();
     }
 
