@@ -4,49 +4,80 @@ import lotto.entity.BonusNumber;
 import lotto.entity.Lotto;
 import lotto.entity.Price;
 import lotto.entity.WinningNumber;
+import lotto.enums.LottoPrize;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoResult;
 import lotto.view.output.LottoGeneratorOutputView;
 import lotto.view.output.LottoResultOutputView;
-import lotto.view.output.OutputView;
 import lotto.view.input.BonusNumberInputView;
 import lotto.view.input.InputView;
 import lotto.view.input.PriceInputView;
 import lotto.view.input.WinningNumberInputView;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoGame {
     public void start(){
-        InputView priceInputView = new PriceInputView();
-        Price price = inputPrice(priceInputView);
+        Price price = inputPrice(new PriceInputView());
 
-        InputView winningNumberInputView = new WinningNumberInputView();
-        InputView bonusNumberInputView = new BonusNumberInputView();
+        List<Lotto> lottos = getLottos(price);
 
-        List<Lotto> lottos = new LottoGenerator(price).getLottoList();
+        printLottos(lottos);
 
-        OutputView lottoGeneratorOutputView = new LottoGeneratorOutputView(lottos);
-        lottoGeneratorOutputView.print();
-
-        WinningNumber winningNumber = new WinningNumber(winningNumberInputView.input());
-        BonusNumber bonusNumber = new BonusNumber(bonusNumberInputView.input());
+        WinningNumber winningNumber = inputWinningNumber(new WinningNumberInputView());
+        BonusNumber bonusNumber = inputBonusNumber(new BonusNumberInputView());
 
         LottoResult lottoResult = new LottoResult(price, lottos, winningNumber, bonusNumber);
 
-        LottoResultOutputView outputView = new LottoResultOutputView(lottoResult.getWinningHistory(), lottoResult.getRateOfReturn());
-        outputView.print();
+        printLottoResult(lottoResult.getWinningHistory(), lottoResult.getRateOfReturn());
     }
 
     private Price inputPrice(InputView view){
-        Price price = null;
+        Price price;
 
         try{
             price = new Price(view.input());
         }catch (IllegalArgumentException exception){
-            inputPrice(view);
+            price = inputPrice(view);
         }
 
         return price;
+    }
+
+    private List<Lotto> getLottos(Price price){
+        return new LottoGenerator(price).getLottoList();
+    }
+
+    private void printLottos(List<Lotto> lottos){
+        new LottoGeneratorOutputView(lottos).print();
+    }
+
+    private WinningNumber inputWinningNumber(InputView view){
+        WinningNumber winningNumber;
+
+        try{
+            winningNumber = new WinningNumber(view.input());
+        }catch (IllegalArgumentException exception){
+            winningNumber = inputWinningNumber(view);
+        }
+
+        return winningNumber;
+    }
+
+    private BonusNumber inputBonusNumber(InputView view){
+        BonusNumber bonusNumber;
+
+        try{
+            bonusNumber = new BonusNumber(view.input());
+        }catch (IllegalArgumentException exception){
+            bonusNumber = inputBonusNumber(view);
+        }
+
+        return bonusNumber;
+    }
+
+    private void printLottoResult(HashMap<LottoPrize, Integer> winningHistory, double rateOfReturn){
+        new LottoResultOutputView(winningHistory, rateOfReturn).print();
     }
 }
