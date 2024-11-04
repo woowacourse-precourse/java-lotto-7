@@ -31,6 +31,10 @@ public class TicketManager { // TODO: 이름 개선
                 .collect(Collectors.toList());
     }
 
+    public int getTicketAmount() {
+        return ticketAmount;
+    }
+
     public List<Ticket> getTickets() {
         return tickets;
     }
