@@ -19,4 +19,8 @@ public enum LottoPrize {
     public int calculateWholePrize(int count) {
         return count * prize;
     }
+
+    public String formatResultMessage(int count) {
+        return String.format(message, count);
+    }
 }
