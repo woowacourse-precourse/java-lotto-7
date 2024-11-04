@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.response.TicketResponse;
+import lotto.utils.LottoCriteria;
 import lotto.validation.Validation;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class LottoTickets {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final int PERCENTAGE = 100;
 
     public TicketResponse buyTicket(int number) {
         Validation.validateMoneyAmount(number);
@@ -62,4 +64,18 @@ public class LottoTickets {
         result[rank]++;
     }
 
+
+    public Double calculateProfitRate(int money, int[] result) {
+        double totalProfit = 0.0;
+
+        for (LottoCriteria criteria : LottoCriteria.values()) {
+            totalProfit += criteria.getPrize() * result[criteria.getRank()];
+        }
+
+        return calculateTotalProfitRate(totalProfit, money);
+    }
+
+    private Double calculateTotalProfitRate(double totalProfit, int money) {
+        return (totalProfit / money) * PERCENTAGE;
+    }
 }
