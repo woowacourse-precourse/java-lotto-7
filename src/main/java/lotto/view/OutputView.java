@@ -25,14 +25,14 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printWinningStatistics(WinningStatisticsDto statisticsDto) {
+    public void printWinningStatistics(WinningStatisticsDto winningStatisticsDto) {
         StringBuilder result = new StringBuilder(STATISTICS_HEADER);
 
-        for (WinningCountDto winningCount : statisticsDto.WinningCountDts()) {
+        for (WinningCountDto winningCount : winningStatisticsDto.WinningCountDtos()) {
             result.append(formatWinningCount(winningCount));
         }
 
-        result.append(String.format(RETURN_RATE_FORMAT, statisticsDto.returnRate()));
+        result.append(String.format(RETURN_RATE_FORMAT, winningStatisticsDto.returnRate() * 100));
         System.out.println(result);
     }
 

@@ -74,9 +74,7 @@ class OutputViewTest {
             );
             WinningStatisticsDto statistics = new WinningStatisticsDto(
                     winningCounts,
-                    30005000,
-                    37512.06,
-                    8
+                    37_512.1
             );
 
             // when
@@ -86,6 +84,7 @@ class OutputViewTest {
             // then
             assertThat(output)
                     .contains("""
+                            
                             당첨 통계
                             ---
                             3개 일치 (5,000원) - 1개

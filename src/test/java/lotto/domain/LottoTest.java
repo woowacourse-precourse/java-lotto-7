@@ -8,11 +8,13 @@ import static lotto.constant.LottoConstants.MINIMUM_LOTTO_NUMBER;
 import static lotto.constant.LottoConstants.NUMBERS_PER_TICKET;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.vo.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -45,7 +47,11 @@ class LottoTest {
             Lotto lotto = Lotto.from(numbers);
 
             // then
-            assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+            assertSoftly(softly -> {
+                softly.assertThat(lotto.getNumbers()).hasSize(6);
+                softly.assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+                softly.assertThat(lotto.getNumbers()).isSorted();
+            });
         }
 
         @Test
@@ -57,7 +63,10 @@ class LottoTest {
             Lotto lotto = Lotto.from(numbers);
 
             // then
-            assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+            assertSoftly(softly -> {
+                softly.assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+                softly.assertThat(lotto.getNumbers()).isSorted();
+            });
         }
 
         @Test
@@ -70,7 +79,10 @@ class LottoTest {
             numbers.add(7);
 
             // then
-            assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+            assertSoftly(softly -> {
+                softly.assertThat(lotto.getNumbers()).hasSize(6);
+                softly.assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+            });
         }
     }
 
@@ -200,5 +212,75 @@ class LottoTest {
         assertThat(lotto.getNumbers())
                 .containsExactly(1, 2, 42, 43, 44, 45)
                 .isSorted();
+    }
+
+    @Nested
+    class 로또_번호_포함_여부_테스트 {
+        @Test
+        void 로또가_특정_번호를_포함하는지_확인한다() {
+            // given
+            Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+            LottoNumber containedNumber = LottoNumber.from(1);
+            LottoNumber notContainedNumber = LottoNumber.from(7);
+
+            // when & then
+            assertSoftly(softly -> {
+                softly.assertThat(lotto.contains(containedNumber)).isTrue();
+                softly.assertThat(lotto.contains(notContainedNumber)).isFalse();
+            });
+        }
+
+        @Test
+        void 로또_번호의_경계값_포함_여부를_확인한다() {
+            // given
+            Lotto lotto = Lotto.from(List.of(1, 2, 3, 43, 44, 45));
+            LottoNumber minNumber = LottoNumber.from(MINIMUM_LOTTO_NUMBER);
+            LottoNumber maxNumber = LottoNumber.from(MAXIMUM_LOTTO_NUMBER);
+            LottoNumber middleNumber = LottoNumber.from(3);
+
+            // when & then
+            assertSoftly(softly -> {
+                softly.assertThat(lotto.contains(minNumber)).isTrue();
+                softly.assertThat(lotto.contains(maxNumber)).isTrue();
+                softly.assertThat(lotto.contains(middleNumber)).isTrue();
+            });
+        }
+
+        @Test
+        void 정렬되어_있어도_번호_포함_여부를_정확히_확인한다() {
+            // given
+            Lotto lotto = Lotto.from(List.of(6, 1, 4, 3, 5, 2));  // 정렬: 1,2,3,4,5,6
+            LottoNumber originalFirstNumber = LottoNumber.from(6);
+            LottoNumber originalLastNumber = LottoNumber.from(2);
+
+            // when & then
+            assertSoftly(softly -> {
+                softly.assertThat(lotto.contains(originalFirstNumber)).isTrue();
+                softly.assertThat(lotto.contains(originalLastNumber)).isTrue();
+                softly.assertThat(lotto.getNumbers()).isSorted();
+            });
+        }
+
+        @Test
+        void 여러_번호의_포함_여부를_순차적으로_확인한다() {
+            // given
+            Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+            List<LottoNumber> containedNumbers = List.of(
+                    LottoNumber.from(1),
+                    LottoNumber.from(3),
+                    LottoNumber.from(6)
+            );
+            List<LottoNumber> notContainedNumbers = List.of(
+                    LottoNumber.from(7),
+                    LottoNumber.from(8),
+                    LottoNumber.from(9)
+            );
+
+            // when & then
+            assertSoftly(softly -> {
+                softly.assertThat(containedNumbers).allMatch(lotto::contains);
+                softly.assertThat(notContainedNumbers).noneMatch(lotto::contains);
+            });
+        }
     }
 }
