@@ -2,9 +2,8 @@ package lotto.store;
 
 import lotto.money.Money;
 import lotto.store.lotto.Lotto;
-import lotto.store.LottoStore;
-import lotto.store.lotto.LottoRank;
-import lotto.store.lotto.WinningNumbers;
+import lotto.store.lotto.winner.LottoRank;
+import lotto.store.lotto.winner.WinningNumbers;
 
 import java.util.List;
 

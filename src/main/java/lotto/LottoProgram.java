@@ -4,6 +4,7 @@ import lotto.money.Money;
 import lotto.store.LottoBuyer;
 import lotto.store.LottoStore;
 import lotto.store.lotto.*;
+import lotto.store.lotto.winner.WinningNumbers;
 import lotto.ui.LottoResult;
 import lotto.ui.UserSettingReader;
 import lotto.ui.WinningNumberSettings;

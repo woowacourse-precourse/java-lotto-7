@@ -1,4 +1,4 @@
-package lotto.store.lotto;
+package lotto.store.lotto.winner;
 
 import lotto.money.Money;
 

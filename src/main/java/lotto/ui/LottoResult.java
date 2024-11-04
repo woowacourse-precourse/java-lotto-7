@@ -1,6 +1,6 @@
 package lotto.ui;
 
-import lotto.store.lotto.LottoRank;
+import lotto.store.lotto.winner.LottoRank;
 
 import java.util.List;
 

@@ -1,10 +1,9 @@
 package lotto;
 
-import lotto.money.Money;
 import lotto.store.LottoStoreStub;
-import lotto.store.lotto.LottoRank;
+import lotto.store.lotto.winner.LottoRank;
 import lotto.ui.LottoResult;
-import lotto.store.lotto.TestWinningNumbers;
+import lotto.store.lotto.winner.TestWinningNumbers;
 import lotto.ui.UserSettingReaderStub;
 import lotto.ui.WinningNumberSettings;
 import org.junit.jupiter.api.BeforeEach;

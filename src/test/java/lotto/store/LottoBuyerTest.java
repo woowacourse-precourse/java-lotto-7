@@ -1,12 +1,10 @@
 package lotto.store;
 
 import lotto.money.Money;
-import lotto.store.LottoBuyer;
 import lotto.store.lotto.Lotto;
-import lotto.store.LottoStoreStub;
-import lotto.store.lotto.LottoRank;
-import lotto.store.lotto.TestWinningNumbers;
-import lotto.store.lotto.WinningNumbers;
+import lotto.store.lotto.winner.LottoRank;
+import lotto.store.lotto.winner.TestWinningNumbers;
+import lotto.store.lotto.winner.WinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
