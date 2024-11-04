@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     public static void printResult(LottoResult result){
-        System.out.println("당첨 통계\n---")
+        System.out.println("당첨 통계\n---");
         Map<Rank,Integer> results = result.getResults();
 
         for(Rank rank : Rank.values()){
