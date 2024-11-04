@@ -1,9 +1,14 @@
 package lotto.model;
 
-import lotto.validator.WinningNumberValidator;
+import lotto.constant.CompareInteger;
+import lotto.constant.LottoGuide;
+import lotto.constant.WinningNumberRule;
+import lotto.validator.NumberValidator;
 
 import java.util.List;
 import java.util.function.Predicate;
+
+import static lotto.validator.WinningNumberValidator.validateDuplication;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -27,6 +32,12 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        WinningNumberValidator.validateLotto(numbers);
+        if (numbers.size() != CompareInteger.LOTTO_NUMBER_COUNT.getNumber()) {
+            throw new IllegalArgumentException(LottoGuide.ERROR.getMessage() + WinningNumberRule.COUNT);
+        }
+        validateDuplication(numbers);
+        for (Integer number : numbers) {
+            NumberValidator.validateScope(CompareInteger.LOTTO_NUMBER_MINIMUM.getNumber(), CompareInteger.LOTTO_NUMBER_MAXIMUM.getNumber(), number, LottoGuide.ERROR.getMessage() + WinningNumberRule.SCOPE.getMessage());
+        }
     }
 }
