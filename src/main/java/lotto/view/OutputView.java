@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.dto.LottoResponse;
 import lotto.dto.PrizeResponse;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -47,7 +48,8 @@ public class OutputView {
             if (prizeResponse.bonusNumberStatus().equals("INCLUDE_BONUS")) {
                 result += ", 보너스 볼 일치";
             }
-            result += "(" + prizeResponse.prizeMoney() + "원)- "
+            result += " (" + NumberFormat.getInstance().format(prizeResponse.prizeMoney()) + "원)"
+                    + " - "
                     + prizeResponse.winningCount() + "개";
 
             System.out.println(result);
@@ -55,7 +57,7 @@ public class OutputView {
     }
 
     public void printProfitRate(double profitRate) {
-        System.out.printf("총 수익률은 %.1f입니다.%n", profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 
 
