@@ -33,13 +33,13 @@ public class Payment {
 
     private void validatePositiveNumber(int payment) {
         if (payment < 0) {
-            throw new IllegalArgumentException(AMOUNT_NOT_DIVISIBLE.getMessage());
+            throw new IllegalArgumentException(NON_POSITIVE_AMOUNT.getMessage());
         }
     }
 
     private void validateDivisible(int payment) {
         if (payment % Constants.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(NON_POSITIVE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(AMOUNT_NOT_DIVISIBLE.getMessage());
         }
     }
 
