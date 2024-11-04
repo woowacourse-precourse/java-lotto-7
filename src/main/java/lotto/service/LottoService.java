@@ -2,9 +2,11 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
+import lotto.exception.LottoExceptionType;
 import lotto.exception.MoneyExceptionType;
 
 public class LottoService {
@@ -31,14 +33,21 @@ public class LottoService {
         numOfLottos = money.getMoney() / LOTTO_PRIZE;
     }
 
-    public void checkAndConvertInputWinningNumber(String winningNumberInput) {
-        List<String> parsedWinningNumberInput = splitWinningNumberInput(winningNumberInput);
-
-        List<Integer> winningNumberConvertedToInt = new ArrayList<>();
-        for (String element : parsedWinningNumberInput) {
-            winningNumberConvertedToInt.add(Integer.parseInt(element));
+    public void checkAndConvertInputWinningNumber(String winningNumberInput) throws IllegalArgumentException {
+        if (winningNumberInput.isBlank()) {
+            throw new IllegalArgumentException(LottoExceptionType.EMPTY_INPUT_WINNING_NUMBER.getMessage());
         }
-        winningNumber = new Lotto(winningNumberConvertedToInt);
+
+        List<String> parsedWinningNumberInput = splitWinningNumberInput(winningNumberInput);
+        try {
+            List<Integer> winningNumberConvertedToInt = parsedWinningNumberInput.stream()
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+
+            winningNumber = new Lotto(winningNumberConvertedToInt);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(LottoExceptionType.NOT_INTEGER_WINNING_NUMBER.getMessage());
+        }
     }
 
     private List<String> splitWinningNumberInput(String winningNumberInput) {

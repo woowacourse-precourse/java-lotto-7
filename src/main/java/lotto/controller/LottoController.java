@@ -19,6 +19,8 @@ public class LottoController {
         for (Lotto lotto : lottos) {
             outputView.printLotto(lotto.getNumbers());
         }
+
+        processInputWinningNumber();
     }
 
     private void processInputMoney() {
@@ -33,6 +35,11 @@ public class LottoController {
 
     private void processInputWinningNumber() {
         String winningNumberInput = inputView.inputWinningNumber();
-        lottoService.checkAndConvertInputWinningNumber(winningNumberInput);
+        try {
+            lottoService.checkAndConvertInputWinningNumber(winningNumberInput);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            processInputWinningNumber();
+        }
     }
 }

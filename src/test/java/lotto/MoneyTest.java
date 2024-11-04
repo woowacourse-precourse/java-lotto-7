@@ -1,14 +1,15 @@
-package lotto.service;
+package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.MoneyExceptionType;
+import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoServiceTest {
+class MoneyTest {
     private final LottoService lottoService = new LottoService();
 
     @ParameterizedTest
