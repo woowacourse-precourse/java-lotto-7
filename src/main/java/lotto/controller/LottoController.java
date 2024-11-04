@@ -16,21 +16,51 @@ public class LottoController {
     ProfitService profitService = new ProfitService();
 
     public void run() {
-        String purchaseAmount = InputView.readPurchaseAmount();
-        int lottoCount = purchaseService.calculateLottoCount(purchaseAmount);
+        int lottoCount = getValidLottoCount();
         List<String> purchasedLottoNumber = purchaseService.purchaseLotto(lottoCount);
         OutputView.printPurchasedLotto(lottoCount, purchasedLottoNumber);
 
-        String userNumber = InputView.readUserNumber();
-        userLotto.setNumbers(userNumber);
-
-        String bonusNumber = InputView.readBonusNumber();
-        userLotto.setBonusNumber(bonusNumber);
+        setUserLottoNumbers();
+        setBonusNumber();
 
         winningService.matchLotto(purchaseService.getPurchasedLotto(), userLotto);
         OutputView.printWinningResult();
 
-        double profitRate = profitService.calculate(lottoCount);
-        OutputView.printProfitRate(profitRate);
+        OutputView.printProfitRate(profitService.calculate(lottoCount));
+    }
+
+    private int getValidLottoCount() {
+        while (true) {
+            try {
+                String purchaseAmount = InputView.readPurchaseAmount();
+                return purchaseService.calculateLottoCount(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void setUserLottoNumbers() {
+        while (true) {
+            try {
+                String userNumber = InputView.readUserNumber();
+                userLotto.setNumbers(userNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void setBonusNumber() {
+        while (true) {
+            try {
+                String bonusNumber = InputView.readBonusNumber();
+                userLotto.setBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.util.Constants;
+import lotto.util.ErrorMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,19 +32,19 @@ public class UserLotto {
     }
 
     private void validateInputNotEmpty(String inputNumbers) {
-        if (inputNumbers == null || inputNumbers.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 사용자 입력이 비어있습니다.");
+        if (inputNumbers == null || inputNumbers.trim().isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NULL);
         }
     }
 
     private List<Integer> convertToList(String inputNumbers) {
         try {
             return Arrays.stream(inputNumbers.split(Constants.DELIMITER_COMMA))
-                        .map(String::trim)
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList());
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호를 숫자로 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_NUMBER);
         }
     }
 
@@ -51,17 +52,17 @@ public class UserLotto {
         try {
             return Integer.parseInt(inputBonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 숫자로 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NOT_NUMBER);
         }
     }
 
     private void validateBonusNumber(int bonusNumber) {
         if (bonusNumber > Constants.MAX_LOTTO_NUMBER || bonusNumber < Constants.MIN_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 1~45사이 정수로 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_LANGE);
         }
 
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NOT_UNIQUE);
         }
     }
 }

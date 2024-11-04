@@ -16,7 +16,7 @@ class SystemLottoTest {
 
     @BeforeEach
     void setUp() {
-         systemLotto = new SystemLotto();
+        systemLotto = new SystemLotto();
     }
 
     @Test
@@ -42,7 +42,7 @@ class SystemLottoTest {
     void 오름차순_메소드_확인() {
         String sortedNumbers = systemLotto.getSortedNumbers();
 
-        List<Integer> numbers = Arrays.stream(sortedNumbers.split(Constants.DELIMITER_COMMA))
+        List<Integer> numbers = Arrays.stream(sortedNumbers.split(Constants.DELIMITER_COMMA_SPACE))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 

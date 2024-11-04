@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.model.UserLotto;
 import lotto.model.WinningLotto;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -27,7 +27,7 @@ class UserLottoTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "1,2,3,4,5,s", "1,2,3,4,5,-", "1,2,3,4,5,6.5" })
+    @ValueSource(strings = {"1,2,3,4,5,s", "1,2,3,4,5,-", "1,2,3,4,5,6.5"})
     void 정수가_아니면_예외가_발생한다(String input) {
         assertThatThrownBy(() -> userLotto.setNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -35,7 +35,7 @@ class UserLottoTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "0", "46", "-1" })
+    @ValueSource(strings = {"0", "46", "-1"})
     void 보너스_번호가_범위를_넘으면_예외가_발생한다(String input) {
         assertThatThrownBy(() -> userLotto.setBonusNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)

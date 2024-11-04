@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.model.SystemLotto;
 import lotto.util.Constants;
+import lotto.util.ErrorMessage;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -18,12 +19,12 @@ public class PurchaseService {
             int amount = Integer.parseInt(purchaseAmount);
 
             if (amount == 0 || amount % Constants.LOTTO_PRICE != 0) {
-                throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
+                throw new IllegalArgumentException(ErrorMessage.PURCHASE_UNIT);
             }
             return amount / Constants.LOTTO_PRICE;
 
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_NOT_NUMBER);
         }
     }
 

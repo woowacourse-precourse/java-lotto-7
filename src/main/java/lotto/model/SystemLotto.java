@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.util.Constants;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,10 +20,11 @@ public class SystemLotto {
     }
 
     public String getSortedNumbers() {
-        Collections.sort(numbers);
+        List<Integer> sortNumbers = new ArrayList<>(this.numbers);
+        Collections.sort(sortNumbers);
 
-        return numbers.stream()
+        return sortNumbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(Constants.DELIMITER_COMMA));
+                .collect(Collectors.joining(Constants.DELIMITER_COMMA_SPACE));
     }
 }

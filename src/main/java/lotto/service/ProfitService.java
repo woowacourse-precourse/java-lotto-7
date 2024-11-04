@@ -8,13 +8,13 @@ public class ProfitService {
         int totalSpent = lottoCount * Constants.LOTTO_PRICE;
         int totalPrize = calculateTotalPrize();
 
-        double profitRate = (double) totalPrize / totalSpent;
+        double profitRate = ((double) totalPrize / totalSpent) * Constants.PERCENTAGE_FACTOR;
 
-        return Math.round(profitRate * 10.0) / 10.0;
+        return Math.round(profitRate * Constants.ROUND_FACTOR) / Constants.ROUND_FACTOR;
     }
 
     private int calculateTotalPrize() {
-        int totalPrize = 0;
+        int totalPrize = Constants.INITIAL_TOTAL_PRIZE;
 
         for (WinningLotto winning : WinningLotto.values()) {
             totalPrize += winning.getPrize() * winning.getMatchCount();

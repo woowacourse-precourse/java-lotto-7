@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import lotto.model.WinningLotto;
 import lotto.util.Constants;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +43,7 @@ public class ProfitServiceTest {
         int totalPrize = WinningLotto.FOUR_MATCH.getPrize() * WinningLotto.FOUR_MATCH.getMatchCount() +
                 WinningLotto.FIVE_MATCH.getPrize() * WinningLotto.FIVE_MATCH.getMatchCount();
 
-        double expectedProfitRate = (double) totalPrize / (lottoCount * Constants.LOTTO_PRICE);
+        double expectedProfitRate = (double) (totalPrize / (lottoCount * Constants.LOTTO_PRICE)) * 100;
 
         // Then
         assertEquals(expectedProfitRate, profitRate);

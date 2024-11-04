@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class purchaseServiceTest {
+class PurchaseServiceTest {
     private PurchaseService purchaseService;
 
     @BeforeEach
@@ -24,7 +24,7 @@ class purchaseServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "100", "1500", "-1", "천원", "", " ", "0", "12345678000" })
+    @ValueSource(strings = {"100", "1500", "-1", "천원", "", " ", "0", "12345678000"})
     void 정상_입력이_아니면_예외가_발생한다(String input) {
         assertThatThrownBy(() -> purchaseService.calculateLottoCount(input))
                 .isInstanceOf(IllegalArgumentException.class);
