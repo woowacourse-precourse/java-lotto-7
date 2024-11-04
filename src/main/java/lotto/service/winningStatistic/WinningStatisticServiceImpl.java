@@ -16,7 +16,7 @@ public class WinningStatisticServiceImpl implements WinningStatisticService {
 
     @Override
     public WinningStatistic calculateWinningStatistic(int cost, Lottos lottos, WinningNumbers winningNumbers) {
-        WinningStatistic winningStatistic = new WinningStatistic();
+        WinningStatistic winningStatistic = WinningStatisticFactory.createWinningStatistic();
 
         int totalPrize = totalPrizeCalculatorService.calculateTotalPrize(lottos, winningNumbers, winningStatistic);
 

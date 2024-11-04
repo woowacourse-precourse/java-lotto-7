@@ -42,7 +42,6 @@ public class WinningStatistic {
                         formattedPrize, prizeCounts.getOrDefault(tier, 0)));
                 continue;
             }
-
             result.append(String.format("%d개 일치 (%s원) - %d개\n",
                     tier.getMatchCount(), formattedPrize, prizeCounts.getOrDefault(tier, 0)));
         }

@@ -74,6 +74,6 @@ public class LottoController {
         String bonusNumberInput = viewFacade.getBonusNumber();
         validatorFacade.validateBonusNumberInput(bonusNumberInput);
         int bonusNumber = Parser.parseToInt(bonusNumberInput);
-        return winningNumbers.createWithBonusNumber(winningNumbers, bonusNumber);
+        return WinningNumbersFactory.createWinningNumbersWithBonusNumber(winningNumbers, bonusNumber);
     }
 }
