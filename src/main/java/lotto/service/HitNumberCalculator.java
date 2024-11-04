@@ -13,17 +13,21 @@ public class HitNumberCalculator {
     public Map<Rank, Integer> calculateResults(List<Lotto> purchasedLotto, List<Integer> winningNumbers,
                                                int bonusNumber) {
         Map<Rank, Integer> results = new HashMap<>();
-
-        for (Lotto lotto : purchasedLotto) {
-            int matchCount = calculateMatchCount(lotto, winningNumbers);
-            boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
-            Rank rank = Rank.valueOf(matchCount, hasBonus);
-
-            results.putIfAbsent(rank, DEFAULT_STATISTIC_COUNT);
-            results.put(rank, results.get(rank) + 1);
-        }
+        purchasedLotto.forEach(lotto -> updateResults(results, lotto, winningNumbers, bonusNumber));
 
         return results;
+    }
+
+    private void updateResults(Map<Rank, Integer> results,  Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+        Rank rank = determineRank(lotto, winningNumbers, bonusNumber);
+        results.putIfAbsent(rank, DEFAULT_STATISTIC_COUNT);
+        results.put(rank, results.get(rank) + 1);
+    }
+
+    private Rank determineRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = calculateMatchCount(lotto, winningNumbers);
+        boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
+        return Rank.valueOf(matchCount, hasBonus);
     }
 
     private int calculateMatchCount(Lotto lotto, List<Integer> winningNumbers) {
