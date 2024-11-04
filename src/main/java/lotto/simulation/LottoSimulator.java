@@ -29,6 +29,6 @@ public class LottoSimulator {
         ConsoleOutputHandler.winningNumberMessage(); // 당첨 번호 입력 안내 메세지 출력
         String winningNumberString = ConsoleInputHandler.input(); // 당첨 번호 문자열로 입력받음
         WinningNumber winningNumber = new WinningNumber(winningNumberString); // 당첨 번호 객체 생성 (혹은 에러 반환)
-
+        ConsoleOutputHandler.bounsNumberMessage(); // 보너스 번호 입력 안내 메세지 출력
     }
 }
