@@ -35,10 +35,11 @@ public class LottoModel {
     }
 
     public int getBonusNumber(LottoBonusNumberRequest lottoPrizeNumberRequest) {
-        int validBonusNumber = numberValidate(lottoPrizeNumberRequest.bonusNumber());
+        int validBonusNumber = lottoNumberValidate(numberValidate(lottoPrizeNumberRequest.bonusNumber()));
+
         lottoPrizeNumberRequest.lotto().bonusNumberValidate(validBonusNumber);
 
-        return lottoNumberValidate(validBonusNumber);
+        return validBonusNumber;
     }
 
     public LottoResultResponse lottoResult(LottoResultRequest lottoPrizeNumberRequest) {
