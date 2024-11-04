@@ -14,7 +14,6 @@ import lotto.model.Rank;
 public class OutputView {
     private static final NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
 
-
     public static void printPurchasedLotto(List<Lotto> purchasedLotto) {
         System.out.printf(PurchaseOutputMessage.NUMBER_OF_PURCHASED_LOTTO.getMessage(), purchasedLotto.size());
         for (Lotto lotto : purchasedLotto) {
