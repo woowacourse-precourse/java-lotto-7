@@ -1,4 +1,4 @@
-package lotto;
+package lotto.UnitTest;
 
 import lotto.Model.Lotto;
 import org.junit.jupiter.api.DisplayName;
