@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.EnumMap;
+import lotto.domain.constant.Ranking;
 
 public class Profit {
 
