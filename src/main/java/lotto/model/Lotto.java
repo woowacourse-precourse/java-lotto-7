@@ -16,6 +16,12 @@ public class Lotto {
     return this.numbers;
   }
 
+  static public int getLottoPrice() {
+    int price = 1000;
+
+    return price;
+  }
+
   private void validate(List<Integer> numbers) {
     LottoValidator.validate(numbers);
   }
