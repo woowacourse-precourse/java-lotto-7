@@ -44,9 +44,8 @@ public class LottoController {
         WinningLotto winningLotto = inputWinningLotto();
         BonusNumber bonusNumber = inputBonusNumber(winningLotto.getWinningNumbers());
         LottoResult result = lottoService.calculateResult(winningLotto, bonusNumber);
-        double profitRate = lottoService.calculateProfitRate(result);
 
-        printResult(result, profitRate);
+        printResult(result);
     }
 
     private WinningLotto inputWinningLotto() {
@@ -71,9 +70,9 @@ public class LottoController {
         }
     }
 
-    private void printResult(LottoResult result, double profitRate) {
+    private void printResult(LottoResult result) {
         OutputView.printResultMessage();
         OutputView.printMatchCounts(result);
-        OutputView.printProfitRate(profitRate);
+        OutputView.printProfitRate(result);
     }
 }

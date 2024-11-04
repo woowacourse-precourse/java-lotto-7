@@ -41,8 +41,8 @@ public class OutputView {
         }
     }
 
-    public static void printProfitRate(double profitRate) {
-        System.out.printf(PROFIT_RATE_MESSAGE, profitRate);
+    public static void printProfitRate(LottoResult result) {
+        System.out.printf(PROFIT_RATE_MESSAGE, result.getProfitRate());
     }
 
     private static String convertLottoToString(Lotto lotto) {

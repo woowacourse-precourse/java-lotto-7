@@ -43,12 +43,10 @@ class LottoServiceTest {
         BonusNumber bonusNumber = new BonusNumber(7, winningLotto.getWinningNumbers());
 
         LottoResult result = lottoService.calculateResult(winningLotto, bonusNumber);
-        double profitRate = lottoService.calculateProfitRate(result);
+        double profitRate = result.getProfitRate();
 
-        long expectedTotalWinnings = Rank.SIX_MATCH.getWinnings();
-        double expectedProfitRate = (double) expectedTotalWinnings / 1000 * 100;
+        double expectedProfitRate = (double) Rank.SIX_MATCH.getWinnings() / 1000 * 100;
 
-        assertThat(result.getTotalWinnings()).isEqualTo(expectedTotalWinnings);
         assertThat(profitRate).isEqualTo(expectedProfitRate);
     }
 }

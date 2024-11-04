@@ -14,8 +14,8 @@ public class LottoResult {
 
 
     private final Map<Rank, Integer> winningCount = new EnumMap<>(Rank.class);
-    private long totalWinnings = 0;
     private long totalWinnings = INITIAL_WINNINGS;
+    private double profitRate;
 
     public LottoResult() {
         for (Rank rank : Rank.values()) {
@@ -23,16 +23,20 @@ public class LottoResult {
         }
     }
 
+    public Map<Rank, Integer> getWinningCount() {
+        return winningCount;
+    }
+
+    public double getProfitRate() {
+        return profitRate;
+    }
+
     public void recordMatch(Rank rank) {
         winningCount.put(rank, winningCount.get(rank) + INCREMENT);
         totalWinnings += rank.getWinnings();
     }
 
-    public Map<Rank, Integer> getWinningCount() {
-        return winningCount;
-    }
-
-    public long getTotalWinnings() {
-        return totalWinnings;
+    public void calculateProfitRate(int buyCount) {
+        profitRate = (double) totalWinnings / (buyCount * PRICE_PER_LOTTO) * PERCENT_CONVERSION_FACTOR;
     }
 }

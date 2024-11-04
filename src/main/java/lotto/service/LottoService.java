@@ -36,11 +36,8 @@ public class LottoService {
             boolean hasBonus = bonusNumber.containsBonusNumber(lotto);
             record(result, matchCount, hasBonus);
         }
+        result.calculateProfitRate(lottos.size());
         return result;
-    }
-
-    public double calculateProfitRate(LottoResult lottoResult) {
-        return (double) lottoResult.getTotalWinnings() / (lottos.size() * 1000) * 100;
     }
 
     protected List<Integer> pickRandomNumbers() {
