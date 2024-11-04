@@ -55,20 +55,24 @@ public class LottoController {
         // to output -> "당첨 통계 ~~"
     }
 
-    private Long changeStringToMoney(String moneyString) {
+    private Long changeStringToMoney(String moneyString) throws IllegalArgumentException {
         validateMoney(moneyString);
         return Long.parseLong(moneyString);
     }
 
-    private void validateMoney(String moneyString) {
+    private void validateMoney(String moneyString) throws IllegalArgumentException {
 
     }
 
-    private List<Integer> changeStringToNumberList(String numbersString) {
+    private List<Integer> changeStringToNumberList(String numbersString) throws IllegalArgumentException {
 
     }
 
-    private Integer changeStringToNumber(String numberString) {
+    private Integer changeStringToNumber(String numberString) throws IllegalArgumentException {
 
+    private void validateLottoNumbersString(String numberString) throws IllegalArgumentException {
+    }
+
+    private void validateBonusNumberString(String numberString) throws IllegalArgumentException {
     }
 }
