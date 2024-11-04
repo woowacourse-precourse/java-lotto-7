@@ -25,30 +25,52 @@ public class LottoController {
         this.resultView = resultView;
     }
 
-    /**
-     * 로또 프로그램 실행 메서드
-     */
     public void run() {
-        try {
-            LoggerUtils.logInfo("로또 프로그램 시작");
+        LoggerUtils.logInfo("로또 프로그램 시작");
 
-            int purchaseAmount = inputView.inputPurchaseAmount();
-            List<Lotto> tickets = lottoService.purchaseLottoTickets(purchaseAmount);
-            LoggerUtils.logInfo("로또 티켓 발행 완료");
+        int purchaseAmount = getValidPurchaseAmount();
+        List<Lotto> tickets = lottoService.purchaseLottoTickets(purchaseAmount);
+        LoggerUtils.logInfo("로또 티켓 발행 완료");
 
-            resultView.printLottoTickets(tickets);
+        resultView.printLottoTickets(tickets);
 
-            List<Integer> winningNumbers = inputView.inputWinningNumbers();
-            int bonusNumber = inputView.inputBonusNumber();
+        List<Integer> winningNumbers = getValidWinningNumbers();
+        int bonusNumber = getValidBonusNumber();
 
-            Map<LottoRank, Integer> results = lottoService.calculateResults(tickets, winningNumbers, bonusNumber);
-            LoggerUtils.logInfo("당첨 결과 계산 완료");
+        Map<LottoRank, Integer> results = lottoService.calculateResults(tickets, winningNumbers, bonusNumber);
+        double yield = lottoService.calculateYield(purchaseAmount, results);
 
-            resultView.printResults(results);
+        LoggerUtils.logInfo("당첨 결과 계산 완료");
+        resultView.printResults(results, yield);
+    }
 
-        } catch (Exception e) {
-            LoggerUtils.logError("로또 프로그램 실행 중 오류 발생: " + e.getMessage());
-            throw e;
+    private int getValidPurchaseAmount() {
+        while (true) {
+            try {
+                return inputView.inputPurchaseAmount();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> getValidWinningNumbers() {
+        while (true) {
+            try {
+                return inputView.inputWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getValidBonusNumber() {
+        while (true) {
+            try {
+                return inputView.inputBonusNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
