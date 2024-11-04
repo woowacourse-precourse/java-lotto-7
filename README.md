@@ -76,3 +76,4 @@
             - [x]  BonusNumberValidator
 
 ## 클래스 다이어그램
+<img src="https://github.com/eraser502/java-lotto-7/blob/eraser502/images/lotto_diagram.png" width="400px">
