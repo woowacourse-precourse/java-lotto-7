@@ -1,7 +1,7 @@
 package lotto.validator;
 
 import lotto.constant.ErrorMessage;
-import lotto.constant.PurchaseAmountValidatorConstant;
+import lotto.constant.LottoConstant;
 
 import java.math.BigInteger;
 
@@ -31,8 +31,8 @@ public class PurchaseAmountValidator {
 
     private static boolean isOutOfRangePurchaseAmount(String purchaseAmount) {
         BigInteger amount = new BigInteger(purchaseAmount);
-        BigInteger minAmount = BigInteger.valueOf(PurchaseAmountValidatorConstant.MIN_PURCHASE_AMOUNT.getValue());
-        BigInteger maxAmount = BigInteger.valueOf(PurchaseAmountValidatorConstant.MAX_PURCHASE_AMOUNT.getValue());
+        BigInteger minAmount = BigInteger.valueOf(LottoConstant.MIN_PURCHASE_AMOUNT.getValue());
+        BigInteger maxAmount = BigInteger.valueOf(LottoConstant.MAX_PURCHASE_AMOUNT.getValue());
 
         return amount.compareTo(minAmount) < 0 || amount.compareTo(maxAmount) > 0;
     }
@@ -40,6 +40,6 @@ public class PurchaseAmountValidator {
     private static boolean canDivideByThousand(String purchaseAmount) {
         int amount = Integer.parseInt(purchaseAmount);
 
-        return amount % PurchaseAmountValidatorConstant.THOUSAND.getValue() == 0;
+        return amount % LottoConstant.LOTTO_PRICE.getValue() == 0;
     }
 }

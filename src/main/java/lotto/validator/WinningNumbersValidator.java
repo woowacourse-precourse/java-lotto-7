@@ -7,7 +7,7 @@ import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LottoNumbersValidator {
+public class WinningNumbersValidator {
     public static void validate(String lottoNumbersInput) {
         if (!isOnlyNumbersAndCommas(lottoNumbersInput)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBERS_AND_COMMAS_LOTTO_NUMBERS.getMessage());

@@ -29,10 +29,10 @@ public class LottoController {
         }
         OutputView.printUserLottos(userLottos, userAmount);
 
-        String lottoNumbers = inputView.getValidateLottoNumbers();
-        String bonusNumber = inputView.getValidateBonusNumber(lottoNumbers.split(","));
+        String winningNumbers = inputView.getValidateWinningNumbers();
+        String bonusNumber = inputView.getValidateBonusNumber(winningNumbers.split(","));
 
-        LottoRequestDto lottoRequestDto = new LottoRequestDto(purchaseAmount, lottoNumbers, bonusNumber);
+        LottoRequestDto lottoRequestDto = new LottoRequestDto(purchaseAmount, winningNumbers, bonusNumber);
         LottoService lottoService = new LottoService(
                 LottoConverter.parseLottoNumbers(lottoRequestDto.getLottoNumbers()),
                 LottoConverter.parseBonusNumber(lottoRequestDto.getBonusNumber()));

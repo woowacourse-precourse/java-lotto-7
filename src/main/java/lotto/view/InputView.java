@@ -3,8 +3,8 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.ErrorMessage;
 import lotto.validator.BonusNumberValidator;
-import lotto.validator.LottoNumbersValidator;
 import lotto.validator.PurchaseAmountValidator;
+import lotto.validator.WinningNumbersValidator;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -26,19 +26,19 @@ public class InputView {
         return purchaseAmount;
     }
 
-    public String getValidateLottoNumbers() {
-        String lottoNumbers;
+    public String getValidateWinningNumbers() {
+        String winningNumbers;
 
         while (true) {
             try {
-                lottoNumbers = getLottoNumbers();
-                LottoNumbersValidator.validate(lottoNumbers);
+                winningNumbers = getWinningNumbers();
+                WinningNumbersValidator.validate(winningNumbers);
                 break ;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return lottoNumbers;
+        return winningNumbers;
     }
 
     public String getValidateBonusNumber(String[] lottoNumbers) {
@@ -61,7 +61,7 @@ public class InputView {
         return readLine();
     }
 
-    private String getLottoNumbers() {
+    private String getWinningNumbers() {
         System.out.println(LOTTO_NUMBERS_INPUT_MESSAGE);
         return readLine();
     }
