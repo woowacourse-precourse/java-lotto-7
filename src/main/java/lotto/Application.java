@@ -12,6 +12,7 @@ public class Application {
         InputView inputView = new InputView(new ConsolePrompt());
         OutputView outputView = new OutputView();
         ExceptionHandler exceptionHandler = new ExceptionHandler(outputView);
+
         new LottoController(inputView, outputView, exceptionHandler).run();
     }
 

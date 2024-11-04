@@ -11,6 +11,7 @@ public enum LottoRank {
     PRIZE_FIFTH(5, 3, 5_000),
     NONE(6, 0, 0);
 
+    private static final int SECOND_OR_THIRD = 5;
     private final int rank;
     private final int matchCount;
     private final int prizeMoney;
@@ -22,7 +23,7 @@ public enum LottoRank {
     }
 
     public static LottoRank of(int matchCount, boolean bonusNumberMatch) {
-        if (matchCount == 5) {
+        if (matchCount == SECOND_OR_THIRD) {
             return getRankForFiveMatch(bonusNumberMatch);
         }
         return findRankByMatchCount(matchCount);

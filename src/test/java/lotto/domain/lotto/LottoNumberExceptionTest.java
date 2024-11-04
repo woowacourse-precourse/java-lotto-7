@@ -4,7 +4,6 @@ import static lotto.exception.message.LottoNumberExceptionMessage.INVALID_NUMBER
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.exception.message.LottoNumberExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

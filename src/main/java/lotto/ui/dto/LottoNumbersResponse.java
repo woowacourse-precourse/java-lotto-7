@@ -1,6 +1,5 @@
 package lotto.ui.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import lotto.domain.lotto.LottoNumber;
@@ -20,7 +19,7 @@ public class LottoNumbersResponse {
     }
 
     public List<Integer> getNumbers() {
-        return this.numbers;
+        return numbers;
     }
 
 }
