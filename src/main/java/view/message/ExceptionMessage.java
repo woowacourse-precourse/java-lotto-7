@@ -14,4 +14,6 @@ public class ExceptionMessage {
     public static final String INVALID_UNIT_EXCEPTION_MESSAGE = "구입 금액은 1,000원 단위로 입력해야 합니다.";
     public static final String LOTTO_NUMBERS_COUNT_EXCEPTION_MESSAGE = "로또 번호는 6개 입력해야 합니다.";
     public static final String LOTTO_NUMBER_RANGE_EXCEPTION_MESSAGE = "로또 번호는 1 이상 45 이하의 값을 입력해야 합니다.";
+    public static final String COMMA_SEPARATED_NUMBERS_REGEX = "^[0-9,]+$";
+    public static final String FORMAT_EXCEPTION_MESSAGE = "로또 번호는 쉼표(,)로 구분된 숫자 형식이어야 합니다.";
 }

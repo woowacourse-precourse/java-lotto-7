@@ -3,8 +3,10 @@ package view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static java.lang.Integer.parseInt;
 import static view.message.ExceptionMessage.BANK_EXCEPTION_MESSAGE;
-import static view.message.ExceptionMessage.NUMBER_REGEX;
+import static view.message.ExceptionMessage.COMMA_SEPARATED_NUMBERS_REGEX;
 import static view.message.ExceptionMessage.NUMBER_EXCEPTION_MESSAGE;
+import static view.message.ExceptionMessage.NUMBER_REGEX;
+import static view.message.ExceptionMessage.FORMAT_EXCEPTION_MESSAGE;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -22,7 +24,7 @@ public class InputView {
     public static List<Integer> readLottoNumbers() {
         String lottoNumbers = readLine();
         validateBlank(lottoNumbers);
-        validateNumber(lottoNumbers);
+        validateLottoNumbersFormat(lottoNumbers);
         return Arrays.stream(lottoNumbers.split(","))
                      .map(Integer::parseInt)
                      .toList();
@@ -44,6 +46,12 @@ public class InputView {
     private static void validateNumber(String input) {
         if (!input.matches(NUMBER_REGEX)) {
             throw new IllegalArgumentException(NUMBER_EXCEPTION_MESSAGE);
+        }
+    }
+
+    private static void validateLottoNumbersFormat(String lottoNumbers) {
+        if (!lottoNumbers.matches(COMMA_SEPARATED_NUMBERS_REGEX)) {
+            throw new IllegalArgumentException(FORMAT_EXCEPTION_MESSAGE);
         }
     }
 }
