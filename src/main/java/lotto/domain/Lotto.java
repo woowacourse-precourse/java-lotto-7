@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 import lotto.utils.ValidatorFactory;
+import lotto.validation.Validator;
 
 public class Lotto {
     private static final int MIN_NUMBER = 1;
@@ -12,22 +12,26 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        ValidatorFactory.createUniqueNumberValidator("[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.").validate(numbers);
+        validateLottoNumbers(numbers);
+        this.numbers = List.copyOf(numbers);
+    }
 
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+    private void validateLottoNumbers(List<Integer> numbers) {
+        Validator<List<Integer>> uniqueNumberValidator =
+                ValidatorFactory.createUniqueNumberValidator("[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.");
+        Validator<Integer> rangeValidator =
+                ValidatorFactory.createNumberRangeValidator(MIN_NUMBER, MAX_NUMBER,
+                        "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        Validator<List<Integer>> countValidator =
+                ValidatorFactory.createNumberCountValidator(LOTTO_NUMBER_COUNT, "[ERROR] 로또 번호는 6개여야 합니다.");
 
-        numbers.forEach(number ->
-                ValidatorFactory.createNumberRangeValidator(MIN_NUMBER, MAX_NUMBER, "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
-                        .validate(number)
-        );
-
-        this.numbers = numbers;
+        uniqueNumberValidator.validate(numbers);
+        countValidator.validate(numbers);
+        numbers.forEach(rangeValidator::validate);
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return numbers.stream().toList();
     }
 
     public Rank match(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
