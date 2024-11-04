@@ -12,14 +12,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 class BonusNumberTest {
 
     @DisplayName("보너스 번호가 올바른 경우 예외가 발생하지 않는다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "보너스 번호: {0}")
     @ValueSource(ints = {1, 45})
     void shouldNotThrowException_WhenBonusNumberIsValid(int number) {
         assertDoesNotThrow(() -> new BonusNumber(number));
     }
 
     @DisplayName("보너스 번호가 로또 숫자 범위를 벗어난 경우 예외가 발생한다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "보너스 번호: {0}")
     @ValueSource(ints = {0, 46})
     void shouldThrowException_WhenBonusNumberOutOfRange(int number) {
         assertThatThrownBy(() -> new BonusNumber(number))

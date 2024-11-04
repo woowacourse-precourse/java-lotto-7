@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class LottoMachineTest {
 
     @DisplayName("구매 개수가 올바른 경우 로또를 구매할 수 있다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "구매 개수: {0}")
     @ValueSource(ints = {1, 2, 100})
     void shouldReturnLottoTickets_WhenPurchaseAmountUnitIsValid(int quantity) {
         LottoMachine lottoMachine = new LottoMachine();
@@ -23,7 +23,7 @@ class LottoMachineTest {
     }
 
     @DisplayName("1개보다 작은 로또를 발급할 경우 예외가 발생한다.")
-    @ParameterizedTest
+    @ParameterizedTest(name = "구매 개수: {0}")
     @ValueSource(ints = {0, -1})
     void shouldThrowException_WhenPurchaseQuantityLessThan1(int quantity) {
         LottoMachine lottoMachine = new LottoMachine();

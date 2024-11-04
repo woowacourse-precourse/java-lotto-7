@@ -11,7 +11,8 @@ import lotto.model.win.LottoWinningSet;
 import lotto.model.win.WinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 @DisplayName("로또 결과 평가 객체 테스트")
 class LottoResultEvaluatorTest {
@@ -26,93 +27,50 @@ class LottoResultEvaluatorTest {
         lottoResultEvaluator = new LottoResultEvaluator(lottoWinningSet);
     }
 
-    @DisplayName("6개 번호가 모두 일치하는 경우")
-    @Test
-    void whenAllMatch() {
-        LottoTickets lottoTickets = getFixedLottoTickets(List.of(1, 2, 3, 4, 5, 6));
+    @DisplayName("매칭 결과에 따른 당첨 결과와 수익률을 검증한다.")
+    @ParameterizedTest(name = "일치 개수: {0}, 보너스 일치 여부: {1}")
+    @CsvSource({
+            // 숫자, 매칭 결과, 수익률 구분을 위한 공백
+            "1,2,3,4,5,6,       1,0,0,0,0, 200000000.0",
+            "1,2,3,4,5,7,       0,1,0,0,0, 3000000.0",
+            "1,2,3,4,5,45,      0,0,1,0,0, 150000.0",
+            "1,2,3,4,44,45,     0,0,0,1,0, 5000.0",
+            "1,2,3,43,44,45,    0,0,0,0,1, 500.0",
+            "40,41,42,43,44,45, 0,0,0,0,0, 0.0"
+    })
+    void testWinningResultWithMatchInfo(int num1, int num2, int num3, int num4, int num5, int num6,
+                                        int expectedSix, int expectedFiveBonus, int expectedFive,
+                                        int expectedFour, int expectedThree, double expectedYield) {
+        LottoTickets lottoTickets = getFixedLottoTickets(List.of(num1, num2, num3, num4, num5, num6));
         WinningResult winningResult = lottoResultEvaluator.evaluate(lottoTickets);
 
-        assertEquals(winningResult.sixMatchesCount(), 1);
-        assertEquals(winningResult.fiveWithBonusCount(), 0);
-        assertEquals(winningResult.fiveMatchesCount(), 0);
-        assertEquals(winningResult.fourMatchesCount(), 0);
-        assertEquals(winningResult.threeMatchesCount(), 0);
-        assertEquals(winningResult.totalYield(), 200_000_000.0);
-    }
-
-    @DisplayName("5개 번호가 일치하고 보너스 번호도 일치하는 경우")
-    @Test
-    void when5MatchAndBonusMatch() {
-        LottoTickets lottoTickets = getFixedLottoTickets(List.of(1, 2, 3, 4, 5, 7));
-        WinningResult winningResult = lottoResultEvaluator.evaluate(lottoTickets);
-
-        assertEquals(winningResult.sixMatchesCount(), 0);
-        assertEquals(winningResult.fiveWithBonusCount(), 1);
-        assertEquals(winningResult.fiveMatchesCount(), 0);
-        assertEquals(winningResult.fourMatchesCount(), 0);
-        assertEquals(winningResult.threeMatchesCount(), 0);
-        assertEquals(winningResult.totalYield(), 3_000_000.0);
-    }
-
-    @DisplayName("5개 번호가 일치하지만 보너스 번호는 일치하지 않는 경우")
-    @Test
-    void when5Match() {
-        LottoTickets lottoTickets = getFixedLottoTickets(List.of(1, 2, 3, 4, 5, 45));
-        WinningResult winningResult = lottoResultEvaluator.evaluate(lottoTickets);
-
-        assertEquals(winningResult.sixMatchesCount(), 0);
-        assertEquals(winningResult.fiveWithBonusCount(), 0);
-        assertEquals(winningResult.fiveMatchesCount(), 1);
-        assertEquals(winningResult.fourMatchesCount(), 0);
-        assertEquals(winningResult.threeMatchesCount(), 0);
-        assertEquals(winningResult.totalYield(), 150_000.0);
-    }
-
-    @DisplayName("4개 번호가 일치하는 경우")
-    @Test
-    void when4Match() {
-        LottoTickets lottoTickets = getFixedLottoTickets(List.of(1, 2, 3, 4, 44, 45));
-        WinningResult winningResult = lottoResultEvaluator.evaluate(lottoTickets);
-
-        assertEquals(winningResult.sixMatchesCount(), 0);
-        assertEquals(winningResult.fiveWithBonusCount(), 0);
-        assertEquals(winningResult.fiveMatchesCount(), 0);
-        assertEquals(winningResult.fourMatchesCount(), 1);
-        assertEquals(winningResult.threeMatchesCount(), 0);
-        assertEquals(winningResult.totalYield(), 5_000.0);
-    }
-
-    @DisplayName("3개 번호가 일치하는 경우")
-    @Test
-    void when3Match() {
-        LottoTickets lottoTickets = getFixedLottoTickets(List.of(1, 2, 3, 43, 44, 45));
-        WinningResult winningResult = lottoResultEvaluator.evaluate(lottoTickets);
-
-        assertEquals(winningResult.sixMatchesCount(), 0);
-        assertEquals(winningResult.fiveWithBonusCount(), 0);
-        assertEquals(winningResult.fiveMatchesCount(), 0);
-        assertEquals(winningResult.fourMatchesCount(), 0);
-        assertEquals(winningResult.threeMatchesCount(), 1);
-        assertEquals(winningResult.totalYield(), 500.0);
-    }
-
-    @DisplayName("일치하는 번호가 없는 경우")
-    @Test
-    void whenNotMatch() {
-        LottoTickets lottoTickets = getFixedLottoTickets(List.of(40, 41, 42, 43, 44, 45));
-        WinningResult winningResult = lottoResultEvaluator.evaluate(lottoTickets);
-
-        assertEquals(winningResult.sixMatchesCount(), 0);
-        assertEquals(winningResult.fiveWithBonusCount(), 0);
-        assertEquals(winningResult.fiveMatchesCount(), 0);
-        assertEquals(winningResult.fourMatchesCount(), 0);
-        assertEquals(winningResult.threeMatchesCount(), 0);
-        assertEquals(winningResult.totalYield(), 0.0);
+        assertWinningResult(
+                winningResult,
+                expectedSix,
+                expectedFiveBonus,
+                expectedFive,
+                expectedFour,
+                expectedThree,
+                expectedYield
+        );
     }
 
     private LottoTickets getFixedLottoTickets(List<Integer> lottoNumbers) {
-        return new LottoTickets(
-                List.of(new Lotto(lottoNumbers))
-        );
+        return new LottoTickets(List.of(new Lotto(lottoNumbers)));
+    }
+
+    private void assertWinningResult(WinningResult winningResult,
+                                     int expectedSix,
+                                     int expectedFiveBonus,
+                                     int expectedFive,
+                                     int expectedFour,
+                                     int expectedThree,
+                                     double expectedYield) {
+        assertEquals(expectedSix, winningResult.sixMatchesCount());
+        assertEquals(expectedFiveBonus, winningResult.fiveWithBonusCount());
+        assertEquals(expectedFive, winningResult.fiveMatchesCount());
+        assertEquals(expectedFour, winningResult.fourMatchesCount());
+        assertEquals(expectedThree, winningResult.threeMatchesCount());
+        assertEquals(expectedYield, winningResult.totalYield());
     }
 }

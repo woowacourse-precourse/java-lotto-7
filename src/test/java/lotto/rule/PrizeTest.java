@@ -9,8 +9,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 @DisplayName("당첨 내용 테스트")
 class PrizeTest {
 
-    @DisplayName("당첨 금액 테스트")
-    @ParameterizedTest
+    @DisplayName("매칭 정보에 따라 당첨 금액이 일치하는지 확인한다.")
+    @ParameterizedTest(name = "매칭 개수: {0}, 보너스 여부: {1}, 당첨 금액: {2}")
     @CsvSource({
             "6, false, 2_000_000_000",
             "5, true, 30_000_000",
