@@ -16,4 +16,7 @@ public class WinningLotto {
         return number==bonusNumber;
     }
 
+    public List<Integer> getWinningNumbers(){
+        return winningNumbers;
+    }
 }
