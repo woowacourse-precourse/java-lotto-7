@@ -26,6 +26,18 @@ public class LottoController {
         this.lottos = lottos;
     }
 
+    public static int getValidInputTotalAmount(){
+        String input = readTotalAmount();
+        int result = -1;
+        try{
+            result = Integer.parseInt(input);
+        }catch(NumberFormatException e){
+            System.out.println(Error_Messages.NUMBER_FORMAT_ERROR);
+            return getValidInputTotalAmount();
+        }
+        return result;
+    }
+
     public static int checkTotalAmountIfValid(int totalAmount) {
         if (totalAmount <= 0)
             throw new IllegalArgumentException(Error_Messages.INPUT_NOT_POSITIVE_INT);
@@ -39,12 +51,13 @@ public class LottoController {
     }
 
     public static void setTotalCount(LottoController lottoController){
-        int totalCount = readTotalAmount();
+        int totalCount = getValidInputTotalAmount();
         try{
             totalCount = checkTotalAmountIfValid(totalCount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             setTotalCount(lottoController);
+            return;
         }
         lottoController.totalCount = totalCount;
     }
@@ -103,9 +116,8 @@ public class LottoController {
             return winningLotto;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            makeWinningLotto();
+            return makeWinningLotto();
         }
-        return null;
     }
 
     private static int checkBonusNumber(WinningLotto winningLotto, String number){

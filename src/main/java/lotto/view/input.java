@@ -21,9 +21,9 @@ public class input {
         System.out.println(Request_Messages.INPUT_BONUS_WINNING_NUMBER);
     }
 
-    public static int readTotalAmount() {
+    public static String readTotalAmount() {
         printInputTotalAmount();
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 
     public static List<String> readWinningNumbers(){
