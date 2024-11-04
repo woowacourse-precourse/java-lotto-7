@@ -33,10 +33,11 @@ public class WinnerManager {
     public void registerWinnerLotto() {
         List<Integer> registedLottoNumber;
         while (true) {
-            registedLottoNumber = lottoWinnerNumberInputProcessor.putValue();
-            registerBonusNumber();
             try {
-                winnerLotto = new Lotto(registedLottoNumber, bonusNumber);
+                registedLottoNumber = lottoWinnerNumberInputProcessor.putValue();
+                winnerLotto = new Lotto(registedLottoNumber);
+                registerBonusNumber();
+                winnerLotto.checkBonusNumberDuplication(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
