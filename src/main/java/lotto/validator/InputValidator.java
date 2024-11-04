@@ -59,7 +59,7 @@ public class InputValidator {
         }
     }
 
-    public static void checkRangeBonusNumber(Integer number) {
+    public static void checkRangeBonusNumber(int number) {
         if (number < 1 || number > 45)
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 범위여야 합니다." + number);
     }
