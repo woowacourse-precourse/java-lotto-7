@@ -1,14 +1,16 @@
 package lotto.service;
 
 import java.util.List;
+import lotto.common.Constants;
 import lotto.common.Prompts;
 import lotto.view.InputView;
 
 public class InputParser {
+
     public static int parsePrice() {
         String rawPrice = InputView.requirePrice();
         int price = Integer.parseInt(rawPrice);
-        return price;
+        return calculateLottoCount(price);
     }
 
     public static List<Integer> parseLottoNumbers() {
@@ -27,5 +29,10 @@ public class InputParser {
         String rawBonusNumber = InputView.requireBonusNumber();
         int bonusNumber = Integer.parseInt(rawBonusNumber);
         return bonusNumber;
+    }
+
+    private static int calculateLottoCount(int price) {
+        int lottoCount = price / Constants.LOTTO_PRICE;
+        return lottoCount;
     }
 }
