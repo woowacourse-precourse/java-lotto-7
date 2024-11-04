@@ -1,13 +1,15 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -50,6 +52,32 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1002", "1500", "1000a", "-1000"})
+    void 로또_구입_개수_예외_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException(input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "10000 | 1, 2, 3, 4, 5, 46 | 6",
+            "10000 | 0, 1, 2, 3, 4, 5 | 6",
+            "10000 | -2, 1, 2, 3, 4, 5 | 6",
+            "10000 | 1, 2, 3, 4, 5, 6, 7 | 6",
+            "10000 | 1, 2, 3, 4, 5 | 6",
+            "10000 | 1, 1, 2, 3, 4, 5 | 6",
+            "10000 | 1, 2, 3, 4, 5, 6 | 1"},
+            delimiter = '|')
+    void 당첨_번호_보너스_번호_예외_테스트(String price, String winningNumbers, String bonusNumber) {
+        assertSimpleTest(() -> {
+            runException(price, winningNumbers, bonusNumber);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
