@@ -7,9 +7,15 @@ import lotto.exception.purchaseamountexception.NotDivisibleByLottoPriceException
 
 public class PurchaseAmountValidator {
 
+	private final NumberValidator numberValidator;
+
+	public PurchaseAmountValidator(NumberValidator numberValidator) {
+		this.numberValidator = numberValidator;
+	}
+
 	public int validateInput(String input) {
-		int parsedInput = parseStringToInt(input);
-		if (isNegativeNumber(parsedInput)) {
+		int parsedInput = numberValidator.parseStringToInt(input);
+		if (numberValidator.isNegativeNumber(parsedInput)) {
 			throw new InvalidPurchaseAmountException();
 		}
 		if (!canDivideWithPrice(parsedInput)) {
@@ -19,18 +25,6 @@ public class PurchaseAmountValidator {
 			throw new MaxPurchaseExceedException();
 		}
 		return parsedInput;
-	}
-
-	private int parseStringToInt(String input) {
-		try {
-			return Integer.parseInt(input);
-		} catch (InvalidPurchaseAmountException e) {
-			throw new InvalidPurchaseAmountException();
-		}
-	}
-
-	private boolean isNegativeNumber(int purchaseAmount) {
-		return purchaseAmount < 0;
 	}
 
 	private boolean canDivideWithPrice(int purchaseAmount) {
