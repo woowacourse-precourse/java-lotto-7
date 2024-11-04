@@ -1,6 +1,7 @@
 package lotto;
 
-import lotto.analytics.Analyzer;
+import lotto.analytics.AnalyticsManager;
+import lotto.analytics.RateSheet;
 import lotto.purchase.LottoCreationManager;
 import lotto.purchase.LottoReceipt;
 import lotto.statistics.DrawResultSheet;
@@ -10,7 +11,6 @@ public class EntireSystem {
 
     public void run() {
         LottoReceipt lottoReceipt = new LottoCreationManager().process();
-        Analyzer analyzer = new Analyzer();
 
         System.out.println();
 
@@ -29,6 +29,9 @@ public class EntireSystem {
 
         long payment = lottoReceipt.payment();
         long totalPrizeAmount = drawResultSheet.calculateTotalPrizeAmount();
-        analyzer.tellGrowthRate(payment, totalPrizeAmount);
+
+        AnalyticsManager analyzer = new AnalyticsManager();
+        RateSheet rateSheet = analyzer.process(payment, totalPrizeAmount);
+        rateSheet.printGrowthRate();
     }
 }
