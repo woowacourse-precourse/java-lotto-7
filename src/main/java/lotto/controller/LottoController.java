@@ -14,13 +14,15 @@ public class LottoController {
     private List<String> winNumbers;
     private Integer bonusNumber;
 
-    public void run() {
-
+    public LottoController() {
         //입출력 로직
         buyAmount = InputView.inputBuyAmount();
         winNumbersStr = InputView.inputWinNumbers();
         bonusNumber = InputView.inputBonusNumber();
         winNumbers = ParseLotto.splitWinNumber(winNumbersStr);
+    }
+
+    public void run() {
 
         //로또 발행
         Lottos lottos = new Lottos(winNumbers, buyAmount, bonusNumber);
