@@ -6,13 +6,19 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class InputHandler {
+
     public int getPurchaseAmount() {
-        System.out.println("구입 금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        try {
+            System.out.println("구입 금액을 입력해 주세요.");
+            String input = Console.readLine();
+            int amount = Integer.parseInt(input);
+            if (amount <= 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.");
+            }
+            return amount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해야 합니다.");
         }
-        return amount;
     }
 
     public List<Integer> getWinningNumbers() {
