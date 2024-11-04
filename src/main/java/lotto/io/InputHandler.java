@@ -36,8 +36,8 @@ public class InputHandler {
         while (true) {
             try {
                 List<Integer> winningNumbers = new ArrayList<>();
-                List<String> numbersInString = Arrays.asList(Console.readLine().split(","));
-                for (String number : numbersInString) {
+                List<String> rawNumbers = Arrays.asList(Console.readLine().split(","));
+                for (String number : rawNumbers) {
                     winningNumbers.add(Integer.parseInt(number.trim()));
                 }
                 Lotto lotto = new Lotto(winningNumbers);
