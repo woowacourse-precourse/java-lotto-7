@@ -14,6 +14,10 @@ public class OutputView {
         List<Rank> winRanks = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
         System.out.println(OUTPUT_WIN_STRATAGE.getMsg());
         System.out.println(OUTPUT_SLASH.getMsg().repeat(3));
+        printRank(ranks, winRanks);
+    }
+
+    private static void printRank(Map<Rank, Integer> ranks, List<Rank> winRanks) {
         for (Rank rank : winRanks) {
             System.out.print(rank.getRankPrintSentence());
             System.out.print(" " + OUTPUT_SLASH.getMsg() + " ");
