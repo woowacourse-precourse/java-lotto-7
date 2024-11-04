@@ -2,6 +2,7 @@ package lotto.controller;
 
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
@@ -26,8 +27,9 @@ public class LottoController {
         PurchaseAmount purcharseAmount = requestPurchaseAmount();
         int count = purcharseAmount.calculateLottoCount();
         Lottos lottos = purchaseLotto(count);
-        WinningLotto winningLotto = requestWinningLotto();
-
+        List<Integer> winningNumbers = requestWinningLotto();
+        BonusNumber bonusNumber = requestBonusNumber(winningNumbers);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
     }
 
     private PurchaseAmount requestPurchaseAmount() {
@@ -49,14 +51,25 @@ public class LottoController {
         return lottos;
     }
 
-    private WinningLotto requestWinningLotto() {
+    private List<Integer> requestWinningLotto() {
         output.printWinningLottoPrompt();
         while (true) {
             try {
                 String winningLottoInput = input.getWinningLotto();
-                List<Integer> winningLotto = lottoValidationService.validateWinningLotto(winningLottoInput);
-                Lotto lotto = new Lotto(winningLotto);
-                return new WinningLotto(lotto);
+                return lottoValidationService.validateWinningLotto(winningLottoInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber requestBonusNumber(List<Integer> winningNumbers) {
+        output.printBonusNumberPrompt();
+        while (true) {
+            try {
+                String bonusNumberInput = input.getBonusNumber();
+                int bonusNumber = lottoValidationService.validateBonusNumber(bonusNumberInput, winningNumbers);
+                return new BonusNumber(bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

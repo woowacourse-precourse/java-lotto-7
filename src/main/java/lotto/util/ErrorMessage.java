@@ -17,7 +17,13 @@ public enum ErrorMessage {
     INVALID_WINNING_LOTTO_RANGE("당첨 번호는 1~45 사이의 수여야 해요."),
     INVALID_WINNING_LOTTO_COUNT("당첨 번호의 개수는 6개여야 해요."),
     DUPLICATE_WINNING_LOTTO("당첨 번호는 중복되지 않아야 해요."),
-    INVALID_WINNING_NUMBER_EMPTY("당첨 번호에는 빈 값이 포함될 수 없어요.");
+    INVALID_WINNING_NUMBER_EMPTY("당첨 번호에는 빈 값이 포함될 수 없어요."),
+
+    // 보너스 번호 관련 에러 메시지
+    INVALID_BONUS_NUMBER_FORMAT("보너스 번호는 숫자여야 해요."),
+    INVALID_BONUS_NUMBER_NATURAL_NUMBER("보너스 번호는 자연수여야 해요."),
+    INVALID_BONUS_NUMBER_RANGE("보너스 번호는 1~45 사이의 수여야 해요."),
+    DUPLICATE_BONUS_NUMBER("보너스 번호는 당첨 번호와 중복되지 않아야 해요.");
 
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     private final String message;
