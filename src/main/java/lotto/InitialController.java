@@ -54,6 +54,8 @@ public class InitialController {
 
   public void calculateAndPrintProfit() {
     float result = calculator.CalculateProfit(this.purchaseAmount, this.prizeCounter);
+    System.out.println();
     System.out.println(String.format(PROFIT_MESSAGE, result));
   }
+
 }
