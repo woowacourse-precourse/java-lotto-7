@@ -22,14 +22,10 @@ public class LottoHandler {
         }
     }
 
-    public String getLottoList() {
+    public String getAllLottos() {
         return getLottos().stream()
                 .map(lottos -> lottos.getLottoNumbers().toString())
                 .collect(Collectors.joining("\n"));
-    }
-
-    public List<Lottos> getLottos() {
-        return lottos;
     }
 
     public void inputWinningLottoNumbers(String rawWinningNumbers) {
@@ -41,6 +37,39 @@ public class LottoHandler {
         WinningNumberValidation.validateNumberRange(winningNumbers);
 
         winningLottoNumbers = new Lotto(winningNumbers);
+    }
+
+    public void staticsResults(Customer customer) {
+        customer.initializeRankingResults();
+
+        for (Lottos lotto : lottos) {
+            Ranking ranking = checkedResult(winningLottoNumbers, lotto);
+            customer.updateLottoRanking(ranking);
+        }
+    }
+
+    public Ranking checkedResult(Lotto winningLotto, Lottos boughtLottos) {
+        int rankedNumber = checkedSameNumber(winningLotto.getNumbers(), boughtLottos.getLottoNumbers());
+        boolean checkedBonus = checkedBonusNumber(getBonusNumber(), boughtLottos);
+        Ranking ranking = Ranking.values()[rankedNumber];
+        if (ranking == Ranking.FIVE && checkedBonus) {
+            return Ranking.FIVE_BONUS;
+        }
+        return ranking;
+    }
+
+    private boolean checkedBonusNumber(int bonusNumber, Lottos boughtLottos) {
+        return boughtLottos.getLottoNumbers().contains(bonusNumber);
+    }
+
+    private int checkedSameNumber(List<Integer> winningLottoNumbers, List<Integer> boughtLottoNumbers) {
+        int count = LottoType.LOTTO_INIT_RANK.getValue();
+        for (int num : boughtLottoNumbers) {
+            if (winningLottoNumbers.contains(num)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public void setBonusNumber(int rawBonusNumber) {
@@ -55,38 +84,8 @@ public class LottoHandler {
         return winningLottoNumbers.getNumbers();
     }
 
-    public void staticsResults(Customer customer) {
-        customer.initializeRankingResults();
-
-        for (Lottos lotto : lottos) {
-            Ranking ranking = checkedResult(winningLottoNumbers, lotto);
-            customer.updateLottoRanking(ranking);
-        }
+    public List<Lottos> getLottos() {
+        return lottos;
     }
-
-    public Ranking checkedResult(Lotto winningLotto, Lottos buyLottos) {
-        int rankedNumber = checkSameNumber(winningLotto.getNumbers(), buyLottos.getLottoNumbers());
-        boolean checkedBonus = checkedBonusNumber(getBonusNumber(), buyLottos);
-        Ranking ranking = Ranking.values()[rankedNumber];
-        if (ranking == Ranking.FIVE && checkedBonus) {
-            return Ranking.FIVE_BONUS;
-        }
-        return ranking;
-    }
-
-    private boolean checkedBonusNumber(int bonusNumber, Lottos buyLottos) {
-        return buyLottos.getLottoNumbers().contains(bonusNumber);
-    }
-
-    private int checkSameNumber(List<Integer> winningLottoNumbers, List<Integer> buyLottoNumbers) {
-        int count = LottoType.LOTTO_INIT_RANK.getValue();
-        for (int num : buyLottoNumbers) {
-            if (winningLottoNumbers.contains(num)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
 
 }

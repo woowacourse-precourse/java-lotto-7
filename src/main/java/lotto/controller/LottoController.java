@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.constants.lottoType.LottoType;
 import lotto.model.Customer;
 import lotto.model.LottoHandler;
-import lotto.model.Lottos;
 import lotto.model.RankingHandler;
 import lotto.utils.BonusNumberValidation;
 import lotto.utils.LottoPurchaseValidation;
@@ -41,7 +40,7 @@ public class LottoController {
         lottoHandler.buyLottos(customer.getLottoTickets());
 
         OutputMessage.buyLottoCount(customer.getLottoTickets());
-        OutputMessage.buyLottoResults(lottoHandler.getLottoList());
+        OutputMessage.buyLottoResults(lottoHandler.getAllLottos());
     }
 
     private void winningNumbers() {

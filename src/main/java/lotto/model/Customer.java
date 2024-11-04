@@ -10,14 +10,10 @@ import java.util.Map;
 public class Customer {
 
     private int lottoTickets = 0;
-    private Map<Ranking, Integer> lottoResults = new EnumMap<>(Ranking.class);
+    private final Map<Ranking, Integer> lottoResults = new EnumMap<>(Ranking.class);
 
-    public void buyLottoTickets(int money) {
-        lottoTickets += money / LottoType.LOTTO_PRICE.getValue();
-    }
-
-    public int getLottoTickets() {
-        return lottoTickets;
+    public void buyLottoTickets(int clientMoney) {
+        lottoTickets += clientMoney / LottoType.LOTTO_PRICE.getValue();
     }
 
     public void initializeRankingResults() {
@@ -28,10 +24,6 @@ public class Customer {
 
     public void updateLottoRanking(Ranking ranking) {
         lottoResults.put(ranking, lottoResults.get(ranking) + LottoType.RANK_INCREMENT_VALUE.getValue());
-    }
-
-    public Map<Ranking, Integer> getLottoResults() {
-        return lottoResults;
     }
 
     public double getWinningsYield(int clientMoney) {
@@ -48,6 +40,14 @@ public class Customer {
             sum += (long) ranking.getWinnings() * lottoResults.get(ranking);
         }
         return sum;
+    }
+
+    public int getLottoTickets() {
+        return lottoTickets;
+    }
+
+    public Map<Ranking, Integer> getLottoResults() {
+        return lottoResults;
     }
 
 }

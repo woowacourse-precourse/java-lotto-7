@@ -13,28 +13,28 @@ public class LottoPurchaseValidation {
         return clientMoney;
     }
 
-    public static int validateMoneyIsInteger(String rawClientInput) {
+    public static int validateMoneyIsInteger(String rawClientMoney) {
         try {
-            return Integer.parseInt(rawClientInput.trim());
+            return Integer.parseInt(rawClientMoney.trim());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(LottoPurchaseErrorType.INVALID_MONEY_FORMAT.getMessage());
         }
     }
 
-    public static void validateMoneyIsPositive(int rawIntegerInput) {
-        if (rawIntegerInput < LottoType.ZERO_MONEY.getValue()) {
+    public static void validateMoneyIsPositive(int clientMoney) {
+        if (clientMoney < LottoType.ZERO_MONEY.getValue()) {
             throw new IllegalArgumentException(LottoPurchaseErrorType.INVALID_MONEY_NEGATIVE.getMessage());
         }
     }
 
-    public static void validateMoneyIsNotDivisibleByLottoPrice(int rawIntegerInput) {
-        if (rawIntegerInput % LottoType.LOTTO_PRICE.getValue() != LottoType.ZERO_MONEY.getValue()) {
+    public static void validateMoneyIsNotDivisibleByLottoPrice(int clientMoney) {
+        if (clientMoney % LottoType.LOTTO_PRICE.getValue() != LottoType.ZERO_MONEY.getValue()) {
             throw new IllegalArgumentException(LottoPurchaseErrorType.INVALID_MONEY_UNIT.getMessage());
         }
     }
 
-    public static void validateMoneyIsNull(String rawClientInput) {
-        if (rawClientInput.isBlank()) {
+    public static void validateMoneyIsNull(String rawClientMoney) {
+        if (rawClientMoney.isBlank()) {
             throw new IllegalArgumentException(LottoPurchaseErrorType.INVALID_INPUT_NULL_MONEY.getMessage());
         }
     }
