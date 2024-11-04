@@ -10,10 +10,8 @@ public class ReturnRate {
 	}
 
 	public double calculate() {
-		if (totalSpent == 0) {
-			return 0.0;
-		}
 		double rate = (double)totalPrize / totalSpent;
+
 		return roundToOneDecimalPlace(rate * 100);
 	}
 
