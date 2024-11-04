@@ -34,8 +34,10 @@ public class LottoController {
         try {
             String rawInput = requestInput(INPUT_PURCHASE_AMOUNT.getMessage());
             purchaseAmount = convertInput(rawInput);
+
             int purchaseCount = calculatePurchaseCount(purchaseAmount);
             issueLottoTickets(purchaseCount);
+
             printPurchaseCount(purchaseCount);
             print(purchaseLotto.getLottoNumber());
         } catch (IllegalArgumentException e) {
@@ -76,6 +78,7 @@ public class LottoController {
         try {
             String rawWinningNumberInput = requestInput(INPUT_WINNING_NUMBER.getMessage());
             validateInput(rawWinningNumberInput);
+
             String[] winningInput = splitInputString(rawWinningNumberInput);
             winningLotto = new WinningLotto(new Lotto(integerListConverter(winningInput)));
         } catch (IllegalArgumentException e) {
@@ -88,6 +91,7 @@ public class LottoController {
         try {
             String rawBonusNumberInput = requestInput(INPUT_BONUS_NUMBER.getMessage());
             validateInput(rawBonusNumberInput);
+
             winningLotto.setBonusNumber(integerConverter(rawBonusNumberInput));
         } catch (IllegalArgumentException e) {
             print(e.getMessage());
