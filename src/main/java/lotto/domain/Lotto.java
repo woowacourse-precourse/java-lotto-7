@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import lotto.util.ExceptionMessages;
@@ -23,8 +24,9 @@ public class Lotto {
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        sortedNumbers.sort(Comparator.naturalOrder());
+        return sortedNumbers;
     }
 
     public List<Integer> getNumbers() {
