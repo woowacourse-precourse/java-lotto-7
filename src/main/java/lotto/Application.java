@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
 
+import static lotto.Lotto.isDuplicate;
+
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -16,9 +18,11 @@ public class Application {
             int purchaseAmount = inputPurchaseAmount();
             List<Lotto> purchasedLottos = makeLotto(purchaseAmount);
             printLottos(purchasedLottos);
+
             WinningNumber winningNumbers = inputWinningNumbers();
             Map<Rank, Integer> results = calculateResults(purchasedLottos, winningNumbers);
             printResults(results);
+
             calculateAndPrintProfitRate(purchaseAmount, results);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -61,7 +65,7 @@ public class Application {
         for (String num : winningNums) {
             winningNumbers.add(Integer.parseInt(num.trim()));
         }
-        if (winningNumbers.size() != 6 || hasDuplicates(winningNumbers)) {
+        if (winningNumbers.size() != 6 || isDuplicate(winningNumbers)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 6개의 숫자여야 합니다.");
         }
         System.out.println("보너스 번호를 입력해 주세요.");
@@ -72,10 +76,7 @@ public class Application {
         return new WinningNumber(winningNumbers, bonusNumber);
     }
 
-    private boolean hasDuplicates(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        return uniqueNumbers.size() != numbers.size();
-    }
+
 
     private Map<Rank, Integer> calculateResults(List<Lotto> lottos, WinningNumber winningNumbers) {
         Map<Rank, Integer> results = new HashMap<>();
