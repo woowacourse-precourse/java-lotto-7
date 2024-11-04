@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.validator.InputValidator;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,6 +50,27 @@ class LottoServiceTest {
             new Lotto(List.of(1, 2, 3, 4, 5, 6, 7));
         });
         assertEquals("[ERROR] 로또 번호는 6개여야 합니다.", exception.getMessage());
+    }
+
+    @Test
+    void testGenerateLottoNumbers_withValidAmount() {
+        int amount = 8;
+        List<Lotto> lottoList = lottoService.generateLottoNumbers(amount);
+
+        assertEquals(amount, lottoList.size());
+
+        for (Lotto lotto : lottoList) {
+            List<Integer> numbers = lotto.getNumbers();
+
+            assertEquals(6, numbers.size());
+
+            assertTrue(numbers.stream().allMatch(num -> num >= 1 && num <= 45));
+
+            assertEquals(6, numbers.stream().distinct().count());
+
+            List<Integer> sortedNumbers = numbers.stream().sorted().collect(Collectors.toList());
+            assertEquals(sortedNumbers, numbers);
+        }
     }
 }
 
