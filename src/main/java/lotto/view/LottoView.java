@@ -6,6 +6,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.model.LottoResult;
 
 
 public class LottoView {
@@ -72,5 +73,25 @@ public class LottoView {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
+    }
+
+
+    public static void printLottoResults(int[] resultCounts) {
+        System.out.println("당첨 통계\n---");
+        for (LottoResult result : LottoResult.values()) {
+            if (result != LottoResult.NONE) {
+                System.out.printf("%d개 일치%s (%,d원) - %d개\n",
+                        result.getMatchCount(),
+                        result.isMatchBonus() ? ", 보너스 볼 일치" : "",
+                        result.getPrize(),
+                        resultCounts[result.ordinal()]);
+            }
+        }
+    }
+
+
+    public static void printProfitRate(int totalPrize, BigInteger amount) {
+        double profitRate = (double) totalPrize / amount.doubleValue() * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 }
