@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.constants.LottoConfig.ONE_HUNDRED;
+
 import java.util.List;
 import lotto.constants.PrizeType;
 
@@ -38,5 +40,19 @@ public class LottoStatisticsCalculator {
         return (int) singleLotto.stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    public int TotalPrize(int[] results) {
+        int totalPrize = 0;
+        for (PrizeType prizeType : PrizeType.values()) {
+            int count = results[prizeType.ordinal()];
+            int prizeAmount = prizeType.getPrizeMoney();
+            totalPrize += count * prizeAmount;
+        }
+        return totalPrize;
+    }
+
+    public double EarningRate(int totalPrize, int moneySpent) {
+        return ((double) totalPrize / moneySpent) * ONE_HUNDRED.getValue();
     }
 }

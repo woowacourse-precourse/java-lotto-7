@@ -37,7 +37,8 @@ public class LottoController {
         BonusBall bonus = untilValidBonusBall(winningNumbers);
 
         int[] results = calculateResult.calculateStatistics(winningNumbers.getNumbers(), bonus.getBonusNumber(), lottoNumbers);
-        outputView.printStatistics(results, money);
+        outputView.printStatistics(results);
+        outputView.printEarningRate(calculateResult.EarningRate(calculateResult.TotalPrize(results), money));
     }
 
     private int untilValidPurchaseMoney() {

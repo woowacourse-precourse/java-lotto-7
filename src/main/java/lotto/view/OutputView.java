@@ -1,7 +1,6 @@
 package lotto.view;
 
-import static lotto.constants.LottoConfig.ONE_HUNDRED;
-
+import java.util.Arrays;
 import java.util.List;
 import lotto.constants.PrizeType;
 
@@ -34,11 +33,18 @@ public class OutputView {
             totalPrize += count * prizeAmount;
             System.out.printf(PRIZE_FORMAT, prizeType.getMatching(), prizeType.getPrize(), count);
         }
-        printResultMessage(totalPrize, moneySpent);
     }
 
-    public void printResultMessage(int totalPrize, int moneySpent) {
-        double earningRate = ((double) totalPrize / moneySpent) * ONE_HUNDRED.getValue();
+    public void printStatistics(int[] results) {
+        showResultMessage();
+        Arrays.stream(PrizeType.values())
+                .forEach(prizeType -> {
+                    int count = results[prizeType.ordinal()];
+                    System.out.printf(PRIZE_FORMAT, prizeType.getMatching(), prizeType.getPrize(), count);
+                });
+    }
+
+    public void printEarningRate(double earningRate) {
         System.out.printf(EARNING_RATE_FORMAT, earningRate);
     }
 
