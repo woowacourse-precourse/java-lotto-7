@@ -5,7 +5,8 @@ public enum OutputViewMessage {
     WINNING_STATISTICS_START_MESSAGE("\n당첨 통계\n---"),
     WINNING_STATISTICS("%d개 일치%s (%s원) - %d개\n"),
     BONUS_MATCH(", 보너스 볼 일치"),
-    EMPTY_STRING("");
+    EMPTY_STRING(""),
+    EARNING_RATE("총 수익률은 %.1f%%입니다.");
     private final String message;
 
     OutputViewMessage(final String message) {

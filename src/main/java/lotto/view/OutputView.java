@@ -30,8 +30,12 @@ public class OutputView {
                     int winningCount = statistics.getWinningCount(winningType);
                     printWinningType(winningType, winningCount);
                 });
+    }
 
-        };
+    public void printEarningRate(float earningRate) {
+        System.out.printf(OutputViewMessage.EARNING_RATE.getMessage(), earningRate*100);
+    }
+
     private void printWinningType(WinningType type, int winningCount) {
         System.out.printf(OutputViewMessage.WINNING_STATISTICS.getMessage(),
                 type.getMatchCount(),
