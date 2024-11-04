@@ -10,13 +10,20 @@ import lotto.dto.ProfitStatisticsDto;
 import lotto.entity.Lotto;
 
 public class ConsoleOutput {
+    public static final String STATISTIC_TITLE = "당첨 통계";
+    public static final String DVIDER_STRING = "---";
+
+    public static final String PURCHASED_LOTTO_COUNT_FORMAT = "%d개를 구매했습니다.%n";
+    public static final String BONUS_MATCH_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+    public static final String MATCH_FORMAT = "%d개 일치 (%,d원) - %d개";
+    public static final String PROFIT_RATE_FORMAT = "총 수익률은 %.1f%%입니다.%n";
 
     // public methods
 
     public void printProfitStatistics(ProfitStatisticsDto input) {
         ConsoleUtils.printNewLine();
-        ConsoleUtils.printMessageWithNewLine("당첨 통계");
-        ConsoleUtils.printMessageWithNewLine("---");
+        ConsoleUtils.printMessageWithNewLine(STATISTIC_TITLE);
+        ConsoleUtils.printMessageWithNewLine(DVIDER_STRING);
 
         Map<Prize, Integer> completePrizeMap = getCompletePrizeMap(input);
         printPrizeStatistics(completePrizeMap);
@@ -24,7 +31,7 @@ public class ConsoleOutput {
     }
 
     public void printPurchasedLottos(List<Lotto> lottos) {
-        ConsoleUtils.printFormattedMessage("%d개를 구매했습니다.%n", lottos.size());
+        ConsoleUtils.printFormattedMessage(PURCHASED_LOTTO_COUNT_FORMAT, lottos.size());
         lottos.forEach(lotto -> ConsoleUtils.printMessageWithNewLine(
                 lotto.getNumbers().stream().sorted().toList().toString()
         ));
@@ -53,13 +60,13 @@ public class ConsoleOutput {
 
     private String formatPrizeMessage(Prize prize, int count) {
         if (prize == Prize.SECOND) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개",
+            return String.format(BONUS_MATCH_FORMAT,
                     prize.getMatchCount(), prize.getPrizeMoney(), count);
         }
-        return String.format("%d개 일치 (%,d원) - %d개", prize.getMatchCount(), prize.getPrizeMoney(), count);
+        return String.format(MATCH_FORMAT, prize.getMatchCount(), prize.getPrizeMoney(), count);
     }
 
     private void printProfitRate(double profitRate) {
-        ConsoleUtils.printFormattedMessage("총 수익률은 %.1f%%입니다.%n", profitRate);
+        ConsoleUtils.printFormattedMessage(PROFIT_RATE_FORMAT, profitRate);
     }
 }
