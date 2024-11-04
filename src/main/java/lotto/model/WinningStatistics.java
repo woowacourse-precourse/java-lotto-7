@@ -44,4 +44,8 @@ public class WinningStatistics {
     public Map<Ranking, Integer> getCounter() {
         return Collections.unmodifiableMap(counter);
     }
+
+    public int getCount(Ranking rank) {
+        return counter.getOrDefault(rank, 0);
+    }
 }

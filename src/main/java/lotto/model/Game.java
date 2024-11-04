@@ -24,7 +24,7 @@ public class Game {
     }
 
     public void setWinningNumber(List<Integer> winningNumbers) {
-        if (Objects.isNull(winningNumbers)) {
+        if (Objects.isNull(winningNumber)) {
             winningNumber = new WinningNumber();
         }
         winningNumber.setWinningNumbers(new Lotto(winningNumbers));

@@ -3,7 +3,9 @@ package lotto.controller;
 import java.util.List;
 import lotto.dto.IssuedLottosDto;
 import lotto.dto.LottoDto;
+import lotto.dto.ResultDto;
 import lotto.model.Game;
+import lotto.model.WinningStatistics;
 import lotto.utils.converter.BonusNumberConverter;
 import lotto.utils.converter.PurchaseAmountConverter;
 import lotto.utils.converter.WinningNumberConverter;
@@ -23,6 +25,7 @@ public class LottoController {
         displayIssuedLottos();
         handleInputWinningNumbers();
         handleInputBonusNumber();
+        displayResult();
     }
 
     private <T> void executeWithRetry(Runnable action) {
@@ -71,5 +74,11 @@ public class LottoController {
         String input = view.promptBonusNumber();
         int bonusNumber = BonusNumberConverter.convert(input);
         game.setBonusNumber(bonusNumber);
+    }
+
+    private void displayResult() {
+        WinningStatistics result = game.getResult();
+        ResultDto resultDto = ResultDto.from(result);
+        view.displayResult(resultDto);
     }
 }
