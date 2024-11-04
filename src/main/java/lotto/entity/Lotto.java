@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 // 로또 엔티티 클래스
 public class Lotto {
     private final List<Integer> numbers;
-    private final Validator validator;
+    private Validator validator;
 
     public Lotto(List<Integer> numbers) {
-        this.validator = new LottoValidator(numbers);
+        initializeValidator(numbers);
         validate();
 
         this.numbers = sort(numbers);
@@ -20,6 +20,9 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+    private void initializeValidator(List<Integer> numbers){
+        this.validator = new LottoValidator(numbers);
     }
 
     private void validate() {
