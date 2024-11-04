@@ -4,7 +4,7 @@ import lotto.constants.ErrorMessage;
 import lotto.constants.LottoRules;
 
 public class PurchaseAmount {
-    private int amount;
+    private final int amount;
 
     public PurchaseAmount(String input) {
         this.amount = parseAmount(input);

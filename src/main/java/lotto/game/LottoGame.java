@@ -9,8 +9,8 @@ import lotto.io.InputHandler;
 import lotto.io.OutputHandler;
 
 public class LottoGame {
-    private LottoMachine lottoMachine;
-    private LottoResult lottoResult;
+    private final LottoMachine lottoMachine;
+    private final LottoResult lottoResult;
 
     public LottoGame() {
         lottoMachine = new LottoMachine();

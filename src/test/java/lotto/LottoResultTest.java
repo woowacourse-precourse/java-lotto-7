@@ -56,8 +56,8 @@ class LottoResultTest {
         PurchaseAmount purchaseAmount = new PurchaseAmount("5000");
 
         double expectedProfitRate =
-                (double) (1 * Rank.FIRST.getPrize() + 1 * Rank.SECOND.getPrize() + 2 * Rank.THIRD.getPrize()
-                        + 1 * Rank.FOURTH.getPrize() + 1 * Rank.FIFTH.getPrize()) / purchaseAmount.getAmount() * 100;
+                (double) (Rank.FIRST.getPrize() + Rank.SECOND.getPrize() + 2 * Rank.THIRD.getPrize()
+                        + Rank.FOURTH.getPrize() + Rank.FIFTH.getPrize()) / purchaseAmount.getAmount() * 100;
 
         double actualProfitRate = lottoResult.calculateProfitRate(purchaseAmount);
 
