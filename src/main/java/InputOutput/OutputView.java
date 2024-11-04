@@ -56,6 +56,6 @@ public class OutputView {
     }
     public static void outputReturnRate(int totalPrize, int price){
         double yield = (double) totalPrize / price * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다\n", yield);
+        System.out.printf("총 수익률은 %.1f%%입니다.", yield);
     }
 }

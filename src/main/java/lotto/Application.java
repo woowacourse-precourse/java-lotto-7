@@ -45,7 +45,7 @@ public class Application {
             try {
                 bonusNumber = Integer.parseInt(InputView.insert());
                 Lotto.validateBonusNumber(bonusNumber, winNumber);
-                break; // 유효한 보너스 번호가 입력되면 반복 종료
+                break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 유효한 숫자를 입력해야 합니다.");
             } catch (IllegalArgumentException e) {
