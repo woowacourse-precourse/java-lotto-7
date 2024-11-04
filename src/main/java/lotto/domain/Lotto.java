@@ -1,12 +1,15 @@
 package lotto.domain;
 
-import lotto.exception.LottoException;
-import lotto.exception.LottoExceptionType;
+import static lotto.exception.LottoExceptionType.DUPLICATE_LOTTONUMBER;
+import static lotto.exception.LottoExceptionType.NOT_MATCH_LOTTONUMBER;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
-
-import static lotto.exception.LottoExceptionType.*;
+import lotto.exception.LottoException;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -29,7 +32,7 @@ public class Lotto {
 
     private void validateDuplicate(List<LottoNumber> numbers) {
         Set<LottoNumber> lottoNumbers = new HashSet<>(numbers);
-        if(lottoNumbers.size() != 6){
+        if (lottoNumbers.size() != 6) {
             throw new LottoException(DUPLICATE_LOTTONUMBER);
         }
     }
@@ -43,6 +46,7 @@ public class Lotto {
     public List<LottoNumber> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
+
     public boolean contains(LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }

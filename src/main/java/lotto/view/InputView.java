@@ -1,14 +1,15 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.FormatException;
-import lotto.exception.FormatExceptionType;
-import lotto.exception.LottoException;
-import lotto.exception.LottoExceptionType;
+import static lotto.exception.FormatExceptionType.INVALID_INPUT_FORMAT;
+import static lotto.exception.FormatExceptionType.INVALID_NUMBER_FORMAT;
+import static lotto.exception.LottoExceptionType.INVALID_WINNING_NUMBERS;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.FormatException;
+import lotto.exception.LottoException;
 
 public class InputView {
     private static final String INPUT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -20,7 +21,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException numberFormatException) {
-            throw new FormatException(FormatExceptionType.INVALID_INPUT_FORMAT);
+            throw new FormatException(INVALID_INPUT_FORMAT);
         }
     }
 
@@ -31,7 +32,7 @@ public class InputView {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException numberFormatException) {
-            throw new LottoException(LottoExceptionType.INVALID_WINNING_NUMBERS);
+            throw new LottoException(INVALID_WINNING_NUMBERS);
         }
     }
 
@@ -40,7 +41,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException numberFormatException) {
-            throw new FormatException(FormatExceptionType.INVALID_NUMBER_FORMAT);
+            throw new FormatException(INVALID_NUMBER_FORMAT);
         }
     }
 

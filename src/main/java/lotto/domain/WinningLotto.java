@@ -1,11 +1,12 @@
 package lotto.domain;
 
-import lotto.exception.LottoException;
-import lotto.exception.LottoExceptionType;
+import static lotto.exception.LottoExceptionType.DUPLICATE_BONUS_NUMBER;
+import static lotto.exception.LottoExceptionType.NOT_MATCH_LOTTONUMBER;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.LottoException;
 
 public class WinningLotto {
     private final Lotto winningLotto;
@@ -24,14 +25,14 @@ public class WinningLotto {
 
     private void validateDuplicate(List<LottoNumber> numbers) {
         Set<LottoNumber> lottoNumbers = new HashSet<>(numbers);
-        if(lottoNumbers.size() != 6){
-            throw new LottoException(LottoExceptionType.NOT_MATCH_LOTTONUMBER);
+        if (lottoNumbers.size() != 6) {
+            throw new LottoException(NOT_MATCH_LOTTONUMBER);
         }
     }
 
     private void validateBonusNumberDuplicate(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new LottoException(LottoExceptionType.DUPLICATE_BONUS_NUMBER);
+            throw new LottoException(DUPLICATE_BONUS_NUMBER);
         }
     }
 
