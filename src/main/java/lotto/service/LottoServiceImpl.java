@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.config.ErrorMessage;
 import lotto.config.LottoRule;
+import lotto.config.SystemConstants;
 import lotto.model.Lotto;
 import lotto.model.LottoReport;
 import lotto.repository.LottoRepository;
@@ -75,10 +76,10 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private String formatPrizeReport(LottoRule rule, Map<LottoRule, Long> prizeCountMap) {
-        return String.format("%d개 일치%s (%s원) - %d개",
+        return String.format(SystemConstants.LOTTO_SERVICE_PRIZE_REPORT_FORMAT,
                 rule.getMatchCount(),
-                rule.isHasBonus() ? ", 보너스 볼 일치" : "",
-                String.format("%,d", rule.getPrize()),
+                rule.isHasBonus() ? SystemConstants.LOTTO_SERVICE_PRIZE_REPORT_HAS_BONUS : "",
+                String.format(SystemConstants.LOTTO_SERVICE_PRIZE_REPORT_INNER_FORMAT, rule.getPrize()),
                 prizeCountMap.getOrDefault(rule, 0L));
     }
 

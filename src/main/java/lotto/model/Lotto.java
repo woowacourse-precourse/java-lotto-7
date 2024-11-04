@@ -9,6 +9,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.config.SystemConstants;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -49,6 +50,10 @@ public class Lotto {
     public String toString() {
         return numbers.stream()
                 .map(Object::toString)
-                .collect(Collectors.joining(", ", "[", "]"));
+                .collect(Collectors.joining(
+                        SystemConstants.LOTTO_TO_STRING_FORMAT_SEPARATOR,
+                        SystemConstants.LOTTO_TO_STRING_FORMAT_PREFIX,
+                        SystemConstants.LOTTO_TO_STRING_FORMAT_SUFFIX
+                ));
     }
 }

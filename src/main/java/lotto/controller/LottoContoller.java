@@ -26,8 +26,6 @@ public class LottoContoller {
 
         outputView.printWinningReport(lottoReport.winningReport());
         outputView.printProfitRate(lottoReport.profitRate());
-
-        Console.close();
     }
 
     private String promptPurchaseAmount() {
