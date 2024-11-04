@@ -27,6 +27,18 @@ public class Analyst {
         calculateYield(inputMoney);
     }
 
+    public int[] getWinLottos() {
+        return winLottos;
+    }
+
+    public int[] winningsMoney() {
+        return winningsMoney;
+    }
+
+    public String getYield() {
+        return yield;
+    }
+
     private void calculateWinLotto(List<LottoResult> results) {
         for (LottoResult result : results) {
             winLottos[Integer.parseInt(result.getWinningScore())]++;
