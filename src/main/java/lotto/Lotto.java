@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +22,7 @@ public class Lotto {
 
         for(int number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
 
@@ -42,20 +43,7 @@ public class Lotto {
         }
     }
 
-
-    public LottoRank findRank(LottoTicket ticket) {
-        long matchCount = ticket.getNumbers().stream()
-                .filter(numbers::contains)
-                .count();
-
-        boolean hasBonus = ticket.getNumbers().contains(bonusNumber);
-
-        for (LottoRank rank : LottoRank.values()) {
-            if (rank.getMatchCount() == matchCount && rank.hasBonus() == hasBonus) {
-                return rank;
-            }
-        }
-
-        return LottoRank.NONE;
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
