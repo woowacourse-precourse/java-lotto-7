@@ -60,7 +60,7 @@ public abstract interface ValidateCommand extends Command<UserInput, String> {
   default void validateMaximum(int value, int maximum) {
     if (value > maximum) {
       String runtimeMessage = String.valueOf(maximum);
-      throw new InputException(ExceptionEnum.INPUT_GREATER_THAN_MINIMUM,
+      throw new InputException(ExceptionEnum.INPUT_GREATER_THAN_MAXIMUM,
           runtimeMessage);
     }
   }
@@ -87,7 +87,7 @@ public abstract interface ValidateCommand extends Command<UserInput, String> {
   default void validateMaximum(long value, long maximum) {
     if (value > maximum) {
       String runtimeMessage = String.valueOf(maximum);
-      throw new InputException(ExceptionEnum.INPUT_GREATER_THAN_MINIMUM,
+      throw new InputException(ExceptionEnum.INPUT_GREATER_THAN_MAXIMUM,
           runtimeMessage);
     }
   }
