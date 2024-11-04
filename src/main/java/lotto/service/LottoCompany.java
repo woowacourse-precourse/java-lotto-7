@@ -1,5 +1,8 @@
 package lotto.service;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
+import java.util.Objects;
 import lotto.model.Lotto;
 import lotto.model.Match;
 import lotto.view.InputView;
@@ -8,6 +11,7 @@ import lotto.view.message.SystemMessage;
 public class LottoCompany {
     private Lotto winningNumber;
     private Integer bonusNumber;
+    private final Integer LOTTO_PRICE = 1000;
     private final InputView inputView = new InputView();
 
     public LottoCompany() {
