@@ -22,8 +22,10 @@ public class LottoGame {
             int matchCount = lotto.getMatchCount(winningLotto);
             boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
             LottoRank rank = LottoRank.valueOf(matchCount, matchBonus);
-            result.put(rank, result.getOrDefault(rank, 0) + 1);
 
+            if (rank != null) {
+                result.put(rank, result.getOrDefault(rank, 0) + 1);
+            }
         }
     }
 
