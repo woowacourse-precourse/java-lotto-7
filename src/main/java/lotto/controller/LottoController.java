@@ -15,6 +15,6 @@ public class LottoController {
         Integer bonusNumber = InputView.getBonusNumber(mainNumber);
         WinningNumber winningNumber = new WinningNumber(mainNumber, bonusNumber);
         consumer.setLottoResult(winningNumber);
-        OutputView.printResult(consumer.getLottoResult(), consumer.getSecondPlace());
+        OutputView.printResult(consumer);
     }
 }

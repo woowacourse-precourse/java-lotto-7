@@ -12,11 +12,12 @@ public enum LottoGuide {
     RESULT_THIRD("5개 일치 (1,500,000원) - %d개\n"),
     RESULT_SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
     RESULT_FIRST("6개 일치 (2,000,000,000원) - %d개\n"),
+    EARNING_RATE("총 수익률은 %.1f%%입니다."),
     ERROR("[ERROR] ");
 
     private final String message;
 
-    LottoGuide(String message){
+    LottoGuide(String message) {
         this.message = message;
     }
 
