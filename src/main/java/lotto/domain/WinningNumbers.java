@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.constant.ErrorMessage.WINNING_NUMBERS_NOT_NATURAL_NUMBERS;
+import static lotto.constant.ErrorMessage.WINNING_NUMBERS_NOT_NUMERIC;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,7 +26,7 @@ public class WinningNumbers {
                 Integer.parseInt(number);
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(WINNING_NUMBERS_NOT_NATURAL_NUMBERS);
+            throw new IllegalArgumentException(WINNING_NUMBERS_NOT_NUMERIC);
         }
     }
 
