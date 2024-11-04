@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
-    public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_UNIT_PRICE = 1000;
     public final LottoGenerator lottoGenerator;
 
     public LottoMachine(LottoGenerator lottoGenerator) {
@@ -13,12 +13,12 @@ public class LottoMachine {
 
     public List<Lotto> generateLottos(int amount) {
         validateAmount(amount);
-        int quantity = amount / LOTTO_PRICE;
+        int quantity = amount / LOTTO_UNIT_PRICE;
         return generateLottosByQuantity(quantity);
     }
 
     private void validateAmount(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
+        if (amount % LOTTO_UNIT_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 올바른 로또 구입금액이 아닙니다.");
         }
     }
