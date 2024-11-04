@@ -23,7 +23,11 @@ public class LottoCompare {
         return lotto.contains(bonusNumber);
     }
 
-    public Map<WinningType, Integer> storeNumbers(List<Integer> matchCounts, List<List<Integer>> lottoNumbers, int bonusNumber) {
+    public Map<WinningType, Integer> storeNumbers(
+            List<Integer> matchCounts,
+            List<List<Integer>> lottoNumbers,
+            int bonusNumber
+    ) {
         Map<WinningType, Integer> counts = new EnumMap<>(WinningType.class);
         for (WinningType type : WinningType.values()) {
             counts.put(type, 0);
