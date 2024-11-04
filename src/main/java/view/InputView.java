@@ -35,4 +35,14 @@ public class InputView {
         sb.append(lotto.get(5)).append("]\n");
         return sb.toString();
     }
+
+    public static String[] getInputLotto() {
+        System.out.println(ViewMessage.INPUT_LOTTO_NUMBERS);
+        return Console.readLine().split(",");
+    }
+
+    public static int getBonusNumber() {
+        System.out.println(ViewMessage.INPUT_BONUS_NUMBERS);
+        return Integer.parseInt(Console.readLine());
+    }
 }

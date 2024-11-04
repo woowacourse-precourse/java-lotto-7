@@ -2,6 +2,7 @@ package lotto;
 
 import validation.LottoValidator;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,8 +15,4 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         LottoValidator.validate(numbers);
     }
-
-//    private List<Integer> getNumbers(Lotto lotto) {
-//        return lotto.numbers;
-//    }
 }
