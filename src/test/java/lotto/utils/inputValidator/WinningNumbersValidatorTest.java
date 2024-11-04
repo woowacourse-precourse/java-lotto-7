@@ -6,7 +6,7 @@ import static lotto.constants.LottoTicket.UPPER_BOUND;
 import static lotto.exception.ErrorMessages.EMPTY_INPUT;
 import static lotto.exception.ErrorMessages.NUMBER_COUNT_MISMATCH;
 import static lotto.exception.ErrorMessages.OUT_OF_RANGE;
-import static lotto.fixture.InputFixture.VALID_RAW_WINNING_NUMBERES;
+import static lotto.utils.fixture.InputFixture.VALID_RAW_WINNING_NUMBERS;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -30,7 +30,7 @@ public class WinningNumbersValidatorTest {
         @DisplayName("[Pass] 정상적인 조건의 입력값은 아무런 행동도 하지 않는다.")
         void Given_ValidInput_When_ValidateNotEmpty_Then_DoNothing(){
             //given
-            final String VALID_INPUT = VALID_RAW_WINNING_NUMBERES.getInput();
+            final String VALID_INPUT = VALID_RAW_WINNING_NUMBERS.getInput();
 
             //when & then
             assertDoesNotThrow(()-> winningNumbersValidator.validate(VALID_INPUT));
@@ -57,7 +57,7 @@ public class WinningNumbersValidatorTest {
         @DisplayName("[Pass] 정상적인 조건의 입력값은 아무런 행동도 하지 않는다.")
         void Given_ValidInput_When_ValidateLottoFormat_Then_DoNothing(){
             //given
-            final String VALID_INPUT = VALID_RAW_WINNING_NUMBERES.getInput();
+            final String VALID_INPUT = VALID_RAW_WINNING_NUMBERS.getInput();
 
             //when & then
             assertDoesNotThrow(()-> winningNumbersValidator.validate(VALID_INPUT));

@@ -1,7 +1,7 @@
 package lotto.utils.inputValidator;
 
 import static lotto.exception.ErrorMessages.BONUS_NUMBER_DUPLICATION;
-import static lotto.fixture.InputFixture.VALID_RAW_BONUS_NUMBER;
+import static lotto.utils.fixture.InputFixture.VALID_RAW_BONUS_NUMBER;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 

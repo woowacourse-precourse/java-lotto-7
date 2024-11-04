@@ -10,7 +10,8 @@ import static lotto.exception.ErrorMessages.EMPTY_INPUT;
 import static lotto.exception.ErrorMessages.NOT_INT;
 import static lotto.exception.ErrorMessages.NOT_NUMBER;
 import static lotto.exception.ErrorMessages.NOT_POSITIVE_INT;
-import static lotto.fixture.InputFixture.*;
+import static lotto.utils.fixture.InputFixture.VALID_RAW_BONUS_NUMBER;
+import static lotto.utils.fixture.InputFixture.VALID_RAW_PURCHASE_AMOUNT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 

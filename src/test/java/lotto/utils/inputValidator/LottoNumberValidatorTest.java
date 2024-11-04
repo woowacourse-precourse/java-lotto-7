@@ -3,7 +3,7 @@ package lotto.utils.inputValidator;
 import static lotto.constants.LottoTicket.LOWER_BOUND;
 import static lotto.constants.LottoTicket.UPPER_BOUND;
 import static lotto.exception.ErrorMessages.OUT_OF_RANGE;
-import static lotto.fixture.InputFixture.VALID_RAW_BONUS_NUMBER;
+import static lotto.utils.fixture.InputFixture.VALID_RAW_BONUS_NUMBER;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 

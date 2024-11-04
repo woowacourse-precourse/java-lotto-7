@@ -4,7 +4,7 @@ import static lotto.constants.LottoTicket.LOTTO_PRICE;
 import static lotto.constants.LottoTicket.PURCHASE_LIMIT;
 import static lotto.exception.ErrorMessages.BEYOND_LIMIT;
 import static lotto.exception.ErrorMessages.NOT_DIVIDED_BY_LOTTO_PRICE;
-import static lotto.fixture.InputFixture.VALID_RAW_PURCHASE_AMOUNT;
+import static lotto.utils.fixture.InputFixture.VALID_RAW_PURCHASE_AMOUNT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
