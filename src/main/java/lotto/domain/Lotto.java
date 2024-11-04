@@ -13,6 +13,11 @@ public class Lotto {
             .toList();
     }
 
+    protected boolean contains(LottoNumber number) {
+        return numbers.stream()
+            .anyMatch(lottoNumber -> lottoNumber == number);
+    }
+
     private void validate(List<Integer> numbers) {
         validateNumberCount(numbers);
         validateUnique(numbers);
