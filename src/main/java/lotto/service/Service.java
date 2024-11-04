@@ -4,6 +4,7 @@ import lotto.domain.LottoGame;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.utils.Utils;
+import java.util.HashMap;
 import lotto.domain.Rank;
 import lotto.validation.Validation;
 import lotto.view.InputMessage;
@@ -107,5 +108,13 @@ public class Service {
             }
         }
         return Rank.NO_RANK;
+    }
+
+    public void checkBuyerLotteries() {
+        HashMap<Rank, Integer> result = buyer.getLottoResult();
+        for (Lotto lotto : buyer.getPurchasedLotteries()) {
+            Rank rank = determineLottoRank(lotto);
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
+        }
     }
 }
