@@ -1,7 +1,8 @@
 package lotto.validator;
 
+import lotto.constant.ErrorMessage;
+
 public class InputValidator implements Validator {
-    private static final String INPUT_IS_BLANK_ERROR = "[ERROR] 입력이 공백입니다.";
     String input;
 
     public InputValidator(String input) {
@@ -14,8 +15,8 @@ public class InputValidator implements Validator {
     }
 
     public void validateInputIsBlank() {
-        if(input.isBlank()){
-            throw new IllegalArgumentException(INPUT_IS_BLANK_ERROR);
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_BLANK.get());
         }
     }
 }

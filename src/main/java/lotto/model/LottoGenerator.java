@@ -4,11 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import lotto.constant.LottoNumberRule;
 
 public class LottoGenerator {
-    public static final int MIN_NUMBER = 1;
-    public static final int MAX_NUMBER = 45;
-    private static final int FIXED_SIZE = 6;
     private final List<Lotto> lottos;
 
     private LottoGenerator(int amount) {
@@ -32,7 +30,10 @@ public class LottoGenerator {
     }
 
     private Lotto generateAscedingSortedRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, FIXED_SIZE);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
+            LottoNumberRule.MIN_NUMBER.get(),
+            LottoNumberRule.MAX_NUMBER.get(),
+            LottoNumberRule.FIXED_SIZE.get());
         List<Integer> sortedRandomNumbers = randomNumbers.stream().sorted(Comparator.naturalOrder()).toList();
 
         return new Lotto(sortedRandomNumbers);

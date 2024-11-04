@@ -1,14 +1,16 @@
 package lotto.parser;
 
+import lotto.constant.ErrorMessage;
+
 public class NumberParser {
-    private static final String INPUT_IS_NOT_NUMBER = "[ERROR] 숫자를 입력해주세요.";
-    private NumberParser() {}
+    private NumberParser() {
+    }
 
     public static Long parseLong(String input) {
         try {
             return Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_IS_NOT_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_NUMBER.get());
         }
     }
 
@@ -16,7 +18,7 @@ public class NumberParser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_IS_NOT_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_NUMBER.get());
         }
     }
 }

@@ -21,6 +21,23 @@ public class LottoVending {
         this.inputView = inputView;
         this.outputView = outputView;
     }
+    
+    public void take() {
+        outputView.printPurchaseAmountMessage();
+        PurchaseAmount amount = getPurchaseAmountUntilValid();
+        outputView.printWinningNumbersMessage();
+        Lotto winningNumbers = getWinningNumbersUntilValid();
+        outputView.printBonusNumberMessage();
+        Integer bonusNumber = getBonusNumbersUntilValid(winningNumbers);
+
+        LottoGenerator lottoGenerator = LottoGenerator.generate(amount.getAmount());
+        List<Lotto> lottos = lottoGenerator.getLottos();
+        outputView.printLottos(lottos);
+        LottoStatistics stats = LottoStatistics.create(lottos, winningNumbers, bonusNumber);
+        outputView.printLottoResult(stats.getMatchResult());
+        float totalEarningsRate = (float) stats.getTotalEarnings() / amount.getBudget() * 100;
+        outputView.printTotalEarningsRate(totalEarningsRate);
+    }
 
     private PurchaseAmount getPurchaseAmountUntilValid() {
         while (true) {
@@ -66,22 +83,5 @@ public class LottoVending {
                 outputView.printErrorMessage(e);
             }
         }
-    }
-
-    public void take() {
-        outputView.printPurchaseAmountMessage();
-        PurchaseAmount amount = getPurchaseAmountUntilValid();
-        outputView.printWinningNumbersMessage();
-        Lotto winningNumbers = getWinningNumbersUntilValid();
-        outputView.printBonusNumberMessage();
-        Integer bonusNumber = getBonusNumbersUntilValid(winningNumbers);
-
-        LottoGenerator lottoGenerator = LottoGenerator.generate(amount.getAmount());
-        List<Lotto> lottos = lottoGenerator.getLottos();
-        outputView.printLottos(lottos);
-        LottoStatistics stats = LottoStatistics.create(lottos, winningNumbers, bonusNumber);
-        outputView.printLottoResult(stats.getMatchResult());
-        float totalEarningsRate = (float) stats.getTotalEarnings() / amount.getBudget() * 100;
-        outputView.printTotalEarningsRate(totalEarningsRate);
     }
 }
