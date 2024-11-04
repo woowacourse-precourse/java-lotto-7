@@ -1,5 +1,6 @@
 package lotto.lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class LottoTickets {
@@ -11,7 +12,7 @@ public class LottoTickets {
         return new LottoTickets(tickets);
     }
     public List<Lotto> info() {
-        return tickets;
+        return Collections.unmodifiableList(tickets);
     }
     @Override
     public String toString() {
