@@ -14,7 +14,6 @@ import lotto.domain.model.Lotto;
 import lotto.domain.model.LottoNumber;
 import lotto.util.LottoMaker;
 import lotto.util.Parser;
-import lotto.util.TicketMaker;
 
 public class LottoService {
 
@@ -26,12 +25,6 @@ public class LottoService {
         }
 
         return new RandomLottos(randomLottos);
-    }
-
-    public int changeToTicket(String priceInput) {
-        int price = Parser.parseToInt(priceInput);
-
-        return TicketMaker.make(price);
     }
 
     public Lotto createWinningLottoNumbers(String numbersInput) {

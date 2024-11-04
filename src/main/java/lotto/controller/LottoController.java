@@ -7,8 +7,11 @@ import lotto.domain.RandomLottos;
 import lotto.domain.WinningLotto;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.LottoNumber;
+import lotto.exception.model.LottoExceptionBase;
 import lotto.service.LottoService;
 import lotto.util.Parser;
+import lotto.util.TicketMaker;
+import lotto.view.LottoErrorView;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
@@ -25,23 +28,74 @@ public class LottoController {
     }
 
     public void run() {
-        String priceInput = inputView.getPriceInput();
-        int price = Parser.parseToInt(priceInput);
-        int ticket = lottoService.changeToTicket(priceInput);
+        int price = requestPrice();
+        int ticket = parseToTicket(price);
 
         outputView.printTicketGuide(ticket);
         RandomLottos randomLottos = lottoService.createRandomLottos(ticket);
+        noticeRandomLottos(randomLottos);
+
+        Lotto winningLottoNumbers = requestWinningNumber();
+
+        LottoNumber bonus = requestBonus();
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonus);
+
+        calculatePrizeResult(randomLottos, winningLotto, price);
+    }
+
+    private int requestPrice() {
+        try {
+            String priceInput = inputView.getPriceInput();
+
+            return Parser.parseToInt(priceInput);
+        } catch (LottoExceptionBase e) {
+            LottoErrorView.printErrorMessage(e.getMessage());
+
+            return requestPrice();
+        }
+    }
+
+    private int parseToTicket(int price) {
+        try {
+            return TicketMaker.make(price);
+        } catch (LottoExceptionBase e) {
+            LottoErrorView.printErrorMessage(e.getMessage());
+
+            return requestPrice();
+        }
+    }
+
+    private void noticeRandomLottos(RandomLottos randomLottos) {
         for (Lotto lotto : randomLottos.lottos()) {
             outputView.printNumbers(lotto.getNumberValues());
         }
+    }
 
-        String winningNumberInput = inputView.getWinningNumberInput();
-        Lotto winningLottoNumbers = lottoService.createWinningLottoNumbers(winningNumberInput);
+    private Lotto requestWinningNumber() {
+        try {
+            String winningNumberInput = inputView.getWinningNumberInput();
 
-        String bonusInput = inputView.getBonusInput();
-        LottoNumber bonus = new LottoNumber(Parser.parseToInt(bonusInput));
-        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonus);
+            return lottoService.createWinningLottoNumbers(winningNumberInput);
+        } catch (LottoExceptionBase e) {
+            LottoErrorView.printErrorMessage(e.getMessage());
 
+            return requestWinningNumber();
+        }
+    }
+
+    private LottoNumber requestBonus() {
+        try {
+            String bonusInput = inputView.getBonusInput();
+
+            return new LottoNumber(Parser.parseToInt(bonusInput));
+        } catch (LottoExceptionBase e) {
+            LottoErrorView.printErrorMessage(e.getMessage());
+
+            return requestBonus();
+        }
+    }
+
+    private void calculatePrizeResult(RandomLottos randomLottos, WinningLotto winningLotto, int price) {
         PrizeResult prizeResult = lottoService.calculateResult(randomLottos, winningLotto);
 
         outputView.printGuideMessage();
