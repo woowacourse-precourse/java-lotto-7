@@ -6,7 +6,7 @@ import java.util.List;
 import static lotto.constants.ErrorMessage.*;
 
 public class CustomLotto extends Lotto{
-    private Integer bonus;
+    private final Integer bonus;
 
     public CustomLotto(List<Integer> numbers, Integer bonus) {
         super(numbers);
