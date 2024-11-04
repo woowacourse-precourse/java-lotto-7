@@ -7,17 +7,18 @@ import java.util.List;
 
 import static lotto.validate.LottoConstants.LOTTO_PRICE;
 import static lotto.validate.LottoConstants.MIN_VALID_AMOUNT;
+import static lotto.validate.LottoConstants.ZERO_VALID_AMOUNT;
 
 public class ValidateInput {
     public static int validateAmount(String amountInput) {
         int amount = validateNumeric(amountInput);
 
         if (amount < MIN_VALID_AMOUNT.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.NEGATIVE_PURCHASE_AMOUNT.getMessage());
         }
 
-        if (amount % LOTTO_PRICE.getValue() != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        if (amount % LOTTO_PRICE.getValue() != ZERO_VALID_AMOUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_UNIT_PRICE.getMessage());
         }
 
         return amount;
@@ -25,7 +26,7 @@ public class ValidateInput {
 
     public static void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != new HashSet<>(winningNumbers).size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBERS.getMessage());
         }
 
         winningNumbers.forEach(ValidateInput::validateNumberInRange);
@@ -36,7 +37,7 @@ public class ValidateInput {
         validateNumberInRange(bonusNumber);
 
         if (winningLotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_BONUS_DUPLICATE.getMessage());
         }
 
         return bonusNumber;
@@ -46,13 +47,13 @@ public class ValidateInput {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다.");
+            throw new IllegalArgumentException(ErrorMessages.NOT_A_NUMBER.getMessage());
         }
     }
 
     private static void validateNumberInRange(int number) {
         if (number < LottoConstants.MIN_NUMBER.getValue() || number > LottoConstants.MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.OUT_OF_RANGE.getMessage());
         }
     }
 }
