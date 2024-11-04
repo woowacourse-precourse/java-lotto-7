@@ -1,11 +1,15 @@
 package lotto.view;
 
+import static lotto.utils.Constants.MAX_NUMBER;
+import static lotto.utils.Constants.THOUSAND_VALUE;
+import static lotto.utils.Constants.ZERO_VALUE;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.error.ErrorMessage;
+import lotto.utils.ErrorMessage;
 
 public class InputView {
     private static final String INPUT_MONEY_AMOUNT = "구입금액을 입력해 주세요.";
@@ -57,7 +61,7 @@ public class InputView {
 
     protected List<Integer> convertStringToInteger(List<String> inputString) {
         List<Integer> inputNumbers = new ArrayList<>();
-        int num = 0;
+        int num = ZERO_VALUE;
         for (String input : inputString) {
             try {
                 num = Integer.parseInt(input);
@@ -98,14 +102,14 @@ public class InputView {
     }
 
     protected int validateInputNumber(int number) {
-        if (number <= 0 || number > 45) {
+        if (number <= ZERO_VALUE || number > MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE.getMessage());
         }
         return number;
     }
 
     protected void validateInputMoney(int money) {
-        if (money <= 0 || money % 1000 != 0) {
+        if (money <= ZERO_VALUE || money % THOUSAND_VALUE != ZERO_VALUE) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_OUT_OF_RANGE.getMessage());
         }
     }

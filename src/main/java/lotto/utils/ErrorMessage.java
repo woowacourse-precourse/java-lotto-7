@@ -1,4 +1,4 @@
-package lotto.error;
+package lotto.utils;
 
 public enum ErrorMessage {
     DUPLICATE_LOTTO_NUMBER("[ERROR] 로또 번호는 중복되지 않아야 합니다."),

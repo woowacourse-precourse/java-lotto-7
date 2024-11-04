@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.utils.Constants.THOUSAND_VALUE;
+
 import java.util.List;
 import lotto.domain.WinnerResult;
 import lotto.service.LottoCalculator;
@@ -11,8 +13,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Controller {
-
-    private static final Integer THOUSAND_VALUE = 1000;
     private final InputView inputView;
     private final OutputView outputView;
 

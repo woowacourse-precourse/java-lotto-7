@@ -1,6 +1,9 @@
 package lotto.domain;
 
-import lotto.error.ErrorMessage;
+import static lotto.utils.Constants.THOUSAND_VALUE;
+import static lotto.utils.Constants.ZERO_VALUE;
+
+import lotto.utils.ErrorMessage;
 
 public class Player {
     private final int money;
@@ -13,7 +16,7 @@ public class Player {
     }
 
     private void validate(int money) {
-        if (money <= 0 || money % 1000 != 0) {
+        if (money <= ZERO_VALUE || money % THOUSAND_VALUE != ZERO_VALUE) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_OUT_OF_RANGE.getMessage());
         }
     }

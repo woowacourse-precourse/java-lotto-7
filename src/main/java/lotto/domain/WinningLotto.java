@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.function.Predicate;
-import lotto.error.ErrorMessage;
+import lotto.utils.ErrorMessage;
 
 public class WinningLotto {
     private final List<Integer> numbers;
