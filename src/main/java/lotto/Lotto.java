@@ -32,5 +32,8 @@ public class Lotto {
         return Rank.findRank(matchCount, bonusMatch);
     }
 
-
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
