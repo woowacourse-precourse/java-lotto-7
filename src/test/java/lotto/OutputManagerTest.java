@@ -72,5 +72,18 @@ class OutputManagerTest {
         System.setOut(System.out);
     }
 
+    @Test
+    void 수익률_출력_테스트() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        double profitRate = 62.5;
+        OutputManager.printProfitRate(profitRate);
+
+        assertThat(outputStream.toString()).contains("총 수익률은 62.5%입니다.");
+
+        System.setOut(System.out);
+    }
+
 }
 
