@@ -16,7 +16,7 @@ public class InputController {
     private static final String END_WITH_SEPARATOR_ERROR_MESSAGE = "구분자로 종료되고 있습니다.";
     private static final String SEPARATOR = ",";
     private static final String SPACE = " ";
-    private static final String BLANK = "";
+    private static final String EMPTY = "";
 
     private final InputUi inputUi;
 
@@ -79,7 +79,7 @@ public class InputController {
 
     private String readTrimmedInput() {
         final String trimmedInput = inputUi.readLine().trim();
-        return trimmedInput.replaceAll(SPACE, BLANK);
+        return trimmedInput.replaceAll(SPACE, EMPTY);
     }
 
     private void validateSingleNumber(final String numberInput) {
