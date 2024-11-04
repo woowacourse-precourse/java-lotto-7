@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.util.CalculateResult;
 import lotto.util.LottoRandomGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 public class LottoController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
-    private final LottoRandomGenerator randomGenerator = new LottoRandomGenerator();
+    private final CalculateResult calculateResult = new CalculateResult();
 
     public void playLotto(){
         Money money = createMoney();
@@ -21,6 +22,11 @@ public class LottoController {
         WinningNumbers winningNumbers = createWinningNumbers();
         Winning winning = createWinning(winningNumbers);
 
+        WinningResult winningResult = createWinningResult(lottos, winning);
+        outputView.printWinningResult(winningResult);
+
+        double yield = calculateYield(money, winningResult);
+        outputView.printYield(yield);
     }
 
     private Money createMoney(){
@@ -62,5 +68,12 @@ public class LottoController {
         return new Winning(winningNumbers, bonusNumber);
     }
 
+    private WinningResult createWinningResult(Lottos lottos, Winning winning) {
+        return calculateResult.calculateResult(lottos, winning);
+    }
 
+    private double calculateYield(Money money, WinningResult winningResult) {
+        int totalPrize = winningResult.calculateTotalPrize();
+        return ((double) totalPrize / money.money()) * 100;
+    }
 }
