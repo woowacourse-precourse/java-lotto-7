@@ -27,6 +27,6 @@ public class WinningStatistics {
             totalPrize += (long) rank.getPrize() * rankCounts.get(rank);
         }
         double profitRate = (double) totalPrize / purchaseAmount * 100;
-        return Math.round(profitRate * 10) / 10.0; // 소수점 둘째 자리에서 반올림
+        return Math.round(profitRate * 10) / 10.0;
     }
 }
