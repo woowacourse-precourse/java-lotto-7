@@ -50,7 +50,6 @@ public class User {
 
         while (true) {
             try {
-                System.out.println();
                 bonus = Integer.parseInt(Console.readLine());
 
                 break;
