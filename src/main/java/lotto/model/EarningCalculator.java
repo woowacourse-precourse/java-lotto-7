@@ -1,12 +1,14 @@
 package lotto.model;
 
-public class EarningCalculator {
-    private final static long[] price = {5000, 50000, 1500000, 30000000, 2000000000};
+import lotto.enumerate.Rank;
 
-    public double calculate(int[] winning, int purchase) {
+import java.util.Map;
+
+public class EarningCalculator {
+    public static double calculate(Map<Rank, Integer> ranks, long   purchase) {
         long total = 0;
-        for (int i = 0; i < 5; i++) {
-            total += (price[i] * winning[i]);
+        for (Map.Entry<Rank, Integer> rankIntegerEntry : ranks.entrySet()) {
+            total += rankIntegerEntry.getKey().getPrize() * rankIntegerEntry.getValue();
         }
         return total / (double) purchase * 100;
     }

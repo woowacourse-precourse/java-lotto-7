@@ -1,6 +1,8 @@
 package lotto.model;
 
-import java.util.List;
+import lotto.enumerate.Rank;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lottos {
@@ -15,11 +17,27 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     private static List<Lotto> convertToLottoList(List<List<Integer>> numbers) {
         return numbers.stream()
                 .map(Lotto::new)
                 .collect(Collectors.toList());
     }
 
+    public Map<Rank, Integer> getLottoRank(WinNumber winNumber) {
+        Map<Rank, Integer> currentRankSituationMap = new HashMap<>();
 
+        for (Lotto lotto : lottos) {
+            Rank rank = lotto.findRank(winNumber);
+            if (rank.equals(Rank.NONE)) {
+                continue;
+            }
+            currentRankSituationMap.put(rank, currentRankSituationMap.getOrDefault(rank, 0) + 1);
+        }
+
+        return currentRankSituationMap;
+    }
 }
