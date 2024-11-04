@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.view.Error;
 
 public class WinningNumber {
     private static final String WINNING_NUMBER_PATTERN = "([1-9][0-9]{0,1},){5}[1-9][0-9]{0,1}";
@@ -15,17 +16,17 @@ public class WinningNumber {
         Matcher matcherPay = patternWinningNumber.matcher(input);
 
         if (!matcherPay.matches()) {
-            reject();
+            Error.reject(Error.INVALID_MSG);
         }
 
         String[] separateWinningNumber = input.split(",");
         if (!Arrays.stream(separateWinningNumber)
                 .allMatch(num -> Integer.parseInt(num) >= 1 && Integer.parseInt(num) <= 45)) {
-            reject();
+            Error.reject(Error.RANGE_MSG);
         }
 
         if (Arrays.stream(separateWinningNumber).distinct().count() != separateWinningNumber.length) {
-            reject();
+            Error.reject(Error.DUPLICATE_VALUE_MSG);
         }
     }
 
@@ -39,9 +40,5 @@ public class WinningNumber {
 
     public List<Integer> getNumbers() {
         return this.numbers;
-    }
-
-    public void reject() {
-        throw new IllegalArgumentException();
     }
 }

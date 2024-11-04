@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.view.Error;
 
 public class Seller {
     private static final String PAY_PATTERN = "^[1-9][0-9]{3,}";
@@ -14,12 +15,12 @@ public class Seller {
         Matcher matcherPay = patternPay.matcher(input);
 
         if (!matcherPay.matches()) {
-            reject();
+            Error.reject(Error.INVALID_MSG);
         }
 
         int money = Integer.parseInt(input);
         if (money % 1000 != 0) {
-            reject();
+            Error.reject(Error.MONEY_MSG);
         }
     }
 
@@ -40,9 +41,5 @@ public class Seller {
 
     public List<Integer> getRandomNumber() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
-    public void reject() {
-        throw new IllegalArgumentException();
     }
 }

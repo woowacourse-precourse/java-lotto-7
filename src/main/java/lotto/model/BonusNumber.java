@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.view.Error;
 
 public class BonusNumber {
     private static final String BONUS_NUMBER_PATTERN = "[1-9][0-9]{0,1}";
@@ -12,11 +13,11 @@ public class BonusNumber {
         Matcher matcher = patternBonusNumber.matcher(input);
 
         if (!matcher.matches()) {
-            reject();
+            Error.reject(Error.INVALID_MSG);
         }
 
         if (!(Integer.parseInt(input) >= 1 && Integer.parseInt(input) <= 45)) {
-            reject();
+            Error.reject(Error.RANGE_MSG);
         }
     }
 
@@ -26,9 +27,5 @@ public class BonusNumber {
 
     public int getNumber() {
         return this.number;
-    }
-
-    public void reject() {
-        throw new IllegalArgumentException();
     }
 }
