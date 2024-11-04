@@ -106,8 +106,8 @@ public class Application {
         String bonusNumber  = Console.readLine();
         int getValidatedBonusNumber = Integer.parseInt(bonusNumber);
 
-        if (bonusNumber.equals("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력이 가능합니다.");
+        if (!bonusNumber.matches("^\\d+$")) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 단일 숫자만 입력이 가능합니다.");
         }
 
         if (getValidatedBonusNumber < 1 || getValidatedBonusNumber > 45) {
