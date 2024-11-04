@@ -14,4 +14,8 @@ public class LottoController {
 
         lottoService.getAmount(money);
     }
+
+    public void generateLottoNumbers() {
+        lottoService.generateLottoNumbers();
+    }
 }
