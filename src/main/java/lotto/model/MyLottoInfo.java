@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.properties.LottoProperties.LOTTO_PRICE;
-import static lotto.properties.LottoProperties.LOTTO_REVENUE_PERCENTAGE;
+import static lotto.properties.LottoProperties.LOTTO_REVENUE_RATE;
 
 public class MyLottoInfo {
 
@@ -92,7 +92,7 @@ public class MyLottoInfo {
         return purchaseLottoCount;
     }
     public double getRevenuePercentage() {
-        revenuePercentage = ((double) revenue / (double) purchaseAmount) * LOTTO_REVENUE_PERCENTAGE;
+        revenuePercentage = ((double) revenue / (double) purchaseAmount) * LOTTO_REVENUE_RATE;
         return revenuePercentage;
     }
 
