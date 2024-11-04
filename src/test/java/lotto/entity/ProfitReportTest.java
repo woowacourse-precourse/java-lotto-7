@@ -100,35 +100,60 @@ class ProfitReportTest {
                         List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FIRST, 1)
+                        Map.of(Prize.FIRST, 1,
+                                Prize.SECOND, 0,
+                                Prize.THIRD, 0,
+                                Prize.FOURTH, 0,
+                                Prize.FIFTH, 0,
+                                Prize.NONE, 0)
                 ),
                 // 2등 당첨 (5개 + 보너스 번호 일치)
                 Arguments.of(
                         List.of(new Lotto(List.of(1, 2, 3, 4, 5, 7))),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.SECOND, 1)
+                        Map.of(Prize.FIRST, 0,
+                                Prize.SECOND, 1,
+                                Prize.THIRD, 0,
+                                Prize.FOURTH, 0,
+                                Prize.FIFTH, 0,
+                                Prize.NONE, 0)
                 ),
                 // 3등 당첨 (5개 일치)
                 Arguments.of(
                         List.of(new Lotto(List.of(1, 2, 3, 4, 5, 8))),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.THIRD, 1)
+                        Map.of(Prize.FIRST, 0,
+                                Prize.SECOND, 0,
+                                Prize.THIRD, 1,
+                                Prize.FOURTH, 0,
+                                Prize.FIFTH, 0,
+                                Prize.NONE, 0)
                 ),
                 // 4등 당첨 (4개 일치)
                 Arguments.of(
                         List.of(new Lotto(List.of(1, 2, 3, 4, 10, 11))),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FOURTH, 1)
+                        Map.of(Prize.FIRST, 0,
+                                Prize.SECOND, 0,
+                                Prize.THIRD, 0,
+                                Prize.FOURTH, 1,
+                                Prize.FIFTH, 0,
+                                Prize.NONE, 0)
                 ),
                 // 5등 당첨 (3개 일치)
                 Arguments.of(
                         List.of(new Lotto(List.of(1, 2, 3, 10, 11, 12))),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FIFTH, 1)
+                        Map.of(Prize.FIRST, 0,
+                                Prize.SECOND, 0,
+                                Prize.THIRD, 0,
+                                Prize.FOURTH, 0,
+                                Prize.FIFTH, 1,
+                                Prize.NONE, 0)
                 ),
                 // 여러 등수 복합 테스트
                 Arguments.of(
@@ -140,7 +165,11 @@ class ProfitReportTest {
                         ),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.FIRST, 1, Prize.SECOND, 1, Prize.THIRD, 1, Prize.FOURTH, 1)
+                        Map.of(Prize.FIRST, 1,
+                                Prize.SECOND, 1,
+                                Prize.THIRD, 1,
+                                Prize.FOURTH, 1,
+                                Prize.FIFTH, 0)
                 ),
                 Arguments.of(
                         List.of(
@@ -155,7 +184,12 @@ class ProfitReportTest {
                         ),
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
-                        Map.of(Prize.NONE, 7, Prize.FIFTH, 1)
+                        Map.of(Prize.FIRST, 0,
+                                Prize.SECOND, 0,
+                                Prize.THIRD, 0,
+                                Prize.FOURTH, 0,
+                                Prize.FIFTH, 1,
+                                Prize.NONE, 7)
                 )
         );
     }
