@@ -12,4 +12,8 @@ public enum Prize {
     public Integer getPrize() {
         return prize;
     }
+
+    public String getPrintablePrize() {
+        return String.format("%,d", prize);
+    }
 }

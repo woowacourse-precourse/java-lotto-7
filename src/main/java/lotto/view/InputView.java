@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.model.LottoConstants.LOTTO_LAST_NUMBER;
-import static lotto.model.LottoConstants.LOTTO_START_NUMBER;
+import static lotto.model.LottoConstants.*;
 import static lotto.validation.Validation.*;
 
 public class InputView {
@@ -19,6 +18,7 @@ public class InputView {
         String input_pay = readLine().trim();
         try {
             validateStringToInteger(input_pay);
+            validateMultipleNumber(Integer.valueOf(input_pay),LOTTO_PRICE);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return readPayAmount();
@@ -31,7 +31,7 @@ public class InputView {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String input_numbers = readLine().trim();
         try {
-            validateListStringToInteger(Arrays.asList(input_numbers.split(",")));
+            validateStringToListInteger(input_numbers);
             List<Integer> golden_numbers = Arrays.stream(input_numbers.split(","))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
