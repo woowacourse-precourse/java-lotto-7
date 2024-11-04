@@ -2,26 +2,26 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LotteryStore {
+    private final List<LottoTicket> purchasedLottos = new ArrayList<>();
 
-    static LottoTickets purchase() {
+    List<LottoTicket> purchase() {
         int numberOfLottoTicket = inputSpending();
         System.out.println();
 
-        LottoTickets tickets = new LottoTickets();
-
         for(int i = 0; i < numberOfLottoTicket; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-
             LottoTicket ticket = new LottoTicket(randomNumbers);
-            tickets.add(ticket);
+
+            purchasedLottos.add(ticket);
         }
 
-        displayPurchasedLottos(tickets);
+        displayPurchasedLottos();
 
-        return tickets;
+        return purchasedLottos;
     }
 
     private static int inputSpending() {
@@ -56,9 +56,9 @@ public class LotteryStore {
         }
     }
 
-    private static void displayPurchasedLottos(LottoTickets tickets) {
-        System.out.println(tickets.getTickets().size() + "개를 구매했습니다.");
-        for (LottoTicket ticket : tickets.getTickets()) {
+    private void displayPurchasedLottos() {
+        System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
+        for (LottoTicket ticket : purchasedLottos) {
             System.out.println(ticket.getNumbers());
         }
     }
