@@ -34,7 +34,6 @@ public class WinningCombination {
 
             rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
         }
-
         return rankCounts;
     }
 

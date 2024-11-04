@@ -74,4 +74,27 @@ class WinningCombinationTest {
                 )
         );
     }
+
+    @DisplayName("로또의 수익률을 계산한다.")
+    @Test
+    void calculateProfitRateTest() {
+        LottoTicket lottoTicket = new LottoTicket(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 2, 3, 4, 9, 10))
+        ));
+
+        Bonus bonus = new Bonus("7");
+        WinningCombination winningCombination = new WinningCombination(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)), bonus
+        );
+
+        Map<Rank, Integer> rankCounts = winningCombination.lottoWinningResult(lottoTicket);
+        PurchaseAmount purchaseAmount = new PurchaseAmount("3000");
+
+        double profitRate = winningCombination.calculateProfitRate(rankCounts, purchaseAmount);
+        double expectedProfitRate = ((2000000000 + 30000000 + 50000) / 3000.0) * 100;
+
+        assertThat(profitRate).isEqualTo(expectedProfitRate);
+    }
 }

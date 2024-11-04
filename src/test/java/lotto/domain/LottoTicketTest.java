@@ -15,8 +15,9 @@ class LottoTicketTest {
         Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
         LottoTicket lottoTicket = new LottoTicket(List.of(lotto1, lotto2));
 
-        String expectedOutput = "[1, 2, 3, 4, 5, 6]\n[7, 8, 9, 10, 11, 12]";
+        String lottoTicketFormat = lottoTicket.toString();
 
-        assertThat(lottoTicket.toString()).isEqualTo(expectedOutput);
+        String expectedOutput = "[1, 2, 3, 4, 5, 6]\n[7, 8, 9, 10, 11, 12]";
+        assertThat(lottoTicketFormat).isEqualTo(expectedOutput);
     }
 }
