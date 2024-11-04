@@ -1,6 +1,7 @@
 package validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
 import lotto.ErrorMessage;
@@ -42,4 +43,13 @@ public class PrizeNumberValidatorTest {
                 .hasMessage(ErrorMessage.PRIZE_COUNT_OUT_OF_SIX); // then
     }
 
+    @Test
+    void 당첨_번호_적합성이_성공하는_경우() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 30);
+
+        // when
+        // then
+        assertDoesNotThrow(() -> PrizeNumberValidator.validate(numbers));
+    }
 }
