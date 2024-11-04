@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.Prize;
+import lotto.valid.LottoNumbersValidator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +22,8 @@ public class LottoService {
     }
 
     public LottoResult evaluateLottos(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        LottoNumbersValidator.validate(winningNumbers);
+
         Map<Prize, Integer> prizeCounts = new HashMap<>();
         double totalPrizeMoney = 0;
 

@@ -16,20 +16,28 @@ public class InputValidator {
 
     public static List<Integer> validateWinningNumbers(String input) {
         String[] parts = input.split(",");
+
+        if (parts.length != 6) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBER_COUNT);
+        }
+
         List<Integer> winningNumbers = new ArrayList<>();
         Set<Integer> uniqueNumbers = new HashSet<>();
 
         for (String s : parts) {
-            int number = parseIntWithValidation(s.trim(), String.format(ERROR_NOT_A_NUMBER, "당첨 번호는"));
-            if (number < 1 || number > 45) throw new IllegalArgumentException(ERROR_WINNING_RANGE);
-
-            if (!uniqueNumbers.add(number)) {
-                throw new IllegalArgumentException(ERROR_DUPLICATE_WINNING_NUMBERS);
-            }
-
-            winningNumbers.add(number);
+            validateEachNumber(s, uniqueNumbers, winningNumbers);
         }
+        LottoNumbersValidator.validate(winningNumbers);
         return winningNumbers;
+    }
+
+    private static void validateEachNumber(String s, Set<Integer> uniqueNumbers, List<Integer> winningNumbers) {
+        int number = parseIntWithValidation(s.trim(), String.format(ERROR_NOT_A_NUMBER, "당첨 번호는"));
+        if (number < 1 || number > 45) throw new IllegalArgumentException(ERROR_WINNING_RANGE);
+        if (!uniqueNumbers.add(number)) {
+            throw new IllegalArgumentException(ERROR_DUPLICATE_WINNING_NUMBERS);
+        }
+        winningNumbers.add(number);
     }
 
     public static int validateBonusNumber(String input) {
