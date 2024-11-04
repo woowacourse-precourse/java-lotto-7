@@ -21,9 +21,13 @@ public class Lotto {
     public int buy_lotto(){
         System.out.println("구입금액을 입력해 주세요.");
         int amount = Integer.parseInt(Console.readLine());
-        if (amount % 1000 != 0){
+        validateAmount(amount);
+        return amount;
+    }
+
+    public void validateAmount(int amount) {
+        if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위여야 합니다.");
         }
-        return amount;
     }
 }
