@@ -38,9 +38,16 @@ public class UserRequestController {
     public void inputBonusNum(String bonusNum){
         if(inputValidService.isBonusNumber(bonusNum)){
             bonusNumber = Integer.parseInt(bonusNum);
-            return;
+            winCountLotto();
         }
         error("로또 보너스 번호의 입력이 잘 못 되었습니다.");
+    }
+
+    public void winCountLotto(){
+        List<Integer> winCounts = lottoService.countWinLotto(
+                randomLotto.getLotto(),
+                lotto.getNumbers(),
+                bonusNumber);
     }
 
     public void error(String detail){
