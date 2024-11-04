@@ -12,14 +12,10 @@ import java.util.stream.Stream;
 import lotto.exception.InputNumberException;
 
 public class LottoNumberValidator {
-    public static List<Integer> validateAndParse(String input) {
-        if (input.trim().isEmpty()) {
-            throw new IllegalArgumentException(InputNumberException.EMPTY_INPUT.getMessage());
-        }
 
-        if (input.trim().endsWith(DELIMITER)) {
-            throw new IllegalArgumentException(InputNumberException.ENDS_WITH_COMMA.getMessage());
-        }
+    public static List<Integer> validateAndParse(String input) {
+        checkEmptyInput(input);
+        checkEndsWithComma(input);
 
         List<Integer> numbers;
         try {
@@ -28,10 +24,26 @@ public class LottoNumberValidator {
             throw new IllegalArgumentException(InputNumberException.INVALID_FORMAT.getMessage());
         }
 
+        validate(numbers);
+        return numbers;
+    }
+
+    public static void validate(List<Integer> numbers) {
         validateLength(numbers);
         validateRange(numbers);
         validateDuplicates(numbers);
-        return numbers;
+    }
+
+    private static void checkEndsWithComma(String input) {
+        if (input.trim().endsWith(DELIMITER)) {
+            throw new IllegalArgumentException(InputNumberException.ENDS_WITH_COMMA.getMessage());
+        }
+    }
+
+    private static void checkEmptyInput(String input) {
+        if (input.trim().isEmpty()) {
+            throw new IllegalArgumentException(InputNumberException.EMPTY_INPUT.getMessage());
+        }
     }
 
     private static List<Integer> parseNumbers(String input) {
