@@ -22,11 +22,11 @@ public class WinningLotto {
         return new WinningLotto(LottoRank.getLottoRank(matchCount, hasBonusNumber));
     }
 
-    private static boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
+    private static boolean hasBonusNumber(final Lotto lotto, final BonusNumber bonusNumber) {
         return bonusNumber.contains(lotto.getNumbers());
     }
 
-    private static int getMatchCount(Lotto lotto, WinningNumbers winningNumbers) {
+    private static int getMatchCount(final Lotto lotto, final WinningNumbers winningNumbers) {
         return winningNumbers.countMatchedNumbers(lotto.getNumbers());
     }
 

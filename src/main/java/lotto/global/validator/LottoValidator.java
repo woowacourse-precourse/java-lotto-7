@@ -8,13 +8,13 @@ import java.util.List;
 
 public class LottoValidator {
 
-    public static void validate(List<Integer> numbers) {
+    public static void validate(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplication(numbers);
         validateNumberRange(numbers);
     }
 
-    private static void validateSize(List<Integer> numbers) {
+    private static void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LottoConstant.LOTTO_SIZE) {
             throw LottoException.from(ErrorMessage.INVALID_LOTTO_SIZE);
         }

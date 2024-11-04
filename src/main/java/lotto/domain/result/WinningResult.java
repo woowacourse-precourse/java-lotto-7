@@ -42,7 +42,7 @@ public class WinningResult {
         return result;
     }
 
-    private static void initializeValidRank(LottoRank rank, Map<LottoRank, Integer> result) {
+    private static void initializeValidRank(final LottoRank rank, final Map<LottoRank, Integer> result) {
         if (rank != LottoRank.NONE) {
             result.put(rank, DEFAULT_VALUE);
         }
