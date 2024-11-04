@@ -78,7 +78,13 @@ public class DongHangLottery {
     }
 
     public static void announceResult() {
+        VendingMachineRepository vendingMachineRepository = appConfig.vendingMachineRepository();
+        Map<Rank, Integer> lottoStatistics = vendingMachineRepository.getWinningStatistics();
+        double earningsRate = vendingMachineRepository.getEarningRate();
 
+        outputWriter.printStatistics(lottoStatistics, earningsRate);
+
+        inputReader.close();
     }
 
 }
