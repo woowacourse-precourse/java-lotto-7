@@ -4,10 +4,8 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.Arrays;
 
@@ -66,9 +64,6 @@ public class Application {
     }
 
     public static List<Integer> stringToNumbers(List<String> numbers_string) {
-        // if (uniqueNumbers.size() != 6) {
-        // throw new IllegalArgumentException("[ERROR] 로또 번호는 중복없이 6개여야 합니다.");
-        // }
         List<Integer> numbers = new ArrayList<Integer>();
         for (String e : numbers_string) {
             int element = stringToNum(e);
@@ -85,9 +80,6 @@ public class Application {
                 String input = readLine();
                 List<Integer> numbers = stringToNumbers(Arrays.asList(input.split(",")));
                 winningLotto = new Lotto(numbers);
-
-                // Set<String> uniqueNumbers = new HashSet<>();
-                // checkLottoVaild(uniqueNumbers);
                 break;
             } catch (Exception e) {
                 System.out.println(e);
