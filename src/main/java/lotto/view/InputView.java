@@ -53,11 +53,11 @@ public class InputView {
      * @return 보너스 번호
      * @throws IllegalArgumentException 유효하지 않은 입력일 경우 예외 발생
      */
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요:");
         try {
             int bonusNumber = Integer.parseInt(Console.readLine().trim());
-            Validator.validateBonusNumber(bonusNumber);
+            Validator.validateBonusNumber(bonusNumber, winningNumbers); // 수정된 부분
             LoggerUtils.logInfo("유효한 보너스 번호 입력: " + bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {

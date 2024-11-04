@@ -9,7 +9,8 @@ public enum ErrorMessages {
     LOTTO_NUMBER_OUT_OF_RANGE("[ERROR] 로또 번호는 1부터 45 사이여야 합니다."),
     LOTTO_NUMBER_DUPLICATE("[ERROR] 로또 번호는 중복될 수 없습니다."),
     LOTTO_NUMBER_INVALID_COUNT("[ERROR] 로또 번호는 6개여야 합니다."),
-    INPUT_NOT_NUMBER("[ERROR] 입력값은 숫자로 입력해 주세요.");
+    INPUT_NOT_NUMBER("[ERROR] 입력값은 숫자로 입력해 주세요."),
+    BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
 
     private final String message;
 

@@ -62,16 +62,16 @@ public class LottoController {
         );
 
         int bonusNumber = Validator.getValidInput(
-                inputView::inputBonusNumber,
+                () -> inputView.inputBonusNumber(winningNumbers),
                 number -> {
                     try {
-                        Validator.validateBonusNumber(number);
+                        Validator.validateBonusNumber(number, winningNumbers);
                         return true;
                     } catch (IllegalArgumentException e) {
                         return false;
                     }
                 },
-                ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE.getMessage()
+                ErrorMessages.BONUS_NUMBER_DUPLICATE.getMessage()
         );
 
         Map<LottoRank, Integer> results = lottoService.calculateResults(tickets, winningNumbers, bonusNumber);

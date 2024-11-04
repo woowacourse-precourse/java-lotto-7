@@ -57,12 +57,17 @@ public class Validator {
      * 보너스 번호의 유효성을 검증합니다.
      *
      * @param number 보너스 번호
-     * @throws IllegalArgumentException 보너스 번호가 범위 밖일 경우
+     * @param winningNumbers 당첨 번호 리스트
+     * @throws IllegalArgumentException 보너스 번호가 범위 밖이거나 당첨 번호와 중복될 경우
      */
-    public static void validateBonusNumber(int number) {
+    public static void validateBonusNumber(int number, List<Integer> winningNumbers) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             LoggerUtils.logError("보너스 번호가 유효 범위를 벗어났습니다: " + number);
             throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
+        }
+        if (winningNumbers.contains(number)) {
+            LoggerUtils.logError("보너스 번호가 당첨 번호와 중복되었습니다: " + number);
+            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
 
