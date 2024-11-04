@@ -23,7 +23,7 @@ public class LottoNumberTest {
         assertThat(result).isEqualTo(rawLottoNumber);
     }
 
-    @DisplayName("로또 번호가 0 이하이면 예외를 발생시킨다.")
+    @DisplayName("로또 번호가 0 이하이면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "-3772398"})
     void negativeLottoNumberExceptionTest(int negativeLottoNumber) {
@@ -33,7 +33,7 @@ public class LottoNumberTest {
                 .hasMessageContaining(LOTTO_SCOPE_ERROR.getMessage());
     }
 
-    @DisplayName("로또 번호가 46 이상이면 예외를 발생시킨다.")
+    @DisplayName("로또 번호가 46 이상이면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"643", "46", "822", "2434203"})
     void OverScopeLottoNumberExceptionTest(int invalidLottoNumber) {
