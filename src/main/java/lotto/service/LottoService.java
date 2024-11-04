@@ -1,6 +1,5 @@
 package lotto.service;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
@@ -27,7 +26,7 @@ public class LottoService {
     }
 
     private int getMatchingNumbers(Lotto lotto, WinnerLotto winnerLotto) {
-        final int SECOND = 5;
+        final int SECOND_MATCH = 5;
 
         int matchCount = 0;
         List<Integer> winnerNumbers = winnerLotto.getLotto().getNumbers();
@@ -39,7 +38,7 @@ public class LottoService {
         }
 
         if (matchCount == 5 && lotto.getNumbers().contains(winnerLotto.getBonus())) {
-            return SECOND;
+            return SECOND_MATCH;
         }
 
         return matchCount;
