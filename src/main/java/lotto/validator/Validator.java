@@ -1,9 +1,29 @@
 package lotto.validator;
 
+import java.util.Arrays;
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.util.Util;
+import lotto.view.OutputView;
 import lotto.view.message.ErrorMessage;
 
 public class Validator {
+
+    private final OutputView outputView = new OutputView();
+    public boolean validateLotto(String input) {
+        try {
+            isNotNull(input);
+            Arrays.stream(input.split(","))
+                    .forEach(Validator::isNumber);
+            List<Integer> lotto = Util.stringToInt(input);
+            lotto.forEach(Validator::isInLottoNumberRange);
+            isAllUnique(lotto);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return false;
+        }
+        return true;
+    }
 
     public boolean isNotNull(String input) {
         if(input == null) {
