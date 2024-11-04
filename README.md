@@ -66,7 +66,59 @@
 - 입력 케이스
   - 아무것도 입력하지 않는 경우
   - 1,000 단위를 만족하지 못하는 경우
+  - 로또 구매 불가능 금액을 입력하는 경우(0원 이하의 금액)
   - 로또 번호에 대해 양의 정수가 아닌 경우
   - 로또 번호의 범위를 만족시키지 못하는 경우
   - 로또 번호가 중복되는 것이 입력된 경우
   - 6개의 숫자를 입력하지 않는 경우
+
+# 로또 게임 애플리케이션 코드 설명
+
+각 클래스는 특정 기능을 담당하며, 종합적으로 사용자가 로또를 구매하고, 당첨 번호를 입력하고, 최종 결과를 출력하는 흐름이 생성된다. 
+
+각 클래스의 기능은 하단의 설명과 같다.
+
+## 1. InputView 클래스
+- **목적**: 사용자 입력을 처리하는 싱글톤 클래스다.
+- **주요 메소드**:
+  - `getInput()`: 사용자로부터 입력을 읽어오는 메소드로, `Console.readLine()`을 사용한다.
+
+## 2. OutputView 클래스
+- **목적**: 결과와 메시지를 출력하는 역할을 담당한다.
+- **주요 메소드**:
+  - `showMessage(Message message)`: 전달된 메시지를 출력한다.
+  - `showLottoNumbers(List<Lotto> lottos)`: 생성된 로또 번호를 제시된 형식에 맞춰 포맷팅하여 출력한다.
+  - `showFinalResult(Map<Prize, Integer> fianlResult, BigDecimal rate)`: 최종 결과를 출력한다.
+  - `showErrorMessage(String message)`: 오류 메시지를 출력한다.
+
+## 3. LottoService 클래스
+- **목적**: 로또 관련 비즈니스 로직을 담당한다.
+- **주요 메소드**:
+  - `generateLotto(String purchaseAmount)`: 구입 금액에 따라 로또 번호를 생성한다.
+  - `determineFinalResults(String winningNumbers, String bonusNumber, List<Lotto> lottos)`: 당첨 결과를 설정한다.
+  - `calculateRate(Map<Prize, Integer> matchCounts, String purchaseAmount)`: 수익률을 계산한다.
+
+## 4. Lotto 클래스
+- **목적**: 로또 번호를 나타내는 도메인 클래스다.
+- **주요 메소드**:
+  - 생성자에서 로또 번호의 유효성을 검증한다.
+  - `countMatchingNumbers(List<Integer> winningNumbers)`: 당첨 번호와 일치하는 숫자의 개수를 반환한다.
+  - `containsBonusNumber(int bonusNumber)`: 보너스 번호의 포함 여부를 확인한다.
+
+## 5. Validator 클래스
+- **목적**: 입력 값의 유효성을 검증을 담당한다.
+- **주요 메소드**:
+  - `validatePurchaseAmount(String purchaseAmount)`: 구입 금액의 유효성을 검사한다.
+  - `validateWinningNumbers(String winningNumbers)`: 당첨 번호의 유효성을 검사한다.
+  - `validateBonusNumber(String winningNumbers, String bonusNumber)`: 보너스 번호의 유효성을 검사한다.
+
+## 6. ErrorCode 클래스
+- **목적**: 발생할 수 있는 오류에 대한 메시지를 정의한다.
+- **주요 요소**: 여러 가지 오류 코드와 메시지가 포함되어 있다.
+
+## 7. LottoController 클래스
+- **목적**: 입력, 검증, 서비스 호출, 출력을 조정하여 애플리케이션의 흐름을 통제한다.
+- **주요 메소드**:
+  - `run()`: 애플리케이션의 주요 로직을 실행한다. 사용자로부터 구입 금액과 당첨 번호를 입력받고, 결과를 출력한다.
+- 내부적으로 Vlidator 클래스를 호출하여 사용자 입력에 대한 값을 검증한다.
+
