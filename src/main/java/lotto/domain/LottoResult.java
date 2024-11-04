@@ -7,7 +7,6 @@ import java.util.Map;
 import static lotto.constant.Constant.BONUS_NUMBER_INDEX;
 
 public class LottoResult {
-
     private final Map<WinningType, Integer> lottoResult = new HashMap<>();
 
     /**

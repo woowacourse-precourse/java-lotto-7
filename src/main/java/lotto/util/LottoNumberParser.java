@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoNumberParser {
-
     private static final int SPLIT_LIMIT = -1;
     private static final String DELIMITER = ",";
 

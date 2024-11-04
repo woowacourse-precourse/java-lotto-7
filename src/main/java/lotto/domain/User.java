@@ -6,7 +6,6 @@ import java.util.List;
 import static lotto.constant.Constant.LOTTO_PRICE;
 
 public class User {
-
     private final int purchaseAmount;
     private List<PurchaseLotto> purchaseLottos = new ArrayList<>();
 

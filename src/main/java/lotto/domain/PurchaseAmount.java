@@ -6,7 +6,6 @@ import lotto.validation.AmountValidator;
 import static lotto.constant.Constant.LOTTO_PRICE;
 
 public class PurchaseAmount {
-
     private final int lottoTickets;
 
     /**

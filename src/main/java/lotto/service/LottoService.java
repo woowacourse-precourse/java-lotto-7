@@ -8,7 +8,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoService {
-
     private final InputView inputView;
     private final OutputView outputView;
 
