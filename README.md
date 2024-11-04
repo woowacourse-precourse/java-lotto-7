@@ -111,7 +111,7 @@
 - [x] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
 - [x] JUnit 5와 AssertJ를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
 
-### 4. 프로그래밍 요구 사항 2
+### 5. 프로그래밍 요구 사항 3
 
 - [x] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
     - [x] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
@@ -166,3 +166,9 @@
 |                  |    PurchasedLottos    | 구입 로또 리스트 class        |
 |                  |    WinningNumbers     | 당첨 번호 class            |
 |                  |   WinningStatistics   | 당첨 통계 계산 class         |
+
+## 테스트 커버리지
+
+- Tests passed: 67 of 67 tests
+- Test coverage: 95%  
+  <img width="737" alt="testcoverage" src="https://github.com/user-attachments/assets/7bbdfbd0-5223-4424-949b-b62fce60f1a4">
