@@ -80,6 +80,7 @@ public class User {
                 System.out.println(e.getMessage());
             }
         }
+        Console.close();
 
         return bonus;
     }
