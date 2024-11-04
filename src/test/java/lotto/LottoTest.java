@@ -28,4 +28,12 @@ class LottoTest {
 
         assertThat(lotto.countMatchesWith(winningLotto)).isEqualTo(4);
     }
+
+    @Test
+    void 보너스_로또_번호가_해당_로또에_존재하는지_알_수_있다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber bonusNumber = new LottoNumber(1);
+
+        assertThat(lotto.contains(bonusNumber)).isTrue();
+    }
 }
