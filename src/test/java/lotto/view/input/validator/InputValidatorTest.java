@@ -14,14 +14,14 @@ public class InputValidatorTest {
     @Test
     @DisplayName("입력 예외 Money")
     void inputMoneyTest() {
-        List<String> exceptionData = List.of(BLANK, CHAR);
+        List<String> exceptionData = List.of(BLANK, CHAR, "01000");
         ValidationProcess.inputThrownBy(exceptionData, InputValidator::moneyValidate, ErrorMessage.NUMBER_REGEX_PATTERN);
     }
 
     @Test
     @DisplayName("입력 예외 BonusNumber")
     void inputBonusNumberTest() {
-        List<String> exceptionData = List.of(BLANK, CHAR);
+        List<String> exceptionData = List.of(BLANK, CHAR, "05");
         ValidationProcess.inputThrownBy(exceptionData, InputValidator::bonusNumberValidate, ErrorMessage.NUMBER_REGEX_PATTERN);
     }
 
@@ -31,7 +31,7 @@ public class InputValidatorTest {
         List<String> exceptionData = List.of(
                 BLANK, CHAR, "1,,2,,3,,4,,5,,6", "1,2,3,4,5,6,",
                 ",2,3,4,5,6", "1.2.3.4.5.6", "1 ,2,3,4,5,6",
-                "1,2,3,4,5,6 "
+                "1,02,03,4,5,6", "01,2,3,4,5"
         );
         ValidationProcess.inputThrownBy(exceptionData, InputValidator::winningLottoValidate, ErrorMessage.LOTTO_REGEX_PATTERN);
     }
