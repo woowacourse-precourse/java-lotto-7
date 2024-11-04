@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.domains.Lotto;
 import lotto.enums.ErrorCode;
 import lotto.enums.LottoRank;
@@ -17,26 +18,30 @@ public class Application {
     private static int bonusNumber;
 
     public static void main(String[] args) {
-        setLottos();
+        executeUntilNoException(Application::setLottos);
         printIssueLottos(lottos);
-        setWinningLotto();
-        setBonusNumber();
+        executeUntilNoException(Application::setWinningLotto);
+        executeUntilNoException(Application::setBonusNumber);
         int[] winningCount = lottoService.getWinningCount(lottos, winningLotto, bonusNumber);
         printLottoResult(winningCount);
         printIncomePercent(lottos, winningCount);
     }
 
-    private static void setLottos() {
+    private static void executeUntilNoException(Supplier<Void> method) {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
-                String inputValue = Console.readLine();
-                issueLottos(inputValue);
+                method.get();
                 break;
-            } catch (IllegalArgumentException exception) {
+            } catch (Exception exception) {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    private static Void setLottos() throws IllegalArgumentException {
+        System.out.println("구입금액을 입력해 주세요.");
+        issueLottos(Console.readLine());
+        return null;
     }
 
     private static void issueLottos(String inputValue) {
@@ -64,30 +69,18 @@ public class Application {
         System.out.println(stringBuilder.toString());
     }
 
-    private static void setWinningLotto() {
-        while(true) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                winningLotto = lottoService.setWinningLotto(Console.readLine());
-                break;
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+    private static Void setWinningLotto() throws IllegalArgumentException {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        winningLotto = lottoService.setWinningLotto(Console.readLine());
+        return null;
     }
 
-    private static void setBonusNumber() {
-        while (true) {
-            try {
-                System.out.println("보너스 번호를 입력해 주세요.");
-                String inputValue = Console.readLine();
-                checkBonusNumber(inputValue);
-                bonusNumber = Integer.parseInt(inputValue.strip());
-                break;
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
+    private static Void setBonusNumber() throws IllegalArgumentException {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String inputValue = Console.readLine();
+        checkBonusNumber(inputValue);
+        bonusNumber = Integer.parseInt(inputValue.strip());
+        return null;
     }
 
     private static void checkBonusNumber(String inputValue) {
@@ -113,6 +106,7 @@ public class Application {
         setResult(winningCount, stringBuilder);
 
         System.out.println(stringBuilder.toString());
+
     }
 
     private static void setResult(int[] winningCount, StringBuilder stringBuilder) {
