@@ -1,8 +1,282 @@
 # java-lotto-precourse
-### 프로젝트 설명
+## 프로젝트 설명
+
+> 주어진 금액에 맞는 로또를 발급하고, 발급된 로또들의 당첨 여부를 검사해주는 애플리케이션입니다.
+>
+
+### 기능
+
+1. 입력해주신 금액에 맞춰 로또를 발행합니다.
+2. 발급된 로또들의 수와 이 로또들의 번호들을 오름차순 정렬하여 볼 수 있습니다.
+3. 당첨 번호와 보너스 번호를 입력해주시면 이를 토대로 앞에서 발급한 로또들의 당첨 통계와 수익률을 계산하여 볼 수 있습니다. (당첨 기준은 아래의 출력에 나타나 있습니다.)
+
+**1. 로또의 구입과 발급**
+
+- 아래는 6000원의 구입 금액을 입력 하였고, 로또 가격에 맞춰 6개의 로또를 발행한 뒤, 오름차순으로 발행된 로또들의 번호들을 보여줍니다.
+
+```
+구입금액을 입력해 주세요.
+6000
+
+6개를 구매했습니다.
+[17, 30, 33, 39, 42, 44]
+[1, 16, 30, 33, 37, 43]
+[8, 13, 14, 16, 34, 40]
+[1, 5, 14, 17, 28, 42]
+[1, 11, 13, 15, 33, 39]
+[2, 9, 12, 39, 43, 44]
+```
+
+**2. 로또의 당첨 통계와 수익률**
+
+- 아래는 당첨번호 `17,30,33,1,2,3` 와 보너스 번호 `42` 를 입력하였고, 결과로 3등이 2개 당첨되었습니다.
+- 6000원으로 10000원의 수익을 얻어 166.7%의 수익률을 보였습니다.
+
+```
+당첨 번호를 입력해 주세요.
+17,30,33,1,2,3
+
+보너스 번호를 입력해 주세요.
+42
+
+당첨 통계
+---
+3개 일치 (5,000원) - 2개
+4개 일치 (50,000원) - 0개
+5개 일치 (1,500,000원) - 0개
+5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+6개 일치 (2,000,000,000원) - 0개
+총 수익률은 166.7%입니다.
+```
+
+### **입력 가이드**
+
+### 로또 구입 금액 입력
+
+구입하시려는 로또 금액은 다음의 조건이 있고, 아래는 예제 입력입니다.
+
+1. 로또 가격 이상의 금액을 입력하셔야 합니다.
+2. 최대 구매 가격은 10억원 미만입니다.
+3. 로또 가격으로 나누어 떨어지는 금액을 입력하셔야 합니다.
+
+```
+// o
+1000 
+20000
+999999000
+
+// x
+0
+1500
+1000000000
+```
+
+### 로또 당첨 번호 입력
+
+로또 당첨 번호의 입력은 다음의 조건이 있고, 아래는 예제 입력입니다.
+
+1. 6개의 당첨 번호를 입력하셔야 합니다.
+2. 로또 당첨 번호에는 중복이 없어야 합니다.
+3. 각 번호들은 1이상, 45이하의 값이 주어져야 합니다.
+4. 각 번호들은 ‘,’ 구분자로 구분되어 입력되어야 합니다.
+
+```
+// o
+1,2,3,4,5,6
+10,11,12,13,14,15
+
+// x
+1,2,3,4,5,6,7
+1, 2, 3, 4, 5, 6, 7
+1,2,3,4,5,46
+1,2,3
+```
+
+### 보너스 번호 입력
+
+보너스 번호 입력은 다음의 조건이 있고, 아래는 예제 입력입니다.
+
+1. 앞에서 입력하신 로또 당첨번호와 중복되지 않는 수를 입력해야 합니다.
+2. 번호는 1이상, 45 이하의 값이 주어져야 합니다.
+
+```
+// 로또 당첨 번호가 아래가 같은 경우로 가정
+1,2,3,4,5,6
+// o
+7
+15
+45
+
+// x
+0
+1
+46
+```
 
 ### 프로젝트 패키지 구조
+**Class Diagram**
 
+> 도메인들의 연관관계
+>
+
+```mermaid
+classDiagram
+direction BT
+class BonusNumber {
+  - int number
+}
+class Lotto {
+  - List~Integer~ numbers
+}
+class LottoBundle {
+  - LottoPurchasePrice lottoPurchasePrice
+  - List~Lotto~ lottos
+}
+class LottoDispenser {
+  - LottoConfig lottoConfig
+}
+class LottoPurchasePrice {
+  - int PERCENTAGE
+  - int purchasePrice
+  - int lottoCount
+}
+class LottoResult {
+  - Map~LottoRank, Integer~ rankCount
+  - double lottoProfitRate
+}
+class WinningLotto {
+  - List~Integer~ numbers
+}
+
+LottoBundle "1" *--> "lottos *" Lotto 
+LottoBundle "1" *--> "lottoPurchasePrice 1" LottoPurchasePrice 
+
+```
+
+**Sequence Diagram**
+
+> 도메인의 흐름을 제외한, 컨트롤러 흐름을 나타내는 시퀀스 다이어그램
+>
+
+```mermaid
+sequenceDiagram
+actor User
+User ->> Application : main
+activate Application
+Application ->> LottoController : run
+activate LottoController
+LottoController ->> RetryHandler : retry
+activate RetryHandler
+RetryHandler ->> LottoController : this::requestLottoPurchasePrice
+activate LottoController
+LottoController ->> LottoOutputView : printLottoPurchasePrice
+activate LottoOutputView
+LottoOutputView -->> LottoController : #32; 
+deactivate LottoOutputView
+LottoController ->> LottoInputView : readLottoPurchasePrice
+activate LottoInputView
+LottoInputView -->> LottoController : #32; 
+deactivate LottoInputView
+LottoController -->> RetryHandler : #32; 
+deactivate LottoController
+RetryHandler -->> LottoController : #32; 
+deactivate RetryHandler
+LottoController ->> LottoController : issueLottoBundle
+activate LottoController
+LottoController ->> LottoDispenser : issueLottoBundle
+activate LottoDispenser
+LottoDispenser ->> LottoDispenser : issueLottos
+activate LottoDispenser
+LottoDispenser -->> LottoDispenser : #32; 
+deactivate LottoDispenser
+LottoDispenser -->> LottoController : #32; 
+deactivate LottoDispenser
+LottoController -->> LottoController : #32; 
+deactivate LottoController
+LottoController ->> LottoController : createLottoBundleDTO
+activate LottoController
+LottoController -->> LottoController : #32; 
+deactivate LottoController
+LottoController ->> LottoOutputView : printLottoBundle
+activate LottoOutputView
+LottoOutputView -->> LottoController : #32; 
+deactivate LottoOutputView
+LottoController ->> RetryHandler : retry
+activate RetryHandler
+RetryHandler ->> LottoController : this::requestLottoWinningNumbers
+activate LottoController
+LottoController ->> LottoOutputView : printLottoWinningNumbers
+activate LottoOutputView
+LottoOutputView -->> LottoController : #32; 
+deactivate LottoOutputView
+LottoController ->> LottoInputView : readLottoWinningNumbers
+activate LottoInputView
+LottoInputView -->> LottoController : #32; 
+deactivate LottoInputView
+LottoController -->> RetryHandler : #32; 
+deactivate LottoController
+RetryHandler -->> LottoController : #32; 
+deactivate RetryHandler
+LottoController ->> RetryHandler : retry
+activate RetryHandler
+RetryHandler ->> LottoController : this::requestLottoBonusNumber
+activate LottoController
+LottoController ->> LottoOutputView : printLottoBonusNumber
+activate LottoOutputView
+LottoOutputView -->> LottoController : #32; 
+deactivate LottoOutputView
+LottoController ->> LottoInputView : readLottoBonusNumber
+activate LottoInputView
+LottoInputView -->> LottoController : #32; 
+deactivate LottoInputView
+LottoController -->> RetryHandler : #32; 
+deactivate LottoController
+RetryHandler -->> LottoController : #32; 
+deactivate RetryHandler
+LottoController ->> LottoController : createLottoResultDTO
+activate LottoController
+LottoController -->> LottoController : #32; 
+deactivate LottoController
+LottoController ->> LottoOutputView : printLottoResult
+activate LottoOutputView
+LottoOutputView -->> LottoController : #32; 
+deactivate LottoOutputView
+LottoController -->> Application : #32; 
+deactivate LottoController
+deactivate Application
+
+```
+**트리 구조**
+```
+lotto
+  ├── Application.java
+  ├── controller
+  │   └── LottoController.java
+  ├── domain
+  │   ├── BonusNumber.java
+  │   ├── Lotto.java
+  │   ├── LottoBundle.java
+  │   ├── LottoDispenser.java
+  │   ├── LottoPurchasePrice.java
+  │   ├── LottoResult.java
+  │   └── WinningLotto.java
+  ├── dto
+  │   ├── LottoBundleDTO.java
+  │   └── LottoResultDTO.java
+  ├── enums
+  │   ├── LottoConfig.java
+  │   ├── LottoError.java
+  │   └── LottoRank.java
+  ├── factory
+  │   └── WoowaLottoControllerFactory.java
+  ├── handler
+  │   └── RetryHandler.java
+  └── view
+      ├── LottoInputParser.java
+      ├── LottoInputValidator.java
+      ├── LottoInputView.java
+      └── LottoOutputView.java
+```
 ### 프로젝트 기능 목록
 
 ### 1. 로또 구입 금액을 입력받는다.
