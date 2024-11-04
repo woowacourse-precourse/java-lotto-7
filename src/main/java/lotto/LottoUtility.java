@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +31,6 @@ public class LottoUtility {
         return standard.getMatchedNumberCount() + "개 일치 (" + prize + "원) - " + matchedCount + "개";
     }
 
-    public static void printMessage(String message) {
     public LottoWinningStandard getLottoWinningStandard(int matchedNumberCount, int matchedBonusNumberCount) {
         if (matchedNumberCount == 6) {
             return LottoWinningStandard.FIRST_PRIZE;
@@ -61,6 +61,32 @@ public class LottoUtility {
 
     public long getTotalPrizeByLottoWinningStandard(LottoWinningStandard standard, int lottoCount) {
         return (long) standard.getPrizeMoney() * lottoCount;
+    }
+
+    public LottoCreate getLottoCreate() {
+        LottoCreate lottoCreate = null;
+        while (lottoCreate == null) {
+            String input = Console.readLine();
+            try {
+                lottoCreate = new LottoCreate(input);
+            } catch (IllegalArgumentException e) {
+                printMessage(e.getMessage());
+            }
+        }
+        return lottoCreate;
+    }
+
+    public Lotto getWinningLotto() {
+        Lotto lotto = null;
+        while(lotto == null) {
+            String input = Console.readLine();
+            try {
+                lotto = new Lotto(stringToWinningNumbers(input));
+            } catch (IllegalArgumentException e) {
+                printMessage(e.getMessage());
+            }
+        }
+        return lotto;
     }
 
     public int getBonusNumber(Lotto winningLotto) {
