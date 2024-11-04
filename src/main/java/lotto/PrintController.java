@@ -9,20 +9,6 @@ public class PrintController {
     LottoController lottoController = new LottoController();
     StatisticsController statisticsController = new StatisticsController();
 
-    //구입금액
-    public int inputPurchaseNumber() {
-        while (true) {
-            try {
-                System.out.println("구입금액을 입력해 주세요");
-                String purchaseNumber = Console.readLine();
-                return lottoController.parsePurchaseNumber(purchaseNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-    }
-
     //로또출력
     public List<Lotto> printLottos(int purchaseNumber) {
 
@@ -37,34 +23,6 @@ public class PrintController {
             System.out.println(lotto);
         }
         return lottos;
-    }
-
-    //당첨번호
-    public List<Integer> inputWinNumber() {
-        while (true) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String winNumber = Console.readLine();
-                return lottoController.parseWinNumber(winNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    //보너스번호
-    public int inputBonusNumber(List<Integer> winNumbers) {
-        while (true) {
-            try {
-                System.out.println("보너스 번호를 입력해 주세요.");
-                String bonusNumber = Console.readLine();
-                int parseBonusNumber = lottoController.parseBonusNumber(bonusNumber);
-                Validator.validateBonusNumber(winNumbers, parseBonusNumber);
-                return parseBonusNumber;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
     }
 
     //당첨통계
