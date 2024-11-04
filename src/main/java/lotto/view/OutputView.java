@@ -25,4 +25,8 @@ public class OutputView {
     public void printYield(String yield) {
         System.out.println(YIELD_PREFIX + yield + YIELD_SUFFIX);
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

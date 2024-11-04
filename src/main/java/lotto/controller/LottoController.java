@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.model.Lotto;
 import lotto.model.LottoBudget;
 import lotto.model.LottoPrizes;
@@ -20,25 +21,20 @@ public class LottoController {
     }
 
     public void run() {
-        String lottoBudgetInput = inputView.readLottoBudget();
-        LottoBudget lottoBudget = new LottoBudget(lottoBudgetInput);
+        LottoBudget lottoBudget = retryUntilValid(this::readLottoBudget);
 
         String lottoCount = lottoBudget.getLottoCount();
         outputView.printLottoCount(lottoCount);
 
-        int lottoCountNumber = Integer.parseInt(lottoCount);
-        Lottos lottos = Lottos.fromCount(lottoCountNumber);
+        Lottos lottos = generateLottos(lottoCount);
 
         List<String> lottoNumbers = lottos.getLottoNumbers();
         outputView.printLottoNumbers(lottoNumbers);
 
         String WinningNumbersInput = inputView.readWinningNumbers();
-
-        Lotto mainNumbers = Lotto.of(WinningNumbersInput);
-
+        Lotto mainNumbers = retryUntilValid(() -> Lotto.of(WinningNumbersInput));
         String bonusNumber = inputView.readBonusNumber();
-
-        WinningNumbers winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
+        WinningNumbers winningNumbers = retryUntilValid(() -> new WinningNumbers(mainNumbers, bonusNumber));
 
         LottoPrizes lottoPrizes = new LottoPrizes(lottos, winningNumbers);
 
@@ -49,4 +45,24 @@ public class LottoController {
         outputView.printYield(yield);
     }
 
+    private static Lottos generateLottos(String lottoCount) {
+        int lottoCountNumber = Integer.parseInt(lottoCount);
+        Lottos lottos = Lottos.fromCount(lottoCountNumber);
+        return lottos;
+    }
+
+    private LottoBudget readLottoBudget() {
+        String lottoBudgetInput = inputView.readLottoBudget();
+        return new LottoBudget(lottoBudgetInput);
+    }
+
+    private <T> T retryUntilValid(Supplier<T> action) {
+        while (true) {
+            try {
+                return action.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
 }
