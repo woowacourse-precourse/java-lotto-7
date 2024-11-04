@@ -54,4 +54,4 @@ java-lotto-precourse
 
 * * *
 ## 개인 목표
-- [ ] TDD로 구현하기
+- [x] TDD로 구현하기

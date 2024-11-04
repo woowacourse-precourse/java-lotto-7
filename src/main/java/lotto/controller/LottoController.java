@@ -1,10 +1,8 @@
 package lotto.controller;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
@@ -13,9 +11,9 @@ import lotto.repository.PublishLottoRepository;
 import lotto.service.LottoResultService;
 import lotto.service.ProfitCalculate;
 import lotto.service.PublishLottoService;
+import lotto.util.InputHandler;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.CommaValidator;
-import lotto.validator.InputFormatValidator;
 import lotto.validator.LottoValidator;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
@@ -30,11 +28,11 @@ public class LottoController {
     private final BonusNumberValidator bonusNumberValidator;
     private final InputView inputView;
     private final OutputView outputView;
+    private final PublishLottoRepository publishLottoRepository;
 
     private PublishCount publishCount;
     private Lotto lotto;
     private BonusNumber bonusNumber;
-    private PublishLottoRepository publishLottoRepository;
 
     public LottoController(
         LottoResultService lottoResultService, LottoValidator lottoValidator,
@@ -62,13 +60,13 @@ public class LottoController {
         outputView.printPublishCountMessage(publishCount.getPublishCount());
     }
 
-    private PublishCount createPublishCount(int purchasePrice) {
+    public PublishCount createPublishCount(final int purchasePrice) {
         int countOfPublish = purchasePrice / TICKET_PRICE;
         return PublishCount.getInstance(countOfPublish);
     }
 
     private int getPurchasePrice() {
-        return InputFormatValidator.parseInt(inputView.printEnterPurChasePriceMessage());
+        return InputHandler.parseInt(inputView.printEnterPurChasePriceMessage());
     }
 
     public void publishLottoSetup() {
@@ -84,19 +82,9 @@ public class LottoController {
     private Lotto createLotto() {
         String inputWinningNumbers = inputView.printEnterWinningNumberMessage();
         CommaValidator.validate(inputWinningNumbers);
-        List<String> splitWinningNumbers = splitByComma(inputWinningNumbers);
-        List<Integer> winningNumbers = stringListToIntList(splitWinningNumbers);
+        List<String> splitWinningNumbers = InputHandler.splitByComma(inputWinningNumbers);
+        List<Integer> winningNumbers = InputHandler.stringListToIntList(splitWinningNumbers);
         return new Lotto(winningNumbers, lottoValidator);
-    }
-
-    public List<String> splitByComma(String input) {
-        return Arrays.stream(input.split(",")).toList();
-    }
-
-    public List<Integer> stringListToIntList(List<String> stringList) {
-        return stringList.stream()
-            .map(InputFormatValidator::parseInt)
-            .collect(Collectors.toList());
     }
 
     public void bonusNumberSetUp() {
@@ -106,7 +94,7 @@ public class LottoController {
 
     private int getParsedBonusNumber() {
         String inputBonusNumber = inputView.printBonusNumberMessage();
-        return InputFormatValidator.parseInt(inputBonusNumber);
+        return InputHandler.parseInt(inputBonusNumber);
     }
 
     private BonusNumber createBonusNumber(int parsedBonusNumber) {
