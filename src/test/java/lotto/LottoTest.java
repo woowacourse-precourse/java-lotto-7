@@ -51,4 +51,12 @@ class LottoTest {
                 .hasMessage(ErrorCode.CANT_CONVERT_TO_INTEGER.getMessage());
     }
 
+    @DisplayName("당첨 번호가 문자열로 인해 파싱 불가한 경우 예외가 발생한다.")
+    @Test
+    void 당첨번호_파싱불가_문자열(){
+        assertThatThrownBy(()-> Lotto.createWinningRegularLotto("p:1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorCode.CANT_CONVERT_TO_INTEGER.getMessage());
+    }
+
 }
