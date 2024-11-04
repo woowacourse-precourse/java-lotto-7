@@ -3,6 +3,7 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.enums.ErrorMessages;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,13 +18,13 @@ public class Lotto {
     }
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.printError(ErrorMessage.ERROR_NUMBER_ONLY_SIX));
+            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_NUMBER_ONLY_SIX));
         }
         if (!validateDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.printError(ErrorMessage.ERROR_DUPLICATE_NUMBER));
+            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_DUPLICATE_NUMBER));
         }
         if (!checkLottoNumberRange(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.printError(ErrorMessage.ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE));
+            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE));
         }
     }
 
