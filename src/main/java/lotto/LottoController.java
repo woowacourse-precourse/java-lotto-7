@@ -22,9 +22,23 @@ public class LottoController {
         winningNumbers = new LinkedList<>();
     }
     public void startLotto(){
+        // 로또 정보 생성 및 저장
+        setLottoInfo();
+
+        // 로또 번호 매치
+        matchNumbers();
+
+        // 당첨 결과 출력 및 수익률 계산
+        double statistic = view.printMatchedResult(countMatched, countHasBonusNumber);
+        statistic = (statistic / purchasePrice) * 100;
+
+        view.finalResult(statistic);
+    }
+    public void setLottoInfo(){
+        // 로또 구입 금액 입력 받고 적절한 입력인지 확인
         while(!setValidPurchasePrice());
 
-        // 로또 번호 생성
+        // 로또 번호 생성 및 출력
         numberOfPurchases = view.getNumberOfPurchase(purchasePrice);
         createLottoNumbers();
         view.printLottoNumbers(lottoNumbers);
@@ -34,12 +48,6 @@ public class LottoController {
 
         // 보너스 번호 입력
         bonusNumber = view.getBonusNumber();
-
-        matchNumbers();
-        double statistic = view.printMatchedResult(countMatched, countHasBonusNumber);
-        statistic = (statistic / purchasePrice) * 100;
-
-        view.finalResult(statistic);
     }
     public boolean setValidPurchasePrice(){
         try {
@@ -53,11 +61,11 @@ public class LottoController {
     }
     public void createLottoNumbers(){
         // 로또 번호 생성 및 리스트에 추가
-
         for(int i = 0; i < numberOfPurchases; i++){
             try {
                 lottoNumbers.add(model.getLottoNumber());
             }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
                 i--;
             }
         }
@@ -68,9 +76,8 @@ public class LottoController {
         }
     }
     public boolean validWinningNumber(){
-        String numberString;
         try{
-            numberString = view.getWinningNumbers();
+            String numberString = view.getWinningNumbers();
             if(!numberString.matches("[0-9,]+")){
                 throw new IllegalArgumentException("\n[ERROR] 당첨번호는 숫자와 콤마(,)로만 이루어져야합니다.");
             }
@@ -93,7 +100,7 @@ public class LottoController {
             if(count == 5 && currentNumeberList.hasBonusNumber(bonusNumber)){
                 countHasBonusNumber++;
             }
-            else{
+            else if(count != 5 || !currentNumeberList.hasBonusNumber(bonusNumber)){
                 countMatched.add(count);
             }
         }
