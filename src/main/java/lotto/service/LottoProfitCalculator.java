@@ -9,13 +9,13 @@ import static lotto.constant.LottoMatchConstant.*;
 public class LottoProfitCalculator {
     private final int PERCENT_MULTIPLIER = 100;
 
-    public double calculateRateOfReturn(LinkedHashMap<String, Integer> userLottoStatistics, int purchaseAmount) {
-        int totalPrize = calculateTotalPrize(userLottoStatistics);
+    public double calculateRateOfReturn(LinkedHashMap<String, Integer> userStatistics, int purchaseAmount) {
+        int totalPrize = calculateTotalPrize(userStatistics);
 
         return (double) totalPrize / purchaseAmount * PERCENT_MULTIPLIER;
     }
 
-    private int calculateTotalPrize(LinkedHashMap<String, Integer> userLottoStatistics) {
+    private int calculateTotalPrize(LinkedHashMap<String, Integer> userStatistics) {
         Map<String, Integer> prizeMoney = new HashMap<>();
         prizeMoney.put(MATCH_3.getMatch(), 5000);
         prizeMoney.put(MATCH_4.getMatch(), 50000);
@@ -24,7 +24,7 @@ public class LottoProfitCalculator {
         prizeMoney.put(MATCH_6.getMatch(), 2000000000);
 
         int totalPrize = 0;
-        for (Map.Entry<String, Integer> entry : userLottoStatistics.entrySet()) {
+        for (Map.Entry<String, Integer> entry : userStatistics.entrySet()) {
             String prizeGrade = entry.getKey();
             int count = entry.getValue();
             totalPrize += prizeMoney.getOrDefault(prizeGrade, 0) * count;
