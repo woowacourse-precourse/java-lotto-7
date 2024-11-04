@@ -90,4 +90,14 @@ class WinningLottoTest {
                 .hasMessage("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
 
+    @Test
+    public void 보너스_번호가_범위를_벗어날경우_예외발생() {
+        int bonusNumber = 49;
+
+        Assertions.assertThatThrownBy(
+                        () -> new WinningLotto(new Lotto(Arrays.asList(1, 2, 3, 11, 19, 20)), bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("보너스 번호는 1부터 45 사이의 숫자로 입력해야 합니다.");
+    }
+
 }
