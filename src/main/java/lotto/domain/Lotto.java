@@ -4,6 +4,7 @@ import lotto.domain.provider.NumberProvider;
 import lotto.domain.validator.RangeValidator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -69,6 +70,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return List.copyOf(this.numbers);
+        return Collections.unmodifiableList(this.numbers);
     }
 }
