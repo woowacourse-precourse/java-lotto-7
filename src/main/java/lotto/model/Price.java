@@ -1,13 +1,11 @@
 package lotto.model;
 
-import java.text.DecimalFormat;
 import java.util.Map;
 
 public class Price {
 
 	private static final int PRICE_DIVISIBILITY_UNIT = 1000;
 	private static final int PERCENTAGE_MULTIPLIER = 100;
-	private static final String DECIMAL_FORMAT = "#,###.#";
 
 	private final int price;
 
@@ -20,11 +18,9 @@ public class Price {
 		return price;
 	}
 
-	public String getProfitRate(Map<Winning, Integer> winningResult) {
-		DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
+	public double getProfitRate(Map<Winning, Integer> winningResult) {
 		long totalWinningPrize = Winning.getTotalWinningPrize(winningResult);
-		double profitRate = (double)totalWinningPrize / price * PERCENTAGE_MULTIPLIER;
-		return decimalFormat.format(profitRate);
+		return (double)totalWinningPrize / price * PERCENTAGE_MULTIPLIER;
 	}
 
 	private void validatePrice(int price) {
