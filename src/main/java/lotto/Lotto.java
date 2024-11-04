@@ -3,6 +3,8 @@ package lotto;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.validator.ErrorMessage.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -19,7 +21,7 @@ public class Lotto {
 
     public static void validateNumberCount(List<Integer> tokens) {
         if (tokens.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호가 6개가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + NUMBER_COUNT.getMessage());
         }
     }
 
@@ -31,7 +33,7 @@ public class Lotto {
 
     private void validateNumberRange(Integer number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1~45 범위의 번호가 아닙니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + RANGE.getMessage());
         }
     }
 
@@ -40,7 +42,7 @@ public class Lotto {
                 .anyMatch(number -> Collections.frequency(numbers, number) > 1);
 
         if (hasDuplicates) {
-            throw new IllegalArgumentException("[ERROR] 중복되는 번호가 존재합니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }
 
