@@ -1,12 +1,13 @@
 package lotto.validator;
 
-import java.math.BigInteger;
+import java.util.HashSet;
+import java.util.Set;
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 
 import java.util.List;
 
-public class WinnerLottoValidator {
+public class LottoValidator {
 
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int MIN_LOTTO_NUMBER = 1;
@@ -18,8 +19,8 @@ public class WinnerLottoValidator {
         }
     }
 
-    public void numberCount(String[] numberStrings) {
-        if (numberStrings.length != LOTTO_NUMBER_COUNT) {
+    public void numberCount(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw LottoException.from(ErrorMessage.LOTTO_NUMBERS_MUST_BE_SIX);
         }
     }
@@ -30,9 +31,19 @@ public class WinnerLottoValidator {
         }
     }
 
-    public void checkForDuplicate(List<Integer> numbers, int number) {
+    public void duplicate(List<Integer> numbers, int number) {
         if (numbers.contains(number)) {
             throw LottoException.of(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE, number);
+        }
+    }
+
+    public void duplicate(List<Integer> winningNumbers) {
+        Set<Integer> seen = new HashSet<>();
+
+        for (Integer number : winningNumbers) {
+            if (!seen.add(number)) {
+                throw LottoException.of(ErrorMessage.LOTTO_NUMBERS_MUST_NOT_DUPLICATE, number);
+            }
         }
     }
 }
