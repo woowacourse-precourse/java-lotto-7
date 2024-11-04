@@ -4,6 +4,7 @@ import lotto.dto.LottoWinningNumbersDto;
 
 import static lotto.Constants.MAXIMUM_LOTTO_NUMBER;
 import static lotto.Constants.MINIMUM_LOTTO_NUMBER;
+import static lotto.LottoInputErrorMessage.*;
 
 public class LottoWinningNumbers {
     private final Lotto winningNumbers;
@@ -17,10 +18,10 @@ public class LottoWinningNumbers {
 
     private void validateBonusNumber() {
         if (bonusNumber < MINIMUM_LOTTO_NUMBER || bonusNumber > MAXIMUM_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 " + MINIMUM_LOTTO_NUMBER + "부터 " + MAXIMUM_LOTTO_NUMBER + " 사이여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_BONUS_NUMBER_RANGE_ERROR.getFormattedMessage(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER));
         }
         if (containsNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 
