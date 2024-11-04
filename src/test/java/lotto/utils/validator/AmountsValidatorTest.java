@@ -4,7 +4,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import lotto.constants.ErrorMessage;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -32,10 +31,10 @@ class AmountsValidatorTest {
 
     @ParameterizedTest
     @DisplayName("숫자가 아닌 값이 입력되었다면, 예외 처리된다.")
-    @ValueSource(strings = "asd")
+    @ValueSource(strings = {"asd", "-", ",", "b", "한글"})
     void Given_AmountsAreNonNumeric_When_CheckNonNumeric_Then_Error(String input) {
         assertThatThrownBy(() -> AmountsValidator.validateLottoAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.NON_NUMERIC.getMessage());
+                .hasMessage(ErrorMessage.ONLY_DIGITS_ALLOWED_AMOUNTS.getMessage());
     }
 }
