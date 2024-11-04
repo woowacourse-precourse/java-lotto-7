@@ -2,9 +2,7 @@ package lotto.model;
 
 import lotto.enums.ExceptionMessage;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,7 +10,9 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicateNumber(numbers);
-        this.numbers = numbers;
+        List<Integer> sorted = new ArrayList<>(numbers);
+        Collections.sort(sorted);
+        this.numbers = sorted;
     }
 
     private void validate(List<Integer> numbers) {
