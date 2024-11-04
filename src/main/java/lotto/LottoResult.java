@@ -33,13 +33,13 @@ public class LottoResult {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", this.totalProfit);
     }
 
-    public void calculateResults(List<LottoTicket> tickets, Lotto winningLotto, int bonusNumber) {
+    public void calculateResults(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         for (LottoRank rank : LottoRank.values()) {
             results.put(rank, 0);
         }
 
-        for (LottoTicket ticket : tickets) {
-            LottoRank rank = findRank(ticket, winningLotto, bonusNumber);
+        for (Lotto lotto : lottos) {
+            LottoRank rank = findRank(lotto, winningLotto, bonusNumber);
             this.results.put(rank, this.results.get(rank) + 1);
         }
 
@@ -57,12 +57,12 @@ public class LottoResult {
         totalProfit = (double) totalPrize / totalSpent * 100;
     }
 
-    public LottoRank findRank(LottoTicket ticket, Lotto winningLotto, int bonusNumber) {
-        long matchCount = ticket.getNumbers().stream()
+    public LottoRank findRank(Lotto lotto, Lotto winningLotto, int bonusNumber) {
+        long matchCount = lotto.getNumbers().stream()
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
 
-        boolean hasBonus = ticket.getNumbers().contains(bonusNumber);
+        boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
 
         for (LottoRank rank : LottoRank.values()) {
             if (rank.getMatchCount() == matchCount && rank.hasBonus() == hasBonus) {

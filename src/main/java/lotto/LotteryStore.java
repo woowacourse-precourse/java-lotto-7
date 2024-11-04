@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LotteryStore {
-    private final List<LottoTicket> purchasedLottos = new ArrayList<>();
+    private final List<Lotto> purchasedLottos = new ArrayList<>();
 
-    List<LottoTicket> purchase() {
-        int numberOfLottoTicket = inputSpending();
+    List<Lotto> purchase() {
+        int numberOfPurchases = inputSpending();
         System.out.println();
 
-        for(int i = 0; i < numberOfLottoTicket; i++) {
+        for(int i = 0; i < numberOfPurchases; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            LottoTicket ticket = new LottoTicket(randomNumbers);
+            Lotto lotto = new Lotto(randomNumbers);
 
-            purchasedLottos.add(ticket);
+            purchasedLottos.add(lotto);
         }
 
         displayPurchasedLottos();
@@ -58,8 +58,8 @@ public class LotteryStore {
 
     private void displayPurchasedLottos() {
         System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
-        for (LottoTicket ticket : purchasedLottos) {
-            System.out.println(ticket.getNumbers());
+        for (Lotto lotto : purchasedLottos) {
+            System.out.println(lotto.getNumbers());
         }
     }
 
