@@ -1,4 +1,6 @@
-package lotto.input;
+package lotto.input.bonusnumber;
+
+import lotto.input.ErrorMessage;
 
 import java.util.List;
 

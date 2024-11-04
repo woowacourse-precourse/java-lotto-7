@@ -1,4 +1,4 @@
-package lotto.input;
+package lotto.input.winningnumbers;
 
 import java.util.Arrays;
 import java.util.List;

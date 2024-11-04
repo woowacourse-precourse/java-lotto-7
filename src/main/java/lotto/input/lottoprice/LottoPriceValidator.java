@@ -1,4 +1,6 @@
-package lotto.input;
+package lotto.input.lottoprice;
+
+import lotto.input.ErrorMessage;
 
 public class LottoPriceValidator {
 

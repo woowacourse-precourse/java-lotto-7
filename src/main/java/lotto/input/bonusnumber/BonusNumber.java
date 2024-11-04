@@ -1,4 +1,4 @@
-package lotto.input;
+package lotto.input.bonusnumber;
 
 public class BonusNumber {
     private final int bonusNumber;

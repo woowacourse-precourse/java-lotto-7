@@ -1,4 +1,4 @@
-package lotto.input;
+package lotto.input.lottoprice;
 
 public class LottoPrice {
 
