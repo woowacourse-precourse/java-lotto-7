@@ -17,7 +17,7 @@ public class View {
             "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" +
             "6개 일치 (2,000,000,000원) - %d개";
 
-    private static final String RATE_OF_RETURN_MONEY = "총 수익률은 %d%입니다.";
+    private static final String RATE_OF_RETURN_MONEY = "총 수익률은 %f%입니다.";
 
     public String printAndgetPurchaseAmount(){
         System.out.println(PURCHASE_AMOUNT_PROMPT);
@@ -29,7 +29,7 @@ public class View {
         return Console.readLine();
     }
 
-    public String getBonusNumberPrompt(){
+    public String getBonusNumber(){
         System.out.println(BONUS_NUMBER_PROMPT);
         return Console.readLine();
     }
@@ -42,7 +42,7 @@ public class View {
         System.out.println(String.format(STATISTICS_PROMPT, threeMatches, fourMatches, fiveMatches, fiveMatchesWithBonous, sixMatches));
     }
 
-    public void printRateOfReturnMoney(int rateOfReturnMoney){
+    public void printRateOfReturnMoney(double rateOfReturnMoney){
         System.out.println(String.format(RATE_OF_RETURN_MONEY, rateOfReturnMoney));
     }
 

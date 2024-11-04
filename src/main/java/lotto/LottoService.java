@@ -9,10 +9,12 @@ public class LottoService {
 
     private StringParser stringParser = new StringParser();
 
-    public Map<LottoRank, Integer> calculateStatistic(List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottos) {
+    public Map<LottoRank, Integer> calculateStatistic(String winningNumbers, int bonusNumber, List<List<Integer>> lottos) {
+
+        List<Integer> parsedWinningNumbers = stringParser.convertStringToIntegerList(winningNumbers);
         Map<LottoRank, Integer> result = new HashMap<>();
         for (List<Integer> lotto : lottos) {
-            LottoRank lottoRank = prizeWinningDiscriminationPerLotto(winningNumbers, bonusNumber, lotto);
+            LottoRank lottoRank = prizeWinningDiscriminationPerLotto(parsedWinningNumbers, bonusNumber, lotto);
             result.put(lottoRank, result.getOrDefault(lottoRank, 0) + 1);
         }
         return result;
