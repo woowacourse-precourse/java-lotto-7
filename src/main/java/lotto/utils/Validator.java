@@ -25,7 +25,7 @@ public class Validator {
 
     public <T> void validateDuplicated(List<T> values, T value) {
         if (values.contains(value)) {
-            throw new IllegalStateException(ErrorMessage.DUPLICATED_LOTTO_VALUE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_VALUE.getMessage());
         }
     }
 

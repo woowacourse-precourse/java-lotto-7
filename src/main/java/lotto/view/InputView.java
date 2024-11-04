@@ -19,7 +19,7 @@ public class InputView {
             int price = Integer.parseInt(Console.readLine());
             validator.validatePrice(price);
             return price;
-        } catch (IllegalArgumentException | IllegalStateException exception) {
+        } catch (IllegalArgumentException exception) {
             throw exception;
         } catch (Exception exception) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
@@ -31,7 +31,7 @@ public class InputView {
             List<Integer> winning = inputLottoNumbers();
             validator.validateLottoNumber(winning);
             return winning;
-        } catch (IllegalArgumentException | IllegalStateException exception) {
+        } catch (IllegalArgumentException exception) {
             throw exception;
         } catch (Exception exception) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
@@ -45,7 +45,7 @@ public class InputView {
             validator.validateLottoNumber(value);
             validator.validateDuplicated(winningNumbers, value);
             return value;
-        } catch (IllegalArgumentException | IllegalStateException exception) {
+        } catch (IllegalArgumentException exception) {
             throw exception;
         } catch (Exception exception) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE.getMessage());
