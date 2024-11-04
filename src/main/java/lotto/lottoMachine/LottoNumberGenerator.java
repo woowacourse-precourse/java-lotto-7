@@ -1,10 +1,10 @@
-package lottoMachine;
+package lotto.lottoMachine;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import utils.StaticFinalMessages;
+import lotto.utils.StaticFinalMessages;
 
 public class LottoNumberGenerator {
     public List<Integer> generateLottoNumbers() {

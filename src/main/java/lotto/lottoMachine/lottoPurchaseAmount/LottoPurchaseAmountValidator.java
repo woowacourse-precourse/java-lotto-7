@@ -1,6 +1,6 @@
-package lottoPurchaseAmount;
+package lotto.lottoMachine.lottoPurchaseAmount;
 
-import utils.StaticFinalMessages;
+import lotto.utils.StaticFinalMessages;
 
 public class LottoPurchaseAmountValidator {
     public boolean validateAllThing(String lottoPurchaseAmount) {

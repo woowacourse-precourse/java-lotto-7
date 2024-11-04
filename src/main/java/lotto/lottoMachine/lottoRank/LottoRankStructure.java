@@ -1,4 +1,4 @@
-package lottoRank;
+package lotto.lottoMachine.lottoRank;
 
 public enum LottoRankStructure {
     FIRST(6, false, 2_000_000_000),

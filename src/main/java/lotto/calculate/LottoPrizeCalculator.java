@@ -1,7 +1,7 @@
-package calculate;
+package lotto.calculate;
 
 import java.util.Map;
-import lottoRank.LottoRankStructure;
+import lotto.lottoMachine.lottoRank.LottoRankStructure;
 
 public class LottoPrizeCalculator {
     public long calculateTotalPrize(Map<LottoRankStructure, Integer> results) {

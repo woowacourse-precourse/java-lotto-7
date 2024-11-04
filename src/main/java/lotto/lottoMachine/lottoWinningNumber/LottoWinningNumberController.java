@@ -1,7 +1,7 @@
-package lottoWinningNumber;
+package lotto.lottoMachine.lottoWinningNumber;
 
 import java.util.List;
-import utils.StaticFinalMessages;
+import lotto.utils.StaticFinalMessages;
 
 public class LottoWinningNumberController {
     private final LottoWinningNumberInputter lottoWinningNumberInputter;

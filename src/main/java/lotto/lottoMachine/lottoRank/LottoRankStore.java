@@ -1,4 +1,4 @@
-package lottoRank;
+package lotto.lottoMachine.lottoRank;
 
 import java.util.Arrays;
 import java.util.Collections;

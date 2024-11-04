@@ -1,4 +1,4 @@
-package lottoPurchaseAmount;
+package lotto.lottoMachine.lottoPurchaseAmount;
 
 import camp.nextstep.edu.missionutils.Console;
 

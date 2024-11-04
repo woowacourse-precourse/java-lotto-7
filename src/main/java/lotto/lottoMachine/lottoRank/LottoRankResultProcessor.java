@@ -1,6 +1,6 @@
-package lottoRank;
+package lotto.lottoMachine.lottoRank;
 
-import calculate.LottoPrizeCalculator;
+import lotto.calculate.LottoPrizeCalculator;
 
 public class LottoRankResultProcessor {
     private final LottoRankStore rankStore = new LottoRankStore();

@@ -1,14 +1,14 @@
-package lottoMachine;
+package lotto.lottoMachine;
 
-import calculate.LotteryResultCalculator;
-import calculate.LottoTotalReturnCalculator;
+import lotto.calculate.LotteryResultCalculator;
+import lotto.calculate.LottoTotalReturnCalculator;
 import java.util.List;
 import lotto.Lotties;
-import lottoBonusNumber.LottoBonusNumberController;
-import lottoPurchaseAmount.LottoPurchaseAmountController;
-import lottoRank.LottoRankResultProcessor;
-import lottoWinningNumber.LottoWinningNumberController;
-import calculate.LottoQuantityCalculator;
+import lotto.lottoMachine.lottoBonusNumber.LottoBonusNumberController;
+import lotto.lottoMachine.lottoPurchaseAmount.LottoPurchaseAmountController;
+import lotto.lottoMachine.lottoRank.LottoRankResultProcessor;
+import lotto.lottoMachine.lottoWinningNumber.LottoWinningNumberController;
+import lotto.calculate.LottoQuantityCalculator;
 
 public class LottoMachineController {
     private final LottoPurchaseAmountController lottoPurchaseAmountController;

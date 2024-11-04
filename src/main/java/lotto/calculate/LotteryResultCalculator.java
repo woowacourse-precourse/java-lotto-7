@@ -1,9 +1,9 @@
-package calculate;
+package lotto.calculate;
 
 import java.util.List;
 import lotto.Lotties;
 import lotto.Lotto;
-import lottoRank.LottoRankResultProcessor;
+import lotto.lottoMachine.lottoRank.LottoRankResultProcessor;
 
 public class LotteryResultCalculator {
     private final List<Integer> lottoWinningNumber;

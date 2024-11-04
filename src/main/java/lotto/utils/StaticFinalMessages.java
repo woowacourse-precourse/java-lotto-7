@@ -1,4 +1,4 @@
-package utils;
+package lotto.utils;
 
 public class StaticFinalMessages {
     // 에러 문구보다 앞에 필수적으로 오는, 자주 쓰이는 문구

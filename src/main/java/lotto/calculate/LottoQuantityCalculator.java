@@ -1,4 +1,4 @@
-package calculate;
+package lotto.calculate;
 
 public class LottoQuantityCalculator {
     private static final int QUANTITY_AMOUNT_ONE_LOTTERY_TICKET = 1000;

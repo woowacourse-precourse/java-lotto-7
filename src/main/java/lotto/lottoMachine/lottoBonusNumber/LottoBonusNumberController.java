@@ -1,7 +1,7 @@
-package lottoBonusNumber;
+package lotto.lottoMachine.lottoBonusNumber;
 
 import java.util.List;
-import utils.StaticFinalMessages;
+import lotto.utils.StaticFinalMessages;
 
 public class LottoBonusNumberController {
     private final LottoBonusNumberInputter lottoBonusNumberInputter;
