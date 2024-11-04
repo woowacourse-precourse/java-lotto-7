@@ -5,7 +5,7 @@ public record Percent(Double value) {
         validate(value);
     }
 
-    private static void validate(double value) {
+    private static void validate(Double value) {
         if (value < 0) {
             throw new IllegalArgumentException("퍼센트는 음수가 될 수 없습니다.");
         }
@@ -13,6 +13,6 @@ public record Percent(Double value) {
 
     @Override
     public String toString() {
-        return value + "%";
+        return String.format("%.1f", value) + "%";
     }
 }
