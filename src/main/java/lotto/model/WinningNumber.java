@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.dto.WinningNumberDto;
+import lotto.utils.NumberUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ public class WinningNumber {
 
     private Lotto createLotto(String input) {
         List<Integer> numbers = Stream.of(input.split(DELIMITER))
-                .map(Integer::parseInt)
+                .map(NumberUtils::parseNumber)
                 .collect(Collectors.toList());
 
         validateFormat(input, numbers.size());
@@ -42,8 +43,11 @@ public class WinningNumber {
     }
 
     private void validateBonusRange(int bonus) {
-        if (bonus < 1 || bonus > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45사이 여야 합니다.");
+        if (bonus < LottoIntConst.MIN_LOTTO_NUM.getValue() || bonus > LottoIntConst.MAX_LOTTO_NUM.getValue()) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 보너스 번호는 " + LottoIntConst.MIN_LOTTO_NUM.getValue() + "에서 "
+                            + LottoIntConst.MAX_LOTTO_NUM.getValue() + "사이 여야 합니다."
+            );
         }
     }
 
