@@ -3,9 +3,10 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.model.Lotto;
-import lotto.model.PurchaseAmount;
+import lotto.model.LottoPrizeCalculator;
 import lotto.model.LottoPrizes;
 import lotto.model.Lottos;
+import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -27,21 +28,22 @@ public class LottoController {
         outputView.printLottoCount(lottoCount);
 
         Lottos lottos = generateLottos(lottoCount);
-
         List<String> lottoNumbers = lottos.getLottoNumbers();
         outputView.printLottoNumbers(lottoNumbers);
 
-        String WinningNumbersInput = inputView.readWinningNumbers();
-        Lotto mainNumbers = retryUntilValid(() -> Lotto.of(WinningNumbersInput));
+        String winningNumbersInput = inputView.readWinningNumbers();
+        Lotto mainNumbers = retryUntilValid(() -> Lotto.of(winningNumbersInput));
         String bonusNumber = inputView.readBonusNumber();
         WinningNumbers winningNumbers = retryUntilValid(() -> new WinningNumbers(mainNumbers, bonusNumber));
 
         LottoPrizes lottoPrizes = new LottoPrizes(lottos, winningNumbers);
 
-        List<String> matchStatistics = lottoPrizes.calculateMatchStatistics();
+        LottoPrizeCalculator lottoPrizeCalculator = new LottoPrizeCalculator(lottoPrizes);
+
+        List<String> matchStatistics = lottoPrizeCalculator.generateMatchStatistics();
         outputView.printMatchStatistics(matchStatistics);
 
-        String yield = lottoPrizes.calculateYield(lottos.getTotalPrice());
+        String yield = lottoPrizeCalculator.calculateYield(lottos.getTotalPrice());
         outputView.printYield(yield);
     }
 
