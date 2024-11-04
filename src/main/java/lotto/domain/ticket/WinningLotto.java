@@ -1,5 +1,7 @@
 package lotto.domain.ticket;
 
+import lotto.domain.result.LottoRank;
+
 public class WinningLotto {
     private final Lotto winningNumbers;
     private final int bonusNumber;
@@ -26,4 +28,11 @@ public class WinningLotto {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
         }
     }
+
+    public LottoRank calculateRank(Lotto lotto) {
+        int matchCount = winningNumbers.countMatch(lotto);
+        boolean hasBonusNumber = lotto.contains(bonusNumber);
+        return LottoRank.of(matchCount, hasBonusNumber);
+    }
+
 }
