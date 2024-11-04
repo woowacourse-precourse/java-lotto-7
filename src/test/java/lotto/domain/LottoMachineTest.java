@@ -81,4 +81,19 @@ class LottoMachineTest {
 
         assertThat(result.getResults().get(LottoRank.NONE)).isEqualTo(2); // 0개 일치
     }
+
+    @DisplayName("로또 결과 계산 시 예외가 발생하는 경우")
+    @Test
+    void 로또_결과_계산시_예외가_발생한다() {
+        List<Lotto> tickets = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(4, 5, 6, 7, 8, 9))
+        );
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 6; // 이미 포함된 번호로 보너스 번호를 설정
+
+        LottoResult result = lottoMachine.calculateResult(tickets, winningNumbers, bonusNumber);
+
+        assertThat(result.getResults().get(LottoRank.NONE)).isEqualTo(2);  // 0개 일치
+    }
 }
