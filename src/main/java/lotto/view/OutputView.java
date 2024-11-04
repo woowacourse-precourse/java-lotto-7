@@ -6,6 +6,17 @@ import lotto.dto.LottosResponse;
 import java.util.StringJoiner;
 
 public class OutputView {
+    private OutputView() {
+    }
+
+    private static class OutputViewHolder {
+        private static final OutputView instance = new OutputView();
+    }
+
+    public static OutputView getInstance() {
+        return OutputViewHolder.instance;
+    }
+
     public void promptPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
     }
