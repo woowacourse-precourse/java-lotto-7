@@ -1,14 +1,13 @@
 package lotto;
 
-import lotto.winning.WinningController;
-import lotto.winning.WinningService;
-import lotto.winning.WinningServiceImpl;
-
 import lotto.vendingmachine.VendingMachineController;
 import lotto.vendingmachine.VendingMachineRepository;
 import lotto.vendingmachine.VendingMachineRepositoryImpl;
 import lotto.vendingmachine.VendingMachineService;
 import lotto.vendingmachine.VendingMachineServiceImpl;
+import lotto.winning.WinningController;
+import lotto.winning.WinningService;
+import lotto.winning.WinningServiceImpl;
 
 public class AppConfig {
 

@@ -1,8 +1,8 @@
 package lotto.donghang;
 
+import java.util.List;
+import java.util.Map;
 import lotto.AppConfig;
-import lotto.winning.WinningController;
-import lotto.winning.Rank;
 import lotto.io.InputReader;
 import lotto.io.OutputWriter;
 import lotto.util.InputParser;
@@ -10,9 +10,8 @@ import lotto.util.InputValidator;
 import lotto.vendingmachine.Lotto;
 import lotto.vendingmachine.VendingMachineController;
 import lotto.vendingmachine.VendingMachineRepository;
-
-import java.util.List;
-import java.util.Map;
+import lotto.winning.WinningController;
+import lotto.winning.Rank;
 
 public class DongHangLottery {
 

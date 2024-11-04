@@ -1,9 +1,7 @@
 package lotto.winning;
 
-
-import lotto.donghang.WinningLotto;
-
 import java.util.Map;
+import lotto.donghang.WinningLotto;
 
 public interface WinningService {
 

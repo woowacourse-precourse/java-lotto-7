@@ -1,10 +1,9 @@
 package lotto.io;
 
-import lotto.winning.Rank;
-import lotto.vendingmachine.Lotto;
-
 import java.util.List;
 import java.util.Map;
+import lotto.vendingmachine.Lotto;
+import lotto.winning.Rank;
 
 public class OutputWriter {
     private final StringBuilder sb = new StringBuilder();

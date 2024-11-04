@@ -1,12 +1,11 @@
 package lotto.winning;
 
-import lotto.donghang.WinningLotto;
-import lotto.vendingmachine.Lotto;
-import lotto.vendingmachine.VendingMachineRepository;
-
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.donghang.WinningLotto;
+import lotto.vendingmachine.Lotto;
+import lotto.vendingmachine.VendingMachineRepository;
 
 public class WinningServiceImpl implements WinningService {
 

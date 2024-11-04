@@ -1,9 +1,8 @@
 package lotto.vendingmachine;
 
-import lotto.winning.Rank;
-
 import java.util.List;
 import java.util.Map;
+import lotto.winning.Rank;
 
 public class VendingMachineRepositoryImpl implements VendingMachineRepository {
 
