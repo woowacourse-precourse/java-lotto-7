@@ -1,6 +1,8 @@
-package lotto;
+package lotto.view;
 
 import java.util.Iterator;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
 
 public class OutputView {
     private final String LOTTO_NUMBER_DELIMITER = ", ";
