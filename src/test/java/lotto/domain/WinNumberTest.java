@@ -40,4 +40,14 @@ public class WinNumberTest {
                 Arguments.of(new Lotto(List.of(10, 11, 12, 13, 14, 15)), 0)
         );
     }
+
+    @Test
+    void 보너스_번호가_일치하는지_여부를_잘_판단한다() {
+        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        BonusNumber bonusNumber = BonusNumber.from("8");
+        WinNumber winNumber = WinNumber.of(winningNumber, bonusNumber);
+
+        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        assertThat(winNumber.matchWithBonusNumber(userLotto)).isTrue();
+    }
 }
