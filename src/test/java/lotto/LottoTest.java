@@ -28,7 +28,7 @@ class LottoTest {
     @DisplayName("로또 번호와 보너스 번호가 중복되면 예외가 발생한다")
     @Test
     void 로또_번호와_보너스번호가_중복되면_예외가_발생한다() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
         assertThatThrownBy(() -> new BonusNumber(6, lotto.getNumbers()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -36,7 +36,7 @@ class LottoTest {
     @DisplayName("보너스 번호의 범위가 1~45 가 아니면 예외가 발생한다")
     @Test
     void bonusNumberRangeTest() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
         assertThatThrownBy(() -> new BonusNumber(46, lotto.getNumbers()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
