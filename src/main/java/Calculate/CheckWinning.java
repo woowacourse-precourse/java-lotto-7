@@ -1,4 +1,4 @@
-package winCheck;
+package Calculate;
 
 import java.util.ArrayList;
 import java.util.HashSet;
