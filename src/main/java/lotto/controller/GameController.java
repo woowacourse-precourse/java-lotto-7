@@ -8,10 +8,11 @@ import static lotto.view.OutputView.printLottosNum;
 import static lotto.view.OutputView.printRateOfReturn;
 import static lotto.view.OutputView.printResult;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Game;
 import lotto.domain.Lotto;
+import lotto.domain.Winning;
 import lotto.service.GameService;
 import lotto.util.InputParser;
 import lotto.util.InputValidator;
@@ -26,7 +27,8 @@ public class GameController {
 
     public void run() {
         int purchaseAmount = getValidPurchaseAmount();
-        Lotto winningLotto = new Lotto(getValidWinningNumbers());
+        List<Integer> winningNumbers = getValidWinningNumbers();
+        Lotto winningLotto = gameService.generateWinningLotto(winningNumbers);
         int bonusNumber = getValidBonusNumber(winningLotto);
 
         List<Lotto> lottos = gameService.generateLottos(purchaseAmount);
@@ -77,7 +79,7 @@ public class GameController {
     }
 
     private void displayResults(Game game, int purchaseAmount, Lotto winningLotto, List<Lotto> lottos) {
-        int[] results = gameService.getResults(game, winningLotto);
+        Map<Winning, Integer> results = gameService.getResults(game, winningLotto);
         double rateOfReturn = gameService.calculateRateOfReturn(game, purchaseAmount, results);
 
         printLottosNum(lottos);

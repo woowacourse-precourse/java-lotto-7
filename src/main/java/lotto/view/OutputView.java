@@ -1,8 +1,10 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.Winning;
 
 public class OutputView {
     public static void printLottosNum(List<Lotto> lottos) {
@@ -16,13 +18,16 @@ public class OutputView {
         }
     }
 
-    public static void printResult(int[] results) {
+    public static void printResult(Map<Winning, Integer> results) {
         System.out.println("당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + results[0] + "개");
-        System.out.println("4개 일치 (50,000원) - " + results[1] + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + results[2] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + results[3] + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + results[4] + "개");
+
+        for (Winning winning : Winning.values()) {
+            int count = results.getOrDefault(winning, 0);
+            System.out.printf("%d개 일치 (%d원) - %d개\n",
+                    winning.getMatchCount(),
+                    winning.getPrize(),
+                    count);
+        }
     }
 
     public static void printRateOfReturn(double rateOfReturn) {

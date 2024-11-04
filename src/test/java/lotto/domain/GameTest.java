@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -59,10 +60,14 @@ public class GameTest {
         Game game = new Game(lottos, winningLotto, bonusNumber);
 
         // when
-        int[] results = game.compareNumbers(winningLotto);
+        Map<Winning, Integer> results = game.compareNumbers(winningLotto);
 
         // then
-        assertArrayEquals(new int[]{1, 1, 1, 1, 1}, results);
+        assertEquals(1, results.get(Winning.THREE_MATCH));
+        assertEquals(1, results.get(Winning.FOUR_MATCH));
+        assertEquals(1, results.get(Winning.FIVE_MATCH));
+        assertEquals(1, results.get(Winning.FIVE_MATCH_WITH_BONUS));
+        assertEquals(1, results.get(Winning.SIX_MATCH));
     }
 
     @Test
@@ -75,8 +80,8 @@ public class GameTest {
         Game game = new Game(lottos, winningLotto, bonusNumber);
 
         // when
-        int[] results1 = game.compareNumbers(winningLotto);
-        double rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results1);
+        Map<Winning, Integer> results = game.compareNumbers(winningLotto);
+        double rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
 
         // then
         assertEquals(rateOfReturn, 500);
@@ -99,7 +104,7 @@ public class GameTest {
         Game game = new Game(lottos, winningLotto, bonusNumber);
 
         // when
-        int[] results = game.compareNumbers(winningLotto);
+        Map<Winning, Integer> results = game.compareNumbers(winningLotto);
         double rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
 
         // then
@@ -128,7 +133,7 @@ public class GameTest {
         Game game = new Game(lottos, winningLotto, bonusNumber);
 
         // when
-        int[] results = game.compareNumbers(winningLotto);
+        Map<Winning, Integer> results = game.compareNumbers(winningLotto);
         double rateOfReturn = game.calculateRateOfReturn(purchaseAmount, results);
 
         // then
