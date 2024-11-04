@@ -74,12 +74,12 @@ public enum Winning {
 
     private String makeString() {
         if (isMatchBonusNumber) {
-            return formatMessage(OutputViewConstant.SECOND_PLACE_RESULT_MESSAGE);
+            return makeUpFormat(OutputViewConstant.SECOND_PLACE_RESULT_MESSAGE);
         }
-        return formatMessage(OutputViewConstant.EXCEPT_SECOND_PLACE_RESULT_MESSAGE);
+        return makeUpFormat(OutputViewConstant.EXCEPT_SECOND_PLACE_RESULT_MESSAGE);
     }
 
-    private String formatMessage(String format) {
+    private String makeUpFormat(String format) {
         return String.format(
                 format,
                 winningNumberMatch,
