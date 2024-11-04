@@ -6,6 +6,13 @@ public class OutputView {
     public static void firstMessage(){
         System.out.println("구입금액을 입력해 주세요.");
     }
+    public static void promptWinningNumbers(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+    public static void bonusNumberMessage(){
+        System.out.println("");
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
     public static int calculateNumberOfSheetsFromAmount(int price){
         if (price < 1000) {
             throw new IllegalArgumentException("[ERROR] 최소 금액은 1,000원 이상이어야 합니다.");
@@ -22,5 +29,6 @@ public class OutputView {
         for (List<Integer> ticket : lottoTickets) {
             System.out.println(ticket); // 각 로또 티켓의 번호 출력
         }
+        System.out.println("");
     }
 }
