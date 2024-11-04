@@ -13,7 +13,6 @@ public class WinningNumbersInput{
                 System.out.println("\n당첨 번호를 입력해 주세요.");
                 String numberSet = Console.readLine();
                 numbers = splitNumbers(numberSet); // 입력 받고 나누기 & 숫자로 변환
-                checkNumbers(numbers);  // 범위 검사 & 중복 검사
                 return new Lotto(numbers);
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
@@ -30,18 +29,5 @@ public class WinningNumbersInput{
             tempNumbers.add(Integer.parseInt(number.trim()));  // 공백 제거 후 숫자 변환해주기
         }
         return tempNumbers;
-    }
-
-    private void checkNumbers(List<Integer> numbers) {
-        List<Integer> checkNumbers = new ArrayList<>();
-        for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-            if (checkNumbers.contains(number)) {
-                throw new IllegalArgumentException("[ERROR] 앞의 숫자와 중복되지 않는 새로운 숫자를 입력하세요.");
-            }
-            checkNumbers.add(number);
-        }
     }
 }
