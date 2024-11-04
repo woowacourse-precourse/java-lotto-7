@@ -21,6 +21,16 @@ public record Lotto(List<LottoNumber> numbers) {
         return new Lotto(lottoNumbers);
     }
 
+    public boolean contains(LottoNumber number) {
+        return numbers.contains(number);
+    }
+
+    public int countMatches(final Lotto other) {
+        return (int) numbers.stream()
+                .filter(other.numbers::contains)
+                .count();
+    }
+
     private void validate(final List<LottoNumber> numbers) {
         validateLottoSize(numbers);
         validateDuplicate(numbers);
