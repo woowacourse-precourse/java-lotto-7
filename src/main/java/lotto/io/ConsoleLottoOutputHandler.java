@@ -44,7 +44,7 @@ public class ConsoleLottoOutputHandler implements LottoOutputHandler {
         for (LottoRank rank : LottoRank.values()) {
             int count = result.getCountForRank(rank);
             if (rank != LottoRank.NONE) {
-                System.out.println(rank.getDescription() + ": " + count + "개");
+                System.out.println(rank.getDescription() + " - " + count + "개");
             }
         }
     }
