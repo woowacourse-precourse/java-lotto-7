@@ -2,6 +2,7 @@ package lotto.model;
 
 import static java.util.stream.Collectors.toMap;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -22,21 +23,34 @@ public class Statistics {
         if (winningNumbers.contains(bonusNumber)){
             throw new IllegalArgumentException("당첨 번호와 보너스 번호는 겹치면 안 됩니다.");
         }
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+        if (winningNumbers.size() != new HashSet<>(winningNumbers).size()){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복이 불가합니다.");
+        }
+        if(winningNumbers.stream().anyMatch(number -> number > 45)){
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45사이의 정수입니다.");
+        }
     }
 
     public Float getRateOfReturn(Map<LottoResult, Integer> lottoResults) {
         Float rateOfReturn;
         int purchaseCount = 0;
         int lotteryReturn = 0;
+
         for(Entry<LottoResult, Integer> entryLottery : lottoResults.entrySet()) {
             purchaseCount += entryLottery.getValue();
             lotteryReturn += entryLottery.getKey().getPrice() * entryLottery.getValue();
         }
-        rateOfReturn = Float.valueOf(lotteryReturn / (purchaseCount * 1000) * 100);
-        return (float) (Math.round(rateOfReturn * 10) / 10.0);
+        rateOfReturn = (float) lotteryReturn / (purchaseCount * 1000) * 100;
+
+        return rateOfReturn;
     }
+
     public Map<LottoResult, Integer> getResult(List<Lotto> issuedLotteries) {
         Map<LottoResult, Integer> lottoResults = initiateLottoResults();
+
         for (Lotto lotto : issuedLotteries) {
             List<Integer> lottoNumbers = lotto.getLottoNumbers();
             List<Integer> numbersOverlapped = findNumberOverlapped(lottoNumbers);

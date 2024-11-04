@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import lotto.model.Lotto;
 import lotto.model.Issuer;
 import lotto.model.LottoResult;
@@ -17,10 +18,9 @@ public class LottoController {
     }
 
     public void run() {
-        Integer purchaseAmount = consoleView.getPurchaseLottoAmount();
+        Integer purchaseAmount = getPurchaseLottoAmount();
 
-        List<Lotto> issuedLotteries = issuer.issueLotto(purchaseAmount);
-        consoleView.printIssuedLotto(issuedLotteries);
+        List<Lotto> issuedLotteries = getLotteries(purchaseAmount);
 
         List<Integer> winningNumbers = consoleView.getWinningNumbers();
         Integer bonusNumbers = consoleView.getBonusNumber();
@@ -32,5 +32,21 @@ public class LottoController {
         Float rateOfReturn = statistics.getRateOfReturn(lottoResults);
         consoleView.printRateOfReturn(rateOfReturn);
 
+    }
+
+    private List<Lotto> getLotteries(Integer purchaseAmount) {
+        List<Lotto> issuedLotteries = issuer.issueLotto(purchaseAmount);
+        consoleView.printIssuedLotto(issuedLotteries);
+        return issuedLotteries;
+    }
+
+    private Integer getPurchaseLottoAmount() {
+        while (true) {
+            try {
+                return consoleView.getPurchaseLottoAmount();
+            } catch (IllegalArgumentException e) {
+                consoleView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

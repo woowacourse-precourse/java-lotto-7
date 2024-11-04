@@ -11,9 +11,18 @@ import lotto.model.LottoResult;
 public class ConsoleView {
     public Integer getPurchaseLottoAmount(){
         System.out.println("구입금액을 입력해 주세요.");
-        Integer purchaseAmount = Integer.parseInt(Console.readLine());
-        System.out.println();
-        return purchaseAmount;
+        String purchaseAmountUserInput = Console.readLine();
+
+        if (isNumeric(purchaseAmountUserInput)){
+            Integer purchaseAmount = Integer.parseInt(purchaseAmountUserInput);
+            System.out.println();
+            return purchaseAmount;
+        }
+        throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로만 이루어져야 합니다.");
+    }
+
+    private static boolean isNumeric(String purchaseAmountUserInput) {
+        return purchaseAmountUserInput.matches("\\d+");
     }
 
     public List<Integer> getWinningNumbers() { // 숫자가 아닌 값이면 예외
@@ -42,14 +51,28 @@ public class ConsoleView {
     public void printStatistics(Map<LottoResult, Integer> lottoResults) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(LottoResult.FIFTH.getResult() + " " + "(" + String.format("%,d", LottoResult.FIFTH.getPrice()) + "원) - " + lottoResults.get(LottoResult.FIFTH) + "개" );
-        System.out.println(LottoResult.FOURTH.getResult() + " " + "(" + String.format("%,d", LottoResult.FOURTH.getPrice()) + "원) - " + lottoResults.get(LottoResult.FOURTH) + "개" );
-        System.out.println(LottoResult.THIRD.getResult() + " " + "(" + String.format("%,d", LottoResult.THIRD.getPrice()) + "원) - " + lottoResults.get(LottoResult.THIRD) + "개" );
-        System.out.println(LottoResult.SECOND.getResult() + " " + "(" + String.format("%,d", LottoResult.SECOND.getPrice()) + "원) - " + lottoResults.get(LottoResult.SECOND) + "개" );
-        System.out.println(LottoResult.FIRST.getResult() + " " + "(" + String.format("%,d", LottoResult.FIRST.getPrice()) + "원) - " + lottoResults.get(LottoResult.FIRST) + "개" );
+
+        List<LottoResult> resultOrder = List.of(
+                LottoResult.FIFTH,
+                LottoResult.FOURTH,
+                LottoResult.THIRD,
+                LottoResult.SECOND,
+                LottoResult.FIRST
+        );
+
+        for(LottoResult lottoResult : resultOrder) {
+            String result = lottoResult.getResult();
+            Integer price = lottoResult.getPrice();
+            Integer count = lottoResults.get(lottoResult);
+            System.out.println(result + " (" + String.format("%,d", price) + "원) - " + count + "개");
+        }
     }
 
     public void printRateOfReturn(Float rateOfReturn) {
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%,.1f", rateOfReturn) + "%입니다.");
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }
