@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.domain.LottoStatistics;
 import lotto.domain.Winning;
 
 public class OutputView {
@@ -38,8 +40,28 @@ public class OutputView {
                 .replace("]", "]");
     }
 
-    public void responseRateOfReturn(String rateOfReturn) {
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+    public void printStatistics(LottoStatistics statistics) {
+        System.out.println("---");
+        printWinningResults(statistics.getWinningStats());
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", statistics.getProfitRate());
+    }
+
+    private void printWinningResults(Map<Winning, Integer> stats) {
+        LottoResult[] results = {
+                new LottoResult(Winning.FIFTH),
+                new LottoResult(Winning.FOURTH),
+                new LottoResult(Winning.THIRD),
+                new LottoResult(Winning.SECOND),
+                new LottoResult(Winning.FIRST)
+        };
+
+        for (LottoResult result : results) {
+            Winning winning = result.getWinning();
+            String message = result.toString();
+            if (winning != Winning.NONE) {
+                System.out.printf("%s - %d개%n", message, stats.get(winning));
+            }
+        }
     }
 
 }
