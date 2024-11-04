@@ -20,6 +20,7 @@ public class Validator {
     private static final String WINNING_NUMBER_OPERATOR = ",";
     private static final String DUPLICATE_NUMBER_ERROR = "중복된 숫자는 입력할 수 없습니다.";
     private static final String EMPTY_INPUT_ERROR_MESSAGE = "입력은 비어있을 수 없습니다.";
+    public static final int PURCHASE_AMOUNT_STANDARD = 1000;
 
     private void checkIsNumber(String input) {
         try {
@@ -49,7 +50,7 @@ public class Validator {
             checkIsNumber(purchaseInput);
             int num = Integer.parseInt(purchaseInput);
             checkIsPositiveNumber(num);
-            if (num % 1000 != 0) {
+            if (num % PURCHASE_AMOUNT_STANDARD != 0) {
                 throw new IllegalArgumentException(AMOUNT_UNIT_ERROR_MESSAGE);
             }
         } catch (IllegalArgumentException e) {

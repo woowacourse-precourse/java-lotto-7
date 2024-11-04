@@ -9,13 +9,17 @@ import java.util.Set;
 public class Lotto {
     private final List<Integer> numbers;
 
+    private static final int LOTTERY_NUM_RANGE_FIRST = 1;
+    private static final int LOTTERY_NUM_RANGE_LAST = 45;
+    private static final int LOTTERY_NUMBER_COUNT = 6;
+
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTERY_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
@@ -29,7 +33,7 @@ public class Lotto {
     }
 
     public static Lotto generateLottoTicket() {
-        List<Integer> lottoTicket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoTicket = Randoms.pickUniqueNumbersInRange(LOTTERY_NUM_RANGE_FIRST, LOTTERY_NUM_RANGE_LAST, LOTTERY_NUMBER_COUNT);
         return new Lotto(lottoTicket);
     }
 
