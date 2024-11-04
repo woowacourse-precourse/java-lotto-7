@@ -9,8 +9,11 @@ import lotto.model.Lotto;
 public class LottoService implements LottosServiceInterface {
 
   @Override
-  public List<Lotto> generateLottosByAmount(int amount) {
-    int numOfLottos = amount / 1000;
+  public int getNumOfLottos(int purchaseAmount){
+    return purchaseAmount/1000;
+  }
+  @Override
+  public List<Lotto> generateLottosByAmount(int numOfLottos) {
     List<Lotto> lottos = new ArrayList<>();
 
     for (int i = 0; i < numOfLottos; i++) {

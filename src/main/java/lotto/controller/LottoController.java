@@ -27,7 +27,7 @@ public class LottoController {
 
     // 금액 받기 및 구매 개수 출력
     int purchaseAmount = getValidatedPurchaseAmount();
-    int numOfLottos = purchaseAmount/1000;
+    int numOfLottos = lottoService.getNumOfLottos(purchaseAmount);
 
     outputView.printPurchaseCount(numOfLottos);
 
