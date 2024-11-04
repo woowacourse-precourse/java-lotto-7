@@ -98,13 +98,7 @@ public class LottoController {
      * WinningLotto set
      */
     private WinningLotto setWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        while(true) {
-            try {
-                return InputParser.parseWinningLotto(winningNumbers, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
-            }
-        }
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
     /**

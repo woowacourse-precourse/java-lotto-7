@@ -65,15 +65,4 @@ public class InputParser {
             throw new InputException(ErrorMessage.UNAVAILABLE_TYPE_BONUS_NUMBER.getMessage());
         }
     }
-
-    /**
-     * 당첨번호(String)를 WinningLotto 로 파싱
-     */
-    public static WinningLotto parseWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        try{
-            return new WinningLotto(winningNumbers, bonusNumber);
-        } catch (NumberFormatException e) {
-            throw new InputException(ErrorMessage.UNAVAILABLE_LOTTO_NUMBERS.getMessage());
-        }
-    }
 }
