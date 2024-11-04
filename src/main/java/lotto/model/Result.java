@@ -18,9 +18,12 @@ public class Result {
 
     public float getRateOfReturn() {
         float price = money.getPrice();
-        float sum = result.entrySet().stream()
+        return sum() / price * 100;
+    }
+
+    private float sum() {
+        return result.entrySet().stream()
                 .mapToInt(e -> e.getKey().getPrize() * e.getValue())
                 .sum();
-        return sum / price * 100;
     }
 }
