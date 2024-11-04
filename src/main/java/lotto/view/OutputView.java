@@ -44,4 +44,8 @@ public class OutputView {
         DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
         System.out.printf(LOTTO_PROFIT_MESSAGE, decimalFormat.format(profit));
     }
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }

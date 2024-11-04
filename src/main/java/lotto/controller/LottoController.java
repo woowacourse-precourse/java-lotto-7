@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
@@ -33,7 +34,9 @@ public class LottoController {
     }
 
     private PurchaseAmount getPurchaseAmount() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(inputView.requestPurchaseAmount());
+        PurchaseAmount purchaseAmount = retryOnException(() ->
+                new PurchaseAmount(inputView.requestPurchaseAmount())
+        );
         outputView.printPurchaseAmount(purchaseAmount.getLottoQuantity());
         return purchaseAmount;
     }
@@ -51,13 +54,36 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        Lotto lotto = new Lotto(Parser.parseStringToList(inputView.requestWinningNumbers()));
-        BonusNumber bonusNumber = new BonusNumber(Parser.parseStringToInt(inputView.requestBonusNumber()));
-        return new WinningLotto(lotto, bonusNumber);
+        Lotto lotto = getWinningNumbers();
+        return retryOnException(() ->
+                new WinningLotto(lotto, getBonusNumber())
+        );
+    }
+
+    private Lotto getWinningNumbers() {
+        return retryOnException(() ->
+                new Lotto(Parser.parseStringToList(inputView.requestWinningNumbers()))
+        );
+    }
+
+    private BonusNumber getBonusNumber() {
+        return retryOnException(() ->
+                new BonusNumber(Parser.parseStringToInt(inputView.requestBonusNumber()))
+        );
     }
 
     private void printResult(LottoResult lottoResult, PurchaseAmount purchaseAmount) {
         outputView.printResult(lottoResult.getResult());
         outputView.printProfit(lottoResult.calculateProfit(purchaseAmount.getPurchaseAmount()));
+    }
+
+    private <T> T retryOnException(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
     }
 }
