@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static lotto.constant.LottoValues.LOTTO_SIZE;
 import static lotto.message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
@@ -35,7 +36,7 @@ public class WinningNumbersInputHandlerTest {
         // when & then
         assertThatCode(() -> numbersInputHandler.convertToInteger(nonInteger))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NON_INTEGER_PURCHASE_AMOUNT.getMessage());
+                .hasMessageContaining(NON_INTEGER_LOTTO.getMessage());
     }
 
     @DisplayName("보너스 번호로 로또 번호의 범위가 아닌 숫자가 들어오면 예외가 발생한다")
@@ -60,6 +61,6 @@ public class WinningNumbersInputHandlerTest {
         // when & then
         assertThatCode(() -> new BonusNumber(bonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(BONUS_NUMBER_DUPLICATE.getMessage());
+                .hasMessageContaining(BONUS_NUMBER_DUPLICATE.formatValue(LOTTO_SIZE.value()));
     }
 }

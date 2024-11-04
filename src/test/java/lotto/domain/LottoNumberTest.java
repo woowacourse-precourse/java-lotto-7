@@ -1,14 +1,13 @@
 package lotto.domain;
 
 import lotto.domain.number.LottoNumber;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static lotto.message.ErrorMessage.LOTTO_SCOPE_ERROR;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoNumberTest {
     @DisplayName("로또 번호의 범위에 해당하면 성공적으로 객체를 생성한다.")

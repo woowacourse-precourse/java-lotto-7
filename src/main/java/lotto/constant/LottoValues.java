@@ -1,7 +1,8 @@
 package lotto.constant;
 
 public enum LottoValues {
-    LOTTO_COUNT_LIMIT(2_000_000),
+    LOTTO_MONEY_MIN_LIMIT(0),
+    LOTTO_MONEY_MAX_LIMIT(2_000_000_000),
     PERCENT_MULTIPLIER(100),
     LOTTO_PRICE(1_000),
     LOTTO_NUMBER_MIN(1),

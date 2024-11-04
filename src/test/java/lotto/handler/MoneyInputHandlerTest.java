@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static lotto.constant.LottoValues.LOTTO_MONEY_MIN_LIMIT;
+import static lotto.constant.LottoValues.LOTTO_PRICE;
 import static lotto.message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -20,7 +22,7 @@ public class MoneyInputHandlerTest {
         String inputNum = "5238000";
 
         // when
-        long rawMoney = moneyInputHandler.convertToLong(inputNum);
+        long rawMoney = moneyInputHandler.convertToInt(inputNum);
         long lottoCount = moneyInputHandler.validateMoney(rawMoney);
 
         // then
@@ -34,7 +36,7 @@ public class MoneyInputHandlerTest {
         String zero = "0";
 
         // when
-        long rawMoney = moneyInputHandler.convertToLong(zero);
+        long rawMoney = moneyInputHandler.convertToInt(zero);
         long lottoCount = moneyInputHandler.validateMoney(rawMoney);
 
         // then
@@ -46,7 +48,7 @@ public class MoneyInputHandlerTest {
     @ValueSource(strings = {"", " ", "\n", "23489b"})
     void NonIntegerMoneyExceptionTest(String nonInteger) {
         // when & then
-        assertThatCode(() -> moneyInputHandler.convertToLong(nonInteger))
+        assertThatCode(() -> moneyInputHandler.convertToInt(nonInteger))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NON_INTEGER_PURCHASE_AMOUNT.getMessage());
     }
@@ -60,7 +62,7 @@ public class MoneyInputHandlerTest {
         // when & then
         assertThatCode(() -> moneyInputHandler.validateMoney(negativeLong))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NEGATIVE_PURCHASE_AMOUNT.getMessage());
+                .hasMessageContaining(NEGATIVE_PURCHASE_AMOUNT.formatValue(LOTTO_MONEY_MIN_LIMIT.value()));
     }
 
 
@@ -73,7 +75,7 @@ public class MoneyInputHandlerTest {
         // when & then
         assertThatCode(() -> moneyInputHandler.validateMoney(inputNum))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
+                .hasMessageContaining(INVALID_PURCHASE_AMOUNT_UNIT.formatValue(LOTTO_PRICE.value()));
     }
 
 }

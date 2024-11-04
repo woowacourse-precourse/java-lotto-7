@@ -1,5 +1,6 @@
 package lotto.handler;
 
+import static lotto.constant.LottoValues.*;
 import static lotto.message.ErrorMessage.*;
 import static lotto.view.RequestView.getMoney;
 
@@ -8,7 +9,7 @@ public class MoneyInputHandler {
         while (true) {
             try {
                 String inputNum = getMoney();
-                long rawMoney = convertToLong(inputNum);
+                int rawMoney = convertToInt(inputNum);
                 return validateMoney(rawMoney);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -16,21 +17,32 @@ public class MoneyInputHandler {
         }
     }
 
-    public long convertToLong(String inputNum) {
+    public int convertToInt(String inputNum) {
         try {
-            return Long.parseLong(inputNum);
+            return Integer.parseInt(inputNum);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NON_INTEGER_PURCHASE_AMOUNT.getMessage());
         }
     }
 
     long validateMoney(long rawMoney) {
-        if (rawMoney < 0) {
-            throw new IllegalArgumentException(NEGATIVE_PURCHASE_AMOUNT.getMessage());
+        validateMoneyScope(rawMoney);
+        validateMoneyUnit(rawMoney);
+        return rawMoney / LOTTO_PRICE.value();
+    }
+
+    private void validateMoneyScope(long rawMoney) {
+        if (rawMoney < LOTTO_MONEY_MIN_LIMIT.value()) {
+            throw new IllegalArgumentException(NEGATIVE_PURCHASE_AMOUNT.formatValue(LOTTO_MONEY_MIN_LIMIT.value()));
         }
-        if (rawMoney % 1000 != 0) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
+        if (rawMoney > LOTTO_MONEY_MAX_LIMIT.value()){
+            throw new IllegalArgumentException(OVERFLOW_PURCHASE_AMOUNT.formatValue(LOTTO_MONEY_MAX_LIMIT.value()));
         }
-        return rawMoney / 1000;
+    }
+
+    private void validateMoneyUnit(long rawMoney) {
+        if (rawMoney % LOTTO_PRICE.value() != 0) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT.formatValue(LOTTO_PRICE.value()));
+        }
     }
 }

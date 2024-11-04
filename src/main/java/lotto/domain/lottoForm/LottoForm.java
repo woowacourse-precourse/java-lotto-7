@@ -28,14 +28,14 @@ public abstract class LottoForm {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.value()) {
-            throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
+            throw new IllegalArgumentException(LOTTO_SIZE_ERROR.formatValue(LOTTO_SIZE.value()));
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATE.getMessage());
+            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATE.formatValue(LOTTO_SIZE.value()));
         }
     }
 }

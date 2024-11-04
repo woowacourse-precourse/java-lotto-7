@@ -42,7 +42,7 @@ public class LottoTest {
         // when & then
         assertThatCode(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_SIZE_ERROR.getMessage());
+                .hasMessage(LOTTO_SIZE_ERROR.formatValue(LOTTO_SIZE.value()));
 
     }
 
@@ -55,7 +55,7 @@ public class LottoTest {
         // when & then
         assertThatCode(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBERS_DUPLICATE.getMessage());
+                .hasMessage(LOTTO_NUMBERS_DUPLICATE.formatValue(LOTTO_SIZE.value()));
     }
 
     @DisplayName("로또에 저장되는 6개의 숫자는 오름차순으로 저장된다.")
