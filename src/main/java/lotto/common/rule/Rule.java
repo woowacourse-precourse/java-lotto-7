@@ -15,6 +15,9 @@ public class Rule {
     public static final long MONEY_MINIMUM_VALUE = 1000;
     public static final int LOTTO_PRICE = 1000;
 
+    // parsing rule
+    public static final String LIST_DELIMITER = ",";
+
     private Rule() {
     }
 }
