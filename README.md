@@ -22,8 +22,8 @@ LottoController
 
 Lotto
 - [x] validate 숫자 번호 1~45 검증
-- [x] validate 숫자 중복 검증
-- [ ] 일치하는 번호 수에 따른 결과 WinningType 반환
+- [x] validate 숫자 환중복 검증
+- [x] 일치하는 번호 수에 따른 결과 WinningType 반환
 
 
 Lottos

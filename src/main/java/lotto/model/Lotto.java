@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.model.enums.WinningType;
 
 public class Lotto {
 
@@ -53,6 +54,36 @@ public class Lotto {
 
     private void validateNumberRange(List<Integer> numbers) {
         numbers.forEach(this::isInRange);
+    }
+
+    public WinningType checkWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber){
+        int matchCount = 0;
+        boolean matchBonus = false;
+        matchCount += matchNumbers(winningNumbers);
+        matchBonus = matchBonus(bonusNumber);
+
+        if(matchBonus){
+            matchCount ++;
+        }
+
+        return WinningType.getWinningType(matchCount, matchBonus);
+    }
+
+    private Integer matchNumbers(List<Integer> winningNumbers){
+        int matchCount = 0;
+        for (Integer number : numbers) {
+            if(winningNumbers.contains(number)){
+                matchCount ++;
+            }
+        }
+        return matchCount;
+    }
+
+    private boolean matchBonus(Integer bonusNumber){
+        if(numbers.contains(bonusNumber)){
+            return true;
+        }
+        return false;
     }
 
     private void isInRange(Integer number) {
