@@ -2,7 +2,7 @@ package lotto.util;
 
 import static lotto.exception.ExceptionMessage.*;
 
-public class utils {
+public class LottoUtils {
 
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;

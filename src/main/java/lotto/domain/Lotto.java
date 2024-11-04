@@ -3,7 +3,7 @@ package lotto.domain;
 import static lotto.exception.ExceptionMessage.*;
 
 import java.util.*;
-import lotto.util.utils;
+import lotto.util.LottoUtils;
 
 public class Lotto {
     private static final int REQUIRED_NUMBER_COUNT = 6;
@@ -24,7 +24,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
-            utils.validateRange(number);
+            LottoUtils.validateRange(number);
         }
     }
 

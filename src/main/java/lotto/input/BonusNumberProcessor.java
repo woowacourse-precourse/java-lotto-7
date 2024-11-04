@@ -1,10 +1,7 @@
 package lotto.input;
 
-import static lotto.exception.ExceptionMessage.*;
-
-import java.util.List;
 import lotto.util.InputUtil;
-import lotto.util.utils;
+import lotto.util.LottoUtils;
 
 public class BonusNumberProcessor {
 
@@ -17,7 +14,7 @@ public class BonusNumberProcessor {
 
         int bonusNumber = Integer.parseInt(input);
 
-        utils.validateRange(bonusNumber);
+        LottoUtils.validateRange(bonusNumber);
 
         return bonusNumber;
     }
