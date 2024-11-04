@@ -38,7 +38,7 @@ public class TouchScreenTest {
     @Test
     @DisplayName("자동발권 전 유저 구매기록을 불러오려고 하면 예외가 발생한다")
     void 자동발권_전_유저_구매기록을_불러오려고_하면_예외가_발생한다() {
-        assertThatThrownBy(() -> UserStorage.get())
+        assertThatThrownBy(() -> UserStorage.getNumbers())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MessageCenter.ERROR_USERSTORAGE.get());
     }
@@ -59,7 +59,7 @@ public class TouchScreenTest {
     void 자동발권_후_유저_구매기록에_기록된_구매내역의_사이즈는_구매장수와_같다(Integer totalCount) {
         touchScreen.trialHistory.saveTotalCount(totalCount);
         touchScreen.pushDraw();
-        assertThat(UserStorage.get().size()).isEqualTo(totalCount);
+        assertThat(UserStorage.getNumbers().size()).isEqualTo(totalCount);
     }
 
     @ParameterizedTest
@@ -68,7 +68,7 @@ public class TouchScreenTest {
     void 자동발권_후_구매시도_내역과_유저_구매기록의_개수는_같다(Integer totalCount) {
         touchScreen.trialHistory.saveTotalCount(totalCount);
         touchScreen.pushDraw();
-        assertThat(UserStorage.get().size())
+        assertThat(UserStorage.getNumbers().size())
                 .isEqualTo(touchScreen.getTrialHistory().getDrawnNumberPacks().size());
     }
 }

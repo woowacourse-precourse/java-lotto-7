@@ -12,7 +12,7 @@ public class Printer {
 
     void getPrintedPaper() {
         validateUserStorage();
-        List<DrawnNumbers> drawnNumberPacks = UserStorage.get();
+        List<DrawnNumbers> drawnNumberPacks = UserStorage.getNumbers();
         List<String[]> printedFormat = getFormatted(drawnNumberPacks);
         getResultMessage(printedFormat);
     }
@@ -48,7 +48,7 @@ public class Printer {
 
 
     private void validateUserStorage() {
-        List<DrawnNumbers> drawnNumberPacks = UserStorage.get();
+        List<DrawnNumbers> drawnNumberPacks = UserStorage.getNumbers();
         if (drawnNumberPacks == null || drawnNumberPacks.isEmpty()) {
             throw new IllegalArgumentException(MessageCenter.ERROR_USERSTORAGE.get());
         }

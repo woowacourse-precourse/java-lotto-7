@@ -24,7 +24,8 @@ public class TouchScreen {
         Integer totalCount = trialHistory.getTotalCount();
         validatePaid();
         getDrawnNumbers(totalCount);
-        UserStorage.save(trialHistory.getDrawnNumberPacks());
+        UserStorage.saveNumbers(trialHistory.getDrawnNumberPacks());
+        UserStorage.savePayment(trialHistory.getPayment());
         print();
     }
 

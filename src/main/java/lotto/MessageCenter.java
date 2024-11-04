@@ -44,11 +44,9 @@ public enum MessageCenter {
         System.out.println(this.msg);
     }
 
-    public void printRate(Double rate) {
-        String rateResult = "";
-        rateResult += RESULT_RATE_START;
-        rateResult += rate;
-        rateResult += RESULT_RATE_FINISH;
-        System.out.println(rateResult);
+    public static void printRate(Double rate) {
+        System.out.println(RESULT_RATE_START.get()
+                        + String.valueOf(rate)
+                        + RESULT_RATE_FINISH.get());
     }
 }

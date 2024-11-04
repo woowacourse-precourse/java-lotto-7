@@ -10,11 +10,13 @@ public class Result {
     PrizeHistory prizeHistory = new PrizeHistory();
     String prizeResult;
 
-    public void getResult(WonNumbers wonNumbers) {
+    public PrizeHistory getResult(WonNumbers wonNumbers) {
         prizeHistory.clean();
-        List<DrawnNumbers> drawnNumberPacks = UserStorage.get();
+        List<DrawnNumbers> drawnNumberPacks = UserStorage.getNumbers();
         getPrizes(wonNumbers, drawnNumberPacks);
         print(prizeHistory.getPrizeHistory());
+
+        return prizeHistory;
     }
 
     public void print(PrizeHistory prizeHistory) {
