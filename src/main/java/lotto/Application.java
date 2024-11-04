@@ -94,4 +94,15 @@ public class Application {
             System.out.println(lotto);
         }
     }
+
+    public static int checkLottoMatch(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
+        int matchCount = 0;
+
+        for (int number : lottoNumbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
 }
