@@ -1,4 +1,4 @@
-package lotto.model.lottoBuyer;
+package lotto.model.lottoPurchaser;
 
 import lotto.model.lotto.Lotto;
 import org.junit.jupiter.api.BeforeEach;

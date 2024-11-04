@@ -1,4 +1,4 @@
-package lotto.model.lottoBuyer;
+package lotto.model.lottoPurchaser;
 
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoRankAward;
@@ -13,13 +13,13 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class LottoBuyerTest {
+public class LottoPurchaserTest {
 
-    private LottoBuyer lottoBuyer;
+    private LottoPurchaser lottoBuyer;
 
     @BeforeEach
     void setUp() {
-        lottoBuyer = new LottoBuyer(8000);
+        lottoBuyer = new LottoPurchaser(8000, 20);
     }
 
     @Test

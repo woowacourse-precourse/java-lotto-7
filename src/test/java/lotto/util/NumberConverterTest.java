@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.exception.GeneralExceptionMessages;
+import lotto.exception.GeneralException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +46,7 @@ public class NumberConverterTest {
         // when & then
         assertThatThrownBy(() -> converter.convertNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(GeneralExceptionMessages.INVALID_NUMBER);
+                .hasMessage(GeneralException.INVALID_NUMBER);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class NumberConverterTest {
         // when & then
         assertThatThrownBy(() -> converter.convertNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(GeneralExceptionMessages.INVALID_NUMBER);
+                .hasMessage(GeneralException.INVALID_NUMBER);
     }
 
 }
