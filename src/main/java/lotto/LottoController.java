@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
@@ -27,16 +28,26 @@ public class LottoController {
     public void run() {
         // TODO: Input이 Null인지 확인!!
         outputView.printPaymentRequestMessage();
-        int payment = retryUntilValid(inputView::readPayment);
-        int quantity = salesService.getAvailableLottoQuantity(payment);
-        List<Lotto> lottos = salesService.createLottos(quantity);
-        outputView.printLottoDetails(lottos);
+        int payment;
+        List<Lotto> lottos;
+        while(true) {
+            payment = inputView.readPayment();
+            try {
+                int quantity = salesService.getAvailableLottoQuantity(payment);
+                lottos = salesService.createLottos(quantity);
+                outputView.printLottoDetails(lottos);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printExceptionMessage(e.getMessage());
+            }
+        }
+
 
         outputView.printWinningNumbersRequestMessage();
-        String numbers = retryUntilValid(inputView::readWinningNumbers);
+        String numbers = inputView.readWinningNumbers();
 
         outputView.printBonusNumberRequestMessage();
-        int bonusNumber = retryUntilValid(inputView::readBonusNumber);
+        int bonusNumber = inputView.readBonusNumber();
         inputView.closeConsole();
 
         List<Integer> winningNumbers = createWinningNumbers(numbers);
@@ -51,7 +62,7 @@ public class LottoController {
     }
 
     private void setLottoResultAnalysisService(List<Integer> winningLottoNumbers, int bonusNumber) {
-        if(resultAnalysisService == null) {
+        if (resultAnalysisService == null) {
             resultAnalysisService = new LottoResultAnalysisService(winningLottoNumbers, bonusNumber);
         }
     }
@@ -63,16 +74,6 @@ public class LottoController {
             return splitNumbers.stream().map(Integer::parseInt).toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 정수여야 합니다.");
-        }
-    }
-
-    private <T> T retryUntilValid(Supplier<T> supplier) {
-        while(true) {
-            try {
-                return supplier.get();
-            } catch (Exception e) {
-                OutputView.printExceptionMessage(e);
-            }
         }
     }
 }

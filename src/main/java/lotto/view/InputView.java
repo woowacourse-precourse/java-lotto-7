@@ -5,29 +5,32 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
-    public Integer readPayment() throws IllegalArgumentException {
+    public Integer readPayment() {
         String payment = readLine();
         try {
             return Integer.parseInt(payment);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("구매 금액은 정수여야 합니다.");
+            OutputView.printExceptionMessage("구매 금액은 정수여야 합니다.");
+            return readPayment();
         }
     }
 
-    public String readWinningNumbers() throws IllegalArgumentException {
+    public String readWinningNumbers() {
         String winningNumbers = readLine();
-        if (winningNumbers.matches("^(\\d+)(,( )*\\d+)*$")) {
-            return winningNumbers;
+        while (!winningNumbers.matches("^(\\d+)(,( )*\\d+)*$")) {
+            OutputView.printExceptionMessage("당첨 번호는 정수이며 쉼표(,)로만 구분되어야 합니다.");
+            winningNumbers = readLine();
         }
-        throw new IllegalArgumentException("당첨 번호는 정수이며 쉼표(,)로만 구분되어야 합니다.");
+        return winningNumbers;
     }
 
-    public Integer readBonusNumber() throws IllegalArgumentException {
+    public Integer readBonusNumber() {
         String bonusNumber = readLine();
         try {
             return Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("보너스 번호는 정수여야 합니다.");
+            OutputView.printExceptionMessage("보너스 번호는 정수여야 합니다.");
+            return readBonusNumber();
         }
     }
 
