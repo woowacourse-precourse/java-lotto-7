@@ -53,8 +53,7 @@ public class LottoController {
 
     private Lotto readMainNumbers() {
         String winningNumbersInput = inputView.readWinningNumbers();
-        Lotto mainNumbers = Lotto.of(winningNumbersInput);
-        return mainNumbers;
+        return Lotto.of(winningNumbersInput);
     }
 
     private PurchaseAmount readPurchaseAmount() {
