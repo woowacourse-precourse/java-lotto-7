@@ -10,7 +10,7 @@ public class MockLottoGenerator implements Generator<Lotto> {
     private final Queue<Lotto> lottos;
 
     public MockLottoGenerator(List<Lotto> lottos) {
-        this.lottos = new LinkedList<Lotto>();
+        this.lottos = new LinkedList<>();
         this.lottos.addAll(lottos);
     }
 
