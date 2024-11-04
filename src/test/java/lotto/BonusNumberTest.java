@@ -9,6 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BonusNumberTest {
+    //보너스번호테스트
 
     @DisplayName("보너스 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.")
     @Test
