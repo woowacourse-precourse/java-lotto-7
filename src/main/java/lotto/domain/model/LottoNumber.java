@@ -1,13 +1,24 @@
 package lotto.domain.model;
 
 import java.util.Objects;
+import lotto.exception.LottoNumberException;
 
 public class LottoNumber {
+
+    private static final int MINIMUM = 1;
+    private static final int MAXIMUM = 45;
 
     private final int number;
 
     public LottoNumber(int number) {
+        validateRange(number);
         this.number = number;
+    }
+
+    private void validateRange(int number) {
+        if (number < MINIMUM || number > MAXIMUM) {
+            throw new LottoNumberException(MINIMUM, MAXIMUM);
+        }
     }
 
     @Override
