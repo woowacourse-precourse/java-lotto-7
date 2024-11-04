@@ -24,7 +24,7 @@ public class LottoController {
 
     public void run() {
         insertMoney();
-        calculateLotto();
+        generateLotto();
         setLottoNumbers();
         setBonusNumber();
         calculateLottoResults();
@@ -46,7 +46,7 @@ public class LottoController {
         }
     }
 
-    public void calculateLotto() {
+    public void generateLotto() {
         OutputView.printLottoTicketMessage(balance.getTicket());
         for (int i = 0; i < balance.getTicket(); i++) {
             user.addLotto(LottoService.createLottoNumbers());
