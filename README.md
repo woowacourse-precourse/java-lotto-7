@@ -1,11 +1,12 @@
 # [로또] 우아한테크코스(pre) 3주차
 
-## 클래스 다이어그램
+[//]: # (## 클래스 다이어그램)
 
 [//]: # (![]&#40;./image/class-diagram-lotto.png&#41;)
 
+## 클래스별 주요 기능
 <details>
-<summary> 클래스별 주요 기능 </summary>
+<summary> LOTTO </summary>
 
 - ***Application***
   - LottoController 객체를 생성하여 run()으로 로또 프로그램 시작.
