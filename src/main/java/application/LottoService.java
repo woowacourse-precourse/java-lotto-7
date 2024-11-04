@@ -34,4 +34,12 @@ public class LottoService {
 
         return LottoPrize.from(matchLottoCount, matchBonusNumber);
     }
+
+    public Double calculateProfitRate(List<LottoPrize> results, int purchaseQuantity) {
+        int totalPrize = results.stream()
+                .map(result -> result.getPrizeMoney().replace(",", ""))
+                .mapToInt(Integer::parseInt)
+                .sum();
+        return (double) totalPrize / purchaseQuantity;
+    }
 }
