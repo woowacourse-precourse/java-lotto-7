@@ -17,16 +17,16 @@ public class ConsoleView {
     }
 
 
-    public List<Integer> getWinningNumbers() { // 숫자가 아닌 값이면 예외
+    public String getWinningNumbers() { // 숫자가 아닌 값이면 예외
         System.out.println("당첨 번호를 입력해 주세요.");
         String userInputWinningNumbers = Console.readLine();
         System.out.println();
-        return Arrays.stream(userInputWinningNumbers.split(",")).map(Integer::parseInt).toList();
+        return userInputWinningNumbers;
     }
 
-    public Integer getBonusNumber() { // 한글자의 숫자가 아니면 예외
+    public String getBonusNumber() { // 한글자의 숫자가 아니면 예외
         System.out.println("보너스 번호를 입력해 주세요.");
-        Integer bonusNumber = Integer.parseInt(Console.readLine());
+        String bonusNumber = Console.readLine();
         System.out.println();
         return bonusNumber;
     }
@@ -44,13 +44,7 @@ public class ConsoleView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        List<LottoResult> resultOrder = List.of(
-                LottoResult.FIFTH,
-                LottoResult.FOURTH,
-                LottoResult.THIRD,
-                LottoResult.SECOND,
-                LottoResult.FIRST
-        );
+        List<LottoResult> resultOrder = makeOrderList();
 
         for(LottoResult lottoResult : resultOrder) {
             String result = lottoResult.getResult();
@@ -66,5 +60,16 @@ public class ConsoleView {
 
     public void printErrorMessage(String message) {
         System.out.println(message);
+    }
+
+    private List<LottoResult> makeOrderList() {
+        List<LottoResult> resultOrder = List.of(
+                LottoResult.FIFTH,
+                LottoResult.FOURTH,
+                LottoResult.THIRD,
+                LottoResult.SECOND,
+                LottoResult.FIRST
+        );
+        return resultOrder;
     }
 }

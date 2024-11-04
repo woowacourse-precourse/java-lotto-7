@@ -35,7 +35,6 @@ public class Statistics {
     }
 
     public Float getRateOfReturn(Map<LottoResult, Integer> lottoResults) {
-        Float rateOfReturn;
         int purchaseCount = 0;
         int lotteryReturn = 0;
 
@@ -43,9 +42,7 @@ public class Statistics {
             purchaseCount += entryLottery.getValue();
             lotteryReturn += entryLottery.getKey().getPrice() * entryLottery.getValue();
         }
-        rateOfReturn = (float) lotteryReturn / (purchaseCount * 1000) * 100;
-
-        return rateOfReturn;
+        return (float) lotteryReturn / (purchaseCount * 1000) * 100;
     }
 
     public Map<LottoResult, Integer> getResult(List<Lotto> issuedLotteries) {
