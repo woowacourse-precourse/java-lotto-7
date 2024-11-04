@@ -20,6 +20,12 @@ public final class LottoNumberValidator {
         }
     }
 
+    public static void validateBonusNumberDuplicates(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
     public static void validateNumberInRange(int number) {
         int minNumber = LottoConstant.MIN_NUMBER.getIntValue();
         int maxNumber = LottoConstant.MAX_NUMBER.getIntValue();

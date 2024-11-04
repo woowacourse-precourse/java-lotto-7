@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.util.LottoNumberValidator;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class WinningLotto {
@@ -10,12 +11,13 @@ public class WinningLotto {
 
     public WinningLotto(List<Integer> numbers, int bonusNumber) {
         this.lotto = new Lotto(numbers);
-        validateBonusNumber(bonusNumber);
+        validateBonusNumber(numbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(int number) {
-        LottoNumberValidator.validateNumberInRange(number);
+    private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        LottoNumberValidator.validateNumberInRange(bonusNumber);
+        LottoNumberValidator.validateBonusNumberDuplicates(numbers, bonusNumber);
     }
 
     public int countMatchNumbers(Lotto userLotto) {
