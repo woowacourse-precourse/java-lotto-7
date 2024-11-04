@@ -1,8 +1,8 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import message.ErrorMessage;
 
 public class Lotto {
 
@@ -21,20 +21,11 @@ public class Lotto {
         isValidNumberRange(numbers);
         isDuplicate(numbers);
         isValidNumberSize(numbers);
-        Collections.sort(numbers);
     }
 
     private void isValidNumberSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    }
-
-    private void isValidNumberRange(List<Integer> numbers) {
-        for (Integer Number : numbers) {
-            if ((Number < MIN_NUM) || (Number > MAX_NUM)) {
-                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
-            }
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_SIZE.getMessage());
         }
     }
 
@@ -45,6 +36,14 @@ public class Lotto {
                 throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
             }
             duplicateNumbers.add(Number);
+        }
+    }
+
+    private void isValidNumberRange(List<Integer> numbers) {
+        for (Integer Number : numbers) {
+            if ((Number < MIN_NUM) || (Number > MAX_NUM)) {
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
+            }
         }
     }
 
