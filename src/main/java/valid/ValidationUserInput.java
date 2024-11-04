@@ -1,7 +1,6 @@
 package valid;
 
 public class ValidationUserInput {
-    static final String ERROR_MESSAGE = "[ERROR] ";
     ValidationForMany validationForMany = new ValidationForMany();
     ValidationForOne validationForOne = new ValidationForOne();
 
@@ -10,8 +9,8 @@ public class ValidationUserInput {
         try {
             validMoney = validationForOne.consistOfOnlyPositiveNumbers(userInputMoney);
             validationForOne.devisibleByThousands(validMoney);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + e.getMessage());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자로만 이루어져야 합니다");
         }
         return validMoney;
     }
@@ -20,7 +19,7 @@ public class ValidationUserInput {
         try {
             validationForMany.consistOfOnlySixPositiveNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
         return true;
     }
@@ -30,7 +29,7 @@ public class ValidationUserInput {
         try {
             validationForOne.consistOfOnlyPositiveNumbers(bonusNumber);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
         return validBonusNumber;
     }
