@@ -1,4 +1,4 @@
-package lotto.lottoapp.value;
+package lotto.lottoapp.model.value;
 
 import java.util.Arrays;
 import java.util.Comparator;

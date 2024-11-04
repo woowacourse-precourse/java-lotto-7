@@ -4,9 +4,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.lottoapp.value.LottoNumbers;
-import lotto.lottoapp.value.WinningResult;
-import lotto.lottoapp.value.WinningStatistics;
+import lotto.lottoapp.model.value.LottoNumbers;
+import lotto.lottoapp.model.value.WinningResult;
+import lotto.lottoapp.model.value.WinningStatistics;
 
 public class LottoOutput {
 

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.lottoapp.model.Lotto;
-import lotto.lottoapp.value.LottoNumber;
+import lotto.lottoapp.model.value.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

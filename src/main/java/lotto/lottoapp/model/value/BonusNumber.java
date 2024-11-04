@@ -1,4 +1,4 @@
-package lotto.lottoapp.value;
+package lotto.lottoapp.model.value;
 
 public final class BonusNumber extends LottoNumber {
 

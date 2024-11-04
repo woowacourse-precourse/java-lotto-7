@@ -3,7 +3,7 @@ package lotto.value;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import lotto.lottoapp.value.Won;
+import lotto.lottoapp.model.value.Won;
 import org.junit.jupiter.api.Test;
 
 class WonTest {

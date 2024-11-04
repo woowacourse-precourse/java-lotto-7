@@ -6,8 +6,12 @@
 
 ```
 lotto
-  - value
-  - model
+  - common// 앱의 외부라고 판단되는 기능의 집합
+  - lottoapp //수행하고자 하는 핵심 기능의 집합 
+    - view
+    - business
+    - model
+    - value
 ```
 
 ## 2. 구현 기능 목록

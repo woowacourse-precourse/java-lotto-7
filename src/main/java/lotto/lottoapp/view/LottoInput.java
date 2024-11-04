@@ -2,9 +2,9 @@ package lotto.lottoapp.view;
 
 import lotto.common.view.ConsoleInput;
 import lotto.lottoapp.model.WinningLotto;
-import lotto.lottoapp.value.BonusNumber;
-import lotto.lottoapp.value.LottoNumbers;
-import lotto.lottoapp.value.Won;
+import lotto.lottoapp.model.value.BonusNumber;
+import lotto.lottoapp.model.value.LottoNumbers;
+import lotto.lottoapp.model.value.Won;
 
 public class LottoInput {
 

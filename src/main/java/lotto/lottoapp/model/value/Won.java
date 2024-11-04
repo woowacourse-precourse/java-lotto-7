@@ -1,4 +1,4 @@
-package lotto.lottoapp.value;
+package lotto.lottoapp.model.value;
 
 import java.math.BigInteger;
 import java.text.DecimalFormat;

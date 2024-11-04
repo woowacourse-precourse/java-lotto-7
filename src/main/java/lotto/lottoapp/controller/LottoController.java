@@ -1,12 +1,12 @@
 package lotto.lottoapp.controller;
 
 import java.util.List;
-import lotto.common.controller.InteractionRepeatable;
+import lotto.common.util.InteractionRepeatable;
 import lotto.lottoapp.business.LottoService;
 import lotto.lottoapp.model.WinningLotto;
-import lotto.lottoapp.value.LottoNumbers;
-import lotto.lottoapp.value.WinningStatistics;
-import lotto.lottoapp.value.Won;
+import lotto.lottoapp.model.value.LottoNumbers;
+import lotto.lottoapp.model.value.WinningStatistics;
+import lotto.lottoapp.model.value.Won;
 import lotto.lottoapp.view.LottoInput;
 import lotto.lottoapp.view.LottoOutput;
 

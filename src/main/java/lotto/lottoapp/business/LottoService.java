@@ -4,9 +4,9 @@ import java.util.List;
 import lotto.lottoapp.model.LottoNumbersGenerator;
 import lotto.lottoapp.model.Lottos;
 import lotto.lottoapp.model.WinningLotto;
-import lotto.lottoapp.value.LottoNumbers;
-import lotto.lottoapp.value.WinningStatistics;
-import lotto.lottoapp.value.Won;
+import lotto.lottoapp.model.value.LottoNumbers;
+import lotto.lottoapp.model.value.WinningStatistics;
+import lotto.lottoapp.model.value.Won;
 
 public class LottoService {
 
