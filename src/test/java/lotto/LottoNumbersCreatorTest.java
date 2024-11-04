@@ -1,8 +1,11 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 public class LottoNumbersCreatorTest {
     @Test
@@ -14,5 +17,12 @@ public class LottoNumbersCreatorTest {
         String input2 = "1,2,4,3,";
         assertThatThrownBy(() -> LottoNumbersCreator.validateNotStartEndWithComma(input2))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 입력값으로_숫자_리스트를_만든다() {
+        String input = "1,3,4,6,2,8";
+        assertThat(LottoNumbersCreator.createNumberListByInput(input))
+                .isEqualTo(List.of(1,3,4,6,2,8));
     }
 }
