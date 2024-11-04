@@ -28,5 +28,6 @@ public class InputView {
 
     private void validateInput(String input) {
         InputValidator.validateContainsBlank(input);
+        InputValidator.validateEmpty(input);
     }
 }

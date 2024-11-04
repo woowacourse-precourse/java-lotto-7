@@ -8,4 +8,10 @@ public class InputValidator {
             throw new IllegalArgumentException(ErrorMessage.CONTAIN_BLANK.getErrorMessage());
         }
     }
+
+    public static void validateEmpty(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.IS_EMPTY.getErrorMessage());
+        }
+    }
 }

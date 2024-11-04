@@ -2,7 +2,8 @@ package lotto.exception;
 
 public enum ErrorMessage {
     ERROR_MESSAGE_PREFIX("[ERROR] "),
-    CONTAIN_BLANK("공백을 포함한 문자열은 입력할 수 없습니다.");
+    CONTAIN_BLANK("공백을 포함한 문자열은 입력할 수 없습니다."),
+    IS_EMPTY("빈 문자열은 입력할 수 없습니다.");
 
     private final String message;
 
