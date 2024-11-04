@@ -14,7 +14,7 @@ import lotto.common.validator.InputValidator;
 import lotto.domain.Lotto;
 
 public class WinningNumbersInput implements Input<Lotto, String[]> {
-    private InputValidator inputValidator = new InputValidator(); // TODO
+    private InputValidator inputValidator = new InputValidator();
 
     @Override
     public Lotto input() {

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.common.exception.ExceptionMessages.WINNING_NUMBERS_CONTAIN_TOO_MANY_NUMBERS;
+
 public class WinningNumbers {
     private Lotto winningNumbers;
     private Integer bonusNumber;
@@ -10,8 +12,11 @@ public class WinningNumbers {
     }
 
     public MatchResult match(Lotto lotto) {
-        int matchCount = (int) lotto.countMatchNumbers(winningNumbers); // TODO long -> int
+        long matchCount = lotto.countMatchNumbers(winningNumbers);
         boolean matchBonus = matchCount == 5 && lotto.containsNumber(bonusNumber);
-        return new MatchResult(matchCount, matchBonus);
+        if (matchCount > Integer.MAX_VALUE) {
+            throw new IllegalStateException(WINNING_NUMBERS_CONTAIN_TOO_MANY_NUMBERS.getMessage());
+        }
+        return new MatchResult((int) matchCount, matchBonus);
     }
 }

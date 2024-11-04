@@ -11,6 +11,7 @@ public enum ExceptionMessages {
     INVALID_WINNING_NUMBER_FORMAT("쉼표가 연속으로 오거나 앞뒤에 올 수 없습니다. (입력 예시: 1,2,3,4,5,6)"),
     WINNING_NUMBERS_CONTAINS_WHITESPACE("입력값에 공백이 포함될 수 없습니다. (입력 예시: 1,2,3,4,5,6)"),
     EMPTY_WINNING_NUMBERS("당첨 번호가 비어있습니다"),
+    WINNING_NUMBERS_CONTAIN_TOO_MANY_NUMBERS("당첨 번호가 너무 많습니다."),
     ;
 
     private static final String ERROR_PREFIX = "[ERROR] ";
