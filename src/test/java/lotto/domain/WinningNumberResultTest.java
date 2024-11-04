@@ -8,25 +8,25 @@ import java.util.Map;
 import lotto.domain.winning.LottoRank;
 import lotto.domain.winning.WinningResult;
 import lotto.domain.number.Lotto;
-import lotto.domain.number.Bonus;
-import lotto.domain.number.Winning;
+import lotto.domain.number.BonusNumber;
+import lotto.domain.number.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinningResultTest {
+class WinningNumberResultTest {
 
     @Test
     @DisplayName("당첨 결과를 집계 한다.")
     void getLottoRanksTest() {
         //given
         final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        final Bonus bonus = new Bonus(10);
-        final Winning winning = new Winning(winningLotto, bonus);
+        final BonusNumber bonusNumber = new BonusNumber(10);
+        final WinningNumber winningNumber = new WinningNumber(winningLotto, bonusNumber);
         final List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 10)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)));
 
         //when
-        final WinningResult winningResult = new WinningResult(winning, lottos);
+        final WinningResult winningResult = new WinningResult(winningNumber, lottos);
         final Map<LottoRank, Integer> lottoRanks = winningResult.getLottoRanks();
 
         //then

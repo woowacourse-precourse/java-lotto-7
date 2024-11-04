@@ -4,20 +4,20 @@ import java.util.List;
 import lotto.domain.winning.LottoRank;
 import lotto.util.NumberValidator;
 
-public class Winning {
+public class WinningNumber {
 
     private final Lotto winningLotto;
-    private final Bonus bonus;
+    private final BonusNumber bonusNumber;
 
-    public Winning(final Lotto winningLotto, final Bonus bonus) {
-        validate(winningLotto, bonus);
+    public WinningNumber(final Lotto winningLotto, final BonusNumber bonusNumber) {
+        validate(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
-        this.bonus = bonus;
+        this.bonusNumber = bonusNumber;
     }
 
-    private void validate(final Lotto winningLotto, final Bonus bonus) {
+    private void validate(final Lotto winningLotto, final BonusNumber bonusNumber) {
         final List<Integer> numbers = winningLotto.getNumbers();
-        final int value = bonus.getValue();
+        final int value = bonusNumber.getValue();
         final NumberValidator<Integer> numberValidator = NumberValidator.getInstance();
         numberValidator.validateContains(numbers, value);
     }
@@ -29,7 +29,7 @@ public class Winning {
     }
 
     private boolean isMatchBonusNumber(final Lotto lotto) {
-        return bonus.isMatchNumber(lotto);
+        return bonusNumber.isMatchNumber(lotto);
     }
 
     private int countMatchNumber(final Lotto lotto) {

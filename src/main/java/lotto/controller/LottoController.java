@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import lotto.domain.winning.LottoRank;
-import lotto.domain.number.Bonus;
+import lotto.domain.number.BonusNumber;
 import lotto.domain.number.Lotto;
 import lotto.domain.winning.LottoProfit;
 import lotto.domain.purchase.LottoStore;
 import lotto.domain.purchase.Money;
 import lotto.domain.generator.QuickLottoGenerator;
-import lotto.domain.number.Winning;
+import lotto.domain.number.WinningNumber;
 import lotto.domain.winning.WinningResult;
 import lotto.dto.LottoNumber;
 import lotto.dto.WinningRecipe;
@@ -33,13 +33,13 @@ public class LottoController {
         final Money money = requestMoney();
         final List<Lotto> lottos = lottoStore.getLottosByMoney(money);
         responseLottos(lottos);
-        final Winning winning = requestWinningNumbers();
+        final WinningNumber winningNumber = requestWinningNumbers();
         Console.close();
-        responseResult(winning, lottos, money);
+        responseResult(winningNumber, lottos, money);
     }
 
-    private void responseResult(final Winning winning, final List<Lotto> lottos, Money money) {
-        final WinningResult winningResult = new WinningResult(winning, lottos);
+    private void responseResult(final WinningNumber winningNumber, final List<Lotto> lottos, Money money) {
+        final WinningResult winningResult = new WinningResult(winningNumber, lottos);
         final LottoProfit lottoProfit = new LottoProfit(winningResult.getLottoRanks(), money);
         responseWinningResult(winningResult);
         responseLottoProfit(lottoProfit);
@@ -80,19 +80,19 @@ public class LottoController {
         });
     }
 
-    private Winning requestWinningNumbers() {
+    private WinningNumber requestWinningNumbers() {
         final Lotto lotto = requestWinningNumber();
         return tryCatchLoopTemplate(() -> {
-            final Bonus bonus = requestBonusNumber();
-            return new Winning(lotto, bonus);
+            final BonusNumber bonusNumber = requestBonusNumber();
+            return new WinningNumber(lotto, bonusNumber);
         });
     }
 
-    private Bonus requestBonusNumber() {
+    private BonusNumber requestBonusNumber() {
         return tryCatchLoopTemplate(() -> {
             outputView.printAskBonusNumber();
             final int number = inputView.readNumber();
-            return new Bonus(number);
+            return new BonusNumber(number);
         });
     }
 
