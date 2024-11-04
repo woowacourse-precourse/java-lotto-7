@@ -34,9 +34,15 @@ public class LottoController {
 
         printResult(winningResult);
 
-
+        printReturnRate(lottos, lottoCount * LOTTO_PURCHASE_COST);
 
     }
+
+    private void printReturnRate(Lottos lottos, Integer lottoCount){
+        double returnPrice = getReturnRate(lottos, lottoCount);
+        OutputView.getInstance().printTotalReturnRate(returnPrice);
+    }
+
 
     private void printLottos(List<Lotto> createLottos, Integer lottoCount) {
         String lottosString = getLottosString(createLottos);
@@ -136,5 +142,8 @@ public class LottoController {
         }
     }
 
-
+    private double getReturnRate(Lottos lottos, Integer lottoCount){
+        Long totalPrize = lottos.getTotalPrize();
+        return ((double)totalPrize - lottoCount) / lottoCount * 100 ;
+    }
 }

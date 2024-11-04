@@ -11,7 +11,7 @@ outputView
 - [x] 입력 프롬프트 출력 메세지 static final 변수로 선언
 - [x] 구매한 로또 번호 출력(Lotto)
 - [x] 당첨 통계 출력(Lottos)
-- [ ] 총 수익률 출력
+- [x] 총 수익률 출력
 - [x] 싱글톤 구현
 
 LottoController
