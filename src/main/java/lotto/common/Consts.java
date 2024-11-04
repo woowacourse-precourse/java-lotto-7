@@ -17,6 +17,8 @@ public class Consts {
     public static final String INPUT_MESSAGE_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     public static final String INPUT_MESSAGE_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
+    public static final String OUTPUT_MESSAGE_PURCHASE_COMPLETE = "%d개를 구매했습니다.";
+
     //TODO: 등수 별 상금
     public static final int FIRST_PRIZE_MONEY = 2_000_000_000;
     public static final int SECOND_PRIZE_MONEY = 30_000_000;
@@ -24,5 +26,8 @@ public class Consts {
     public static final int FOURTH_PRIZE_MONEY = 50_000;
     public static final int FIFTH_PRIZE_MONEY = 5_000;
 
+    public static String getPurchaseMessage(int count){
+        return String.format(OUTPUT_MESSAGE_PURCHASE_COMPLETE, count);
+    }
 
 }
