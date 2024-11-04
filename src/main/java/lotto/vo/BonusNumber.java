@@ -27,4 +27,8 @@ public class BonusNumber {
     private void validate(int number) throws IllegalArgumentException {
         Validator.checkWinningNumberRange(number);
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

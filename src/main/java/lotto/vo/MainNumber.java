@@ -37,4 +37,8 @@ public class MainNumber {
             throw new IllegalArgumentException(NOT_NUMBER_OR_RANGE_EXCESS.getMessage());
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
