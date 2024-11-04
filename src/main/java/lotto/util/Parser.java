@@ -53,6 +53,22 @@ public class Parser {
         }
     }
 
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                output.printPrompt(Prompt.ENTER_BONUS_NUMBER);
+                String bonusNumberInput = input.getInput();
+                int bonusNumber = Integer.parseInt(bonusNumberInput);
+                validator.validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                output.printErrorMessage("보너스 번호는 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                output.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
     private List<Integer> parseWinningNumbers(String input) throws NumberFormatException {
         String[] numbers = input.split(DELIMITER);
         List<Integer> parsedNumbers = new ArrayList<>();
