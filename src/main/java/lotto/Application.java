@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.controller.PrizeController;
 import lotto.controller.PurchaseController;
 import lotto.controller.DrawController;
 //import lotto.controller.PrizeController;
@@ -16,8 +17,8 @@ public class Application {
         DrawController drawController = new DrawController();
         drawController.run();
 
-//        PrizeController prizeController = new PrizeController();
-//        prizeController.getNumbers();
+        PrizeController prizeController = new PrizeController();
+        prizeController.run();
 //
 //        ResultController resultController = new ResultController();
 //        resultController.run();
