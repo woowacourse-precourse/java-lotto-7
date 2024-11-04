@@ -39,21 +39,15 @@ public enum Rank {
     }
 
     public static Rank checkRank(long match, boolean bonus) {
-        if (match == FIRST.match) {
-            return FIRST;
-        }
-        if (match == SECOND.match) {
-            if (bonus) {
-                return SECOND;
-            }
+        if (match == SECOND.match && !bonus) {
             return THIRD;
         }
-        if (match == FOURTH.match) {
-            return FOURTH;
-        }
-        if (match == FIFTH.match) {
-            return FIFTH;
-        }
-        return NONE;
+        Map<Integer, Rank> rankByMatch = Map.of(
+                FIRST.match, FIRST,
+                SECOND.match, SECOND,
+                FOURTH.match, FOURTH,
+                FIFTH.match, FIFTH
+        );
+        return rankByMatch.getOrDefault(match, NONE);
     }
 }
