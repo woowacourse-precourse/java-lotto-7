@@ -12,10 +12,24 @@ public class InputValidator {
     }
 
     public static String validateCost(String cost) {
-        if (!cost.matches(NUMBER_PATTERN)) {
-            throw new IllegalArgumentException("숫자를 입력해주세요.");
-        }
+        validateNumber(cost);
+        validateUnit(cost);
         return cost;
     }
 
+    private static void validateNumber(String cost) {
+        if (!cost.matches(NUMBER_PATTERN)) {
+            throw new IllegalArgumentException("숫자를 입력해주세요.");
+        }
+    }
+
+    private static void validateUnit(String cost) {
+        if (isNotDivisible(cost)) {
+            throw new IllegalArgumentException("%s원 단위의 구입 금액을 입력해주세요.");
+        }
+    }
+
+    private static boolean isNotDivisible(String cost) {
+        return Integer.parseInt(cost) % 1000 != 0;
+    }
 }
