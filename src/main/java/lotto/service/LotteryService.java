@@ -50,11 +50,14 @@ public class LotteryService {
         }
 
         winningLottery.addWinningNumbers(lottoWinningNumbers);
+        System.out.println();
     }
 
     public void setLottoBonusNumber() {
+        outputView.printRequireBonusNumber();
         int lottoBonusNumber = Integer.parseInt(Console.readLine());
         lottoBonus.setLottoBonusNumber(lottoBonusNumber);
+        System.out.println();
     }
 
     public void getLottoWinningStatistics() {
@@ -63,6 +66,9 @@ public class LotteryService {
         // 개수 일치 여부 판단 필요
         final List<Lotto> lottos = lottoBuyer.getLottos();
         final List<Integer> winningNumbers = winningLottery.getNumbers();
+        final int bonusNumber = lottoBonus.getBonusNumber();
+        boolean isBonus = false;
+
         for (Lotto lotto : lottos) {
             List<Integer> ticketNumbers = lotto.getNumbers();
             int matchingCount = 0;
@@ -71,8 +77,16 @@ public class LotteryService {
                     matchingCount++;
                 }
             }
-            System.out.println("로또 번호: " + ticketNumbers + ", 일치 개수: " + matchingCount);
+
+            if (ticketNumbers.contains(bonusNumber)) {
+                isBonus = true;
+            }
+            lottoBuyer.addMoney(matchingCount, isBonus);
         }
+
+        final int totalWinningAmount = lottoBuyer.getLottoWinningAmount();
+        final int purchaseAmount = lottoBuyer.getLottoPurchaseAmount() * 1000;
+        getLotteryYield(purchaseAmount, totalWinningAmount);
     }
 
     public void getLotteryYield(final int purchaseAmount, final int totalWinningAmount) {
