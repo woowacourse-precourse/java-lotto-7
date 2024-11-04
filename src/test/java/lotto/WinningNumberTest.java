@@ -32,5 +32,6 @@ public class WinningNumberTest {
         List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
         assertEquals(expected, winningNumber.changeType(inputNum));
     }
+    
 }
     
