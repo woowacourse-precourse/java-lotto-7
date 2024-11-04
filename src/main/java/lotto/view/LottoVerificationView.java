@@ -18,7 +18,7 @@ public class LottoVerificationView {
                     + " (" + rank.getPrize() + "원) - "
                     + count + "개");
         }
-        System.out.printf("총 수익률은 %.2f%%입니다.%n", rateOfReturn);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn);
     }
 
 }
