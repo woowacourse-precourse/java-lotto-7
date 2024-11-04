@@ -74,12 +74,33 @@ public class Lotto {
                 .count();
     }
 
+    // 번호를 맞춘 개수를 리스트에 반영
+    public static void bonusNumberCheck(int[] checkNumber, int count, List<Integer> purchaseLottoNumber,int bonusNumber){
+        if (count == 3){
+            checkNumber[0]++;
+        }
+        else if (count == 4){
+            checkNumber[1]++;
+        }
+        else if (count == 5){
+            if (purchaseLottoNumber.contains(bonusNumber)){
+                checkNumber[3]++;
+                return;
+            }
+            checkNumber[2]++;
+        }
+        else if (count == 6){
+            checkNumber[4]++;
+        }
+    }
+
     // 구매한 로또 번호와 당첨 번호 비교
     public static int[] lottoWinningCheck(Lotto lotto, int bonusNumber, List<List<Integer>> purchaseLottoNumbers){
         int[] checkNumber = new int[5];
         for(List<Integer> purchaseLottoNumber : purchaseLottoNumbers){
             int count = lotto.commonValueCount(purchaseLottoNumber);
+            bonusNumberCheck(checkNumber, count, purchaseLottoNumber, bonusNumber);
         }
+        return checkNumber;
     }
-
 }
