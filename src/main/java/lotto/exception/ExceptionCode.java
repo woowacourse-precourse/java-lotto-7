@@ -11,9 +11,9 @@ public enum ExceptionCode {
     INCORRECT_NUMBER_COUNTS("로또 번호는 %d개여야 합니다.".formatted(NUMBER_COUNT)),
     NUMBER_OUT_OF_RANGE("입력된 수가 가능한 범위를 초과하였습니다.");
 
-    final String message;
-
     static final String messageHeader = "[ERROR] ";
+
+    final String message;
 
     ExceptionCode(String message) {
         this.message = messageHeader + message;

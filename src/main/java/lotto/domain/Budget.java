@@ -2,13 +2,15 @@ package lotto.domain;
 
 import java.math.BigInteger;
 
-import static lotto.exception.ExceptionCode.*;
+import static lotto.exception.ExceptionCode.BUDGET_TOO_SMALL;
+import static lotto.exception.ExceptionCode.REMAINDER_EXISTED;
 
 public class Budget {
 
+    public static final BigInteger LOTTO_PRICE = new BigInteger("1000");
+
     private final BigInteger value;
     private final BigInteger numberOfLotto;
-    public static final BigInteger LOTTO_PRICE = new BigInteger("1000");
 
     public Budget(BigInteger value) {
         validate(value);

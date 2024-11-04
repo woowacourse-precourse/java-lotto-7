@@ -7,8 +7,10 @@ import static lotto.exception.ExceptionCode.DUPLICATED_NUMBER;
 import static lotto.exception.ExceptionCode.INCORRECT_NUMBER_COUNTS;
 
 public class Lotto {
-    private final List<Integer> numbers;
+
     public static final int NUMBER_COUNT = 6;
+
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
