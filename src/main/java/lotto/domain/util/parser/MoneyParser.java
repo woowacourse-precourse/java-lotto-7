@@ -19,6 +19,7 @@ public final class MoneyParser implements StringParser<Integer> {
         return instance;
     }
 
+    @Override
     public Integer parse(String input) {
         validateNumeric(input);
         int money = parseInt(input);
