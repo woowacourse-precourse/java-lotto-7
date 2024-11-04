@@ -14,9 +14,17 @@ public class OutputView {
         System.out.println(lottoNumbers);
     }
 
-    public void showStatistics() {
+    public void showStatistics(List<String> results) {
         System.out.println(Prompts.OUTPUT_STATISTICS_PROMPT);
+        System.out.println(Prompts.OUTPUT_STATISTICS_DECO);
+        showLottoResults(results);
         System.out.println(Prompts.OUTPUT_PERCENTAGE_PROMPT_PRE);
         System.out.println(Prompts.OUTPUT_PERCENTAGE_PROMPT_POST);
+    }
+
+    private void showLottoResults(List<String> result) {
+        for (String s : result) {
+            System.out.println(s);
+        }
     }
 }

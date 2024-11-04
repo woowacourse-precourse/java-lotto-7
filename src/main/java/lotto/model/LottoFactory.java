@@ -19,13 +19,15 @@ public class LottoFactory {
         return randomNumbers;
     }
 
-    public void createLottos(LottoPurchaseDTO lottoPurchaseDTO) {
+    public Lottos createLottos(LottoPurchaseDTO lottoPurchaseDTO) {
         int lottoCount = lottoPurchaseDTO.getLottoCount();
 
         for(int i=0; i<lottoCount; i++) {
             Lotto lotto = new Lotto(createRandomNumbers());
             lottos.addLotto(lotto);
         }
+
+        return lottos;
     }
 
     public WinningLotto createWinningLotto(LottoPurchaseDTO lottoPurchaseDTO) {

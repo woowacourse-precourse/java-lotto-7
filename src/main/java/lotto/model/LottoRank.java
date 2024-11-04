@@ -19,7 +19,11 @@ public enum LottoRank {
         this.message = message;
     }
 
-    public LottoRank lottoResult(int matchCount, boolean matchBonus) {
+    public String getMessage() {
+        return message;
+    }
+
+    public static LottoRank lottoResult(int matchCount, boolean matchBonus) {
         for (LottoRank lottoRank : values()) {
             if (lottoRank.matchCount == matchCount && lottoRank.matchBonus == matchBonus) {
                 return lottoRank;

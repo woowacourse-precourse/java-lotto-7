@@ -1,9 +1,10 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Lottos {
+public class Lottos implements Iterable<Lotto>{
     List<Lotto> lottos = new ArrayList<>();
     String checkResult = "";
 
@@ -17,5 +18,10 @@ public class Lottos {
             checkResult = checkResult + lotto.toString() + "\n";
         }
         return checkResult;
+    }
+
+    @Override
+    public Iterator<Lotto> iterator() {
+        return lottos.iterator();
     }
 }

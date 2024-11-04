@@ -1,10 +1,13 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.common.Constants;
 import lotto.dto.LottoPurchaseDTO;
 import lotto.model.LottoFactory;
 import lotto.model.Lottos;
+import lotto.model.WinningLotto;
 import lotto.service.InputParser;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -26,10 +29,12 @@ public class LottoController {
 
     public void start() {
         LottoPurchaseDTO lottoPurchaseDTO = inputParser.lottoPurchaseDTO();
-        lottoFactory.createLottos(lottoPurchaseDTO);
+        Lottos lottos = lottoFactory.createLottos(lottoPurchaseDTO);
         outputView.showLottoNumbers(lottoFactory.checkLottos(), lottoPurchaseDTO.getLottoCount());
-        lottoFactory.createWinningLotto(lottoPurchaseDTO);
-        outputView.showStatistics();
+        WinningLotto winningLotto = lottoFactory.createWinningLotto(lottoPurchaseDTO);
+        Map<Integer, Boolean> rawResults = lottoService.sameNumberCounts(lottos, winningLotto, lottoPurchaseDTO);
+        List<String> results = lottoService.calculateResults(rawResults);
+        outputView.showStatistics(results);
     }
 
 }
