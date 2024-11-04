@@ -1,6 +1,7 @@
 package lotto.io.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.NoSuchElementException;
 
 public class BonusNumberInputConsoleHandler {
     public void showBonusNumberGuideMessage() {
@@ -10,6 +11,10 @@ public class BonusNumberInputConsoleHandler {
     public int askBonusNumber() {
         String rawBonusNumber = Console.readLine();
 
-        return Integer.parseInt(rawBonusNumber);
+        try {
+            return Integer.parseInt(rawBonusNumber);
+        } catch (NumberFormatException | NoSuchElementException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호의 형식이 잘못되었습니다.");
+        }
     }
 }
