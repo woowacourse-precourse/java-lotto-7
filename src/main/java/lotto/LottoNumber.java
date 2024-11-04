@@ -4,14 +4,12 @@ public record LottoNumber(int value) {
     private static final String SIGNED_NUMBER_REGEX = "-?[0-9]+";
 
     public LottoNumber(String input) {
-        this(validateAndParse(input));
+        this(validateLottoNumber(input));
     }
 
-    private static int validateAndParse(String input) {
+    private static int validateLottoNumber(String input) {
         validateLetter(input);
-        if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
+        validateNumberRange(input);
         return Integer.parseInt(input);
     }
 
@@ -21,7 +19,17 @@ public record LottoNumber(int value) {
         }
     }
 
-    private static boolean isLetter(String value) {
-        return !value.matches(SIGNED_NUMBER_REGEX);
+    private static void validateNumberRange(String input){
+        if (isOutOfLottoRange(input)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static boolean isLetter(String input) {
+        return !input.matches(SIGNED_NUMBER_REGEX);
+    }
+
+    private static boolean isOutOfLottoRange(String input){
+        return Integer.parseInt(input) < 1 || Integer.parseInt(input) > 45;
     }
 }
