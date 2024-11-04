@@ -4,13 +4,15 @@ import java.util.HashSet;
 import java.util.List;
 
 public class InputValidator {
-	private static final int POSITIVE_NUMBER = 1;
-	private static final int LOTTO_AMOUNT_UNIT = 1000;
 	private static final int MAX_PURCHASE_AMOUNT = 100_000;
-	private static final String DELIMITER = ",";
-	private static final int REQUIRED_LOTTO_NUMBERS = 6;
+	private static final int LOTTO_AMOUNT_UNIT = 1000;
+	private static final int POSITIVE_NUMBER = 1;
+
 	private static final int MIN_LOTTO_NUMBER = 1;
+	private static final int REQUIRED_LOTTO_NUMBERS = 6;
 	private static final int MAX_LOTTO_NUMBER = 45;
+
+	private static final String DELIMITER = ",";
 
 	public static void validateNaturalNumber(String input) {
 		if (input == null || input.isBlank()) {
@@ -28,13 +30,11 @@ public class InputValidator {
 		}
 	}
 
-	public static void validateLottoAmountUnit(int money) {
+	public static void validatePurchasable(int money) {
 		if (money % LOTTO_AMOUNT_UNIT != 0) {
 			throw new IllegalArgumentException("[ERROR] 천원 단위로 입력해야 합니다.");
 		}
-	}
 
-	public static void validateMaxPurchaseAmount(int money) {
 		if (money > MAX_PURCHASE_AMOUNT) {
 			throw new IllegalArgumentException("[ERROR] 최대 구매 한도는 10만원입니다.");
 		}

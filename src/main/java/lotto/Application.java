@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
@@ -32,8 +31,7 @@ public class Application {
         InputValidator.validateNaturalNumber(rawMoney);
         int money = Integer.parseInt(rawMoney);
 
-        InputValidator.validateLottoAmountUnit(money);
-        InputValidator.validateMaxPurchaseAmount(money);
+        InputValidator.validatePurchasable(money);
 
         return Integer.parseInt(rawMoney);
     }
