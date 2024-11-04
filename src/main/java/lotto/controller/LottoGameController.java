@@ -30,18 +30,18 @@ public class LottoGameController {
         int purchaseAmount = getPurchaseAmountAndValidate();
         OutputView.displayPurchaseCount(lottoSeller.calculatePurchaseCount(purchaseAmount));
 
-        List<Lotto> lotto = lottoSeller.buyLotto(purchaseAmount); //로또를 삼
+        List<Lotto> lotto = lottoSeller.buyLotto(purchaseAmount);
         OutputView.displayPurchaseLotto(lotto);
 
         List<Integer> winningNumbers = getWinningNumbersAndValidate();
         int bonusNumber = getBonusNumberAndValidate(winningNumbers);
 
-        LottoResult lottoResult = getLottoResult(winningNumbers, bonusNumber, lotto);
+        LottoResult lottoResult = getLottoResult(lotto, winningNumbers, bonusNumber);
         OutputView.displayResult(lottoResult);
 
     }
 
-    private LottoResult getLottoResult(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lotto) {
+    private LottoResult getLottoResult(List<Lotto> lotto, List<Integer> winningNumbers, int bonusNumber) {
         lottoResultService = new LottoResultService(lotto, winningNumbers, bonusNumber);
         return lottoResultService.getLottoResult();
     }
