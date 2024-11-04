@@ -16,16 +16,22 @@ public class LottoGame {
     }
 
     public void calculateLotto(List<Lotto> makePurchasedLottos) {
-
         for (Lotto lotto : makePurchasedLottos) {
-            int matchCount = lotto.getMatchCount(winningLotto);
-            boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
-            LottoRank rank = LottoRank.valueOf(matchCount, matchBonus);
-
+            LottoRank rank = makeRank(lotto);
             if (rank != null) {
-                result.put(rank, result.getOrDefault(rank, 0) + 1);
+                upDateRank(rank);
             }
         }
+    }
+
+    private LottoRank makeRank(Lotto lotto) {
+        int matchCount = lotto.getMatchCount(winningLotto);
+        boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+        return LottoRank.valueOf(matchCount, matchBonus);
+    }
+
+    private void upDateRank(LottoRank rank) {
+        result.put(rank, result.getOrDefault(rank, 0) + 1);
     }
 
     public Map<LottoRank, Integer> getResult() {
@@ -33,18 +39,20 @@ public class LottoGame {
     }
 
     public double rateOfReturn(int lottoPurchase) {
+        int totalPrize = calculateTotalPrize();
+        return (double) totalPrize / lottoPurchase * 100;
+    }
 
-        int total = 0;
-
+    private int calculateTotalPrize() {
+        int totalPrize = 0;
         for (Map.Entry<LottoRank, Integer> entry : result.entrySet()) {
             LottoRank rank = entry.getKey();
             int count = entry.getValue();
             int prize = rank.getPrize();
 
-            total += prize * count;
+            totalPrize += prize * count;
         }
-
-        return (double) total / lottoPurchase * 100;
-
+        return totalPrize;
     }
+
 }
