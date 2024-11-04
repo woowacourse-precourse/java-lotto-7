@@ -10,7 +10,7 @@ public class LottoFactory {
     }
 
     private static Input input() {
-        return new Input(inputValidator());
+        return new Input(inputValidator(), view());
     }
 
     private static DrawStrategy drawStrategy() {

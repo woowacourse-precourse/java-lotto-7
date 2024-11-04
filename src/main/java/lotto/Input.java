@@ -4,17 +4,19 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class Input {
-    private static final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String INPUT_WIN_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String INPUT_AMOUNT_GUIDE = "구입금액을 입력해 주세요.";
+    private static final String INPUT_WINNING_NUMBERS_GUIDE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_GUIDE = "보너스 번호를 입력해 주세요.";
     private final InputValidator inputValidator;
+    private final View view;
 
-    public Input(InputValidator inputValidator) {
+    public Input(InputValidator inputValidator, View view) {
         this.inputValidator = inputValidator;
+        this.view = view;
     }
 
     public Integer getAmountWithGuide() {
-        System.out.println(INPUT_AMOUNT_MESSAGE);
+        view.guide(INPUT_AMOUNT_GUIDE);
         return getValidatedAmount();
     }
 
@@ -25,7 +27,7 @@ public class Input {
     }
 
     public Lotto getWinNumbersWithGuide() {
-        System.out.println(INPUT_WIN_NUMBER_MESSAGE);
+        view.guide(INPUT_WINNING_NUMBERS_GUIDE);
         return new Lotto(getWinNumbers());
     }
 
@@ -34,7 +36,7 @@ public class Input {
     }
 
     public WinningNumbers getBonusNumberWithGuide(Lotto lotto) {
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        view.guide(INPUT_BONUS_NUMBER_GUIDE);
         return new WinningNumbers(lotto, getValidatedBonusNumber());
     }
 
