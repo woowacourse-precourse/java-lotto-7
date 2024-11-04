@@ -39,7 +39,7 @@ public class WinningNumberTest {
 
     @DisplayName("당첨 번호 입력 형식이 올바르지 않으면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"", " ", ",", ",,,,,", "1,2,3,4,5,6,"})
+    @ValueSource(strings = {"", " ", ",", ",,,,,", "1,2,3,4,5,6,", "k,2,3,4,5,6"})
     void 당첨_번호_입력_형식이_올바르지_않으면_예외가_발생한다(String numbers) {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> new WinningNumber(numbers, 7))
