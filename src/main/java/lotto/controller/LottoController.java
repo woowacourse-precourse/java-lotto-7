@@ -16,12 +16,14 @@ public class LottoController {
 
     public void payingForLotto() {
         String inputPurchaseAmount = InputView.inputPurchaseAmount();
+
         try {
             lottoService.tryGenerateByPurchaseAmount(inputPurchaseAmount);
         } catch (Exception e) {
             payingForLotto();
             return;
         }
+
         OutputView.printLottoNumbers(lottoService.getAll());
     }
 

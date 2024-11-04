@@ -8,7 +8,7 @@ public enum LottoRank {
     FIFTH_RANK(3, false, 5000),
     FOURTH_RANK(4, false, 50000),
     THIRD_RANK(5, false, 1500000),
-    SECOND_RANK(6, true, 30000000),
+    SECOND_RANK(5, true, 30000000),
     FIRST_RANK(6, false, 2000000000);
 
     private final int correctCount;

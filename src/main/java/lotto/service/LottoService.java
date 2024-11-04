@@ -32,7 +32,6 @@ public class LottoService {
     public void tryGenerateByPurchaseAmount(String inputPurchaseAmount) {
         validatePurchaseAmount(inputPurchaseAmount);
         BigInteger purchaseAmount = parsingPurchaseAmount(inputPurchaseAmount);
-
         BigInteger count = purchaseAmount.divide(BigInteger.valueOf(PURCHASE_AMOUNT_UNIT));
         for (BigInteger i = BigInteger.ZERO; i.compareTo(count) < 0; i = i.add(BigInteger.ONE)) {
             generate(sortingNumbers(generateRandomNumbers()));

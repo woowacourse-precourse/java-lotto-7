@@ -1,5 +1,6 @@
 package global.view;
 
+import static global.utils.Validator.validatePurchaseAmount;
 import static lotto.constant.LottoInfoMsg.INPUT_BONUS_NUMBER;
 import static lotto.constant.LottoInfoMsg.INPUT_PURCHASE_AMOUNT;
 import static lotto.constant.LottoInfoMsg.INPUT_WEEKLY_NUMBERS;

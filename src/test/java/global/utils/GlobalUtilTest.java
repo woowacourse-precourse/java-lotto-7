@@ -43,12 +43,12 @@ class GlobalUtilTest {
     @Test
     @DisplayName("정렬되지 않은 리스트의 정렬을 할 수 있다")
     void t003() {
-        List<Integer> before = new ArrayList<>(Arrays.asList(5, 4, 3, 2, 1));
-        List<Integer> after = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        List<Integer> target = new ArrayList<>(Arrays.asList(5, 4, 3, 2, 1));
+        List<Integer> expectedResult = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
 
-        List<Integer> sortingReslt = sortingNumbers(before);
+        target = sortingNumbers(target);
 
-        assertThat(after).isEqualTo(sortingReslt);
+        assertThat(target).isEqualTo(expectedResult);
     }
 
     @ParameterizedTest

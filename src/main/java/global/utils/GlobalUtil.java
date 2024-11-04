@@ -25,8 +25,9 @@ public class GlobalUtil {
 
     public static class LottoUtil {
         public static List<Integer> sortingNumbers(List<Integer> numbers) {
-            numbers.sort(Comparator.naturalOrder());
-            return numbers;
+            List<Integer> sortedNumbers = new ArrayList<>(numbers);
+            sortedNumbers.sort(Integer::compareTo);
+            return sortedNumbers;
         }
     }
 

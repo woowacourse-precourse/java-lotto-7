@@ -71,12 +71,7 @@ public class StoreService {
 
     private LottoRank getLottoRanking(List<Integer> numbers, List<Integer> weeklyNumbers, int weeklyBonusNumber) {
         int count = countWeeklyNumbers(numbers, weeklyNumbers);
-        boolean hasBonusNumber = false;
-
-        if (isContainsWeeklyBonusNumber(numbers, weeklyBonusNumber)) {
-            count++;
-            hasBonusNumber = true;
-        }
+        boolean hasBonusNumber = isContainsWeeklyBonusNumber(numbers, weeklyBonusNumber);
 
         return LottoRank.matchingLottoRanking(count, hasBonusNumber);
     }
