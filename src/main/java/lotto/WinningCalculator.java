@@ -25,7 +25,6 @@ public class WinningCalculator {
     }
 
     private Rank calculateRank(Map<Rank, PrizeInfo> rankInfo, List<Integer> winningLottoNumbers, int bonusNumber, List<Integer> userLottoNumbers) {
-
         int matchCountResult = calculateMatchCount(winningLottoNumbers, userLottoNumbers);
         boolean matchBonusResult = isMatchBonusNumber(bonusNumber, userLottoNumbers);
 
@@ -67,8 +66,15 @@ public class WinningCalculator {
 
     public double calculateProfitRate(LottoStore lottoStore, Map<Rank, Integer> winningCountsByRank, int purchasedMoney) {
         int totalPrizeMoney = calculateTotalPrizeMoney(lottoStore.getRankInfo(), winningCountsByRank);
-        double result = (double) totalPrizeMoney / purchasedMoney;
+        double result = calculatePercentage(totalPrizeMoney,purchasedMoney);
         return roundToTwoDecimalPlaces(result);
+    }
+
+    private double calculatePercentage(double part, double total) {
+        if (total == 0) {
+            throw new ArithmeticException("[error] Total cannot be zero.");
+        }
+        return (part / total) * 100;
     }
 
     private double roundToTwoDecimalPlaces(double value) {
