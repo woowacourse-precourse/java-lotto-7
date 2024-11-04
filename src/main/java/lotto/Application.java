@@ -7,6 +7,7 @@ public class Application {
 
     public static void main(String[] args) {
         int money = getInputMoney();
+        LottoMachine lottoMachine = new LottoMachine(money);
     }
 
     public static int getInputMoney() {
@@ -15,6 +16,7 @@ public class Application {
             try {
                 int money = Integer.parseInt(Console.readLine());
                 validateInputMoney(money);
+                System.out.println();
                 return money;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
