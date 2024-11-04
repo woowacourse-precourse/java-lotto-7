@@ -1,22 +1,26 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
     public static final int LOTTO_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         new ValidatorLottoNumber(numbers);
         this.numbers = numbers;
+        Collections.sort(this.numbers);
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return numbers;
     }
 
     protected static class ValidatorLottoNumber {
-        private static final int MIN_LOTTO_NUMBER = 1;
-        private static final int MAX_LOTTO_NUMBER = 45;
-
         public ValidatorLottoNumber(List<Integer> numbers) {
             validate(numbers);
             for(int num : numbers){
