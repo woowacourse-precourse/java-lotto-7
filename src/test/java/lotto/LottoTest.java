@@ -3,6 +3,7 @@ package lotto;
 import lotto.exception.InputValidation;
 import lotto.exception.ValidateValues;
 import lotto.model.Lotto;
+import lotto.service.LottoGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -56,6 +57,12 @@ class LottoTest {
     }
 
     @Test
+    void 로또_객체_내_numbers_필드를_리턴한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @Test
     void 구입_금액을_검증하고_정수형으로_리턴한다() {
         int purchaseAmount = ValidateValues.purchaseAmount("1000");
         assertThat(purchaseAmount).isEqualTo(1000);
@@ -77,6 +84,13 @@ class LottoTest {
         assertThat(notIntegerCheck1).isEqualTo(false);
         boolean notIntegerCheck2 = ValidateValues.winningNumberOrBonusNumber("1");
         assertThat(notIntegerCheck2).isEqualTo(true);
+    }
+
+    @Test
+    void 구입금액만큼_로또를_발행하고_로또_객체_리스트를_리턴한다() {
+        String purchaseAmount = "8000";
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        assertThat(lottoGenerator.generateLotto(purchaseAmount).size()).isEqualTo(8);
     }
 
 }
