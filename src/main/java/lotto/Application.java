@@ -18,7 +18,7 @@ public class Application {
         // Lotto 객체 생성
         Lotto lotto = new Lotto(lottoNumber);
 
-        OutputSystem.printMessageForBonusNumber();
+//        OutputSystem.printMessageForBonusNumber();
         int bonusNumber =  InputSystem.inputBonusNumber(lottoNumber);
 
         int[] checkNumbers = Lotto.lottoWinningCheck(lotto,bonusNumber,lottoNumbers);

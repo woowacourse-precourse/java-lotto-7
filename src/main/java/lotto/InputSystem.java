@@ -24,7 +24,7 @@ public class InputSystem {
     }
 
     public static int validBonusNumber(List<Integer> winningNumber){
-        System.out.print("보너스 번호를 입력하세요: ");
+        System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.");

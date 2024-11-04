@@ -19,9 +19,9 @@ public class OutputSystem {
         System.out.println("\n당첨 번호를 입력해주세요.");
     }
 
-    public static void printMessageForBonusNumber(){
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-    }
+//    public static void printMessageForBonusNumber(){
+//        System.out.println("\n보너스 번호를 입력해 주세요.");
+//    }
 
     // 로또 수익률 계산
     private static double lottoLate(int[] checkNumber,int lottoAmount){
@@ -40,7 +40,7 @@ public class OutputSystem {
             if (winning == LottoWinning.FIVE_BONUS_MATCH) {
                 System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n",
                         winning.getMatchCount(), winning.getPrize(), count);
-                break;
+                continue;
             }
             System.out.printf("%d개 일치 (%d원) - %d개\n",
                     winning.getMatchCount(), winning.getPrize(), count);
