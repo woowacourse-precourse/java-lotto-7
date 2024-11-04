@@ -27,7 +27,7 @@ public class Application {
             System.out.println(lottoCount + LOTTO_QUANTITY_MESSAGE);
 
             List<Lotto> lottoNumbers = getLottoNumbers(lottoCount);
-            printLottoNumbers(lottoCount);
+            printLottoNumbers(lottoNumbers);
 
 
             calculateAllLineMatches(winningNumbers, lottoNumbers, bonusNumber);
@@ -93,9 +93,7 @@ public class Application {
         return lottoNumbers;
     }
 
-    public static void printLottoNumbers(int lottoCount) {
-        List<Lotto> lottoNumbers = getLottoNumbers(lottoCount);
-
+    public static void printLottoNumbers(List<Lotto> lottoNumbers) {
         for (Lotto lotto : lottoNumbers) {
             System.out.println(lotto);
         }
