@@ -47,6 +47,5 @@ public enum Rank {
             return SECOND;
         }
         return THIRD;
-
     }
 }

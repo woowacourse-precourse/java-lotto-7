@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
+
     public Rank getLottoResult(Lotto lotto, List<Integer> winningNumbers, int bonus) {
         int numberMatch = 0;
         boolean hasBonus = false;

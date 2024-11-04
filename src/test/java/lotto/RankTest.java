@@ -10,10 +10,8 @@ class RankTest {
         //Given
         int numberMatch = 6;
         boolean bonus = false;
-
         //When
         Rank rank = Rank.getRank(numberMatch, bonus);
-
         //Then
         Assertions.assertThat(rank).isEqualTo(Rank.FIRST);
     }
@@ -23,10 +21,8 @@ class RankTest {
         //Given
         int numberMatch = 5;
         boolean bonus = true;
-
         //When
         Rank rank = Rank.getRank(numberMatch, bonus);
-
         //Then
         Assertions.assertThat(rank).isEqualTo(Rank.SECOND);
     }

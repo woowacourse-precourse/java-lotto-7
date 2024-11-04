@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputHandler {
+
     public void printBudgetMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
