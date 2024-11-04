@@ -28,11 +28,4 @@ public class LottoMatching {
         return LottoPrize.of(matchCount, matchBonus);
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public boolean isMatchBonus() {
-        return matchBonus;
-    }
 }

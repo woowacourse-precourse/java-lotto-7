@@ -18,7 +18,7 @@ public class Lotto {
 
     private void validateSize(List<LottoNumber> numbers) {
         if (numbers.size() != LottoConstant.LOTTO_SIZE) {
-            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_NUMBER_MESSAGE  + LottoConstant.LOTTO_SIZE + "개여야 합니다.");
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_NUMBER_MESSAGE + LottoConstant.LOTTO_SIZE + "개여야 합니다.");
         }
     }
 

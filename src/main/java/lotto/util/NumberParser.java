@@ -13,5 +13,4 @@ public class NumberParser {
                 .map(LottoNumber::valueOf)
                 .toList();
     }
-
 }

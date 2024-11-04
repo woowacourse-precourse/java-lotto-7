@@ -1,7 +1,6 @@
 package lotto.view;
 
 import lotto.common.ViewConstant;
-import lotto.model.Lotto;
 import lotto.model.LottoPrize;
 
 import java.util.List;
@@ -19,10 +18,6 @@ public class OutputView {
         System.out.println(ViewConstant.OUTPUT_WINNING_STATISTICS_MESSAGE);
         System.out.println(ViewConstant.THREE_DASH);
 
-//        prizeCounts.keySet().stream()
-//                .filter(prize -> prize.getPrizeAmount() > 0)
-//                .sorted()
-//                .forEach(prize -> printRankMessage(prize, prizeCounts.getOrDefault(prize, 0)));
         for (LottoPrize prize : LottoPrize.values()) {
             int count = prizeCounts.getOrDefault(prize, 0);
             printRankMessage(prize, count);

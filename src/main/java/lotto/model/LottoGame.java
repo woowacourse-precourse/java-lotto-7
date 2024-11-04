@@ -65,10 +65,6 @@ public class LottoGame {
         return lottos;
     }
 
-    public int getTotalPrice() {
-        return totalPrice;
-    }
-
     public Map<LottoPrize, Integer> getPrizeCounts() {
         return prizeCounts;
     }
