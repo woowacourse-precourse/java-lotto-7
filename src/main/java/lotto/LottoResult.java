@@ -9,6 +9,9 @@ public class LottoResult {
     private final Lotto winningLotto;
     private final int bonusNumber;
     private final Map<String, Integer> resultCountMap = new HashMap<>();
+    private static final int[] MATCH_COUNTS = {3, 4, 5, 6};
+    private static final int[] PRIZE = {5000, 50000, 1500000, 30000000, 2000000000};
+
 
     private static final String[] RESULT_MESSAGES = {
             "3개 일치 (5,000원) - ",
@@ -80,16 +83,36 @@ public class LottoResult {
                 .count();
     }
 
-    // 결과 출력
+    // 결과 출력 (당첨 현황, 수익률)
     public void printResult() {
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        printResults();
-    }
-
-    private void printResults() {
         for (String message : RESULT_MESSAGES) {
             System.out.println(message + resultCountMap.get(message) + "개");
         }
+        printYield();
+    }
+
+    // 수익률 출력
+    private void printYield() {
+        double yield = calculateYield();
+        System.out.printf("총 수익률은 %.1f%%입니다.", yield);
+    }
+
+    // 수익률 계산
+    private double calculateYield() {
+        int totalPrize = calculateTotalPrize();
+        int totalPurchase = userLottos.size() * 1000;
+        return ((double) totalPrize / totalPurchase) * 100;
+    }
+
+    // 총 상금 합산
+    private int calculateTotalPrize() {
+        int totalPrize = 0;
+        for (int i = 0; i < RESULT_MESSAGES.length; i++) {
+            totalPrize += resultCountMap.get(RESULT_MESSAGES[i]) * PRIZE[i];
+        }
+
+        return totalPrize;
     }
 }
