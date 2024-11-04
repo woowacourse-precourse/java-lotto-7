@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputHandler {
-    private static final String PURCHASE_COUNT_MESSAGE = "%d개를 구매했습니다.";
-    private static final String WINNING_STATISTICS_TITLE = "당첨 통계\n---";
+    private static final String PURCHASE_COUNT_MESSAGE = "\n%d개를 구매했습니다.";
+    private static final String WINNING_STATISTICS_TITLE = "\n당첨 통계\n---";
     private static final String MATCH_COUNT_STATISTICS_FORMAT = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_PLACE_STATISTICS_FORMAT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
     private static final String TOTAL_YIELD_MESSAGE = "총 수익률은 %s%%입니다.";
