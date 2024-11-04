@@ -15,7 +15,18 @@ public class Validation {
         for (Integer winning : winnings) {
             validateOneNumBoundary(winning);
         }
+    }
 
+    public static void validateInteger(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력값이 비어있습니다.");
+        }
+
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력이 가능합니다.");
+        }
     }
 
     public static void validateOneNumBoundary(int number){

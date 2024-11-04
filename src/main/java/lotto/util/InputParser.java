@@ -15,6 +15,7 @@ public class InputParser {
         List<Integer> numbers = new ArrayList<>();
 
         for (String num : input) {
+            Validation.validateInteger(num);
             numbers.add((Integer.parseInt(num)));
         }
 

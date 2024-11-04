@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.PrizeAmount;
 import lotto.model.YieldCalculator;
+import lotto.util.Validation;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class LottoView {
     public String purchaseInput() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
+        Validation.validateInteger(input);
         System.out.println();
 
         return input;

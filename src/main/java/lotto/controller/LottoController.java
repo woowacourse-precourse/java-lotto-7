@@ -41,6 +41,7 @@ public class LottoController {
         Validation.validateNoDuplicates(numbers);
 
         String bonusInput = lottoView.bonusInput();
+        Validation.validateInteger(bonusInput);
         int bonus = Integer.parseInt(bonusInput);
         Validation.validateOneNumBoundary(bonus);
         Validation.validateNoDuplicatesWithBonusNumber(numbers,bonus);
