@@ -21,11 +21,12 @@ public class LottoResultController {
 
     public void showLottoResult() {
         saveWinningNumber(InputView.inputWinningNumber());
+        saveBonusNumber(InputView.inputBonusNumber());
         checkLottoResult();
     }
 
-    public void saveWinningNumber(String InputWinningNumber) {
-        String[] stringWinningNumber = InputWinningNumber.split(",");
+    public void saveWinningNumber(String inputWinningNumber) {
+        String[] stringWinningNumber = inputWinningNumber.split(",");
         List<Integer> validWinningNumber = new ArrayList<>();
 
         try {
@@ -33,15 +34,14 @@ public class LottoResultController {
                 validWinningNumber.add(Integer.parseInt(number));
             }
             winningNumber = new Lotto(validWinningNumber);
-        } catch (IllegalArgumentException e) {
+        } catch (NumberFormatException e) {
             System.out.println("[ERORR] 숫자만 입력 가능 합니다.");
         }
-        saveBonusNumber();
     }
 
-    public void saveBonusNumber() {
+    public void saveBonusNumber(String inputBonusNumber) {
         try {
-            bonusNumber = Integer.parseInt(InputView.inputBonusNumber());
+            bonusNumber = Integer.parseInt(inputBonusNumber);
 
             if (bonusNumber > 45 || bonusNumber < 1) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -127,5 +127,13 @@ public class LottoResultController {
             return PROFIT_RANK_1;
         }
         return 0;
+    }
+
+    public Lotto getWinningNumber() {
+        return winningNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
