@@ -1,6 +1,7 @@
 package lotto.service;
 
 import static lotto.exception.errorMessage.IllegalArgumentExceptionMessage.PURCHASE_AMOUNT_NOT_NATURE;
+import static lotto.exception.errorMessage.IllegalArgumentExceptionMessage.PURCHASE_AMOUNT_UNIT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,5 +35,13 @@ class PaperServiceImplTest {
                 .hasMessageContaining(PURCHASE_AMOUNT_NOT_NATURE.getMessage());
     }
 
+    @DisplayName("1000단위가 아닌 값 입력 예외 테스트")
+    @ParameterizedTest
+    @ValueSource(ints = {1001, 3200, 1, 123, 11200})
+    void saveUnitExceptionPaper(int value) {
+        assertThatThrownBy(() -> paperService.savePaper(value))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(PURCHASE_AMOUNT_UNIT.getMessage());
+    }
 
 }
