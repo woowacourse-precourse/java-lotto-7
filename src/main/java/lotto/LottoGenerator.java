@@ -12,19 +12,14 @@ public class LottoGenerator {
     public void start() {
         try {
             int purchaseAmount = InputManager.readPurchaseAmount();
-
             int lottoCount = lottoMachine.calculateLottoCount(purchaseAmount);
             List<List<Integer>> lottoTickets = generateAndPrintLottoTickets(lottoCount);
-
             List<Integer> winningNumbers = InputManager.readWinningNumbers();
             int bonusNumber = InputManager.readBonusNumber(winningNumbers);
-
             LottoResultChecker lottoResultChecker = new LottoResultChecker(winningNumbers, bonusNumber);
             List<MatchCountMessage> winningResults = getWinningResults(lottoTickets, lottoResultChecker);
-
             Map<MatchCountMessage, Integer> winningStatistics = calculateWinningStatistics(winningResults);
             printStatisticsAndProfit(winningStatistics, winningResults, purchaseAmount);
-
         } catch (IllegalArgumentException e) {
             System.out.println(ExceptionMessage.INVALID_INPUT_FORMAT.getErrorMessage());
             start();
