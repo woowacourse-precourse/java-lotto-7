@@ -1,5 +1,7 @@
 package lotto.application.common;
 
+import static lotto.application.common.constants.Constants.ZERO;
+
 public class OutputPrinter {
 
     private final StringBuilder messageBuilder;
@@ -19,7 +21,7 @@ public class OutputPrinter {
 
     public void execute() {
         System.out.print(messageBuilder.toString());
-        messageBuilder.setLength(0);
+        messageBuilder.setLength(ZERO);
     }
 
 }

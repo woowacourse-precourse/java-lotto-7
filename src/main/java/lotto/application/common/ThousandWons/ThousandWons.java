@@ -1,5 +1,9 @@
 package lotto.application.common.ThousandWons;
 
+import static lotto.application.common.constants.Constants.THOUSAND;
+import static lotto.application.common.constants.Constants.ZERO;
+import static lotto.application.common.exception.Message.SHOULD_MORE_THAN_ZERO;
+import static lotto.application.common.exception.Message.SHOULD_THOUSAND_UNIT;
 import static lotto.application.util.StringConverter.toInt;
 
 public class ThousandWons {
@@ -35,14 +39,14 @@ public class ThousandWons {
     }
 
     private static void validatePositive(int value) {
-        if (value <= 0) {
-            throw new IllegalArgumentException("[ERROR] 0보다 큰 금액이어야 합니다.");
+        if (value <= ZERO) {
+            throw new IllegalArgumentException(SHOULD_MORE_THAN_ZERO);
         }
     }
 
     private static void validateThousandUnit(int value) {
-        if (value % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력 가능 합니다.");
+        if (value % THOUSAND != ZERO) {
+            throw new IllegalArgumentException(SHOULD_THOUSAND_UNIT);
         }
     }
 
