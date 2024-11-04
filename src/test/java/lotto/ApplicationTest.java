@@ -46,6 +46,7 @@ class ApplicationTest extends NsTest {
         );
     }
 
+
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
@@ -53,6 +54,33 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    void 잘못된_당첨_번호_입력() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5");
+            assertThat(output()).contains("[ERROR]");
+        });
+    }
+
+    @Test
+    void 잘못된_보너스_번호_입력() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains("[ERROR]");
+        });
+    }
+
+    @Test
+    void 잘못된_구매_금액_입력() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains("[ERROR]");
+        });
+    }
+
+
+
 
     @Override
     public void runMain() {
