@@ -3,7 +3,7 @@ package lotto.config;
 import lotto.controller.LottoController;
 import lotto.model.AutoLottoGenerator;
 import lotto.model.LottoMatcher;
-import lotto.model.YieldCalculator;
+import lotto.util.YieldCalculator;
 import lotto.service.LottoService;
 import lotto.util.InputValidator;
 import lotto.util.LottoNumberParser;

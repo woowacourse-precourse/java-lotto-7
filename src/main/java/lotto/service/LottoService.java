@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.model.AutoLottoGenerator;
 import lotto.model.Lotto;
 import lotto.model.LottoMatcher;
-import lotto.model.YieldCalculator;
+import lotto.util.YieldCalculator;
 import lotto.util.LottoNumberParser;
 
 public class LottoService {
