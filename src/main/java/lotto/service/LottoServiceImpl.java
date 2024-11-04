@@ -9,23 +9,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.config.LottoRule;
 import lotto.model.Lotto;
-import lotto.repository.InMemoryLottoRepository;
 import lotto.repository.LottoRepository;
 
 public class LottoServiceImpl implements LottoService {
     private final LottoRepository lottoRepository;
 
-    private LottoServiceImpl(LottoRepository lottoRepository) {
+    public LottoServiceImpl(LottoRepository lottoRepository) {
         this.lottoRepository = lottoRepository;
-    }
-
-    private static class Holder {
-        private static final LottoServiceImpl INSTANCE =
-                new LottoServiceImpl(InMemoryLottoRepository.getInstance());
-    }
-
-    public static LottoServiceImpl getInstance() {
-        return Holder.INSTANCE;
     }
 
     @Override

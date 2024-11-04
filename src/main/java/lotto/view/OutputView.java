@@ -4,16 +4,6 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
-    private OutputView() {}
-
-    private static class Holder {
-        private static final OutputView INSTANCE = new OutputView();
-    }
-
-    public static OutputView getInstance() {
-        return OutputView.Holder.INSTANCE;
-    }
-
     public void printLottoLogs(List<String> lottoLogs) {
         System.out.println("\n" + lottoLogs.size() + "개를 구매했습니다.");
         lottoLogs.forEach(System.out::println);

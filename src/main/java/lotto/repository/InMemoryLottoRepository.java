@@ -9,16 +9,8 @@ import lotto.model.Lotto;
 public class InMemoryLottoRepository implements LottoRepository {
     private final List<Lotto> lottoStore;
 
-    private InMemoryLottoRepository() {
+    public InMemoryLottoRepository() {
         lottoStore = new ArrayList<>();
-    }
-
-    private static class Holder {
-        private static final InMemoryLottoRepository INSTANCE = new InMemoryLottoRepository();
-    }
-
-    public static InMemoryLottoRepository getInstance() {
-        return Holder.INSTANCE;
     }
 
     @Override

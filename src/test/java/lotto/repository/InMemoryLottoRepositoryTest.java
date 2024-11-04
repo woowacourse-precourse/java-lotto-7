@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import lotto.config.LottoRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,14 +13,15 @@ class InMemoryLottoRepositoryTest {
     @DisplayName("총 당첨금 계산 테스트")
     @Test
     void findTotalPrizeByWinningNumbersAndBonusNumber() {
-        LottoRepository lottoRepository = InMemoryLottoRepository.getInstance();
+        LottoRepository lottoRepository = new InMemoryLottoRepository();
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     lottoRepository.generateRandomLottos(8000);
-                    int totalPrize = lottoRepository.findTotalPrizeByWinningNumbersAndBonusNumber(
-                            List.of(4, 7, 11, 30, 44, 45),
-                            6
-                    );
+                    int totalPrize = lottoRepository.generatePrizeStreamBy(
+                            List.of(4, 7, 11, 30, 44, 45), 6)
+                            .map(LottoRule::getPrize)
+                            .mapToInt(Integer::intValue)
+                            .sum();
                     assertEquals(totalPrize, 10_000);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
