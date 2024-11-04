@@ -15,8 +15,10 @@ public class LottoStatistics {
     private static int fourth;
     private static int fifth;
 
+    private static double profitRate;
 
-    public LottoStatistics(List<Integer> winningNum, Lotto[] lottos, int bonusNum) {
+
+    public LottoStatistics(Lotto[] lottos, List<Integer> winningNum, int bonusNum) {
         this.winningNum = winningNum;
         this.lottos = lottos;
         this.bonusNum = bonusNum;
@@ -60,4 +62,10 @@ public class LottoStatistics {
             return;
         }
     }
+
+    public void calculateProfit() {
+        long profit = 5000L*fifth + 50000L*fourth + 1500000L*third + 30000000L*second + 2000000000L*first;
+        profitRate = (double)profit / (lottos.length*1000);
+    }
+
 }

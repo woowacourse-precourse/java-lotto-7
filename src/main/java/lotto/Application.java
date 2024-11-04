@@ -52,6 +52,7 @@ public class Application {
             }
         }
 
+        LottoStatistics lottoStatistics = new LottoStatistics(lottos, winningNum, bonusNum);
 
 
     }
