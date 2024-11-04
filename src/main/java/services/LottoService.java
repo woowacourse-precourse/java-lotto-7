@@ -70,11 +70,11 @@ public class LottoService {
                 .toList();
     }
 
-    public double calculateYield(Map<Integer, Integer> lottoMatchs, String purchaseAmount) {
+    public double calculateYield(Map<Integer, Integer> lottoMatches, String purchaseAmount) {
         int parsedPurchaseAmount = Integer.parseInt(purchaseAmount);
-        int totalPrize = lottoMatchs.get(3) * 5_000 + lottoMatchs.get(4) * 50_000
-                + lottoMatchs.get(5) * 1_500_000 + lottoMatchs.get(-5) * 30_000_000
-                + lottoMatchs.get(6) * 2_000_000_000;
+        int totalPrize = lottoMatches.get(3) * 5_000 + lottoMatches.get(4) * 50_000
+                + lottoMatches.get(5) * 1_500_000 + lottoMatches.get(-5) * 30_000_000
+                + lottoMatches.get(6) * 2_000_000_000;
 
         return (double) totalPrize / parsedPurchaseAmount * 100;
     }

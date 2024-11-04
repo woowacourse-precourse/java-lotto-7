@@ -14,29 +14,28 @@ import view.InputView;
 import view.OutputView;
 
 public class LottoController {
-    private final LottoService lottoService;
     private final InputView inputView;
+    private final LottoService lottoService;
     private final OutputView outputView;
 
     public LottoController(LottoService lottoService) {
         this.inputView = new InputView();
-        this.outputView = new OutputView();
         this.lottoService = lottoService;
+        this.outputView = new OutputView();
     }
 
     public void run() {
         String purchaseAmount = getUserPayment();
-        List<Lotto> lottos = lottoService.generateLotto(purchaseAmount);
-
-        outputView.printLottoNumbers(lottos);
+        List<Lotto> lottoList = lottoService.generateLotto(purchaseAmount);
+        outputView.printLottoNumbers(lottoList);
 
         String pickLottoNumbers = getValidatedWinningNumbers();
         String pickBonusLottoNumber = getValidatedBonusNumber(pickLottoNumbers);
 
-        Map<Integer, Integer> lottoMatchs = lottoService.findMatchLotto(pickLottoNumbers, pickBonusLottoNumber, lottos);
-        double yield = lottoService.calculateYield(lottoMatchs, purchaseAmount);
+        Map<Integer, Integer> lottoMatches = lottoService.findMatchLotto(pickLottoNumbers, pickBonusLottoNumber, lottoList);
+        double yield = lottoService.calculateYield(lottoMatches, purchaseAmount);
 
-        outputView.showWinResult(lottoMatchs, yield);
+        outputView.showWinResult(lottoMatches, yield);
     }
 
     private String getValidatedBonusNumber(String pickLottoNumbers) {
@@ -51,7 +50,7 @@ public class LottoController {
 
     private String getUserPayment() {
         outputView.showPrompt(USER_BUY_LOTTO);
-        return getInput(InputValidator::validataPurchaseAmount);
+        return getInput(InputValidator::validatePurchaseAmount);
     }
 
     private String getInput(Consumer<String> validator) {

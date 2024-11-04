@@ -1,25 +1,25 @@
 package validator;
 
+import static common.ErrorMessage.INVALID_LOTTO_CONTAINS;
 import static common.ErrorMessage.INVALID_LOTTO_NUMBER;
 import static common.ErrorMessage.INVALID_LOTTO_SCOPE;
-import static common.ErrorMessage.NONE_INPUT;
+import static common.ErrorMessage.INVALID_PRICE;
 import static common.ErrorMessage.INVALID_TYPE;
 import static common.ErrorMessage.INVALID_VALUE_NEGATIVE;
 import static common.ErrorMessage.INVALID_VALUE_ZERO;
-import static common.ErrorMessage.INVALID_PRICE;
-import static common.ErrorMessage.INVALID_LOTTO_CONTAINS;
+import static common.ErrorMessage.NONE_INPUT;
 
 import java.util.Arrays;
 import java.util.List;
 import model.Lotto;
 
 public class InputValidator {
-    public static void validataPurchaseAmount(String purchaseAmount) {
+    public static void validatePurchaseAmount(String purchaseAmount) {
         inputEmptyCheck(purchaseAmount);
         inputNotInteger(purchaseAmount);
         inputNegative(purchaseAmount);
         inputZero(purchaseAmount);
-        inputUnpayableValue(purchaseAmount);
+        inputInvalidCalculableValue(purchaseAmount);
     }
 
     public static void validateWinningNumbers(String winningNumbers) {
@@ -44,9 +44,9 @@ public class InputValidator {
                 .map(String::trim)
                 .map(number -> {
                     try {
-                        int parsednumber = Integer.parseInt(number);
-                        checkRangeNumber(parsednumber);
-                        return parsednumber;
+                        int lottoNumber = Integer.parseInt(number);
+                        checkRangeNumber(lottoNumber);
+                        return lottoNumber;
                     } catch (NumberFormatException e) {
                         throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
                     }
@@ -54,8 +54,8 @@ public class InputValidator {
                 .toList();
     }
 
-    private static void checkRangeNumber(int parsednumber) {
-        if (parsednumber < 1 || parsednumber > 45) {
+    private static void checkRangeNumber(int lottoNumber) {
+        if (lottoNumber < 1 || lottoNumber > 45) {
             throw new IllegalArgumentException(INVALID_LOTTO_SCOPE.getMessage());
         }
     }
@@ -88,7 +88,7 @@ public class InputValidator {
         }
     }
 
-    private static void inputUnpayableValue(String purchaseAmount) {
+    private static void inputInvalidCalculableValue(String purchaseAmount) {
         int result = Integer.parseInt(purchaseAmount);
         if (result % 1000 != 0) {
             throw new IllegalArgumentException(INVALID_PRICE.getMessage());
