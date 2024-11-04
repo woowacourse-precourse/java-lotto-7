@@ -1,13 +1,17 @@
 package lotto.controller;
 
-import lotto.dto.PurchaseAmountDTO;
+import lotto.dto.PurchaseAmount;
 import lotto.view.InputView;
 
 public class LottoController {
-    private static void getValidLottoPurchaseAmount() {
-        try {
-            PurchaseAmountDTO purchaseAmountDTO = new PurchaseAmountDTO(InputView.inputLottoPurchaseAmount());
+    public void run() {
+        PurchaseAmount purchaseAmount = getValidLottoPurchaseAmount();
+    }
 
+    public PurchaseAmount getValidLottoPurchaseAmount() {
+        try {
+            PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.inputLottoPurchaseAmount());
+            return purchaseAmount;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             getValidLottoPurchaseAmount();
