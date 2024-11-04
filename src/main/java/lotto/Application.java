@@ -8,6 +8,8 @@ public class Application {
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         InputSixNumbers inputSixNumbers = new InputSixNumbers();
         InputBonusNumber inputBonusNumber = new InputBonusNumber();
+        PrintLottoResult printLottoResult = new PrintLottoResult();
+        LottoResult lottoResult = new LottoResult();
 
         //1. 구입 금액 입력, 로또 구입 개수
         int lottoCount = lottoPurchase.inputPurchaseAmount();
@@ -24,5 +26,11 @@ public class Application {
 
         //5. 보너스 번호 1개 입력받기
         int bonusNumber = inputBonusNumber.inputBonusNumber(lottoNumbers);
+
+        //6. 결과 출력
+        lottoResult.calculateResults(lottos, winningLotto, bonusNumber);
+
+        // 7. 결과 출력
+        printLottoResult.printWinningResult(lottoResult);
     }
 }
