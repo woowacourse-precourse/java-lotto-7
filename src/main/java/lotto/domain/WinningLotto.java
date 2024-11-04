@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.common.CollectionValidator.validateDuplicate;
+import static lotto.common.CollectionValidator.validateRange;
 import static lotto.common.CollectionValidator.validateSize;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class WinningLotto {
     }
 
     public static class WinningLottoBuilder {
+        private static final int MIN = 1;
+        private static final int MAX = 45;
+
         private List<Integer> winningNumbers = new ArrayList<>();
         private Integer bonusNumber;
 
@@ -37,12 +41,14 @@ public class WinningLotto {
 
         public WinningLottoBuilder winningNumbers(List<Integer> winningNumbers) {
             validateSize(winningNumbers,WINNING_NUMBER_SIZE);
+            validateRange(MIN, MAX,winningNumbers);
             validateDuplicate(winningNumbers);
             this.winningNumbers = new ArrayList<>(winningNumbers);
             return this;
         }
 
         public WinningLottoBuilder bonusNumber(Integer bonusNumber) {
+            validateRange(MIN, MAX,bonusNumber);
             this.bonusNumber = bonusNumber;
             return this;
         }
