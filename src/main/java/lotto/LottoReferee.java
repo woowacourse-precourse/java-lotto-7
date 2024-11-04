@@ -5,6 +5,7 @@ import java.util.List;
 
 public class LottoReferee {
 
+    private final static String BONUS_DUPLICATED_EXCEPTION_MESSAGE = "당첨 번호와 보너스 번호는 겹치면 안됩니다";
     private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
 
@@ -16,13 +17,13 @@ public class LottoReferee {
 
     private void validateBonusNumber(Lotto winningLotto, LottoNumber bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호와 보너스 번호는 겹치면 안됩니다");
+            throw new IllegalArgumentException(BONUS_DUPLICATED_EXCEPTION_MESSAGE);
         }
     }
 
-    public List<Rank> match(List<Lotto> lottoes) {
+    public List<Rank> match(List<Lotto> lottos) {
         List<Rank> ranks = new ArrayList<>();
-        for (Lotto lotto : lottoes) {
+        for (Lotto lotto : lottos) {
             ranks.add(match(lotto));
         }
         return ranks;
