@@ -2,7 +2,10 @@ package lotto;
 
 import java.util.List;
 
-public class Lotto {
+import camp.nextstep.edu.missionutils.Randoms;
+
+public class Lotto 
+{
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,4 +20,35 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public List<Integer> getNumbers()
+    {
+    	return numbers;
+    }
+    
+    public static List<Integer> makeRandomNumbers() 
+    {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+    
+    private boolean checkNumber(int check)
+    {
+    	for (Integer num : numbers)
+    	{
+    		if (num.intValue() == check)
+    			return true;
+    	}
+    	return false;
+    }
+    public int checkNumbers(Lotto checks)
+    {
+    	int containCount = 0;
+    	for (Integer num : checks.getNumbers())
+    	{
+    		if (checkNumber(num) == true)
+    		{
+    			containCount = containCount + 1;
+    		}
+    	}
+    	return containCount;
+    }
 }
