@@ -29,8 +29,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != NUMBER_CNT) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_SIZE.getMessage());
+        }
+        if ((new HashSet<>(numbers)).size() != NUMBER_CNT) {
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_LOTTO_NUMBERS.getMessage());
+        }
+        for (int number : numbers) {
+            if (number < NUMBER_MIN || number > NUMBER_MAX) {
+                throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+            }
         }
     }
 
