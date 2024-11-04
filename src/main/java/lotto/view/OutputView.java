@@ -13,6 +13,10 @@ public class OutputView {
         dto.lottosDto().forEach(this::printLottoDto);
     }
 
+    public void printExceptionMessage(final Exception e) {
+        System.out.println(e.getMessage());
+    }
+
     private void printLottoDto(EarnedLotto earnedLotto) {
         StringBuilder sb = new StringBuilder(LOTTO_INFORMATION_PREFIX);
         List<String> list = earnedLotto.numbers().stream().map(String::valueOf).toList();
@@ -20,4 +24,5 @@ public class OutputView {
         sb.append(LOTTO_INFORMATION_SUFFIX);
         System.out.println(sb);
     }
+
 }
