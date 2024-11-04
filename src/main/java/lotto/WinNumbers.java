@@ -15,7 +15,7 @@ public class WinNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    private static void validate(List<Integer> winNumbers, int bonusNumber) {
+    public static void validate(List<Integer> winNumbers, int bonusNumber) {
         if (1 > bonusNumber || 45 < bonusNumber) {
             throw new IllegalArgumentException("[ERROR] 보너스 로또 번호는 1이상 45이하의 숫자만 가능합니다.");
         }

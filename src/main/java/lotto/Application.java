@@ -9,7 +9,7 @@ public class Application {
         int purchaseNumber = printController.inputPurchaseNumber();
         List<Lotto> lottos = printController.printLottos(purchaseNumber);
         List<Integer> winNumber = printController.inputWinNumber();
-        int bonusNumber = printController.inputBonusNumber();
+        int bonusNumber = printController.inputBonusNumber(winNumber);
         WinNumbers winNumbers = new WinNumbers(winNumber, bonusNumber);
         LottoResult lottoResult = printController.printStatistics(lottos, winNumbers);
         printController.printRateOfReturn(lottoResult,purchaseNumber);
