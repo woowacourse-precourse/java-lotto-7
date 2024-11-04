@@ -31,4 +31,5 @@ public class InputViewTest {
 
         Assertions.assertThat(view.calculateNumberOfTotalLotto(1000)).isEqualTo(1);
     }
+
 }
