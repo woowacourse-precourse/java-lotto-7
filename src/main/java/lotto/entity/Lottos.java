@@ -34,6 +34,26 @@ public class Lottos {
         this.bonusNumber = bonus;
     }
 
+    public float getRateOfReturn() {
+        int spendMoney = lottos.size() * 1000;
+        int earnMoney = 0;
+        for (Lotto lotto : lottos) {
+            Prize prize = lotto.checkPrize(winningNumbers, bonusNumber);
+            earnMoney += prize.getAmount();
+        }
+        return (float) earnMoney / spendMoney * 100;
+    }
+
+    public int getCountOfPrize(Prize prize) {
+        int count = 0;
+        for (Lotto lotto : lottos) {
+            if (prize == lotto.checkPrize(winningNumbers, bonusNumber)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     private void validateMoney(Long money) {
         // 구입 금액이 int 형을 초과하는 경우
         if (money > 2147483000) {
