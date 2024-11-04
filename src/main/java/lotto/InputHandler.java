@@ -10,6 +10,7 @@ public class InputHandler {
     public static final String CREDIT = "구입금액을 입력해 주세요.";
     private static final String NOT_MULTIPLE_1000 = "[ERROR] 구입 금액은 1,000의 배수여야 합니다.";
     private static final String NOT_A_NUM = "[ERROR] 숫자를 입력하세요.";
+    private static final String NOT_SIX = "[ERROR] 당첨 번호는 6개여야 합니다.";
     private static final String SAME_NUMBER = "[ERROR] 당첨 번호에 중복된 숫자가 존재합니다.";
     private static final String SAME_BONUS_NUMBER = "[ERROR] 당첨번호에 보너스 번호와 중복된 숫자가 존재합니다.";
     public static final String WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
@@ -51,7 +52,13 @@ public class InputHandler {
 
     public static List<Integer> getWinningNumbers() {
         System.out.println(WINNING_NUMBER);
-        List<Integer> winningNumbers = readAndParseNumbers();
+        List<Integer> winningNumbers = new ArrayList<>();
+        try {
+            winningNumbers = parseNumbers(readNumbers());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumbers();
+        }
         try {
             checkSameNumber(winningNumbers);
         } catch (IllegalArgumentException e) {
@@ -61,10 +68,8 @@ public class InputHandler {
         return winningNumbers;
     }
 
-    private static List<Integer> readAndParseNumbers() {
-        String[] inputNumbers = Console.readLine().split(",");
+    private static List<Integer> parseNumbers(String[] inputNumbers) {
         List<Integer> winningNumbers = new ArrayList<>();
-
         for (String number : inputNumbers) {
             try {
                 winningNumbers.add(parseInt(number.trim()));
@@ -74,6 +79,14 @@ public class InputHandler {
             }
         }
         return winningNumbers;
+    }
+
+    private static String[] readNumbers() {
+        String[] inputNumbers = Console.readLine().split(",");
+        if (inputNumbers.length != 6) {
+            throw new IllegalArgumentException(NOT_SIX);
+        }
+        return inputNumbers;
     }
 
     public static void checkSameNumber(List<Integer> winningNumbers) {

@@ -69,8 +69,6 @@ class ApplicationTest extends NsTest {
         assertThat(InputHandler.getPieces(8000)).isEqualTo(8);
     }
 
-
-
     @Override
     public void runMain() {
         Application.main(new String[]{});
