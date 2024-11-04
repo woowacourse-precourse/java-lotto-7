@@ -15,7 +15,7 @@ import lotto.view.exception.InputException;
  * @since : 24. 10. 31.
  */
 public class LottoCommand implements ValidateCommand {
-  private static final String DELIMITER = ", ";
+  private static final String DELIMITER = ",";
   private static final String ASK = "당첨 번호를 입력해 주세요.";
 
   @Override
