@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum Rank {
 
     FIRST("6개 일치", 6, false, "2,000,000,000"),
@@ -19,6 +21,14 @@ public enum Rank {
         this.matchNumber = matchNumber;
         this.matchBonus = matchBonus;
         this.prize = prize;
+    }
+
+    public static Rank findRank(int matchNumber, boolean matchBonus) {
+        return Arrays.stream(values())
+                .filter(rank -> rank.matchNumber == matchNumber)
+                .filter(rank -> rank.matchBonus == matchBonus)
+                .findFirst()
+                .orElse(NONE);
     }
 
     public String getDescription() {
