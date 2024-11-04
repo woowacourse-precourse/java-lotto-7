@@ -16,16 +16,47 @@ public class LottoController {
     }
 
     public void run() {
-        Long purchaseAmount = InputValidator.validatePurchaseAmount(view.inputPurchaseAmount());
+        Long purchaseAmount = getValidatedPurchaseAmount();
         LottoStore lottoStore = new LottoStore(purchaseAmount);
-        List<Lotto> lottos = lottoStore.getLottos();
-        view.printRottos(lottos);
+        view.printRottos(lottoStore.getLottos());
 
-        List<Integer> winningLottos = InputValidator.validateWinningLottos(view.inputLottos());
-        Integer bonusNumber = InputValidator.validateBonusNumber(view.inputBonus());
-        LottoPrizeCalculator lottoPrizeCalculator = new LottoPrizeCalculator(lottos, new Lotto(winningLottos), bonusNumber);
+        List<Integer> winningLottos = getValidateWinNumbers();
+        Integer bonusNumber = getValidatedBonusNumber(winningLottos);
+
+        LottoPrizeCalculator lottoPrizeCalculator = new LottoPrizeCalculator(lottoStore.getLottos(), new Lotto(winningLottos), bonusNumber);
         Map<LottoPrizeInfo, Integer> prizeCounts = lottoPrizeCalculator.getPrizeCounts();
         Double rate = lottoPrizeCalculator.calculateProfitRate(purchaseAmount);
+
         view.printStatistics(prizeCounts, rate);
+    }
+
+    private Long getValidatedPurchaseAmount() {
+        while (true) {
+            try {
+                return InputValidator.validatePurchaseAmount(view.inputPurchaseAmount());
+            } catch (IllegalArgumentException e) {
+                view.printError(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> getValidateWinNumbers() {
+        while (true) {
+            try {
+                return InputValidator.validateWinningLottos(view.inputWinningLottos());
+            } catch (IllegalArgumentException e) {
+                view.printError(e.getMessage());
+            }
+        }
+    }
+
+    private Integer getValidatedBonusNumber(List<Integer> winNumbers) {
+        while (true) {
+            try {
+                return InputValidator.validateBonusNumber(view.inputBonusNumber());
+            } catch (Exception e) {
+                view.printError(e.getMessage());
+            }
+        }
     }
 }

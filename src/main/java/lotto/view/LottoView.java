@@ -33,12 +33,12 @@ public class LottoView {
         return inputSupplier.get();
     }
 
-    public String inputLottos() {
+    public String inputWinningLottos() {
         outputConsumer.accept(PROMPT_WINNING_NUMBERS);
         return inputSupplier.get();
     }
 
-    public String inputBonus() {
+    public String inputBonusNumber() {
         outputConsumer.accept(PROMPT_BONUS_NUMBER);
         return inputSupplier.get();
     }
@@ -92,5 +92,9 @@ public class LottoView {
 
     private String formatPrizeAmount(long amount) {
         return NumberFormat.getNumberInstance(Locale.KOREA).format(amount);
+    }
+
+    public void printError(String message) {
+        outputConsumer.accept(message);
     }
 }

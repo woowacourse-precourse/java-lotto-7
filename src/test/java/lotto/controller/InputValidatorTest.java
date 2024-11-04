@@ -1,5 +1,11 @@
 package lotto.controller;
 
+import static lotto.exception.ErrorBase.BLANK_WINNING_NUMBERS;
+import static lotto.exception.ErrorBase.BONUS_NUMBER_BLANK;
+import static lotto.exception.ErrorBase.BONUS_NUMBER_NON_NUMERIC;
+import static lotto.exception.ErrorBase.PURCHASE_AMOUNT_BLANK;
+import static lotto.exception.ErrorBase.PURCHASE_AMOUNT_NON_NUMERIC;
+import static lotto.exception.ErrorBase.WINNING_NUMBERS_NON_NUMERIC;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -16,14 +22,14 @@ class InputValidatorTest {
     public void 빈_문자열이면_예외가_발생한다() {
         assertThatThrownBy(() -> InputValidator.validatePurchaseAmount("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액을 입력해주세요.");
+                .hasMessage(PURCHASE_AMOUNT_BLANK.getMessage());
     }
 
     @Test
     public void 숫자가_아닌_입력시_예외가_발생한다() {
         assertThatThrownBy(() -> InputValidator.validatePurchaseAmount("abc"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액은 숫자여야 합니다.");
+                .hasMessage(PURCHASE_AMOUNT_NON_NUMERIC.getMessage());
     }
 
     @Test
@@ -36,14 +42,14 @@ class InputValidatorTest {
     public void 당첨번호에_빈_문자열이면_예외가_발생한다() {
         assertThatThrownBy(() -> InputValidator.validateWinningLottos("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호를 입력해주세요.");
+                .hasMessage(BLANK_WINNING_NUMBERS.getMessage());
     }
 
     @Test
     public void 당첨번호에_숫자가_아닌_입력시_예외가_발생한다() {
         assertThatThrownBy(() -> InputValidator.validateWinningLottos("1,2,abc,4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 숫자여야 합니다.");
+                .hasMessage(WINNING_NUMBERS_NON_NUMERIC.getMessage());
     }
 
     @Test
@@ -55,13 +61,13 @@ class InputValidatorTest {
     public void 보너스번호가_빈_문자열이면_예외가_발생한다() {
         assertThatThrownBy(() -> InputValidator.validateBonusNumber("   "))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호를 입력해주세요.");
+                .hasMessage(BONUS_NUMBER_BLANK.getMessage());
     }
 
     @Test
     public void 보너스번호가_숫자가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> InputValidator.validateBonusNumber("abc"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 숫자여야 합니다.");
+                .hasMessage(BONUS_NUMBER_NON_NUMERIC.getMessage()  );
     }
 }
