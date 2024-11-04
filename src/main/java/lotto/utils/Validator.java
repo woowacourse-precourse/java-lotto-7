@@ -1,7 +1,9 @@
 package lotto.utils;
 
 import java.math.BigInteger;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
 
@@ -59,5 +61,14 @@ public class Validator {
         if(list.size() != size){
             ExceptionFactory.throwIllegalArgumentException(ExceptionType.NOT_PROPER_SIZE);
         }
+   }
+
+   public static void validateDuplicate(List<Integer> list){
+           Set<Integer> set = new HashSet<>(list);
+
+           if(set.size() != list.size()){
+               ExceptionFactory.throwIllegalArgumentException(ExceptionType.DUPLICATED_ELEMENTS);
+           }
+
    }
 }

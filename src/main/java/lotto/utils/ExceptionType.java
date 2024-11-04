@@ -10,6 +10,7 @@ public enum ExceptionType {
 
     //Number list  related
     NOT_PROPER_SIZE("list size is not proper"),
+    DUPLICATED_ELEMENTS("list includes duplicated elements"),
 
     //STRING related
     EMPTY_STRING("string is empty");

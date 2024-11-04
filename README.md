@@ -56,6 +56,7 @@
    - [x] validate number whether number is divisible by specific number or not
    - [x] validate number whether number is out of specific range or not
    - [x] validate list whether list is equal to specific size or not
+   - [ ] validate list whether list has duplicated element
 
 ### Throwing Exception logic
 
