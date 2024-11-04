@@ -22,28 +22,42 @@ public class LottoController {
         this.calculateService = new CalculateService();
     }
 
-    public void draw() {
-        int purchaseAmount = InputView.getPurchaseAmount();
-        Purchase purchase = purchaseService.purchaseLotto(purchaseAmount);
+    public Purchase purchaseLotto() {
+        int purchaseInput = InputView.getPurchaseAmount();
+        return purchaseService.purchaseLotto(purchaseInput);
+    }
 
-        List<Integer> lottoNumbers = InputView.getLottoNumber();
-        //inputView를 서비스에서도 호출하고 컨틀롤러에서도 호출하는게 이상함 리팩토링 필요
-        Lotto lotto = drawService.getLotto(lottoNumbers);
+    public List<DrawNumbers> drawPurchaseLotto(Purchase purchase) {
+        return purchaseService.getRandomDrawNumbersByTicketCount(purchase.getTicketCount());
+    }
 
-        int bonusNumber = InputView.getBonusNumber();
-        Bonus bonus = drawService.getBonus(bonusNumber, lotto.getNumbers());
+    public DrawNumbers drawWinningLotto() {
+        Lotto lotto = getLotto();
+        List<Integer> lottoNumbers = lotto.getNumbers();
 
-        DrawNumbers winningNumbers = new DrawNumbers(lotto.getNumbers(), bonus.getNumber());
+        Bonus bonus = getBonus(lottoNumbers);
 
-        int ticketCount = purchase.getTicketCount();
+        return new DrawNumbers(lottoNumbers, bonus.getNumber());
+    }
 
-        List<DrawNumbers> drawSets = purchaseService.getRandomDrawNumbersByTicketCount(ticketCount);
-        OutputView.printPurchaseLotto(drawSets);
-        List<Integer> prizeMoneyGroup = calculateService.calculatePrizeMoney(winningNumbers, drawSets);
+    public void showDraw(List<DrawNumbers> randomDrawNumbers, DrawNumbers winningNumbers, Purchase purchase) {
+        OutputView.printPurchaseLotto(randomDrawNumbers);
+
+        List<Integer> prizeMoneyGroup = calculateService.calculatePrizeMoney(winningNumbers, randomDrawNumbers);
         Double profitRatio = calculateService.calculateProfitRatio(prizeMoneyGroup, purchase.getPriceAmount());
 
         OutputView.printPrizeMoney(prizeMoneyGroup);
         OutputView.printProfitRatio(profitRatio);
+    }
 
+    private Bonus getBonus(List<Integer> lottoNumbers) {
+        int bonusNumberInput = InputView.getBonusNumber();
+        return drawService.getBonus(bonusNumberInput, lottoNumbers);
+    }
+
+    private Lotto getLotto() {
+        List<Integer> lottoNumbersInput = InputView.getLottoNumber();
+        //inputView를 서비스에서도 호출하고 컨틀롤러에서도 호출하는게 이상함 리팩토링 필요
+        return drawService.getLotto(lottoNumbersInput);
     }
 }
