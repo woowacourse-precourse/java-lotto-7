@@ -32,5 +32,11 @@ public enum LottoRank {
     public void incrementCount() {
         this.count++;
     }
+    // 카운트 초기화 메서드 추가
+    public static void resetCounts() {
+        for (LottoRank rank : LottoRank.values()) {
+            rank.count = 0;
+        }
+    }
 }
 

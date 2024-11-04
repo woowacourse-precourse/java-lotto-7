@@ -14,9 +14,10 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 구매금액_입력_테스트() {
+        LottoRank.resetCounts();
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("8000","1,2,3,4,5,6", "7");
+                    run("8000", "1,2,3,4,5,6", "7");
                     assertThat(output()).contains(
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
@@ -42,6 +43,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 당첨번호_비교_테스트() {
+        LottoRank.resetCounts();
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
@@ -75,6 +77,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 보너스번호_비교_테스트() {
+        LottoRank.resetCounts();
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
@@ -117,6 +120,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 기능_테스트() {
+        LottoRank.resetCounts();
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
