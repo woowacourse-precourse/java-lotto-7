@@ -8,7 +8,7 @@ import static lotto.constants.LottoTicket.UPPER_BOUND;
 import static lotto.constants.LottoTicket.NUMBERS_PER_LOTTO;
 
 
-public class LottoNumbersGenerator implements NumberGenerator {
+public class LottoNumbersGenerator implements NumbersGenerator {
 
     public List<Integer> generate() {
         return  Randoms.pickUniqueNumbersInRange(

@@ -19,5 +19,11 @@ public class MatchResult {
     public int getRank(){
         return rank;
     }
+    public int getMatchedNumberCount(){
+        return matchedNumberCount;
+    }
+    public boolean isBonusNumberMatched(){
+        return isBonusNumberMatched;
+    }
 
 }

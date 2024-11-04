@@ -3,9 +3,9 @@ package lotto.domain.ticket;
 import java.util.List;
 
 public class DefaultLottoFactory implements LottoFactory{
-    private final LottoNumbersGenerator lottoNumbersGenerator;
+    private final NumbersGenerator lottoNumbersGenerator;
 
-    public DefaultLottoFactory(LottoNumbersGenerator lottoNumbersGenerator) {
+    public DefaultLottoFactory(NumbersGenerator lottoNumbersGenerator) {
         this.lottoNumbersGenerator = lottoNumbersGenerator;
     }
 

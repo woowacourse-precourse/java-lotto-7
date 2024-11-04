@@ -1,12 +1,9 @@
-package lotto.domain;
+package lotto.domain.ticket;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
-import lotto.domain.ticket.Lotto;
-import lotto.domain.ticket.LottoFactory;
-import lotto.domain.ticket.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
