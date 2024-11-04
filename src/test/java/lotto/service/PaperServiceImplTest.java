@@ -5,12 +5,11 @@ import static lotto.exception.errorMessage.IllegalArgumentExceptionMessage.PURCH
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.exception.errorMessage.IllegalArgumentExceptionMessage;
-import lotto.repository.PaperRepository;
-import lotto.repository.PaperRepositoryImpl;
+import lotto.repository.paper.PaperRepository;
+import lotto.repository.paper.PaperRepositoryImpl;
+import lotto.service.paper.PaperServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;

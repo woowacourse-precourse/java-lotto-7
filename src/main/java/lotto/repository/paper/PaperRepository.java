@@ -1,4 +1,4 @@
-package lotto.repository;
+package lotto.repository.paper;
 
 import java.util.List;
 import lotto.Lotto;

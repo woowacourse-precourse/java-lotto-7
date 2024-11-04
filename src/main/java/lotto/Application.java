@@ -1,10 +1,10 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.repository.PaperRepository;
-import lotto.repository.PaperRepositoryImpl;
-import lotto.service.PaperService;
-import lotto.service.PaperServiceImpl;
+import lotto.repository.paper.PaperRepository;
+import lotto.repository.paper.PaperRepositoryImpl;
+import lotto.service.paper.PaperService;
+import lotto.service.paper.PaperServiceImpl;
 import lotto.view.View;
 
 public class Application {

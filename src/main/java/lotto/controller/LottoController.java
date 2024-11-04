@@ -2,8 +2,7 @@ package lotto.controller;
 
 import static lotto.exception.errorMessage.IllegalArgumentExceptionMessage.NUMBER_FORMAT;
 
-import lotto.exception.errorMessage.IllegalArgumentExceptionMessage;
-import lotto.service.PaperService;
+import lotto.service.paper.PaperService;
 import lotto.view.View;
 
 public class LottoController {

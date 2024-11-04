@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.paper;
 
 import lotto.Lotto;
 

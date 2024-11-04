@@ -1,13 +1,12 @@
-package lotto.service;
+package lotto.service.paper;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 import lotto.exception.paper.PurchaseAmountNotNatureException;
 import lotto.exception.paper.PurchaseAmountUnitException;
-import lotto.repository.PaperRepository;
+import lotto.repository.paper.PaperRepository;
 
 public class PaperServiceImpl implements PaperService{
     private final PaperRepository paperRepository;
