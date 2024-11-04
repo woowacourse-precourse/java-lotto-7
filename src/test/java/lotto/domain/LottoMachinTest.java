@@ -1,10 +1,10 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
-import lotto.domain.Consumer;
 import lotto.domain.errorMessage.ErrorMessage;
 import lotto.domain.errorMessage.InputErrorMessage;
 import lotto.domain.errorMessage.LottoErrorMessage;
@@ -16,7 +16,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.LottoMachin;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -47,7 +46,7 @@ class LottoMachinTest {
         Console.close();
     }
 
-    @DisplayName("로또 머신이 판매한 로또의 갯수와 실제 구매자가 받은 로또의 개수 비교 테스트")
+    @DisplayName("로또 머신이 판매한 로또의 갯수와 실제 구매자가 받은 로또의 개수 비교 성공 테스트")
     @Test
     void sellToTest() {
         String input = "5000";
@@ -55,6 +54,18 @@ class LottoMachinTest {
 
         machine.sellTo(consumer);
         assertEquals(5, consumer.getPurchasedLottoCount());
+    }
+
+    @DisplayName("로또 머신이 판매한 로또의 갯수와 실제 구매자가 받은 로또의 개수 비교 실패 테스트")
+    @Test
+    void sellToFailTest() {
+        String input = "5000";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        machine.sellTo(consumer);
+
+        int expected = consumer.getPurchasedLottoCount();
+        assertNotEquals(4, expected);
     }
 
     @DisplayName("로또 머신이 제공한 구매자의 로또 번호 검증 테스트.")
@@ -116,7 +127,7 @@ class LottoMachinTest {
                 .hasMessage(ErrorMessage.EMPTY_MESSAGE.getErrorMessage());
     }
 
-    @DisplayName("로또 머신이 구매자에게 당첨 번호를 입력받는 메서드 숫자 개수 부족 실패 테스트")
+    @DisplayName("로또 머신이 구매자에게 당첨 번호를 입력받는 숫자 개수 부족 실패 테스트")
     @Test
     void inputWinningNumbersToConsumerFailCountTest() {
         String input = "1,2,3,4,5\n";
