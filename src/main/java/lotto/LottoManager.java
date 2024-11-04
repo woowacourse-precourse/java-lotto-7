@@ -46,13 +46,19 @@ public class LottoManager {
 
     }
 
-    public void compareLotto(){
+    public void compareLottoList(){
         for (Lotto lotto : lottoList) {
-            Set<Integer> winLotto = new HashSet<>(winningLotto.getNumbers());
-            Set<Integer> eachLotto = new HashSet<>(lotto.getNumbers());
-            winLotto.retainAll(eachLotto);
+            int compareLottoNumber = compareLotto(lotto);
         }
     }
+
+    public int compareLotto(Lotto lotto){
+        Set<Integer> winLotto = new HashSet<>(winningLotto.getNumbers());
+        Set<Integer> eachLotto = new HashSet<>(lotto.getNumbers());
+        winLotto.retainAll(eachLotto);
+        return winLotto.size();
+    }
+
 
     private boolean convertBonusNumToInteger(String userInput) {
         try {
@@ -138,6 +144,16 @@ public class LottoManager {
     void setPurchaseAmountForTest(int purchaseAmountForTest) {
         this.purchaseAmount = purchaseAmountForTest;
     }
+
+    void setLottoListForTest(Lotto lotto){
+        this.lottoList.add(lotto);
+    }
+
+    void setWinningLottoForTest(Lotto winningLottoForTest) {
+        this.winningLotto = winningLottoForTest;
+    }
+
+
 
     //테스트를 위한 조회 메서드
     public List<Lotto> getLottoList() {
