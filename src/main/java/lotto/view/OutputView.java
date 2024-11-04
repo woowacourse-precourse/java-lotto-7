@@ -3,6 +3,7 @@ package lotto.view;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.StringJoiner;
+
 import lotto.policy.PrizeMoneyPolicy;
 
 public class OutputView {
@@ -49,7 +50,7 @@ public class OutputView {
         String formattedMoney = formatter.format(rank.getPriceMoney());
         output.append(String.format(MATCH_COUNT, rank.getMatchedCount()));
 
-        if(rank.equals(PrizeMoneyPolicy.SECOND)){
+        if (rank.equals(PrizeMoneyPolicy.SECOND)) {
             output.append(String.format(BONUS));
         }
         output.append(String.format(MONEY, formattedMoney));

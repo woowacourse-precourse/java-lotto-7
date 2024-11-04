@@ -8,22 +8,22 @@ public enum PrizeMoneyPolicy {
     THIRD(5, 1_500_000),
     FOURTH(4, 50_000),
     FIFTH(3, 5_000),
-    NOTHING(0,0);
+    NOTHING(0, 0);
 
     private final int matchedCount;
     private final long priceMoney;
 
-    PrizeMoneyPolicy(int matchedCount, long priceMoney){
+    PrizeMoneyPolicy(int matchedCount, long priceMoney) {
         this.matchedCount = matchedCount;
         this.priceMoney = priceMoney;
     }
 
-    public static PrizeMoneyPolicy getRank(int matchedCount, boolean bonusCount){
-        if(matchedCount == 5){
+    public static PrizeMoneyPolicy getRank(int matchedCount, boolean bonusCount) {
+        if (matchedCount == 5) {
             return secondOrThird(bonusCount);
         }
 
-        if(matchedCount < 3){
+        if (matchedCount < 3) {
             return NOTHING;
         }
 
@@ -32,8 +32,8 @@ public enum PrizeMoneyPolicy {
                 .toList().getFirst();
     }
 
-    private static PrizeMoneyPolicy secondOrThird(boolean bonusCount){
-        if(bonusCount){
+    private static PrizeMoneyPolicy secondOrThird(boolean bonusCount) {
+        if (bonusCount) {
             return SECOND;
         }
         return THIRD;

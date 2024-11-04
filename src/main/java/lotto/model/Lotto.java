@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import lotto.policy.LottoNumberPolicy;
 
 public class Lotto {
@@ -26,7 +27,6 @@ public class Lotto {
         int scale = LottoNumberPolicy.NUMBER_SCALE.number();
         if (numbers.size() != scale) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-            // 이거 따로 에러 메시지 상수 관리하는 데로 옮기자
         }
     }
 

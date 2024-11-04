@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.Collections;
 import java.util.List;
+
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Revenue;
@@ -22,15 +23,15 @@ public class LottoController {
         OutputView.purchasedBudget();
 
         Revenue revenue = new Revenue(InputView.budget());
-        int ticketCount = lottoService.ticketCount(revenue.getBudget());
+        int ticketCount = lottoService.ticketCount(revenue.budget());
         OutputView.PurchasedLottoTicketsMessage(ticketCount);
 
-        List<Lotto> lottos = lottoService.buyLottos(revenue.getBudget());
+        List<Lotto> lottos = lottoService.buyLottos(revenue.budget());
         printAllLottos(lottos);
 
         Winning winning = winningLotto();
 
-//        OutputView.winningStatistics();
+        OutputView.winningStatistics();
 
         List<PrizeMoneyPolicy> ranks = findRanks(lottos, winning);
         result(ranks);
@@ -56,12 +57,12 @@ public class LottoController {
     }
 
     private List<PrizeMoneyPolicy> findRanks(List<Lotto> lottos, Winning winning) {
-       return lottos.stream()
+        return lottos.stream()
                 .map(winning::getRank)
                 .toList();
     }
 
-    public void result(List<PrizeMoneyPolicy> resultRanks){
+    public void result(List<PrizeMoneyPolicy> resultRanks) {
         List<PrizeMoneyPolicy> ranks =
                 List.of(PrizeMoneyPolicy.FIFTH,
                         PrizeMoneyPolicy.FOURTH,

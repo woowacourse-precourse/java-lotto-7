@@ -13,24 +13,24 @@ public class Winning {
     }
 
     private void validateBonusInWinningLotto(Lotto winningLotto, Bonus bonus) {
-        if(winningLotto.getNumbers().contains(bonus.getBonusNumber())){
+        if (winningLotto.getNumbers().contains(bonus.getBonusNumber())) {
             throw new IllegalArgumentException("보너스 번호가 당첨 로또 번호와 중복됩니다.");
         }
     }
 
-    public int match(Lotto lotto){
+    public int match(Lotto lotto) {
         long matchCount = lotto.getNumbers().stream()
                 .filter(number -> winningLotto.getNumbers().contains(number))
                 .count();
-        return (int)matchCount;
+        return (int) matchCount;
     }
 
-    public boolean isBonusMatch(Lotto lotto){
+    public boolean isBonusMatch(Lotto lotto) {
         return lotto.getNumbers().stream()
                 .anyMatch(bonus::isMatch);
     }
 
-    public PrizeMoneyPolicy getRank(Lotto lotto){
+    public PrizeMoneyPolicy getRank(Lotto lotto) {
         int matchCount = match(lotto);
         boolean bonusMatch = isBonusMatch(lotto);
 

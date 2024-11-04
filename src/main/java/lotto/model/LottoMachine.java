@@ -1,8 +1,12 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import lotto.policy.LottoNumberPolicy;
 
 public class LottoMachine {
@@ -15,8 +19,9 @@ public class LottoMachine {
     }
 
     private List<Integer> randomNumbers() {
-        List<Integer> numbers =  Randoms.pickUniqueNumbersInRange(MIN, MAX, SCALE);
-//        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, SCALE);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 }
