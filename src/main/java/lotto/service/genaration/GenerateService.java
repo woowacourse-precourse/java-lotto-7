@@ -15,14 +15,7 @@ public class GenerateService {
         this.numberOfLotto = numberOfLotto;
     }
     public Lotto generateLotto() {
-        List<Integer> numbers = new ArrayList<>();
-        while(numbers.size() < 6) {
-            int randomInt = Randoms.pickNumberInRange(LottoNumber.MIN_LOTTO_NUMBER, LottoNumber.MAX_LOTTO_NUMBER);
-            if (numbers.contains(randomInt)) {
-                continue;
-            }
-            numbers.add(randomInt);
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoNumber.MIN_LOTTO_NUMBER, LottoNumber.MAX_LOTTO_NUMBER, 6);
         return new Lotto(numbers);
     }
     public Lottos generateLotos()  {
