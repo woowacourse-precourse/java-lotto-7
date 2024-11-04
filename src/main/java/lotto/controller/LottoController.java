@@ -20,7 +20,7 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = InputHandler.readUntilValid(this::readPurchaseAmount);
+        PurchaseAmount purchaseAmount = readPurchaseAmount();
         printPurchaseCount(purchaseAmount);
         LottoTicket lottoTicket = LottoTicket.of(lottoNumberGenerator, purchaseAmount);
         List<Lotto> ticket = lottoTicket.getTicket();
@@ -36,6 +36,10 @@ public class LottoController {
     }
 
     private PurchaseAmount readPurchaseAmount() {
+        return InputHandler.readUntilValid(this::inputPurchaseAmount);
+    }
+
+    private PurchaseAmount inputPurchaseAmount() {
         OutputView.printPurchaseAmountInputMessage();
         String purchaseAmount = InputHandler.readUntilValid(InputView::inputPurchaseAmount);
         return PurchaseAmount.from(purchaseAmount);
@@ -59,11 +63,6 @@ public class LottoController {
         return lottoTicket.gatherMatchResult(winningNumber, bonusNumber);
     }
 
-    private void printWinningStatistics(List<MatchResult> matchResults) {
-        Map<LottoRank, Integer> lottoRankCount = produceStatistics(matchResults);
-        OutputView.printWinningStatistics(lottoRankCount);
-    }
-
     private WinningNumber readWinningNumbers() {
         return InputHandler.readUntilValid(this::inputWinningNumbers);
     }
@@ -84,6 +83,11 @@ public class LottoController {
         String enteredBonusNumber = InputHandler.readUntilValid(InputView::inputBonusNumber);
         System.out.println();
         return BonusNumber.from(enteredBonusNumber, winningNumber);
+    }
+
+    private void printWinningStatistics(List<MatchResult> matchResults) {
+        Map<LottoRank, Integer> lottoRankCount = produceStatistics(matchResults);
+        OutputView.printWinningStatistics(lottoRankCount);
     }
 
     private Map<LottoRank, Integer> produceStatistics(List<MatchResult> matchResults) {

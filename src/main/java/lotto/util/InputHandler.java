@@ -21,7 +21,6 @@ public class InputHandler {
 
     public static <T, R> R readUntilValid(Function<T, R> function, T input) {
         try {
-
             return function.apply(input);
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
