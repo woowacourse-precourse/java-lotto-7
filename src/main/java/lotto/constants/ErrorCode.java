@@ -17,7 +17,7 @@ public enum ErrorCode {
     }
 
     public String getMessage() {
-        return message;
+        return "[ERROR] " + message;
     }
 
     public String toString() {
