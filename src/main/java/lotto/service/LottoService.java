@@ -24,13 +24,18 @@ public class LottoService {
     public Map<Prize, Integer> calculateMathLotto(int[] winningNumbers, int bonusNumber, List<Lotto> lottos) {
         WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
         Map<Prize, Integer> prizeCount = new HashMap<>();
+        for (Prize prize : Prize.values()) {
+            if (prize.getPrizeMoney() == 0) {
+                continue;
+            }
+            prizeCount.put(prize, 0);
+        }
 
         for (Lotto lotto : lottos) {
             Prize prize = convertLottoResultDtoToPrize(lotto.countNumberOfWinnings(winningNumber));
             if (prize.getPrizeMoney() == 0) {
                 continue;
             }
-            prizeCount.putIfAbsent(prize, 0);
             prizeCount.put(prize, prizeCount.get(prize) + 1);
         }
 
