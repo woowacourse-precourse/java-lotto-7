@@ -31,7 +31,9 @@ public class LottoController {
         List<Integer> winningNumbersInteger = requestAndValidateWinningNumbers();
         int bonusNumber = requestAndValidateBonusNumber(winningNumbersInteger);
 
-        calculateAndDisplayStatistics(lottoTicket, winningNumbersInteger, bonusNumber, purchaseAmountInt);
+        Map<LottoResult, Integer> lottoResultCount = calculateStatistics(lottoTicket, winningNumbersInteger,
+                bonusNumber);
+        displayStatistics(lottoResultCount, purchaseAmountInt);
     }
 
     private int requestAndValidatePurchaseAmount() {
@@ -67,10 +69,12 @@ public class LottoController {
         }
     }
 
-    private void calculateAndDisplayStatistics(LottoTicket lottoTicket, List<Integer> winningNumbersInteger,
-                                               int bonusNumber, int purchaseAmountInt) {
-        Map<LottoResult, Integer> lottoResultCount = lottoService.calculateStatisticsLottoResult(
-                lottoTicket, winningNumbersInteger, bonusNumber);
+    private Map<LottoResult, Integer> calculateStatistics(LottoTicket lottoTicket, List<Integer> winningNumbersInteger,
+                                                          int bonusNumber) {
+        return lottoService.calculateStatisticsLottoResult(lottoTicket, winningNumbersInteger, bonusNumber);
+    }
+
+    private void displayStatistics(Map<LottoResult, Integer> lottoResultCount, int purchaseAmountInt) {
         OutputView.printWinningStatistics(lottoResultCount);
 
         double rateEarning = statisticsService.calculateRateEarning(lottoResultCount, purchaseAmountInt);
