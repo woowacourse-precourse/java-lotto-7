@@ -15,16 +15,19 @@ public enum LottoPrize {
     private final boolean matchedBonus;
     private final int prizeAmount;
 
+    private static final String MATCH_COUNT_FORMAT = "%d개 일치";
+    private static final String BONUS_MATCH_FORMAT = "%d개 일치, 보너스 볼 일치";
+    private static final String AMOUNT_FORMAT = " (%s원) - ";
+
     LottoPrize(int matchCount, boolean matchedBonus, int prizeAmount) {
         this.matchCount = matchCount;
         this.matchedBonus = matchedBonus;
         this.prizeAmount = prizeAmount;
     }
 
-    public static LottoPrize getLottoPrize(int matchCount, boolean matchedBonus) {
+    public static LottoPrize fromMatchCountAndBonus(int matchCount, boolean matchedBonus) {
         return Arrays.stream(LottoPrize.values())
-                .filter(prize -> prize.matchCount == matchCount && prize.matchedBonus == matchedBonus)
-                .findFirst()
+                .filter(prize -> prize.matchCount == matchCount && prize.matchedBonus == matchedBonus).findFirst()
                 .orElse(NO_PRIZE);
     }
 
@@ -36,10 +39,14 @@ public enum LottoPrize {
     public String toString() {
         NumberFormat formatter = NumberFormat.getNumberInstance();
         String formattedPrizeAmount = formatter.format(prizeAmount);
+        String prizeDescription;
 
         if (matchedBonus) {
-            return matchCount + "개 일치, 보너스 볼 일치 (" + formattedPrizeAmount + "원) - ";
+            prizeDescription = String.format(BONUS_MATCH_FORMAT, matchCount);
+        } else {
+            prizeDescription = String.format(MATCH_COUNT_FORMAT, matchCount);
         }
-        return matchCount + "개 일치 (" + formattedPrizeAmount + "원) - ";
+
+        return prizeDescription + String.format(AMOUNT_FORMAT, formattedPrizeAmount);
     }
 }

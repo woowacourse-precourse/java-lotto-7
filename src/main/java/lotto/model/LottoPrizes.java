@@ -31,7 +31,7 @@ public class LottoPrizes {
     private LottoPrize getPrize(Lotto lotto) {
         int matchCount = winningNumbers.countMatchingNumbers(lotto);
         boolean containsBonusNumber = winningNumbers.containsNumber(lotto);
-        return LottoPrize.getLottoPrize(matchCount, containsBonusNumber);
+        return LottoPrize.fromMatchCountAndBonus(matchCount, containsBonusNumber);
     }
 
     public String calculateYield(int purchaseAmount) {
