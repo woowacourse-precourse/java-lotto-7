@@ -1,7 +1,7 @@
-package lotto;
+package lotto.util;
 
-import lotto.IO.InputHandler;
-import lotto.messages.ErrorMessage;
+import lotto.inputoutput.InputHandler;
+import lotto.constants.ErrorMessage;
 
 import java.util.HashSet;
 import java.util.List;
