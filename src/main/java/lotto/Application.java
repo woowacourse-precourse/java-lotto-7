@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +30,8 @@ public class Application {
         setWinningInfo();
         getResults();
     }
-    private void purchaseLottoTickets(){
+
+    private void purchaseLottoTickets() {
         outputHandler.printBudgetMessage();
         budget = inputHandler.budgetInput();
         int purchasedLottoCount = budget / 1000;
@@ -39,13 +39,15 @@ public class Application {
         lottoTickets = lottoGenerator.generate(purchasedLottoCount);
         outputHandler.printLottoTickets(lottoTickets);
     }
-    private void setWinningInfo(){
+
+    private void setWinningInfo() {
         outputHandler.printWinningLottoMessage();
         winningLotto = inputHandler.winningNumbersInput();
         outputHandler.printBonusNumberMessage();
         bonusNumber = inputHandler.bonusNumberInput(winningLotto.getNumbers());
     }
-    private void getResults(){
+
+    private void getResults() {
         Map<Rank, Integer> result = lottoResult.getFinalResult(lottoTickets, winningLotto.getNumbers(), bonusNumber);
         outputHandler.printStatistics(result);
         float totalProfit = lottoResult.getTotalProfit(result);
