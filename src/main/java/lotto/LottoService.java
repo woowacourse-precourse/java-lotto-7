@@ -20,15 +20,15 @@ public class LottoService {
         return new LottoResults(rankFrequency, revenue);
     }
 
-    public Lottos createLottos(Integer count) {
+    public Lottos generateLottos(Integer count) {
         return lottoGenerator.generate(count);
     }
 
-    public List<Rank> calculateWinnings(Lottos lottos, WinningNumbers winningNumbers) {
+    private List<Rank> calculateWinnings(Lottos lottos, WinningNumbers winningNumbers) {
         return lottos.compareWithWinLotto(winningNumbers);
     }
 
-    public Map<Rank, Integer> rankCounter(List<Rank> ranks) {
+    private Map<Rank, Integer> rankCounter(List<Rank> ranks) {
         Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
             rankCounts.put(rank, 0);
@@ -39,7 +39,7 @@ public class LottoService {
         return rankCounts;
     }
 
-    public double calculateRevenue(List<Rank> ranks, Integer amount) {
+    private double calculateRevenue(List<Rank> ranks, Integer amount) {
         return revenueCalculator.calculate(ranks, amount);
     }
 }

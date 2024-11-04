@@ -46,6 +46,6 @@ public class LottoController {
     }
 
     private Lottos generateLottos(LottoPurchase lottoPurchase) {
-        return lottoService.createLottos(lottoPurchase.getCount());
+        return lottoService.generateLottos(lottoPurchase.getCount());
     }
 }
