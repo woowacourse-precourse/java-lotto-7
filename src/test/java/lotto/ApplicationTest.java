@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,6 +51,42 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("구매 금액 입력 시 1000원 단위가 아니면 예외가 발생한다.")
+    void 예외_테스트_구매_금액_유효성() {
+        assertSimpleTest(() -> {
+            runException("1500"); // 1000원 단위가 아님
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력 시 개수가 6개가 아니면 예외가 발생한다.")
+    void 예외_테스트_당첨_번호_개수() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5"); // 6개가 아님
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력 시 당첨 번호와 중복되면 예외가 발생한다.")
+    void 예외_테스트_보너스_번호_중복() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "6"); // 보너스 번호 중복
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력 시 범위를 벗어나면 예외가 발생한다.")
+    void 예외_테스트_보너스_번호_범위() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "46"); // 범위 초과
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
