@@ -88,67 +88,44 @@
 
 ## 패키지 구조
 
-`
+```
 .
-├── main
-│   └── java
-│   └── lotto
-│   ├── Application.java
-│   ├── common
-│   │   └── exception
-│   │   ├── ErrorMessage.java
-│   │   └── LottoException.java
-│   ├── controller
-│   │   └── LottoController.java
-│   ├── domain
-│   │   ├── lotto
-│   │   │   ├── Investment.java
-│   │   │   ├── Lotto.java
-│   │   │   ├── LottoBundle.java
-│   │   │   ├── LottoGenerator.java
-│   │   │   └── LottoNumber.java
-│   │   ├── utility
-│   │   │   ├── Splitter
-│   │   │   │   └── CustomSplitter.java
-│   │   │   ├── converter
-│   │   │   │   └── Converter.java
-│   │   │   ├── generator
-│   │   │   │   ├── RandomIntegerListGenerator.java
-│   │   │   │   └── RandomNumberListGenerator.java
-│   │   │   └── sorting
-│   │   │   ├── AscendingSorter.java
-│   │   │   └── Sorter.java
-│   │   └── winning
-│   │   ├── BonusNumber.java
-│   │   ├── LottoResult.java
-│   │   ├── Rank.java
-│   │   └── WinningNumbers.java
-│   └── view
-│   ├── input
-│   │   ├── ConsoleInputView.java
-│   │   └── InputView.java
-│   └── output
-│   ├── ConsoleOutputView.java
-│   └── OutputView.java
-└── test
-└── java
 └── lotto
-├── ApplicationTest.java
-└── domain
-├── lotto
-│   ├── InvestmentTest.java
-│   ├── LottoGeneratorTest.java
-│   ├── LottoNumberTest.java
-│   └── LottoTest.java
+├── Application.java
+├── common
+│ └── exception
+│ ├── ErrorMessage.java
+│ └── LottoException.java
+├── controller
+│ └── LottoController.java
+├── domain
+│ ├── lotto
+│ │ ├── Investment.java
+│ │ ├── Lotto.java
+│ │ ├── LottoBundle.java
+│ │ ├── LottoGenerator.java
+│ │ └── LottoNumber.java
+│ └── winning
+│ ├── BonusNumber.java
+│ ├── LottoResult.java
+│ ├── Rank.java
+│ └── WinningNumbers.java
 ├── utility
-│   ├── Splitter
-│   │   └── CustomSplitterTest.java
-│   ├── generator
-│   │   └── RandomIntegerListGeneratorTest.java
-│   └── sorting
-│   └── AscendingSorterTest.java
-└── winning
-├── BonusNumberTest.java
-├── LottoResultTest.java
-└── WinningNumbersTest.java
-`
+│ ├── Splitter
+│ │ └── CustomSplitter.java
+│ ├── converter
+│ │ └── Converter.java
+│ ├── generator
+│ │ ├── RandomIntegerListGenerator.java
+│ │ └── RandomNumberListGenerator.java
+│ └── sorting
+│ ├── AscendingSorter.java
+│ └── Sorter.java
+└── view
+├── input
+│ ├── ConsoleInputView.java
+│ └── InputView.java
+└── output
+├── ConsoleOutputView.java
+└── OutputView.java
+```
