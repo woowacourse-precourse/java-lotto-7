@@ -1,6 +1,12 @@
 package lotto.model.lottoInfo;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import lotto.controller.dto.LottoResult;
+import lotto.controller.dto.PrizeResultInfo;
+import lotto.controller.dto.PrizeResultsDto;
 import lotto.model.enums.Rank;
 
 public class LottoGame {
@@ -45,5 +51,28 @@ public class LottoGame {
         );
 
         return Rank.checkRank(matchCount, hasBonus);
+    }
+
+    public PrizeResultsDto getPrizeResult(LottoResult lottoResult) {
+        Map<Rank, Long> rankCounting = groupByRank(lottoResult.ranks());
+        return new PrizeResultsDto(generatePrizeInfo(rankCounting));
+    }
+
+    private List<PrizeResultInfo> generatePrizeInfo(Map<Rank, Long> rankCounting) {
+        return rankCounting.entrySet().stream()
+                .map(entry -> PrizeResultInfo.from(
+                                entry.getKey(),
+                                priceByRank.getByRank(entry.getKey()),
+                                entry.getValue().intValue()
+                        )
+                )
+                .toList();
+    }
+
+    private Map<Rank, Long> groupByRank(List<Rank> ranks) {
+        return ranks.stream()
+                .collect(Collectors.groupingBy(rank -> rank,
+                        () -> new EnumMap<>(Rank.class),
+                        Collectors.counting()));
     }
 }

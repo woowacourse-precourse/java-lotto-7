@@ -12,5 +12,9 @@ public abstract class PrizeData {
         initializePrizes();
     }
 
+    public Prize getByRank(Rank rank) {
+        return prizeByRank.get(rank);
+    }
+
     protected abstract void initializePrizes();
 }
