@@ -1,9 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.enums.Rank;
 
 public class OutputView {
 
@@ -35,20 +33,17 @@ public class OutputView {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
-    public static void printWinningStatistics(Map<Rank, Integer> statistics) {
+    public static void printWinningStatistics(List<String> messages, List<Integer> prizes, List<Integer> counts) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
 
-        printStatistic(statistics, Rank.THREE);
-        printStatistic(statistics, Rank.FOUR);
-        printStatistic(statistics, Rank.FIVE);
-        printStatistic(statistics, Rank.FIVE_AND_BONUS);
-        printStatistic(statistics, Rank.SIX);
+        for (int i = 0; i < messages.size(); i++) {
+            printStatistic(messages.get(i), prizes.get(i), counts.get(i));
+        }
     }
 
-    private static void printStatistic(Map<Rank, Integer> statistics, Rank rank) {
-        int count = statistics.getOrDefault(rank, 0);
-        System.out.printf("%s (%,d원) - %d개%n", rank.getMessage(), rank.getPrize(), count);
+    private static void printStatistic(String message, int prize, int count) {
+        System.out.printf("%s (%,d원) - %d개%n", message, prize, count);
     }
 
     public static void printRateOfReturn(double rateOfReturn) {
