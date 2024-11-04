@@ -18,6 +18,12 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int countSameNumbers(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contain)
+                .count();
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicates(numbers);
