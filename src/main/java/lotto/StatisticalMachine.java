@@ -8,10 +8,11 @@ public class StatisticalMachine {
     private final EnumMap<WinningRank, Integer> statistics;
 
     public StatisticalMachine() {
+        int defaultCount = 0;
         statistics = new EnumMap<>(WinningRank.class);
 
         for (WinningRank rank : WinningRank.values()) {
-            statistics.put(rank, 0);
+            statistics.put(rank, defaultCount);
         }
     }
 
