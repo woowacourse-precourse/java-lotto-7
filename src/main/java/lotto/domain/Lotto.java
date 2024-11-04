@@ -1,9 +1,14 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+
+    public Lotto() {
+        this.numbers = new ArrayList<>();
+    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -16,5 +21,8 @@ public class Lotto {
         }
     }
 
+    public void addWinningNumbers(List<Integer> winningNumbers) {
+        numbers.addAll(winningNumbers);
+    }
     // TODO: 추가 기능 구현
 }

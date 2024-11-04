@@ -1,10 +1,14 @@
 package lotto.domain;
 
 public class LottoBonus {
-    private final int bonusNumber;
+    private int bonusNumber;
 
-    public LottoBonus(final int bonusNumber) {
-        this.bonusNumber = bonusNumber;
+    public LottoBonus() {
+        this.bonusNumber = 0;
+    }
+
+    public void setLottoBonusNumber(final int lottoBonusNumber) {
+        this.bonusNumber = lottoBonusNumber;
     }
 
     public int getBonusNumber() {
