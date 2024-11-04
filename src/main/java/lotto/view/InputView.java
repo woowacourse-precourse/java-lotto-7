@@ -15,7 +15,11 @@ public class InputView {
 
     private static int validatePurchaseAmount(String input) {
         try {
-            return Integer.parseInt(input);
+            int amount = Integer.parseInt(input);
+            if ((amount % 1000) != 0) {
+                throw new IllegalArgumentException("[ERROR] 숫자는 1,000원 단위로 입력해 주세요.");
+            }
+            return amount;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
