@@ -1,8 +1,6 @@
 package lotto.validator;
 
 public class PurchaseMoneyValidator {
-    private static final Integer MIN = 1;
-    private static final Integer MAX = 45;
     private PurchaseMoneyValidator() {
     }
 
