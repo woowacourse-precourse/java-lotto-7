@@ -11,16 +11,16 @@ public class LottoGenerator {
     private static final int FIXED_SIZE = 6;
     private final List<Lotto> lottos;
 
-    private LottoGenerator(long amount) {
+    private LottoGenerator(int amount) {
         List<Lotto> lottos = generateLottos(amount);
         this.lottos = List.copyOf(lottos);
     }
 
-    public static LottoGenerator generate(long amount) {
+    public static LottoGenerator generate(int amount) {
         return new LottoGenerator(amount);
     }
 
-    private List<Lotto> generateLottos(long amount) {
+    private List<Lotto> generateLottos(int amount) {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int lottoCount = 0; lottoCount < amount; lottoCount++) {

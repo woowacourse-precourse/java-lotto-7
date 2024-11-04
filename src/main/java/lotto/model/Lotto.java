@@ -19,13 +19,11 @@ public class Lotto {
         validator.validate();
     }
 
-    public boolean isNumbersContains(int otherNumber) {
-        return numbers.contains(otherNumber);
-    }
-
-    public long getMatchNumbersCount(Lotto compare) {
+    public int getMatchNumbersCount(Lotto compare) {
         Set<Integer> matchingChecker = new HashSet<>(numbers);
-        return compare.getNumbers().stream().filter(number -> !matchingChecker.add(number)).count();
+        return (int) compare.getNumbers().stream()
+            .filter(number -> !matchingChecker.add(number))
+            .count();
     }
 
     public List<Integer> getNumbers() {
