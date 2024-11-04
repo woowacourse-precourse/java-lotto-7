@@ -5,6 +5,7 @@ import static lotto.common.ConsoleMessage.*;
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.List;
+import lotto.common.NumberParser;
 import lotto.domain.LottoRank;
 import lotto.view.dto.WinningInfo;
 
@@ -15,7 +16,7 @@ public class ApplicationConsoleView implements ApplicationView {
     @Override
     public int requestMoney() {
         println(REQUEST_INPUT_MONEY);
-        return Integer.parseInt(Console.readLine());
+        return NumberParser.toInt(Console.readLine());
     }
 
     @Override
