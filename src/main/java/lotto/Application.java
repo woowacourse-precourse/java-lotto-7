@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.util.InputHandler;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        int money = InputHandler.getPurchaseAmount();
+        int lottoCount = money / 1000;
     }
 }
