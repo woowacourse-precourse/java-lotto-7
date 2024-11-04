@@ -116,7 +116,4 @@ public class WinningLottoNumbers {
         this.winningNumbers = winningNumbers;
     }
 
-//    public LottoRank match(Lotto lotto) {
-//
-//    }
 }
