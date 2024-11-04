@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 public enum WinningRank {
     NOTHING(0, false, 0),
@@ -22,9 +23,16 @@ public enum WinningRank {
 
     public static WinningRank getWinningRank(int matchCount, boolean matchBonus) {
         return Arrays.stream(WinningRank.values())
-            .filter(rank -> rank.matchCount == matchCount && rank.matchBonus == matchBonus)
+            .filter(isWinning(matchCount, matchBonus))
             .findFirst()
             .orElse(NOTHING);
+    }
+
+    private static Predicate<WinningRank> isWinning(
+        int matchCount,
+        boolean matchBonus
+    ) {
+        return rank -> rank.matchCount == matchCount && rank.matchBonus == matchBonus;
     }
 
     public int calculatePrize(int count) {
