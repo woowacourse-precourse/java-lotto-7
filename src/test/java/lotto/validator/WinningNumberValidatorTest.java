@@ -49,4 +49,12 @@ public class WinningNumberValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(WINNING_NUMBER_ERROR_MESSAGE);
     }
+
+    @Test
+    void 중복된_번호_검사() {
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 5);
+        assertThatThrownBy(() -> winningNumberValidator.validate(winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(WINNING_NUMBER_ERROR_MESSAGE);
+    }
 }
