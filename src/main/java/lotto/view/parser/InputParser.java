@@ -3,6 +3,8 @@ package lotto.view.parser;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import lotto.exception.ErrorMessage;
+import lotto.exception.ExceptionHandler;
 
 public class InputParser {
 
@@ -28,7 +30,7 @@ public class InputParser {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            ExceptionHandler.throwIllegalArgException(ErrorMessage.INVALID_NUMBER);
         }
     }
 }
