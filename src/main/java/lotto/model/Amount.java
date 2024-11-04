@@ -38,4 +38,8 @@ public class Amount {
     public int parseAmount(String inputAmount) {
         return Integer.parseInt(inputAmount);
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }
