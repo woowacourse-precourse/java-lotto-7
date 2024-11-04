@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Lottos;
 import lotto.view.InputView;
 
 public class LottoController {
