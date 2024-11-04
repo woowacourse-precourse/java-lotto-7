@@ -1,8 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -28,6 +27,7 @@ public class Lotto {
         List<Lotto> lottos = new ArrayList<>();
         while (n-- > 0) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
         return lottos;
@@ -41,4 +41,23 @@ public class Lotto {
         message = message.substring(0, message.length() - 2) + "]";
         System.out.println(message);
     }
+
+    public int number_matching(Lotto win_Num) {
+        int match;
+        Set<Integer> matching_count = new HashSet<>(this.numbers);
+        matching_count.retainAll(win_Num.numbers);
+        match = matching_count.size();
+        return match;
+    }
+
+    public boolean bonus_matching(int bonus_Num) {
+        boolean match = false;
+        for (int n : this.numbers) {
+            if(n == bonus_Num) {
+                match = true;
+            }
+        }
+        return match;
+    }
+
 }
