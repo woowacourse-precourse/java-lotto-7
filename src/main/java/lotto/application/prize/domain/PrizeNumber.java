@@ -1,7 +1,5 @@
 package lotto.application.prize.domain;
 
-import java.util.List;
-
 public class PrizeNumber {
 
     private final WinnerNumbers winnerNumbers;
@@ -20,11 +18,4 @@ public class PrizeNumber {
         return PrizeNumberResult.of(bonusNumber, winnerNumbers);
     }
 
-    public List<Integer> getWinnerNumbersValue() {
-        return winnerNumbers.getLottoNumbers();
-    }
-
-    public int getBonusNumberValue() {
-        return bonusNumber.getValue();
-    }
 }

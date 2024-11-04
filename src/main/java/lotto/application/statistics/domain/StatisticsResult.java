@@ -1,7 +1,7 @@
 package lotto.application.statistics.domain;
 
 public class StatisticsResult {
-    private static final double PERCENTAGE = 100.0;
+    public static final double PERCENTAGE = 100.0;
     private final RankCounter rankCounter;
 
     private StatisticsResult(RankCounter rankCounter) {

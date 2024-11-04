@@ -1,6 +1,7 @@
 package lotto.application.prize.view.input;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.application.prize.exception.Message.INPUT_BONUS_NUMBER;
 import static lotto.application.util.StringConverter.toInt;
 import static lotto.application.util.StringConverter.trim;
 
@@ -8,7 +9,6 @@ import lotto.application.common.OutputPrinter;
 import lotto.application.prize.view.input.request.BonusViewRequest;
 
 public class BonusInputView {
-    private final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private final OutputPrinter printer;
 
     public BonusInputView() {

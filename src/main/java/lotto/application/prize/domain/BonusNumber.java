@@ -1,5 +1,7 @@
 package lotto.application.prize.domain;
 
+import static lotto.application.prize.exception.Message.BONUS_SHOULD_BETWEEN_ONE_FOURTYFIVE;
+import static lotto.application.prize.exception.Message.BONUS_SHOULD_DIFFERENT_FROM_WINNUMBER;
 import static lotto.application.ticket.domain.ticket.LottoNumberRule.END_INCLUSIVE;
 import static lotto.application.ticket.domain.ticket.LottoNumberRule.START_INCLUSIVE;
 
@@ -28,13 +30,13 @@ public class BonusNumber {
 
     private static void validateNumberRange(int value) {
         if (isOutOfRange(value)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(BONUS_SHOULD_BETWEEN_ONE_FOURTYFIVE);
         }
     }
 
     private static void validateDuplicate(int value, Lotto lotto) {
         if (lotto.contains(value)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(BONUS_SHOULD_DIFFERENT_FROM_WINNUMBER);
         }
     }
 
