@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.util.ProfitCalculator;
 
 public class LottoService {
 
@@ -36,9 +37,6 @@ public class LottoService {
   }
 
   public double calculateProfitRate(int investment, int totalPrize) {
-    if (investment == 0) {
-      return 0.0;
-    }
-    return ((double) totalPrize / investment) * 100;
+    return ProfitCalculator.calculateProfitRate(investment, totalPrize);
   }
 }
