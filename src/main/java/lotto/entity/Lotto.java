@@ -21,7 +21,8 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-    private void initializeValidator(List<Integer> numbers){
+
+    private void initializeValidator(List<Integer> numbers) {
         this.validator = new LottoValidator(numbers);
     }
 
