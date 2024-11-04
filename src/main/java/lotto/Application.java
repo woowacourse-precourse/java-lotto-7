@@ -23,19 +23,29 @@ public class Application {
         }
         List<Lotto> lottoList = buyLotto(purchaseMoney);
 
+        Lotto winningNumber;
         while(true){
             System.out.println("당첨 번호를 입력해 주세요.");
             try{
-                Lotto lotto = inputWinningNumber(Console.readLine().split(",",-1));
+                winningNumber = inputWinningNumber(Console.readLine().split(",",-1));
                 break;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
-        /*
-        Console.readLine();
-        System.out.println("보너스 번호를 입력해 주세요.");
-        Console.readLine();*/
+
+        int bonusNumber;
+        while (true){
+            System.out.println("보너스 번호를 입력해 주세요.");
+            try{
+                bonusNumber = strToInt(Console.readLine());
+                validateNumber(bonusNumber);
+                duplicateBonusNumberCheck(winningNumber,bonusNumber);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static int strToInt(String str){
@@ -76,5 +86,12 @@ public class Application {
             winningNumbers.add(num);
         }
         return new Lotto(winningNumbers);
+    }
+    public static void duplicateBonusNumberCheck(Lotto winningNumber, int bonusNumber){
+        for(int number : winningNumber.getNumbers()){
+            if(number == bonusNumber){
+                throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨번호와 중복됩니다.");
+            }
+        }
     }
 }
