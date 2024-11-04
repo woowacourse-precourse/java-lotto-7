@@ -201,3 +201,39 @@
     
         // TODO: 추가 기능 구현
     }
+## 디렉토리 구조
+```angular2html
+.
+├── main
+│   └── java
+│       └── lotto
+│           ├── Application.java
+│           ├── controller
+│           │   └── LottoController.java
+│           ├── domain
+│           │   ├── CorrectDTO.java
+│           │   ├── Lotto.java
+│           │   ├── LottoDTO.java
+│           │   ├── LottoRank.java
+│           │   ├── MoneyDTO.java
+│           │   └── RateOfReturnDTO.java
+│           ├── service
+│           │   └── LottoService.java
+│           └── view
+│               └── LottoView.java
+└── test
+    └── java
+        └── lotto
+            ├── ApplicationTest.java
+            ├── controller
+            │   └── LottoControllerTest.java
+            ├── domain
+            │   ├── CorrectDTOTest.java
+            │   ├── LottoTest.java
+            │   └── MoneyDTOTest.java
+            ├── service
+            │   └── LottoServiceTest.java
+            └── view
+            └── LottoViewTest.java
+
+```
