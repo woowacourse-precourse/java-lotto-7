@@ -1,5 +1,6 @@
-package lotto;
+package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -14,7 +15,17 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if(numbers.stream().distinct().count() != 6){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
     }
 
     // TODO: 추가 기능 구현
+    public String getNumbers(){
+        return this.numbers.toString();
+    }
+
+    public List<Integer> getNumbersValue(){
+        return List.copyOf(this.numbers);
+    }
 }
