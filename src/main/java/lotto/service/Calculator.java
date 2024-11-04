@@ -46,7 +46,7 @@ public class Calculator {
     public double rateOfReturn(PurchaseAmount purchaseAmount) {
         long totalPrize = sumOfPrize();
         double rateOfReturn = (double) totalPrize / (purchaseAmount.getCanBuyLottoCount() * 1000L);
-        return roundOfTwo(rateOfReturn) * 100;
+        return roundOfTwo(rateOfReturn * 100);
     }
 
     private long sumOfPrize() {
