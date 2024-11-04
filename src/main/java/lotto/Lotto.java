@@ -20,6 +20,10 @@ public class Lotto {
         return numbers;
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     // TODO: 추가 기능 구현
 
     @Override

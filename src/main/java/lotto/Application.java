@@ -12,8 +12,8 @@ public class Application {
         Input input = new Input();
         Genarator genarator = new Genarator();
 
-        input.winner();
-        input.bonus();
+        Lotto winNo = input.winner();
+        input.bonus(winNo);
 
         genarator.autoGen();
     }
