@@ -29,7 +29,7 @@ public class Application {
         System.out.println("\n%d개를 구매했습니다.".formatted(lottos.size()));
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
 
-        List<Integer> winningNumbers = repeatUntilNoException(() -> inputWinningNumbers());
+        List<Integer> winningNumbers = repeatUntilNoException(Application::drawWinningNumbers ());
         int bonusNumber = repeatUntilNoException(() -> drawBonus(winningNumbers));
 
         LottoMachine machine = new LottoMachine();
@@ -50,7 +50,7 @@ public class Application {
         return Integer.parseInt(rawMoney);
     }
 
-    private static List<Integer> inputWinningNumbers() {
+    private static List<Integer> drawWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String rawInput = Console.readLine().trim();
 
