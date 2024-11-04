@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoController {
     public void run() {
@@ -39,7 +40,8 @@ public class LottoController {
         Lotto winningNumbers = null;
         while (true) {
             try {
-                winningNumbers = new Lotto(LottoView.getWinningNumbers());
+                String inputNumbers = LottoView.getWinningNumbers();
+                winningNumbers = new Lotto(parseWinningNumbers(inputNumbers));
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -50,10 +52,7 @@ public class LottoController {
         Integer bonusNumber;
         while (true) {
             try {
-                bonusNumber = LottoView.getBonusNumber();
-
-                validateBonusNumber(winningNumbers.getNumbers(), bonusNumber);
-
+                bonusNumber = validateBonusNumber(winningNumbers.getNumbers(), LottoView.getBonusNumber());
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -94,9 +93,32 @@ public class LottoController {
         LottoView.printReturnRate(totalPrize, inputCash);
     }
 
-    private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    private List<Integer> parseWinningNumbers(String inputNumbers) {
+        try {
+            return Arrays.stream(inputNumbers.replace(" ", "").split(",", -1))
+                    .map(Integer::parseInt)
+                    .peek(number -> {
+                        if (number < 1 || number > 45) {
+                            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                        }
+                    })
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 잘못된 입력입니다. 정수를 입력하세요.");
+        }
+    }
+
+    private Integer validateBonusNumber(List<Integer> winningNumbers, String inputNumber) {
+        try {
+            Integer bonusNumber = Integer.parseInt(inputNumber);
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            } else if (winningNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 잘못된 입력입니다. 정수를 입력하세요.");
         }
     }
 }

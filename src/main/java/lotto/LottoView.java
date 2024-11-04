@@ -8,42 +8,17 @@ public class LottoView {
 
     public static int getInputCash() {
         System.out.println("구입금액을 입력해 주세요.");
-        int inputCash = Integer.parseInt(Console.readLine());
-        return inputCash;
+        return Integer.parseInt(Console.readLine());
     }
 
-    public static List<Integer> getWinningNumbers() {
+    public static String getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String inputNumbers = Console.readLine();
-
-        List<Integer> winningNumbers = null;
-        try {
-            winningNumbers = Arrays.stream(inputNumbers.replace(" ", "").split(",", -1))
-                    .map(Integer::parseInt)
-                    .peek(number -> {
-                        if (number < 1 || number > 45) {
-                            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                        }
-                    })
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 잘못된 입력입니다. 정수를 입력하세요.");
-        }
-        return winningNumbers;
+        return Console.readLine();
     }
 
-    public static Integer getBonusNumber() {
+    public static String getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        Integer bonusNumber = null;
-        try {
-            bonusNumber = Integer.parseInt(Console.readLine());
-            if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 잘못된 입력입니다. 정수를 입력하세요.");
-        }
-        return bonusNumber;
+        return Console.readLine();
     }
 
     public static void printLottos(int lottoCount, List<Lotto> lottos) {
