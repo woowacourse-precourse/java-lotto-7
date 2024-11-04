@@ -2,6 +2,9 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.model.domain.BonusNumber;
+import lotto.model.domain.WinningLotto;
+import lotto.model.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

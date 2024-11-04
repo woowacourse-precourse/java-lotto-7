@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 public class WinningLotto {
 
@@ -17,7 +17,7 @@ public class WinningLotto {
         }
     }
 
-    public LottoRank matchLotto(Lotto lotto) {
+    public LottoRank determineRank(Lotto lotto) {
         int matchCount = (int) winningNumbers.getNumbers().stream()
                 .filter(winningNumber -> lotto.getNumbers().contains(winningNumber.getNumber()))
                 .count();
