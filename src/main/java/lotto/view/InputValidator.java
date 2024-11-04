@@ -4,6 +4,14 @@ import static lotto.Constants.LOTTO_PRICE;
 import static lotto.Constants.MAX_NUMBER;
 import static lotto.Constants.MIN_NUMBER;
 import static lotto.Constants.WINNING_NUMBERS_SIZE;
+import static lotto.ErrorConstants.ERROR_BONUS_NUMBER_DUPLICATE;
+import static lotto.ErrorConstants.ERROR_DIVISIBLE_BY_LOTTO_PRICE;
+import static lotto.ErrorConstants.ERROR_DUPLICATE_NUMBERS_NOT_ALLOWED;
+import static lotto.ErrorConstants.ERROR_MINIMUM_LOTTO_PURCHASE;
+import static lotto.ErrorConstants.ERROR_NUMBER_RANGE;
+import static lotto.ErrorConstants.ERROR_ONLY_NUMBERS_ALLOWED;
+import static lotto.ErrorConstants.ERROR_ONLY_NUMBER_ALLOWED;
+import static lotto.ErrorConstants.ERROR_WINNING_NUMBERS_SIZE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,19 +29,19 @@ public class InputValidator {
             return payment;
 
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 가능합니다.");
+            throw new IllegalArgumentException(ERROR_ONLY_NUMBER_ALLOWED);
         }
     }
 
     private void checkMinimumPayment(int payment) {
         if (payment < LOTTO_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 로또는 1개 이상 구매 가능합니다.");
+            throw new IllegalArgumentException(ERROR_MINIMUM_LOTTO_PURCHASE);
         }
     }
 
     private void checkDivisibilityByLottoPrice(int payment) {
         if (payment % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위만 가능합니다.");
+            throw new IllegalArgumentException(ERROR_DIVISIBLE_BY_LOTTO_PRICE);
         }
     }
 
@@ -54,19 +62,19 @@ public class InputValidator {
             checkNumberRange(number);
             return number;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 번호는 숫자만 가능합니다.");
+            throw new IllegalArgumentException(ERROR_ONLY_NUMBERS_ALLOWED);
         }
     }
 
     public void checkDuplication(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호를 입력할 수 없습니다. ");
+            throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBERS_NOT_ALLOWED);
         }
     }
 
     public void checkLottoNumbersLength(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개만 가능합니다.");
+            throw new IllegalArgumentException(ERROR_WINNING_NUMBERS_SIZE);
         }
     }
 
@@ -77,19 +85,19 @@ public class InputValidator {
             checkDuplicationBetween(winningNumber, bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 번호는 숫자만 가능합니다.");
+            throw new IllegalArgumentException(ERROR_ONLY_NUMBERS_ALLOWED);
         }
     }
 
     private void checkDuplicationBetween(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_DUPLICATE);
         }
     }
 
     private int checkNumberRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_NUMBER_RANGE);
         }
         return number;
     }

@@ -2,6 +2,14 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.ErrorConstants.ERROR_BONUS_NUMBER_DUPLICATE;
+import static lotto.ErrorConstants.ERROR_DIVISIBLE_BY_LOTTO_PRICE;
+import static lotto.ErrorConstants.ERROR_DUPLICATE_NUMBERS_NOT_ALLOWED;
+import static lotto.ErrorConstants.ERROR_MINIMUM_LOTTO_PURCHASE;
+import static lotto.ErrorConstants.ERROR_NUMBER_RANGE;
+import static lotto.ErrorConstants.ERROR_ONLY_NUMBERS_ALLOWED;
+import static lotto.ErrorConstants.ERROR_ONLY_NUMBER_ALLOWED;
+import static lotto.ErrorConstants.ERROR_WINNING_NUMBERS_SIZE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -52,7 +60,7 @@ class ApplicationTest extends NsTest {
     void errorCase1() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_ONLY_NUMBER_ALLOWED);
         });
     }
 
@@ -61,7 +69,7 @@ class ApplicationTest extends NsTest {
     void errorCase2() {
         assertSimpleTest(() -> {
             runException("1999");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_DIVISIBLE_BY_LOTTO_PRICE);
         });
     }
 
@@ -70,7 +78,7 @@ class ApplicationTest extends NsTest {
     void errorCase3() {
         assertSimpleTest(() -> {
             runException("999");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_MINIMUM_LOTTO_PURCHASE);
         });
     }
 
@@ -79,7 +87,7 @@ class ApplicationTest extends NsTest {
     void errorCase4() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_ONLY_NUMBERS_ALLOWED);
         });
     }
 
@@ -88,7 +96,7 @@ class ApplicationTest extends NsTest {
     void errorCase5() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,90");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_NUMBER_RANGE);
         });
     }
 
@@ -97,7 +105,7 @@ class ApplicationTest extends NsTest {
     void errorCase6() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_WINNING_NUMBERS_SIZE);
         });
     }
 
@@ -106,7 +114,7 @@ class ApplicationTest extends NsTest {
     void errorCase7() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,5");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_DUPLICATE_NUMBERS_NOT_ALLOWED);
         });
     }
 
@@ -115,7 +123,7 @@ class ApplicationTest extends NsTest {
     void errorCase8() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,6", "j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_ONLY_NUMBERS_ALLOWED);
         });
     }
 
@@ -124,7 +132,7 @@ class ApplicationTest extends NsTest {
     void errorCase9() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,6", "99");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_NUMBER_RANGE);
         });
     }
 
@@ -133,7 +141,7 @@ class ApplicationTest extends NsTest {
     void errorCase10() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,6", "4");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_BONUS_NUMBER_DUPLICATE);
         });
     }
 

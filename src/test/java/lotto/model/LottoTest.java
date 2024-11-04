@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.ErrorConstants.ERROR_DUPLICATE_NUMBERS_NOT_ALLOWED;
+import static lotto.ErrorConstants.ERROR_LOTTO_NUMBERS_SIZE;
+import static lotto.ErrorConstants.ERROR_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -21,7 +24,7 @@ class LottoTest {
     void errorCase1() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 로또 번호는 6개여야 합니다.");
+            .hasMessage(ERROR_LOTTO_NUMBERS_SIZE);
     }
 
     @Test
@@ -29,7 +32,7 @@ class LottoTest {
     void errorCase2() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 중복된 번호를 입력할 수 없습니다.");
+            .hasMessage(ERROR_DUPLICATE_NUMBERS_NOT_ALLOWED);
     }
 
     @Test
@@ -37,6 +40,6 @@ class LottoTest {
     void errorCase3() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 90)))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            .hasMessage(ERROR_NUMBER_RANGE);
     }
 }

@@ -2,6 +2,9 @@ package lotto.model;
 
 import static lotto.Constants.MAX_NUMBER;
 import static lotto.Constants.MIN_NUMBER;
+import static lotto.ErrorConstants.ERROR_DUPLICATE_NUMBERS_NOT_ALLOWED;
+import static lotto.ErrorConstants.ERROR_LOTTO_NUMBERS_SIZE;
+import static lotto.ErrorConstants.ERROR_NUMBER_RANGE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +33,7 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ERROR_LOTTO_NUMBERS_SIZE);
         }
     }
 
@@ -40,13 +43,13 @@ public class Lotto {
 
     private void checkNumberRange(Integer number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_NUMBER_RANGE);
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호를 입력할 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBERS_NOT_ALLOWED);
         }
     }
 }
