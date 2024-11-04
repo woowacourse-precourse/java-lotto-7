@@ -95,4 +95,19 @@ public class LottoServiceTest {
         Assertions.assertEquals(LottoRank.Fifth, lottoRank);
     }
 
+    @DisplayName("로또와 당첨 번호를 비교하여 None Rank를 반환한다.")
+    @Test
+    void 로또_당첨_순위_반환_테스트_NONE() {
+        //given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        List<Integer> lotto = List.of(10, 20, 30, 40, 50, 60);
+        //when
+        LottoRank lottoRank = lottoService.prizeWinningDiscriminationPerLotto(winningNumbers, bonusNumber, lotto);
+        //then
+        Assertions.assertEquals(LottoRank.None, lottoRank);
+    }
+
+
+
 }

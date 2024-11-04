@@ -2,13 +2,19 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoService {
+
+    public Map<LottoRank,Integer> calculateStatistic( List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottos){
+        Map<LottoRank,Integer> result = new HashMap<>();
+        for(List<Integer> lotto : lottos){
+            LottoRank lottoRank = prizeWinningDiscriminationPerLotto(winningNumbers, bonusNumber, lotto);
+            result.put(lottoRank, result.getOrDefault(lottoRank, 0) + 1);
+        }
+        return result;
+    }
 
     public LottoRank prizeWinningDiscriminationPerLotto( List<Integer> winningNumbers, int bonusNumber, List<Integer> lotto) {
 
