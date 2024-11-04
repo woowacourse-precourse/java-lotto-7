@@ -1,19 +1,29 @@
 package lotto.service;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import lotto.validator.Validator;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class LottoServiceTest {
+    LottoService lottoService = new LottoService();
 
-    private final Validator validator = new Validator();
+    @Test
+    void 로또_구입_금액_성공_테스트() {
+        String input = "10000";
+        Assertions.assertEquals(lottoService.extractLottoCount(input), 10);
+    }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "1", "1500", "-1000", "abc", ",./", "10 00"})
-    void 로또_구입_금액_유효성_검증_실패_테스트(String input) {
-        assertThatThrownBy(() -> validator.validatePurchaseAmount(input))
-                .isInstanceOf(IllegalArgumentException.class);
+    @Test
+    void 당첨_번호_성공_테스트() {
+        String input = "1, 2, 3, 4, 5, 6";
+        List<Integer> lottoNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        Assertions.assertEquals(lottoService.extractWinningNumbers(input), lottoNumbers);
+    }
+
+    @Test
+    void 보너스_번호_성공_테스트() {
+        String input = "45";
+        Assertions.assertEquals(lottoService.extractBonusNumber(input), 45);
     }
 }
