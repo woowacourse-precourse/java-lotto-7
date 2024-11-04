@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.Constants.TICKET_UNIT_PRICE;
 import static lotto.view.input.readBonusNumber;
 import static lotto.view.input.readTotalAmount;
 import static lotto.view.input.readWinningNumbers;
@@ -39,10 +40,10 @@ public class LottoController {
     }
 
     public static int checkTotalAmountIfValid(int totalAmount) {
-        if (totalAmount % 1000 != 0) {
+        if (totalAmount % TICKET_UNIT_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessages.INPUT_TOTAL_AMOUNT_ERROR.getMessage());
         }
-        return totalAmount / 1000;
+        return totalAmount / TICKET_UNIT_PRICE;
     }
 
     public void setTotalCount(){

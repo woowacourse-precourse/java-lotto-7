@@ -1,7 +1,7 @@
 package lotto.model;
 
-import static lotto.view.output.printLottoReturn;
-import static lotto.view.output.printWinCounts;
+import static lotto.Constants.TICKET_UNIT_PRICE;
+import static lotto.view.output.printSummary;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,7 +39,7 @@ public class CalculateResult {
     }
 
     public List<Integer> getWinCounts(){
-        List<Integer> winCounts = new ArrayList<>(Collections.nCopies(6, 0));
+        List<Integer> winCounts = new ArrayList<>(Collections.nCopies(Prize.values().length, 0));
         for (SingleResult singleResult : this.results) {
             int rank = singleResult.getRank();
             winCounts.set(rank, winCounts.get(rank) + 1);
@@ -52,13 +52,12 @@ public class CalculateResult {
         for (SingleResult singleResult : this.results) {
             total += singleResult.getPrize();
         }
-        return ((float) total / (totalCount * 1000)) * 100;
+        return ((float) total / (totalCount * TICKET_UNIT_PRICE)) * 100;
     }
 
     public void getTotalResult(int totalCount){
         float lottoReturn = getLottoReturns(totalCount);
         List<Integer> winCounts = getWinCounts();
-        printWinCounts(winCounts);
-        printLottoReturn(lottoReturn);
+        printSummary(winCounts, lottoReturn);
     }
 }

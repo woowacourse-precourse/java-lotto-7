@@ -41,4 +41,9 @@ public class output {
     public static void printLottoReturn(float lottoReturn){
         System.out.println("총 수익률은 " + String.format("%.1f", lottoReturn) + "%입니다.");
     }
+
+    public static void printSummary(List<Integer> winCounts, float lottoReturn){
+        printWinCounts(winCounts);
+        printLottoReturn(lottoReturn);
+    }
 }

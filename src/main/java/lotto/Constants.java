@@ -1,6 +1,7 @@
 package lotto;
 
 public class Constants {
+    public static final int TICKET_UNIT_PRICE = 1000;
 
     public enum RequestMessages {
         INPUT_TOTAL_AMOUNT("구입금액을 입력해 주세요."),
