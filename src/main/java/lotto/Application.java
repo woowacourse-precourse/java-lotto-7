@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
+    private static final int[] PRIZE_AMOUNTS = {0, 0, 0, 5000, 50000, 1500000, 2000000000};
 
     public static void main(String[] args) {
         try {
@@ -27,16 +28,12 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         try {
             int amount = Integer.parseInt(Console.readLine());
-            validatePurchaseAmount(amount);
+            if (amount % LOTTO_PRICE != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            }
             return amount;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 입력 금액이 올바르지 않습니다.");
-        }
-    }
-
-    private static void validatePurchaseAmount(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 
@@ -59,10 +56,6 @@ public class Application {
     public static List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        return parseWinningNumbers(input);
-    }
-
-    private static List<Integer> parseWinningNumbers(String input) {
         List<Integer> winningNumbers = parseNumbers(input);
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
@@ -73,14 +66,10 @@ public class Application {
     public static int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
-        validateBonusNumber(bonusNumber, winningNumbers);
-        return bonusNumber;
-    }
-
-    private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 하며 당첨 번호와 중복되지 않아야 합니다.");
         }
+        return bonusNumber;
     }
 
     public static List<Integer> parseNumbers(String input) {
@@ -95,84 +84,40 @@ public class Application {
     }
 
     public static void displayResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        int[] matchCounts = countMatchesForAllLottos(lottos, winningNumbers, bonusNumber);
-        printResults(matchCounts, lottos.size());
-    }
-
-    private static int[] countMatchesForAllLottos(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        int[] matchCounts = new int[Prize.values().length];
+        int[] matchCounts = new int[7];
         for (Lotto lotto : lottos) {
             int matchCount = countMatches(lotto.getNumbers(), winningNumbers);
-            Prize prize = Prize.getPrizeByMatch(matchCount, lotto.getNumbers().contains(bonusNumber));
-            if (prize != null) {
-                matchCounts[prize.ordinal()]++;
+            if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
+                matchCounts[5]++;
+            } else if (matchCount >= 3) {
+                matchCounts[matchCount]++;
             }
         }
-        return matchCounts;
+        printResult(matchCounts, lottos.size());
     }
 
     public static int countMatches(List<Integer> userNumbers, List<Integer> winningNumbers) {
         return (int) userNumbers.stream().filter(winningNumbers::contains).count();
     }
 
-    public static void printResults(int[] matchCounts, int totalLottos) {
+    public static void printResult(int[] matchCounts, int totalLottos) {
         System.out.println("당첨 통계\n---");
-        for (Prize prize : Prize.values()) {
-            if (matchCounts[prize.ordinal()] > 0) {
-                System.out.printf(prize.getMessage(), matchCounts[prize.ordinal()]);
-            }
-        }
+        System.out.printf("3개 일치 (%,d원) - %d개\n", PRIZE_AMOUNTS[3], matchCounts[3]);
+        System.out.printf("4개 일치 (%,d원) - %d개\n", PRIZE_AMOUNTS[4], matchCounts[4]);
+        System.out.printf("5개 일치 (%,d원) - %d개\n", PRIZE_AMOUNTS[5], matchCounts[5]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", matchCounts[5]);
+        System.out.printf("6개 일치 (%,d원) - %d개\n", PRIZE_AMOUNTS[6], matchCounts[6]);
+
         double profitRate = calculateProfitRate(matchCounts, totalLottos);
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
     public static double calculateProfitRate(int[] matchCounts, int totalLottos) {
-        int totalPrize = 0;
-        for (Prize prize : Prize.values()) {
-            totalPrize += matchCounts[prize.ordinal()] * prize.getPrizeAmount();
-        }
-        return Math.round((totalPrize / (double) (totalLottos * LOTTO_PRICE)) * 1000) / 10.0;
-    }
-}
-
-// 상금과 매칭 개수를 나타내는 Enum 정의
-enum Prize {
-    THREE_MATCHES(3, 5000, "3개 일치 (%,d원) - %d개\n"),
-    FOUR_MATCHES(4, 50000, "4개 일치 (%,d원) - %d개\n"),
-    FIVE_MATCHES(5, 1500000, "5개 일치 (%,d원) - %d개\n"),
-    FIVE_MATCHES_WITH_BONUS(5, 30000000, "5개 일치, 보너스 볼 일치 (%,d원) - %d개\n", true),
-    SIX_MATCHES(6, 2000000000, "6개 일치 (%,d원) - %d개\n");
-
-    private final int matchCount;
-    private final int prizeAmount;
-    private final String message;
-    private final boolean requiresBonus;
-
-    Prize(int matchCount, int prizeAmount, String message) {
-        this(matchCount, prizeAmount, message, false);
-    }
-
-    Prize(int matchCount, int prizeAmount, String message, boolean requiresBonus) {
-        this.matchCount = matchCount;
-        this.prizeAmount = prizeAmount;
-        this.message = message;
-        this.requiresBonus = requiresBonus;
-    }
-
-    public int getPrizeAmount() {
-        return prizeAmount;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public static Prize getPrizeByMatch(int matchCount, boolean bonusMatch) {
-        for (Prize prize : Prize.values()) {
-            if (prize.matchCount == matchCount && (!prize.requiresBonus || bonusMatch)) {
-                return prize;
-            }
-        }
-        return null;
+        int totalPrize = matchCounts[3] * PRIZE_AMOUNTS[3] +
+                matchCounts[4] * PRIZE_AMOUNTS[4] +
+                matchCounts[5] * 30000000 +
+                matchCounts[6] * PRIZE_AMOUNTS[6];
+        double profitRate = (totalPrize / (double) (totalLottos * LOTTO_PRICE)) * 100;
+        return Math.round(profitRate * 10) / 10.0;
     }
 }

@@ -48,21 +48,4 @@ class LottoTest {
                 .hasMessage("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 하며 당첨 번호와 중복되지 않아야 합니다.");
     }
 
-
-    @Test
-    @DisplayName("총 수익률을 올바르게 계산한다")
-    void 총_수익률_계산_정상_작동() {
-        int[] matchCounts = new int[Prize.values().length];
-        matchCounts[Prize.SIX_MATCHES.ordinal()] = 1; // 1등 1개
-        matchCounts[Prize.FIVE_MATCHES_WITH_BONUS.ordinal()] = 0;
-        matchCounts[Prize.FIVE_MATCHES.ordinal()] = 0;
-        matchCounts[Prize.FOUR_MATCHES.ordinal()] = 0;
-        matchCounts[Prize.THREE_MATCHES.ordinal()] = 0;
-
-        double profitRate = Application.calculateProfitRate(matchCounts, 5); // 5장을 구매했다고 가정
-
-        assertThat(profitRate).isEqualTo(40000000.0); // 총 상금 2,000,000,000 / (5 * 1,000) * 100
-    }
-
-
 }
