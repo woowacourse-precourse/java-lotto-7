@@ -36,6 +36,12 @@ public class Lotto {
         return formatLottoNumber() + "\n";
     }
 
+    public void checkBonusNumberDuple(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER.getMessage());
+        }
+    }
+
     private List<Integer> parseLottoNumbers(String rawLottoNumbers) {
         try {
             return Arrays.stream(rawLottoNumbers.split(LOTTO_NUMBER_DELIMITER_COMMA))
@@ -52,12 +58,6 @@ public class Lotto {
 
     private List<Integer> sortLottoNumbers() {
         return numbers.stream().sorted().toList();
-    }
-
-    public void checkBonusNumberDuple(int bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER.getMessage());
-        }
     }
 
     private void validate(List<Integer> numbers) {

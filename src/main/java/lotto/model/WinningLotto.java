@@ -1,6 +1,5 @@
 package lotto.model;
 
-import static lotto.Exception.ExceptionMessage.INVALID_LOTTO_NUMBER_SIZE;
 import static lotto.Exception.ExceptionMessage.INVALID_RANGE_LOTTO_NUMBER;
 
 public class WinningLotto {

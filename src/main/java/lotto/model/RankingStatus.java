@@ -24,20 +24,16 @@ public class RankingStatus {
     }
 
     public String makeMatchComment() {
-        StringBuilder matchComment = new StringBuilder();
-        matchComment
-                .append(MatchComment.FIFTH_LOTTO_MESSAGE.getComment(getRankingCount(Ranking.FIFTH)))
-                .append("\n")
-                .append(MatchComment.FOURTH_LOTTO_MESSAGE.getComment(getRankingCount(Ranking.FOURTH)))
-                .append("\n")
-                .append(MatchComment.THIRD_LOTTO_MESSAGE.getComment(getRankingCount(Ranking.THIRD)))
-                .append("\n")
-                .append(MatchComment.SECOND_LOTTO_MESSAGE.getComment(getRankingCount(Ranking.SECOND)))
-                .append("\n")
-                .append(MatchComment.FIRST_LOTTO_MESSAGE.getComment(getRankingCount(Ranking.FIRST)))
-                .append("\n");
-
-        return matchComment.toString();
+        return MatchComment.FIFTH_LOTTO_MESSAGE.getComment(getRankingCount(Ranking.FIFTH)) +
+                "\n" +
+                MatchComment.FOURTH_LOTTO_MESSAGE.getComment(getRankingCount(Ranking.FOURTH)) +
+                "\n" +
+                MatchComment.THIRD_LOTTO_MESSAGE.getComment(getRankingCount(Ranking.THIRD)) +
+                "\n" +
+                MatchComment.SECOND_LOTTO_MESSAGE.getComment(getRankingCount(Ranking.SECOND)) +
+                "\n" +
+                MatchComment.FIRST_LOTTO_MESSAGE.getComment(getRankingCount(Ranking.FIRST)) +
+                "\n";
     }
 
     private int getRankingCount(Ranking ranking) {
