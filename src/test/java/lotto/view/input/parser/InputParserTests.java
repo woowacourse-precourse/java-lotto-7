@@ -1,4 +1,4 @@
-package lotto.view.input.util;
+package lotto.view.input.parser;
 
 import static org.assertj.core.api.Assertions.*;
 

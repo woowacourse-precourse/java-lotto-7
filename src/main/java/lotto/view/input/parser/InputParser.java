@@ -1,4 +1,4 @@
-package lotto.view.input.util;
+package lotto.view.input.parser;
 
 import java.util.List;
 import java.util.stream.Stream;

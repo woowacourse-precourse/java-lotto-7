@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.dto.request.PurchaseAmountDTO;
 import lotto.dto.request.WinningLottoBonusNumberDTO;
 import lotto.dto.request.WinningLottoNumbersDTO;
-import lotto.view.input.util.InputParser;
+import lotto.view.input.parser.InputParser;
 
 public class ConsoleInputView implements InputView {
     private static final String REQUEST_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
