@@ -1,15 +1,19 @@
 package lotto.util;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import lotto.domain.LottoPrize;
 
 public class LottoStatistics {
-  private final Map<LottoPrize, Integer> statistics = new HashMap<>();
+  private final Map<LottoPrize, Integer> statistics = new LinkedHashMap<>();
 
   public void addResult(int matchCount, boolean hasBonus) {
     LottoPrize prize = getPrize(matchCount, hasBonus);
     statistics.put(prize, statistics.getOrDefault(prize, 0) + 1);
+  }
+  public Map<LottoPrize, Integer> getStatistics() {
+    return statistics;
   }
 
 
@@ -27,16 +31,4 @@ public class LottoStatistics {
         return null;
     }
   }
-  public void printStatistics() {
-    System.out.println("당첨 통계");
-    System.out.println("---");
-    statistics.forEach((prize, count) -> {
-      if(prize!=null) {
-        System.out.println(
-            prize.getMatchCount() + "개 일치 (" + prize.getPrize() + "원) - " + count + "개");
-      }
-        }
-    );
-  }
-
 }

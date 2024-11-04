@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoPrize;
 import lotto.service.InputMessageService;
 import lotto.service.LottoService;
 import lotto.service.OutputMessageService;
@@ -31,7 +33,8 @@ public class LottoController {
     outputMessageView.lottoResults(lottos);
     List<Integer> winningNumbers=inputMessageService.enterWinningNumberAndValidation();
     int bonusNumber=inputMessageService.winningNumbersAddBonusNumberAndValidation(winningNumbers);
-    lottoService.calculatingWinningStatistics(lottos,winningNumbers,bonusNumber);
+    Map<LottoPrize, Integer> statistics =lottoService.calculatingWinningStatistics(lottos,winningNumbers,bonusNumber);
+    outputMessageView.winningStatistics(statistics);
 
   }
 
