@@ -31,18 +31,13 @@ public class WinningStatistics {
 
 
     private void calculateRanks() {
-        int firstRank = Collections.frequency(numberOfMatching, 6);
-        int secondRank = Collections.frequency(numberOfMatching, 10);
-        int thirdRank = Collections.frequency(numberOfMatching, 5);
-        int fourthRank = Collections.frequency(numberOfMatching, 4);
-        int fifthRank = Collections.frequency(numberOfMatching, 3);
-
         ranks = new HashMap<>(5);
-        ranks.put(RankConstant.FIRSTRANK, firstRank);
-        ranks.put(RankConstant.SECONDRANK, secondRank);
-        ranks.put(RankConstant.THIRDRANK, thirdRank);
-        ranks.put(RankConstant.FOURTHRANK, fourthRank);
-        ranks.put(RankConstant.FIFTHRANK, fifthRank);
+
+        for (RankConstant rankConstant : RankConstant.values()) {
+            int matching = rankConstant.getMatching();
+            int totalMatching = Collections.frequency(numberOfMatching, matching);
+            ranks.put(rankConstant, totalMatching);
+        }
     }
 
     private void calculateRateOfReturn() {
