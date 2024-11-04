@@ -10,6 +10,7 @@ import java.util.Set;
 import lotto.model.Lotto;
 import lotto.model.LottoTransaction;
 import lotto.model.PrizeRank;
+import lotto.validator.PurchaseAmountValidator;
 import lotto.view.LottoTransactionView;
 
 public class LottoTransactionController {
@@ -23,10 +24,10 @@ public class LottoTransactionController {
         this.view = new LottoTransactionView();
     }
 
-    // TODO amount 대한 vaildate는 sellLotto 또는 inputView에서 할지 생각
     public List<Lotto> sellAutoLotto(int amount) {
         List<Lotto> lottos = new ArrayList<>();
         int count = amount / LOTTO_PRICE;
+        PurchaseAmountValidator.validate(amount);
 
         while (lottos.size() < count) {
             Lotto lotto = produceLotto();
@@ -42,7 +43,7 @@ public class LottoTransactionController {
 
     public List<Lotto> sellManualLotto(List<List<Integer>> lottoNumbers, int amount) {
         List<Lotto> lottos = new ArrayList<>();
-        int count = amount / LOTTO_PRICE;
+        PurchaseAmountValidator.validate(amount);
 
         for (List<Integer> lottoNumber : lottoNumbers) {
             Lotto lotto = new Lotto(lottoNumber);
