@@ -33,8 +33,4 @@ public class LottoResult {
     public long getLottoPrizeCounts(LottoPrize lottoPrize) {
         return prizeCounts.get(lottoPrize);
     }
-
-    public long getTotalProfit() {
-        return totalProfit;
-    }
 }
