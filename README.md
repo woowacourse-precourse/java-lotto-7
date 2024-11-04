@@ -1,6 +1,7 @@
 # java-lotto-precourse
 
 <br>
+
 # 프리코스 로또 과제
 
 ---
