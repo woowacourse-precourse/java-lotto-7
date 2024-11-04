@@ -53,13 +53,18 @@ public class LottoConfiguration {
     private List<Lotto> createLotto(int lottoCount) {
         List<Lotto> generatedLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            Collections.sort(lottoNumbers);
-            showLottoNumbers(lottoNumbers);
-            generatedLottos.add(new Lotto(lottoNumbers));
+            generatedLottos.add(generateSingleLotto());
         }
         return generatedLottos;
     }
+
+    private Lotto generateSingleLotto() {
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(lottoNumbers);
+        showLottoNumbers(lottoNumbers);
+        return new Lotto(lottoNumbers);
+    }
+
     private void showLottoNumbers(List<Integer> lottoNumbers) {
         System.out.println(lottoNumbers);
     }
