@@ -19,17 +19,27 @@ public class LottoResult {
     }
 
     public int getPrize() {
+        int result = LottoPrize.NONE_PRIZE.getPrize();
+
         for ( LottoPrize lottoPrize : LottoPrize.values() ) {
-            if ( lottoPrize.getFlagCount() == getFlagCount() &&
-                    lottoPrize.isBonusNumberMatchFlag() == bonusNumberMatchFlag ) {
-                return lottoPrize.getNstPrize();
+            if ( getFlagCount() == lottoPrize.getFlagCount() ) {
+                result = getNstPrize(lottoPrize);
             }
         }
 
-        return 0;
+        return result;
     }
 
-    public int getFlagCount() {
+    private int getNstPrize(LottoPrize lottoPrize) {
+        if ( lottoPrize.equals(LottoPrize.THIRD_PRIZE) ) {
+            if ( bonusNumberMatchFlag ) {
+                return LottoPrize.SECOND_PRIZE.getNstPrize();
+            }
+        }
+        return lottoPrize.getNstPrize();
+    }
+
+    private int getFlagCount() {
         int res = 0;
         for ( Boolean flag : winningNumberMatchFlag) {
             if ( flag ) {

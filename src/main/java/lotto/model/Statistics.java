@@ -23,12 +23,12 @@ public class Statistics {
     public BigDecimal getYield () {
         int tickets = 0;
         BigDecimal total = BigDecimal.ZERO;
-        for (int i = 0; i < LottoConstants.NUMBER_OF_LOTTO_PRIZE.getValue(); i++ ) {
-            tickets += lottoPrizeCount[i];
-            int prize = LottoPrize.values()[i].getPrize();
+        for ( LottoPrize lottoPrize : LottoPrize.values() ) {
+            tickets += lottoPrizeCount[lottoPrize.getNstPrize()];
+            int prize = lottoPrize.getPrize();
 
             BigDecimal prizeAmount = BigDecimal.valueOf(prize).
-                    multiply(BigDecimal.valueOf(lottoPrizeCount[i]));
+                    multiply(BigDecimal.valueOf(lottoPrizeCount[lottoPrize.getNstPrize()]));
             total = total.add(prizeAmount);
         }
         String purchasedAmount = String.valueOf(tickets*
