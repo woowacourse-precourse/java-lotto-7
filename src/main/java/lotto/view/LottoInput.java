@@ -8,6 +8,8 @@ import lotto.dto.LottoGradingNumbersDTO;
 import lotto.exception.*;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LottoInput {
 
@@ -72,6 +74,8 @@ public class LottoInput {
 
     private static List<Integer> parseWinNumbers(String userInput) throws IllegalArgumentException {
         try {
+            String inputFormat = "^((\\d{1,}),){5}(\\d{1,})$";
+            if (!userInput.matches(inputFormat)) throw new IllegalArgumentException();
             String[] inputSplit = userInput.split(",");
 
             return Arrays.stream(inputSplit)
