@@ -169,4 +169,41 @@ public class LottoGame {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
+    /**
+     * 당첨 결과를 출력한다.
+     */
+    private void displayResults() {
+        WinningResult result = calculateResults();
+        printWinningStatistics(result);
+        printProfitRate(result);
+    }
+
+    /**
+     * 당첨 결과를 계산한다.
+     */
+    private WinningResult calculateResults() {
+        WinningResult result = new WinningResult();
+        for (Lotto lotto : purchasedLottos) {
+            int matchCount = lotto.matchCount(winningLotto);
+            boolean bonusMatch = matchCount == 5 && lotto.contains(bonusNumber);
+            result.addResult(matchCount, bonusMatch);
+        }
+        return result;
+    }
+
+    /**
+     * 당첨 통계를 출력한다.
+     */
+    private void printWinningStatistics(WinningResult result) {
+        System.out.println("\n당첨 통계\n---");
+        result.printStatistics();
+    }
+
+    /**
+     * 수익률을 출력한다.
+     */
+    private void printProfitRate(WinningResult result) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n",
+                result.calculateProfitRate(purchasedLottos.size() * TICKET_PRICE));
+    }
 }
