@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 public class LottoShopTest {
 
-    @DisplayName("구입_금액에_해당하는_만큼_로또를_발행한다")
+    @DisplayName("구입 금액에 해당하는 만큼 로또를발행한다")
     @Test
     void 구입_금액에_해당하는_만큼_로또를_발행한다() {
         // given
