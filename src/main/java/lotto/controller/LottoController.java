@@ -1,12 +1,14 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
 import lotto.domain.WinningNumber;
 import lotto.enums.InputMessage;
 import lotto.enums.OutputMessage;
+import lotto.enums.WinningRanking;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,10 +20,12 @@ public class LottoController {
 
     private int parsedCostToInt;
     private int purchasedLottoCount;
-    private LottoCollection lottoCollection;
     private String winningNumber;
     private String bonusNumber;
+    private LottoCollection lottoCollection;
     private WinningNumber winningNumberObject;
+    private BonusNumber bonusNumberObject;
+    Map<WinningRanking, Integer> rankingResult;
 
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
@@ -43,6 +47,9 @@ public class LottoController {
         validateBonusNumber();
 
         printLottoWinMessage();
+        decideRanking();
+        printRanking();
+
     }
 
     public void inputPurchaseAmount() {
@@ -131,6 +138,15 @@ public class LottoController {
 
     public void printLottoWinMessage() {
         outputView.printLottoWinningMessage();
+    }
+
+    public void decideRanking() {
+        rankingResult = lottoService.decideRanking(lottoCollection,
+                winningNumberObject, bonusNumberObject);
+    }
+
+    public void printRanking() {
+        outputView.printRankingResult(rankingResult);
     }
 
 

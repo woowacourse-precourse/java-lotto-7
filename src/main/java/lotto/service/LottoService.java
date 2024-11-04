@@ -2,11 +2,14 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
 import lotto.domain.WinningNumber;
+import lotto.enums.WinningRanking;
 import lotto.factory.LottoFactory;
 import lotto.utility.Divider;
 import lotto.utility.Parser;
@@ -123,4 +126,41 @@ public class LottoService {
     public BonusNumber addBonusNumber(int parsedBonusNumber) {
         return new BonusNumber(parsedBonusNumber);
     }
+
+    public Map<WinningRanking, Integer> decideRanking(LottoCollection lottoCollection,
+                                                      WinningNumber winningNumberObject,
+                                                      BonusNumber bonusNumberObject) {
+        Map<WinningRanking, Integer> rankingCount = new HashMap<>();
+
+        for (WinningRanking ranking : WinningRanking.values()) {
+            rankingCount.put(ranking, 0);
+        }
+
+        for (Lotto lotto : lottoCollection.getAllLotto()) {
+            WinningRanking lottoRanking = getLottoRanking(lotto, winningNumberObject, bonusNumberObject);
+
+            if (lottoRanking != null) {
+                rankingCount.put(lottoRanking, rankingCount.get(lottoRanking) + 1);
+            }
+        }
+        return rankingCount;
+    }
+
+    private WinningRanking getLottoRanking(Lotto lotto, WinningNumber winningNumberObject,
+                                           BonusNumber bonusNumberObject) {
+        int matchCount = getMatchCount(lotto, winningNumberObject);
+        boolean needBonusNumber = lotto.getNumbers().contains(bonusNumberObject);
+        return WinningRanking.getWinningRanking(matchCount, needBonusNumber);
+    }
+
+    private int getMatchCount(Lotto lotto, WinningNumber winningNumberObject) {
+        List<Integer> winningNumbers = winningNumberObject.getWinningNumbers();
+
+        long count = lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+        return (int) count;
+    }
+
+
 }
