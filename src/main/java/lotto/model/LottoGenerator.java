@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.enums.LottoBoundInfo;
 
 public class LottoGenerator {
@@ -23,8 +24,9 @@ public class LottoGenerator {
         int maximumNumber = LottoBoundInfo.MAXIMUM_NUMBER.getInfo();
         int lottoNumberCount = LottoBoundInfo.LOTTO_NUMBER_COUNT.getInfo();
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(minimumNumber, maximumNumber, lottoNumberCount);
-        Collections.sort(numbers);
-        return numbers;
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
 }
