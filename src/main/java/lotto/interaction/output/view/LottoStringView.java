@@ -11,7 +11,7 @@ public class LottoStringView {
     private final static NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
 
     public static String numberOfLotto(List<Lotto> lottoList) {
-        return String.format("%d개를 구매했습니다.\n", lottoList.size());
+        return String.format("\n%d개를 구매했습니다.\n", lottoList.size());
     }
 
     public static String lottoNumberList(List<Integer> numberList) {
