@@ -30,4 +30,16 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 입력값이 없습니다.");
     }
+
+    @Test
+    void 구매_금액_숫자_입력_아닐때_에러_발생() {
+        // given
+        String invalidInput = "hello\n";
+        System.setIn(new ByteArrayInputStream(invalidInput.getBytes()));
+
+        // when, then
+        assertThatThrownBy(InputView::getPurchaseAmount)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자를 입력해야 합니다.");
+    }
 }
