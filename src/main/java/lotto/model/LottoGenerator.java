@@ -14,22 +14,22 @@ public class LottoGenerator {
     private final int COUNT_OF_LOTTO_NUMBER = 6;
 
     private final Price price;
-    private final List<Lotto> lottoList;
+    private final List<Lotto> lottos;
 
     public LottoGenerator(Price price) {
         this.price = price;
-        lottoList = new ArrayList<>();
+        lottos = new ArrayList<>();
 
         generateLottoList();
     }
 
     public List<Lotto> getLottoList() {
-        return lottoList;
+        return lottos;
     }
 
     private void generateLottoList() {
         for (int i = 0; i < calculateCountOfLotto(); i++) {
-            lottoList.add(generateLottoNumber());
+            lottos.add(generateLottoNumber());
         }
     }
 

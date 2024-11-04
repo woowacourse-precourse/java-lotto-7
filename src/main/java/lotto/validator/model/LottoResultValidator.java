@@ -23,10 +23,10 @@ public class LottoResultValidator implements Validator {
     }
 
     private void isDuplicated(){
-        HashSet<Integer> set = new HashSet<>(winningNumber.getValue().getNumbers());
-        set.add(bonusNumber.getValue());
+        HashSet<Integer> numbers = new HashSet<>(winningNumber.getValue().getNumbers());
+        numbers.add(bonusNumber.getValue());
 
-        if(winningNumber.getValue().getNumbers().size() == set.size()){
+        if(winningNumber.getValue().getNumbers().size() == numbers.size()){
             throw new IllegalArgumentException(ExceptionMessage.WINNING_BONUS_NUMBER_DUPLICATED.getMessage());
         }
     }

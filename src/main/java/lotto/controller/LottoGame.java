@@ -24,15 +24,15 @@ public class LottoGame {
 
         Price price = new Price(priceInputView.input());
 
-        List<Lotto> lottoList = new LottoGenerator(price).getLottoList();
+        List<Lotto> lottos = new LottoGenerator(price).getLottoList();
 
-        OutputView lottoGeneratorOutputView = new LottoGeneratorOutputView(lottoList);
+        OutputView lottoGeneratorOutputView = new LottoGeneratorOutputView(lottos);
         lottoGeneratorOutputView.print();
 
         WinningNumber winningNumber = new WinningNumber(winningNumberInputView.input());
         BonusNumber bonusNumber = new BonusNumber(bonusNumberInputView.input());
 
-        LottoResult lottoResult = new LottoResult(price, lottoList, winningNumber, bonusNumber);
+        LottoResult lottoResult = new LottoResult(price, lottos, winningNumber, bonusNumber);
 
         LottoResultOutputView outputView = new LottoResultOutputView(lottoResult.getWinningHistory(), lottoResult.getRateOfReturn());
         outputView.print();

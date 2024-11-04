@@ -14,20 +14,20 @@ import java.util.List;
 public class LottoResult {
     private final LottoResultValidator validator;
     private final Price price;
-    private final List<Lotto> lottoList;
+    private final List<Lotto> lottos;
     private final WinningNumber winningNumber;
     private final BonusNumber bonusNumber;
     private final HashMap<LottoPrize, Integer> winningHistory;
     private long totalPrizeMoney;
     private double rateOfReturn;
 
-    public LottoResult(Price price, List<Lotto> lottoList, WinningNumber winningNumber, BonusNumber bonusNumber) {
+    public LottoResult(Price price, List<Lotto> lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
         this.validator = new LottoResultValidator(winningNumber, bonusNumber);
 
         validate();
 
         this.price = price;
-        this.lottoList = lottoList;
+        this.lottos = lottos;
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
         this.winningHistory = new HashMap<>();
@@ -48,7 +48,7 @@ public class LottoResult {
     }
 
     private void calculateResult() {
-        for (Lotto lotto : lottoList) {
+        for (Lotto lotto : lottos) {
             int correctCount = calculateCorrectCount(lotto);
             boolean bonus = isCorrectBonus(lotto);
 

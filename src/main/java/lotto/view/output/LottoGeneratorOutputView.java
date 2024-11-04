@@ -6,10 +6,10 @@ import lotto.enums.OutputMessage;
 import java.util.List;
 
 public class LottoGeneratorOutputView implements OutputView {
-    private final List<Lotto> lottoList;
+    private final List<Lotto> lottos;
 
     public LottoGeneratorOutputView(List<Lotto> lottoList){
-        this.lottoList = lottoList;
+        this.lottos = lottoList;
     }
 
     @Override
@@ -19,11 +19,11 @@ public class LottoGeneratorOutputView implements OutputView {
     }
 
     private void printLottoListSize(){
-        System.out.printf(OutputMessage.LOTTO_COUNT.getMessage(), lottoList.size());
+        System.out.printf(OutputMessage.LOTTO_COUNT.getMessage(), lottos.size());
     }
 
     private void printLottoList(){
-        for (Lotto lotto : lottoList) {
+        for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers().toString());
         }
 
