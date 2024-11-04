@@ -58,6 +58,15 @@ public class InputValidator {
     }
 
     /**
+     * 보너스 번호 blank 여부 체크
+     */
+    public static void isBonusNumberBlank(String bonusNumber) {
+        if(bonusNumber.isBlank()) {
+            throw new InputException(ErrorMessage.IS_BLANK_BONUS_NUMBER.getMessage());
+        }
+    }
+
+    /**
      * 당번번호와 보너스 번호의 중복 검사
      */
     public static void hasDuplicateBonusNumber(List<Integer> winningNumberList, int bonusNumber) {

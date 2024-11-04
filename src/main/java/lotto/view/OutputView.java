@@ -85,6 +85,7 @@ public class OutputView {
      * 에러 메세지 출력
      */
     public static void printErrorMessage(String message) {
+        System.out.println();
         System.out.println(message);
     }
 }

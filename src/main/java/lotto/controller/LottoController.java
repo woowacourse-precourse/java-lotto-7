@@ -17,11 +17,12 @@ public class LottoController {
 
     public void start() {
         int quantity = setQuantity();
-
         List<Lotto> lottoList = setLottoNumbers(quantity);
         printLottoList(quantity, lottoList);
 
-        WinningLotto winningLotto = setWinningLotto();
+        List<Integer> winningNumbers = setWinningNumbers();
+        int bonusNumber = setBonusNumber(winningNumbers);
+        WinningLotto winningLotto = setWinningLotto(winningNumbers, bonusNumber);
 
         int totalPrize = printEachPlaceResult(lottoList, winningLotto);
         printProfitRate(totalPrize, quantity);
@@ -34,7 +35,7 @@ public class LottoController {
         while(true) {
             try {
                 OutputView.printPurchaseAmountMessage();
-                String input = InputView.getPurchaseAmount();
+                String input = InputView.readPurchaseAmount();
 
                 return InputParser.parsePurchaseAmount(input);
             } catch (IllegalArgumentException e) {
@@ -62,17 +63,43 @@ public class LottoController {
     }
 
     /**
-     * WinningLotto set
+     * winningLotto 에 set 하기위한 winningNumbers set
      */
-    private WinningLotto setWinningLotto() {
+    public List<Integer> setWinningNumbers() {
         while(true) {
             try {
                 OutputView.printWinningLottoNumbersMessage();
-                String winningNumbers = InputView.getWinningLottoNumbers();
+                String winningNumbers = InputView.readWinningLottoNumbers();
 
+                return InputParser.parseWinningNumbers(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * winningLotto 에 set 하기위한 bonusNumber set
+     */
+    public int setBonusNumber(List<Integer> winningNumbers) {
+        while(true) {
+            try {
                 OutputView.printBonusNumberMessage();
-                int bonusNumber = InputView.getBonusNumber();
+                String bonusNumber = InputView.readBonusNumber();
 
+                return InputParser.parseBonusNumber(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * WinningLotto set
+     */
+    private WinningLotto setWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        while(true) {
+            try {
                 return InputParser.parseWinningLotto(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());

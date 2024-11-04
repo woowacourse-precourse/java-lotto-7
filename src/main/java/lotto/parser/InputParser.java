@@ -31,12 +31,12 @@ public class InputParser {
     }
 
     /**
-     * 당첨번호(String)를 WinningLotto 로 파싱
+     * 당첨 번호 List 형식으로 파싱
      */
-    public static WinningLotto parseWinningLotto(String winningNumbers, int bonusNumber) {
+    public static List<Integer> parseWinningNumbers(String winningNumbers) {
         InputValidator.isWinningNumbersBlank(winningNumbers);
 
-        try{
+        try {
             List<Integer> winningNumberList = Arrays.stream(winningNumbers.split(DELIMITER))
                     .map(String::trim)
                     .map(Integer::parseInt)
@@ -44,10 +44,34 @@ public class InputParser {
 
             InputValidator.hasDuplicateNumbers(winningNumberList);
             winningNumberList.forEach(InputValidator::isWinningNumbersRangeIn);
-            InputValidator.hasDuplicateBonusNumber(winningNumberList, bonusNumber);
 
-            return new WinningLotto(winningNumberList, bonusNumber);
+            return winningNumberList;
+        } catch(NumberFormatException e) {
+            throw new InputException(ErrorMessage.UNAVAILABLE_WINNING_LOTTO_NUMBERS.getMessage());
+        }
+    }
 
+    /**
+     * 보너스 번호 파싱
+     */
+    public static int parseBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
+        try {
+            InputValidator.isBonusNumberBlank(bonusNumber);
+            int newBonusNumber = Integer.parseInt(bonusNumber);
+            InputValidator.hasDuplicateBonusNumber(winningNumbers, newBonusNumber);
+
+            return newBonusNumber;
+        } catch (NumberFormatException e) {
+            throw new InputException(ErrorMessage.UNAVAILABLE_TYPE_BONUS_NUMBER.getMessage());
+        }
+    }
+
+    /**
+     * 당첨번호(String)를 WinningLotto 로 파싱
+     */
+    public static WinningLotto parseWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        try{
+            return new WinningLotto(winningNumbers, bonusNumber);
         } catch (NumberFormatException e) {
             throw new InputException(ErrorMessage.UNAVAILABLE_WINNING_LOTTO_NUMBERS.getMessage());
         }
