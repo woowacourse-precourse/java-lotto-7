@@ -7,19 +7,20 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class MyLottoTest {
-    private final Lotto lottoHitAll = new Lotto(List.of(1,2,3,4,5,6));
+    private final Lotto lottoHitAll = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-    private final Lotto lottoHitFive = new Lotto(List.of(2,3,4,5,6,7));
+    private final Lotto lottoHitFive = new Lotto(List.of(2, 3, 4, 5, 6, 7));
 
 
-    private final Lotto lottoHitFour = new Lotto(List.of(3,4,5,6,7,8));
+    private final Lotto lottoHitFour = new Lotto(List.of(3, 4, 5, 6, 7, 8));
 
     @Test
     @DisplayName("로또 금액 여부를 확인한다")
     void 로또_당첨_금액_확인() {
         MyLotto lottos = MyLotto.createLottos(1, purchaseAmount -> List.of(lottoHitAll));
 
-        Assertions.assertThat(lottos.getResultStatistic(new WinningLotto(lottoHitAll, 7)).getTotalPrize()).isEqualTo(2_000_000_000);
+        Assertions.assertThat(lottos.getResultStatistic(new WinningLotto(lottoHitAll, 7)).getTotalPrize())
+                .isEqualTo(2_000_000_000);
 
     }
 
@@ -31,7 +32,8 @@ public class MyLottoTest {
         MyLotto lottos = MyLotto.createLottos(1, purchaseAmount -> new ArrayList<>());
         lottos.additionalLotto(lottoHitAll);
 
-        Assertions.assertThat(lottos.getResultStatistic(new WinningLotto(lottoHitFive, 1)).getTotalPrize()).isEqualTo(30_000_000);
+        Assertions.assertThat(lottos.getResultStatistic(new WinningLotto(lottoHitFive, 1)).getTotalPrize())
+                .isEqualTo(30_000_000);
     }
 
     @Test
@@ -41,6 +43,7 @@ public class MyLottoTest {
         MyLotto lottos = MyLotto.createLottos(1, purchaseAmount -> new ArrayList<>());
         lottos.additionalLotto(lottoHitAll);
 
-        Assertions.assertThat(lottos.getResultStatistic(new WinningLotto(lottoHitFour, 1)).getTotalPrize()).isEqualTo(50000);
+        Assertions.assertThat(lottos.getResultStatistic(new WinningLotto(lottoHitFour, 1)).getTotalPrize())
+                .isEqualTo(50000);
     }
 }

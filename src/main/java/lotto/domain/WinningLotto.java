@@ -3,6 +3,7 @@ package lotto.domain;
 public class WinningLotto {
     private final Lotto lotto;
     private final int bonusNumber;
+
     public WinningLotto(Lotto winningLotto, int bonusNumber) {
         validBonusNumberDuplicateInWinningLotto(winningLotto, bonusNumber);
         this.lotto = winningLotto;

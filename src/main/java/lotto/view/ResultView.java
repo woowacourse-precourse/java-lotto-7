@@ -17,7 +17,7 @@ public class ResultView {
     }
 
     private void numberOfLotto(int numberOfLotto) {
-        System.out.println(LINE_BREAK +numberOfLotto+"개를 구매했습니다.");
+        System.out.println(LINE_BREAK + numberOfLotto + "개를 구매했습니다.");
     }
 
     private void printPurchasedLottos(MyLotto lottos) {
@@ -31,20 +31,21 @@ public class ResultView {
         }
     }
 
-    public void printResult(LottoResultStatistic lottoResultStatistic,int numberOfLotto) {
+    public void printResult(LottoResultStatistic lottoResultStatistic, int numberOfLotto) {
         printStatistic(lottoResultStatistic);
-        printProfit(lottoResultStatistic.calculateProfit(numberOfLotto* LOTTO_PRICE));
+        printProfit(lottoResultStatistic.calculateProfit(numberOfLotto * LOTTO_PRICE));
     }
 
     private static void printStatistic(LottoResultStatistic lottoResultStatistic) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + lottoResultStatistic.getPrizeFromStatistic(Prize.FIFTH) +"개");
-        System.out.println("4개 일치 (50,000원) - " + lottoResultStatistic.getPrizeFromStatistic(Prize.FOURTH)+"개");
-        System.out.println("5개 일치 (1,500,000원) - " + lottoResultStatistic.getPrizeFromStatistic(Prize.THIRD)+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoResultStatistic.getPrizeFromStatistic(Prize.SECOND)+"개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + lottoResultStatistic.getPrizeFromStatistic(Prize.FIRST)+"개");
+        System.out.println("3개 일치 (5,000원) - " + lottoResultStatistic.getPrizeFromStatistic(Prize.FIFTH) + "개");
+        System.out.println("4개 일치 (50,000원) - " + lottoResultStatistic.getPrizeFromStatistic(Prize.FOURTH) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + lottoResultStatistic.getPrizeFromStatistic(Prize.THIRD) + "개");
+        System.out.println(
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoResultStatistic.getPrizeFromStatistic(Prize.SECOND) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + lottoResultStatistic.getPrizeFromStatistic(Prize.FIRST) + "개");
     }
 
     public void printProfit(double profitRate) {

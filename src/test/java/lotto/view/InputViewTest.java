@@ -26,7 +26,7 @@ public class InputViewTest {
 
     @Test
     @DisplayName("로또 구매 금액으로부터 로또 개수 계산 테스트")
-    void 로또_구매_금액으로_개수_계산 () {
+    void 로또_구매_금액으로_개수_계산() {
         InputView view = new InputView();
 
         Assertions.assertThat(view.calculateNumberOfTotalLotto(1000)).isEqualTo(1);

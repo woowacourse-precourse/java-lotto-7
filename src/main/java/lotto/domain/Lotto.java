@@ -26,20 +26,16 @@ public class Lotto {
 
     private void validDuplicate(List<Integer> lotto) {
         Set<Integer> duplicateLottoNumber = lotto.stream()
-                .filter(i -> Collections.frequency(lotto,i) > 1)
+                .filter(i -> Collections.frequency(lotto, i) > 1)
                 .collect(Collectors.toSet());
 
-        if (!duplicateLottoNumber.isEmpty()) {
+        if (checkDuplicateLottoNumber(duplicateLottoNumber)) {
             throw new LottoDuplicateNumberException(duplicateLottoNumber);
         }
     }
 
-    public List<Integer> getLotto() {
-        return new ArrayList<>(numbers);
-    }
-
-    public boolean checkContainsBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    private static boolean checkDuplicateLottoNumber(Set<Integer> duplicateLottoNumber) {
+        return !duplicateLottoNumber.isEmpty();
     }
 
     public int lottoWinningStatus(Lotto winningLotto) {
@@ -57,6 +53,14 @@ public class Lotto {
             return 1;
         }
         return 0;
+    }
+
+    public List<Integer> getLotto() {
+        return new ArrayList<>(numbers);
+    }
+
+    public boolean checkContainsBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
 }
