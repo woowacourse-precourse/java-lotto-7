@@ -3,13 +3,14 @@ package lotto.controller;
 import lotto.model.LottoCollection;
 import lotto.model.LottoGenerator;
 import lotto.model.Money;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private Money money;
 
-    private LottoGenerator lottoGenerator;
+    private final LottoGenerator lottoGenerator;
 
     public LottoController() {
         lottoGenerator = new LottoGenerator();
@@ -19,6 +20,7 @@ public class LottoController {
         inputLottoPurchaseMoney();
         LottoCollection lottoCollection = generateLottoCollection(money.getLottoCount());
         outputLottoCollection(lottoCollection);
+        WinningNumbers winningNumbers = inputWinningNumbers();
     }
 
     private void inputLottoPurchaseMoney() {
@@ -39,6 +41,17 @@ public class LottoController {
 
     private void outputLottoCollection(LottoCollection lottoCollection) {
         OutputView.outputLottoCollection(lottoCollection);
+    }
+
+    private WinningNumbers inputWinningNumbers() {
+        while (true) {
+            try {
+                String rawInput = InputView.inputWinningNumbers();
+                return new WinningNumbers(rawInput);
+            } catch (IllegalArgumentException e) {
+                OutputView.outputErrorMessage(e);
+            }
+        }
     }
 
 }
