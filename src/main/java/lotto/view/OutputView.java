@@ -1,8 +1,10 @@
 package lotto.view;
 
+import static lotto.constant.LottoPrintConstant.NON_SECOND_MATCH_RESULT;
 import static lotto.constant.LottoPrintConstant.PERCENT_PRINT;
 import static lotto.constant.LottoPrintConstant.PRINT_BUY;
 import static lotto.constant.LottoPrintConstant.RESULT_LINE;
+import static lotto.constant.LottoPrintConstant.SECOND_MATCH_RESULT;
 import static lotto.constant.LottoPrintConstant.STATISTICS;
 import static lotto.constant.LottoPrintConstant.TOTAL_PRINT;
 import static lotto.constant.LottoValueConstant.SECOND_RANK;
@@ -39,11 +41,11 @@ public class OutputView {
                 .collect(Collectors.joining("\n"));
     }
 
-    private String formatRank(LottoRank rank, int num) {
+    private String formatRank(LottoRank rank, int rankCount) {
         if (rank.name().equals(SECOND_RANK)) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", rank.getMatchCount(), rank.getPrize(), num);
+            return String.format(SECOND_MATCH_RESULT,rank.getMatchCount(),rank.getPrize(), rankCount);
         }
-        return String.format("%d개 일치 (%,d원) - %d개", rank.getMatchCount(), rank.getPrize(), num);
+        return String.format(NON_SECOND_MATCH_RESULT, rank.getMatchCount(), rank.getPrize(), rankCount);
     }
 
     public void printRate(double num) {
