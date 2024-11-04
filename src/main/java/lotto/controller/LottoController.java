@@ -62,6 +62,7 @@ public class LottoController {
     }
 
     private Lottos generate(PurchasedPrice purchasedPrice) {
+        PurchasedPrice.validateNotNull(purchasedPrice);
         int lottoCount = purchasedPrice.getPurchasedPrice() / LOTTO_PRICE;
         return lottoService.generateLottos(lottoCount);
     }
