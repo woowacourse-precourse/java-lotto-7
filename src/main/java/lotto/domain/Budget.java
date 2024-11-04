@@ -8,11 +8,11 @@ public class Budget {
     private final int amount;
 
     public Budget(String inputBudget) {
-        validateBudget(inputBudget);
+        validate(inputBudget);
         this.amount = Integer.parseInt(inputBudget);
     }
 
-    private void validateBudget(String inputBudget) {
+    private void validate(String inputBudget) {
         try {
             int amount = Integer.parseInt(inputBudget);
             if (amount < 1) {
