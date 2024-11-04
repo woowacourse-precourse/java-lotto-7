@@ -8,5 +8,7 @@ public class LottoConstant {
     public static final int PRICE = 1000;
     public static final int MAX_PURCHASE_AMOUNT = 100_000;
     public static final int REQUIRED_MATCH_COUNT_FOR_BONUS = 5;
+    public static final int MINIMUM_LOTTO_PURCHASE_AGE = 19;
+    public static final int MAXIMUM_LOTTO_PURCHASE_AGE = 120;
 
 }

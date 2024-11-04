@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoConstant;
 import lotto.model.lotto.LottoWinningNumbers;
-import lotto.model.lottoBuyer.LottoBuyer;
+import lotto.model.lottoPurchaser.LottoPurchaser;
 import lotto.util.*;
 import lotto.view.InputProvider;
 import lotto.view.lottoPurchaseView.LottoPurchaseInputView;
@@ -32,18 +32,23 @@ public class LottoController {
     }
 
     public void startLotto(){
-        int lottoPurchasePrice = getLottoPurchasePrice();
+        LottoPurchaseInputView inputView = new LottoPurchaseInputView(inputProvider, numberConverter);
+        int lottoPurchasePrice = getLottoPurchasePrice(inputView);
+        int lottoPurchaserAge = getPurchaserAge(inputView);
         int lottoPurchaseCount = calculateLottoCount(lottoPurchasePrice);
 
-        LottoBuyer lottoBuyer = new LottoBuyer(lottoPurchasePrice);
+        LottoPurchaser lottoPurchaser = new LottoPurchaser(lottoPurchasePrice, lottoPurchaserAge);
 
         printLottoPurchaseCount(lottoPurchaseCount);
-        issueLottos(lottoBuyer, lottoPurchaseCount);
-        printLottoResult(lottoBuyer, getWinningLottoNumbers());
+        issueLottos(lottoPurchaser, lottoPurchaseCount);
+        printLottoResult(lottoPurchaser, getWinningLottoNumbers());
     }
 
-    private int getLottoPurchasePrice(){
-        LottoPurchaseInputView inputView = new LottoPurchaseInputView(inputProvider, numberConverter);
+    private int getPurchaserAge(LottoPurchaseInputView inputView){
+        return inputView.getAge();
+    }
+
+    private int getLottoPurchasePrice(LottoPurchaseInputView inputView){
         return inputView.getPurchasePrice();
     }
 
@@ -55,10 +60,10 @@ public class LottoController {
         lottoPurchaseOutputView.showLottoPurchaseCount(lottoCount);
     }
 
-    private void issueLottos(LottoBuyer lottoBuyer, int lottoCount){
+    private void issueLottos(LottoPurchaser lottoPurchaser, int lottoCount){
         for (int i=0; i<lottoCount; i++){
             List<Integer> issuedLotto = issueOneLotto();
-            lottoBuyer.addLotto(new Lotto(issuedLotto));
+            lottoPurchaser.addLotto(new Lotto(issuedLotto));
             printIssuedLotto(issuedLotto);
         }
     }
@@ -78,9 +83,9 @@ public class LottoController {
         return new LottoWinningNumbers(winningLottoNumbers, bonusNumber);
     }
 
-    private void printLottoResult(LottoBuyer lottoBuyer, LottoWinningNumbers winningNumbers){
-        winningLottoOutputView.showLottoResult(lottoBuyer.calculateLottoResult(winningNumbers));
-        lottoProfitOutputView.showLottoProfitRate(lottoBuyer.calculateProfitRate());
+    private void printLottoResult(LottoPurchaser lottoPurchaser, LottoWinningNumbers winningNumbers){
+        winningLottoOutputView.showLottoResult(lottoPurchaser.calculateLottoResult(winningNumbers));
+        lottoProfitOutputView.showLottoProfitRate(lottoPurchaser.calculateProfitRate());
     }
 
 

@@ -1,4 +1,4 @@
-package lotto.model.lottoBuyer;
+package lotto.model.lottoPurchaser;
 
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoConstant;
@@ -7,15 +7,17 @@ import lotto.model.lotto.LottoWinningNumbers;
 
 import java.util.*;
 
-public class LottoBuyer {
+public class LottoPurchaser {
 
     private final int lottoPurchaseAmount;
     private final LottoRepository lottoRepository;
     private double totalLottoProfit = 0;
     private final Map<LottoRankAward, Integer> rankCountsStorage = new LinkedHashMap<>();
+    private int age;
 
-    public LottoBuyer(int lottoPrice){
+    public LottoPurchaser(int lottoPrice, int purchaserAge){
         this.lottoPurchaseAmount = lottoPrice;
+        this.age = purchaserAge;
         this.lottoRepository = new InMemoryLottoRepository();
         initRankCounts();
     }
