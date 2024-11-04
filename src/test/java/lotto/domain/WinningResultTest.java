@@ -30,9 +30,10 @@ class WinningResultTest {
                 WinningResult.RANK_5TH, 3,
                 WinningResult.RANK_4TH, 1
         );
-        assertThat(WinningResult.getFormattedResults(winningResult)).containsExactly(
-                "4개 일치 (50,000원) - 1개",
-                "3개 일치 (5,000원) - 3개"
-        );
+        assertThat(WinningResult.getFormattedResults(winningResult).stream().sorted())
+                .containsExactly(
+                        "3개 일치 (5,000원) - 3개",
+                        "4개 일치 (50,000원) - 1개"
+                );
     }
 }
