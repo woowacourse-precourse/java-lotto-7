@@ -9,6 +9,7 @@ public class LottoConstant {
     public static final int LOTTO_MAX_AMOUNT = 1000000;
     public static final int ZERO = 0;
     public static final int ONE = 1;
+    public static final int PERCENT = 100;
     public static final String DELIMITER = ",";
-
+    public static final String PROFIT_RATE_FORMAT = "%.1f";
 }

@@ -1,10 +1,13 @@
 package lotto.service;
 
+import static lotto.constant.LottoConstant.DELIMITER;
 import static lotto.constant.LottoConstant.LOTTO_MAX_NUMBER;
 import static lotto.constant.LottoConstant.LOTTO_MIN_NUMBER;
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
 import static lotto.constant.LottoConstant.LOTTO_SIZE;
 import static lotto.constant.LottoConstant.ONE;
+import static lotto.constant.LottoConstant.PERCENT;
+import static lotto.constant.LottoConstant.PROFIT_RATE_FORMAT;
 import static lotto.constant.LottoConstant.ZERO;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -48,7 +51,7 @@ public class InMemoryLottoService implements LottoService {
     @Override // 당첨 번호와 보너스 번호를 입력받아 당첨 통계 계산
     public Map<Rank, Integer> calculateLottoResults(String winNumbers, String bonusNumber) {
 
-        List<Integer> winnerNumbers = Arrays.stream(winNumbers.split(","))
+        List<Integer> winnerNumbers = Arrays.stream(winNumbers.split(DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
 
@@ -61,13 +64,13 @@ public class InMemoryLottoService implements LottoService {
     public String getPercent(Map<Rank, Integer> rankCounts) {
         long totalPrize = getTotalPrize(rankCounts);
         int totalPurchase = lottoRepository.count() * LOTTO_PRICE;
-        double profitRate = (double) totalPrize / totalPurchase * 100;
-        return String.format("%.1f", profitRate);
+        double profitRate = (double) totalPrize / totalPurchase * PERCENT;
+        return String.format(PROFIT_RATE_FORMAT, profitRate);
     }
 
     @Override
     public List<Integer> convertToNumbers(String winnerNumbers) {
-        return Arrays.stream(winnerNumbers.split(","))
+        return Arrays.stream(winnerNumbers.split(DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
     }
