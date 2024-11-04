@@ -36,4 +36,12 @@ public class LottoService {
 
         return prizeCount;
     }
+
+    public long calculatePrizeMoney(Map<Prize, Integer> prizeCount) {
+        long prizeMoney = 0L;
+        for (Prize prize : prizeCount.keySet()) {
+            prizeMoney += (long) prize.getPrizeMoney() * prizeCount.get(prize);
+        }
+        return prizeMoney;
+    }
 }
