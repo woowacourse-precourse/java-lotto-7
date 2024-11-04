@@ -21,8 +21,8 @@ public class LottoRepositoryTest {
     }
 
     @Test
-    @DisplayName("로또 저장소에 로또가 잘 저장되는지를 저장된 로또 개수로 확인한다")
-    void saveLottoInLottoRepositoryTest() {
+    @DisplayName("로또 저장소에 하나의 로또가 잘 저장되는지 확인한다.")
+    void shouldStoreOneLottoSuccessfully() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
@@ -35,7 +35,8 @@ public class LottoRepositoryTest {
 
 
     @Test
-    void saveLottoInLottoRepositoryTest2() {
+    @DisplayName("로또 저장소에 두개의 로또가 잘 저장되는지 확인한다.")
+    void shouldStoreTwoLottosSuccessfully() {
         // given
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(11, 22, 33, 44, 55, 66));
@@ -47,4 +48,5 @@ public class LottoRepositoryTest {
         // then
         assertThat(lottoRepository.findAllLotto().size()).isEqualTo(2);
     }
+
 }

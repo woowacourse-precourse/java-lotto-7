@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LottoPurchasePriceValidatorTest {
 
@@ -48,6 +49,18 @@ public class LottoPurchasePriceValidatorTest {
                 assertThatThrownBy(() -> LottoPurchasePriceValidator.validateLottoPurchasePrice(price))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(LottoException.INVALID_PURCHASE_PRICE.getMessage())
+        );
+    }
+
+    @Test
+    @DisplayName("가격이 범위 내에 있을 때 예외가 발생하지 않는다.")
+    void noExceptionThrownWhenValidPrice() {
+        // given
+        int price = 2000;
+
+        // when & then
+        assertSimpleTest(() ->
+                assertDoesNotThrow(() -> LottoPurchasePriceValidator.validateLottoPurchasePrice(price))
         );
     }
 }
