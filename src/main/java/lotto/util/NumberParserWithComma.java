@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.exception.GeneralExceptionMessages;
+import lotto.exception.GeneralException;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -21,7 +21,7 @@ public class NumberParserWithComma {
                 .map(this::parseNumber)
                 .forEach(number -> {
                     if (!parsedNumbers.add(number)) {
-                        throw new IllegalArgumentException(GeneralExceptionMessages.DUPLICATE_NUMBER);
+                        throw new IllegalArgumentException(GeneralException.DUPLICATE_NUMBER);
                     }
                 });
         return parsedNumbers;
