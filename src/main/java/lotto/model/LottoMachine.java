@@ -45,7 +45,7 @@ public class LottoMachine {
     private void validateWinner(List<Integer> winner, int bonus) {
         if (!Validator.inRange(bonus)) {
             throw new LottoException(ErrorMessage.NOT_IN_RANGE);
-        } else if (!Validator.isNotContain(bonus, winner)) {
+        } else if (Validator.isContain(bonus, winner)) {
             throw new LottoException(ErrorMessage.EXIST_NUM);
         }
     }
@@ -127,8 +127,11 @@ public class LottoMachine {
         return result;
     }
 
+    /**
+     * 당첨 번호, 보너스 번호, 로또가 설정되었는지 확인
+     */
     private void initValidate() {
-        if (this.lottos.isEmpty() || Objects.isNull(winner) || bonus == 0) {
+        if (lottos.isEmpty() || Objects.isNull(winner) || bonus == 0) {
             throw new LottoException(ErrorMessage.NOT_INIT_STATE);
         }
     }

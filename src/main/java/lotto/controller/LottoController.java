@@ -19,12 +19,18 @@ public class LottoController {
         this.lottoMachine = lottoMachine;
     }
 
+    /**
+     * 로또 프로그램 시작시키는 메서드
+     */
     public void run() {
         buyLotto();
         setWinningAndBonus();
         showResult();
     }
 
+    /**
+     * 로또 입력받고 올바른 입력이 나올때까지 반복
+     */
     private void buyLotto() {
         try {
             int money = inputHelper.getPurchase();
@@ -36,6 +42,9 @@ public class LottoController {
         }
     }
 
+    /**
+     * 복권 당첨 번호와 보너스 번호 입력이 나올때까지 반복
+     */
     private void setWinningAndBonus() {
         try {
             List<Integer> winningNum = inputHelper.getWinner();
@@ -47,7 +56,10 @@ public class LottoController {
             buyLotto();
         }
     }
-    
+
+    /**
+     * 결과 보여주는 메서드
+     */
     private void showResult() {
         try {
             Result result = lottoMachine.getResult();

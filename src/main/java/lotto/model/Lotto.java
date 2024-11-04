@@ -22,6 +22,7 @@ public class Lotto {
      * 숫자가 6개가 아닌 경우
      * 숫자가 1~45사이에 있지 않은 경우
      * 숫자가 중복되는 경우
+     *
      * @param numbers
      */
     private void validate(List<Integer> numbers) {
@@ -36,23 +37,24 @@ public class Lotto {
 
     /**
      * 로또의 등수를 매기는 메서드
+     *
      * @param winner 당첨 번호
-     * @param bonus 보너스 번호
+     * @param bonus  보너스 번호
      * @return 순위
      */
     public Rank getRank(Lotto winner, int bonus) {
         int winningNumCount = countCommon(winner.getNumbers());
 
-        if (winningNumCount==6) {
+        if (winningNumCount == 6) {
             return Rank.FIRST;
-        } else if (winningNumCount==5) {
+        } else if (winningNumCount == 5) {
             if (numbers.contains(bonus)) {
                 return Rank.SECOND;
             }
             return Rank.THIRD;
-        } else if (winningNumCount==4) {
+        } else if (winningNumCount == 4) {
             return Rank.FOURTH;
-        } else if (winningNumCount==3) {
+        } else if (winningNumCount == 3) {
             return Rank.FIFTH;
         }
         return Rank.NO_LUCK;
@@ -60,6 +62,7 @@ public class Lotto {
 
     /**
      * 로또 번호 리스트와 파라미터의 리스트에 공통으로 있는 번호 카운트
+     *
      * @param winner 당첨 번호 리스트
      * @return 당첨 번호 개수
      */
@@ -69,7 +72,8 @@ public class Lotto {
 
     /**
      * 로또 번호 리스트 가져오기
-     * @return
+     *
+     * @return 로또 번호 리스트
      */
     public List<Integer> getNumbers() {
         return numbers;

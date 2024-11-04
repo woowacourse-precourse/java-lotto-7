@@ -235,10 +235,10 @@ class ValidatorTest {
         int n = 7;
 
         // when
-        boolean result = Validator.isNotContain(n, list);
+        boolean result = Validator.isContain(n, list);
 
         // then
-        assertEquals(true, result);
+        assertEquals(false, result);
     }
 
     @Test
@@ -249,9 +249,9 @@ class ValidatorTest {
         int n = 3;
 
         // when
-        boolean result = Validator.isNotContain(n, list);
+        boolean result = Validator.isContain(n, list);
 
         // then
-        assertEquals(false, result);
+        assertEquals(true, result);
     }
 }

@@ -17,10 +17,20 @@ public enum Rank {
         this.description = description;
     }
 
+    /**
+     * 로또 상금 반환
+     *
+     * @return 로또 상금
+     */
     public long getPrice() {
         return price;
     }
 
+    /**
+     * 로또 결과 설명 반환
+     *
+     * @return 로또 결과 설명
+     */
     public String getDescription() {
         return description;
     }
