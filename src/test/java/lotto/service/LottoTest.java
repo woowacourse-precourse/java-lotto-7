@@ -41,6 +41,19 @@ public class LottoTest extends NsTest {
         assertEquals(resultRanking.getWinnings(), 2000000000);
     }
 
+    @Test
+    @DisplayName("꽝 당첨 테스트")
+    void 꽝_당첨_테스트() {
+        List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+        List<Integer> boughtNumbers = List.of(1,2,40,41,42,43);
+
+        Lotto lotto = new Lotto(winningNumbers);
+        Lottos lottos = new Lottos(boughtNumbers);
+
+        Ranking resultRanking = lottoHandler.checkedResult(lotto, lottos);
+
+        assertEquals(resultRanking.getWinnings(), 0);
+    }
 
     @Override
     protected void runMain() {
