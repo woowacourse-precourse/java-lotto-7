@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.util.LottoInfo;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,8 +13,8 @@ public class Lotto {
     }
 
     private static void validateLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LottoInfo.NUMBER_COUNT.getNum()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + LottoInfo.NUMBER_COUNT.getNum() + "개여야 합니다.");
         }
     }
 
