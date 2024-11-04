@@ -14,7 +14,7 @@ import lotto.util.Parse;
 public class LottoService {
 
     public Lottos createLottos(Amount amount) {
-        int lottoCount = getLottoCount(amount);
+        int lottoCount = amount.toLottoCount();
 
         return new Lottos(IntStream.range(0, lottoCount)
                 .mapToObj(i -> createLotto())
@@ -27,10 +27,6 @@ public class LottoService {
                 .sorted()
                 .collect(Collectors.toList())
         );
-    }
-
-    private int getLottoCount(Amount amount) {
-        return amount.getAmount() / 1000;
     }
 
     public Lotto parseWinningNumberForLotto(String winningNumber) {

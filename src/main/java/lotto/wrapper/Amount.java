@@ -22,8 +22,8 @@ public class Amount {
         LottoValidator.validateDivisible(amount);
     }
 
-    public int getAmount() {
-        return amount;
+    public int toLottoCount() {
+        return amount / 1000;
     }
 
 }
