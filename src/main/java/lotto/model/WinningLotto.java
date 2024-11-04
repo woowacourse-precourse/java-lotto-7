@@ -1,6 +1,9 @@
 package lotto.model;
 
+import lotto.common.constant.WinningInfo;
 import lotto.exception.BonusNumberException;
+
+import java.util.List;
 
 import static lotto.common.constant.ErrorMessage.WINNING_NUMBER_CONTAINS_BONUS_NUMBER;
 
@@ -14,9 +17,22 @@ public class WinningLotto {
     }
 
     public static WinningLotto of(WinningLottoNumber winningLottoNumber, BonusNumber bonusNumber) {
-        if(winningLottoNumber.isContainInWinningLottoNumber(bonusNumber)){
+        if (winningLottoNumber.isContainInWinningLottoNumber(bonusNumber)) {
             throw new BonusNumberException(WINNING_NUMBER_CONTAINS_BONUS_NUMBER);
         }
         return new WinningLotto(winningLottoNumber, bonusNumber);
+    }
+
+    public WinningInfo matchWithLotto(List<Integer> lottoNumbers) {
+        Long matchCount = winningLottoNumber.getMatchCountWithWinningLottoNumber(lottoNumbers);
+
+        if (checkSecondPrize(matchCount, lottoNumbers)) {
+            return WinningInfo.getWinningInfoMatchWithCount(matchCount, true);
+        }
+        return WinningInfo.getWinningInfoMatchWithCount(matchCount, false);
+    }
+
+    private boolean checkSecondPrize(Long matchCount, List<Integer> lottoNumbers) {
+        return matchCount.equals(5L) && bonusNumber.isMatchWithLottoNumber(lottoNumbers);
     }
 }

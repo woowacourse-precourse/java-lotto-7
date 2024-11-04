@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.common.constant.WinningInfo;
 import lotto.validation.LottoValidator;
 import lotto.view.OutputView;
 
@@ -26,5 +27,9 @@ public class Lotto {
                 .collect(Collectors.joining(", ", "[", "]"));
 
         OutputView.printMessage(message);
+    }
+
+    public WinningInfo matchWithWinningLotto(WinningLotto winningLotto){
+        return winningLotto.matchWithLotto(numbers);
     }
 }

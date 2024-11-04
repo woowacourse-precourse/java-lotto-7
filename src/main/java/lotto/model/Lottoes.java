@@ -15,4 +15,8 @@ public class Lottoes {
         OutputView.printNumberOfLotto(lottoes.size());
         lottoes.forEach(Lotto::printLottoInfo);
     }
+
+    public List<Lotto> getLottoes(){
+        return lottoes;
+    }
 }

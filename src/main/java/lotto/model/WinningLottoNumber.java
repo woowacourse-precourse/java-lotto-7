@@ -38,4 +38,10 @@ public class WinningLottoNumber {
     public boolean isContainInWinningLottoNumber(BonusNumber bonusNumber){
         return winningNumbers.contains(bonusNumber.getBonusNumber());
     }
+
+    public Long getMatchCountWithWinningLottoNumber(List<Integer> lottoNumbers){
+        return lottoNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
 }

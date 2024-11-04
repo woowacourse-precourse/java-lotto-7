@@ -3,6 +3,8 @@ package lotto.model;
 import lotto.exception.BonusNumberException;
 import lotto.validation.BonusNumberValidator;
 
+import java.util.List;
+
 import static lotto.common.constant.ErrorMessage.BONUS_NUMBER_FORMAT_ERROR;
 
 public class BonusNumber {
@@ -31,5 +33,9 @@ public class BonusNumber {
 
     public Integer getBonusNumber() {
         return bonusNumber;
+    }
+
+    public boolean isMatchWithLottoNumber(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(bonusNumber);
     }
 }
