@@ -15,12 +15,10 @@ public class LottoMachine {
     Map<Ranking, Integer> prizeResult = new LinkedHashMap<>();
 
     public LottoMachine(int inputprizeResult) {
-//        if(!isDigit(inputprizeResult)){
-//            throw new IllegalArgumentException("[ERROR] 정수를 입력하시오!");
-//        }
         this.inputprizeResult = inputprizeResult;
         this.count = this.inputprizeResult / 1000;
     }
+
     private boolean isDigit(String input){
         char tmp;
         for (int i=0; i< input.length(); i++){
@@ -54,7 +52,7 @@ public class LottoMachine {
 
     public void inputWinnigNumbers(String winnigNumbers) {
 
-        int[] intNumbers = covertToInt(winnigNumbers.split(","));
+        int[] intNumbers = validateWinnigNumber(winnigNumbers.split(","));
         for (int i = 0; i < intNumbers.length; i++) {
             this.winnigNumbers.add(intNumbers[i]);
         }
@@ -68,12 +66,22 @@ public class LottoMachine {
     }
 
 
-    private int[] covertToInt(String[] strArr) {
-        int[] convertedArr = new int[strArr.length];
-        for (int i = 0; i < strArr.length; i++) {
-            convertedArr[i] = Integer.parseInt(strArr[i]);
+    private int[] validateWinnigNumber(String[] strArr) {
+        while (true){
+            try {
+                if (strArr.length!=6){
+                    throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력하세요");
+                }
+                int[] convertedArr = new int[strArr.length];
+                for (int i = 0; i < strArr.length; i++) {
+                    convertedArr[i] = Integer.parseInt(strArr[i]);
+                }
+                return convertedArr;
+            } catch (IllegalArgumentException e){
+                System.err.println(e.getMessage());
+            }
         }
-        return convertedArr;
+
     }
 
     public Ranking getRanking(List<Integer> lottoNumbers) {
