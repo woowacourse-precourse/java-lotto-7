@@ -21,22 +21,15 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5))).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 생성 확인")
+    @DisplayName("로또번호가 1보다 작을때")
     @Test
-    public void testLottoCreation() {
-//        Lotto randomLotto = new Lotto();
-//        List<Integer> numbers = randomLotto.getNumbers();
-//        로또 번호의 크기가 6 인지 확인
-//        assertEquals(6, numbers.size(), "[ERROR] 로또 번호는 6개여야 합니다.");
-//
-//        // 중복이 없는지 확인
-//        HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
-//        assertEquals(6, uniqueNumbers.size(), "[ERROR] 로또 번호는 중복이 없어야 합니다.");
-        // 각 숫자가 1부터 45 사이인지 확인
-//        for (Integer number : numbers) {
-//            Assertions.assertTrue(number >= 1 && number <= 45, "[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
-//        }
-//    }
-        // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    void 로또번호가_1보다_작으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 5))).isInstanceOf(IllegalArgumentException.class);
     }
+    @DisplayName("로또번호가 45보다 클 때")
+    @Test
+    void 로또번호가_45보다_크면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46))).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
