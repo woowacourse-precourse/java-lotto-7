@@ -10,4 +10,12 @@ public class InputView {
     public int readLottoPurchaseAmount() {
         return Integer.parseInt(Console.readLine());
     }
+
+    public void displayWinningNumbersPrompt() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
+
+    public String readWinningNumbers() {
+        return Console.readLine();
+    }
 }
