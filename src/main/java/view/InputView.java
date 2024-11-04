@@ -2,7 +2,9 @@ package view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static java.lang.Integer.parseInt;
-import static view.message.ExceptionMessage.*;
+import static view.message.ExceptionMessage.BANK_EXCEPTION_MESSAGE;
+import static view.message.ExceptionMessage.NUMBER_REGEX;
+import static view.message.ExceptionMessage.NUMBER_EXCEPTION_MESSAGE;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
