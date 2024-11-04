@@ -19,7 +19,7 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
+    public static void validate(List<Integer> numbers) {
         if (numbers.size() != COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
@@ -33,11 +33,11 @@ public class Lotto {
         }
     }
 
-    private boolean isInvalidRange(List<Integer> numbers) {
+    private static boolean isInvalidRange(List<Integer> numbers) {
         return numbers.stream().anyMatch(number -> number < START_NUMBER || number > END_NUMBER);
     }
 
-    private boolean hasDuplicates(List<Integer> numbers) {
+    private static boolean hasDuplicates(List<Integer> numbers) {
         return numbers.size() != new HashSet<>(numbers).size();
     }
 
