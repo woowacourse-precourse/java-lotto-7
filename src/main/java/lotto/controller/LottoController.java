@@ -26,6 +26,7 @@ public class LottoController {
         List<Lotto> lottos = makeLottos(lottoAmount);
         printLottos(lottos);
         List<Integer> winningNumbers = getWinningNumbers();
+        int bounsNumber = getBonusNumber(winningNumbers);
     }
 
     private int buyLotto(int money) {
@@ -60,12 +61,23 @@ public class LottoController {
 
     private List<Integer> getWinningNumbers() {
         try {
-            String inputWinningNumbers = inputView.promptNumbers();
+            String inputWinningNumbers = inputView.promptWinningNumbers();
             LottoValidator.validateWinningNumbers(inputWinningNumbers);
             return service.getWinningNumbers(inputWinningNumbers);
         } catch (IllegalArgumentException error) {
             outputView.printErrorMessage(error.getMessage());
         }
         return getWinningNumbers();
+    }
+
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        try {
+            String inputBonusNumber = inputView.promptBonusNumber();
+            LottoValidator.validateBonusNumber(inputBonusNumber, winningNumbers);
+            return Integer.parseInt(inputBonusNumber);
+        } catch (IllegalArgumentException error) {
+            outputView.printErrorMessage(error.getMessage());
+        }
+        return getBonusNumber(winningNumbers);
     }
 }
