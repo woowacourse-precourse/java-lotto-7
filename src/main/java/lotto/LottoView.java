@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoView {
 
@@ -20,10 +21,15 @@ public class LottoView {
     }
 
     public List<Integer> requestWinningNumbers() {
-        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        return Arrays.asList(Console.readLine().split(",")).stream()
+        System.out.println("당첨 번호를 입력해 주세요 (예: 1,2,3,4,5,6):");
+        String input = Console.readLine();
+        List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
-                .toList();
+                .collect(Collectors.toList());
+        if (numbers.size() != 6 || !numbers.stream().allMatch(n -> n >= 1 && n <= 45)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자 6개여야 합니다.");
+        }
+        return numbers;
     }
 
     public int requestBonusNumber() {
