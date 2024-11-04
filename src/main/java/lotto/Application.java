@@ -30,13 +30,14 @@ public class Application {
 
         final String inputForBonus = Console.readLine();
 
-        int bonusNumber = 0;
+        int bonusNumber;
         try {
             bonusNumber = isNotNum(inputForBonus);
             rangeOfNumber(bonusNumber);
             isAlreadyExist(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return getBonusNumber(winningNumbers);
         }
         return bonusNumber;
     }
