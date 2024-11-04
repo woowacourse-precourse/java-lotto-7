@@ -70,6 +70,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 당첨번호와_보너스번호의_형식이_올바르지_않으면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "50"); // 범위를 벗어난 보너스 번호
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

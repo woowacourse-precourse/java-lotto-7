@@ -30,12 +30,22 @@ public class NumberInputView extends InputView {
                 System.out.println(REQUEST_BONUS_NUMBER);
                 String input = inputValue();
 
-                Validator.validateNotBlank(input);
-                Validator.validateIsNumeric(input);
-                return Integer.parseInt(input);
+                validateBonusBefore(input);
+                int number =  Integer.parseInt(input);
+                validateBonusAfter(number);
+                return  number;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static void validateBonusBefore(String input) {
+        Validator.validateNotBlank(input);
+        Validator.validateIsNumeric(input);
+    }
+
+    private static void validateBonusAfter(int input) {
+        Validator.validateLottoRange(input);
     }
 }
