@@ -6,8 +6,12 @@ public class LottoTicket {
     public LottoTicket(Lotto lotto) {
         this.lotto = lotto;
     }
-    
+
     public void printLottoNumbers() {
         System.out.println(lotto.getNumbers());
+    }
+
+    public Lotto getLotto() {
+        return lotto;
     }
 }

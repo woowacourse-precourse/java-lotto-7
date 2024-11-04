@@ -18,9 +18,9 @@ public class WinningStatistics {
         }
     }
 
-    public void calculateCount(List<Lotto> purchasedLotto, WinningPrize winningPrize) {
-        for (Lotto lotto : purchasedLotto) {
-            LottoPrize prize = winningPrize.getPrize(lotto);
+    public void calculateCount(List<LottoTicket> purchasedLotto, WinningPrize winningPrize) {
+        for (LottoTicket ticket : purchasedLotto) {
+            LottoPrize prize = winningPrize.getPrize(ticket.getLotto());
             if (prize != null) {
                 increase(prize);
             }
