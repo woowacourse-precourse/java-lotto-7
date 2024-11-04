@@ -41,4 +41,15 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorCode.LOTTO_PRICE_ERROR.getMessage());
     }
+
+    @DisplayName("입력 된 String 타입의 로또 당첨 번호가 숫자가 아닌 경우 예외 발생.")
+    @Test
+    void parseNumbersTest() {
+        // given
+        String numbers = "1,2,3,4,5,유준혁킹왕짱";
+        // when // then
+        assertThatThrownBy(() -> inputValidator.parseNumbers(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.WINNING_NUMBER_TYPE_ERROR.getMessage());
+    }
 }
