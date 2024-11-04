@@ -1,8 +1,12 @@
 package lotto.view;
 
+import static lotto.system.utils.constants.ViewMessages.BONUS_NUMBER;
+import static lotto.system.utils.constants.ViewMessages.LOTTO_TICKET_QUANTITY;
+import static lotto.system.utils.constants.ViewMessages.PURCHASE_AMOUNT;
+import static lotto.system.utils.constants.ViewMessages.WINNING_NUMBER;
+
 import java.util.List;
 import lotto.system.unit.LottoTicket;
-import lotto.system.utils.constants.ViewMessages;
 
 public class OutputView {
 
@@ -11,11 +15,11 @@ public class OutputView {
     }
 
     public static void displayPurchasePrompt() {
-        printMessage(ViewMessages.PURCHASE_AMOUNT.getMessage());
+        printMessage(PURCHASE_AMOUNT.getMessage());
     }
 
     public static void displayTicketQuantity(int quantity) {
-        printMessage(ViewMessages.LOTTO_TICKET_QUANTITY.getMessage(quantity));
+        printMessage(LOTTO_TICKET_QUANTITY.getMessage(quantity));
     }
 
     public static void displayLottoTickets(List<LottoTicket> lottoTickets) {
@@ -24,16 +28,17 @@ public class OutputView {
     }
 
     public static void displayWinningNumberPrompt() {
-        printMessage(ViewMessages.WINNING_NUMBER.getMessage());
+        printMessage(WINNING_NUMBER.getMessage());
     }
 
     public static void displayBonusNumberPrompt() {
-        printMessage(ViewMessages.BONUS_NUMBER.getMessage());
+        printMessage(BONUS_NUMBER.getMessage());
     }
 
     public static void displayResult(String result) {
         printMessageWithNewLine(result);
     }
+
     private static void printMessageWithNewLine(String message) {
         printMessage(message);
         printNewLine();
