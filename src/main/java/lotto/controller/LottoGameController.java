@@ -33,7 +33,7 @@ public class LottoGameController {
         while (true) {
             try {
                 inputView.displayLottoPurchaseAmountPrompt();
-                lottoPurchaseAmount = parseNumber(inputView.readLottoPurchaseAmount());
+                lottoPurchaseAmount = parseLottoPurchaseAmount(inputView.readLottoPurchaseAmount());
                 validateMultipleOf1000(lottoPurchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
@@ -45,12 +45,22 @@ public class LottoGameController {
         outputView.displayLottoCount(lottos);
         outputView.displayLottoNumbers(lottos);
 
-        inputView.displayWinningNumbersPrompt();
-        List<Integer> parsedWinningNumbers = parseWinningNumbers(inputView.readWinningNumbers());
+        List<Integer> parsedWinningNumbers;
+
+        while (true) {
+            try {
+                inputView.displayWinningNumbersPrompt();
+                parsedWinningNumbers = parseWinningNumbers(inputView.readWinningNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.displayErrorMessage(e.getMessage());
+            }
+        }
+
         WinningNumbers winningNumbers = WinningNumbers.from(parsedWinningNumbers);
 
         inputView.displayBonusNumberPrompt();
-        int parsedBonusNumber = parseNumber(inputView.readBonusNumber());
+        int parsedBonusNumber = parseLottoNumber(inputView.readBonusNumber());
         BonusNumber bonusNumber = new BonusNumber(parsedBonusNumber);
 
         Map<WinningResult, Integer> winningResults = lottoEvaluator.evaluateWinningResult(lottos, winningNumbers,
@@ -66,23 +76,27 @@ public class LottoGameController {
         String[] userInputNumbers = userInput.split(",", -1);
 
         for (String userInputNumber : userInputNumbers) {
-            int number = parseNumber(userInputNumber.trim());
+            int number = parseLottoNumber(userInputNumber.trim());
             numbers.add(number);
         }
 
         return numbers;
     }
 
-    private int parseNumber(String userInputNumber) {
-        int parsedNumber;
+    private int parseLottoNumber(String userInputNumber) {
+        return parseNumber(userInputNumber, ErrorMessage.INVALID_LOTTO_NUMBER_FORMAT);
+    }
 
+    private int parseLottoPurchaseAmount(String userInputNumber) {
+        return parseNumber(userInputNumber, ErrorMessage.INVALID_PURCHASE_AMOUNT_FORMAT);
+    }
+
+    private int parseNumber(String userInputNumber, String errorMessage) {
         try {
-            parsedNumber = Integer.parseInt(userInputNumber);
+            return Integer.parseInt(userInputNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT);
+            throw new IllegalArgumentException(errorMessage);
         }
-
-        return parsedNumber;
     }
 
     private void validateMultipleOf1000(int lottoPurchaseAmount) {
