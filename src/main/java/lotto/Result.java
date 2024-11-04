@@ -22,12 +22,12 @@ public record Result(
 
 	public String formatted() {
 		return FORMAT.formatted(
-				this.fifth(),
-				this.fourth(),
-				this.third(),
-				this.second(),
-				this.first(),
-				this.prizeRate()
+				this.fifth,
+				this.fourth,
+				this.third,
+				this.second,
+				this.first,
+				this.prizeRate
 		);
 	}
 }
