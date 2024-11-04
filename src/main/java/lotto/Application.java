@@ -8,27 +8,28 @@ import java.util.stream.Collectors;
 public class Application {
 
     public static void main(String[] args) {
-        try {
-            int buyAmount = getBuyAmount();
-            List<Lotto> lottoNumbers = lottoPurchase(buyAmount);
-            List<Integer> winningNumbers = getWinningNumbers();
-            int bonusNumber = getBonusNumber(winningNumbers);
-            Map<Rank, Integer> rankCount = lottoRankcalculation(lottoNumbers, winningNumbers, bonusNumber);
-            statisticsOutput(rankCount, calculateProfit(rankCount, buyAmount));
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
-        }
+        int buyAmount = getBuyAmount();
+        List<Lotto> lottoNumbers = lottoPurchase(buyAmount);
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+        Map<Rank, Integer> rankCount = lottoRankcalculation(lottoNumbers, winningNumbers, bonusNumber);
+        statisticsOutput(rankCount, calculateProfit(rankCount, buyAmount));
     }
 
     private static int getBuyAmount() {
-        System.out.println(Constants.MESSAGE_ENTER_BUY_AMOUNT.getMessageValue());
-        String buyAmountInput = Console.readLine();
+        try {
+            System.out.println(Constants.MESSAGE_ENTER_BUY_AMOUNT.getMessageValue());
+            String buyAmountInput = Console.readLine();
 
-        isEmptyInputValue(buyAmountInput);
-        int buyAmount = dataTypeConversion(buyAmountInput);
-        validateAmountUnit(buyAmount);
+            isEmptyInputValue(buyAmountInput);
+            int buyAmount = dataTypeConversion(buyAmountInput);
+            validateAmountUnit(buyAmount);
 
-        return buyAmount;
+            return buyAmount;
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            return getBuyAmount();
+        }
     }
 
     private static void isEmptyInputValue(String inputValue) {
@@ -78,10 +79,15 @@ public class Application {
     }
 
     private static List<Integer> getWinningNumbers() {
-        System.out.println(Constants.MESSAGE_ENTER_WINNING_NUMBERS.getMessageValue());
-        String winningNumberInput = Console.readLine();
+        try {
+            System.out.println(Constants.MESSAGE_ENTER_WINNING_NUMBERS.getMessageValue());
+            String winningNumberInput = Console.readLine();
 
-        return splitWinningNumbersByComma(winningNumberInput);
+            return splitWinningNumbersByComma(winningNumberInput);
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            return getWinningNumbers();
+        }
     }
 
     private static List<Integer> splitWinningNumbersByComma(String input) {
@@ -92,12 +98,17 @@ public class Application {
     }
 
     private static int getBonusNumber(List<Integer> winningNumbers) {
-        System.out.println(Constants.MESSAGE_ENTER_BONUS_NUMBER.getMessageValue());
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        try {
+            System.out.println(Constants.MESSAGE_ENTER_BONUS_NUMBER.getMessageValue());
 
-        checkBonusNumberDuplication(winningNumbers, bonusNumber);
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            checkBonusNumberDuplication(winningNumbers, bonusNumber);
 
-        return bonusNumber;
+            return bonusNumber;
+        } catch (IllegalArgumentException error) {
+            System.out.println(error.getMessage());
+            return getBonusNumber(winningNumbers);
+        }
     }
 
     private static void checkBonusNumberDuplication(List<Integer> winningNumbers, int bonusNumber) {
