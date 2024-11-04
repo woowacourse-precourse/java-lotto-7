@@ -9,7 +9,7 @@ public enum WinningNumberRule {
     SCOPE("[ERROR] 당첨 번호는 1 이상, 45 이하의 숫자만 가능합니다."),
     DUPLICATION("[ERROR] 당첨 번호는 중복된 숫자가 포함될 수 없습니다."),
     BONUS_DUPLICATION("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
-    COMMA(",");
+    SEPARATOR(",");
 
     private final String message;
 

@@ -5,6 +5,7 @@ import lotto.Lotto;
 import lotto.WinningNumber;
 import lotto.constant.CompareInteger;
 import lotto.constant.PriceRule;
+import lotto.constant.WinningNumberRule;
 import lotto.validator.NumberValidator;
 import lotto.validator.PriceValidator;
 import lotto.validator.WinningNumberValidator;
@@ -53,7 +54,7 @@ public class LottoController {
 
         try {
             WinningNumberValidator.validateInputComma(input);
-            List<String> inputWinningNumber = Arrays.asList(input.split(","));
+            List<String> inputWinningNumber = Arrays.asList(input.split(WinningNumberRule.SEPARATOR.getMessage()));
             return WinningNumberValidator.validateInputWinningNumber(inputWinningNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

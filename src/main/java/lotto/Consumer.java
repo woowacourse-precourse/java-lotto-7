@@ -8,12 +8,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Consumer {
-    private List<Lotto> lottoTicket = new ArrayList<>();
-    private int[] lottoResult = new int[CompareInteger.LOTTO_NUMBER_COUNT.getNumber() + 1];
+    private final List<Lotto> lottoTicket = new ArrayList<>();
+    private final int[] lottoResult = new int[CompareInteger.LOTTO_NUMBER_COUNT.getNumber() + CompareInteger.ONE.getNumber()];
     private int secondPlace = CompareInteger.ZERO.getNumber();
 
     public Consumer(int count) {
-        for (int i = 0; i < count; i++) {
+        for (int i = CompareInteger.ZERO.getNumber(); i < count; i++) {
             setLotto();
         }
     }
@@ -24,7 +24,7 @@ public class Consumer {
     }
 
     private List<Integer> getNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(CompareInteger.LOTTO_NUMBER_MINIMUM.getNumber(), CompareInteger.LOTTO_NUMBER_MAXIMUM.getNumber(), CompareInteger.LOTTO_NUMBER_COUNT.getNumber());
         numbers.sort(Comparator.naturalOrder());
         return numbers;
     }
