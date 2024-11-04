@@ -3,6 +3,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.controller.LottoController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -39,5 +40,15 @@ class LottosTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력한 당첨번호가 범위내에 없으면 에외를 발생한다.")
+    @Test
+    void 입력한_당첨번호가_범위내에_없으면_예외를_발생한다(){
+        List<Lotto> lottos = new ArrayList<>();
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 60);
+        Integer boundNumber = 6;
+        assertThatThrownBy(() -> new Lottos(lottos, winningNumbers, boundNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 
 }
