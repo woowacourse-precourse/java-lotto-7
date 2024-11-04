@@ -32,6 +32,9 @@ public enum ErrorMessage {
     INVALID_NUMBER_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
 
     NOT_ZERO_TOTAL_PURCHASE("[ERROR] 구입 총액은 0일 수 없습니다."),
+
+    DUPLICATE_BONUS_NUMBER("[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다."),
+    INVALID_BONUS_NUMBER_RANGE("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다."),
     ;
 
     private final String message;

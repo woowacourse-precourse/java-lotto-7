@@ -38,7 +38,7 @@ class BonusTest {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             assertThatThrownBy(() -> new Bonus(invalidNumber, lotto))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(INVALID_NUMBER_RANGE.getMessage());
+                    .hasMessage(INVALID_BONUS_NUMBER_RANGE.getMessage());
         }
 
         @Test
@@ -47,7 +47,7 @@ class BonusTest {
             Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
             assertThatThrownBy(() -> new Bonus(1, lotto))
                     .isInstanceOf(IllegalStateException.class)
-                    .hasMessage(DUPLICATE_NUMBER.getMessage());
+                    .hasMessage(DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 }

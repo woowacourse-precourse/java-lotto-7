@@ -16,13 +16,13 @@ public class Bonus {
 
     private void validateRange(int number) {
         if (number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
-            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateNotDuplicate(int number, Lotto lotto) {
         if (lotto.getNumbers().contains(number)) {
-            throw new IllegalStateException(DUPLICATE_NUMBER.getMessage());
+            throw new IllegalStateException(DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 
