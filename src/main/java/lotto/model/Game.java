@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.io.ConsoleOutputHandler;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,5 +41,16 @@ public class Game {
             return LottoRank.FIFTH;
         }
         return LottoRank.NONE;
+    }
+
+    public void outReturnRate() {
+        int buyLottoCount = 0;
+        for (int count : rankCount.values()) {
+            buyLottoCount += count;
+        }
+
+        double rate = (double) totalPrize / (buyLottoCount * 1000);
+        double roundedRate = Math.round(rate * 10) / 10.0;
+        ConsoleOutputHandler.returnRateMessage(roundedRate);
     }
 }

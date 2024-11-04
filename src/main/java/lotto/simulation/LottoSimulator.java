@@ -16,7 +16,8 @@ public class LottoSimulator {
         List<Lotto> lottoList = createLotto(lottoAmount); // 구매한 로또 개수 만큼 로또 번호 발행
         WinningNumber winningNumber = getWinningNumber(); // 당첨 번호를 입력받음
         BonusNumber bonusNumber = getBonusNumber(winningNumber); // 보너스 번호를 입력받음
-        Game game = new Game(lottoList,winningNumber,bonusNumber);
+        Game game = new Game(lottoList,winningNumber,bonusNumber); // 당첨 정보를 가진 게임 객체 생성
+        game.outReturnRate(); // 수익률 출력
     }
 
     private List<Lotto> createLotto(int lottoAmount) {
