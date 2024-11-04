@@ -37,4 +37,8 @@ public class InputHandler {
     public void validateBonusNumber(String bonusNumber) {
         inputValidator.validateBonusNumber(bonusNumber);
     }
+
+    public void validateWinningNumbers(String winningNumbers) {
+        inputValidator.validateWinningNumbers(winningNumbers);
+    }
 }

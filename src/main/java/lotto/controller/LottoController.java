@@ -82,6 +82,8 @@ public class LottoController {
             try {
                 String winningNumbers = inputHandler.receiveWinningNumbers();
 
+                inputHandler.validateWinningNumbers(winningNumbers);
+
                 Lotto generatorWinningNumbers = lottoNumberGenerator.createWinningNumbers(winningNumbers);
 
                 lottoDrawResult.assignWinningNumber(generatorWinningNumbers);

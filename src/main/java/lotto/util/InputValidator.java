@@ -7,6 +7,7 @@ import static lotto.constant.Amount.SINGLE_DIGIT;
 import static lotto.constant.Amount.THOUSAND;
 import static lotto.constant.Amount.ZERO;
 import static lotto.constant.Condition.ONLY_NUMBERS;
+import static lotto.constant.ErrorMessage.INCLUDE_INVALID_DELIMITER;
 import static lotto.constant.ErrorMessage.IS_NOT_DIVISIBLE_BY_THOUSAND;
 import static lotto.constant.ErrorMessage.IS_NOT_NUMBER;
 import static lotto.constant.ErrorMessage.IS_NOT_SINGLE_DIGIT;
@@ -46,5 +47,15 @@ public class InputValidator {
         validateSingleDigit(bonusNumber);
     }
 
+    private void validateDelimiter(String winningNumbers) {
+        Pattern pattern = MatcherUtil.providePattern(ONLY_NUMBERS.getValue());
+        Matcher matcher = MatcherUtil.provideMatcher(pattern, winningNumbers);
+        if (matcher.find()) {
+            throw new IllegalArgumentException(INCLUDE_INVALID_DELIMITER.getValue());
+        }
+    }
 
+    public void validateWinningNumbers(String winningNumbers) {
+        validateDelimiter(winningNumbers);
+    }
 }
