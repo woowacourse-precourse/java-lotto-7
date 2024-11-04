@@ -8,6 +8,8 @@ public class Application {
             int purchaseAmount = getPurchaseAmount();
             LottoGame lottoGame = new LottoGame(purchaseAmount);
             lottoGame.printPurchasedLottos();
+            WinNumbers winningNumbers = getWinningNumbers();
+            int bonusNumber = getBonusNumber();
 
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
@@ -23,4 +25,14 @@ public class Application {
         return amount;
     }
 
+    private static WinNumbers getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] numbers = Console.readLine().split(",");
+        return new WinNumbers(numbers);
+    }
+
+    private static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
+    }
 }
