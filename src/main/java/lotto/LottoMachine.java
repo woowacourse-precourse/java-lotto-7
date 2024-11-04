@@ -29,7 +29,7 @@ public class LottoMachine {
     }
 
     private List<Integer> generateLottoNumbers(){
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT);
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT));
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
