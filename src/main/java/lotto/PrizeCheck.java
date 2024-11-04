@@ -108,6 +108,17 @@ public class PrizeCheck {
         return nums;
     }
 
-    public ArrayList<>
-    // int match count ,boolean bonus match
+    public int getMatchCount(List<Integer> lotto) {
+        int matchCount = 0;
+        for (int number : lotto) {
+            if (prizeNum.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+   public boolean getBonusNumCount(List<Integer> lotto) {
+       return lotto.contains(bonus);
+   }
 }
