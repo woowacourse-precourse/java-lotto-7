@@ -23,4 +23,11 @@ public class UserLottosTest {
         assertThat(new UserLottos(purchaseAmount).getQuantity())
                 .isEqualTo(14);
     }
+
+    @Test
+    void 수량에_맞게_로또를_생성한다() {
+        int purchaseAmount = 124000;
+        assertThat(new UserLottos(purchaseAmount).getLottos().size())
+                .isEqualTo(124);
+    }
 }
