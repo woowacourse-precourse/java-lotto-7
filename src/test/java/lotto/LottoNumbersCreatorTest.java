@@ -25,4 +25,15 @@ public class LottoNumbersCreatorTest {
         assertThat(LottoNumbersCreator.createNumberListByInput(input))
                 .isEqualTo(List.of(1,3,4,6,2,8));
     }
+
+    @Test
+    void 입력값으로_당첨_복권_숫자_리스트를_만든다() {
+        String input = "1,34,6,2,8";
+        assertThat(LottoNumbersCreator.createWinningNumbers(input))
+                .isEqualTo(List.of(1,34,6,2,8));
+
+        String input1 = ",1,3,4,6,2,8";
+        assertThatThrownBy(() -> LottoNumbersCreator.createWinningNumbers(input1))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
 }
