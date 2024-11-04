@@ -34,4 +34,13 @@ class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INPUT_MONEY_IS_DIGIT.getMessage());
     }
+
+    @ParameterizedTest
+    @DisplayName("로또 번호가 0보다 큰 정수가 아닐 경우 예외가 발생한다.")
+    @ValueSource(strings = {"abc", "-2"})
+    void 보너스_번호가_0이상_9이하의_정수가_아닐_경우_예외가_발생한다(String rawNumber) {
+        assertThatThrownBy(() -> inputValidator.validateLottoNumber(rawNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
+    }
 }
