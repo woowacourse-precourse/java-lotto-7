@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoMatcher;
+import lotto.domain.Statistics;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,5 +22,8 @@ public class Application {
         WinningNumbers winningLotto = new WinningNumbers(winningNumbers, bonusNumber);
 
         LottoMatcher matchLotto = new LottoMatcher(lottoGenerator.getLottos(), winningLotto);
+
+        Statistics statistics = new Statistics(matchLotto.getRankCounts(), amount * 1000);
+        OutputView.printStatistics(statistics);
     }
 }
