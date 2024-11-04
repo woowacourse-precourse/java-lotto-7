@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.error.ErrorType;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -51,6 +53,70 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("1등과 2등이 당첨 된다.")
+    void applicationTest1() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("2000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "2개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "[1, 2, 3, 4, 5, 7]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 101,500,000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7)
+        );
+    }
+
+    @Test
+    @DisplayName("하나도 당첨되지 않는다.")
+    void applicationTest2() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("2000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "2개를 구매했습니다.",
+                            "[39, 40, 41, 42, 43, 44]",
+                            "[1, 39, 40, 41, 42, 43]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 0.0%입니다."
+                    );
+                },
+                List.of(39, 40, 41, 42, 43, 44),
+                List.of(1, 39, 40, 41, 42, 43)
+        );
+    }
+
+    @Test
+    @DisplayName("구입 금액이 1000원 단위가 아니여서 예외가 발생 한다.")
+    void inputMoneyUnitTest() {
+        assertSimpleTest(() -> {
+            runException("100");
+            assertThat(output()).contains(ErrorType.INVALID_MONEY_FORMAT);
+        });
+    }
+
+    @Test
+    @DisplayName("구입 금액이 양의 정수 최대값을 초과하여 예외가 발생 한다.")
+    void inputMoneyRangeTest() {
+        assertSimpleTest(() -> {
+            runException("9999999999999999999");
+            assertThat(output()).contains(ErrorType.INVALID_NUMBER_FORMAT);
         });
     }
 
