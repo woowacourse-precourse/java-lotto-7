@@ -40,10 +40,10 @@ public class Application {
         String rawBonusNumber = Console.readLine();
         int bonusNumber = parseBonusNumber(rawBonusNumber);
 
-        Map<String, Integer> lottoReseult = drawLotto(lottos, winningLotto, bonusNumber);
-        viewWinningLotto(lottoReseult);
+        Map<String, Integer> lottoResult = drawLotto(lottos, winningLotto, bonusNumber);
+        viewWinningLotto(lottoResult);
 
-        double porfitRate = calProfitRate(lottoReseult, lottoPieces);
+        double porfitRate = calProfitRate(lottoResult, lottoPieces);
         System.out.printf("총 수익률은 %.1f%%입니다.", porfitRate);
     }
 
