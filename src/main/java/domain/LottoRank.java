@@ -25,10 +25,10 @@ public enum LottoRank {
     }
 
     public static LottoRank of(int matchCount, boolean hasBonus) {
-        if (matchCount == SIX) return SIX;
-        if (matchCount == FIVE) return hasBonus ? FIVE_WITH_BONUS : FIVE;
-        if (matchCount == FOUR) return FOUR;
-        if (matchCount == THREE) return THREE;
+        if (matchCount == SIX.matchCount) return SIX;
+        if (matchCount == FIVE.matchCount) return hasBonus ? FIVE_WITH_BONUS : FIVE;
+        if (matchCount == FOUR.matchCount) return FOUR;
+        if (matchCount == THREE.matchCount) return THREE;
         return NONE;
     }
 }
