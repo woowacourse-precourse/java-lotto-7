@@ -83,6 +83,7 @@ public class LottoPrizeCalculatorTest {
         long prize = calculator.calculateTotalPrize(lottos, winningNumbers, bonusNumber);
         int purchaseAmount = 2_000;
         double yieldRate = calculator.calculateYield(prize, purchaseAmount);
-        assertEquals(1_000_000.0, yieldRate, 0.01);
+
+        assertEquals(100_000_000.0, yieldRate, 0.01);
     }
 }
