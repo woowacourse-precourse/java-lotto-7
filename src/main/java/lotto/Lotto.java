@@ -1,6 +1,8 @@
 package lotto;
 
 import java.util.List;
+import lotto.exception.winning.LottoNumberDuplicatedException;
+import lotto.exception.winning.LottoNumberOutOfRangeException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,10 +17,10 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         if (checkDuplicatedNumber(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 번호가 있습니다.");
+            throw new LottoNumberDuplicatedException();
         }
         if (checkNumberRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 - 45범위의 경계를 포함한 값이여야합니다.");
+            throw new LottoNumberOutOfRangeException();
         }
     }
 

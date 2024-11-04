@@ -2,6 +2,8 @@ package lotto.service.winning;
 
 import java.util.List;
 import lotto.Lotto;
+import lotto.exception.winning.LottoNumberDuplicatedException;
+import lotto.exception.winning.LottoNumberOutOfRangeException;
 import lotto.repository.winning.WinningRepository;
 
 public class WinningServiceImpl implements WinningService {
@@ -23,10 +25,10 @@ public class WinningServiceImpl implements WinningService {
         List<Integer> numbers = winning.getLotto();
 
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 번호가 있습니다.");
+            throw new LottoNumberDuplicatedException();
         }
         if (isOutOfRange(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 - 45범위의 경계를 포함한 값이여야합니다.");
+            throw new LottoNumberOutOfRangeException();
         }
         winningRepository.saveBonusNumber(bonusNumber);
     }
