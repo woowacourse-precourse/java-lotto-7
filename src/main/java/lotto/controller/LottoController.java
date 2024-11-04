@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 import lotto.domain.LottoResult;
 import lotto.service.LottoService;
+import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -44,6 +45,7 @@ public class LottoController {
             try {
                 String inputWinningNumbers = inputView.readWinningNumbers();
                 winningNumbers = lottoService.extractWinningNumbers(inputWinningNumbers);
+                Validator.checkDuplicateLottoNumbers(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -56,6 +58,7 @@ public class LottoController {
             try {
                 String inputBonusNumbers = inputView.readBonusNumber();
                 bonusNumber = lottoService.extractBonusNumber(inputBonusNumbers);
+                Validator.checkDuplicateBonusNumbers(winningNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
