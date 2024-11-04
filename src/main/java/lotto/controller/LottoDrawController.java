@@ -1,9 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import lotto.model.LottoBundle;
 import lotto.model.LottoCreator;
+import lotto.model.Winning;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -43,5 +45,9 @@ public class LottoDrawController {
 	private int getBonusNumber() {
 		outputView.printBonusNumberInputMessage();
 		return inputView.getBonusNumberInput();
+	}
+
+	private void drawLottoBundle(WinningLotto winningLotto, LottoBundle lottoBundle) {
+		Map<Winning, Integer> winningResult = winningLotto.drawLottoBundle(lottoBundle);
 	}
 }
