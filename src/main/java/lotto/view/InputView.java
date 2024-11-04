@@ -6,6 +6,8 @@ import lotto.message.InputMessage;
 import lotto.util.Validation;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static lotto.util.Validation.inputDelimiter;
@@ -40,7 +42,7 @@ public class InputView {
         if (!Validation.isCorrectRange(winningNumbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getErrorMessage());
         }
-        if (Validation.isDuplicate(winningNumbers)) {
+        if (!Validation.isDuplicate(winningNumbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_PRESENT.getErrorMessage());
         }
         return winningNumbers;
