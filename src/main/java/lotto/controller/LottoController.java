@@ -5,15 +5,21 @@ import java.util.Map;
 import lotto.model.LottoRule;
 import lotto.model.Lottos;
 import lotto.service.LottoGenerator;
+import lotto.service.LottoMatcher;
+import lotto.service.ProfitCalculator;
 import lotto.view.UserInput;
 
 public class LottoController {
     private final UserInput userInput;
     private final LottoGenerator lottoGenerator;
+    private final LottoMatcher lottoMatcher;
+    private final ProfitCalculator profitCalculator;
 
     public LottoController() {
         this.userInput = new UserInput();
         this.lottoGenerator = new LottoGenerator();
+        this.lottoMatcher = new LottoMatcher();
+        this.profitCalculator = new ProfitCalculator();
     }
 
     public void process() {
@@ -27,9 +33,9 @@ public class LottoController {
         List<Integer> winNumbers = userInput.inputWinNumbers();
         int bonusNumber = userInput.inputBonusNumber(winNumbers);
 
-        Map<LottoRule, Integer> statistics = lottos.calculateMatch(winNumbers, bonusNumber);
+        Map<LottoRule, Integer> matchedLotto = lottoMatcher.calculateMatch(lottos, winNumbers, bonusNumber);
 
-        printStatistics(statistics, amount);
+        double profitRate = profitCalculator.calculateProfitRate(matchedLotto,amount);
     }
 
     private void printStatistics(Map<LottoRule, Integer> statistics, int amount) {
