@@ -36,18 +36,18 @@ public class WinningNumbers {
     }
 
     private void validate(Lotto mainNumbers, int bonusNumber) {
-        validateBonusNumberDuplicate(mainNumbers, bonusNumber);
-        validateBonusNumberRange(bonusNumber);
+        validateBonusNumberUniqueness(mainNumbers, bonusNumber);
+        validateBonusNumberBounds(bonusNumber);
     }
 
-    private void validateBonusNumberDuplicate(Lotto mainNumbers, int bonusNumber) {
+    private void validateBonusNumberUniqueness(Lotto mainNumbers, int bonusNumber) {
         if (mainNumbers.containsNumber(bonusNumber)) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBERS_DUPLICATED.getMessage());
         }
     }
 
-    private void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+    private void validateBonusNumberBounds(int bonusNumber) {
+        if (bonusNumber < Lotto.MIN_NUMBER || bonusNumber > Lotto.MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }
