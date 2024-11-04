@@ -22,5 +22,6 @@ public class LottoSimulator {
             lottoList.add(lotto);
             lotto.lottoNumberOut();
         }
+        ConsoleOutputHandler.winningNumberMessage();
     }
 }
