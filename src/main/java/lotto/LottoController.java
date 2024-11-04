@@ -20,7 +20,7 @@ public class LottoController {
                 lottoCount = inputCash / 1000;
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 잘못된 입력입니다. 숫자를 입력하세요.");
+                System.out.println("[ERROR] 잘못된 입력입니다. 정수를 입력하세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
