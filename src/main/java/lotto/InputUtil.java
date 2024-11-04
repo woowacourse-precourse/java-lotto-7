@@ -9,7 +9,12 @@ public class InputUtil {
 
     public static int insertMoney() {
         String inputMoney = Console.readLine();
-        validateNumber(inputMoney);
+        try {
+            validateNumber(inputMoney);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 숫자가 아닙니다.");
+            insertMoney();
+        }
         return Integer.parseInt(inputMoney);
     }
 
@@ -30,8 +35,10 @@ public class InputUtil {
     }
 
     private static void validateNumber(String input) {
-        if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력할 수 있습니다.");
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자만 가능 합니다.");
         }
     }
 }
