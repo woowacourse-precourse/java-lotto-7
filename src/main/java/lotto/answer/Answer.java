@@ -10,9 +10,9 @@ public class Answer {
 	private Lotto answerLotto;
 	private int bonusLotto;
 
-	public Answer(String answerLotto, String bonusLotto) {
-		this.answerLotto = new Lotto(from(answerLotto));
-		this.bonusLotto = Integer.parseInt(bonusLotto);
+	public Answer(List<Integer> answerLottos, int bonusLotto) {
+		this.answerLotto = new Lotto(answerLottos);
+		this.bonusLotto = bonusLotto;
 	}
 
 	private static List<Integer> from(String answerLotto) {
