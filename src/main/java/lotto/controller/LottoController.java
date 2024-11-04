@@ -25,12 +25,14 @@ public class LottoController {
 
   public void run() {
 
-    // 금액 받기
+    // 금액 받기 및 구매 개수 출력
     String purchaseAmountInput = inputView.readPurchaseAmount();
     int validatedPurchaseAmount = inputValidator.validatePurchaseAmount(purchaseAmountInput);
+    outputView.printPurchaseCount(validatedPurchaseAmount);
 
-    // 로또 리스트 생성
+    // 로또 리스트 생성 및 출력
     lottos = lottoService.generateLottosByAmount(validatedPurchaseAmount);
+    outputView.printGeneratedLottos(lottos);
 
     // 당첨 번호 입력 및 검증
     String winningNumbersInput = inputView.readWinningNumbers();
@@ -42,9 +44,13 @@ public class LottoController {
     int validatedBonusNumber = inputValidator.validateBonusNumber(bonusNumberInput,
         validatedWinningNumbers);
 
-    // 당첨 개수 계산 및 수익률 계산
+    // 당첨 개수 계산 및 출력
     List<Integer> winningCounts = lottoService.checkWinningNumbers(lottos, validatedWinningNumbers, validatedBonusNumber);
+    outputView.printWinningResults(winningCounts);
+
+    // 수익률 계산 및 출력
     double yield = lottoService.calculateYield(winningCounts, validatedPurchaseAmount);
+    outputView.printYield(yield);
 
   }
 
