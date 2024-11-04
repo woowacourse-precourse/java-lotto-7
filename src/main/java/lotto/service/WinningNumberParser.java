@@ -15,8 +15,8 @@ public class WinningNumberParser {
         this.winningNumberValidator = new WinningNumberValidator();
     }
 
-    public Lotto splitWinngNumber(String winningLottoNumber) {
-        winningNumberValidator.validateNumber(winningLottoNumber);
+    public Lotto splitWinningNumber(String winningLottoNumber) {
+        winningNumberValidator.validateNumberIsEmpty(winningLottoNumber);
         List<Integer> numbers = Arrays.stream(winningLottoNumber.split(NUMBER_DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)

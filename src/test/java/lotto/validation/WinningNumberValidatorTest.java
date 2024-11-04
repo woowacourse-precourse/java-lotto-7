@@ -14,7 +14,7 @@ class WinningNumberValidatorTest {
     @DisplayName("당첨 번호가 빈 값일 때 예외 발생")
     @Test
     void shouldThrowExceptionWhenWinningNumberIsEmpty() {
-        assertThatThrownBy(() -> validator.validateNumber(""))
+        assertThatThrownBy(() -> validator.validateNumberIsEmpty(""))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.WINNING_NUMBER_BLANK_INPUT.getMessage());
     }
@@ -25,7 +25,7 @@ class WinningNumberValidatorTest {
         List<Integer> lottoNumbers = List.of(3, 12, 25, 8, 10);
         assertThatThrownBy(() -> validator.validateNumbers(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.WINNING_NUMBER_SIZE_INSUFFICIENT.getMessage());
+                .hasMessageContaining(ExceptionMessage.LOTTO_NUMBER_SIZE_INSUFFICIENT.getMessage());
     }
 
     @DisplayName("당첨 번호에 1~45 범위를 벗어난 숫자가 있을 때 예외 발생")
@@ -43,7 +43,7 @@ class WinningNumberValidatorTest {
         List<Integer> lottoNumbers = List.of(3, 12, 25, 3, 8, 10);
         assertThatThrownBy(() -> validator.validateNumbers(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.WINNING_NUMBER_DUPLICATE.getMessage());
+                .hasMessageContaining(ExceptionMessage.LOTTO_DUPLICATE_NUMBER.getMessage());
     }
 
     @DisplayName("보너스 번호가 빈 값일 때 예외 발생")

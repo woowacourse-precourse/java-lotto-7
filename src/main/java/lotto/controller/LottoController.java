@@ -60,7 +60,7 @@ public class LottoController {
         while (true) {
             try {
                 String winningNumber = winningNumberInput.getNumber();
-                return winningNumberParser.splitWinngNumber(winningNumber);
+                return winningNumberParser.splitWinningNumber(winningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

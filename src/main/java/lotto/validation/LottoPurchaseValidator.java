@@ -1,11 +1,10 @@
 package lotto.validation;
 
+import static lotto.constatnt.LottoConstants.PURCHASE_PRICE_UNIT;
+import static lotto.constatnt.LottoConstants.PURCHASE_PRICE_MAX;
 import lotto.constatnt.ExceptionMessage;
 
 public class LottoPurchaseValidator {
-
-    private static final int PURCHASE_PRICE_UNIT = 1000;
-    private static final int PURCHASE_PRICE_MAX = 100_000_000;
 
     public void validate(String input) {
         checkBlankInput(input);
