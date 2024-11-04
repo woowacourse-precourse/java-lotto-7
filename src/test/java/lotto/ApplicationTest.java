@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -46,12 +48,54 @@ class ApplicationTest extends NsTest {
         );
     }
 
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
+    @Nested
+    @DisplayName("로또 구매 예외 처리")
+    class BuyLottosErrorTest {
+
+        @DisplayName("로또 구매 금액에 숫자가 아닌 값")
+        @Test
+        void alphabetInInput() {
+            assertSimpleTest(() -> {
+                runException("1000j");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("로또 구매 금액이 음수")
+        @Test
+        void minusInInput() {
+            assertSimpleTest(() -> {
+                runException("-1000");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("로또 구매 금액 너무 큰 경우1")
+        @Test
+        void inputTooBig1() {
+            assertSimpleTest(() -> {
+                runException("30000000000");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("로또 구매 금액 너무 큰 경우2")
+        @Test
+        void inputTooBig2() {
+            assertSimpleTest(() -> {
+                runException("100000000000");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
+
+        @DisplayName("로또 구매 금액이 1000원 단위가 아닌 경우")
+        @Test
+        void invalidInput() {
+            assertSimpleTest(() -> {
+                runException("1234");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            });
+        }
     }
 
     @Override
