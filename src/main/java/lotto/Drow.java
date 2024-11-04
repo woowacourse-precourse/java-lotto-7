@@ -63,7 +63,7 @@ public class Drow {
             }
 
             for(String inputNumber : inputNumbers){
-
+                inputNumber = inputNumber.trim();
                 int drowNumber = Integer.parseInt(inputNumber);
                 validateInputNumber(drowNumber);
                 validateDuplicationNumber(checkNumbers, drowNumber);
@@ -86,6 +86,7 @@ public class Drow {
 
     boolean validateBonusNumber(String userInput){
         try{
+            userInput = userInput.trim();
             int bonusNumber = Integer.parseInt(userInput);
 
             validateInputNumber(bonusNumber);
