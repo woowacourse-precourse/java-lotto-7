@@ -1,15 +1,14 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
+import lotto.domain.*;
 import lotto.util.LottoRandomGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.random.RandomGenerator;
+import java.util.stream.Collectors;
 
 public class LottoController {
     private final OutputView outputView = new OutputView();
@@ -17,6 +16,10 @@ public class LottoController {
     private final LottoRandomGenerator randomGenerator = new LottoRandomGenerator();
 
     public void playLotto(){
+        Money money = createMoney();
+        Lottos lottos = createLottos(money);
+        WinningNumbers winningNumbers = createWinningNumbers();
+        Winning winning = createWinning(winningNumbers);
 
     }
 
@@ -35,7 +38,29 @@ public class LottoController {
             List<Integer> randomNumbers = LottoRandomGenerator.generateRandomNumbers();
             lottoList.add(new Lotto(randomNumbers));
         }
-
-        return new Lottos(lottoList);
+        Lottos lottos = new Lottos(lottoList);
+        outputView.printLottos(lottos);
+        return lottos;
     }
+
+    private WinningNumbers createWinningNumbers(){
+        outputView.printRequestWinningNumbers();
+        String[] winningNumbersInput = inputView.inputWinningNumbers();
+
+        List<WinningNumber> winningNumbers = Arrays.stream(winningNumbersInput)
+                .map(Integer::parseInt)
+                .map(WinningNumber::new)
+                .collect(Collectors.toList());
+
+        return new WinningNumbers(winningNumbers);
+    }
+
+    private Winning createWinning(WinningNumbers winningNumbers){
+        outputView.printRequestBonusNumbers();
+        String bonusNumberInput = inputView.inputBonusNumber();
+        BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(bonusNumberInput));
+        return new Winning(winningNumbers, bonusNumber);
+    }
+
+
 }
