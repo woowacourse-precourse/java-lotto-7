@@ -77,17 +77,15 @@ public enum Rank {
                 String formattedPrize = numberFormat.format(rank.getPrize());
                 System.out.println(rank.getDescription() + " (" + formattedPrize + "원) - " + count + "개");
             }
+
+            if(rank != Rank.NONE && count > 0){
+                totalPrize += rank.getPrize();
+            }
         }
 
-        // 수익률 계산
         double profitRate = ((double) totalPrize / (lottos.size() * 1000)) * 100;
+        profitRate = Math.round(profitRate * 10) / 10.0; // 소수점 둘째 자리에서 반올림
 
-        System.out.println("총 수익 " + totalPrize + " 총 구입 " + (lottos.size() * 1000));
-
-        // 소수점 둘째 자리에서 반올림
-        profitRate = Math.round(profitRate * 10) / 10.0;
-
-        // 수익률 출력
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 }
