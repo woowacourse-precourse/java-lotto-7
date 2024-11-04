@@ -16,8 +16,8 @@ public class Application {
         prizeMoney.put(3, 5000);           // 3개 일치 (5,000원)
         prizeMoney.put(4, 50000);          // 4개 일치 (50,000원)
         prizeMoney.put(5, 1500000);        // 5개 일치 (1,500,000원)
-        prizeMoney.put(6, 2000000000);     // 6개 일치 (2,000,000,000원)
         prizeMoney.put("bonus", 30000000);       // 5개 일치, 보너스 볼 일치 (30,000,000원)
+        prizeMoney.put(6, 2000000000);     // 6개 일치 (2,000,000,000원)
     }
 
     public static void main(String[] args) {
@@ -42,13 +42,29 @@ public class Application {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for (Object key : result.keySet()) {
-            int count = result.get(key);
-            int prize = prizeMoney.getOrDefault(count, 0);
-            System.out.println(key + ":dfdfdf " + prize);
-
-            System.out.printf("%s개 일치 (%s) - %d개%n", key, formatPrize(prize), count);
+        for (Map.Entry<Object, Integer> entry : result.entrySet()) {
+            resultStatistics(entry.getKey(), entry.getValue());
         }
+    }
+
+    private static void resultStatistics(Object key, int count) {
+        if ("bonus".equals(key)) {
+            printBonusStatistics(count);
+        }
+        if (key instanceof Integer) {
+            printRegularStatistics((Integer) key, count);
+        }
+
+    }
+
+    private static void printRegularStatistics(int key, int count) {
+        int prize = prizeMoney.getOrDefault(key, 0);
+        System.out.printf("%d개 일치 (%s) - %d개%n", key, formatPrize(prize), count);
+    }
+
+    private static void printBonusStatistics(int count) {
+        int bonusPrize = prizeMoney.get("bonus");
+        System.out.printf("5개 일치, 보너스 볼 일치 (%s) - %d개%n", formatPrize(bonusPrize), count);
     }
 
     private static String formatPrize(int prize) {
@@ -59,7 +75,7 @@ public class Application {
         List<List<Integer>> randomNumberList = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            randomNumbers.sort(Integer::compareTo);
+//            randomNumbers.sort(Integer::compareTo);
             System.out.println(randomNumbers);
             randomNumberList.add(randomNumbers);
         }
