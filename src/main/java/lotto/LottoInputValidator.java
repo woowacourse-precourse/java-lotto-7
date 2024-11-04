@@ -10,8 +10,11 @@ public class LottoInputValidator {
     }
 
     private void validateLottoNumberNumeric(String string) {
-        if (!string.matches("\\d+")) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_FORMAT.getErrorMessage());
+        String[] parts = string.split(",");
+        for (String part : parts) {
+            if (!part.trim().matches("\\d+")) {  // 각 부분이 숫자인지 확인
+                throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_FORMAT.getErrorMessage());
+            }
         }
     }
 
