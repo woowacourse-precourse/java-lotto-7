@@ -12,7 +12,7 @@ public enum LottoConstant {
     COUNT(6),
     BONUS_MATCH_COUNT(5),
     BONUS_NUMBER_INCLUDED(1),
-    BONUS_NUMBER_NOT_INCLUDED(1);
+    BONUS_NUMBER_NOT_INCLUDED(0);
 
     private final int value;
 
