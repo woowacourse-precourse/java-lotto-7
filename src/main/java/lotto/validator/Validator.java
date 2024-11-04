@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public interface Validator {
     Pattern NUMERIC_PATTERN = Pattern.compile("^[0-9]*$");
-
+    static final String ZERO = "0";
     default void validateNull(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_BLANK.getMessage());
@@ -20,7 +20,7 @@ public interface Validator {
     }
 
     default void validateNonZeroStart(String input) {
-        if (input.startsWith("0")) {
+        if (input.startsWith(ZERO)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_ZERO_START.getMessage());
         }
     }

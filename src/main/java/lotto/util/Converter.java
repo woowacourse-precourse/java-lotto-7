@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class Converter {
+    private static final String SEPARATOR = ",";
     private Converter() {
     }
 
@@ -13,7 +14,7 @@ public class Converter {
     }
 
     private static Stream<Integer> parseNumberStream(String input) {
-        return Arrays.stream(input.split(",")).mapToInt(Integer::parseInt)
+        return Arrays.stream(input.split(SEPARATOR)).mapToInt(Integer::parseInt)
                 .boxed();
     }
 }
