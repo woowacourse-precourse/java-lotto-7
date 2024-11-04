@@ -4,7 +4,6 @@ import lotto.dto.PurchaseResponse;
 import lotto.dto.RateOfReturnResponse;
 import lotto.dto.WinningResultResponse;
 import lotto.model.Lotto;
-import lotto.model.WinningStandard;
 
 import java.util.ArrayList;
 import java.util.List;

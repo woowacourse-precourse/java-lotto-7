@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.dto.PurchaseRequest;
 import lotto.model.Lotto;
 import lotto.model.Purchase;
 import lotto.service.InputProcessService;

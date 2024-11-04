@@ -2,8 +2,6 @@ package lotto;
 
 import lotto.controller.LottoController;
 import lotto.converter.LottoConverter;
-import lotto.service.InputProcessService;
-import lotto.service.LottoService;
 import lotto.service.OutputProcessService;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
