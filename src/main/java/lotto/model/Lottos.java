@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lottos {
-    List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public Lottos(PurchaseAmount purchaseAmount) {
         lottos = new ArrayList<>();

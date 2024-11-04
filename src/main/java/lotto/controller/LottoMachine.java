@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
+import lotto.model.WinLotto;
 import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,10 +21,31 @@ public class LottoMachine {
     public void lottery() {
         PurchaseAmount purchaseAmount = initializePurchaseAmount();
         Lottos purchasedLottos = purchaseLottos(purchaseAmount);
-        Lotto winNumbers = initializeLottoWinNumbers();
+        WinLotto winNumbers = initializeWinLotto();
+
     }
 
-    private Lotto initializeLottoWinNumbers() {
+    private WinLotto initializeWinLotto() {
+        Lotto winNumbers = initializeWinNumbers();
+        while (true) {
+            try {
+                int bonusNumber = initializeBonusNumber();
+                return new WinLotto(winNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int initializeBonusNumber() {
+        final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+
+        String rawBonusNumber = inputView.readLine(BONUS_NUMBER_MESSAGE);
+
+        return Parser.stringToInt(rawBonusNumber);
+    }
+
+    private Lotto initializeWinNumbers() {
         final String WIN_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
 
         while (true) {
