@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WinningCombination {
-
+    public static final String NOT_BONUS_IN_WINNING_NUMBER = "[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.";
     private final Lotto winningLotto;
     private final Bonus bonus;
 
@@ -16,7 +16,7 @@ public class WinningCombination {
 
     private void validateBonusNotInWinningNumbers(Lotto winningLotto, Bonus bonus) {
         if (winningLotto.getNumbers().contains(bonus.getNumber())) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 포함될 수 없습니다.");
+            throw new IllegalArgumentException(NOT_BONUS_IN_WINNING_NUMBER);
         }
     }
 

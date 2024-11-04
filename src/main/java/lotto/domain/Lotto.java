@@ -5,6 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+    private static final String SHOULD_HAVE_SIX_NUMBER_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
+    private static final String NOT_DUPLICATE_MESSAGE = "[ERROR] 로또 번호는 중복되지 않아야 합니다.";
+    private static final String SHOULD_IN_RANGE_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이여야 합니다.";
+    private static final int LOTTO_NUMBERS_LENGTH = 6;
+    private static final int MINIMUM_LOTTO_NUMBER = 1;
+    private static final int MAXIMUM_LOTTO_NUMBER = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -21,23 +28,23 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBERS_LENGTH) {
+            throw new IllegalArgumentException(SHOULD_HAVE_SIX_NUMBER_MESSAGE);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         for (int number : numbers) {
             if (Collections.frequency(numbers, number) >= 2) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+                throw new IllegalArgumentException(NOT_DUPLICATE_MESSAGE);
             }
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+            if (number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER) {
+                throw new IllegalArgumentException(SHOULD_IN_RANGE_MESSAGE);
             }
         }
     }

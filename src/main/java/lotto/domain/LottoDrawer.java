@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoDrawer {
-
     private final int count;
     private final NumbersGenerator numbersGenerator;
 
