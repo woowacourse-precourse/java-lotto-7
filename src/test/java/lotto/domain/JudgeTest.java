@@ -32,7 +32,7 @@ public class JudgeTest {
         );
         winning = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         bonusNumber = 7;
-        judge = new Judge(lottos, winning, bonusNumber);
+        judge = Judge.from(lottos, winning, bonusNumber);
     }
 
     @ParameterizedTest

@@ -9,10 +9,14 @@ public class Judge {
     private final Lotto winning;
     private final int bonus;
 
-    public Judge(List<Lotto> lottos, Lotto winning, int bonus) {
+    private Judge(List<Lotto> lottos, Lotto winning, int bonus) {
         this.lottos = lottos;
         this.winning = winning;
         this.bonus = bonus;
+    }
+
+    public static Judge from(List<Lotto> lottos, Lotto winning, int bonus) {
+        return new Judge(lottos, winning, bonus);
     }
 
     public Grade assignGrade(int matchCount, boolean bonusMatching) {
