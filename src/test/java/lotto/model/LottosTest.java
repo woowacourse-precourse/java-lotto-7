@@ -45,8 +45,8 @@ class LottosTest {
     void 입력한_당첨번호가_범위내에_없으면_예외를_발생한다(){
         List<Lotto> lottos = new ArrayList<>();
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 60);
-        Integer boundNumber = 6;
-        assertThatThrownBy(() -> new Lottos(lottos, winningNumbers, boundNumber))
+        Integer bonusNumber = 6;
+        assertThatThrownBy(() -> new Lottos(lottos, winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
@@ -56,8 +56,8 @@ class LottosTest {
     void 보너스번호가_범위내에_없으면_예외를_발생한다(){
         List<Lotto> lottos = new ArrayList<>();
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        Integer boundNumber = 60;
-        assertThatThrownBy(() -> new Lottos(lottos, winningNumbers, boundNumber))
+        Integer bonusNumber = 60;
+        assertThatThrownBy(() -> new Lottos(lottos, winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
