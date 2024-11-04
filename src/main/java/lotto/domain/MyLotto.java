@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyLotto {
@@ -17,5 +18,9 @@ public class MyLotto {
 
     public int getNumberOfLotto() {
         return lottos.size();
+    }
+
+    public List<Lotto> getMyLottos() {
+        return new ArrayList<>(lottos);
     }
 }

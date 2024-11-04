@@ -17,6 +17,7 @@ public class LottoController {
         int numberOfLotto = inputView.inputPurchaseAmountGuide();
         MyLotto myLotto = MyLotto.createLottos(numberOfLotto, LottoUniqueGenerator.getLottoUniqueGenerator());
 
+        resultView.printPurchaseLottoInfo(myLotto);
 
     }
 }

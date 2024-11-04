@@ -7,7 +7,7 @@
     - [ ] 당첨번호 입력
     - [ ] 보너스 번호 입력
 - [ ] 로또 생성(LottoUniqueGenerator)
-    - [ ] pickUniqueNumbersInRange()를 통해 생성
+    - [x] pickUniqueNumbersInRange()를 통해 생성
     - [ ] 오름차순 정렬
 - [ ] 전체 당첨 여부(MyLotto)
 - [ ] 하나의 로또 당첨 여부(Lotto)
