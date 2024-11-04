@@ -1,11 +1,10 @@
 package lotto.domain.winning;
 
 import static lotto.exception.message.WinningNumberExceptionMessage.DUPLICATE_BONUS_NUMBER;
-import static lotto.exception.message.WinningNumberExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
-import lotto.exception.WinningNumberException;
+import lotto.exception.GlobalException.WinningNumberException;
 
 public class WinningNumber {
 

@@ -5,7 +5,7 @@ import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_COUNT
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exception.LottoException;
+import lotto.exception.GlobalException.LottoException;
 import lotto.ui.dto.LottoNumbersResponse;
 
 public class Lotto {

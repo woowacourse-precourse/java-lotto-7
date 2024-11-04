@@ -3,7 +3,7 @@ package lotto.ui;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-import lotto.exception.InputException;
+import lotto.exception.GlobalException.InputException;
 import lotto.exception.message.InputExceptionMessage;
 import lotto.ui.prompt.Prompt;
 

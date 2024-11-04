@@ -4,7 +4,7 @@ import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_RANGE
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.exception.LottoException;
+import lotto.exception.GlobalException.LottoException;
 
 public class LottoNumber {
     private static final int MIN_NUMBER = 1;

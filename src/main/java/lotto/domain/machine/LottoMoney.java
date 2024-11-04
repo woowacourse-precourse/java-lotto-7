@@ -2,7 +2,7 @@ package lotto.domain.machine;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import lotto.exception.MoneyException;
+import lotto.exception.GlobalException.MoneyException;
 import lotto.exception.message.LottoMoneyExceptionMessage;
 
 public class LottoMoney {
