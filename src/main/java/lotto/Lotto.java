@@ -1,6 +1,10 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import lotto.exception.LottoDuplicateException;
+import lotto.exception.LottoInvalidSizeException;
+import lotto.exception.LottoOutOfBoundException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,9 +16,27 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new LottoInvalidSizeException();
+        }
+
+        if (numbers.stream().anyMatch(num -> num > 45 || num < 1)) {
+            throw new LottoOutOfBoundException();
+        }
+
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new LottoDuplicateException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + numbers.stream()
+                .sorted()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ")) + "]";
+    }
 }
