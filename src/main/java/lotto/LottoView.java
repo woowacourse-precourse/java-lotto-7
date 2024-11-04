@@ -11,7 +11,12 @@ public class LottoView {
 
     public int requestPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        int amount = Integer.parseInt(input);  // 잘못된 입력은 NumberFormatException 발생
+        if (amount < 1000 || amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다.");
+        }
+        return amount;
     }
 
     public List<Integer> requestWinningNumbers() {
