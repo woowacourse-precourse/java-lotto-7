@@ -270,6 +270,23 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("예외 테스트 11: 로또 번호 생성 시 중복된 번호 발생")
+    void 예외_테스트_11() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    runException("5000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                },
+                // 중복된 번호를 반환하도록 설정합니다.
+                List.of(1, 2, 3, 4, 5, 5), // 첫 번째 로또 번호: 중복된 숫자 5
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
