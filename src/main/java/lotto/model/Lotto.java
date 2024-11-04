@@ -20,4 +20,21 @@ public class Lotto {
     public Iterator<Integer> getNumbers() {
         return numbers.iterator();
     }
+
+    public LottoResult getMatchedLottoResult(Iterator<Integer> winningNumbers, BonusNumber bonusNumber) {
+        int count = 0;
+        boolean hasBonusNumber = this.contains(bonusNumber.getNumber());
+
+        while (winningNumbers.hasNext()) {
+            if (this.contains(winningNumbers.next())) {
+                count++;
+            }
+        }
+
+        return new LottoResult(count, hasBonusNumber);
+    }
+
+    private boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }

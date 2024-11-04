@@ -2,22 +2,28 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.InputView;
-import lotto.LottoGenerator;
-import lotto.OutputView;
+import java.util.Map;
 import lotto.model.BonusNumber;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
+import lotto.model.WinningResult;
+import lotto.service.LottoEvaluator;
+import lotto.service.LottoGenerator;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoGenerator lottoGenerator;
+    private final LottoEvaluator lottoEvaluator;
 
-    public LottoGameController(InputView inputView, OutputView outputView, LottoGenerator lottoGenerator) {
+    public LottoGameController(InputView inputView, OutputView outputView, LottoGenerator lottoGenerator,
+                               LottoEvaluator lottoEvaluator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoGenerator = lottoGenerator;
+        this.lottoEvaluator = lottoEvaluator;
     }
 
     public void run() {
@@ -34,6 +40,9 @@ public class LottoGameController {
         inputView.displayBonusNumberPrompt();
         int parsedBonusNumber = parseNumber(inputView.readBonusNumber());
         BonusNumber bonusNumber = new BonusNumber(parsedBonusNumber);
+
+        Map<WinningResult, Integer> winningResults = lottoEvaluator.evaluateWinningResult(lottos, winningNumbers,
+                bonusNumber);
     }
 
     private List<Integer> parseWinningNumbers(String userInput) {

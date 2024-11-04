@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,5 +22,18 @@ public class Lottos {
 
     public int getLottoCount() {
         return lottos.size();
+    }
+
+    public List<LottoResult> getTotalMatchedLottoResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        List<LottoResult> results = new ArrayList<>();
+        Iterator<Integer> numbers = winningNumbers.getNumbers();
+
+        for (Lotto lotto : lottos) {
+            LottoResult result = lotto.getMatchedLottoResult(numbers, bonusNumber);
+            results.add(result);
+            numbers = winningNumbers.getNumbers();
+        }
+
+        return results;
     }
 }
