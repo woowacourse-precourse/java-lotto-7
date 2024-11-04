@@ -10,13 +10,28 @@ import lotto.reposi.LottoRepository;
 public class LottoDrawService {
 
     public Map<String, Integer> checkWinning(LottoRepository lottoRepository) {
-        Bonus bonus = lottoRepository.getBonusNumber();
-        Lotto lotto = lottoRepository.getWinningNumbers();
-        List<List<Integer>> userLotto = lottoRepository.getLottoNumbers();
+        Bonus bonus = getBonusNumber(lottoRepository);
+        Lotto winningLotto = getWinningNumbers(lottoRepository);
+        List<List<Integer>> userLottoNumbers = getUserLottoNumbers(lottoRepository);
 
+        return calculateMatchingResults(bonus, winningLotto, userLottoNumbers);
+    }
+
+    private Bonus getBonusNumber(LottoRepository lottoRepository) {
+        return lottoRepository.getBonusNumber();
+    }
+
+    private Lotto getWinningNumbers(LottoRepository lottoRepository) {
+        return lottoRepository.getWinningNumbers();
+    }
+
+    private List<List<Integer>> getUserLottoNumbers(LottoRepository lottoRepository) {
+        return lottoRepository.getLottoNumbers();
+    }
+
+    private Map<String, Integer> calculateMatchingResults(Bonus bonus, Lotto winningLotto, List<List<Integer>> userLottoNumbers) {
         WinningChecker winningChecker = new WinningChecker();
-        Map<String, Integer> matchingResult = winningChecker.checkWinning(bonus, lotto, userLotto);
-        return matchingResult;
+        return winningChecker.checkWinning(bonus, winningLotto, userLottoNumbers);
     }
 
     public double calculateRate(Map<String, Integer> matchingResult, int numberOfLotto) {
