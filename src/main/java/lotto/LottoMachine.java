@@ -22,7 +22,7 @@ public class LottoMachine {
 
     private List<Integer> getRandomLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(LottoRules.MIN_NUMBER, LottoRules.MAX_NUMBER,
-                LottoRules.NUMBERS_REQUIRED);
+                LottoRules.WINNING_NUMBERS_REQUIRED);
     }
 }
 

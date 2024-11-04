@@ -5,7 +5,8 @@ public class PurchaseAmount {
 
     public PurchaseAmount(String input) {
         this.amount = parseAmount(input);
-        validateAmount(this.amount);
+        validatePositiveAmount(this.amount);
+        validateThousandUnitAmount(this.amount);
     }
 
     private int parseAmount(String input) {
@@ -16,11 +17,14 @@ public class PurchaseAmount {
         }
     }
 
-    private void validateAmount(int purchaseAmount) {
-        if (purchaseAmount <= 0) {
+    private void validatePositiveAmount(int amount) {
+        if (amount <= 0) {
             throw new IllegalArgumentException(ErrorMessage.POSITIVE_AMOUNT_REQUIRED.getMessage());
         }
-        if (!isThousandUnit(purchaseAmount)) {
+    }
+
+    private void validateThousandUnitAmount(int amount) {
+        if (!isThousandUnit(amount)) {
             throw new IllegalArgumentException(
                     String.format(ErrorMessage.INVALID_AMOUNT.getMessage(), LottoRules.LOTTO_TICKET_PRICE));
         }

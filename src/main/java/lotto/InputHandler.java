@@ -42,6 +42,7 @@ public class InputHandler {
 
         while (true) {
             String input = Console.readLine();
+
             try {
                 validateNotEmptyInput(input);
                 List<Integer> numbers = parseInput(input);
