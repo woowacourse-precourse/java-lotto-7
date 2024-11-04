@@ -19,7 +19,7 @@ public class CalculateService {
 
     public Double calculateProfitRatio(List<Integer> prizeMoneyGroup, int purchaseAmount) {
         int totalPrizeMoney = prizeMoneyGroup.stream().reduce(0, Integer::sum);
-        double profitRatio = (double) ((totalPrizeMoney / purchaseAmount) * 100);
+        double profitRatio = ((double) totalPrizeMoney / purchaseAmount) * 100;
         return Math.round(profitRatio * 10)/10.0;
     }
 }
