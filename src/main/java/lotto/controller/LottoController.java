@@ -38,9 +38,7 @@ public class LottoController {
             LottoView.printLotto(lottos[i].toString());
         }
 
-        this.winningNumbers = InputParser.parseWinningNumbers(LottoView.inputWinningNumbers());
-        this.bonusNumber = InputParser.parseBonusNumber(LottoView.inputBonusNumber());
-        InputValidator.validateWinningBonusNumbers(winningNumbers, bonusNumber);
+        drawLotto();
 
         for (int i = 0; i < turn; i++) {
             String result = lottos[i].checkWinner(winningNumbers, bonusNumber);
@@ -48,6 +46,12 @@ public class LottoController {
             results.put(result, ++count);
         }
         LottoView.printResult(results, turn);
+    }
+
+    public void drawLotto() {
+        this.winningNumbers = InputParser.parseWinningNumbers(LottoView.inputWinningNumbers());
+        this.bonusNumber = InputParser.parseBonusNumber(LottoView.inputBonusNumber());
+        InputValidator.validateWinningBonusNumbers(winningNumbers, bonusNumber);
     }
 
     public void calcROR() {
