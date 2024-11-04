@@ -64,11 +64,13 @@ public class LottoService {
     }
 
     public double calculateProfitRate(Map<LottoRanking, Integer> matchedResults) {
-        long purchasedAmount = getAll().size() * PURCHASE_AMOUNT_UNIT;
-        int totalProfit = calculateTotalProfit(matchedResults);
 
-        double profitRate = (purchasedAmount / totalProfit) * 100.0;
-//        BigDecimal halfUpRate = new BigDecimal(profitRate).setScale(2, RoundingMode.HALF_UP);
+        //FIXME: 캐스팅 변환 사용하지 않기
+        double purchasedAmount = (double) getAll().size() * PURCHASE_AMOUNT_UNIT;
+        double totalProfit = (double) calculateTotalProfit(matchedResults);
+
+        double profitRate = (totalProfit / purchasedAmount) * 100.0;
+        BigDecimal halfUpRate = new BigDecimal(profitRate).setScale(2, RoundingMode.HALF_UP);
 //        profitRate = Math.round(profitRate * 100) / 100.0;
 
         return profitRate;

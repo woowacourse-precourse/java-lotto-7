@@ -9,7 +9,7 @@ public enum LottoRanking {
     NONE_RANK(0, false, 0),
     FIFTH_RANK(3, false, 5000),
     FOURTH_RANK(4, false, 50000),
-    THIRD_RANK(5, false, 150000),
+    THIRD_RANK(5, false, 1500000),
     SECOND_RANK(6, true, 30000000),
     FIRST_RANK(6, false, 2000000000);
 
@@ -46,5 +46,9 @@ public enum LottoRanking {
 
     public int getPrize() {
         return prize;
+    }
+
+    public int getCorrectCount() {
+        return correctCount;
     }
 }
