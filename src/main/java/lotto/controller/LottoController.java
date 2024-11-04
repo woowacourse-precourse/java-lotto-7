@@ -86,7 +86,7 @@ public class LottoController {
 
         for (String numberString : numbersString.split(",", -1)) {
             validateLottoNumbersString(numberString);
-            numbers.add(Integer.parseInt(numberString));
+            numbers.add(Integer.parseInt(numberString.trim()));
         }
 
         return numbers;
@@ -111,7 +111,7 @@ public class LottoController {
 
         // 너무 큰 값이 들어온 경우
         if (numberString.length() > 3) {
-            throw new IllegalArgumentException(ErrorStatus.MONEY_OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorStatus.WINNING_NUMBER_TOO_BIG.getMessage());
         }
     }
 
@@ -129,7 +129,7 @@ public class LottoController {
 
         // 너무 큰 값이 들어온 경우
         if (numberString.length() > 3) {
-            throw new IllegalArgumentException(ErrorStatus.MONEY_OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorStatus.BONUS_NUMBER_TOO_BIG.getMessage());
         }
     }
 }
