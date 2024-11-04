@@ -21,14 +21,16 @@ public class Lotto {
         }
     }
 
-    private boolean isDuplicate(List<Integer> numbers){
+    private List<Integer> getNumbers(){
+        return numbers;
+    }
+
+    public static boolean isDuplicate(List<Integer> numbers){
         Set<Integer> hashSet = new HashSet<>(numbers);
         return hashSet.size() != numbers.size();
     }
 
-    private List<Integer> getNumbers(){
-        return numbers;
-    }
+
 
     // TODO: 추가 기능 구현
 }
