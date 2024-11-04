@@ -16,20 +16,11 @@ public class Input {
 	private static final int MIN_LOTTO_NUMBER = 1;
 	private static final int MAX_LOTTO_NUMBER = 45;
 
-	private static int validateLottoPurchaseAmountFormat(String lottoPurchaseAmount) {
-		try {
-			return Integer.parseInt(lottoPurchaseAmount);
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_FORMAT_INPUT.getMessage());
-		}
-	}
-
 	public static int readPurchaseAmount() {
 		System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
 		return validateLottoPurchaseAmountFormat(Console.readLine());
 	}
-
-
+	
 	public static Lotto readAnswerLotto() {
 		System.out.println(ANSWER_LOTTO_INPUT_MESSAGE);
 		String input = Console.readLine();
@@ -48,6 +39,14 @@ public class Input {
 			return Arrays.stream(input.split(","))
 				.map((number) -> validateLottoPurchaseAmountFormat(number))
 				.collect(Collectors.toList());
+	}
+
+	private static int validateLottoPurchaseAmountFormat(String lottoPurchaseAmount) {
+		try {
+			return Integer.parseInt(lottoPurchaseAmount);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_FORMAT_INPUT.getMessage());
+		}
 	}
 
 	private static void validateLottoNumberRange(int number) {
