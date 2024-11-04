@@ -62,4 +62,14 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
+
+    @DisplayName("당첨 번호의 개수가 6개가 아닌 경우 예외가 발생한다.")
+    @Test
+    void 당첨_번호의_개수가_6개가_아니면_예외가_발생한다() {
+        // given & when
+        assertThatThrownBy(() -> Validator.validateAndParseWinningNumbers("1,2,3,4,5"))
+        // then
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 6개여야 합니다.");
+    }
 }
