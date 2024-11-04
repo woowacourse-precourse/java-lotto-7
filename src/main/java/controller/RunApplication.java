@@ -1,10 +1,12 @@
 package controller;
 
 import domain.*;
+import message.Prize;
 import view.Input;
 import view.Output;
 
 import java.util.List;
+import java.util.Map;
 
 public class RunApplication {
 
@@ -16,6 +18,7 @@ public class RunApplication {
         WinningNum winningNum = new WinningNum();
         BonusNumber bonusNum = new BonusNumber();
         Validate validate = new Validate();
+        WinningResult winningResult = new WinningResult();
 
         while(true) {
             try {
@@ -27,6 +30,10 @@ public class RunApplication {
                 String inputtedBonusNumber = input.inputBonusNumber();
                 int bonusNumber = bonusNum.generateBonusNumber(inputtedBonusNumber);
                 validate.validateBonusNumAndWinningNum(winningNumbers, bonusNumber);
+                Map<Prize, Integer> result = winningResult.calculateResult(LottosObject, winningNumbers, bonusNumber);
+                double rate = winningResult.calculateRate(result, lottoPurchased);
+                output.printResult(result);
+                output.printProfitRate(rate);
                 break;
 
             } catch (IllegalArgumentException e) {
