@@ -12,4 +12,8 @@ public class InputException extends GlobalException {
   public InputException(ExceptionEnum exceptionEnum) {
     super(exceptionEnum);
   }
+
+  public InputException(ExceptionEnum exceptionEnum, String runtimeMessage) {
+    super(exceptionEnum, runtimeMessage);
+  }
 }
