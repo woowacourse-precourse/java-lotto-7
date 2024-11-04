@@ -36,10 +36,10 @@ public class LottoController {
         LottoView.printLottos(lottoCount, lottos);
 
         // 당첨 번호 및 보너스 번호 입력 받기
-        List<Integer> winningNumbers = null;
+        Lotto winningNumbers = null;
         while (true) {
             try {
-                winningNumbers = LottoView.getWinningNumbers();
+                winningNumbers = new Lotto(LottoView.getWinningNumbers());
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -52,7 +52,7 @@ public class LottoController {
             try {
                 bonusNumber = LottoView.getBonusNumber();
 
-                validateBonusNumber(winningNumbers, bonusNumber);
+                validateBonusNumber(winningNumbers.getNumbers(), bonusNumber);
 
                 break;
             } catch (Exception e) {
@@ -72,7 +72,7 @@ public class LottoController {
         }
 
         for (Lotto lotto : lottos) {
-            Set<Integer> matchedNumbers = new HashSet<>(winningNumbers);
+            Set<Integer> matchedNumbers = new HashSet<>(winningNumbers.getNumbers());
             Set<Integer> lottoNumbers = new HashSet<>(lotto.getNumbers());
 
             boolean isBonusMatched = lottoNumbers.contains(bonusNumber);
