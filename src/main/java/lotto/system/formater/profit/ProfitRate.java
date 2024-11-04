@@ -1,22 +1,15 @@
 package lotto.system.formater.profit;
 
-public class ProfitRate {
+public record ProfitRate(double profitRate) {
 
-    private final double profitRate;
-
-    public ProfitRate(double profitRate) {
+    public ProfitRate {
         validateProfitRate(profitRate);
-        this.profitRate = profitRate;
     }
 
     private void validateProfitRate(double profitRate) {
         if (profitRate < 0) {
             throw new IllegalArgumentException("수익률은 0보다 작을 수 없습니다.");
         }
-    }
-
-    public double getProfitRate() {
-        return profitRate;
     }
 
     @Override
