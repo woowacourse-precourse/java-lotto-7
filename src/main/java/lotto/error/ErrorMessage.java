@@ -18,7 +18,7 @@ public enum ErrorMessage {
         this.errorMessage = ERROR_MESSAGE_HEADER + errorMessage;
     }
 
-    public String getErrorMessage() {
+    public String getMessage() {
         return errorMessage;
     }
 }
