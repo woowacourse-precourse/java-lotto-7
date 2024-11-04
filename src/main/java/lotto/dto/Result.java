@@ -35,6 +35,8 @@ public class Result {
     public void setBonusNumber(int bonusNumber) {
         if(lotto.getNumbers().contains(bonusNumber))
             throw new IllegalArgumentException("[ERROR] 보너스번호는 당첨번호이외의 숫자여야 합니다.");
+        if(Lotto.MIN_NUMBER > bonusNumber || Lotto.MAX_NUMBER < bonusNumber)
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자여야합니다.");
         this.bonusNumber = bonusNumber;
     }
 
