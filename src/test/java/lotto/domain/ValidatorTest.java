@@ -85,4 +85,17 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(Validator.INVALID_BONUS_NUMBER_TYPE_ERROR);
     }
+
+    @DisplayName("보너스 번호가 범위를 벗어나면 예외가 발생한다.")
+    @Test
+    void 보너스_번호가_범위를_벗어나면_예외() {
+        // given
+        String outOfRangeBonusNumber = "46";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // when & then
+        assertThatThrownBy(() -> Validator.validateAndParseBonusNumber(outOfRangeBonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Validator.INVALID_BONUS_NUMBER_RANGE_ERROR);
+    }
 }
