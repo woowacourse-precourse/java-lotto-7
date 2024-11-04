@@ -39,6 +39,9 @@ public class ResultPrinter {
 
             System.out.println(winningResultString);
         }
-        System.out.println("총 수익률은 " + Math.round(winningResult.getProfitRate() * 10) / 10.0 + "%입니다.");
+        double profitRate = winningResult.getProfitRate();
+        double profitPercent = Math.round(profitRate * 10) / 10.0;
+
+        System.out.println("총 수익률은 " + String.format("%,.1f", profitPercent) + "%입니다.");
     }
 }
