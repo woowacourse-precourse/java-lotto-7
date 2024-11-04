@@ -111,8 +111,12 @@
   - 로또 번호의 개수, 중복, 범위 초과 시 예외 발생 확인
 - **수익률 계산 테스트**
   - 다양한 당첨 결과에 따른 수익률이 정확히 계산되는지 테스트
-- **동시 우승자 테스트**
-  - 여러 명의 우승자가 발생할 경우 올바르게 처리되는지 테스트
+
+### **Validation 클래스 단위 테스트**
+- **validatePurchaseAmount** 메서드 테스트
+- **validateWinningNumbers** 메서드 테스트
+- **validateBonusNumber** 메서드 테스트
+- **validateLottoNumbers** 메서드 테스트
 
 ## 주의사항
 - **들여쓰기 깊이(depth)**: 최대 2까지만 사용
