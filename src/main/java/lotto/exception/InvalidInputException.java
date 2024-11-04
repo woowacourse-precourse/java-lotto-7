@@ -8,6 +8,7 @@ public class InvalidInputException extends IllegalArgumentException {
     public static final String NOT_MATCH_DELIMITER_ERROR = "번호는 ','로 구분되어야 합니다.";
     public static final String DUPLICATED_INPUT_ERROR = "로또 번호는 중복되지 않은 6개여야 합니다.";
     public static final String DUPLICATED_BONUS_NUMBER_ERROR = "보너스 넘버는 로또 번호와 중복되지 않은 번호여야 합니다.";
+    public static final String OUT_OF_BOUNDARY_ERROR = "번호는 1 부터 45 사이의 숫자여야 합니다.";
 
     public InvalidInputException(String message) {
         super(ERROR_PREFIX + message);

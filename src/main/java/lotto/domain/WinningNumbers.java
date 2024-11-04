@@ -27,19 +27,23 @@ public class WinningNumbers {
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         for (Integer number : winningNumbers) {
-            if (number < 0) {
-                throw new InvalidInputException(InvalidInputException.NEGATIVE_INPUT_ERROR);
+            if (isOutOfBound(number)) {
+                throw new InvalidInputException(InvalidInputException.OUT_OF_BOUNDARY_ERROR);
             }
         }
     }
 
     private void validateDuplicate(List<Integer> winningNumbers, int bonusNumber) {
-        if (bonusNumber < 0) {
-            throw new InvalidInputException(InvalidInputException.NEGATIVE_INPUT_ERROR);
+        if (isOutOfBound(bonusNumber)) {
+            throw new InvalidInputException(InvalidInputException.OUT_OF_BOUNDARY_ERROR);
         }
         if (winningNumbers.contains(bonusNumber)) {
             throw new InvalidInputException(InvalidInputException.DUPLICATED_BONUS_NUMBER_ERROR);
         }
+    }
+
+    private boolean isOutOfBound(Integer number) {
+        return number <= 0 || number > 45;
     }
 
 }
