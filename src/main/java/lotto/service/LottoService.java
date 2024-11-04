@@ -82,10 +82,6 @@ public class LottoService {
 
 
     public Double calculateYieldRate(int purchasePrice, Map<Winning, Integer> winningRankCount) {
-        if (purchasePrice == 0) {
-            return 0.0;
-        }
-
         int yield = calculateTotalWinningMoney(winningRankCount);
 
         double yieldRate = (double) yield / (double) purchasePrice * 100;
