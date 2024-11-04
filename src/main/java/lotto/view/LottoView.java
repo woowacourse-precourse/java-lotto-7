@@ -40,7 +40,7 @@ public class LottoView {
     public int readBuyingLottoCount(){
         try {
             String rawMoney = this.readMoney();
-            int money = this.parseInt(rawMoney);
+            int money = this.parsePositiveInt(rawMoney);
             return money/ LottoView.LOTTO_PRICE;
         }catch (IllegalArgumentException exception){
             return readBuyingLottoCount();
@@ -64,7 +64,7 @@ public class LottoView {
         String rawBonusNumber = Console.readLine();
         try {
             this.validateBonusNumber(rawBonusNumber);
-            return this.parseInt(rawBonusNumber);
+            return this.parsePositiveInt(rawBonusNumber);
         }catch (IllegalArgumentException exception){
             return readBonusNumber();
         }
@@ -94,7 +94,7 @@ public class LottoView {
     }
 
     public void validateMoney(String money) throws IllegalArgumentException{
-        Validator.validateDivisible(this.parseInt(money),LottoView.LOTTO_PRICE);
+        Validator.validateDivisible(this.parsePositiveInt(money),LottoView.LOTTO_PRICE);
     }
 
     public void validateWinningNumbers(String rawWinningNumbers){
@@ -112,7 +112,7 @@ public class LottoView {
     }
 
     public void validateBonusNumber(String rawBonusNumber){
-        int bonusNumber = this.parseInt(rawBonusNumber);
+        int bonusNumber = this.parsePositiveInt(rawBonusNumber);
         int startRange = NumberList.NUMBER_RANGE[NumberList.NUMBER_RANGE_START];
         int endRange = NumberList.NUMBER_RANGE[NumberList.NUMBER_RANGE_END];
         Validator.validateSpecificRange(bonusNumber, startRange,endRange);
@@ -144,7 +144,7 @@ public class LottoView {
         List<Integer> numberList = new ArrayList<>();
 
         for(String rawNumber : rawNumberList){
-            int number = parseInt(rawNumber);
+            int number = this.parsePositiveInt(rawNumber);
             numberList.add(number);
         }
 
@@ -165,14 +165,15 @@ public class LottoView {
     }
 
 
-    public int parseInt(String rawNumber){
+    public int parsePositiveInt(String rawNumber){
 
-        validateIntString(rawNumber);
+        validatePositiveNumericString(rawNumber);
 
         return Integer.parseInt(rawNumber);
     }
 
-    public void validateIntString(String rawNumber){
+    public void validatePositiveNumericString(String rawNumber){
+        Validator.validateBlankString(rawNumber);
         Validator.validateNumericString(rawNumber);
         Validator.validateIntRange(rawNumber);
         int number = Integer.parseInt(rawNumber);
