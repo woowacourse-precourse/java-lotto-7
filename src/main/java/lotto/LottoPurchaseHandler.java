@@ -12,14 +12,16 @@ public class LottoPurchaseHandler {
     private static final int LOTTO_MAX_NUMBER = 45;
     private static final int NUMBERS_PER_LOTTO = 6;
 
-    public static int getValidatedPaymentAmount() {
-        String moneyInput = InputHandler.getUserInput();
+    public static int getValidatedPaymentAmount(String moneyInput) {
+        String money = moneyInput;
 
-        try {
-            return Validator.validateMoneyInput(moneyInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + " 다시 입력해 주세요.");
-            return getValidatedPaymentAmount();
+        while (true) {
+            try {
+                return Validator.validateMoneyInput(money);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " 다시 입력해 주세요.");
+                money = InputHandler.getUserInput();
+            }
         }
     }
 

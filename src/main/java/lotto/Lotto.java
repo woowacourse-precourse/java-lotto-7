@@ -11,24 +11,29 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto getWinningNumbers() {
-        String numbersInput = InputHandler.getUserInput();
+    public static Lotto getWinningNumbers(String numbersInput) {
+        String numbers = numbersInput;
 
-        try {
-            return Lotto.getNumbersFromInput(numbersInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + "다시 입력해 주세요.");
-            return getWinningNumbers();
+        while (true) {
+            try {
+                return Lotto.getNumbersFromInput(numbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + "다시 입력해 주세요.");
+                numbers = InputHandler.getUserInput();
+            }
         }
     }
 
-    public static int getBonusNumber(Lotto winningNumbers) {
-        String numberInput = InputHandler.getUserInput();
-        try {
-            return getBonusNumberFromInput(winningNumbers, numberInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage() + " 다시 입력해 주세요.");
-            return getBonusNumber(winningNumbers);
+    public static int getBonusNumber(Lotto winningNumbers, String numberInput) {
+        String number = numberInput;
+
+        while (true) {
+            try {
+                return getBonusNumberFromInput(winningNumbers, number);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " 다시 입력해 주세요.");
+                number = InputHandler.getUserInput();
+            }
         }
     }
 
