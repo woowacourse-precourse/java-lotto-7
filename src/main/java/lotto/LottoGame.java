@@ -8,6 +8,8 @@ import java.util.List;
 
 public class LottoGame {
     
+    private static final int LOTTO_PRICE = 1000;
+    
     public void playLotto() {
         
         // 구매 금액 입력 받기
@@ -33,7 +35,7 @@ public class LottoGame {
         System.out.println("당첨 통계\n---");
         
         winningLotto.checkWinningLotto(generatedLottos, bonusLottoNumber, purchaseMoney);
-    
+        
     }
     
     public Integer generateBonusLottoNumber(Lotto winningLotto) {
@@ -42,45 +44,64 @@ public class LottoGame {
         
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
-                String inputBonusNumber = Console.readLine();
-                return validateBonusLottoNumber(inputBonusNumber, winningLotto.getNumbers());
+                return getBonusNumber(winningLotto);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println("다시 입력해 주세요.");
+                printErrorMessage(e.getMessage());
             }
         }
     }
     
+    private Integer getBonusNumber(Lotto winningLotto) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String inputBonusNumber = Console.readLine();
+        return validateBonusLottoNumber(inputBonusNumber, winningLotto.getNumbers());
+    }
+    
     private Integer validateBonusLottoNumber(String inputBonusNumber, List<Integer> numbers) {
-        Integer bonusNumber;
         
-        if (inputBonusNumber == null || inputBonusNumber.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 비어있습니다.");
-        }
-        try {
-            bonusNumber  = Integer.parseInt(inputBonusNumber);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 입력받은 문자를 숫자로 변환할 수 없습니다.");
-        }
+        validateBonusNumberEmpty(inputBonusNumber);
+        Integer bonusNumber = parseBonusNumber(inputBonusNumber);
+        validateBonusNumberRange(bonusNumber);
+        validateBonusNumberDuplicate(numbers, bonusNumber);
         
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-        
+        return bonusNumber;
+    }
+    
+    private static void validateBonusNumberDuplicate(List<Integer> numbers, Integer bonusNumber) {
         for (Integer number : numbers) {
             if (number.equals(bonusNumber)) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호에는 중복된 번호가 없어야 합니다.");
             }
         }
-        
+    }
+    
+    private static void validateBonusNumberRange(Integer bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+    
+    private static Integer parseBonusNumber(String inputBonusNumber) {
+        Integer bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(inputBonusNumber);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 입력받은 문자를 숫자로 변환할 수 없습니다.");
+        }
         return bonusNumber;
     }
     
+    private static void validateBonusNumberEmpty(String inputBonusNumber) {
+        if (inputBonusNumber == null || inputBonusNumber.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 비어있습니다.");
+        }
+    }
+    
     public Lotto generateWinningLotto() {
-        List<Integer> winningLottoNumbers = new ArrayList<>();
         
         System.out.println();
+        
+        List<Integer> winningLottoNumbers = new ArrayList<>();
         
         while (winningLottoNumbers.size() != 6) {
             try {
@@ -88,8 +109,7 @@ public class LottoGame {
                 String inputLottoNumbers = Console.readLine();
                 winningLottoNumbers = validateInputLottoNumbers(inputLottoNumbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println("다시 입력해 주세요.");
+                printErrorMessage(e.getMessage());
             }
         }
         
@@ -97,10 +117,17 @@ public class LottoGame {
     }
     
     private List<Integer> validateInputLottoNumbers(String inputLottoNumbers) {
-        if (inputLottoNumbers == null || inputLottoNumbers.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 비어있습니다.");
-        }
+        validateInputEmpty(inputLottoNumbers);
         
+        List<Integer> splits = parseInputNumbers(inputLottoNumbers);
+        
+        // 로또의 validate를 통해 검증, 여기서 에러가 안나면 통과 한다는 뜻
+        Lotto validateCheckLotto = new Lotto(splits);
+        
+        return validateCheckLotto.getNumbers();
+    }
+    
+    private static List<Integer> parseInputNumbers(String inputLottoNumbers) {
         List<Integer> splits = null;
         try {
             splits = Arrays.stream(inputLottoNumbers.split(","))
@@ -110,29 +137,32 @@ public class LottoGame {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("[ERROR] 입력한 값은 Integer 배열로 변환할 수 없습니다.");
         }
-        
-        // 로또의 validate를 통해 검증, 여기서 에러가 안나면 통과 한다는 뜻
-        Lotto validateCheckLotto = new Lotto(splits);
-        
-        return validateCheckLotto.getNumbers();
+        return splits;
+    }
+    
+    private static void validateInputEmpty(String inputLottoNumbers) {
+        if (inputLottoNumbers == null || inputLottoNumbers.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호가 비어있습니다.");
+        }
     }
     
     public List<Lotto> generateLottos(Integer money) {
         
-        List<Lotto> generatedLottos = new ArrayList<>();
-        
-        System.out.println();
-        System.out.println((money / 1000) + "개를 구매했습니다.");
-        
-        for (int i = money; i > 0; i = i - 1000) {
-            
-            Lotto lotto = generateOneLotto();
-            
-            generatedLottos.add(lotto);
-        }
+        List<Lotto> generatedLottos = createLottos(money);
         
         printGeneratedLottos(generatedLottos);
         
+        return generatedLottos;
+    }
+    
+    private List<Lotto> createLottos(Integer money) {
+        List<Lotto> generatedLottos = new ArrayList<>();
+        System.out.println();
+        System.out.println((money / LOTTO_PRICE) + "개를 구매했습니다.");
+        
+        for (int i = money; i > 0; i = i - LOTTO_PRICE) {
+            generatedLottos.add(generateOneLotto());
+        }
         return generatedLottos;
     }
     
@@ -144,12 +174,9 @@ public class LottoGame {
     }
     
     private Lotto generateOneLotto() {
-        
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        
         List<Integer> sortedNumbers = new ArrayList<>(lottoNumbers);
         sortedNumbers.sort(Integer::compareTo); // sort() 메서드로 정렬
-        
         return new Lotto(lottoNumbers);
     }
     
@@ -158,13 +185,9 @@ public class LottoGame {
         while (true) {
             try {
                 String inputMoney = inputStringMoney();
-                
                 return validateInputMoney(inputMoney);
-                
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                System.out.println("다시 입력해 주세요.");
-                System.out.println();
+                printErrorMessage(e.getMessage());
             }
         }
         
@@ -173,29 +196,40 @@ public class LottoGame {
     private String inputStringMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String inputMoney = Console.readLine();
-        
-        if (inputMoney == null || inputMoney.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력한 값이 없습니다.");
-        }
-        
+        validateMoneyEmpty(inputMoney);
         return inputMoney;
     }
     
+    private static void validateMoneyEmpty(String inputMoney) {
+        if (inputMoney == null || inputMoney.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 입력한 값이 없습니다.");
+        }
+    }
+    
     private Integer validateInputMoney(String inputMoney) {
-        Integer money = null;
-        
-        try {
-            money = Integer.parseInt(inputMoney);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력한 값은 숫자로 변환할 수 없습니다.");
-        }
-        
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하세요.");
-        }
-        
+        Integer money = parseMoneyToInteger(inputMoney);
+        validateMoneyUnit(money);
         return money;
     }
     
+    private static void validateMoneyUnit(Integer money) {
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하세요.");
+        }
+    }
+    
+    private static Integer parseMoneyToInteger(String inputMoney) {
+        try {
+            return Integer.parseInt(inputMoney);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 입력한 값은 숫자로 변환할 수 없습니다.");
+        }
+    }
+    
+    private void printErrorMessage(String message) {
+        System.out.println(message);
+        System.out.println("다시 입력해 주세요.");
+        System.out.println();
+    }
     
 }
