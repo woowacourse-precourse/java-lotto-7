@@ -1,11 +1,13 @@
 package lotto;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
     @Test
@@ -21,5 +23,20 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("로또 번호가 당첨 번호와 몇 개 일치하는지 확인한다")
+    void 당첨_확인_테스트() {
+        // given
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumbers);
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 10, 11, 12);
+
+        // when
+        int matchingCount = lotto.countMatchingNumbers(winningNumbers);
+
+        // then
+        assertThat(matchingCount).isEqualTo(3);
+    }
+
+
 }
