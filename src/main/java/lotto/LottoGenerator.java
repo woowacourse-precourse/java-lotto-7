@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Random.RandomGenerator;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class LottoGenerator {
     }
 
     private Lotto generateLotto(List<Integer> lottoNumbers) {
-        return new Lotto(lottoNumbers);
+        return new Lotto(lottoNumbers.stream().sorted().toList());
     }
 
     public List<Integer> getRandomNumber() {
