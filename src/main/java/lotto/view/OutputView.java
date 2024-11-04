@@ -1,6 +1,10 @@
 package lotto.view;
 
 import java.text.NumberFormat;
+import java.util.stream.Collectors;
+import lotto.model.Analyst;
+import lotto.model.Lotties;
+import lotto.model.Lotto;
 
 public class OutputView {
     private static String INPUT_MONEY_PROMPT = "구입금액을 입력해 주세요.";
@@ -18,5 +22,16 @@ public class OutputView {
 
     public void printBoughtLottoCounts(int lottoCounts) {
         System.out.println(lottoCounts + LOTTO_COUNTS_PROMPT);
+    }
+
+
+    public void printBoughtLottoNumbers(Lotties lotties) {
+        for (Lotto lotto : lotties.getLotties()) {
+            System.out.println(lotto.getLottoNumbers().stream()
+                    .sorted()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(", ","[","]")));
+        }
+        System.out.println();
     }
 }
