@@ -28,7 +28,7 @@ public class ResultPrinter {
             if (rank != Rank.MISS) {
                 System.out.printf(
                         MATCH_RESULT_FORMAT,
-                        rank.ordinal() + 3,
+                        rank.getMatchCount(), // 일치 개수를 rank.getMatchCount()로 가져옴
                         (rank == Rank.SECOND ? BONUS_MATCH : ""),
                         String.format("%,d", rank.getPrize()),
                         results.getOrDefault(rank, 0)
