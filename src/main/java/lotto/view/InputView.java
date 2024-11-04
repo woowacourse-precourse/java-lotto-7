@@ -62,7 +62,7 @@ public class InputView {
             try {
                 num = Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
+                throw new IllegalArgumentException(ErrorMessage.INVALID_STRING_FORMAT.getMessage());
             }
             int inputNumber = validateInputNumber(num);
             inputNumbers.add(inputNumber);
