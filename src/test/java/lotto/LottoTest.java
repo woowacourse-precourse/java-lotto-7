@@ -1,10 +1,15 @@
 package lotto;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +26,24 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @ParameterizedTest
+    @CsvSource(value = {"1,true", "7,false"})
+    void 로또_번호에_보너스_번호_포함_여부를_확인하는_테스트(int element, boolean expected) {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.isBonusNumberMatching(element)).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,3:3", "1,2,3,4:4", "1,2,3,4,5:5", "1,2,3,4,5,6:6"}, delimiter = ':')
+    void 로또_번호가_몇개나_일치하는지_확인하는_테스트(String element, int expected) {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        List<Integer> list = Arrays.stream(element.split(","))
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .toList();
+
+        assertThat(lotto.getMatchingNumberCount(list)).isEqualTo(expected);
+    }
 }

@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -47,9 +49,11 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    @ParameterizedTest
+    @ValueSource(strings = {"1000j", "", " ", "@"})
+    void 예외_테스트(String input) {
         assertSimpleTest(() -> {
-            runException("1000j");
+            runException(input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
