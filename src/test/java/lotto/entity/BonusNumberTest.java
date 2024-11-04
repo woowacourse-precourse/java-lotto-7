@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BonusNumberTest {
     private static final String TEST_TITLE_HEADER = "[BonusNumberTest] ";
@@ -36,5 +37,12 @@ public class BonusNumberTest {
         assertThatThrownBy(() -> new BonusNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
+    }
+
+    @DisplayName(TEST_TITLE_HEADER + "정상 동작 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "13", "45", "23"})
+    void 정상_동작_테스트(String input) {
+        assertThat(new BonusNumber(input).getValue()).isEqualTo(Integer.parseInt(input));
     }
 }

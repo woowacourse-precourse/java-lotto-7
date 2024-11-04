@@ -6,10 +6,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningNumberTest {
     private static final String TEST_TITLE_HEADER = "[WinningNumberTest] ";
+    private static final int VALID_LOTTO_SIZE = 6;
 
     @DisplayName(TEST_TITLE_HEADER + "당첨 번호에 빈 값이 입력되면 예외가 발생한다")
     @ParameterizedTest
@@ -54,5 +56,12 @@ public class WinningNumberTest {
         assertThatThrownBy(() -> new WinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
+    }
+
+    @DisplayName(TEST_TITLE_HEADER + "정상 동작 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6", "45,44,43,42,41,40"})
+    void 정상_동작_테스트(String input) {
+        assertThat(new WinningNumber(input).getValue().getNumbers().size()).isEqualTo(VALID_LOTTO_SIZE);
     }
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PriceTest {
@@ -54,5 +55,12 @@ public class PriceTest {
         assertThatThrownBy(() -> new Price(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.PRICE_NOT_MULTIPLE_OF_THOUSAND.getMessage());
+    }
+
+    @DisplayName(TEST_TITLE_HEADER + "정상 동작 테스트")
+    @ParameterizedTest
+    @ValueSource(strings = {"1000", "8000", "1004000"})
+    void 정상_동작_테스트(String input) {
+        assertThat(new Price(input).getValue()).isEqualTo(Integer.parseInt(input));
     }
 }
