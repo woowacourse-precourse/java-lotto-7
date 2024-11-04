@@ -14,8 +14,6 @@ public enum Rank {
     private int match;
     private int amount;
 
-    static DecimalFormat formatter = new DecimalFormat("###,###");
-
     public static Rank[] ranks = {
             FIRST,SECOND,THIRD, FORTH, FIFTH
     };
@@ -36,23 +34,5 @@ public enum Rank {
 
     public int getAmount() {
         return amount;
-    }
-
-    public static void print(int[] result) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("당첨 통계\n---\n");
-        for (int i = 4; i >=0 ; i--) {
-            sb.append(Rank.ranks[i].getMatch());
-            sb.append("개 일치");
-            if(i == 1) {
-                sb.append(", 보너스 볼 일치");
-            }
-            sb.append(" (");
-            sb.append(formatter.format(Rank.ranks[i].getAmount()));
-            sb.append("원) - ");
-            sb.append(result[i]);
-            sb.append("개\n");
-        }
-        System.out.println(sb);
     }
 }

@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -14,6 +15,7 @@ public class LottoMachine {
     int pay;
     int prize = 0;
     int bonus;
+    DecimalFormat formatter = new DecimalFormat("###,###");
 
     public int validateMoney(String str) {
         int length = str.length();
@@ -82,13 +84,31 @@ public class LottoMachine {
                 result[rank.getSerial() - 1] += 1;
             }
         }
-        Rank.print(result);
+        print(result);
     }
 
     public void printBenefitRate() {
         double ben = ((double)prize/(double)pay)*100;
 
         System.out.println("총 수익률은 " + String.format("%.1f", ben) + "%입니다.");
+    }
+
+    public void print(int[] result) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("당첨 통계\n---\n");
+        for (int i = 4; i >=0 ; i--) {
+            sb.append(Rank.ranks[i].getMatch());
+            sb.append("개 일치");
+            if(i == 1) {
+                sb.append(", 보너스 볼 일치");
+            }
+            sb.append(" (");
+            sb.append(formatter.format(Rank.ranks[i].getAmount()));
+            sb.append("원) - ");
+            sb.append(result[i]);
+            sb.append("개\n");
+        }
+        System.out.println(sb);
     }
 
 

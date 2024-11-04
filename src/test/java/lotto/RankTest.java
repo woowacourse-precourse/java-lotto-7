@@ -9,8 +9,10 @@ class RankTest extends IOTest{
     @Test
     void printTest() {
 
+        LottoMachine machine = new LottoMachine();
+
         int[] result = {0,0,0,0,1};
-        Rank.print(result);
+        machine.print(result);
 
         assertThat(getOutput()).contains(
                 "당첨 통계\n" +
