@@ -5,6 +5,10 @@ import java.util.List;
 
 public class LottoValidator {
     public static void validateNumbers(List<Integer> numbers) {
+    	if (numbers == null || numbers.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호 리스트가 비어 있습니다.");
+        }
+    	
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자여야 합니다.");
         }

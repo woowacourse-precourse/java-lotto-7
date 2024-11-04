@@ -21,10 +21,13 @@ public class InputView {
     }
 
     public static List<Integer> requestWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+    	System.out.println("당첨 번호를 입력해 주세요.");
         String input = readInput();
-        List<Integer> numbers = parseInputNumbers(input);
-        return numbers;
+        try {
+            return parseInputNumbers(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로 입력해야 합니다.");
+        }
     }
 
     public static int requestBonusNumber() {

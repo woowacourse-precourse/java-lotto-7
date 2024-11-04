@@ -55,4 +55,21 @@ class LottoTest {
                 .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
+    @Test
+    void 보너스번호_범위_예외() {
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int outOfRangeBonus = 46;  // 45보다 큼
+        assertThatThrownBy(() -> LottoValidator.validateBonusNumber(outOfRangeBonus, validNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    void 보너스번호_중복_예외() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int duplicateBonus = 3;  // 당첨 번호와 중복
+        assertThatThrownBy(() -> LottoValidator.validateBonusNumber(duplicateBonus, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    }
 }
