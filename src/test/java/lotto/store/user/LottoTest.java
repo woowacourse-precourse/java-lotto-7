@@ -1,7 +1,6 @@
-package lotto;
+package lotto.store.user;
 
 import java.util.Arrays;
-import lotto.store.user.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

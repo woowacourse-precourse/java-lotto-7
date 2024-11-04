@@ -1,4 +1,4 @@
-package lotto;
+package lotto.store.winning;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import lotto.store.user.Lotto;
-import lotto.store.winning.BonusNumber;
-import lotto.store.winning.WinningLotto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

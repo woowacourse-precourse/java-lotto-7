@@ -1,8 +1,7 @@
-package lotto;
+package lotto.store.machine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.store.machine.LottoMachine;
 import lotto.store.user.Cash;
 import org.junit.jupiter.api.Test;
 

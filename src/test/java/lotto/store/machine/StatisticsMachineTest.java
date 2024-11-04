@@ -1,9 +1,8 @@
-package lotto;
+package lotto.store.machine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.store.machine.StatisticalMachine;
 import lotto.store.user.Cash;
 import lotto.store.user.Lotto;
 import lotto.store.user.LottoTickets;

@@ -1,11 +1,9 @@
-package lotto;
+package lotto.store.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.store.user.Lotto;
-import lotto.store.user.LottoTickets;
 import lotto.util.RandomNumber;
 import org.junit.jupiter.api.Test;
 

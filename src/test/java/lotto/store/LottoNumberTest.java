@@ -1,9 +1,8 @@
-package lotto;
+package lotto.store;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import lotto.store.LottoNumber;
 import org.junit.jupiter.api.Test;
 
 class LottoNumberTest {
