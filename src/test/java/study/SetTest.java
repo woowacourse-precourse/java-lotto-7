@@ -27,7 +27,7 @@ public class SetTest {
     @Test
     @DisplayName("테스트메서드 의도")
     void test() {
-        assertThat (numbers.size()).isEqualTo(5);
+        assertThat(numbers.size()).isEqualTo(5);
     }
 
 

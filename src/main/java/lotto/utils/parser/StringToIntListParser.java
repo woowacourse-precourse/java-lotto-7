@@ -1,8 +1,9 @@
 package lotto.utils.parser;
 
+import static lotto.utils.constants.Constants.DELIMITER;
+
 import java.util.Arrays;
 import java.util.List;
-import static lotto.utils.constants.Constants.DELIMITER;
 
 public class StringToIntListParser implements Parser<List<Integer>> {
 

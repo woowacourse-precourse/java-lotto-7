@@ -15,7 +15,7 @@ public class StringToIntListParserTest {
 
     @Nested
     @DisplayName("[parse] 문자열의 Int 리스트로의 파싱이 잘 이루어지는 지 테스트한다.")
-    class ParseTest{
+    class ParseTest {
         @Test
         @DisplayName("[Parsing] 숫자와 Delimiter로 이루어진 문자열이 들어올 때 성공적으로 int List 로의 변환이 된다.")
         public void Given_ValidInput_When_ParseStringToIntList_Then_ReturnListOfInts() {

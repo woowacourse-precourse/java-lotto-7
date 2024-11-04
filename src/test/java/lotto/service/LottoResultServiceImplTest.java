@@ -39,9 +39,9 @@ public class LottoResultServiceImplTest {
         LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
         PositiveIntValidator positiveIntValidator = new PositiveIntValidator();
 
-        winningNumbersValidator = new WinningNumbersValidator(positiveIntValidator,lottoNumberValidator);
+        winningNumbersValidator = new WinningNumbersValidator(positiveIntValidator, lottoNumberValidator);
 
-        bonusNumberValidator = new BonusNumberValidator(positiveIntValidator,lottoNumberValidator);
+        bonusNumberValidator = new BonusNumberValidator(positiveIntValidator, lottoNumberValidator);
 
         this.stringToIntListParser = new StringToIntListParser();
 

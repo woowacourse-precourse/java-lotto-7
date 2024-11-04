@@ -1,5 +1,16 @@
 package lotto.view.output;
 
+import static lotto.constants.LottoRank.FIFTH;
+import static lotto.constants.LottoRank.FIRST;
+import static lotto.constants.LottoRank.SECOND;
+import static lotto.view.constants.NumberOutputFormat.PRIZE_FORMAT;
+import static lotto.view.constants.NumberOutputFormat.PROFIT_RATE_FORMAT;
+import static lotto.view.constants.OutputMessages.PROFIT_RATE;
+import static lotto.view.constants.OutputMessages.PURCHASE_NOTICE;
+import static lotto.view.constants.OutputMessages.RESPONSE_RANK;
+import static lotto.view.constants.OutputMessages.RESPONSE_RANK_WITH_BONUS;
+import static lotto.view.constants.OutputMessages.WINNING_STATISTICS;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,19 +22,15 @@ import lotto.dto.LottosDto;
 import lotto.dto.ProfitDto;
 import lotto.dto.RankResultsDto;
 
-import static lotto.constants.LottoRank.*;
-import static lotto.view.constants.OutputMessages.*;
-import static lotto.view.constants.NumberOutputFormat.*;
-
 public class ConsoleOutputView implements OutputView {
 
     @Override
     public void outputPurchaseLottoList(LottosDto lottosDto) {
         int lottoCount = lottosDto.lottoDtos().size();
-        System.out.printf(PURCHASE_NOTICE.getMessage(),lottoCount);
+        System.out.printf(PURCHASE_NOTICE.getMessage(), lottoCount);
 
         for (LottoDto lottoDto : lottosDto.lottoDtos()) {
-            List<Integer> lottoNumbers = new ArrayList<> (lottoDto.lottoNumbers());
+            List<Integer> lottoNumbers = new ArrayList<>(lottoDto.lottoNumbers());
 
             Collections.sort(lottoNumbers);
             System.out.println(lottoNumbers);
@@ -39,7 +46,6 @@ public class ConsoleOutputView implements OutputView {
     }
 
 
-
     @Override
     public void outputErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
@@ -49,12 +55,12 @@ public class ConsoleOutputView implements OutputView {
         HashMap<Integer, Integer> rankedResults = rankResultsDto.rankResults();
 
         for (int rank = FIFTH.getRank(); rank >= FIRST.getRank(); rank--) {
-            outputRankResult(rank, rankedResults.getOrDefault(rank,0));
+            outputRankResult(rank, rankedResults.getOrDefault(rank, 0));
         }
 
     }
 
-    private void outputRankResult(int rank, int winCount){
+    private void outputRankResult(int rank, int winCount) {
         LottoRank rankPrize = LottoRank.getByRank(rank);
 
         int numberMatchCount = rankPrize.getMatchCount();
@@ -72,7 +78,7 @@ public class ConsoleOutputView implements OutputView {
 
     private void outputProfitRate(ProfitDto profitDto) {
         String formattedProfitRate = PROFIT_RATE_FORMAT.getFormat().format(profitDto.profitRate());
-        System.out.printf(PROFIT_RATE.getMessage(),formattedProfitRate);
+        System.out.printf(PROFIT_RATE.getMessage(), formattedProfitRate);
     }
 
 

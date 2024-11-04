@@ -16,7 +16,7 @@ public class LottoNumbersGeneratorTest {
 
     @Nested
     @DisplayName("[generate]생성되는 로또 번호의 유효성을 검증한다")
-    class generateTest{
+    class generateTest {
         @Test
         @DisplayName("[generate] 범위 내에 속하며, 중복되는 숫자 없이 로또 번호들이 생성되었다.")
         public void Given_LottoNumbersGenerator_When_Generate_Then_ReturnValidNumbers() {

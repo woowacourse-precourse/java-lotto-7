@@ -62,8 +62,9 @@ public class MatchResultsTest {
             FinalResultsDto finalResults = results.buildFinalResultsDto();
 
             // 기대하는 총 수익 및 수익률 계산
-            long expectedTotalProfit = FIRST.getPrize() +SECOND.getPrize() + FIFTH.getPrize(); // 1등과 5등의 수익
-            double expectedProfitRate = (double) expectedTotalProfit / (lottosDto.lottoDtos().size() * LOTTO_PRICE.getValue()) * 100.0f;
+            long expectedTotalProfit = FIRST.getPrize() + SECOND.getPrize() + FIFTH.getPrize(); // 1등과 5등의 수익
+            double expectedProfitRate =
+                    (double) expectedTotalProfit / (lottosDto.lottoDtos().size() * LOTTO_PRICE.getValue()) * 100.0f;
 
             ProfitDto profitDto = finalResults.profitDto();
 

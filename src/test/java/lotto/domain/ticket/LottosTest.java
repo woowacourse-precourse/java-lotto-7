@@ -60,7 +60,7 @@ public class LottosTest {
 
     @Nested
     @DisplayName("[getLottos] 로또들이 정상적으로 반환되는 지 확인한다")
-    class GetLottosTest{
+    class GetLottosTest {
 
         @Test
         @DisplayName("[return] 정상적으로 로또들을 반환한다")

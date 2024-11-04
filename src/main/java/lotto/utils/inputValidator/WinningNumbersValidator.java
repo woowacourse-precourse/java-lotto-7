@@ -1,8 +1,8 @@
 package lotto.utils.inputValidator;
 
+import static lotto.constants.LottoTicket.NUMBERS_PER_LOTTO;
 import static lotto.exception.ErrorMessages.EMPTY_INPUT;
 import static lotto.exception.ErrorMessages.NUMBER_COUNT_MISMATCH;
-import static lotto.constants.LottoTicket.NUMBERS_PER_LOTTO;
 import static lotto.utils.constants.Constants.DELIMITER;
 
 public class WinningNumbersValidator implements InputValidator<String> {
@@ -38,7 +38,8 @@ public class WinningNumbersValidator implements InputValidator<String> {
         }
 
         if (rawWinningNumberList.length != NUMBERS_PER_LOTTO.getValue()) {
-            throw new IllegalArgumentException(String.format(NUMBER_COUNT_MISMATCH.getMessage(), NUMBERS_PER_LOTTO.getValue()));
+            throw new IllegalArgumentException(
+                    String.format(NUMBER_COUNT_MISMATCH.getMessage(), NUMBERS_PER_LOTTO.getValue()));
         }
     }
 

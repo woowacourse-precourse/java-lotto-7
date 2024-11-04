@@ -25,7 +25,7 @@ public class LottoGameController {
 
     }
 
-    public void run (){
+    public void run() {
 
         LottosDto lottosDto = executeLottoPurchase();
         consoleOutputView.outputPurchaseLottoList(lottosDto);
@@ -33,49 +33,49 @@ public class LottoGameController {
         handleWinningNumbersInput();
         handleBonusNumberInput();
 
-        FinalResultsDto finalResultsDto =  lottoResultServiceImpl.getFinalResultsDto(lottosDto);
+        FinalResultsDto finalResultsDto = lottoResultServiceImpl.getFinalResultsDto(lottosDto);
         consoleOutputView.outputFinalResult(finalResultsDto);
 
     }
 
-    private LottosDto executeLottoPurchase(){
+    private LottosDto executeLottoPurchase() {
         while (true) {
-            try{
-                String rawPurchaseAmount =  consoleInputView.inputPurchaseAmount();
+            try {
+                String rawPurchaseAmount = consoleInputView.inputPurchaseAmount();
                 lottoPurchaseServiceImpl.purchaseLottos(rawPurchaseAmount);
 
                 break;
 
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 consoleOutputView.outputErrorMessage(e.getMessage());
             }
         }
         return lottoPurchaseServiceImpl.getLottosDto();
     }
 
-    private void handleWinningNumbersInput(){
-        while (true){
+    private void handleWinningNumbersInput() {
+        while (true) {
             try {
-                String rawWinningNumbers =  consoleInputView.inputWinningNumbers();
+                String rawWinningNumbers = consoleInputView.inputWinningNumbers();
                 lottoResultServiceImpl.receiveWinningLottoNumbers(rawWinningNumbers);
 
                 break;
 
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 consoleOutputView.outputErrorMessage(e.getMessage());
             }
         }
     }
 
-    private void handleBonusNumberInput(){
-        while (true){
-            try{
-                String rawBonusNumber =  consoleInputView.inputBonusNumber();
+    private void handleBonusNumberInput() {
+        while (true) {
+            try {
+                String rawBonusNumber = consoleInputView.inputBonusNumber();
                 lottoResultServiceImpl.receiveBonusNumber(rawBonusNumber);
 
                 break;
 
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 consoleOutputView.outputErrorMessage(e.getMessage());
             }
         }

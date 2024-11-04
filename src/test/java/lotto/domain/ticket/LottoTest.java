@@ -24,7 +24,14 @@ public class LottoTest {
 
     @Nested
     @DisplayName("[validate] 로또 생성 시 번호 리스트의 유효성을 검증한다")
-    class ValidateWhenCreateLottoTest{
+    class ValidateWhenCreateLottoTest {
+
+        private static Stream<List<Integer>> outOfRangeNumbersProvider() {
+            return Stream.of(
+                    List.of(0, 1, 2, 3, 4, 5),
+                    List.of(1, 2, 3, 4, 5, 51)
+            );
+        }
 
         @Test
         @DisplayName("[create] 옳바른 형태의 리스트가 들어오면 정상적으로 로또가 생성된다")
@@ -43,9 +50,10 @@ public class LottoTest {
             List<Integer> invalidCountNumbers = List.of(1, 2, 3); // 번호 개수 불일치
 
             // When & Then
-            assertThatThrownBy(()-> new Lotto(invalidCountNumbers))
+            assertThatThrownBy(() -> new Lotto(invalidCountNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(String.format(NUMBER_COUNT_MISMATCH.getMessage(),NUMBERS_PER_LOTTO.getValue()));
+                    .hasMessageContaining(
+                            String.format(NUMBER_COUNT_MISMATCH.getMessage(), NUMBERS_PER_LOTTO.getValue()));
         }
 
         @ParameterizedTest
@@ -56,14 +64,8 @@ public class LottoTest {
             // When & Then
             assertThatThrownBy(() -> new Lotto(outOfRangeNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(String.format(OUT_OF_RANGE.getMessage(), LOWER_BOUND.getValue(), UPPER_BOUND.getValue()));
-        }
-
-        private static Stream<List<Integer>> outOfRangeNumbersProvider() {
-            return Stream.of(
-                    List.of(0, 1, 2, 3, 4, 5),
-                    List.of(1, 2, 3, 4, 5, 51)
-            );
+                    .hasMessageContaining(
+                            String.format(OUT_OF_RANGE.getMessage(), LOWER_BOUND.getValue(), UPPER_BOUND.getValue()));
         }
 
         @Test
@@ -73,7 +75,7 @@ public class LottoTest {
             List<Integer> duplicateNumbers = List.of(1, 2, 3, 3, 5, 6); // 중복된 번호
 
             // When & Then
-            assertThatThrownBy(()-> new Lotto(duplicateNumbers))
+            assertThatThrownBy(() -> new Lotto(duplicateNumbers))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(NUMBER_DUPLICATION.getMessage());
         }
@@ -81,7 +83,7 @@ public class LottoTest {
 
     @Nested
     @DisplayName("[getNumbers] 로또의 번호들이 정상적으로 반환되는 지 확인한다")
-    class GetNumbersTest{
+    class GetNumbersTest {
 
         @Test
         @DisplayName("[return] 정상적으로 로또의 번호들을 반환한다")

@@ -6,8 +6,8 @@ import lotto.domain.ticket.LottoFactory;
 import lotto.domain.ticket.Lottos;
 import lotto.dto.LottosDto;
 import lotto.service.mapper.DtoMapper;
-import lotto.utils.parser.Parser;
 import lotto.utils.inputValidator.InputValidator;
+import lotto.utils.parser.Parser;
 
 public class LottoPurchaseServiceImpl implements LottoPurchaseService {
     private final DtoMapper<Lottos, LottosDto> lottosDtoMapper;
@@ -28,6 +28,9 @@ public class LottoPurchaseServiceImpl implements LottoPurchaseService {
         this.stringToIntParser = stringToIntParser;
     }
 
+    private static int getLottoCount(int purchaseAmount) {
+        return purchaseAmount / LOTTO_PRICE.getValue();
+    }
 
     @Override
     public void purchaseLottos(String rawPurchaseAmount) {
@@ -41,10 +44,5 @@ public class LottoPurchaseServiceImpl implements LottoPurchaseService {
     @Override
     public LottosDto getLottosDto() {
         return lottosDtoMapper.toDto(lottos);
-    }
-
-
-    private static int getLottoCount( int purchaseAmount ) {
-        return purchaseAmount / LOTTO_PRICE.getValue();
     }
 }

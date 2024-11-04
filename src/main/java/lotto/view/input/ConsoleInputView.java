@@ -1,7 +1,10 @@
 package lotto.view.input;
 
+import static lotto.view.constants.InputMessages.INPUT_BONUS_NUMBER;
+import static lotto.view.constants.InputMessages.INPUT_PURCHASE_AMOUNT;
+import static lotto.view.constants.InputMessages.INPUT_WINNING_NUMBERS;
+
 import camp.nextstep.edu.missionutils.Console;
-import static lotto.view.constants.InputMessages.*;
 
 public class ConsoleInputView implements InputView {
 

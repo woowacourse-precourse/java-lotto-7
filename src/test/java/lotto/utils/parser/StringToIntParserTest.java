@@ -2,7 +2,6 @@ package lotto.utils.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,7 @@ public class StringToIntParserTest {
 
     @Nested
     @DisplayName("[parse] 문자열의 int로의 파싱이 잘 이루어지는 지 테스트한다")
-    class ParseTest{
+    class ParseTest {
         @Test
         @DisplayName("[parsing] 유효한 문자열이 들어오면 성공적으로 Int를 반한한다.")
         public void Given_ValidInput_When_ParseStringToInt_Then_ReturnInt() {
@@ -57,10 +56,6 @@ public class StringToIntParserTest {
             assertEquals(expected, actual);
         }
     }
-
-
-
-
 
 
 }

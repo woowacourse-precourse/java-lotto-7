@@ -42,9 +42,9 @@ public class LottoPurchaseServiceImplTest {
         this.stringToIntParser = new StringToIntParser();
         this.lottoPurchaseService = new LottoPurchaseServiceImpl(
                 lottoFactory
-                ,lottosDtoMapper
-                ,purchaseAmountValidator
-                ,stringToIntParser);
+                , lottosDtoMapper
+                , purchaseAmountValidator
+                , stringToIntParser);
 
     }
 
@@ -99,7 +99,7 @@ public class LottoPurchaseServiceImplTest {
 
             //then
             assertThat(actualDto).isNotNull();
-            assertThat(actualDto.lottoDtos().size()).isEqualTo(purchaseAmount/LOTTO_PRICE.getValue());
+            assertThat(actualDto.lottoDtos().size()).isEqualTo(purchaseAmount / LOTTO_PRICE.getValue());
         }
     }
 }

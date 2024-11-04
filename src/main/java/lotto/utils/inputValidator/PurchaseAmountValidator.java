@@ -1,9 +1,9 @@
 package lotto.utils.inputValidator;
 
-import static lotto.exception.ErrorMessages.BEYOND_LIMIT;
-import static lotto.exception.ErrorMessages.NOT_DIVIDED_BY_LOTTO_PRICE;
 import static lotto.constants.LottoTicket.LOTTO_PRICE;
 import static lotto.constants.LottoTicket.PURCHASE_LIMIT;
+import static lotto.exception.ErrorMessages.BEYOND_LIMIT;
+import static lotto.exception.ErrorMessages.NOT_DIVIDED_BY_LOTTO_PRICE;
 
 public class PurchaseAmountValidator implements InputValidator<String> {
 
@@ -22,14 +22,15 @@ public class PurchaseAmountValidator implements InputValidator<String> {
         validateNotBeyondPurchaseLimit(purchasePrice);
     }
 
-    private void validateDividedByLottoPrice (int purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRICE.getValue() != 0){
-            throw new IllegalArgumentException(String.format(NOT_DIVIDED_BY_LOTTO_PRICE.getMessage(),LOTTO_PRICE.getValue()));
+    private void validateDividedByLottoPrice(int purchaseAmount) {
+        if (purchaseAmount % LOTTO_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(
+                    String.format(NOT_DIVIDED_BY_LOTTO_PRICE.getMessage(), LOTTO_PRICE.getValue()));
         }
     }
 
-    private void validateNotBeyondPurchaseLimit (int purchaseAmount) {
-        if (purchaseAmount > PURCHASE_LIMIT.getValue()){
+    private void validateNotBeyondPurchaseLimit(int purchaseAmount) {
+        if (purchaseAmount > PURCHASE_LIMIT.getValue()) {
             throw new IllegalArgumentException(String.format(BEYOND_LIMIT.getMessage(), PURCHASE_LIMIT.getValue()));
         }
     }

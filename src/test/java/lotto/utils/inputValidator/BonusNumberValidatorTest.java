@@ -18,7 +18,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class BonusNumberValidatorTest {
     private final PositiveIntValidator positiveIntValidator = new PositiveIntValidator();
     private final LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
-    private final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator(positiveIntValidator, lottoNumberValidator);
+    private final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator(positiveIntValidator,
+            lottoNumberValidator);
 
 
     @Nested
@@ -26,28 +27,28 @@ public class BonusNumberValidatorTest {
     class ValidateWithComparison {
         @Test
         @DisplayName("[Pass] 정상적인 조건의 입력값은 아무런 행동도 하지 않는다.")
-        void Given_ValidInput_When_ValidateWithComparison_Then_DoNothing(){
+        void Given_ValidInput_When_ValidateWithComparison_Then_DoNothing() {
             //given
             final String VALID_INPUT = VALID_RAW_BONUS_NUMBER.getInput();
-            final List<Integer> VALID_WINNING_NUMBERS = Arrays.asList(1,2,3,4,5,6);
+            final List<Integer> VALID_WINNING_NUMBERS = Arrays.asList(1, 2, 3, 4, 5, 6);
 
             //when & then
-            assertDoesNotThrow(()-> bonusNumberValidator.validateWithComparison(VALID_INPUT, VALID_WINNING_NUMBERS));
+            assertDoesNotThrow(() -> bonusNumberValidator.validateWithComparison(VALID_INPUT, VALID_WINNING_NUMBERS));
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {"1","3","5"}) //given
+        @ValueSource(strings = {"1", "3", "5"}) //given
         @DisplayName("[Exception] 당첨 번호와 보너스 번호가 중복되는 경우 예외를 던진다.")
-        void Given_Duplication_When_ValidateWithComparison_Then_ThrowException(String invalidInput){
+        void Given_Duplication_When_ValidateWithComparison_Then_ThrowException(String invalidInput) {
             //given
             final String INVALID_INPUT = invalidInput;
-            final List<Integer> VALID_WINNING_NUMBERS = Arrays.asList(1,2,3,4,5,6);
-
+            final List<Integer> VALID_WINNING_NUMBERS = Arrays.asList(1, 2, 3, 4, 5, 6);
 
             //when & then
-            assertThatThrownBy(()-> bonusNumberValidator.validateWithComparison(INVALID_INPUT, VALID_WINNING_NUMBERS))
+            assertThatThrownBy(() -> bonusNumberValidator.validateWithComparison(INVALID_INPUT, VALID_WINNING_NUMBERS))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(String.format(BONUS_NUMBER_DUPLICATION.getMessage(), Integer.parseInt(INVALID_INPUT)));
+                    .hasMessageContaining(
+                            String.format(BONUS_NUMBER_DUPLICATION.getMessage(), Integer.parseInt(INVALID_INPUT)));
         }
 
 

@@ -9,14 +9,13 @@ import lotto.service.mapper.LottoDtoMapper;
 import lotto.service.mapper.LottosDtoMapper;
 
 public class DtoMapperConfig {
-    public DtoMapper<Lottos, LottosDto> lottosDtoMapper(){
+    public DtoMapper<Lottos, LottosDto> lottosDtoMapper() {
         return new LottosDtoMapper(lottoDtoMapper());
     }
 
-    public DtoMapper<Lotto, LottoDto> lottoDtoMapper(){
+    public DtoMapper<Lotto, LottoDto> lottoDtoMapper() {
         return new LottoDtoMapper();
     }
-
 
 
 }

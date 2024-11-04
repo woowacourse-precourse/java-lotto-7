@@ -25,23 +25,24 @@ public class PurchaseAmountValidatorTest {
 
         @Test
         @DisplayName("[Pass] 정상적인 조건의 로또 구매 금액은 아무런 행동도 하지 않는다.")
-        void Given_ValidInput_When_ValidateDividedByLottoPrice_Then_DoNothing(){
+        void Given_ValidInput_When_ValidateDividedByLottoPrice_Then_DoNothing() {
             //given
             final String VALID_INPUT = VALID_RAW_PURCHASE_AMOUNT.getInput();
 
             //when & then
-            assertDoesNotThrow(()-> purchaseAmountValidator.validate(VALID_INPUT));
+            assertDoesNotThrow(() -> purchaseAmountValidator.validate(VALID_INPUT));
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {"810","1880","124523"}) //given
+        @ValueSource(strings = {"810", "1880", "124523"}) //given
         @DisplayName("[Exception] 입력값이 로또 가격으로 나누어떨어지지 않는 경우 예외를 던진다.")
-        void Given_NotDividedByLottoPrice_When_ValidateDividedByLottoPrice_Then_ThrowException(String invalidInput){
+        void Given_NotDividedByLottoPrice_When_ValidateDividedByLottoPrice_Then_ThrowException(String invalidInput) {
 
             //when & then
-            assertThatThrownBy(()-> purchaseAmountValidator.validate(invalidInput))
+            assertThatThrownBy(() -> purchaseAmountValidator.validate(invalidInput))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(String.format(NOT_DIVIDED_BY_LOTTO_PRICE.getMessage(),LOTTO_PRICE.getValue()));
+                    .hasMessageContaining(
+                            String.format(NOT_DIVIDED_BY_LOTTO_PRICE.getMessage(), LOTTO_PRICE.getValue()));
         }
     }
 
@@ -52,23 +53,23 @@ public class PurchaseAmountValidatorTest {
 
         @Test
         @DisplayName("[Pass] 정상적인 조건의 로또 구매 금액은 아무런 행동도 하지 않는다.")
-        void Given_ValidInput_When_ValidateNotBeyondPurchaseLimit_Then_DoNothing(){
+        void Given_ValidInput_When_ValidateNotBeyondPurchaseLimit_Then_DoNothing() {
             //given
             final String VALID_INPUT = VALID_RAW_PURCHASE_AMOUNT.getInput();
 
             //when & then
-            assertDoesNotThrow(()-> purchaseAmountValidator.validate(VALID_INPUT));
+            assertDoesNotThrow(() -> purchaseAmountValidator.validate(VALID_INPUT));
         }
 
         @ParameterizedTest
-        @ValueSource(strings = {"1000000","500000000"}) //given
+        @ValueSource(strings = {"1000000", "500000000"}) //given
         @DisplayName("[Exception] 입력값이 로또 가격으로 나누어떨어지지 않는 경우 예외를 던진다.")
-        void Given_BeyondPurchaseLimit_When_ValidateNotBeyondPurchaseLimit_Then_ThrowException(String invalidInput){
+        void Given_BeyondPurchaseLimit_When_ValidateNotBeyondPurchaseLimit_Then_ThrowException(String invalidInput) {
 
             //when & then
-            assertThatThrownBy(()-> purchaseAmountValidator.validate(invalidInput))
+            assertThatThrownBy(() -> purchaseAmountValidator.validate(invalidInput))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(String.format(BEYOND_LIMIT.getMessage(),PURCHASE_LIMIT.getValue()));
+                    .hasMessageContaining(String.format(BEYOND_LIMIT.getMessage(), PURCHASE_LIMIT.getValue()));
         }
     }
 }

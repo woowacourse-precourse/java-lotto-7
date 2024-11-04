@@ -13,11 +13,11 @@ import lotto.service.puchase.LottoPurchaseService;
 import lotto.service.puchase.LottoPurchaseServiceImpl;
 import lotto.service.result.LottoResultService;
 import lotto.service.result.LottoResultServiceImpl;
+import lotto.utils.inputValidator.InputValidator;
+import lotto.utils.inputValidator.comparison.ComparisonValidator;
 import lotto.utils.parser.Parser;
 import lotto.utils.parser.StringToIntListParser;
 import lotto.utils.parser.StringToIntParser;
-import lotto.utils.inputValidator.comparison.ComparisonValidator;
-import lotto.utils.inputValidator.InputValidator;
 import lotto.view.input.ConsoleInputView;
 import lotto.view.input.InputView;
 import lotto.view.output.ConsoleOutputView;
@@ -37,19 +37,19 @@ public class AppConfig {
     }
 
 
-    public OutputView outputView(){
+    public OutputView outputView() {
         return new ConsoleOutputView();
     }
 
-    public InputView inputView(){
+    public InputView inputView() {
         return new ConsoleInputView();
     }
 
-    public Parser<Integer> stringToIntparser(){
+    public Parser<Integer> stringToIntparser() {
         return new StringToIntParser();
     }
 
-    public Parser<List<Integer>> stringToIntListParser(){
+    public Parser<List<Integer>> stringToIntListParser() {
         return new StringToIntListParser();
     }
 
@@ -57,9 +57,9 @@ public class AppConfig {
         DtoMapper<Lottos, LottosDto> lottosDtoMapper = dtoMapperConfig.lottosDtoMapper();
         InputValidator<String> purchaseAmountValidator = validatorConfig.purchaseAmountValidator();
         return new LottoPurchaseServiceImpl(defaultlottoFactory()
-                ,lottosDtoMapper,
+                , lottosDtoMapper,
                 purchaseAmountValidator
-                ,stringToIntparser());
+                , stringToIntparser());
     }
 
     public LottoResultService lottoResultService() {
@@ -67,13 +67,13 @@ public class AppConfig {
         ComparisonValidator bonusNumberValidator = validatorConfig.BonusNumberValidator();
 
         return new LottoResultServiceImpl(winningNumbersValidator
-                ,bonusNumberValidator
-                ,stringToIntListParser()
-                ,stringToIntparser());
+                , bonusNumberValidator
+                , stringToIntListParser()
+                , stringToIntparser());
     }
 
     public LottoGameController lottoGameController() {
-        return new LottoGameController(outputView(),inputView(),lottoPurchaseService(),lottoResultService());
+        return new LottoGameController(outputView(), inputView(), lottoPurchaseService(), lottoResultService());
     }
 
 }

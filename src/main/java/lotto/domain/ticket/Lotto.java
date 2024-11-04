@@ -12,7 +12,7 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers ) {
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
@@ -28,24 +28,26 @@ public class Lotto {
         }
         validateNoDuplication(numbers);
     }
+
     private void validateNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != NUMBERS_PER_LOTTO.getValue() ){
-            throw new IllegalArgumentException(String.format(NUMBER_COUNT_MISMATCH.getMessage(),NUMBERS_PER_LOTTO.getValue()));
+        if (numbers.size() != NUMBERS_PER_LOTTO.getValue()) {
+            throw new IllegalArgumentException(
+                    String.format(NUMBER_COUNT_MISMATCH.getMessage(), NUMBERS_PER_LOTTO.getValue()));
         }
     }
 
     private void validateEachLottoNumber(Integer number) {
         if (number < LOWER_BOUND.getValue() || number > UPPER_BOUND.getValue()) {
-            throw new IllegalArgumentException(String.format(OUT_OF_RANGE.getMessage(), LOWER_BOUND.getValue(),UPPER_BOUND.getValue()));
+            throw new IllegalArgumentException(
+                    String.format(OUT_OF_RANGE.getMessage(), LOWER_BOUND.getValue(), UPPER_BOUND.getValue()));
         }
     }
 
     private void validateNoDuplication(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream().distinct().count()){
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(NUMBER_DUPLICATION.getMessage());
         }
     }
-
 
 
 }

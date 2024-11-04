@@ -13,11 +13,11 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto create(List<Integer> numbers, int bonusNumber){
-        return new WinningLotto(numbers,bonusNumber);
+    public static WinningLotto create(List<Integer> numbers, int bonusNumber) {
+        return new WinningLotto(numbers, bonusNumber);
     }
 
-    public MatchResult getMatchResult(Set<Integer> lottoNumbers){
+    public MatchResult getMatchResult(Set<Integer> lottoNumbers) {
         List<Integer> numbers = new ArrayList<>(lottoNumbers);
         numbers.retainAll(winningNumbers);
 
@@ -27,7 +27,6 @@ public class WinningLotto {
         return MatchResult.create(matchedNumber, isBonusNumberMatched);
 
     }
-
 
 
 }

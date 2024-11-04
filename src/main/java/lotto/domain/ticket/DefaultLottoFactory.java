@@ -2,7 +2,7 @@ package lotto.domain.ticket;
 
 import java.util.List;
 
-public class DefaultLottoFactory implements LottoFactory{
+public class DefaultLottoFactory implements LottoFactory {
     private final NumbersGenerator lottoNumbersGenerator;
 
     public DefaultLottoFactory(NumbersGenerator lottoNumbersGenerator) {
@@ -10,7 +10,7 @@ public class DefaultLottoFactory implements LottoFactory{
     }
 
     @Override
-    public Lotto createLotto( ) {
+    public Lotto createLotto() {
         List<Integer> lottoNumbers = lottoNumbersGenerator.generate();
         return new Lotto(lottoNumbers);
     }

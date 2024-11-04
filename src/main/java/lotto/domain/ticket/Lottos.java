@@ -6,16 +6,16 @@ import java.util.List;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    private Lottos (List<Lotto> lottoList){
+    private Lottos(List<Lotto> lottoList) {
         this.lottos = lottoList;
     }
 
     public static Lottos createLottos(
             int purchasedLottoCount
-            , LottoFactory lottoFactory){
+            , LottoFactory lottoFactory) {
 
         List<Lotto> lottoList = new ArrayList<>();
-        for(int i = 0; i < purchasedLottoCount; i++){
+        for (int i = 0; i < purchasedLottoCount; i++) {
             Lotto lotto = (lottoFactory.createLotto());
             lottoList.add(lotto);
         }
@@ -24,7 +24,7 @@ public class Lottos {
 
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return lottos;
     }
 }

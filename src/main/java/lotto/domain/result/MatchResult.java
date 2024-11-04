@@ -16,13 +16,15 @@ public class MatchResult {
         return new MatchResult(matchedNumberCount, isBonusNumberMatched);
     }
 
-    public int getRank(){
+    public int getRank() {
         return rank;
     }
-    public int getMatchedNumberCount(){
+
+    public int getMatchedNumberCount() {
         return matchedNumberCount;
     }
-    public boolean isBonusNumberMatched(){
+
+    public boolean isBonusNumberMatched() {
         return isBonusNumberMatched;
     }
 
