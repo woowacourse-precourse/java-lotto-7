@@ -10,7 +10,7 @@ public class LottoIOHandler {
     private final InputHandler inputHandler = new InputHandler();
     private final OutputHandler outputHandler = new OutputHandler();
 
-    public long askPurchaseCost (){
+    public long askPurchaseCost() {
         outputHandler.showPurchaseCostInputComments();
 
         long purchaseCost = 0;
@@ -29,27 +29,60 @@ public class LottoIOHandler {
     public WinningLotto askWinningLotto() {
 
         outputHandler.showWinningLottoInputComment();
-        List<Integer> winningLottoNumber = new ArrayList<>();
 
-        while (winningLottoNumber.isEmpty()) {
+        List<Integer> winningLottoNumbers = getWinningLottoNumber();
+
+        outputHandler.showWinningLottoBonusNumberInputComment();
+
+        return getWinningLotto(winningLottoNumbers);
+
+    }
+
+    private WinningLotto getWinningLotto(List<Integer> winningLottoNumbers) {
+        WinningLotto winningLotto = null;
+
+        while (winningLotto == null) {
             try {
-                winningLottoNumber = inputHandler.getWinningLottoInput();
+                Integer bonusNum = getWinningLottoBonusNumber();
+                winningLotto = new WinningLotto.Builder()
+                        .numbers(winningLottoNumbers)
+                        .bonusNumber(bonusNum)
+                        .build();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningLotto;
+    }
 
-                WinningLotto.Builder builder = new WinningLotto.Builder().numbers(winningLottoNumber);
+    private List<Integer> getWinningLottoNumber() {
+        List<Integer> winningLottoNumbers = new ArrayList<>();
+
+        while (winningLottoNumbers.isEmpty()) {
+            try {
+                winningLottoNumbers = inputHandler.getWinningLottoInput();
+                WinningLotto.Builder builder = new WinningLotto.Builder().numbers(winningLottoNumbers);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                winningLottoNumber.clear();
+                winningLottoNumbers.clear();
             }
         }
-        outputHandler.showWinningLottoBonusNumberInputComment();
-        Integer bonusNum = inputHandler.getWinningLottoBonusNumberInput();
+        return winningLottoNumbers;
+    }
 
-        WinningLotto winningLotto = new WinningLotto.Builder()
-                .numbers(winningLottoNumber)
-                .bonusNumber(bonusNum)
-                .build();
-        return winningLotto;
+    private Integer getWinningLottoBonusNumber() {
+        Integer bonusNum = null;
+
+        while (bonusNum == null) {
+            try {
+                bonusNum = inputHandler.getWinningLottoBonusNumberInput();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                bonusNum = null;
+            }
+        }
+        return bonusNum;
     }
 
     public void showPurchaseLottoCount(long lottoCount) {

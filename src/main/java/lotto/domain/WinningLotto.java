@@ -9,14 +9,7 @@ public class WinningLotto extends Lotto {
     public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
         super(numbers);
         containBonusNumber(bonusNumber);
-        validateBonusNumberRange(bonusNumber);
         this.bonusNumber = bonusNumber;
-    }
-
-    private void validateBonusNumberRange(Integer bonusNumber) {
-        if (bonusNumber < lowerBound || bonusNumber > upperBound) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 숫자만 가능합니다.");
-        }
     }
 
     public Integer getBonusNumber() {
@@ -36,6 +29,10 @@ public class WinningLotto extends Lotto {
         }
 
         public Builder bonusNumber(Integer bonusNumber) {
+            validateBonusNumberRange(bonusNumber);
+            if (this.numbers != null) {
+                new Lotto(numbers).containBonusNumber(bonusNumber);
+            }
             this.bonusNumber = bonusNumber;
             return this;
         }
@@ -45,7 +42,14 @@ public class WinningLotto extends Lotto {
                 throw new IllegalStateException("[ERROR] 로또 번호와 보너스 번호를 모두 설정해야 합니다.");
             }
             new Lotto(numbers).containBonusNumber(bonusNumber);
+
             return new WinningLotto(numbers, bonusNumber);
+        }
+
+        private void validateBonusNumberRange(Integer bonusNumber) {
+            if (bonusNumber < lowerBound || bonusNumber > upperBound) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 숫자만 가능합니다.");
+            }
         }
 
     }

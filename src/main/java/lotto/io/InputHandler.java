@@ -33,13 +33,17 @@ public class InputHandler {
                     try {
                         return Integer.parseInt(number.trim());
                     } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException("[ERROR] 숫자 형식이 올바르지 않습니다. 당첨 번호를 숫자로 입력해 주세요.");
+                        throw new IllegalArgumentException("[ERROR] 숫자 형식이 올바르지 않습니다. 당첨 번호를 숫자로 입력해주세요.");
                     }
                 })
                 .collect(Collectors.toList());
     }
 
     public Integer getWinningLottoBonusNumberInput() {
-        return Integer.parseInt(Console.readLine());
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자 형식이 올바르지 않습니다. 보너스 번호를 숫자로 입력해주세요.");
+        }
     }
 }
