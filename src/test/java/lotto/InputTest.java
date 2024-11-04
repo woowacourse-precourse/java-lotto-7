@@ -16,6 +16,13 @@ class InputTest extends NsTest {
         assertThat(output()).contains(ERROR_MESSAGE);
     }
 
+    @Test
+    void invalid_bonus_number() {
+        runException("1000", "1,2,3,4,5,6", "j");
+        assertThat(output()).contains(ERROR_MESSAGE);
+    }
+
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
