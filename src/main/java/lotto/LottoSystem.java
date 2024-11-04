@@ -13,12 +13,22 @@ public class LottoSystem {
 
     private final List<Lotto> purchasedLottos = new ArrayList<>();
     private WinningNumber winningNumber;
+    private Money money;
 
     public void start() {
-        Money money = purchaseMoney();
+        money = purchaseMoney();
         generateLottos(money);
         displayPurchaseResult();
         inputWinningNumbers();
+        calculateAndDisplayResult();
+    }
+
+    private void calculateAndDisplayResult() {
+        LottoResult result = new LottoResult(money.getAmount());
+        for (Lotto lotto : purchasedLottos) {
+            result.addWinningResult(lotto, winningNumber);
+        }
+        result.printStatistics();
     }
 
     private void inputWinningNumbers() {
