@@ -29,4 +29,8 @@ public class OutputView {
                     rankCounts.getOrDefault(rank, 0));
         }
     }
+
+    public static void printRevenueRate(double revenueRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", revenueRate);
+    }
 }

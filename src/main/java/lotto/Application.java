@@ -4,6 +4,7 @@ import lotto.service.LottoGenerator;
 import lotto.service.LottoRank;
 import lotto.service.LottoResultCalculator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,9 @@ public class Application {
 
         // 로또 번호 생성
         List<List<Integer>> lottoTickets = LottoGenerator.generateLottoTickets(purchaseAmount);
+
+        // 구매한 로또 번호 출력
+        OutputView.printPurchasedLottoTickets(lottoTickets);
 
         // 당첨 번호 입력 및 검증
         List<Integer> winningNumbers = InputView.getWinningNumbers();
@@ -36,10 +40,16 @@ public class Application {
             rankCounts.put(rank, rankCounts.getOrDefault(rank, 0) + 1);
         }
 
+        // 당첨 통계 출력
+        OutputView.printLottoStatistics(rankCounts);
+
         // 총 당첨 금액 계산
         int totalPrize = LottoResultCalculator.calculateTotalPrize(rankCounts);
 
-        // 수익률 계산
+        // 수익률 계산 및 출력
         double revenueRate = LottoResultCalculator.calculateRevenueRate(totalPrize, purchaseAmount);
+        OutputView.printRevenueRate(revenueRate);
+
+
     }
 }
