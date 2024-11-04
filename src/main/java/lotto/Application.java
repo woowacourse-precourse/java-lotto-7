@@ -50,8 +50,7 @@ public class Application {
             returnRate = ((double) totalAmount / purchaseMoney) * 100;
         }
 
-        // 수익률 출력
-        System.out.printf("총 수익률은 %.2f%%입니다.%n", returnRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.", returnRate);
     }
 
     private static int statistics(Map<Object, Integer> result) {
