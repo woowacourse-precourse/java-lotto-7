@@ -1,4 +1,4 @@
-package lotto.io;
+package lotto.input;
 
 import static lotto.exception.ExceptionMessage.*;
 

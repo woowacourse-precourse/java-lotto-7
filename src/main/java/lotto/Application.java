@@ -5,10 +5,9 @@ import java.util.function.Supplier;
 
 import lotto.answer.Answer;
 import lotto.answer.LottoRank;
-import lotto.io.Input;
+import lotto.input.Input;
 import lotto.provider.LottoProvider;
 import lotto.user.User;
-import lotto.validator.Validator;
 
 public class Application {
     public static void main(String[] args) {

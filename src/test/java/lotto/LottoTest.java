@@ -1,6 +1,5 @@
 package lotto;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.io.Input;
+import lotto.input.Input;
 import lotto.provider.LottoProvider;
 import lotto.user.User;
 
