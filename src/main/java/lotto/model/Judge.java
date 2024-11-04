@@ -52,7 +52,7 @@ public class Judge {
         return assignGrade(matchCount, bonusMaching);
     }
 
-    private Grade assignGrade(int matchCount, boolean bonusMatching) {
+    public Grade assignGrade(int matchCount, boolean bonusMatching) {
         if (matchCount == 6) {
             return Grade.FIRST;
         }

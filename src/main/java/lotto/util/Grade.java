@@ -9,9 +9,9 @@ public enum Grade {
 
     private final int matchingCount;
     private final boolean isBonusMatch;
-    private final int prizeMoney;
+    private final Integer prizeMoney;
 
-    Grade(int matchingCount, boolean isBonusMatch, int prizeMoney) {
+    Grade(int matchingCount, boolean isBonusMatch, Integer prizeMoney) {
         this.matchingCount = matchingCount;
         this.isBonusMatch = isBonusMatch;
         this.prizeMoney = prizeMoney;
@@ -25,7 +25,7 @@ public enum Grade {
         return isBonusMatch;
     }
 
-    public int getPrizeMoney() {
+    public Integer getPrizeMoney() {
         return prizeMoney;
     }
 }
