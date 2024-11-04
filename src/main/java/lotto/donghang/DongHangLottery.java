@@ -50,7 +50,17 @@ public class DongHangLottery {
     }
 
     private static Lotto drawWinningNumbers() {
+        while (true) {
+            try {
+                String input = inputReader.readWinningNumber();
+                InputValidator.validateWinningNumber(input);
+                List<Integer> winningNumber = InputParser.parseStringToInt(input);
 
+                return new Lotto(winningNumber);
+            } catch (IllegalArgumentException iae) {
+                System.out.println(iae.getMessage());
+            }
+        }
     }
 
     private static int drawBonusNumber(List<Integer> winningNumber) {
