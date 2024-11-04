@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.dto.WinningResult;
 import lotto.handler.InputHandler;
 import lotto.handler.OutputHandler;
 
@@ -19,6 +20,7 @@ public class LottoGame {
     public void start() {
         Player player = createPlayer();
         WinningLotto winningLotto = createWinningLotto();
+        updateWinningStatics(player, winningLotto);
     }
 
     private Player createPlayer() {
@@ -32,5 +34,13 @@ public class LottoGame {
         List<Integer> winningNumbers = inputHandler.readWinningNumbersInput();
         int bonusNumber = inputHandler.readBonusNumberInput(winningNumbers);
         return new WinningLotto(lottoMachine.issueLotto(winningNumbers), bonusNumber);
+    }
+
+    private void updateWinningStatics(Player player, WinningLotto winningLotto) {
+        List<WinningResult> winningResults = player.checkResults(winningLotto);
+        for (WinningResult result : winningResults) {
+            Rank rank = Rank.getRank(result);
+            winningStatics.addWinning(rank);
+        }
     }
 }
