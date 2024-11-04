@@ -16,6 +16,10 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         Validator.validateLottoSize(numbers);
         Validator.validateNoDuplicates(numbers);
+
+        for (Integer number : numbers) {
+            Validator.validateLottoRange(number);
+        }
     }
 
     public String getLottoNumbers() {
