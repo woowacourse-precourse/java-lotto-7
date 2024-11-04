@@ -33,8 +33,8 @@ public class LottoController {
             Map<Prize, Integer> winningResult = lottoResultChecker.getLottosWinningResult(lottos);
             double yield = lottoResultChecker.getYield(winningResult, lottos);
             outputView.printResults(winningResult, yield);
-        } catch(Exception e){
-            System.out.println("[ERROR] " + e.getMessage());
+        } catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
         }
 
     }
