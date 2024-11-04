@@ -14,6 +14,6 @@ class LottoWinningResultTest {
         //when
         int totalPrize = lottoWinningResult.getTotalPrize();
         //then
-        Assertions.assertThat(totalPrize).isEqualTo(WinningPrize.THIRD.prize+WinningPrize.FIFTH.prize);
+        Assertions.assertThat(totalPrize).isEqualTo(WinningPrize.THIRD.getPrize()+WinningPrize.FIFTH.getPrize());
     }
 }

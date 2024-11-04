@@ -21,6 +21,6 @@ public class LottoWinningResult {
     }
 
     public int getTotalPrize() {
-        return results.entrySet().stream().mapToInt(entry -> entry.getKey().prize * entry.getValue()).sum();
+        return results.entrySet().stream().mapToInt(entry -> entry.getKey().getPrize() * entry.getValue()).sum();
     }
 }
