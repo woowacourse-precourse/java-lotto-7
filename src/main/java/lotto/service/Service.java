@@ -5,6 +5,8 @@ import lotto.domain.Lotto;
 import lotto.utils.Utils;
 import lotto.validation.Validation;
 import lotto.view.InputMessage;
+import lotto.view.OutputMessage;
+
 import java.util.List;
 import java.util.Arrays;
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -42,6 +44,13 @@ public class Service {
         }
     }
 
+    public void showBuyingResult() {
+        OutputMessage.purchaseComplete(buyer.getPurchaseAmount() / LOTTO_LEAST_AMOUNT);
+        for (Lotto lotto : buyer.getPurchasedLotteries()) {
+            OutputMessage.lottoNumbers(lotto.getNumbers());
+        }
+    }
+
     public Lotto generateLottoNumber() {
         List<Integer> numbers = Utils.randomUniqueNumberGenerate(LOTTO_START_NUMBER, LOTTO_LAST_NUMBER, LOTTO_LENGTH);
         Validation.validateLengthOfList(numbers, LOTTO_LENGTH);
@@ -62,4 +71,12 @@ public class Service {
         return winningNumbers;
     }
 
+    public int getInputBonusNumber() {
+        InputMessage.inputBonusNumber();
+        String userInput = readLine().trim();
+        Validation.validateStringToInteger(userInput);
+        int bonusNumber = Integer.parseInt(userInput);
+        Validation.validateNumberInRange(bonusNumber, LOTTO_START_NUMBER, LOTTO_LAST_NUMBER);
+        return bonusNumber;
+    }
 }
