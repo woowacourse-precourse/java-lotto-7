@@ -57,7 +57,7 @@ public enum Winning {
 	}
 
 	private static Winning checkIfSecond(Winning result, boolean hasBonusNumber) {
-		if (result.count == SECOND.count && result.hasBonusNumber == SECOND.hasBonusNumber) {
+		if (result.count == SECOND.count && hasBonusNumber == SECOND.hasBonusNumber) {
 			return SECOND;
 		}
 		return result;
