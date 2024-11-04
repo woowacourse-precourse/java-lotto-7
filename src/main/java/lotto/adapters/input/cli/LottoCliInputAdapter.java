@@ -1,7 +1,6 @@
 package lotto.adapters.input.cli;
 
 import static lotto.infrastructure.constants.AnnounceMessages.*;
-import static lotto.infrastructure.exception.ErrorCode.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -39,7 +38,7 @@ public class LottoCliInputAdapter {
         String value = Console.readLine();
         inputValidator.validateAmount(value);
 
-        return PurchaseAmount.from(value);
+        return new PurchaseAmount(NumberParser.parseNumber(value));
     }
 
     private WinningNumber promptWinningNumber() {
@@ -62,6 +61,6 @@ public class LottoCliInputAdapter {
         outputPort.writeMessage(PROMPT_BONUS_NUMBER.getMessage());
         String bonusNumber = Console.readLine();
 
-        return NumberParser.parseBonusNumber(bonusNumber);
+        return NumberParser.parseNumber(bonusNumber);
     }
 }

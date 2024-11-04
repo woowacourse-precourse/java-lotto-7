@@ -1,4 +1,4 @@
-package lotto.infrastructure.persistence;
+package lotto.domain.lotto.repository;
 
 import java.util.List;
 import java.util.Map;
@@ -6,10 +6,11 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import lotto.domain.lotto.Lotto;
 
-public class LottoMemoryRepository {
+public class FakeLottoRepository implements LottoRepository {
 
-    private static final Map<UUID, Lotto> storage = new ConcurrentHashMap<>();
+    private static Map<UUID, Lotto> storage = new ConcurrentHashMap<>();
 
+    @Override
     public void save(Lotto lotto) {
         if (lotto == null) {
             throw new IllegalArgumentException();
@@ -18,8 +19,12 @@ public class LottoMemoryRepository {
         storage.put(lotto.getId(), lotto);
     }
 
+    @Override
     public List<Lotto> findAll() {
         return List.copyOf(storage.values());
     }
 
+    public void clear() {
+        storage.clear();
+    }
 }

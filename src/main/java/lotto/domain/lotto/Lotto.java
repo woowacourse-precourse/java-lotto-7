@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import static lotto.infrastructure.exception.ErrorCode.*;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Lotto {
 
@@ -10,10 +11,13 @@ public class Lotto {
     public final static int LOTTO_NUMBER_MINIMUM_CRITERION = 1;
     public final static int LOTTO_NUMBER_MAXIMUM_CRITERION = 45;
     private final List<Integer> numbers;
+    private final UUID id;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+
         this.numbers = numbers;
+        this.id = UUID.randomUUID();
     }
 
     private void validate(List<Integer> numbers) {
@@ -35,8 +39,13 @@ public class Lotto {
     }
 
     private void validateProperNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < LOTTO_NUMBER_MINIMUM_CRITERION || number > LOTTO_NUMBER_MAXIMUM_CRITERION)) {
+        if (numbers.stream().anyMatch(number -> number < LOTTO_NUMBER_MINIMUM_CRITERION
+            || number > LOTTO_NUMBER_MAXIMUM_CRITERION)) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
+    }
+
+    public UUID getId() {
+        return this.id;
     }
 }

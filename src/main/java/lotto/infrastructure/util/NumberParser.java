@@ -18,7 +18,7 @@ public class NumberParser {
         }
     }
 
-    public static int parseBonusNumber(String number) {
+    public static int parseNumber(String number) {
         try {
             return Integer.parseInt(number.trim());
         } catch (NumberFormatException exception) {
