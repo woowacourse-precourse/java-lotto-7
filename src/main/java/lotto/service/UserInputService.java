@@ -21,6 +21,7 @@ public class UserInputService {
     }
 
     public Lotto getWinningLotto(String inputNumber) {
+
         InputValidator.isNotNull(inputNumber);
         inputNumber = removeBlank(inputNumber);
         InputValidator.isNotEmpty(inputNumber);
@@ -35,6 +36,18 @@ public class UserInputService {
         }
 
         return new Lotto(numbers);
+    }
+
+    public int getBonus(String inputNumber) {
+
+        InputValidator.isNotNull(inputNumber);
+        inputNumber = removeBlank(inputNumber);
+        InputValidator.isNotEmpty(inputNumber);
+
+        int bonus = parseInteger(inputNumber);
+        InputValidator.isValidNumber(bonus);
+
+        return bonus;
     }
 
     private int parseInteger(String input) {
@@ -52,6 +65,7 @@ public class UserInputService {
     private List<String> splitInput(String input) {
         return Arrays.stream(input.split(",")).toList();
     }
+
 
 
 }
