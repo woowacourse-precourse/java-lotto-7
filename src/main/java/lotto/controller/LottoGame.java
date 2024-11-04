@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.view.InputView.LOTTO_PRICE;
+
 public class LottoGame {
 
     private final InputView inputView;
@@ -24,16 +26,22 @@ public class LottoGame {
 
     public void start() {
         int lottoCount = purchaseLotto();
-        List<Lotto> lottoSets = lottoGenerator(lottoCount);
+        List<Lotto> lottoSets = generateLottoNumbers(lottoCount);
         Lotto winningNumbers = setUpWinningNumbers();
         int bonusNumber = setUpBonusNumber(winningNumbers);
-        processLottoResults(lottoSets, winningNumbers, bonusNumber);
-
+        Map<LottoRank,Long> lottoRankResults = processLottoResults(lottoSets, winningNumbers, bonusNumber);
+        calculateReturnRate(lottoRankResults,lottoCount);
     }
 
-    private void processLottoResults(List<Lotto> lottoSets, Lotto winningNumbers, int bonusNumber) {
+    private void calculateReturnRate(Map<LottoRank, Long> lottoRankResults, int lottoCount) {
+        String returnRate = lottoManager.getReturnRate(lottoRankResults, lottoCount*LOTTO_PRICE);
+        outputView.displayReturnRate(returnRate);
+    }
+
+    private Map<LottoRank,Long> processLottoResults(List<Lotto> lottoSets, Lotto winningNumbers, int bonusNumber) {
         Map<LottoRank, Long> lottoRankResults = lottoManager.analyzeLottoResults(lottoSets, winningNumbers, bonusNumber);
         outputView.displayWinningResults(lottoRankResults);
+        return lottoRankResults;
     }
 
     private int setUpBonusNumber(Lotto winningNumbers) {
@@ -46,7 +54,7 @@ public class LottoGame {
         return lottoManager.parseWinningNumbersToLotto(inputView.getWinningNumbers());
     }
 
-    private List<Lotto> lottoGenerator(int lottoCount) {
+    private List<Lotto> generateLottoNumbers(int lottoCount) {
         List<Lotto> lottoSets = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             lottoSets.add(lottoManager.generateLottoNumbers());
