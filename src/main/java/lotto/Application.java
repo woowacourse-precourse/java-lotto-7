@@ -30,7 +30,9 @@ public class Application {
         //6. 결과 출력
         lottoResult.calculateResults(lottos, winningLotto, bonusNumber);
 
-        // 7. 결과 출력
+        //7. 당첨 결과 출력
         printLottoResult.printResults(lottoResult);
+
+
     }
 }

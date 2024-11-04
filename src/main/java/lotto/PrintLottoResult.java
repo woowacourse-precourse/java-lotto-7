@@ -2,6 +2,8 @@ package lotto;
 
 public class PrintLottoResult {
     public void printResults(LottoResult lottoResult) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
         System.out.printf("3개 일치 (%d원) - %d개%n", LottoRank.FIFTH.getPrizeAmount(), lottoResult.getCount(LottoRank.FIFTH));
         System.out.printf("4개 일치 (%d원) - %d개%n", LottoRank.FOURTH.getPrizeAmount(), lottoResult.getCount(LottoRank.FOURTH));
         System.out.printf("5개 일치 (%d원) - %d개%n", LottoRank.THIRD.getPrizeAmount(), lottoResult.getCount(LottoRank.THIRD));
