@@ -7,25 +7,8 @@ import java.util.stream.Collectors;
 public class LottoController {
     public void run() {
         // 로또 구입 금액 입력 받기
-        int inputCash, lottoCount;
-        while (true) {
-            try {
-                inputCash = LottoView.getInputCash();
-
-                if (inputCash < 1000) {
-                    throw new IllegalArgumentException("[ERROR] 1000원 이상으로 입력해주세요.");
-                } else if (inputCash % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
-                }
-
-                lottoCount = inputCash / 1000;
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 잘못된 입력입니다. 정수를 입력하세요.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        int inputCash = getValidatedInputCash();
+        int lottoCount = calculateLottoCount(inputCash);
 
         // 로또 생성 과정
         List<Lotto> lottos = new ArrayList<>();
@@ -91,6 +74,32 @@ public class LottoController {
 
         // 수익률 계산 및 출력
         LottoView.printReturnRate(totalPrize, inputCash);
+    }
+
+    private int getValidatedInputCash() {
+        while (true) {
+            try {
+                int inputCash = LottoView.getInputCash();
+                validateInputCash(inputCash);
+                return inputCash;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 잘못된 입력입니다. 정수를 입력하세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateInputCash(int inputCash) {
+        if (inputCash < 1000) {
+            throw new IllegalArgumentException("[ERROR] 1000원 이상으로 입력해주세요.");
+        } else if (inputCash % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
+        }
+    }
+
+    private int calculateLottoCount(int inputCash) {
+        return inputCash / 1000;
     }
 
     private List<Integer> parseWinningNumbers(String inputNumbers) {
