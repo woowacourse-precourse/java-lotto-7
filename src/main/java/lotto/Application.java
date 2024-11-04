@@ -42,6 +42,8 @@ public class Application {
         Map<String, Integer> lottoReseult = drawLotto(lottos, winningLotto, bonusNumber);
         viewWinningLotto(lottoReseult);
 
+        double porfitRate = calProfitRate(lottoReseult, lottoPieces);
+        System.out.printf("총 수익률은 %.1f%%입니다.", porfitRate);
     }
 
     public static int buyLotto(final String input) {
@@ -122,7 +124,7 @@ public class Application {
     }
 
     public static void viewWinningLotto(final Map<String, Integer> lottoResult) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
 
         for (int i = 5; i >= 1; i--) {
@@ -136,16 +138,37 @@ public class Application {
 
     // return 구조 개선 필요 (예외 처리)
     public static String generateLottoRank(final String rankName) {
-        for (LottoRank standardRank : LottoRank.values()) {
-            String matchResult = standardRank.getMatch() + "개 일치";
-            String prizeResult = " (" + String.format("%,d", standardRank.getPrize()) + "원)";
-            if (rankName.equals(standardRank.name()) && rankName.equals("SECOND")) {
-                return matchResult + ", 보너스 볼 일치" + prizeResult;
-            }
-            if (rankName.equals(standardRank.name())) {
-                return matchResult + prizeResult;
-            }
+        LottoRank standardRank = findRank(rankName);
+        String matchResult = standardRank.getMatch() + "개 일치";
+        String prizeResult = " (" + String.format("%,d", standardRank.getPrize()) + "원)";
+        if (rankName.equals(standardRank.name()) && rankName.equals("SECOND")) {
+            return matchResult + ", 보너스 볼 일치" + prizeResult;
+        }
+        if (rankName.equals(standardRank.name())) {
+            return matchResult + prizeResult;
         }
         return "";
+    }
+
+    public static LottoRank findRank(String name) {
+        for (LottoRank rank : LottoRank.values()) {
+            if (name.equals(rank.name())) {
+                return rank;
+            }
+        }
+        return LottoRank.BLANK;
+    }
+
+    public static double calProfitRate(final Map<String, Integer> lottoResult, final int lottoPieces) {
+        int totalBuyingLotto = lottoPieces * 1000;
+        int totalPrize = 0;
+
+        for (Map.Entry<String, Integer> entry : lottoResult.entrySet()) {
+            LottoRank rank = findRank(entry.getKey());
+            int count = entry.getValue();
+            totalPrize += rank.getPrize() * count;
+        }
+
+        return (double) totalPrize / totalBuyingLotto * 100;
     }
 }
