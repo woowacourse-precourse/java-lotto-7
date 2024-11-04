@@ -89,9 +89,9 @@
     - [ ] 로또 번호 개수 검증
     - [ ] 중복되는 번호 검증
     - [ ] 범위에 해당하는 번호 검증
-- [ ] 수상 정보가 저장되어 있는 LottoPrice Enum
-    - [ ] 변수로 LottoPrice를 찾는 메서드
-    - [ ] LottoPrice 메시지 출력 메서드
+- [x] 수상 정보가 저장되어 있는 LottoPrice Enum
+    - [x] 변수로 LottoPrice를 찾는 메서드
+    - [x] LottoPrice 메시지 출력 메서드
 - [ ]  당첨 번호가 저장되어 있는 WinningLotto 클래스
     - [ ] 당첨 번호 숫자 개수 검증
     - [ ] 중복되는 번호 검증
