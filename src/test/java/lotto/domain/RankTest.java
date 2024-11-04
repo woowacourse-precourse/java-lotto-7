@@ -35,4 +35,32 @@ public class RankTest {
         assertThat(Rank.FOURTH.getMatchCount()).isEqualTo(4);
         assertThat(Rank.FIFTH.getMatchCount()).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("Rank.from 메서드가 올바르게 Rank를 반환해야 한다.")
+    void Rank_from_메서드가_올바르게_Rank를_반환해야_한다() {
+        // 6개 일치, 보너스 불일치: 1등
+        Rank rank1 = Rank.from(6, false);
+        assertThat(rank1).isEqualTo(Rank.FIRST);
+
+        // 5개 일치, 보너스 일치: 2등
+        Rank rank2 = Rank.from(5, true);
+        assertThat(rank2).isEqualTo(Rank.SECOND);
+
+        // 5개 일치, 보너스 불일치: 3등
+        Rank rank3 = Rank.from(5, false);
+        assertThat(rank3).isEqualTo(Rank.THIRD);
+
+        // 4개 일치: 4등
+        Rank rank4 = Rank.from(4, false);
+        assertThat(rank4).isEqualTo(Rank.FOURTH);
+
+        // 3개 일치: 5등
+        Rank rank5 = Rank.from(3, false);
+        assertThat(rank5).isEqualTo(Rank.FIFTH);
+
+        // 2개 일치: 등수 없음 (null)
+        Rank rank6 = Rank.from(2, false);
+        assertThat(rank6).isEqualTo(Rank.FAIL);
+    }
 }
