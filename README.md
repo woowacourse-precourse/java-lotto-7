@@ -218,9 +218,9 @@
 
 - [x]  **[java-lotto-7](https://github.com/woowacourse-precourse/java-lotto-7)** 저장소를 Fork & Clone
 - [x]  README.md에 구현할 기능 목록을 정리해 추가
-- [ ]  완료 후 Pull Request
-- [ ]  중간 회고를 진행하고 소감에 구체적인 결과를 작성해서 제출
-- [ ]  제출한 후 결과 확인, 통과하지 못했다면 수정해 다시 제출
+- [x]  완료 후 Pull Request
+- [x]  중간 회고를 진행하고 소감에 구체적인 결과를 작성해서 제출
+- [x]  제출한 후 결과 확인, 통과하지 못했다면 수정해 다시 제출
 
 ## ✅ 프로그래밍 요구 사항
 
@@ -241,7 +241,7 @@
 - [x]  함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
 - [x]  else 예약어를 쓰지 않는다
 - [x]  Java Enum을 적용하여 프로그램을 구현한다
-- [ ]  구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [x]  구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
 
 
 ### 라이브러리 요구 사항
