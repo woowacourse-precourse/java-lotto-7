@@ -1,6 +1,8 @@
 package lotto.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lotto.domain.GameStatus;
 import lotto.service.constant.prize.PrizeCondition;
@@ -20,6 +22,13 @@ public class WinningReceiptRepository {
         }
         prizeConditions.replace(prizeCondition,
                 prizeConditions.get(prizeCondition) + GameStatus.ADDED_GAME_COUNT.get());
+    }
+
+    public Long getCount(PrizeCondition prizeCondition) {
+        if (prizeConditions.containsKey(prizeCondition)) {
+            return prizeConditions.get(prizeCondition);
+        }
+        return GameStatus.LOWEST_GAME_COUNT.get();
     }
 
     public static WinningReceiptRepository getInstance() {
