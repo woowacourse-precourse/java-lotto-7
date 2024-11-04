@@ -52,6 +52,10 @@ public class LottoFormatter {
         Map<LottoPrize, Integer> winningResult
     ) {
         for (LottoPrize prize : LottoPrize.values()) {
+            if (prize == LottoPrize.LOSE) {
+	continue;
+            }
+
             appendPrizeStatistics(result, prize, winningResult.getOrDefault(prize, NONE));
         }
     }
@@ -63,16 +67,15 @@ public class LottoFormatter {
     ) {
         String formattedPrizeMoney = formatPrizeMoney(prize.getPrizeAmount());
 
-        if (prize == LottoPrize.LOSE) {
-            return;
-        }
-
         if (prize == LottoPrize.SECOND) {
-            result.append(String.format(BONUS_STATISTIC_FORMAT.getMessage(), prize.getMatchingNumberCount(), formattedPrizeMoney, count));
+            result.append(
+	String.format(BONUS_STATISTIC_FORMAT.getMessage(), prize.getMatchingNumberCount(),
+	    formattedPrizeMoney, count));
             return;
         }
 
-        result.append(String.format(STATISTIC_FORMAT.getMessage(), prize.getMatchingNumberCount(), formattedPrizeMoney, count));
+        result.append(String.format(STATISTIC_FORMAT.getMessage(), prize.getMatchingNumberCount(),
+            formattedPrizeMoney, count));
     }
 
     private String formatPrizeMoney(long prizeMoney) {

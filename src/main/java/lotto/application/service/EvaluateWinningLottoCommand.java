@@ -15,6 +15,10 @@ import lotto.domain.lotto.vo.LottoPrize;
 
 public class EvaluateWinningLottoCommand implements EvaluateWinningLottoUsecase {
 
+    private static final double LOTTO_PRICE = 1000.0;
+    private static final int ROUNDING_FACTOR = 100;
+    private static final int INITIAL_PRIZE_COUNT = 0;
+
     private final WinningLottoEvaluator winningLottoEvaluator;
     private final LottoRepository lottoRepository;
 
@@ -55,7 +59,7 @@ public class EvaluateWinningLottoCommand implements EvaluateWinningLottoUsecase 
         Map<LottoPrize, Integer> statistics = new EnumMap<>(LottoPrize.class);
 
         for (LottoPrize prize : LottoPrize.values()) {
-            statistics.put(prize, 0);
+            statistics.put(prize, INITIAL_PRIZE_COUNT);
         }
 
         return statistics;
@@ -66,6 +70,6 @@ public class EvaluateWinningLottoCommand implements EvaluateWinningLottoUsecase 
             .mapToDouble(LottoPrize::getPrizeAmount)
             .sum();
 
-        return (totalPrizeAmount / (totalLottos * 1000.0)) * 100;
+        return (totalPrizeAmount / (totalLottos * LOTTO_PRICE)) * ROUNDING_FACTOR;
     }
 }
