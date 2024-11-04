@@ -16,7 +16,6 @@ public class LottoGameController {
     public void run() {
         LottoPurchase lottoPurchase = lottoGameService.inputPurchaseAmount();
         List<Lotto> purchasedLottos = lottoGameService.generateLottoTickets(lottoPurchase);
-
         OutputView.printPurchasedLotto(purchasedLottos);
 
         List<Integer> winningNumbers = lottoGameService.inputWinningNumbers();
@@ -25,6 +24,10 @@ public class LottoGameController {
         Map<Rank, Integer> results = hitNumberCalculator.calculateResults(purchasedLottos, winningNumbers, bonusNumber);
         double profitRate = hitNumberCalculator.calculateProfitRate(results, lottoPurchase.getAmount());
 
+        printWinResults(results, profitRate);
+    }
+
+    private void printWinResults(Map<Rank, Integer> results, double profitRate) {
         OutputView.printLottoResults(results);
         OutputView.printProfitRate(profitRate);
     }
