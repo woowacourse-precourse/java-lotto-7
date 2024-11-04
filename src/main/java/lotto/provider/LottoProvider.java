@@ -26,11 +26,14 @@ public class LottoProvider {
 
 	private User user;
 
-	public LottoProvider(String lottoPurchaseAmount, User user) {
+	private Answer answer;
+
+	public LottoProvider(String lottoPurchaseAmount, User user, Answer answer) {
 		int lottoPurchaseAmountNum = Integer.parseInt(lottoPurchaseAmount);
 		validateLottoPurchaseAmount(lottoPurchaseAmountNum);
 		this.user = user;
 		user.setLottoPurchaseAmount(lottoPurchaseAmountNum);
+		this.answer = answer;
 		this.lottoPurchaseAmount = lottoPurchaseAmountNum;
 		this.numberOfLottos = lottoPurchaseAmountNum / THOUSAND;
 	}
