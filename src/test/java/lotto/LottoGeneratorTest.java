@@ -3,7 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.controller.LottoController;
+import lotto.controller.LottoNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 public class LottoGeneratorTest {
@@ -15,8 +15,8 @@ public class LottoGeneratorTest {
     private static final int LOTTO_END_NUMBERS = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    LottoController lottoController = new LottoController(LOTTO_MONEY);
-    List<Integer> lottoNumbers = lottoController.generateRandomLottoNumbers();
+    LottoNumberGenerator numberGenerator = new LottoNumberGenerator();
+    List<Integer> lottoNumbers = numberGenerator.generateRandomLottoNumbers();
 
     @Test
     void 로또_번호가_6개_생성되는지_확인() {
