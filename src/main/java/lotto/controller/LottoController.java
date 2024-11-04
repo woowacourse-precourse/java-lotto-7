@@ -19,6 +19,7 @@ public class LottoController {
     private int purchasedLottoCount;
     private LottoCollection lottoCollection;
     private String winningNumber;
+    private String bonusNumber;
 
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
@@ -37,6 +38,7 @@ public class LottoController {
         validateWinningNumber();
 
         inputBonusNumber();
+        validateBonusNumber();
     }
 
     public void inputPurchaseAmount() {
@@ -102,7 +104,11 @@ public class LottoController {
 
     public void inputBonusNumber() {
         inputView.printMessage(InputMessage.INPUT_BONUS_NUMBER);
-        inputView.inputBonusNumber();
+        bonusNumber = inputView.inputBonusNumber();
+    }
+
+    public void validateBonusNumber() {
+        lottoService.validateBonusNumber(bonusNumber);
     }
 
 

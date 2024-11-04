@@ -57,6 +57,5 @@ public class Validator {
         }
         existNumbers.add(parsedWinNumber);
     }
-
 }
 

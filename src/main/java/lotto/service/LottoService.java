@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
+import lotto.domain.WinningNumber;
 import lotto.factory.LottoFactory;
 import lotto.utility.Divider;
 import lotto.utility.Parser;
@@ -86,12 +87,8 @@ public class LottoService {
         return splitWinningNumber;
     }
 
-    /* split 후, 검증
-     * 숫자가 비어있는지x
-     * 1~45 사이의 숫자로만 되어있는지x
-     * 6개의 숫자인지
-     * 중복된 숫자가 있는지 확인*/
-    public List<Integer> validateSplitWinNumber(String[] splitWinningNumber) {
+    // split 후, 검증
+    public WinningNumber validateSplitWinNumber(String[] splitWinningNumber) {
         List<Integer> validWinNumbers = new ArrayList<>();
 
         Validator.isNumberSixSize(splitWinningNumber);
@@ -104,8 +101,19 @@ public class LottoService {
 
             validWinNumbers.add(parsedWinNumber);
         }
-        return validWinNumbers;
+        return new WinningNumber(validWinNumbers);
     }
 
+    public void validateBonusNumber(String bonusNumber) {
+        Validator.isBlank(bonusNumber);
+        Validator.isPositiveNumber(bonusNumber);
 
+        int parsedBonusNumber = parseBonusNumberToInt(bonusNumber);
+        Validator.isBetweenOneAndFortyFive(parsedBonusNumber);
+
+    }
+
+    public int parseBonusNumberToInt(String bonusNumber) {
+        return Parser.parseStringToInt(bonusNumber);
+    }
 }
