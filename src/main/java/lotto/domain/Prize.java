@@ -1,21 +1,25 @@
 package lotto.domain;
 
+import java.util.Map;
+
 public enum Prize {
-    FIRST(6, 2_000_000_000, false),
-    SECOND(5, 30_000_000, true),
-    THIRD(5, 1_500_000, false),
-    FOURTH(4, 50_000, false),
-    FIFTH(3, 5_000, false),
-    NONE(0, 0, false);
+    THREE_MATCH(3, false, 5000, "3개 일치"),
+    FOUR_MATCH(4, false, 50000, "4개 일치"),
+    FIVE_MATCH(5, false, 1500000, "5개 일치"),
+    FIVE_MATCH_WITH_BONUS(5, true, 30000000, "5개 일치, 보너스 볼 일치"),
+    SIX_MATCH(6, false, 2000000000, "6개 일치"),
+    NONE(0, false, 0, "당첨이 없습니다.");
 
-    private final int matchCount;   // 일치하는 번호 개수
-    private final int winnings;   // 상금
-    private final boolean matchBonus;  // 보너스 번호 일치 여부
+    private final int matchCount;
+    private final boolean matchBonus;
+    private final int winnings;
+    private final String message;
 
-    Prize(int matchCount, int winnings, boolean matchBonus) {
+    Prize(int matchCount, boolean matchBonus, int winnings, String message) {
         this.matchCount = matchCount;
-        this.winnings = winnings;
         this.matchBonus = matchBonus;
+        this.winnings = winnings;
+        this.message = message;
     }
 
     public int getMatchCount() {
@@ -30,13 +34,21 @@ public enum Prize {
         return matchBonus;
     }
 
-    // 일치하는 번호 개수와 보너스 번호 여부로 Prize 찾기
+    public String getMessage() {
+        return message;
+    }
+
     public static Prize getPrize(int matchCount, boolean bonusMatch) {
+        if (matchCount == 5 && bonusMatch) {
+            return FIVE_MATCH_WITH_BONUS;
+        }
+
         for (Prize prize : values()) {
-            if (prize.matchCount == matchCount && prize.matchBonus == bonusMatch) {
+            if (prize.matchCount == matchCount && prize != FIVE_MATCH_WITH_BONUS) {
                 return prize;
             }
         }
-        return NONE; // 일치하는 등수가 없을 경우 NONE 반환
+
+        return NONE;
     }
 }
