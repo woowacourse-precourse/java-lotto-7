@@ -12,18 +12,16 @@ public class EntireSystem {
     public void run() {
         LottoReceipt lottoReceipt = new LottoCreationManager().process();
 
-        System.out.println();
+        insertBlankLine();
 
         lottoReceipt.printTotalLottoNumber();
         lottoReceipt.printAllLotteries();
 
-        System.out.println();
+        insertBlankLine();
 
         DrawResultSheet drawResultSheet = new LottoStatisticsManager(lottoReceipt.myLotteries()).process();
 
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        insertBlankLine();
 
         drawResultSheet.printDrawResult();
 
@@ -33,5 +31,9 @@ public class EntireSystem {
         AnalyticsManager analyzer = new AnalyticsManager();
         RateSheet rateSheet = analyzer.process(payment, totalPrizeAmount);
         rateSheet.printGrowthRate();
+    }
+
+    private void insertBlankLine() {
+        System.out.println();
     }
 }
