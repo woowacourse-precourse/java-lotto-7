@@ -8,8 +8,8 @@ public record WinningResultsDto(
 	double profitRate
 ) {
 
-	public static WinningResultsDto from(Map<Winning, Integer> winningResult) {
-		return new WinningResultsDto(getWinningResults(winningResult));
+	public static WinningResultsDto from(Map<Winning, Integer> winningResult, double profitRate) {
+		return new WinningResultsDto(getWinningResults(winningResult), profitRate);
 	}
 
 	private static List<WinningResultDto> getWinningResults(Map<Winning, Integer> winningResult) {
