@@ -15,7 +15,7 @@ public enum ErrorMessage {
     NOT_NUMERIC_BONUS_NUMBER("보너스 번호는 숫자여야 합니다."),
     OUT_RANGE_BONUS_NUMBER("보너스 번호는 1부터 45 사이의 숫자여야 합니다."),
     DUPLICATED_BONUS_NUMBER("보너스 번호는 당첨 번호와 중복되지 않아야 합니다."),
-    TOO_BIG_INPUT("입력값이 너무 큽니다.");
+    TOO_BIG_INPUT("입력값에 너무 큰 수가 존재합니다.");
 
     private final String message;
 
