@@ -24,6 +24,7 @@
         - controller
           - LottoGameController.java
         - domain
+          - Rank.java
           - Lotto.java
           - WinningLotto.java
           - LottoNumber.java
