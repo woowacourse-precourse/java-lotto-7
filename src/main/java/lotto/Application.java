@@ -87,7 +87,7 @@ public class Application {
             winningNum.add(Integer.parseInt(numbers[i].trim()));
         }
 
-        Set<Integer> numSet = new HashSet<Integer>(winningNum); // 중복 확인
+        Set<Integer> numSet = new HashSet<>(winningNum); // 중복 확인
         if(winningNum.size() != numSet.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 수가 존재합니다.");
         }

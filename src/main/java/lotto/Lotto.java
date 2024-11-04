@@ -10,7 +10,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -19,7 +18,7 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
-        Set<Integer> numSet = new HashSet<Integer>(numbers); // 중복 확인
+        Set<Integer> numSet = new HashSet<>(numbers); // 중복 확인
         if(numbers.size() != numSet.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 수가 존재합니다.");
         }
