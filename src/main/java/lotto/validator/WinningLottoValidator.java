@@ -15,10 +15,10 @@ import org.junit.platform.commons.util.StringUtils;
 
 public class WinningLottoValidator {
 
-    private static final String INPUT = "로또 번호";
-    private static final String TYPE = "정수";
+    public static final String INPUT = "로또 번호";
+    public static final String TYPE = "정수";
+    public static final int MIN_VALUE = 1, MAX_VALUE = 45;
     private static final String DELIMITER = ",";
-    private static final int MIN_VALUE = 1, MAX_VALUE = 45;
 
     public static List<Integer> validateWinningNumbers(String input) {
         List<Integer> winningNumbers = Arrays.stream(input.split(DELIMITER))
