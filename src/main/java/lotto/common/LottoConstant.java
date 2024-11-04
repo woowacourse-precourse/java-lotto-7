@@ -19,5 +19,4 @@ public class LottoConstant {
     public static final int ZERO_COUNT = 0;
 
     public static final int LOTTO_PRICE = 1000;
-    public static final int MIN_LOTTO_PRICE = 0;
 }

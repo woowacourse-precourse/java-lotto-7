@@ -12,7 +12,7 @@ public record LottoNumber(int number) {
         try {
             return new LottoNumber(Integer.parseInt(number));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE+ ExceptionConstant.LOTTO_NUMBER_MESSAGE+ " 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE+ ExceptionConstant.LOTTO_NUMBER_MESSAGE+ "정수여야 합니다.");
         }
     }
 

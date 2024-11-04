@@ -13,13 +13,13 @@ public record LottoPrice(int price) {
         try {
             return new LottoPrice(Integer.parseInt(price));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_PRICE_MESSAGE + " 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_PRICE_MESSAGE + "숫자여야 합니다.");
         }
     }
 
     private void validateRange(int price) {
-        if (price < LottoConstant.MIN_LOTTO_PRICE) {
-            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_PRICE_MESSAGE + LottoConstant.MIN_LOTTO_PRICE + "원 이상이어야 합니다.");
+        if (price <= LottoConstant.LOTTO_PRICE) {
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_PRICE_MESSAGE + LottoConstant.LOTTO_PRICE + "원 이상이어야 합니다.");
         }
     }
 

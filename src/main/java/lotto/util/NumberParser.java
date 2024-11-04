@@ -10,9 +10,7 @@ public class NumberParser {
 
     public static List<LottoNumber> parseWinningNumbers(String input) {
         return Stream.of(input.replace(" ", "").split(ViewConstant.DELIMITER))
-                .filter(it -> !it.isBlank())
-                .map(Integer::parseInt)
-                .map(LottoNumber::new)
+                .map(LottoNumber::valueOf)
                 .toList();
     }
 
