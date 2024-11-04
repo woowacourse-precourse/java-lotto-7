@@ -1,29 +1,34 @@
 package lotto;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 public class LottoHost {
 
+    private static final int MAKE_PERCENT = 100;
+
     List<Lotto> lottos;
-    LinkedHashMap<LottoResult, Integer> winningResult = new LinkedHashMap<>();
+    LinkedHashMap<LottoResult, Integer> winningResults = new LinkedHashMap<>();
 
     public LottoHost(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public LinkedHashMap<LottoResult, Integer> getWinningResults(List<Integer> winningNumbers, int bonusNumber) {
-        winningResult = initializeWinningResults();
+    public void getWinningResults(List<Integer> winningNumbers, int bonusNumber) {
+        winningResults = initializeWinningResults();
         for (Lotto lotto : lottos) {
-            LottoResult result = new LottoResult(countSameNumbers(lotto, winningNumbers), haveBonusNumber(lotto,
+            int sameNumbersCount = countSameNumbers(lotto, winningNumbers);
+            if (sameNumbersCount < 3) {
+                continue;
+            }
+            LottoResult result = new LottoResult(sameNumbersCount, haveBonusNumber(lotto,
                     bonusNumber));
             if (result.getRankName().equals("NONE_RANK")) {
                 continue;
             }
-            winningResult.put(result, winningResult.get(result) + 1);
+            winningResults.put(result, winningResults.get(result) + 1);
         }
-        return winningResult;
     }
 
     private LinkedHashMap<LottoResult, Integer> initializeWinningResults() {
@@ -52,20 +57,25 @@ public class LottoHost {
         return lotto.haveNumber(bonusNumber);
     }
 
-    public float calcEarningRate(String inputCash) {
-        BigInteger earningPrice = calcEarningPrice();
-        BigInteger inputPrice = new BigInteger(inputCash);
-        return earningPrice.divide(inputPrice).floatValue();
+    public BigDecimal calcEarningRate(String inputCash) {
+        BigDecimal earningPrice = calcEarningPrice();
+        BigDecimal inputPrice = new BigDecimal(inputCash);
+        return earningPrice.divide(inputPrice)
+                .multiply(BigDecimal.valueOf(MAKE_PERCENT));
     }
 
-    public BigInteger calcEarningPrice() {
-        BigInteger earningPrice = BigInteger.ZERO;
-        for (LottoResult result : winningResult.keySet()) {
+    public BigDecimal calcEarningPrice() {
+        BigDecimal earningPrice = BigDecimal.ZERO;
+        for (LottoResult result : winningResults.keySet()) {
             String prizeAmount = Integer.toString(result.getPrize());
-            for (int count = 0; count < winningResult.get(result); count++) {
-                earningPrice = earningPrice.add(new BigInteger(prizeAmount));
+            for (int count = 0; count < winningResults.get(result); count++) {
+                earningPrice = earningPrice.add(new BigDecimal(prizeAmount));
             }
         }
         return earningPrice;
+    }
+
+    public LinkedHashMap<LottoResult, Integer> getWinningResults() {
+        return winningResults;
     }
 }
