@@ -76,9 +76,7 @@ public class LotteryService {
         lottoResult.printLottoWinningStatistics();
 
         final int totalWinningAmount = lottoBuyer.getLottoWinningAmount();
-        System.out.println("totalWinningAmount = " + totalWinningAmount);
         final int purchaseAmount = lottoBuyer.getLottoPurchaseAmount() * 1000;
-        System.out.println("purchaseAmount = " + purchaseAmount);
         getLotteryYield(purchaseAmount, totalWinningAmount);
     }
 

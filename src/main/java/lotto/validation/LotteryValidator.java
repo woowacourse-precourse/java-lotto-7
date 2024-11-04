@@ -7,6 +7,7 @@ import java.util.List;
 
 public class LotteryValidator {
 
+    // 사용자가 입력한 구매 금액의 유효성을 판단한다.
     public boolean validateInputPurchaseAmount(final String inputPurchaseAmount) {
         try {
             allowParseIntPurchaseAmount(inputPurchaseAmount);
@@ -69,11 +70,33 @@ public class LotteryValidator {
     // 로또 보너스 숫자 입력이 올바른지 판단한다.
     public boolean validateInputLottoBonusNumber(final String inputLottoBonusNumber) {
         try {
-            Integer.parseInt(inputLottoBonusNumber);
-        } catch (NumberFormatException e) {
-            System.out.println(DEFAULT_ERROR_MESSAGE + "보너스 로또 번호는 정수여야 합니다.");
-            return true;
+            allowParseIntLottoBonusNumber(inputLottoBonusNumber);
+
+            final int lottoBonusNumber = Integer.parseInt(inputLottoBonusNumber);
+            checkLottoBonusRange(lottoBonusNumber);
+        } catch (IllegalArgumentException e) {
+            return false;
         }
         return true;
+    }
+
+    public void allowParseIntLottoBonusNumber(final String inputLottoBonusNumber) {
+        try {
+            Integer.parseInt(inputLottoBonusNumber);
+        } catch (NumberFormatException e) {
+            System.out.println(DEFAULT_ERROR_MESSAGE + " 보너스 로또 번호는 정수여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkLottoBonusRange(final int lottoBonusNumber) {
+        try {
+            if (lottoBonusNumber < 1 || lottoBonusNumber > 45) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(DEFAULT_ERROR_MESSAGE + "보너스 번호는 정수여야 합니다.");
+            throw new IllegalArgumentException();
+        }
     }
 }
