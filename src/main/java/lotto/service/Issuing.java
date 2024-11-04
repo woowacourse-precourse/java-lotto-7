@@ -8,12 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Issuing {
-    public List<Lotto> lottoTickets(int count){
+    public void lottoTickets(LottoTicket ticket){
         List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i<count;i++){
-            lottos.add(randomLotto());
+        for(int i = 0; i<ticket.getCount();i++){
+            ticket.addLottoTicket(randomLotto());
         }
-        return lottos;
     }
     private Lotto randomLotto(){
         List<Integer> numbers = new ArrayList<>(

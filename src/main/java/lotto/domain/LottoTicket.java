@@ -2,13 +2,14 @@ package lotto.domain;
 
 import lotto.service.Issuing;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoTicket {
     private static final int PRICE_TICKET = 1_000;
     private static final int PRICE_MAX = 100_000;
     private final int price;
-    private final List<Lotto> lottoTickets;
+    private final List<Lotto> lottoTickets = new ArrayList<>();
     private int count;
 
     Issuing issue = new Issuing();
@@ -17,7 +18,9 @@ public class LottoTicket {
         validatePrice(price);
         this.price = price;
         count = priceChangeToTicket(price);
-        lottoTickets = issue.lottoTickets(count);
+    }
+    public void addLottoTicket(Lotto lotto){
+        lottoTickets.add(lotto);
     }
     public int getCount(){
         return count;
