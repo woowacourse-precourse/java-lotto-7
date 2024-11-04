@@ -14,7 +14,7 @@ public class WinningNumbersTest {
     void 당첨_번호_개수_예외_테스트(String winningNumbers) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new WinningNumbers(winningNumbers))
-                .withMessageMatching("\\[ERROR] 당첨 번호는 6개여야 합니다.");
+                .withMessageMatching("\\[ERROR] 로또 번호는 6개여야 합니다.");
     }
 
     @DisplayName("당첨 번호에 중복된 숫자가 포함되어 있을 경우 예외가 발생한다.")
@@ -22,7 +22,7 @@ public class WinningNumbersTest {
     void 당첨_번호_중복_예외_테스트() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new WinningNumbers("1,1,2,3,4,5"))
-                .withMessageMatching("\\[ERROR] 당첨 번호는 서로 중복되지 않아야합니다.");
+                .withMessageMatching("\\[ERROR] 중복된 로또 번호가 존재합니다.");
     }
 
     @DisplayName("당첨 번호가 1에서 45사이의 숫자가 아닐 경우 예외가 발생한다.")
@@ -31,7 +31,7 @@ public class WinningNumbersTest {
     void 당첨_번호_범위_예외_테스트(String winningNumbers) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new WinningNumbers(winningNumbers))
-                .withMessageMatching("\\[ERROR] 당첨 번호는 1에서 45사이의 숫자만 가능합니다.");
+                .withMessageMatching("\\[ERROR] 번호는 1에서 45 사이의 숫자만 가능합니다.");
     }
 
     @DisplayName("당첨 번호가 숫자가 아닐 경우 예외가 발생한다.")
@@ -40,6 +40,6 @@ public class WinningNumbersTest {
     void 당첨_번호_숫자_테스트(String winningNumbers) {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> new WinningNumbers(winningNumbers))
-                .withMessageMatching("\\[ERROR] 유효하지 않는 번호입니다.*");
+                .withMessageMatching("\\[ERROR] 유효하지 않는 숫자 형식입니다.*");
     }
 }
