@@ -5,22 +5,21 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class InputView {
+    private static final int WINNING_NUMBER_COUNT = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int MIN_PURCHASE_AMOUNT = 1000;
 
     private static final String MESSAGE_WINNING_NUMBERS = "당첨 번호를 입력해 주세요. (쉼표로 구분하여 6개 입력)";
     private static final String MESSAGE_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String MESSAGE_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String ERROR_INVALID_NUMBER = "[ERROR] 유효한 숫자를 입력해 주세요.";
-    private static final String ERROR_WINNING_NUMBERS_COUNT = "[ERROR] 당첨 번호는 6개여야 합니다.";
-    private static final String ERROR_WINNING_NUMBERS_RANGE = "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String ERROR_WINNING_NUMBERS_COUNT = "[ERROR] 당첨 번호는 " + WINNING_NUMBER_COUNT + "개여야 합니다.";
+    private static final String ERROR_WINNING_NUMBERS_RANGE = "[ERROR] 당첨 번호는 " + MIN_LOTTO_NUMBER + "부터 " + MAX_LOTTO_NUMBER + " 사이의 숫자여야 합니다.";
     private static final String ERROR_DUPLICATE_WINNING_NUMBERS = "[ERROR] 당첨 번호에는 중복된 숫자가 없어야 합니다.";
-    private static final String ERROR_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String ERROR_BONUS_NUMBER_RANGE = "[ERROR] 보너스 번호는 " + MIN_LOTTO_NUMBER + "부터 " + MAX_LOTTO_NUMBER + " 사이의 숫자여야 합니다.";
     private static final String ERROR_BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
     private static final String ERROR_PURCHASE_AMOUNT = "[ERROR] 구입금액은 1,000원 단위여야 합니다.";
-
-    private static final int WINNING_NUMBER_COUNT = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int MIN_PURCHASE_AMOUNT = 1000;
 
     public static List<Integer> getWinningNumbers() {
         try {
