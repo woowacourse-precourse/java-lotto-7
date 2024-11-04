@@ -5,6 +5,8 @@ import lotto.exception.lotto.LottoErrorMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -19,11 +21,12 @@ class LottoTest {
         validNumbers = List.of(8, 21, 15, 33, 40, 42);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(ints = {0, 5})
     @DisplayName("로또 번호의 개수가 6개가 아니면 예외가 발생한다.")
-    void 로또_번호의_개수가_6개가_아니면_예외가_발생한다() {
+    void 로또_번호의_개수가_6개가_아니면_예외가_발생한다(int size) {
         // given
-        List<Integer> invalidNumbers = List.of(1, 2, 3, 4, 5);
+        List<Integer> invalidNumbers = validNumbers.subList(0, size);
 
         // when, then
         assertThatIllegalArgumentException()
@@ -58,10 +61,10 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호가 정상적으로 생성되는 경우이다.")
     void 로또_번호가_정상적으로_생성되는_경우이다() {
-        // given
+        // when
         Lotto lotto = new Lotto(validNumbers);
 
-        // when, then
+        // then
         assertThat(lotto.getNumbers()).containsExactlyInAnyOrderElementsOf(validNumbers);
     }
 }

@@ -5,9 +5,9 @@ import lotto.exception.bonus.BonusErrorMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
@@ -23,45 +23,17 @@ public class BonusNumberTest {
     @Test
     @DisplayName("보너스 번호가 공백일 경우 예외가 발생한다.")
     void 보너스_번호가_공백일_경우_예외가_발생한다() {
-        // given
         String invalidInput = "";
 
-        // when, then
         assertThatNullPointerException()
                 .isThrownBy(() -> new BonusNumber(invalidInput, winningNumbers))
                 .withMessage(BonusErrorMessages.INVALID_EMPTY.getMessage());
     }
 
-    @Test
-    @DisplayName("보너스 번호가 숫자가 아닐 경우 예외가 발생한다.")
-    void 보너스_번호가_숫자가_아닐_경우_예외가_발생한다() {
-        // given
-        String invalidInput = "abc";
-
-        // when, then
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BonusNumber(invalidInput, winningNumbers))
-                .withMessage(BonusErrorMessages.INVALID_NUMBER_FORMAT.getMessage());
-    }
-
-    @Test
-    @DisplayName("보너스 번호가 음수일 경우 예외가 발생한다.")
-    void 보너스_번호가_음수일_경우_예외가_발생한다() {
-        // given
-        String invalidInput = "-5";
-
-        // when, then
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new BonusNumber(invalidInput, winningNumbers))
-                .withMessage(BonusErrorMessages.INVALID_NUMBER_FORMAT.getMessage());
-    }
-
-    @Test
-    @DisplayName("보너스 번호가 쉼표를 포함할 경우 예외가 발생한다.")
-    void 보너스_번호가_쉼표를_포함할_경우_예외가_발생한다() {
-        // given
-        String invalidInput = "7,8";
-
+    @ParameterizedTest
+    @ValueSource(strings = {"abc", "-5", "7,8"})
+    @DisplayName("보너스 번호가 숫자가 아니거나 음수이거나 쉼표를 포함할 경우 IllegalArgumentException이 발생한다.")
+    void 보너스_번호가_숫자가_아니거나_음수_또는_쉼표를_포함할_경우_예외가_발생한다(String invalidInput) {
         // when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new BonusNumber(invalidInput, winningNumbers))

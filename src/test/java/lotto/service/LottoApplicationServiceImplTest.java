@@ -10,11 +10,11 @@ import lotto.exception.lotto.LottoErrorMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
@@ -36,57 +36,27 @@ public class LottoApplicationServiceImplTest {
     @Test
     @DisplayName("로또 구입 금액이 공백일 경우 예외가 발생한다.")
     void 로또_구입_금액이_공백일_경우_예외가_발생한다() {
-        // given
         String invalidAmount = "";
 
-        // when, then
         assertThatNullPointerException()
                 .isThrownBy(() -> lottoService.validateAmount(invalidAmount))
                 .withMessage(LottoErrorMessages.INVALID_AMOUNT_EMPTY.getMessage());
     }
 
-    @Test
-    @DisplayName("로또 구입 금액이 음수일 경우 예외가 발생한다.")
-    void 로또_구입_금액이_음수일_경우_예외가_발생한다() {
-        // given
-        String invalidAmount = "-1000";
-
+    @ParameterizedTest
+    @ValueSource(strings = {"-1000", "1000j"})
+    @DisplayName("로또 구입 금액이 음수이거나 문자인 경우 IllegalArgumentException이 발생한다.")
+    void 로또_구입_금액이_음수_또는_문자인_경우_예외가_발생한다(String invalidAmount) {
         // when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> lottoService.validateAmount(invalidAmount))
                 .withMessage(LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
     }
 
-    @Test
-    @DisplayName("로또 구입 금액이 문자일 경우 예외가 발생한다.")
-    void 로또_구입_금액이_문자일_경우_예외가_발생한다() {
-        // given
-        String invalidAmount = "1000j";
-
-        // when, then
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> lottoService.validateAmount(invalidAmount))
-                .withMessage(LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
-    }
-
-    @Test
-    @DisplayName("로또 구입 금액이 1,000원 단위가 아닐 경우 예외가 발생한다.")
-    void 로또_구입_금액이_1000원_단위가_아닐_경우_예외가_발생한다() {
-        // given
-        String invalidAmount = "800";
-
-        // when, then
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> lottoService.validateAmount(invalidAmount))
-                .withMessage(LottoErrorMessages.INVALID_AMOUNT_NOT_DIVISIBLE_BY_1000.getMessage());
-    }
-
-    @Test
-    @DisplayName("로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
-    void 로또_구입_금액이_1000원으로_나누어_떨어지지_않는_경우_예외가_발생한다() {
-        // given
-        String invalidAmount = "2500";
-
+    @ParameterizedTest
+    @ValueSource(strings = {"800", "2500"})
+    @DisplayName("로또 구입 금액이 1,000원 단위가 아닌 경우 IllegalArgumentException이 발생한다.")
+    void 로또_구입_금액이_1000원_단위가_아닌_경우_예외가_발생한다(String invalidAmount) {
         // when, then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> lottoService.validateAmount(invalidAmount))
