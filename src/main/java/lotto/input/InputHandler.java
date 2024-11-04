@@ -17,10 +17,13 @@ public class InputHandler {
     }
     public String inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        return readLine();
+        String inputWinningNumbers = readLine();
+        Validation.validateWinningNumberFormat(inputWinningNumbers);
+        return inputWinningNumbers;
     }
     public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(readLine());
     }
+
 }
