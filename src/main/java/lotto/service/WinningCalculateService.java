@@ -5,15 +5,25 @@ import lotto.domain.LottoResult;
 import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinningCalculateService {
+    public static List<LottoResult> calculateLottoResults(List<Lotto> lottos, WinningLotto winningLotto) {
+        List<LottoResult> results = new ArrayList<>();
 
-    public static LottoResult calculateLottoResult(Lotto lotto, WinningLotto winningLotto) {
+        for (Lotto lotto : lottos) {
+            results.add(calculateSingleLottoResult(lotto, winningLotto));
+        }
+
+        return results;
+    }
+
+    private static LottoResult calculateSingleLottoResult(Lotto lotto, WinningLotto winningLotto) {
         int matchCount = 0;
         boolean hasBonusMatch = false;
 
-        List<Integer> lottoNumbers = lotto.getNumbers();          // 구매한 로또 번호들
+        List<Integer> lottoNumbers = lotto.getNumbers();         // 구매한 로또 번호
         List<Integer> winningNumbers = winningLotto.getNumbers(); // 당첨 번호들
         int bonusNumber = winningLotto.getBonusNumber();
 
