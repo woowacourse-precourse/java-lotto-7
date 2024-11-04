@@ -34,10 +34,10 @@ class LottoTest {
     @DisplayName("로또 번호가 1에서 45 사이의 숫자가 아니면 예외가 발생한다.")
     @Test
     void 로또_번호가_1에서_45_사이의_숫자가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6))) // 0 포함
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46))) // 46 포함
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -45,8 +45,10 @@ class LottoTest {
     @Test
     void 유효한_로또_번호로_로또_객체가_생성된다() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lotto).isNotNull(); // 로또 객체가 정상적으로 생성되었는지 확인
+        assertThat(lotto).isNotNull();
     }
+
+
 
 
 
