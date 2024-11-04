@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MatchCheck {
 
-    private int matchLotto(List<Integer> paper, List<Integer> winNumber) {
+    public int matchLotto(List<Integer> paper, List<Integer> winNumber) {
         int check = 0;
 
         for( Integer Number : paper ){
@@ -18,7 +18,7 @@ public class MatchCheck {
         return check;
     }
 
-    private boolean matchBonusNumber(List<Integer> findFivePaper, int bonusNumber){
+    public boolean matchBonusNumber(List<Integer> findFivePaper, int bonusNumber){
         for( Integer Number : findFivePaper ){
             if(Number==bonusNumber){ return true; }
         }
@@ -28,10 +28,13 @@ public class MatchCheck {
 
     public HashMap<Lotto, MatchLotto> winPapers(Lotto[] lotto, List<Integer> winNumber, int bonusNumber) {
         HashMap<Lotto, MatchLotto> winPapers = new HashMap<>();
+        boolean bonusMatch = false;
+        int matchCount = 0;
 
         for (Lotto lottoPaper : lotto) {
-            int matchCount = matchLotto(lottoPaper.getNumbers(), winNumber);
-            boolean bonusMatch = matchBonusNumber(lottoPaper.getNumbers(), bonusNumber);
+            matchCount = matchLotto(lottoPaper.getNumbers(), winNumber);
+            bonusMatch = false;
+            if(matchCount == 5){ bonusMatch = matchBonusNumber(lottoPaper.getNumbers(), bonusNumber); }
 
             MatchLotto matchLotto = MatchLotto.getRank(matchCount, bonusMatch);
 
