@@ -37,7 +37,7 @@ public class LottoController {
         Random random = new Random();
 
         for (int i = 0; i < purchaseAmount.getCanBuyLottoCount(); i++) {
-            lottos.add(new Lotto(random.sixNumberIssue()));
+            lottos.add(new Lotto(random.NumberIssue(1, 45, 6)));
         }
 
         return lottos;

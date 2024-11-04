@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Random {
 
-    public List<Integer> sixNumberIssue() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public List<Integer> NumberIssue(int startInclusive, int endInclusive, int count) {
+        return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
     }
 }
