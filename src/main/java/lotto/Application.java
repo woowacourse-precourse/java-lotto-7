@@ -1,14 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.validator.IntegerValidator;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -18,14 +14,10 @@ public class Application {
         int number = IntegerValidator.moneyValidator(InputView.inputMoney());
         Money money = new Money(number);
 
-//        // 2. 로또 번호 추첨
-//        int count = money / 1000;
-//
-//        List<List> purchaseLottos = new ArrayList<>();
-//        for (int i = 0; i < count; i++) {
-//            List<Integer> purchaseNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//            purchaseLottos.add(purchaseNumbers);
-//        }
+        // 2. 로또 번호 추첨
+        int count = money.getCount();
+        List<List<Integer>> lottos = Lotto.makeRandomNumbers(count);
+
 //
 //        // 3. 구매 로또 번호 수량 및 번호 출력
 //        String checkCount = "%d개를 구매했습니다.".formatted(count);

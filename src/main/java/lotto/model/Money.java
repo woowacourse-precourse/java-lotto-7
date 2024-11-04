@@ -15,4 +15,8 @@ public class Money {
             throw new IllegalArgumentException(INVALID_MONEY);
         }
     }
+
+    public int getCount() {
+        return money / PRICE;
+    }
 }
