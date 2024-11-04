@@ -15,6 +15,7 @@ public class OutputView {
 	private static final String WINNING_LOTTO_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
 	private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 	private static final String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---\n";
+	private static final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.\n";
 	private static final String NEW_LINE = "\n";
 	private static final String DECIMAL_FORMAT = "#,###.#";
 
@@ -56,7 +57,7 @@ public class OutputView {
 	}
 
 	private String getLottoCountMessage(int count) {
-		return count + "개를 구매했습니다." + NEW_LINE;
+		return count + LOTTO_COUNT_MESSAGE;
 	}
 
 	private String getPurchaseLottoResult(List<String> lottoResult) {
