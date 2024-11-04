@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.Service.LottoService;
 import lotto.Util.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,7 +34,7 @@ class LottoTest {
     void 로또를_사고_잔돈이_있을때_예외가_발생한다() {
         String expectedMessage = String.format("%d원 더 주세요! %d원으로는 구매가 불가능합니다.", neededAmount, remainder);
 
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)).buyLotto(money))
+        assertThatThrownBy(() -> new LottoService().buyLotto(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(expectedMessage);
 
@@ -41,7 +42,7 @@ class LottoTest {
 
     @Test
     void 금액만큼의_로또를_산다() {
-        assertThat(new Lotto(List.of(12, 3, 4, 5, 23, 1)).buyLotto(10000))
+        assertThat(new LottoService().buyLotto(10000))
                 .isEqualTo(10);
     }
 }

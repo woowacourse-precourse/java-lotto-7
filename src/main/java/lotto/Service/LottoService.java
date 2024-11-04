@@ -11,7 +11,10 @@ import java.util.stream.Collectors;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoService {
+    static final int LOTTO_PRICE = 1000;
     private Lotto lotto;
+    int amount;
+
     String input = readLine();
 
     public Lotto WinningNumberSplit() {
@@ -23,5 +26,19 @@ public class LottoService {
         return lotto;
     }
 
+    public int buyLotto(int money) {
+        int remainder = money % LOTTO_PRICE;
+
+        amount = money / LOTTO_PRICE;
+        if (remainder != 0) {
+            int neededMoney = LOTTO_PRICE - remainder;
+            throw new IllegalArgumentException("[ERROR]" + remainder + "원으로는 구매가 불가능합니다." + neededMoney + "원 더 채워주세요");
+        }
+        return amount;
+    }
+
+    /*public List<Integer> drawLotto(List<Integer> numbers) {
+
+    }*/
 
 }
