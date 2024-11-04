@@ -26,7 +26,7 @@ public class LottoServiceTest {
         int bonusNumber = 7;
 
         LottoService lottoService = new LottoService(winningNumbers, bonusNumber);
-        assertThat(lottoService.draw(lotto))
+        assertThat(lottoService.match(lotto))
                 .isEqualTo(Rank.FIRST);
     }
 
@@ -38,7 +38,7 @@ public class LottoServiceTest {
         int bonusNumber = 6;
 
         LottoService lottoService = new LottoService(winningNumbers, bonusNumber);
-        assertThat(lottoService.draw(lotto))
+        assertThat(lottoService.match(lotto))
                 .isEqualTo(Rank.SECOND);
     }
 
@@ -50,7 +50,7 @@ public class LottoServiceTest {
         int bonusNumber = 45;
 
         LottoService lottoService = new LottoService(winningNumbers, bonusNumber);
-        assertThat(lottoService.draw(lotto))
+        assertThat(lottoService.match(lotto))
                 .isEqualTo(Rank.THIRD);
     }
 
@@ -62,7 +62,7 @@ public class LottoServiceTest {
         int bonusNumber = 45;
 
         LottoService lottoService = new LottoService(winningNumbers, bonusNumber);
-        assertThat(lottoService.draw(lotto))
+        assertThat(lottoService.match(lotto))
                 .isEqualTo(Rank.FOURTH);
     }
 
@@ -74,7 +74,7 @@ public class LottoServiceTest {
         int bonusNumber = 45;
 
         LottoService lottoService = new LottoService(winningNumbers, bonusNumber);
-        assertThat(lottoService.draw(lotto))
+        assertThat(lottoService.match(lotto))
                 .isEqualTo(Rank.FIFTH);
     }
 
@@ -86,7 +86,7 @@ public class LottoServiceTest {
         int bonusNumber = 45;
 
         LottoService lottoService = new LottoService(winningNumbers, bonusNumber);
-        assertThat(lottoService.draw(lotto))
+        assertThat(lottoService.match(lotto))
                 .isEqualTo(Rank.NONE);
     }
 
