@@ -9,10 +9,12 @@ import lotto.domain.LottoBonus;
 import lotto.domain.LottoBuyer;
 import lotto.domain.LottoResult;
 import lotto.validation.LotteryValidator;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LotteryService {
     private final OutputView outputView;
+    private final InputView inputView;
     private final LotteryValidator lotteryValidator;
     private final LottoBuyer lottoBuyer;
     private final Lotto winningLottery;
@@ -21,6 +23,7 @@ public class LotteryService {
 
     public LotteryService() {
         this.outputView = new OutputView();
+        this.inputView = new InputView();
         this.lotteryValidator = new LotteryValidator();
         this.lottoBuyer = new LottoBuyer();
         this.winningLottery = new Lotto();
@@ -30,11 +33,7 @@ public class LotteryService {
 
     public void purchaseLotto() {
         outputView.printRequirePurchaseAmount();
-
-        final String inputPurchaseAmount = Console.readLine();
-        final int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
-
-        lotteryValidator.validatePurchaseAmount(purchaseAmount);
+        final int purchaseAmount = inputView.readPurchaseAmount();
 
         int lottoPurchaseAmount = purchaseAmount / 1000;
         outputView.printPurchaseAmount(lottoPurchaseAmount);

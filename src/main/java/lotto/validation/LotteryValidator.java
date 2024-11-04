@@ -4,16 +4,13 @@ import static lotto.constant.LotteryConstant.DEFAULT_ERROR_MESSAGE;
 
 public class LotteryValidator {
 
-    // 숫자로 변환된 구매 금액
-    public void validatePurchaseAmount(final int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException(DEFAULT_ERROR_MESSAGE + "로또 구입 금액은 1,000원 단위여야 합니다.");
+    public boolean validateInputPurchaseAmount(final String inputPurchaseAmount) {
+        try {
+            Integer.parseInt(inputPurchaseAmount);
+        } catch (NumberFormatException e) {
+            System.out.println(DEFAULT_ERROR_MESSAGE + " 숫자로 변환 불가능합니다.");
+            return false;
         }
+        return true;
     }
-
-//    public boolean validatePurchaseAmount(final int purchaseAmount) {
-//        try {
-//            Integer.parseInt(purchaseAmount)
-//        }
-//    }
 }

@@ -1,7 +1,7 @@
 package lotto.constant;
 
 public class LotteryConstant {
-    public static final String DEFAULT_ERROR_MESSAGE = "[ERROR] ";
+    public static final String DEFAULT_ERROR_MESSAGE = "[ERROR]";
 
     public static final int MATCH_THREE_NUMBERS_WINNING_AMOUNT = 5000;
     public static final int MATCH_FOUR_NUMBERS_WINNING_AMOUNT = 50000;
