@@ -50,4 +50,12 @@ public class OutputView {
 	private String getPurchaseLottoResult(List<String> lottoResult) {
 		return "[" + String.join(", ", lottoResult) + "]";
 	}
+
+	private String getMatchingMessage(int count, boolean hasBonusNumber) {
+		String matchingMessage = count + "개 일치";
+		if (hasBonusNumber) {
+			return matchingMessage + ", 보너스 볼 일치";
+		}
+		return matchingMessage;
+	}
 }
