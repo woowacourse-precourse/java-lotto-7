@@ -4,11 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.Utils.LottoConstants;
 
 public class Lotto {
-    private static final int start = 1;
-    private static final int end = 45;
-    private static final int count = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,7 +20,7 @@ public class Lotto {
     }
 
     private static List<Integer> generateNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(start, end, count);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LottoConstants.LOTTO_START_NUMBER, LottoConstants.LOTTO_END_NUMBER, LottoConstants.LOTTO_NUMBER_COUNT);
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }

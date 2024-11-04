@@ -4,12 +4,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.Messages.ErrorMessage;
+import lotto.Utils.LottoConstants;
 import lotto.Utils.Parser;
 import lotto.Utils.Validator;
 
 public class WinningNumbers {
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
     private static final String DELIMITER = ",";
     private Lotto mainNumbers;
     private int bonusNumber;
@@ -84,8 +83,9 @@ public class WinningNumbers {
 
         for (String token : tokens) {
             if (!Validator.isInteger(token)) {
-                String message = String.format(ErrorMessage.RANGE_OUT_NUMBERS.getMessage(), MIN_LOTTO_NUMBER,
-                        MAX_LOTTO_NUMBER);
+                String message = String.format(ErrorMessage.RANGE_OUT_NUMBERS.getMessage(),
+                        LottoConstants.LOTTO_START_NUMBER,
+                        LottoConstants.LOTTO_END_NUMBER);
                 throw new IllegalArgumentException(message);
             }
         }
@@ -98,9 +98,10 @@ public class WinningNumbers {
 
     private void checkNumbersRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (!Validator.inRange(number, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)) {
-                String message = String.format(ErrorMessage.RANGE_OUT_NUMBERS.getMessage(), MIN_LOTTO_NUMBER,
-                        MAX_LOTTO_NUMBER);
+            if (!Validator.inRange(number, LottoConstants.LOTTO_START_NUMBER, LottoConstants.LOTTO_END_NUMBER)) {
+                String message = String.format(ErrorMessage.RANGE_OUT_NUMBERS.getMessage(),
+                        LottoConstants.LOTTO_START_NUMBER,
+                        LottoConstants.LOTTO_END_NUMBER);
                 throw new IllegalArgumentException(message);
             }
         }
@@ -144,9 +145,10 @@ public class WinningNumbers {
     }
 
     private void checkNumberRange(int number) {
-        if (!Validator.inRange(number, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)) {
-            String message = String.format(ErrorMessage.RANGE_OUT_NUMBERS.getMessage(), MIN_LOTTO_NUMBER,
-                    MAX_LOTTO_NUMBER);
+        if (!Validator.inRange(number, LottoConstants.LOTTO_START_NUMBER, LottoConstants.LOTTO_END_NUMBER)) {
+            String message = String.format(ErrorMessage.RANGE_OUT_NUMBERS.getMessage(),
+                    LottoConstants.LOTTO_START_NUMBER,
+                    LottoConstants.LOTTO_END_NUMBER);
             throw new IllegalArgumentException(message);
         }
     }

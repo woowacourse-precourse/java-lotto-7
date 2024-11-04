@@ -4,7 +4,7 @@ import lotto.Messages.ErrorMessage;
 
 public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
-    private static final int MAX_STOCK = 10000;
+    private static final int MAX_STOCK = 100000;
 
     private LottoMachine() {
     }
