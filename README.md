@@ -75,3 +75,49 @@
 - Java Enum을 적용하여 프로그램을 구현한다
 - 구현한 기능에 대한 단위 테스트를 작성한다
   - 단, UI(System.out, System.in, Scanner) 로직은 제외한다
+
+## 🌳 프로젝트 구조
+
+```
+📦 src
+┣ 📂 main
+┃ ┗ 📂 java
+┃   ┗ 📂 lotto
+┃     ┣ 📂 constant
+┃     ┃ ┣ 📜 ErrorMessage.java
+┃     ┃ ┗ 📜 LottoInfo.java
+┃     ┣ 📂 controller
+┃     ┃ ┗ 📜 LottoController.java
+┃     ┣ 📂 domain
+┃     ┃ ┣ 📜 BonusNumber.java
+┃     ┃ ┣ 📜 Budget.java
+┃     ┃ ┣ 📜 Lotto.java
+┃     ┃ ┣ 📜 Purchaser.java
+┃     ┃ ┣ 📜 WinningInfo.java
+┃     ┃ ┣ 📜 WinningNumbers.java
+┃     ┃ ┗ 📜 WinningStatistics.java
+┃     ┣ 📂 util
+┃     ┃ ┗ 📜 LottoNumbersGenerator.java
+┃     ┣ 📂 view
+┃     ┃ ┣ 📜 InputMessage.java
+┃     ┃ ┣ 📜 InputView.java
+┃     ┃ ┣ 📜 OutputMessage.java
+┃     ┃ ┗ 📜 OutputView.java
+┃     ┗ 📜 Application.java
+┗ 📂 test
+  ┗ 📂 java
+    ┗ 📂 lotto
+      ┣ 📂 domain
+      ┃ ┣ 📜 BonusNumberTest.java
+      ┃ ┣ 📜 BudgetTest.java
+      ┃ ┣ 📜 LottoTest.java
+      ┃ ┣ 📜 PurchaserTest.java
+      ┃ ┣ 📜 WinningInfoTest.java
+      ┃ ┣ 📜 WinningNumbersTest.java
+      ┃ ┗ 📜 WinningStatisticsTest.java
+      ┣ 📂 util
+      ┃ ┗ 📜 LottoNumbersGeneratorTest.java
+      ┣ 📂 view
+      ┃ ┣ 📜 InputMessageTest.java
+      ┃ ┗ 📜 OutputMessageTest.java
+      ┗ 📜 ApplicationTest.java```
