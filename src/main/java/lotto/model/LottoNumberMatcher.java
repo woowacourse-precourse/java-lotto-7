@@ -13,8 +13,8 @@ public class LottoNumberMatcher {
         this.bonusNumber = bonusNumber;
     }
 
-    public WinningResult calculateWinningResult() {
-        WinningResult result = new WinningResult();
+    public WinningResult calculateWinningResult(int purchaseAmount) {
+        WinningResult result = new WinningResult(purchaseAmount);
 
         for (Lotto lotto : purchasedLottos) {
             int matchCount = countMatchingNumbers(lotto.getNumbers());

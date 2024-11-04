@@ -17,10 +17,11 @@ public class LottoController {
 
     public void LottoGameStart() {
         outputView.printPriceInputPrompt();
-        List<Lotto> lottoes = lottoGame.purchase();
+        int price = lottoGame.getAmount();
+        List<Lotto> lottoes = lottoGame.purchase(price);
         outputView.printLottoes(lottoes);
         outputView.promptWinningNumbers();
-        WinningResult winningResult = lottoGame.playLottoGame(lottoes);
+        WinningResult winningResult = lottoGame.playLottoGame(lottoes, price);
         winningResult.printWinningResult(winningResult.getResultMap());
     }
 }

@@ -19,20 +19,23 @@ public class LottoGame {
         this.winningLottoNumbers = winningNumbers;
     }
 
-    public List<Lotto> purchase() {
-        int price = getValidatedPrice();
+    public int getAmount() {
+        return getValidatedPrice();
+    }
+
+    public List<Lotto> purchase(int price) {
         int lottoCount = countLottoes(price);
         outputView.printPurchasePrompt(lottoCount);
         return generateLottoes(lottoCount);
     }
 
-    public WinningResult playLottoGame(List<Lotto> lottoes) {
+    public WinningResult playLottoGame(List<Lotto> lottoes, int price) {
         List<Integer> winningNumbers = winningLottoNumbers.getWinningNumber();
         winningLottoNumbers.validatePositiveInteger(winningNumbers);
         outputView.promptBonusNumber();
         int BonusNumber = winningLottoNumbers.getBonusNumber(winningNumbers);
         LottoNumberMatcher lottoNumberMatcher = new LottoNumberMatcher(lottoes, winningNumbers, BonusNumber);
-        return lottoNumberMatcher.calculateWinningResult();
+        return lottoNumberMatcher.calculateWinningResult(price);
     }
 
 
