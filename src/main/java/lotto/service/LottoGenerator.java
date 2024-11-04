@@ -6,6 +6,7 @@ import static lotto.common.config.Constants.MIN_NUMBER;
 import static lotto.common.config.Constants.UNIT_PRICE;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -34,7 +35,8 @@ public class LottoGenerator {
     private Lotto generateRandomLotto() {
         List<Integer> oneLotto = Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber(),
                 LOTTO_NUMBERS_COUNT.getNumber());
-        Collections.sort(oneLotto);
-        return new Lotto(oneLotto);
+        List<Integer> sortedLotto = new ArrayList<>(oneLotto);
+        Collections.sort(sortedLotto);
+        return new Lotto(sortedLotto);
     }
 }
