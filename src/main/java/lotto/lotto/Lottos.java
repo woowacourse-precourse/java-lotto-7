@@ -25,12 +25,12 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
-    public List<MatchingCondition> convertLottosToMatchedConditions(List<Integer> numbers, int bonusNumber) {
+    public List<MatchingCondition> convertLottosToMatchedConditions(List<Integer> numbers, BonusNumber bonusNumber) {
         List<MatchingCondition> conditions = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
             int matchingCount = lotto.calculateMatchingCount(numbers);
-            boolean doesBonusMatched = lotto.hasNumber(bonusNumber);
+            boolean doesBonusMatched = lotto.hasNumber(bonusNumber.getBonusNumber());
             MatchingCondition matchingCondition = MatchingCondition.findByMatchingResult(matchingCount,
                     doesBonusMatched);
 

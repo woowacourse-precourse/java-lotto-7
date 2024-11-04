@@ -5,22 +5,20 @@ import java.util.List;
 
 public class WinningNumbers {
     private final List<Integer> numbers;
-    private final int bonusNumber;
 
-    private WinningNumbers(List<Integer> numbers, int bonusNumber) {
+    private WinningNumbers(List<Integer> numbers) {
         this.numbers = numbers;
-        this.bonusNumber = bonusNumber;
     }
 
-    public static WinningNumbers of(int bonusNumber, String... rawNumbers) {
+    public static WinningNumbers of(String... rawNumbers) {
         List<Integer> numbers = Arrays.stream(rawNumbers)
                 .map(Integer::parseInt)
                 .toList();
 
-        return new WinningNumbers(numbers, bonusNumber);
+        return new WinningNumbers(numbers);
     }
 
-    public List<MatchingCondition> matchWinningNumbersTo(Lottos lottos) {
+    public List<MatchingCondition> matchWinningNumbersTo(Lottos lottos, BonusNumber bonusNumber) {
         return lottos.convertLottosToMatchedConditions(numbers, bonusNumber);
     }
 }
