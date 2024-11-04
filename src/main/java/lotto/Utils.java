@@ -6,7 +6,7 @@ import lotto.message.ExceptionMessage;
 
 public class Utils {
 
-    public List<Integer> convertStringToIntegerList(String source, String delimiter) {
+    public static List<Integer> convertStringToIntegerList(String source, String delimiter) {
         return convertListStringToListInteger(splitStringAsList(source, delimiter));
     }
 
@@ -14,14 +14,14 @@ public class Utils {
         return Arrays.asList(source.split(delimiter));
     }
 
-    private List<Integer> convertListStringToListInteger(List<String> source) {
+    private static List<Integer> convertListStringToListInteger(List<String> source) {
         return source.stream()
-            .peek(this::validateNumber)
+            .peek(Utils::validateNumber)
             .map(Integer::parseInt)
             .toList();
     }
 
-    private void validateNumber(String inputValue) {
+    private static void validateNumber(String inputValue) {
         try {
             Integer.parseInt(inputValue);
         } catch (NumberFormatException e) {
