@@ -55,4 +55,8 @@ public class LottoMatcher {
         }
         return matchCount;
     }
+
+    public int[] getMatchCounts() {
+        return new int[]{threeMatchCount, fourMatchCount, fiveMatchCount, fiveWithBonusCount, sixMatchCount};
+    }
 }
