@@ -26,7 +26,7 @@ public class WinningNumbers {
         int count = 0;
         for(int i=0;i<LOTTO_SIZE;i++){
             Integer number = lotto.getElement(i);
-            if(winningset.contains(number)){
+            if(!winningset.add(number)){
                 count++;
             }
         }
@@ -34,7 +34,7 @@ public class WinningNumbers {
     }
 
     private void validateFormat(String winningNumbers) {
-        if(winningNumbers == null || winningNumbers.isEmpty()) {
+        if(winningNumbers == null || winningNumbers.isBlank()) {
             throw new IllegalArgumentException(WinningNumberErrorMessage.INVALID_WINNING_NUMBER_FORMAT.getMessage());
         }
         if(winningNumbers.startsWith(COMMA) || winningNumbers.endsWith(COMMA)) {
