@@ -1,5 +1,5 @@
 package lotto.view;
 
-public interface View {
+public interface OutputView {
     String display();
 }

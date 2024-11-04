@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.dto.LottoPurchasesDto;
 
-public class LottoPurchasesView implements View {
+public class LottoPurchasesView implements OutputView {
 
     private static final String LOTTO_PURCHASES_OUTPUT_HEADLINE = "%n%d개를 구매했습니다.";
     private final LottoPurchasesDto lottoPurchasesDto;
