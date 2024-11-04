@@ -10,12 +10,12 @@ import java.util.Map;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottosCreator lottosCreator;
+    private final LottoShop lottoShop;
 
-    public LottoController(InputView inputView, OutputView outputView, LottosCreator lottosCreator) {
+    public LottoController(InputView inputView, OutputView outputView, LottoShop lottoShop) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottosCreator = lottosCreator;
+        this.lottoShop = lottoShop;
     }
 
     public void run() {
@@ -38,7 +38,7 @@ public class LottoController {
     }
 
     private Lottos createLottos(Money money) {
-        return lottosCreator.createLottos(money);
+        return lottoShop.buyLottos(money);
     }
 
     private void printLottoDetails(Lottos lottos) {

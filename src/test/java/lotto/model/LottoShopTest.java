@@ -3,19 +3,18 @@ package lotto.model;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class LottosCreatorTest {
+class LottoShopTest {
     @Test
     void Lottos생성테스트() {
         // given
         Money money = new Money("8000");
-        LottosCreator lottosCreator = new LottosCreator();
+        LottoShop lottoShop = new LottoShop();
 
         // when
         System.out.println("=====Logic Start=====");
 
-        Lottos lottos = lottosCreator.createLottos(money);
+        Lottos lottos = lottoShop.buyLottos(money);
 
         System.out.println("=====Logic End=====");
         // then
