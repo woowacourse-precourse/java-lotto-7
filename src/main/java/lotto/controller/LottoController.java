@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.LottoEvaluator;
 import lotto.model.LottoGenerator;
 import lotto.model.Validator;
 import lotto.view.InputView;
@@ -12,6 +13,7 @@ public class LottoController {
     private InputView inputView;
     private OutputView outputView;
     private LottoGenerator lottoGenerator;
+    private LottoEvaluator lottoEvaluator;
     private Validator validator;
 
     public LottoController(InputView inputView, OutputView outputView) {
@@ -30,6 +32,12 @@ public class LottoController {
 
         Lotto winningLotto = validateWinningNumbers();
         int bonusNum = validateBonusNumber(winningLotto);
+
+        lottoEvaluator = new LottoEvaluator(purchaseAmount, lottos, winningLotto, bonusNum);
+
+        lottoEvaluator.evaluateResult();
+        lottoEvaluator.calculateProfit();
+        outputView.displayResults(lottoEvaluator.getLottoStats(), lottoEvaluator.getProfitRate());
     }
 
     public int validatePurchaseAmount() {
