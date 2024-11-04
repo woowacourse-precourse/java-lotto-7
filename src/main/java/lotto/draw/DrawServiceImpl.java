@@ -4,6 +4,7 @@ import lotto.donghang.WinningLotto;
 import lotto.vendingmachine.Lotto;
 import lotto.vendingmachine.VendingMachineRepository;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,9 +23,8 @@ public class DrawServiceImpl implements DrawService {
 
     @Override
     public Map<Rank, Integer> checkLotto(WinningLotto winningLotto) {
-        Map<Rank, Integer> result = Stream.of(Rank.values())
-                .filter(rank -> rank != Rank.LOSING_TICKET)
-                .collect(Collectors.toMap(rank -> rank, rank -> 0));
+        Map<Rank, Integer> result = setInitialValue();
+
 
         winningLottoNumbers = winningLotto.lottoNumbers.getNumbers();
         bonusNumber = winningLotto.bonus;
@@ -42,6 +42,18 @@ public class DrawServiceImpl implements DrawService {
             }
 
             result.put(Rank.getWinningRank(cnt, isBonusMatch), result.get(Rank.getWinningRank(cnt, isBonusMatch)) + 1);
+        }
+
+        return result;
+    }
+
+    private Map<Rank, Integer> setInitialValue() {
+        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
+
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.LOSING_TICKET) {
+                result.put(rank, 0);
+            }
         }
 
         return result;
