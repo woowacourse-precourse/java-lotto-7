@@ -126,6 +126,46 @@ lotto/
 
 ## 클래스 다이어그램
 
+*Model*
+
+```mermaid
+classDiagram
+    class Lotto {
+	    -List~Integer~ numbers
+	    +getNumbers() List~Integer~
+	    -validate(List~Integer~ numbers)
+	    -validateSize(List~Integer~ numbers)
+	    -validateRange(List~Integer~ numbers)
+	    -validateDuplicate(List~Integer~ numbers)
+    }
+    class LottoGenerator {
+	    -static final int STARTINCLUSIVE
+		  -static final int ENDINCLUSIVE
+		  -static final int COUNT
+		  -final int lottoCnt
+		  -final List~Lotto~ lottos
+	    +generateLottos() List~Lotto~
+	    -generateLottoNumbers() List~Integer~
+	    +getLottoCnt() int
+    }
+    class LottoEvaluator {
+     -int purchaseAmount
+	   -List~Lotto~ lottos
+     -Lotto winningLotto
+     -int bonusNum
+     -Map~Rank, Integer~ lottoStats
+     -double profit
+	   +evaluateResult()
+	   -getRank(int matchCount, boolean hasBonus) Rank
+	   +calculateProfit()
+	   +getProfitRate() double
+	   +getLottoStats() Map~Rank, Integer~
+    }
+    style Lotto fill:white,stroke-width:2px,stroke:#CCF
+    style LottoGenerator fill:white,stroke-width:2px,stroke:#CCF
+    style LottoEvaluator fill:white,stroke-width:2px,stroke:#CCF
+```
+
 *View*
 
 ```mermaid
