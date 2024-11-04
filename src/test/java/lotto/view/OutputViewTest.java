@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.DrawNumberHacker;
+import lotto.model.DrawNumberHacker;
 import lotto.constants.view.OutputViewMessage;
 import lotto.model.Winning;
 import lotto.model.lotto.Lotto;

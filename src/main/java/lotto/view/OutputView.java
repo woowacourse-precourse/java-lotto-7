@@ -24,8 +24,4 @@ public class OutputView {
         }
         System.out.println();
     }
-
-    private double getRoundRevenueRate(double revenueRate) {
-        return Math.round(revenueRate * 100) / 100.0;
-    }
 }

@@ -37,13 +37,6 @@ public enum Winning {
                 .orElse(Winning.NO_WIN);
     }
 
-    public static Winning getPlaceByRank(int rank) {
-        return Arrays.stream(Winning.values())
-                .filter(winning -> winning.rank == rank)
-                .findFirst()
-                .orElse(Winning.NO_WIN);
-    }
-
     public String toString() {
         if (this != Winning.NO_WIN) {
             return makeString();
