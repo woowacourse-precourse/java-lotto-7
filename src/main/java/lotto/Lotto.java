@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import lotto.validation.LottoContextValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         this.numbers = numbers;
+        LottoContextValidator.validateWinningNumbers(numbers);
     }
 
     public List<Integer> getNumbers() {
