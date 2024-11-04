@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import static lotto.LottoConstants.*;
 
 public class InputHandler {
     public int budgetInput() {
@@ -21,10 +22,10 @@ public class InputHandler {
     }
 
     public void budgetInputValidator(int price) {
-        if (price % 1000 != 0) {
+        if (price % LOTTO_PURCHASE_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000단위만 가능합니다.");
         }
-        if (price < 1000) {
+        if (price < LOTTO_PURCHASE_UNIT) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000 이상부터 가능합니다.");
         }
     }
@@ -62,7 +63,7 @@ public class InputHandler {
     }
 
     public void bonusNumberValidator(List<Integer> winningNumbers, int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스번호는 1~45사이의 정수여야 합니다.");
         }
 

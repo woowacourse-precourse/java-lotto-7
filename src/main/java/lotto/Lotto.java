@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import static lotto.LottoConstants.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,11 +13,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 로또번호는 1~45사이의 정수여야 합니다.");
             }
         }
