@@ -21,7 +21,7 @@ public class LottoResult {
         double sum = lottoRanks.stream()
                 .mapToDouble(LottoRank::getPrize)
                 .sum();
-        return sum / cost.getLottoPurchaseAmount();
+        return sum / cost.getLottoPurchasePrice() * 100;
     }
 
     public List<LottoRank> getLottoRanks() {

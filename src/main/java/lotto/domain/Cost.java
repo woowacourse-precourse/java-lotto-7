@@ -6,6 +6,7 @@ public class Cost {
     private final int cost;
 
     public Cost(int cost) {
+        validate(cost);
         this.cost = cost;
     }
 
@@ -19,7 +20,7 @@ public class Cost {
         return cost / LOTTO_PRICE;
     }
 
-    public int getLottoPurchaseAmount() {
+    public int getLottoPurchasePrice() {
         return calculateLottoAmount() * LOTTO_PRICE;
     }
 

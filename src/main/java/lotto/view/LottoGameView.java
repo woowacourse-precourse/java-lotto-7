@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,7 +34,7 @@ public class LottoGameView {
                     .stream()
                     .map(LottoNumber::getValue)
                     .map(String::valueOf)
-                    .collect(Collectors.joining(",", "[", "]"));
+                    .collect(Collectors.joining(", ", "[", "]"));
 
             System.out.println(numbers);
         }
@@ -46,7 +47,7 @@ public class LottoGameView {
     }
 
     public int requestBonusNumber() {
-        System.out.println("보너스 볼을 입력해 주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         System.out.println();
 
@@ -71,10 +72,11 @@ public class LottoGameView {
     }
 
     public void displayStatistics(List<LottoRankDto> statistics) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        statistics.sort((o1, o2) -> Integer.compare(o2.getMatchCount(), o1.getMatchCount()));
+        statistics.sort((o1, o2) -> Integer.compare(o1.getPrize(), o2.getPrize()));
 
         for (LottoRankDto stat : statistics) {
             displayRankStatistic(stat);
@@ -88,10 +90,12 @@ public class LottoGameView {
 
         System.out.println(
                 lottoRankDto.getMatchCount() + "개 일치" + (lottoRankDto.isBonusMatch() ? ", 보너스 볼 일치" : "") +
-                        "(" + lottoRankDto.getPrize() + "원) - " + lottoRankDto.getAmount() + "개");
+                        " (" + NumberFormat.getInstance().format(lottoRankDto.getPrize()) + "원) - "
+                        + lottoRankDto.getAmount()
+                        + "개");
     }
 
     public void displayProfit(Double profit) {
-        System.out.println("총 수익률은 " + profit + "입니다.");
+        System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 }

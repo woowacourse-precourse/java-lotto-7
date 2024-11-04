@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.domain.Cost;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoRank;
@@ -39,7 +40,7 @@ public class LottoGameController {
         Lottos lottos = LottoGenerator.generateLottos(lottoAmount);
 
         lottoGameView.displayLottoAmount(lottoAmount);
-//        lottoGameView.displayLottos(lottos);
+        lottoGameView.displayLottos(lottos);
         return lottos;
     }
 
@@ -54,7 +55,7 @@ public class LottoGameController {
 
         List<LottoRankDto> lottoRankDto = Arrays.stream(LottoRank.values())
                 .map(it -> LottoRankDto.from(it, lottoRankLongMap.getOrDefault(it, 0L)))
-                .toList();
+                .collect(Collectors.toList());
 
         lottoGameView.displayStatistics(lottoRankDto);
         lottoGameView.displayProfit(lottoResult.calculateProfit(cost));
