@@ -1,12 +1,21 @@
 package lotto.view;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import lotto.domain.Prize;
+import lotto.domain.PublishLotto;
+import lotto.validator.DefaultDuplicateValidator;
+import lotto.validator.DefaultRangeValidator;
+import lotto.validator.LottoValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +23,8 @@ import org.junit.jupiter.api.Test;
 public class OutputViewTest {
 
     private OutputView outputView = new OutputView();
+    private LottoValidator lottoValidator = new LottoValidator(new DefaultRangeValidator(),
+        new DefaultDuplicateValidator());
 
     @Test
     void 발행_로또_수량_출력_테스트() {
@@ -26,6 +37,26 @@ public class OutputViewTest {
         //then
         String expected = "7개를 구매했습니다.";
         assertThat(outputStream.toString()).isEqualTo(expected);
+    }
+
+    @Test
+    void 발행_로또_번호_출력_테스트() {
+        //given
+        List<PublishLotto> publishLottoList = new ArrayList<>();
+        publishLottoList.add(new PublishLotto(List.of(1, 2, 3, 8, 9, 10), lottoValidator));
+        publishLottoList.add(new PublishLotto(List.of(4, 5, 6, 11, 12, 13), lottoValidator));
+        publishLottoList.add(new PublishLotto(List.of(1, 2, 3, 4, 5, 6), lottoValidator));
+
+        //when
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+        outputView.printPublishLottos(publishLottoList);
+
+        //then
+        String output = outputStream.toString();
+        assertTrue(output.contains("[1, 2, 3, 8, 9, 10]"));
+        assertTrue(output.contains("[4, 5, 6, 11, 12, 13]"));
+        assertTrue(output.contains("[1, 2, 3, 4, 5, 6]"));
     }
 
     @Test
