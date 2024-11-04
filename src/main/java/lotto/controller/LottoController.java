@@ -26,7 +26,7 @@ public class LottoController {
             outputView.printUserLottoNumbers(userLotto.generateLotto());
 
             String winningLottoNumber = inputView.printGetWinningLottoNumber(validator);
-            int bonusNumber = inputView.printGetBonusNumber(validator);
+            int bonusNumber = inputView.printGetBonusNumber(validator, winningLottoNumber);
 
             winningLotto = new WinningLotto(winningLottoNumber, bonusNumber);
             lottoResult.checkLottoIsWinner(winningLotto, userLotto);

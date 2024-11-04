@@ -32,12 +32,26 @@ public class Validator {
         validateUniqueLottoNumber(numbers, size);
         return lottoNumber;
     }
-    public int validateNumber(int bonusNumber) {
+    public int validateBonusNumber(int bonusNumber, String winningNumber) {
         if (validateNumberRange(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE));
         }
+        if (!containsWinningNumbers(bonusNumber, winningNumber)) {
+            throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_BONUS_NUMBER_IS_NOT_EQUAL_WINNING_NUMBER));
+        }
+
         return bonusNumber;
     }
+
+    private boolean containsWinningNumbers(int bonusNumber, String winningNumber) {
+        for (Integer number : splitLottoNumber(winningNumber)) {
+            if (bonusNumber == number) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private static void validateUniqueLottoNumber(List<Integer> numbers, int size) {
         if (numbers.stream().distinct().toList().size() != size) {
             throw new IllegalArgumentException(ErrorMessages.printError(ErrorMessages.ERROR_LOTTO_NUMBER_IS_UNIQUE));
@@ -63,8 +77,6 @@ public class Validator {
             }
         }
     }
-
-
 
     private boolean validateNumberRange(int number) {
         return number < 1 || number > 45;

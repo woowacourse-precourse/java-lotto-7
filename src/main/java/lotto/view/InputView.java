@@ -36,13 +36,13 @@ public class InputView {
         }
     }
 
-    public int printGetBonusNumber(Validator validator) {
+    public int printGetBonusNumber(Validator validator, String winningNumber) {
         while (true) {
             try {
                 System.out.println();
                 System.out.println(PRINT_BONUS_NUMBER);
                 int input = Integer.parseInt(Console.readLine());
-                return validator.validateNumber(input);
+                return validator.validateBonusNumber(input, winningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
