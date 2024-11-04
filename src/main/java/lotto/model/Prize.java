@@ -46,4 +46,8 @@ public enum Prize {
 
         return total;
     }
+
+    public String getMessage() {
+        return this.message;
+    }
 }

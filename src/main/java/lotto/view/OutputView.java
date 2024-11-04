@@ -1,7 +1,9 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
+import lotto.model.Prize;
 
 public class OutputView {
     public void printLottoBuyHistory(List<Lotto> lottos) {
@@ -14,5 +16,14 @@ public class OutputView {
 
             System.out.println(sortedNumbers);
         }
+    }
+
+    public void printResult(Map<Prize, Integer> result, double profitRate) {
+        System.out.println("당첨 통계\n---");
+        for (int i = Prize.values().length - 2; i >= 0; i--) {
+            Prize rank = Prize.values()[i];
+            System.out.println(rank.getMessage() + " - " + result.get(rank) + "개");
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }
 }
