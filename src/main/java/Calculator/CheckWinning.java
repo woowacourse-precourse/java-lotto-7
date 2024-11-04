@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import lotto.Lotto;
 import print.InputRequest;
 
@@ -37,18 +38,30 @@ public class CheckWinning {
     }
 
     public int checkDetail(List<Integer> myLotto, HashSet<Integer> winningNumbers, int bonusNumber) {
-        int rank = compare(winningNumbers, myLotto);
-        if (rank == 2 && !myLotto.contains(bonusNumber)) {
+        int sameNumberCount = compare(winningNumbers, myLotto);
+        if (sameNumberCount == 6) {
+            return 1;
+        }
+        if (sameNumberCount == 5 && myLotto.contains(bonusNumber)) {
+            return 2;
+        }
+        if (sameNumberCount == 5 && !myLotto.contains(bonusNumber)) {
             return 3;
         }
-        return rank;
+        if (sameNumberCount == 4) {
+            return 4;
+        }
+        if (sameNumberCount == 3) {
+            return 5;
+        }
+        return 6;
     }
 
-    public int compare(HashSet<Integer> winningNumbers, List<Integer> singleLotto) {
+    public int compare(Set<Integer> winningNumbers, List<Integer> singleLotto) {
         HashSet<Integer> myLotto = new HashSet<>(singleLotto);
 
         myLotto.retainAll(winningNumbers);
-        return myLotto.size(); // 일치하는 숫자 개수 반환
+        return myLotto.size();
     }
 
     private HashSet<Integer> strToSet(String str) {

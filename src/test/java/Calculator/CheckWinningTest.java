@@ -3,16 +3,38 @@ package Calculator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("당첨 번호와 로또 번호 비교 테스트")
-public class CheckWinningTest {  // 클래스가 public이어야 함
+public class CheckWinningTest {
 
     @Test
-    public void compareTest() {  // 메서드가 public이어야 함
+    @DisplayName("등수 확인 테스트")
+    public void checkDetailTest() {
+        //given
+        List<Integer> testMyLotto = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        HashSet<Integer> testWinningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int testBonusNumber = 7;
+        List<Integer> testMyLotto2 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 7));
+
+        //when
+        CheckWinning checkWinning = new CheckWinning();
+        int result = checkWinning.checkDetail(testMyLotto, testWinningNumbers, testBonusNumber);
+        int result2 = checkWinning.checkDetail(testMyLotto2, testWinningNumbers, testBonusNumber);
+
+        //then
+        assertEquals(1, result);
+        assertEquals(2, result2);
+    }
+
+
+    @Test
+    @DisplayName("동일한 숫자 몇 개인지 확인하는 테스트")
+    public void compareTest() {
         // given
         HashSet<Integer> winningNumbers = new HashSet<>();
         winningNumbers.add(1);
