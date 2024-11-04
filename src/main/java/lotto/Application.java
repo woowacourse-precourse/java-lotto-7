@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Application {
-    // 값이 있는지, 값이 숫자만 있는지, 숫자가 천원단위인지,
     public static void checkInputEmptyException(String lottoAmountInput) {
         if (lottoAmountInput.isEmpty()) {
             throw new IllegalArgumentException("로또 구매금액을 입력하세요.");
