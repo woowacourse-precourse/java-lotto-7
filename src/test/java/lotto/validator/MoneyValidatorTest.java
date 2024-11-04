@@ -36,7 +36,7 @@ class MoneyValidatorTest {
     @DisplayName("구매 금액 예외 - 범위 초과")
     void range() {
         assertThrows(MoneyException.class, () -> {
-            validator.validate(String.valueOf(LOTTO_PRICE * MAX_LOTTO_PURCHASE_COUNT));
+            validator.validate(String.valueOf(LOTTO_PRICE * (MAX_LOTTO_PURCHASE_COUNT + 1)));
         });
         assertThrows(MoneyException.class, () -> {
             validator.validate(String.valueOf(0));

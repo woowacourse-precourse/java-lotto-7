@@ -12,13 +12,14 @@ public class OutputView {
     private static final String DISPLAY_LOTTO_NUMBER_MESSAGE_FORMAT = "[%s]";
     private static final String DISPLAY_LOTTO_WINNING_RANK_COUNT_FORMAT =
             "당첨 통계\n" +
-                    "---\n" +
-                    "3개 일치 (5,000원) - %d개\n" +
-                    "4개 일치 (50,000원) - %d개\n" +
-                    "5개 일치 (1,500,000원) - %d개\n" +
-                    "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" +
-                    "6개 일치 (2,000,000,000원) - %d개";
+            "---\n" +
+            "3개 일치 (5,000원) - %d개\n" +
+            "4개 일치 (50,000원) - %d개\n" +
+            "5개 일치 (1,500,000원) - %d개\n" +
+            "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" +
+            "6개 일치 (2,000,000,000원) - %d개";
     private static final String DISPLAY_YIELD_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
+
 
     public void displayPurchasedLottoCount(int count) {
         System.out.printf(DISPLAY_LOTTO_COUNT_MESSAGE_FORMAT + "%n", count);
@@ -31,7 +32,7 @@ public class OutputView {
         }
     }
 
-    public void displayWinningRankCount(Map<LottoRules.Winning, Integer> winningRankCount) {
+    public void displayWinningStatistics(Map<LottoRules.Winning, Integer> winningRankCount) {
         int countRank5 = winningRankCount.getOrDefault(WINNING_RANK_5, 0);
         int countRank4 = winningRankCount.getOrDefault(WINNING_RANK_4, 0);
         int countRank3 = winningRankCount.getOrDefault(WINNING_RANK_3, 0);

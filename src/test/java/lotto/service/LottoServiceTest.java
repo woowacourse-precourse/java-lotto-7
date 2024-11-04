@@ -48,7 +48,7 @@ class LottoServiceTest {
         Set<Integer> winningNumbers = Set.of(1, 2, 3, 4, 5, 6);
         Integer bonusNumber = 7;
         Map<LottoRules.Winning, Integer> winningCount =
-                lottoService.calculateWinningRankCount(myLottoTickets, winningNumbers, bonusNumber);
+                lottoService.calculateWinningStatistics(myLottoTickets, winningNumbers, bonusNumber);
         assertEquals(winningCount.get(LottoRules.Winning.WINNING_RANK_1), 1);
     }
 
@@ -59,8 +59,8 @@ class LottoServiceTest {
         Map<LottoRules.Winning, Integer> winningRankCount = new HashMap<>();
         winningRankCount.put(LottoRules.Winning.WINNING_RANK_5, 1);
 
-        float yieldRate = lottoService.calculateYieldRate(purchasePrice, winningRankCount);
+        double yieldRate = lottoService.calculateYieldRate(purchasePrice, winningRankCount);
 
-        assertEquals(yieldRate, 62.5);
+        assertEquals(62.5, yieldRate);
     }
 }

@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.EmptySource;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
     @Test

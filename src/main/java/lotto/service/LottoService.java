@@ -43,7 +43,7 @@ public class LottoService {
         }
     }
 
-    public Map<Winning, Integer> calculateWinningRankCount(
+    public Map<Winning, Integer> calculateWinningStatistics(
             List<Lotto> myLottoTickets,
             Set<Integer> winningNumbers,
             Integer bonusNumber
@@ -81,16 +81,15 @@ public class LottoService {
     }
 
 
-    public float calculateYieldRate(int purchasePrice, Map<Winning, Integer> winningRankCount) {
+    public Double calculateYieldRate(int purchasePrice, Map<Winning, Integer> winningRankCount) {
         if (purchasePrice == 0) {
-            return 0;
+            return 0.0;
         }
 
         int yield = calculateTotalWinningMoney(winningRankCount);
 
-        float yieldRate = (float) yield / purchasePrice * 100;
-
-        return yieldRate;
+        double yieldRate = (double) yield / (double) purchasePrice * 100;
+        return Math.round(yieldRate * 100) / 100.0;
     }
 
     private int calculateTotalWinningMoney(Map<Winning, Integer> winningRankCount) {

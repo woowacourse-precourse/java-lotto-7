@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.model.Lotto;
 import lotto.utils.LottoRules;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,8 +36,9 @@ class OutputViewTest extends NsTest {
     @Test
     @DisplayName("구매한 로또 번호 낮은 번호부터 출력")
     void displayLottoTicketToSorted() {
-        List<List<Integer>> lottoTickets = List.of(List.of(1, 3, 2, 6, 5, 4));
-        outputView.displayPurchasedLottoTickets(lottoTickets);
+        Lotto lotto = new Lotto(List.of(1, 3, 2, 6, 5, 4));
+        List<List<Integer>> lottoTicketsForNumbers = List.of(lotto.getLottoNumbers());
+        outputView.displayPurchasedLottoTickets(lottoTicketsForNumbers);
         assertTrue(output().contains("[1, 2, 3, 4, 5, 6]"));
     }
 
@@ -49,7 +51,7 @@ class OutputViewTest extends NsTest {
         winningRankCount.put(LottoRules.Winning.WINNING_RANK_3, 3);
         winningRankCount.put(LottoRules.Winning.WINNING_RANK_4, 4);
         winningRankCount.put(LottoRules.Winning.WINNING_RANK_5, 5);
-        outputView.displayWinningRankCount(winningRankCount);
+        outputView.displayWinningStatistics(winningRankCount);
         assertTrue(output().contains(
                 "당첨 통계\n" +
                 "---\n" +
