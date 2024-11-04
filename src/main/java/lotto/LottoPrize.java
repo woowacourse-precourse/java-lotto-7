@@ -49,7 +49,9 @@ public enum LottoPrize {
             totalProfit += prizeCount.get(rank.ordinal()) * rank.prize;
         }
 
-        String profitRate = String.format("%.1f", totalProfit / paymentAmount * 100);
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+        double profitRate = totalProfit / paymentAmount * 100;
+        String formattedProfitRate = String.format("%.1f", profitRate);
+
+        System.out.println("총 수익률은 " + formattedProfitRate + "%입니다.");
     }
 }
