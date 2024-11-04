@@ -2,6 +2,8 @@ package lotto.model;
 
 import static lotto.exception.LottoErrorStatus.LOTTO_NUMBER_DUPLICATED;
 import static lotto.exception.LottoErrorStatus.LOTTO_NUMBER_OUT_OF_RANGE;
+import static lotto.model.common.LottoRules.MAX_LOTTO_VALUE;
+import static lotto.model.common.LottoRules.MIN_LOTTO_VALUE;
 
 import java.util.List;
 import lotto.exception.LottoException;
@@ -34,7 +36,7 @@ public class PrizeLotto {
     }
 
     private void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MIN_LOTTO_VALUE || bonusNumber > MAX_LOTTO_VALUE) {
             throw new LottoException(LOTTO_NUMBER_OUT_OF_RANGE);
         }
         if (winningLotto.getNumbers().contains(bonusNumber)) {

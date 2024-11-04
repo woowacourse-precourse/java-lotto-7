@@ -1,5 +1,10 @@
 package lotto.model;
 
+import static lotto.model.common.LottoRules.LOTTO_PRICE;
+import static lotto.model.common.LottoRules.LOTTO_SIZE;
+import static lotto.model.common.LottoRules.MAX_LOTTO_VALUE;
+import static lotto.model.common.LottoRules.MIN_LOTTO_VALUE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,14 +29,15 @@ public class Lottos {
     public static Lottos from(int amount) {
         List<Lotto> lottos = new ArrayList<>(amount);
         for (int i = 0; i < amount; i++) {
-            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lotto = Randoms
+                    .pickUniqueNumbersInRange(MIN_LOTTO_VALUE, MAX_LOTTO_VALUE, LOTTO_SIZE);
             lottos.add(new Lotto(lotto));
         }
         return new Lottos(lottos);
     }
 
     public static Lottos from(Budget budget) {
-        int amount = budget.getBudget() / 1000;
+        int amount = budget.getBudget() / LOTTO_PRICE;
         return from(amount);
     }
 }

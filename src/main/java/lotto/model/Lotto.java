@@ -3,6 +3,9 @@ package lotto.model;
 import static lotto.exception.LottoErrorStatus.INVALID_LOTTO_SIZE;
 import static lotto.exception.LottoErrorStatus.LOTTO_NUMBER_DUPLICATED;
 import static lotto.exception.LottoErrorStatus.LOTTO_NUMBER_OUT_OF_RANGE;
+import static lotto.model.common.LottoRules.LOTTO_SIZE;
+import static lotto.model.common.LottoRules.MAX_LOTTO_VALUE;
+import static lotto.model.common.LottoRules.MIN_LOTTO_VALUE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,7 +36,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new LottoException(INVALID_LOTTO_SIZE);
         }
     }
@@ -48,7 +51,8 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> (number < 1 || number > 45))) {
+        if (numbers.stream().anyMatch(number ->
+                (number < MIN_LOTTO_VALUE || number > MAX_LOTTO_VALUE))) {
             throw new LottoException(LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }

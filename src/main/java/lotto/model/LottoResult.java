@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.common.LottoRules.LOTTO_PRICE;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +28,7 @@ public class LottoResult {
                 .map(lotto -> LottoRank.from(prizeLotto, lotto))
                 .filter(Objects::nonNull)
                 .toList();
-        int spendMoney = lottos.size() * 1000;
+        int spendMoney = lottos.size() * LOTTO_PRICE;
         long totalPrizeMoney = getTotalPrizeMoney(lottoRanks);
         double earningRate = calculateEarningRate(totalPrizeMoney, spendMoney);
         return new LottoResult(lottoRanks, earningRate);
