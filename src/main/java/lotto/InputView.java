@@ -25,4 +25,12 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
+	public static int readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        Validator.validateBonusNumber(input);
+        return Integer.parseInt(input);
+    }
+
+
 }

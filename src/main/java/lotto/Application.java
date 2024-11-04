@@ -1,10 +1,11 @@
-// Application.java (당첨 번호 입력 추가)
+// Application.java (보너스 번호 입력 추가)
 package lotto;
 
 import lotto.InputView;
 import lotto.ResultView;
 import lotto.Lotto;
 import lotto.LottoGenerator;
+import lotto.Validator;
 import java.util.List;
 
 public class Application {
@@ -16,6 +17,8 @@ public class Application {
             ResultView.printLottos(lottos);
 
             List<Integer> winningNumbers = InputView.readWinningNumbers();
+            int bonusNumber = InputView.readBonusNumber();
+            Validator.validateBonusNumberDuplication(bonusNumber, winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

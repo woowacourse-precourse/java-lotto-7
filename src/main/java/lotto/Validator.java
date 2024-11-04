@@ -35,4 +35,21 @@ public class Validator {
         }
     }
 
+	public static void validateBonusNumber(String input) {
+        if (!input.matches("\\d+")) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        }
+        int bonusNumber = Integer.parseInt(input);
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public static void validateBonusNumberDuplication(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
+
 }
