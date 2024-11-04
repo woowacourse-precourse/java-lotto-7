@@ -38,9 +38,9 @@ public class LottoService {
         outputView.printWinningStatistics(rankCounts, calculateReturnRate(inputPurchasePrice));
     }
 
-    private void calculateResult(final List<Lotto> purchasedLottos,
-                                 final Lotto userLotto,
-                                 final int inputBonusNumber) {
+    public void calculateResult(final List<Lotto> purchasedLottos,
+                                final Lotto userLotto,
+                                final int inputBonusNumber) {
         for (Lotto lotto : purchasedLottos) {
             int matchCount = countMatches(lotto, userLotto);
             boolean matchBonus = lotto.getNumbers().contains(inputBonusNumber);
