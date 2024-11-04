@@ -73,7 +73,7 @@ public class LottoCliInputAdapter {
             return PurchaseAmount.from(NumberParser.parseNumber(value));
         } catch (IllegalArgumentException exception) {
             outputPort.writeMessage(exception.getMessage());
-            return readPurchaseAmount(); // 재귀 호출로 다시 입력 받음
+            return readPurchaseAmount();
         }
     }
 

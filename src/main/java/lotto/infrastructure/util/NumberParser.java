@@ -1,15 +1,17 @@
 package lotto.infrastructure.util;
 
-import static lotto.infrastructure.exception.ErrorCode.*;
+import static lotto.infrastructure.exception.ErrorCode.INVALID_LOTTO_NUMBER;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class NumberParser {
 
+    private static final String DELIMITER = ",";
+
     public static List<Integer> parseLottoNumbers(String numbers) {
         try {
-            return Arrays.stream(numbers.split(","))
+            return Arrays.stream(numbers.split(DELIMITER))
 	.map(String::trim)
 	.map(Integer::parseInt)
 	.toList();

@@ -16,7 +16,6 @@ public class WinningNumber extends Lotto {
 
     public static WinningNumber of(List<Integer> lottoNumbers, int bonusNumber) {
         validateNotDuplicatedBonusNumber(lottoNumbers, bonusNumber);
-
         return new WinningNumber(lottoNumbers, bonusNumber);
     }
 

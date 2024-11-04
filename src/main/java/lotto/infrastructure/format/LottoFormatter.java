@@ -16,17 +16,19 @@ public class LottoFormatter {
     private static final String NEW_LINE = "\n";
     private static final String NUMBER_FORMAT = "%,d";
     private static final int NONE = 0;
+    private static final int ROUNDING_FACTOR = 100;
+    private static final double ROUNDING_DIVISOR = 100.0;
+
 
     public String format(PurchaseLottoResponse response) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format(PURCHASE_LOTTO_FORMAT.getMessage(), response.lottoCount()));
+        StringBuilder result = new StringBuilder();
+        result.append(String.format(PURCHASE_LOTTO_FORMAT.getMessage(), response.lottoCount()));
 
-        List<Lotto> lottos = response.lottos();
-        for (Lotto lotto : lottos) {
-            sb.append(formatLotto(lotto)).append(NEW_LINE);
+        for (Lotto lotto : response.lottos()) {
+            result.append(formatLotto(lotto)).append(NEW_LINE);
         }
 
-        return sb.toString();
+        return result.toString();
     }
 
     private String formatLotto(Lotto lotto) {
@@ -39,19 +41,26 @@ public class LottoFormatter {
 
         appendWinningStatistics(result, response.winningResult());
 
-        result.append(String.format(TOTAL_EARNING_RATE_FORMAT.getMessage(), roundEarningRate(response.earningRate())));
+        result.append(String.format(TOTAL_EARNING_RATE_FORMAT.getMessage(),
+            roundEarningRate(response.earningRate())));
 
         return result.toString();
     }
 
-    private void appendWinningStatistics(StringBuilder result,
-        Map<LottoPrize, Integer> winningResult) {
+    private void appendWinningStatistics(
+        StringBuilder result,
+        Map<LottoPrize, Integer> winningResult
+    ) {
         for (LottoPrize prize : LottoPrize.values()) {
             appendPrizeStatistics(result, prize, winningResult.getOrDefault(prize, NONE));
         }
     }
 
-    private void appendPrizeStatistics(StringBuilder result, LottoPrize prize, int count) {
+    private void appendPrizeStatistics(
+        StringBuilder result,
+        LottoPrize prize,
+        int count
+    ) {
         String formattedPrizeMoney = formatPrizeMoney(prize.getPrizeAmount());
 
         if (prize == LottoPrize.LOSE) {
@@ -59,14 +68,11 @@ public class LottoFormatter {
         }
 
         if (prize == LottoPrize.SECOND) {
-            result.append(
-	String.format(BONUS_STATISTIC_FORMAT.getMessage(), prize.getMatchingNumberCount(), formattedPrizeMoney, count));
+            result.append(String.format(BONUS_STATISTIC_FORMAT.getMessage(), prize.getMatchingNumberCount(), formattedPrizeMoney, count));
             return;
         }
 
-        result.append(
-            String.format(STATISTIC_FORMAT.getMessage(), prize.getMatchingNumberCount(), formattedPrizeMoney, count)
-        );
+        result.append(String.format(STATISTIC_FORMAT.getMessage(), prize.getMatchingNumberCount(), formattedPrizeMoney, count));
     }
 
     private String formatPrizeMoney(long prizeMoney) {
@@ -74,6 +80,6 @@ public class LottoFormatter {
     }
 
     private double roundEarningRate(double earningRate) {
-        return Math.round(earningRate * 100) / 100.0;
+        return Math.round(earningRate * ROUNDING_FACTOR) / ROUNDING_DIVISOR;
     }
 }

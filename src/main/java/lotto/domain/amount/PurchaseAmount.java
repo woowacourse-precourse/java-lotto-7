@@ -1,11 +1,12 @@
 package lotto.domain.amount;
 
+import static lotto.domain.lotto.constants.LottoNumber.*;
 import static lotto.infrastructure.exception.ErrorCode.*;
 
 public class PurchaseAmount extends Amount {
 
     private static final int MINIMUM_AMOUNT_CRITERION = 1000;
-    private final int LOTTO_COST_CRITERION = 1000;
+    private static final int ZERO = 0;
 
     private PurchaseAmount(int amount) {
         super(amount);
@@ -25,7 +26,7 @@ public class PurchaseAmount extends Amount {
     }
 
     private static void validateDividedByProperUnit(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_COST.getCriteria() != ZERO) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
@@ -38,6 +39,6 @@ public class PurchaseAmount extends Amount {
         if (!isEnough()) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
-        this.amount -= LOTTO_COST_CRITERION;
+        this.amount -= LOTTO_COST.getCriteria();
     }
 }

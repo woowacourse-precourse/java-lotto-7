@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.UUID;
 import lotto.adapters.input.cli.LottoCliInputAdapter;
 import lotto.infrastructure.config.AppConfig;
 

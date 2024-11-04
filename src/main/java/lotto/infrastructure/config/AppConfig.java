@@ -18,25 +18,43 @@ import lotto.infrastructure.persistence.LottoMemoryRepository;
 public class AppConfig {
 
     private final LottoCliInputAdapter lottoCliInputAdapter;
-    private final OutputPort outputPort;
-    private final InputValidator inputValidator;
-    private final LottoMemoryRepository lottoMemoryRepository;
-    private final LottoRepository lottoRepository;
-    private final LottoMachine lottoMachine;
-    private final PurchaseLottoUsecase purchaseLottoUsecase;
-    private final EvaluateWinningLottoUsecase evaluateWinningLottoUsecase;
 
     public AppConfig() {
-        this.inputValidator = new InputValidator();
-        this.outputPort = new CliOutputAdapter(new LottoFormatter());
-        this.lottoMemoryRepository = new LottoMemoryRepository();
-        this.lottoRepository = new LottoPersistenceAdapter(lottoMemoryRepository);
-        this.lottoMachine = new LottoMachine();
-        this.purchaseLottoUsecase = new PurchaseLottoCommand(lottoRepository, lottoMachine);
-        this.evaluateWinningLottoUsecase = new EvaluateWinningLottoCommand(
-            new WinningLottoEvaluator(), lottoRepository);
-        this.lottoCliInputAdapter = new LottoCliInputAdapter(inputValidator, outputPort,
-            purchaseLottoUsecase, evaluateWinningLottoUsecase);
+        this.lottoCliInputAdapter = createLottoCliInputAdapter();
+    }
+
+    private LottoCliInputAdapter createLottoCliInputAdapter() {
+        return new LottoCliInputAdapter(
+            createInputValidator(),
+            createOutputPort(),
+            createPurchaseLottoUsecase(),
+            createEvaluateWinningLottoUsecase()
+        );
+    }
+
+    private InputValidator createInputValidator() {
+        return new InputValidator();
+    }
+
+    private OutputPort createOutputPort() {
+        return new CliOutputAdapter(new LottoFormatter());
+    }
+
+    private LottoRepository createLottoRepository() {
+        LottoMemoryRepository lottoMemoryRepository = new LottoMemoryRepository();
+        return new LottoPersistenceAdapter(lottoMemoryRepository);
+    }
+
+    private LottoMachine createLottoMachine() {
+        return new LottoMachine();
+    }
+
+    private PurchaseLottoUsecase createPurchaseLottoUsecase() {
+        return new PurchaseLottoCommand(createLottoRepository(), createLottoMachine());
+    }
+
+    private EvaluateWinningLottoUsecase createEvaluateWinningLottoUsecase() {
+        return new EvaluateWinningLottoCommand(new WinningLottoEvaluator(), createLottoRepository());
     }
 
     public LottoCliInputAdapter getLottoCliInputAdapter() {
