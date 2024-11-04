@@ -47,15 +47,19 @@ public class LottoMachine {
         return count;
     }
 
-    public void checkWinning(List<Integer> winningNumbers, int bonusNumber) {
+    public int checkWinning(List<Integer> winningNumbers, int bonusNumber) {
         Map<LottoRank, Integer> results = calculateResults(winningNumbers, bonusNumber);
         System.out.println("당첨 통계");
         System.out.println("---");
+        int totalPrize = 0;
         for (LottoRank rank : LottoRank.values()) {
             if (rank != LottoRank.NONE) {
+                int count = results.getOrDefault(rank, 0);
+                totalPrize += count * rank.getPrize();
                 System.out.printf("%s - %d개%n", rank.getDescription(), results.getOrDefault(rank, 0));
             }
         }
+        return totalPrize;
     }
 
 

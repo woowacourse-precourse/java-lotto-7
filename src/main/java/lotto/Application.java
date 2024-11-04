@@ -15,7 +15,9 @@ public class Application {
         LottoMachine lottoMachine = new LottoMachine(money);
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getInputBonusNumber(winningNumbers);
-        lottoMachine.checkWinning(winningNumbers, bonusNumber);
+        int totalPrize = lottoMachine.checkWinning(winningNumbers, bonusNumber);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", calculateProfitRate(totalPrize, money));
+
     }
 
     public static int getInputMoney() {
@@ -77,5 +79,12 @@ public class Application {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
+    }
+
+    public static double calculateProfitRate(int totalPrize, int money) {
+        if (money == 0) {
+            return 0.0;
+        }
+        return (double) totalPrize / money * 100;
     }
 }
