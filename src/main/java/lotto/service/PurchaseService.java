@@ -27,13 +27,22 @@ public class PurchaseService {
 
         for (int i = 0; i < ticketCount; i++) {
             List<Integer> randomLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            int randomBonusNumber = Randoms.pickUniqueNumbersInRange(1, 45, 1).getFirst();
-
-            while (randomLottoNumbers.contains(randomBonusNumber)) {
-                randomBonusNumber = Randoms.pickUniqueNumbersInRange(1, 45, 1).getFirst();
-            }
+            int randomBonusNumber = getRandomBonusNumber(randomLottoNumbers);
             drawSets.add(new DrawNumbers(randomLottoNumbers, randomBonusNumber));
         }
         return drawSets;
+    }
+
+    private static int getRandomBonusNumber(List<Integer> randomLottoNumbers) {
+        int randomBonusNumber = getFirstRandomFromOneToFortyFive();
+
+        while (randomLottoNumbers.contains(randomBonusNumber)) {
+            randomBonusNumber = getFirstRandomFromOneToFortyFive();
+        }
+        return randomBonusNumber;
+    }
+
+    private static int getFirstRandomFromOneToFortyFive() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 1).getFirst();
     }
 }
