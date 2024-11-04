@@ -36,4 +36,16 @@ class LottoServiceTest {
         String result = lottoService.calculateResults();
         assertThat(result).isNotEmpty();
     }
+
+
+    @Test
+    @DisplayName("수익률을 올바르게 계산한다")
+    void calculateProfitRate() {
+        int purchaseAmount = 5000;
+        lottoService.generateLottos(purchaseAmount);
+        lottoService.setWinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+
+        String profitRateMessage = lottoService.calculateProfitRate(purchaseAmount);
+        assertThat(profitRateMessage).contains("총 수익률은");
+    }
 }

@@ -27,4 +27,8 @@ public class LottoService {
     public String calculateResults() {
         return lottoResult.calculateResults(lottos);
     }
+
+    public String calculateProfitRate(int purchaseAmount) {
+        return lottoResult.getProfitRateMessage(purchaseAmount);
+    }
 }

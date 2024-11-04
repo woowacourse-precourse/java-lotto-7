@@ -14,7 +14,11 @@ public class OutputView {
     }
 
     public void printResults(String result) {
-        System.out.println("---");
         System.out.println(result);
     }
+
+    public void printProfitRate(String profitRateMessage) {
+        System.out.println(profitRateMessage);
+    }
+
 }
