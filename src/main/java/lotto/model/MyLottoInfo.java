@@ -7,6 +7,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.properties.LottoProperties.LOTTO_RANK_COUNT_INCREMENT;
+
 public class MyLottoInfo {
 
     private final List<Lotto> myLotteries;
@@ -17,7 +19,7 @@ public class MyLottoInfo {
         this.myResult = initResult();
     }
 
-    private Map<Rank, Integer> initResult(){
+    private Map<Rank, Integer> initResult() {
         Map<Rank, Integer> result = new LinkedHashMap<>();
         result.put(Rank.NONE, 0);
         result.put(Rank.FIFTH_PLACE, 0);
@@ -46,17 +48,17 @@ public class MyLottoInfo {
         return myLotteries;
     }
 
-    private void updateResult(List<Rank> ranks){
-        ranks.forEach(rank -> myResult.put(rank, myResult.get(rank) + 1));
+    private void updateResult(List<Rank> ranks) {
+        ranks.forEach(rank -> myResult.put(rank, myResult.get(rank) + LOTTO_RANK_COUNT_INCREMENT));
     }
 
     public Map<Rank, Integer> getMyResult() {
         return myResult;
     }
 
-    public static MyLottoInfo from(int count){
+    public static MyLottoInfo from(int count) {
         List<Lotto> myLotteries = new ArrayList<>(count);
-        for(int i = 0; i < count; i++){
+        for (int i = 0; i < count; i++) {
             myLotteries.add(Lotto.generate());
         }
         return new MyLottoInfo(myLotteries);
