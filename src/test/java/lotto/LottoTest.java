@@ -1,10 +1,17 @@
 package lotto;
 
+import lotto.exception.InputValidation;
+import lotto.exception.ValidateValues;
+import lotto.model.Lotto;
+import lotto.service.LottoGenerator;
+import lotto.service.LottoResultManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +28,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("입력값(당첨번호, 보너스번호)이 주어진 범위(1~45) 내에 존재하지 않으면 예외가 발생한다.")
+    @Test
+    void 입력값이_주어진_범위_내에_존재하지_않으면_예외가_발생한다() {
+        assertThat(InputValidation.NOT_IN_RANGE_1_TO_45.validate("100")).isFalse();
+    }
+
+    @Test
+    void 로또_객체_내_numbers_필드를_리턴한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
 }
