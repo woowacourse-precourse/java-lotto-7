@@ -1,7 +1,7 @@
 package lotto;
-
-
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
+import lotto.LottoRank;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 public class LottoView {
 
     public int requestPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println("구입 금액을 입력해 주세요:");
         String input = Console.readLine();
-        int amount = Integer.parseInt(input);  // 잘못된 입력은 NumberFormatException 발생
+        int amount = Integer.parseInt(input);
         if (amount < 1000 || amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다.");
         }
@@ -33,7 +33,7 @@ public class LottoView {
     }
 
     public int requestBonusNumber() {
-        System.out.println("보너스 볼을 입력해 주세요.");
+        System.out.println("보너스 번호를 입력해 주세요:");
         int bonusNumber = Integer.parseInt(Console.readLine());
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
@@ -43,7 +43,9 @@ public class LottoView {
 
     public void displayPurchasedLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public void displayResults(Map<LottoRank, Integer> resultSummary, double earningsRate) {

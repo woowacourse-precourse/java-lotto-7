@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto;
 
 import lotto.Lotto;
 import lotto.LottoRank;
