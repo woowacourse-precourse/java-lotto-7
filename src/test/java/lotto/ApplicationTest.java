@@ -59,6 +59,32 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 기능_테스트2() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("8000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "8개를 구매했습니다.",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 8개",
+                            "총 수익률은 200,000,000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @Test
     void testBuyLotto() {
         // given
         String cost = "3000";  // 3000원이면 3개의 로또 구매
@@ -115,6 +141,14 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("42.2");
             assertThat(output()).contains("정수");
+        });
+    }
+
+    @Test
+    void testZeroCost() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains("입력값은 양수만 입력 가능합니다.");
         });
     }
 
