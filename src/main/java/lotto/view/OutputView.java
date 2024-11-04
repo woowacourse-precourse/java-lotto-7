@@ -12,7 +12,7 @@ public class OutputView {
     private static final String LINE = "---";
     private static final String STATISTICS_MESSAGE = "%d개 일치, (%,d원) - %d개\n";
     private static final String BONUS_STATISTICS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
-    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%입니다.\n";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
 
     private final LottoTickets lottoTickets;
 
@@ -45,7 +45,7 @@ public class OutputView {
 
     private void printWinningStatistics(Map<Ranking, Integer> winningStatistics) {
         for (Ranking ranking : Ranking.values()) {
-            int count = winningStatistics.get(ranking);
+            int count = winningStatistics.getOrDefault(ranking, 0);
 
             if (ranking == Ranking.NONE) {
                 continue;
