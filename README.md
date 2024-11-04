@@ -43,6 +43,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 2. [To-Do]로또 번호가 중복된다.
 3. [To-Do]로또 번호의 숫자 범위가 1~45를 만족하지 않는다.
 4. [To-Do]구입 금액이 로또 가격의 배수가 아니거나, 로또 가격보다 적다.
+5. [To-Do]구입 금액이 Integer 값이 아니다.
 
 ### 기능 2 : 로또 당첨 및 수익률 계산
 * 당첨 번호와 보너스 번호를 입력받는다.
