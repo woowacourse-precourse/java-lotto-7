@@ -59,7 +59,7 @@
         - `INPUT_LOTTO_NUMBERS`: 당첨 번호 입력 메시지 ("당첨 번호를 입력해 주세요.")
         - `INPUT_BONUS_NUMBER`: 보너스 번호 입력 메시지 ("보너스 번호를 입력해 주세요.")
 
-- [ x ] **검증기 (Validator)**
+- [x] **검증기 (Validator)**
 
   ### **BonusNumberValidator**
 
