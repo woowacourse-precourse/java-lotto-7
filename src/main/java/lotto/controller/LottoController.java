@@ -21,15 +21,11 @@ public class LottoController {
     }
 
     public void start() {
-        try {
-            purchaseLotto();
-            winningNumbers();
-            bonusNumber();
-            winningStatistics();
-            winningsYield();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        runWithRetry(this::purchaseLotto);
+        runWithRetry(this::winningNumbers);
+        runWithRetry(this::bonusNumber);
+        runWithRetry(this::winningStatistics);
+        runWithRetry(this::winningsYield);
     }
 
     private void purchaseLotto() {
@@ -65,6 +61,19 @@ public class LottoController {
     private void winningsYield() {
         double value = customer.getWinningsYield(customer.getLottoTickets() * LottoType.LOTTO_PRICE.getValue());
         OutputMessage.winningsYield(value);
+    }
+
+
+    private void runWithRetry(Runnable serviceMethod) {
+        boolean success = false;
+        while (!success) {
+            try {
+                serviceMethod.run();
+                success = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }
