@@ -9,18 +9,22 @@ public class Input {
     public int getAmount() {
         System.out.println(INPUT_AMOUNT_MESSAGE);
 
-        int amount = Integer.parseInt(Console.readLine());
+        String amount = Console.readLine();
         validate(amount);
 
-        return amount;
+        return Integer.parseInt(amount);
     }
 
-    private void validate(int amount) {
-        if (amount % 1000 != 0) {
+    private void validate(String amount) {
+        if (amount.isEmpty() || amount.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_EXIST);
+        }
+
+        if (Integer.parseInt(amount) % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.INDIVISIBLE_NUMBER);
         }
 
-        if (amount <= 0) {
+        if (Integer.parseInt(amount) <= 0) {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER);
         }
     }
