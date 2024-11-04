@@ -7,12 +7,12 @@ public class LottoWinningCalculator {
     private LottoWinningCalculator() {
     }
 
-    public static LottoWinningResult calculateWinningResults(List<Lotto> lottoTickets, WinningLotto winningLotto) {
+    public static LottoWinningResult calculateWinningResults(LottoTickets lottoTickets, WinningLotto winningLotto) {
         LottoWinningResult results = new LottoWinningResult();
         List<Integer> winningNumbers = winningLotto.getNumbers();
         int bonusNumber = winningLotto.bonusNumber;
 
-        lottoTickets.forEach(ticket -> evaluateTicket(ticket, winningNumbers, bonusNumber, results));
+        lottoTickets.getLottoTickets().forEach(ticket -> evaluateTicket(ticket, winningNumbers, bonusNumber, results));
         return results;
     }
 
