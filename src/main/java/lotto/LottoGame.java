@@ -15,14 +15,17 @@ public class LottoGame {
     public int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
+        return parseAndValidateAmount(input);
+    }
 
+    // 매개변수를 통해 금액을 입력받는 새로운 메서드 (테스트용)
+    public int parseAndValidateAmount(String input) {
         if (!isNumeric(input)) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
         }
 
         int amount = Integer.parseInt(input);
         validateAmount(amount);
-        System.out.println();
         return amount / LOTTO_PRICE;
     }
 
