@@ -20,7 +20,6 @@ public class InputView extends View {
 
     public List<Integer> getWinningNumber() {
         br();
-        exceptionLoop(WINNING_NUMBER_PROMPT, WinningNumberValidate::validate, this::stringToList);
         return exceptionLoop(WINNING_NUMBER_PROMPT, WinningNumberValidate::validate, this::stringToList);
     }
 
