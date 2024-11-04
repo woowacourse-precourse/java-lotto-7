@@ -14,12 +14,12 @@ public enum ErrorMessage {
 
     INVALID_LOTTO_NUMBER_COUNT("로또 번호는 %d개여야 합니다.".formatted(Constants.LOTTO_PRICE)),
     DUPLICATE_LOTTO_NUMBER("로또 번호에 중복된 숫자가 있습니다."),
-    OUT_OF_RANGE_LOTTO_NUMBER(
-            "로또 번호는 %d부터 %d 사이의 숫자여야 합니다.".formatted(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER)),
+    OUT_OF_RANGE_LOTTO_NUMBER("로또 번호는 %d부터 %d 사이의 숫자여야 합니다."
+            .formatted(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER)),
 
     DUPLICATE_BONUS_NUMBER("보너스 번호가 로또 번호와 중복됩니다."),
-    OUT_OF_RANGE_BONUS_NUMBER(
-            "보너스 번호는 %d부터 %d 사이의 숫자여야 합니다.".formatted(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER));
+    OUT_OF_RANGE_BONUS_NUMBER("보너스 번호는 %d부터 %d 사이의 숫자여야 합니다."
+            .formatted(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER));
 
     private final String message;
 
