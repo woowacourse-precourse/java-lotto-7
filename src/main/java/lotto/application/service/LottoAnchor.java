@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 import lotto.application.model.Lotto;
 import lotto.application.model.WinningRanking;
 
@@ -23,7 +22,7 @@ public class LottoAnchor {
         winningRankings = new EnumMap<>(WinningRanking.class);
 
         Arrays.stream(WinningRanking.values()).forEach(winningRanking -> {
-            winningRankings.put(winningRanking, 0);
+                winningRankings.put(winningRanking, 0);
         });
     }
 
