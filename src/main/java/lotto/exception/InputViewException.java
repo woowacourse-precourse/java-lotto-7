@@ -81,7 +81,7 @@ public class InputViewException {
         String[] numbers = inputNumbers.split(",");
         if (numbers.length > 6) {
             throw new IllegalArgumentException(
-                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_NUMBERS_COUNT_MUST_BE_SIX);
+                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.LOTTO_NUMBERS_COUNT_MUST_BE_SIX);
         }
     }
 
@@ -102,7 +102,7 @@ public class InputViewException {
 
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(
-                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.INPUT_NUMBERS_CANNOT_BE_DUPLICATED);
+                    ExceptionsMessageConstants.ERROR + ExceptionsMessageConstants.NUMBERS_CANNOT_BE_DUPLICATED);
         }
     }
 
@@ -132,7 +132,7 @@ public class InputViewException {
     }
 
     private void validateInputBonusInRange(String inputBonusNumber) {
-        if (Integer.parseInt(inputBonusNumber) <= 0 && Integer.parseInt(inputBonusNumber) > 45) {
+        if (Integer.parseInt(inputBonusNumber) <= 0 || Integer.parseInt(inputBonusNumber) > 45) {
             throw new IllegalArgumentException(ExceptionsMessageConstants.ERROR
                     + ExceptionsMessageConstants.INPUT_BONUS_NUMBER_MUST_BE_IN_ALLOWED_RANGE);
         }
