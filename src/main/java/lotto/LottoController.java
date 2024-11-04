@@ -27,7 +27,6 @@ public class LottoController {
         Integer bonusNumber = LottoView.getBonusNumber();
 
         // 당첨 여부 확인
-        Set<Integer> set1 = new HashSet<>(winningNumbers);
 
         // 등수 계산
         Map<LottoRank, Integer> rankCount = new EnumMap<>(LottoRank.class);
@@ -39,27 +38,19 @@ public class LottoController {
         }
 
         for (Lotto lotto : lottos) {
-            Set<Integer> set2 = new HashSet<>(lotto.getNumbers());
-            boolean isBonusMatched = set2.contains(bonusNumber);
-            set1.retainAll(set2);
+            Set<Integer> matchedNumbers = new HashSet<>(winningNumbers);
+            Set<Integer> lottoNumbers = new HashSet<>(lotto.getNumbers());
 
-            if (set1.size() == 6) {
-                rankCount.put(LottoRank.FIRST, rankCount.get(LottoRank.FIRST) + 1);
-                totalPrize += LottoRank.FIRST.getPrize();
-            } else if (set1.size() == 5 && isBonusMatched) {
-                rankCount.put(LottoRank.SECOND, rankCount.get(LottoRank.SECOND) + 1);
-                totalPrize += LottoRank.SECOND.getPrize();
-            } else if (set1.size() == 5) {
-                rankCount.put(LottoRank.THIRD, rankCount.get(LottoRank.THIRD) + 1);
-                totalPrize += LottoRank.THIRD.getPrize();
-            } else if (set1.size() == 4) {
-                rankCount.put(LottoRank.FOURTH, rankCount.get(LottoRank.FOURTH) + 1);
-                totalPrize += LottoRank.FOURTH.getPrize();
-            } else if (set1.size() == 3) {
-                rankCount.put(LottoRank.FIFTH, rankCount.get(LottoRank.FIFTH) + 1);
-                totalPrize += LottoRank.FIFTH.getPrize();
+            boolean isBonusMatched = lottoNumbers.contains(bonusNumber);
+            matchedNumbers.retainAll(lottoNumbers);
+
+            int matchCount = matchedNumbers.size();
+            LottoRank rank = getLottoRank(matchCount, isBonusMatched);
+
+            if (rank != null) {
+                rankCount.put(rank, rankCount.get(rank) + 1);
+                totalPrize += rank.getPrize();
             }
-            set1.addAll(winningNumbers);
         }
 
         // 당첨 내역 출력
@@ -67,5 +58,20 @@ public class LottoController {
 
         // 수익률 계산 및 출력
         LottoView.printReturnRate(totalPrize, inputCash);
+    }
+
+    private LottoRank getLottoRank(int matchCount, boolean isBonusMatched) {
+        if (matchCount == 6) {
+            return LottoRank.FIRST;
+        } else if (matchCount == 5 && isBonusMatched) {
+            return LottoRank.SECOND;
+        } else if (matchCount == 5) {
+            return LottoRank.THIRD;
+        } else if (matchCount == 4) {
+            return LottoRank.FOURTH;
+        } else if (matchCount == 3) {
+            return LottoRank.FIFTH;
+        }
+        return null;  // 당첨되지 않은 경우
     }
 }
