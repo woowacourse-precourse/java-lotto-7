@@ -5,5 +5,6 @@ public class Application {
         LottoView lottoView = new LottoView();
 
         LottoController lottoController = lottoView.purchaseAmountInput();
+        lottoView.printPurchasedLottosInfo();
     }
 }

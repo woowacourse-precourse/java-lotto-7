@@ -30,4 +30,7 @@ public class LottoController {
         }
     }
 
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
+    }
 }

@@ -20,4 +20,14 @@ public class LottoView {
             }
         }
     }
+
+    public void printPurchasedLottosInfo() {
+        purchasedLottos = lottoController.getPurchasedLottos();
+        System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
+        for(Lotto lotto : purchasedLottos) {
+            System.out.println(lotto.getNumbers());
+        }
+        System.out.println();
+    }
+
 }
