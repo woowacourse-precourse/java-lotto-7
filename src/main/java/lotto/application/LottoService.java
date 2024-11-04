@@ -1,7 +1,7 @@
-package application;
+package lotto.application;
 
-import domain.Lotto;
-import global.LottoPrize;
+import lotto.domain.Lotto;
+import lotto.global.LottoPrize;
 
 import java.util.ArrayList;
 import java.util.List;

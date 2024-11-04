@@ -1,4 +1,4 @@
-package global;
+package lotto.global;
 
 public enum LottoPrize {
 
