@@ -4,9 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoTicket;
-import lotto.domain.PurchaseAmount;
 
 public class LottoMachine {
     private static final int START_VALUE = 1;

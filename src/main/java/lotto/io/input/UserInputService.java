@@ -2,9 +2,9 @@ package lotto.io.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.domain.lotto.LottoBonusNumber;
-import lotto.domain.lotto.Lotto;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoBonusNumber;
 import lotto.io.output.UserPromptService;
 
 public class UserInputService {

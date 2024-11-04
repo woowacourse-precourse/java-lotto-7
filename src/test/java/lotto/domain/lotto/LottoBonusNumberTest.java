@@ -13,7 +13,7 @@ public class LottoBonusNumberTest {
 
     @BeforeEach
     void setUp() {
-        winningNumbers = new Lotto(List.of(1,2,3,4,5,6));
+        winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @Test

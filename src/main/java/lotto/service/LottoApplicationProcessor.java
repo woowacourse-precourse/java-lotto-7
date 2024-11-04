@@ -1,9 +1,9 @@
 package lotto.service;
 
-import lotto.domain.lotto.LottoBonusNumber;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoTicket;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoBonusNumber;
+import lotto.domain.lotto.LottoTicket;
 import lotto.io.input.InputConverter;
 import lotto.io.input.UserInputService;
 import lotto.io.output.UserOutputService;
@@ -29,7 +29,8 @@ public class LottoApplicationProcessor {
         LottoTicket lottoTicket = purchaseLottoTicket(purchaseAmount);
         Lotto winningNumber = inputWinningNumber();
         LottoBonusNumber lottoBonusNumber = inputBonusNumber(winningNumber);
-        LottoResultCalculator lottoResultCalculator = displayWinningStatistics(winningNumber, lottoBonusNumber, lottoTicket);
+        LottoResultCalculator lottoResultCalculator = displayWinningStatistics(winningNumber, lottoBonusNumber,
+                lottoTicket);
         displayRateOfReturn(lottoResultCalculator, purchaseAmount);
     }
 
@@ -54,8 +55,10 @@ public class LottoApplicationProcessor {
         return this.userInputService.createBonusNumber(winningNumber);
     }
 
-    private LottoResultCalculator displayWinningStatistics(Lotto winningNumber, LottoBonusNumber lottoBonusNumber, LottoTicket lottoTicket) {
-        LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(winningNumber, lottoBonusNumber, lottoTicket);
+    private LottoResultCalculator displayWinningStatistics(Lotto winningNumber, LottoBonusNumber lottoBonusNumber,
+                                                           LottoTicket lottoTicket) {
+        LottoResultCalculator lottoResultCalculator = new LottoResultCalculator(winningNumber, lottoBonusNumber,
+                lottoTicket);
         lottoResultCalculator.run();
         this.userPromptService.showBlankLine();
         this.userOutputService.printWinningStatistics(lottoResultCalculator.getWinningLottos());

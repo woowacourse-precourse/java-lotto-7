@@ -1,7 +1,6 @@
 package lotto.domain.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,7 @@ class LottoTicketTest {
 
     @BeforeEach
     void setUp() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoTicket = new LottoTicket(List.of(lotto));
     }
 

@@ -45,7 +45,8 @@ public class UserOutputService {
 
     private String formatLottoRank(LottoWinningCriteria rank, int count) {
         if (rank.isCheckBonus()) {
-            return String.format(LOTTO_RESULT_WITH_BONUS, rank.getMatchCount(), formatCurrency(rank.getPrizeMoney()), count);
+            return String.format(LOTTO_RESULT_WITH_BONUS, rank.getMatchCount(), formatCurrency(rank.getPrizeMoney()),
+                    count);
         }
         return String.format(LOTTO_RESULT_BASIC, rank.getMatchCount(), formatCurrency(rank.getPrizeMoney()), count);
     }
