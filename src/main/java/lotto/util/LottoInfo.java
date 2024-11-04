@@ -1,7 +1,7 @@
 package lotto.util;
 
 public enum LottoInfo {
-    NUM_COUNT(6);
+    NUMBER_COUNT(6);
     
     private final int num;
 
