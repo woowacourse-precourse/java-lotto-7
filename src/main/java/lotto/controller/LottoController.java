@@ -12,6 +12,8 @@ import view.OutputView;
 import view.exception.LottoException;
 
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -24,53 +26,40 @@ public class LottoController {
         InputView inputView = new InputView(Console::readLine);
         OutputView outputView = new OutputView();
 
-        boolean isContinue = true;
-        Money money = null;
-        while (isContinue) {
-            try {
-                int moneyInput = inputView.chargeMoneyInput();
-                money = new Money(moneyInput);
-                isContinue = false;
-            } catch (LottoException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        Money money = repeatLoop(() -> {
+            int moneyInput = inputView.chargeMoneyInput();;
+            return new Money(moneyInput);
+        });
 
         List<Lotto> purchasedLottos = lottoService.createLotto(money);
         outputView.printLottos(purchasedLottos);
 
-        isContinue = true;
-        Lotto winningLottoNums = null;
-        while (isContinue) {
-            try {
-                List<Integer> winningNumber = inputView.winningNumberInput();
-                winningLottoNums = new Lotto(winningNumber);
-                isContinue = false;
-            } catch (LottoException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        Lotto winningLottoNums = repeatLoop(() -> {
+            List<Integer> winningNumber = inputView.winningNumberInput();
+            return new Lotto(winningNumber);
+        });
 
-        isContinue = true;
-        BonusNumber bonusNum = null;
-        while (isContinue) {
-            try {
-                int bonusNumber = inputView.bonusNumberInput();
-                bonusNum = new BonusNumber(bonusNumber);
-                isContinue = false;
-            } catch (LottoException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        WinningLotto winningLotto = repeatLoop(() -> {
+            int bonusNumber = inputView.bonusNumberInput();
+            BonusNumber bonusNum = new BonusNumber(bonusNumber);
+            return WinningLotto.createWinningLotto(winningLottoNums, bonusNum);
+        });
 
 //        Console.close();
-
-        WinningLotto winningLotto = WinningLotto.createWinningLotto(winningLottoNums, bonusNum);
 
         PrizeStatistics prizeStatistics = lottoService.calculateStatistics(purchasedLottos, winningLotto);
         outputView.printWinning(prizeStatistics);
 
         double ratio = lottoService.calculateProfitRatio(money, prizeStatistics);
         outputView.printRatio(ratio);
+    }
+
+    private <T> T repeatLoop(Supplier<T> inputFunction) {
+        try {
+            return inputFunction.get();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return repeatLoop(inputFunction);
+        }
     }
 }
