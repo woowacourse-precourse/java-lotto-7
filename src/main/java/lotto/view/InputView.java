@@ -9,6 +9,7 @@ public class InputView {
     private static InputView instance;
     private static final String PRICE_INPUT_INFO = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBER_INPUT_INFO = "\n당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT_INFO = "\n보너스 번호를 입력해 주세요.";
     private static final String NUMBER_DELIMITER = ",";
 
     private InputView() {
@@ -95,5 +96,30 @@ public class InputView {
                 .ifPresent(number -> {
                     throw new IllegalArgumentException(ErrorMessage.UNDER_ZERO_ERROR.getMessage());
                 });
+    }
+
+
+    public int readBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                System.out.println(BONUS_NUMBER_INPUT_INFO);
+                int bonusNumber = parseNumber(Console.readLine());
+                validateBonusNumber(winningNumbers, bonusNumber);
+
+                return bonusNumber;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATION_ERROR.getMessage());
+        }
+
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ErrorMessage.RANGE_ERROR.getMessage());
+        }
     }
 }
