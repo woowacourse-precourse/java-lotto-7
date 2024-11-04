@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import static lotto.message.ExceptionMessage.DUPLICATE;
+import static lotto.message.ExceptionMessage.LOTTO_SIZE;
 import static lotto.message.ExceptionMessage.ONLY_NUMBER;
 import static lotto.message.ExceptionMessage.OUT_OF_RANGE;
 
@@ -33,5 +34,10 @@ public class NumberValidator {
     public void isDuplicateNumber(List<Integer> number) {
         if(number.size() != number.stream().distinct().count())
             throw new IllegalArgumentException(DUPLICATE.getMessage());
+    }
+
+    public void checkCountOfNumber(List<Integer> number) {
+        if(number.size() != 6)
+            throw new IllegalArgumentException(LOTTO_SIZE.getMessage());
     }
 }
