@@ -33,7 +33,7 @@ public class LottoController {
         RankCount rankCount = lottoService.getRankCount(issuedLottos, winningLotto, bonusNumber);
         ProfitRate profitRate = lottoService.getProfitRate(amount, rankCount);
 
-        outputView.displayStatistics(rankCount.getRankCount(), profitRate.getProfitRate());
+        outputView.displayStatistics(rankCount, profitRate);
     }
 
     private Amount getPurchaseAmount() {
