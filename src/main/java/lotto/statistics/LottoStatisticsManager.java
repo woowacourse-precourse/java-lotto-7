@@ -16,7 +16,6 @@ public class LottoStatisticsManager {
 
     public DrawResultSheet process() {
         Lotto lotto = receiveWinningLotto();
-        System.out.println();
         BonusBall bonusBall = receiveBonusBall(lotto.getNumbers());
 
         return new DrawResultSheet(totalMatchCount(lotto, bonusBall, myLotteries));

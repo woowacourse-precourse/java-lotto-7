@@ -7,6 +7,7 @@ public record LottoReceipt(int payment, List<MyLotto> myLotteries) {
     private static final int LOTTO_PRICE = 1000;
 
     public void printTotalLottoNumber() {
+        System.out.println();
         System.out.println((payment / LOTTO_PRICE) + "개를 구매했습니다.");
     }
 

@@ -12,16 +12,10 @@ public class EntireSystem {
     public void run() {
         LottoReceipt lottoReceipt = new LottoCreationManager().process();
 
-        insertBlankLine();
-
         lottoReceipt.printTotalLottoNumber();
         lottoReceipt.printAllLotteries();
 
-        insertBlankLine();
-
         DrawResultSheet drawResultSheet = new LottoStatisticsManager(lottoReceipt.myLotteries()).process();
-
-        insertBlankLine();
 
         drawResultSheet.printDrawResult();
 
@@ -31,9 +25,5 @@ public class EntireSystem {
         AnalyticsManager analyzer = new AnalyticsManager();
         RateSheet rateSheet = analyzer.process(payment, totalPrizeAmount);
         rateSheet.printGrowthRate();
-    }
-
-    private void insertBlankLine() {
-        System.out.println();
     }
 }

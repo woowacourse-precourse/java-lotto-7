@@ -9,6 +9,7 @@ public record DrawResultSheet(List<Integer> winningCount) {
     private static final int MAX_WINNING_COUNT_INDEX = 7;
 
     public void printDrawResult() {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         for (int i = MIN_WINNING_COUNT_INDEX; i <= MAX_WINNING_COUNT_INDEX; i++) {
