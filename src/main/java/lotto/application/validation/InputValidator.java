@@ -16,10 +16,10 @@ public class InputValidator {
     public void validateLotto(String lottoNumbers) {
         validateNoConsecutiveDelimiters(lottoNumbers);
         validateProperDelimiterPosition(lottoNumbers);
-        validateOnlyNumbers(lottoNumbers);
+//        validateOnlyNumbers(lottoNumbers);
     }
 
-    public void validateNumber(String input, ErrorCode errorCode) {
+    private void validateNumber(String input, ErrorCode errorCode) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -40,9 +40,9 @@ public class InputValidator {
         }
     }
 
-    private void validateOnlyNumbers(String lottoNumbers) {
-        for (String number : lottoNumbers.split(DELIMITER)) {
-            validateNumber(number, INVALID_LOTTO_NUMBER);
-        }
-    }
+//    private void validateOnlyNumbers(String lottoNumbers) {
+//        for (String number : lottoNumbers.split(DELIMITER)) {
+//            validateNumber(number, INVALID_LOTTO_NUMBER);
+//        }
+//    }
 }

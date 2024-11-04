@@ -1,11 +1,16 @@
 package lotto.adapters.input;
 
-import static lotto.infrastructure.constants.AnnounceMessages.PROMPT_PURCHASE_AMOUNT;
+import static lotto.infrastructure.constants.AnnounceMessages.*;
+import static lotto.infrastructure.exception.ErrorCode.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.application.port.output.OutputPort;
 import lotto.application.validation.InputValidator;
 import lotto.domain.amount.PurchaseAmount;
+import lotto.domain.lotto.WinningNumber;
+import lotto.infrastructure.exception.ErrorCode;
+import lotto.infrastructure.util.NumberParser;
 
 public class LottoCliInputAdapter {
 
@@ -22,7 +27,8 @@ public class LottoCliInputAdapter {
     }
 
     private void getInput() {
-        promptPurchaseAmount();
+        PurchaseAmount purchaseAmount = promptPurchaseAmount();
+        WinningNumber winningNumber = promptWinningNumber();
     }
 
     private PurchaseAmount promptPurchaseAmount() {
@@ -31,5 +37,28 @@ public class LottoCliInputAdapter {
         inputValidator.validateAmount(value);
 
         return PurchaseAmount.from(value);
+    }
+
+    private WinningNumber promptWinningNumber() {
+        List<Integer> numbers = promptNumbers();
+        Integer bonusNumber = promptBonusNumber();
+
+        return new WinningNumber(numbers, bonusNumber);
+    }
+
+    private List<Integer> promptNumbers() {
+        outputPort.writeMessage(PROMPT_WINNING_NUMBER.getMessage());
+        String winningNumber = Console.readLine();
+        inputValidator.validateLotto(winningNumber);
+
+        return NumberParser.parseLottoNumbers(winningNumber);
+    }
+
+    private Integer promptBonusNumber() {
+        outputPort.writeNewline();
+        outputPort.writeMessage(PROMPT_BONUS_NUMBER.getMessage());
+        String bonusNumber = Console.readLine();
+
+        return NumberParser.parseBonusNumber(bonusNumber);
     }
 }
