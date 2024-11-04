@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     public void printProfitRate(double profitRate) {
-        System.out.printf(PROFIT_RATE_OUTPUT_MESSAGE_1 + "%.2f", profitRate);
+        System.out.printf(PROFIT_RATE_OUTPUT_MESSAGE_1 + "%.1f", profitRate);
         System.out.println(PROFIT_RATE_OUTPUT_MESSAGE_2);
     }
 }
