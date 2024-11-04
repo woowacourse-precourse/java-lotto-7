@@ -6,11 +6,14 @@ import java.util.List;
 public class Parser {
 
     public static final String INPUT_DELIMITER = ",";
+    public static final String NOT_DIVISIBLE_BY_THOUSAND_ERROR_MESSAGE = "[ERROR] 잘못된 입력입니다. 로또는 1000원당 한장입니다.";
+    public static final String NOT_NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 잘못된 입력입니다. 숫자만 입력할 수 있습니다.";
+    public static final String EMPTY_INPUT_ERROR_MESSAGE = "[ERROR] 번호를 입력해주세요.";
 
     public int parseLottoPurchasePrice(String numbers) {
         int number = parseStringToInteger(numbers);
         if (isNotDivisibleByThousand(number)) {
-            throw new IllegalArgumentException("ERROR 잘못된 입력입니다. 로또는 1000원당 한장입니다.");
+            throw new IllegalArgumentException(NOT_DIVISIBLE_BY_THOUSAND_ERROR_MESSAGE);
         }
         return number;
     }
@@ -19,7 +22,7 @@ public class Parser {
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다. 숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(NOT_NUMBER_FORMAT_ERROR_MESSAGE);
         }
     }
 
@@ -30,7 +33,7 @@ public class Parser {
 
     private void validateNumbersInput(String numbers) {
         if (numbers == null || numbers.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 번호를 입력해주세요.");
+            throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE);
         }
     }
 
@@ -41,7 +44,7 @@ public class Parser {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다. 숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(NOT_NUMBER_FORMAT_ERROR_MESSAGE);
         }
     }
 
