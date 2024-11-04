@@ -27,11 +27,11 @@ public abstract class Output {
         EnumMap<Prize, Integer> result = ticket.getResult();
         result.forEach((prize, integer) -> {
             if (prize == Prize.SECOND) {
-                System.out.printf(PRINT_MATCH_BONUS_NUMBER_MESSAGE, prize.getMatchCount(), prize.getPrizeMoney(), integer);
+                System.out.printf(PRINT_MATCH_BONUS_NUMBER_MESSAGE, prize.matchCount, prize.prizeMoney, integer);
             }
 
             if (prize != Prize.NONE && prize != Prize.SECOND) {
-                System.out.printf(PRINT_MATCH_MASSAGE, prize.getMatchCount(), prize.getPrizeMoney(), integer);
+                System.out.printf(PRINT_MATCH_MASSAGE, prize.matchCount, prize.prizeMoney, integer);
             }
         });
 

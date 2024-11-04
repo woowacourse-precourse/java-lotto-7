@@ -11,8 +11,8 @@ public enum Prize {
     FIRST(6, 2000000000),
     NONE(0, 0);
 
-    private final int matchCount;
-    private final int prizeMoney;
+    public final int matchCount;
+    public final int prizeMoney;
 
     Prize(int matchCount, int prizeMoney) {
         this.matchCount = matchCount;
@@ -31,13 +31,5 @@ public enum Prize {
                 .filter(prize -> prize.matchCount == matchCount)
                 .findFirst()
                 .orElse(Prize.NONE);
-    }
-
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public int getPrizeMoney() {
-        return prizeMoney;
     }
 }

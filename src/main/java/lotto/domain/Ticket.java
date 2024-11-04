@@ -29,7 +29,7 @@ public class Ticket {
 
     public double getEarningRate() {
         int totalPrize = result.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .mapToInt(entry -> entry.getKey().prizeMoney * entry.getValue())
                 .sum();
 
         double earningRate = (double) totalPrize / price;
