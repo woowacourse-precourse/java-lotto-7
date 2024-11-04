@@ -29,10 +29,7 @@ public class LottoResult {
 
     private Map<Rank, Integer> calculateResult(LottoTickets lottoTickets, WinningLotto winningLotto) {
         Map<Rank, Integer> result = initializeResult();
-        lottoTickets.get().forEach(lotto -> {
-            Rank rank = winningLotto.determineRank(lotto);
-            result.put(rank, result.get(rank) + 1);
-        });
+        lottoTickets.get().forEach(lotto -> updateResult(result, winningLotto, lotto));
         return result;
     }
 
@@ -42,5 +39,10 @@ public class LottoResult {
             result.put(rank, DEFAULT_COUNT);
         }
         return result;
+    }
+
+    private void updateResult(Map<Rank, Integer> result, WinningLotto winningLotto, Lotto lotto) {
+        Rank rank = winningLotto.determineRank(lotto);
+        result.put(rank, result.get(rank) + 1);
     }
 }
