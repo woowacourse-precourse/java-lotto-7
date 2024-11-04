@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.validator;
 
 public class BuyingPriceValidator extends Validator<String> {
     private static final int LOTTO_PRICE_UNIT = 1000;

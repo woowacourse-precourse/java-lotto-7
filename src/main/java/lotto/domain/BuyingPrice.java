@@ -1,8 +1,7 @@
 package lotto.domain;
 
-import lotto.util.BuyingPriceParser;
-import lotto.util.BuyingPriceValidator;
-import lotto.util.LottoValidator;
+import lotto.util.parser.BuyingPriceParser;
+import lotto.util.validator.BuyingPriceValidator;
 
 public class BuyingPrice {
     private final int price;

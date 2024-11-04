@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.parser;
 
 public class BonusNumberParser {
     public static int toIntStringBonusNumberParser(String bonusNumber) {

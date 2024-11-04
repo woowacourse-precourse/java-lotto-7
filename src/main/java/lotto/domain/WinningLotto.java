@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import lotto.util.BonusNumberParser;
-import lotto.util.LottoValidator;
-import lotto.util.WinningLottoParser;
+import lotto.util.parser.BonusNumberParser;
+import lotto.util.validator.LottoValidator;
+import lotto.util.parser.WinningLottoParser;
 
 import java.util.List;
 
