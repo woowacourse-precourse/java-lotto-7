@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private static final String NUMBER_RANGE_OVER = "[ERROR] 숫자는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String NUMBER_SIZE_WRONG = "[ERROR] 로또 번호는 6개여야 합니다.";
-    private static final String NUMBER_OVERLAP = "[ERROR] 로또 번호에 중복이 있습니다.";
 
     private final List<Integer> numbers;
 
@@ -32,11 +29,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            System.out.println(NUMBER_SIZE_WRONG);
+            System.out.println(OutputView.NUMBER_SIZE_WRONG);
             throw new IllegalArgumentException();
         }
         if(checkForDuplicates(numbers)){
-            System.out.println(NUMBER_OVERLAP);
+            System.out.println(OutputView.NUMBER_OVERLAP);
             throw new IllegalArgumentException();
         }
     }
@@ -48,7 +45,7 @@ public class Lotto {
     private void checkNumberRange(List<Integer>Numbers){
         for (int number : Numbers) {
             if(number > 45 || number < 1){
-                System.out.println(NUMBER_RANGE_OVER);
+                System.out.println(OutputView.NUMBER_RANGE_OVER);
                 throw new IllegalArgumentException();
             }
         }
@@ -58,8 +55,8 @@ public class Lotto {
         Set<Integer> duplicationReMove = new HashSet<>(this.numbers);
         duplicationReMove.add(bonus);
         if(duplicationReMove.size() != numbers.size() + 1){
-
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
+            System.out.println(OutputView.BONUS_NUMBER_OVERLAP);
+            throw new IllegalArgumentException();
         }
     }
 
