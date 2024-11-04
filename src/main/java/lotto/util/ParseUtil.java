@@ -13,19 +13,15 @@ public class ParseUtil {
     }
 
     public Integer parsePurchaseAmount(final String input) {
-        validateUtil.validateNumber(input);
-        final int purchaseAmount = Integer.parseInt(input);
-        validateUtil.validateAmount(purchaseAmount);
-        return purchaseAmount;
+        validateUtil.validatePurchaseAmount(input);
+        return Integer.parseInt(input);
     }
 
     public List<Integer> parseWinningNumbers(final String input) {
         validateUtil.validateWinningNumbers(input);
-        final List<Integer> winningNumbers = Arrays.stream(input.split(WINNING_NUMBER_DELIMITER))
+        return Arrays.stream(input.split(WINNING_NUMBER_DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
-        winningNumbers.forEach(validateUtil::validateRange);
-        return winningNumbers;
     }
 
     public Integer parseBonusNumber(final String input, final List<Integer> winningNumbers) {
