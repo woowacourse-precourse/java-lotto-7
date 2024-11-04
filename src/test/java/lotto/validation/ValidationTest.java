@@ -12,7 +12,7 @@ class ValidationTest {
     @DisplayName("당첨 번호의 개수가 6개가 아닌 경우 예외가 발생한다.")
     @Test
     void 당첨_번호의_개수가_6개가_아닌_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Validation.validateWinningLottoSize(List.of(1, 2, 3, 4, 5)))
+        assertThatThrownBy(() -> Validation.validateWinningLotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_WINNING_LOTTO_NUMBER_COUNT.getMessage());
     }
@@ -20,7 +20,7 @@ class ValidationTest {
     @DisplayName("당첨 번호 중 중복된 숫자가 있는 경우 예외가 발생한다.")
     @Test
     void 당첨_번호_중_중복된_숫자가_있는_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Validation.validateWinningLottoDuplicates(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Validation.validateWinningLotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.DUPLICATE_WINNING_LOTTO_NUMBER.getMessage());
     }
@@ -28,7 +28,7 @@ class ValidationTest {
     @DisplayName("당첨 번호의 숫자들이 1부터 45 사이의 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void 당첨_번호의_숫자들이_1부터_45_사이의_숫자가_아닌_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Validation.validateWinningLottoRange(List.of(0, 2, 3, 4, 5, 6)))
+        assertThatThrownBy(() -> Validation.validateWinningLotto(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_WINNING_LOTTO_NUMBER_RANGE.getMessage());
     }
