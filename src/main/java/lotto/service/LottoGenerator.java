@@ -8,8 +8,13 @@ import lotto.domain.Lotto;
 
 public class LottoGenerator {
 
+    private static final int LOTTO_NUMBER_MIN = 1;
+    private static final int LOTTO_NUMBER_MAX = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
+
     private static List<Integer> generateNumbers() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT));
         Collections.sort(numbers);
         return numbers;
     }
