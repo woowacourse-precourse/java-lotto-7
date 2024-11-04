@@ -8,7 +8,6 @@ import lotto.service.Validator;
 import lotto.util.Parser;
 import lotto.view.Input;
 import lotto.view.Output;
-import lotto.view.Prompt;
 
 import java.util.List;
 
