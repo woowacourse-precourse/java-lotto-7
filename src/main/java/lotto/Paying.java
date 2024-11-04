@@ -25,6 +25,7 @@ public class Paying {
 			String input = Console.readLine();
 			System.out.println();
 			paymentExcception(input);
+			payTotal(input);
 		}catch(IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			payInput();
@@ -40,5 +41,12 @@ public class Paying {
 		}
 	}
 	
+	public void payTotal(String input) {
+	    int total = Integer.parseInt(input) / 1000; 	
+	    this.total = total;
+	    System.out.printf("%d개를 구매했습니다.%n", total);
+	    MakeNumber make = new MakeNumber();
+	    this.lottoNumbers = make.randomNumber(total); //여기서 복권을 구매한 만큼의 List<List>를 받아옴
+	}
 
 }
