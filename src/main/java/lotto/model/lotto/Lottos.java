@@ -29,6 +29,9 @@ public class Lottos {
         winNumbers = ParseLotto.winNumberStrToInteger(winNumbersStr);
         lottos = new ArrayList<>();
         lottosCount = buyAmount / LottoConst.LOTTOPERAMOUNT.getLottoConst();
+
+        validateOverlapBonusNumber(bonusNumber);
+
         this.bonusNumber = bonusNumber;
         winstatus = new Winstatus();
     }
@@ -41,8 +44,10 @@ public class Lottos {
         return profitRate = CalculatorProfit.calProfitRate(winstatus.getStatus(), buyAmount);
     }
 
-    public void addLotto(Lotto lotto) {
-        lottos.add(lotto);
+    private void validateOverlapBonusNumber(int bonusNumber){
+        if (winNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.OVERLAPBONUSNUMBER.getMessage());
+        }
     }
 
 

@@ -8,7 +8,8 @@ public enum ErrorMessage {
     NOTNUMBERBONUSNUMBER("[ERROR] 보너스 번호가 정수가 아닙니다."),
     OUTOFRANGEBONUSNUMBER("[ERROR] 보너스숫자가 1~45 범위안에 존재하는 숫자가 아닙니다."),
     OVERLAPLOTTONUMBER("[ERROR] 발행된 로또번호가 중복입니다."),
-    LOTTONUMBERCOUNTNOTSIX("[ERROR] 발행된 로또번호가 6개가 아닙니다.");
+    LOTTONUMBERCOUNTNOTSIX("[ERROR] 발행된 로또번호가 6개가 아닙니다."),
+    OVERLAPBONUSNUMBER("[ERROR] 보너스 숫자가 당첨번호와 중복입니다.");
 
     private final String message;
 
