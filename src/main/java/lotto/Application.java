@@ -22,21 +22,22 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        try {
+        while (true) {
+            try {
+                int purchaseAmount = getPurchaseAmount();
+                List<List<Integer>> numbers = makeRandomNumbers(purchaseAmount);
+                List<Integer> lottoNumbers = getLottoNumbers();
+                Integer bonusNumber = getBonusNumber();
 
-            int purchaseAmount = getPurchaseAmount();
-            List<List<Integer>> numbers = makeRandomNumbers(purchaseAmount);
-            List<Integer> lottoNumbers = getLottoNumbers();
-            Integer bonusNumber = getBonusNumber();
+                Lotto lotto = new Lotto(lottoNumbers);
+                Map<Object, Integer> result = lotto.checkLottoWin(numbers, bonusNumber);
 
-            Lotto lotto = new Lotto(lottoNumbers);
-            Map<Object, Integer> result = lotto.checkLottoWin(numbers, bonusNumber);
-
-            int totalAmount = statistics(result);
-            calculateReturnRate(purchaseAmount, totalAmount);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+                int totalAmount = statistics(result);
+                calculateReturnRate(purchaseAmount, totalAmount);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
