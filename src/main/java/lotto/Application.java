@@ -28,11 +28,24 @@ public class Application {
         while(true){
             try{
                 System.out.println("당첨번호를 입력해 주세요.");
-                //winNumbers = askWinNumbers();
+                askWinNumbers();
+                break;
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void askWinNumbers() throws Exception{
+        String input = Console.readLine();
+        String[] numbers = splitWithComma(input);
+        for(String number : numbers){
+            isInteger(number);
+            int numberInt = Integer.parseInt(number);
+            validateInputRange(numberInt);
+            winNumbers.add(numberInt);
+        }
+        System.out.println();
     }
 
     public static void init() {
@@ -86,11 +99,12 @@ public class Application {
         }
     }
 
-    public static void splitWithComma(String input) throws Exception{
+    public static String[] splitWithComma(String input) throws Exception{
         String[] splitted = input.split(",");
         if(splitted.length != lottoNumbersCount){
             throw new IllegalArgumentException("숫자들은 ,(콤마)로 구분되어야 합니다.");
         }
+        return splitted;
     }
 
     public static void validateInputRange(int inputInt) throws Exception{
