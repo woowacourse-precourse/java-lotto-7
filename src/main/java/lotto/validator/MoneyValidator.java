@@ -30,8 +30,12 @@ public class MoneyValidator {
     }
 
     public void validateDivideWithLottoPrice(int money, int lottoPrice) {
-        if (money % lottoPrice != 0) {
+        if (!isDividable(money, lottoPrice)) {
             throw new IllegalArgumentException(MoneyErrorCode.MONEY_DIVIDE_ERROR.getMessage());
         }
+    }
+
+    private boolean isDividable(int money, int lottoPrice) {
+        return money % lottoPrice == 0;
     }
 }
