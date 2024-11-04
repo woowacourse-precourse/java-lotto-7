@@ -1,15 +1,12 @@
 package lotto.domain.ticket;
 
-import lotto.domain.number.LottoNumber;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
-    private static final String ERROR_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
-    private static final String ERROR_DUPLICATE = "[ERROR] 로또 번호에 중복된 숫자가 있습니다.";
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -19,19 +16,25 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateSize(numbers);
-        validateDuplicate(numbers);
-    }
-
-    private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ERROR_SIZE);
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        validateDuplicate(numbers);
+        validateRange(numbers);
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(ERROR_DUPLICATE);
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         }
     }
 
@@ -39,14 +42,18 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    public boolean contains(LottoNumber number) {
+    public boolean contains(int number) {
         return numbers.contains(number);
     }
 
     public int countMatch(Lotto other) {
-        return (int) numbers.stream()
-                .filter(other.numbers::contains)
-                .count();
+        int matchCount = 0;
+        for (int number : this.numbers) {
+            if (other.numbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 
     @Override
