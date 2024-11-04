@@ -21,8 +21,14 @@ public enum Rank {
     }
 
     public static Rank getRank(int matchCount, boolean containsBonus) {
+        if (matchCount == 5) {
+            return Arrays.stream(values())
+                    .filter(rank -> rank.matchCount == matchCount && rank.requiresBonus == containsBonus)
+                    .findFirst()
+                    .orElse(NONE);
+        }
         return Arrays.stream(values())
-                .filter(rank -> rank.matchCount == matchCount && rank.requiresBonus == containsBonus)
+                .filter(rank -> rank.matchCount == matchCount)
                 .findFirst()
                 .orElse(NONE);
     }
