@@ -30,8 +30,8 @@ class LottoUtilsTest {
         winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         lottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 9, 10, 11)),
-                new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)),
-                new Lotto(Arrays.asList(13, 14, 15, 16, 17, 18)),
+                new Lotto(Arrays.asList(1, 2, 3, 9, 10, 11)),
+                new Lotto(Arrays.asList(1, 2, 3, 9, 10, 11)),
                 new Lotto(Arrays.asList(19, 20, 21, 22, 23, 24)),
                 new Lotto(Arrays.asList(19, 20, 21, 22, 23, 24)),
                 new Lotto(Arrays.asList(19, 20, 21, 22, 23, 24))
@@ -75,8 +75,7 @@ class LottoUtilsTest {
         assertEquals(0, matchCounts.get(MatchResult.SIX_MATCH), "6개 일치 결과가 예상과 다릅니다.");
 
         double rateOfResult = (double) lottoUtils.totalPrize / purchaseAmount * 100;
-        assertEquals(62.5, rateOfResult, "수익률 결과가 예상과 다릅니다.");
-
+        assertEquals(187.5, rateOfResult, "수익률 결과가 예상과 다릅니다.");
     }
 
 

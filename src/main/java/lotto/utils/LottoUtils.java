@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class LottoUtils {
 
-    int totalPrize = 0;
+    public int totalPrize = 0;
 
     public Map<MatchResult, Integer> countMatchResults(List<MatchResult> lottoResults) {
         Map<MatchResult, Integer> matchCounts = new EnumMap<>(MatchResult.class);
@@ -44,7 +44,8 @@ public class LottoUtils {
         for (int i = 0; i < matchResults.size(); i++){
             totalPrize += matchResults.get(i).prizeAmount();}
         double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        String formattedRate = String.format("%.1f", rateOfReturn);
+        System.out.println("총 수익률은 " + formattedRate + "%입니다.");
         return rateOfReturn;
     }
 
