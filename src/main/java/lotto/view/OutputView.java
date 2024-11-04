@@ -60,13 +60,9 @@ public class OutputView {
 	}
 
 	public void printWinningResultMessage(WinningResultsDto winningResults) {
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(WINNING_STATISTICS_MESSAGE);
-		stringBuilder.append(winningResults.winningResults().stream()
-				.map(this::getWinningResult)
-				.collect(Collectors.joining()));
-		stringBuilder.append(getProfitRateMessage(winningResults.profitRate()));
-		System.out.println(stringBuilder);
+		String winningResultMessage = WINNING_STATISTICS_MESSAGE + getWinningResults(winningResults.winningResults())
+				+ getProfitRateMessage(winningResults.profitRate());
+		System.out.println(winningResultMessage);
 	}
 
 	private String getLottoCountMessage(int count) {
@@ -75,6 +71,12 @@ public class OutputView {
 
 	private String getPurchaseLottoResult(List<String> lottoResult) {
 		return PURCHASE_LOTTO_RESULT_PREFIX + String.join(DELIMITER, lottoResult) + PURCHASE_LOTTO_RESULT_SUFFIX;
+	}
+
+	private String getWinningResults(List<WinningResultDto> winningResults) {
+		return winningResults.stream()
+				.map(this::getWinningResult)
+				.collect(Collectors.joining());
 	}
 
 	private String getWinningResult(WinningResultDto winningResult) {
