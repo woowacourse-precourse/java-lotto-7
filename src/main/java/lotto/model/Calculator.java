@@ -29,7 +29,7 @@ public class Calculator {
     }
 
     private void validatePurchaseAmountRemains(String purchaseAmount) {
-        if (Integer.parseInt(purchaseAmount) / LOTTO_PRICE.getValue() == REMAINS) {
+        if (Integer.parseInt(purchaseAmount) % LOTTO_PRICE.getValue() != REMAINS) {
             throw new IllegalArgumentException(INPUT_EXIST_REMAINS_MESSAGE.toString());
         }
     }
