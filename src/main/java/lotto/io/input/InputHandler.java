@@ -1,6 +1,7 @@
-package lotto.io;
+package lotto.io.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.io.output.PurchasePrintHandler;
 import lotto.io.request.LottoRequest;
 import lotto.io.request.NumberRequest;
 

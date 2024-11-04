@@ -9,9 +9,9 @@ import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 import lotto.domain.checker.WinningChecker;
 import lotto.domain.extractor.LottoExtractor;
-import lotto.io.InputHandler;
-import lotto.io.PurchasePrintHandler;
-import lotto.io.ResultPrintHandler;
+import lotto.io.input.InputHandler;
+import lotto.io.output.PurchasePrintHandler;
+import lotto.io.output.ResultPrintHandler;
 import lotto.io.request.LottoRequest;
 import lotto.io.request.NumberRequest;
 

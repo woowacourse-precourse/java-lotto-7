@@ -1,4 +1,4 @@
-package lotto.io;
+package lotto.io.output;
 
 import lotto.util.ResultMessages;
 
