@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import util.LottoFormatter;
 
 public class WinningNumbers {
@@ -26,17 +25,17 @@ public class WinningNumbers {
     }
 
     private void validate() {
+        if (winningNumbers.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 입력해 주세요.");
+        }
         if (winningNumbers.size() != WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + WINNING_NUMBER_COUNT + "개여야 합니다.");
         }
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
-        if (!isWithinRange(winningNumbers) || !isWithinRange(List.of(bonusNumber))) {
+        if (!isWithinRange(winningNumbers) || !isWithinRange(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-        if (winningNumbers.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 번호를 입력해 주세요.");
         }
         if (hasDuplicate(winningNumbers)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에는 중복된 숫자가 포함될 수 없습니다.");
@@ -47,9 +46,12 @@ public class WinningNumbers {
         return numbers.stream().allMatch(num -> num >= MIN_NUMBER && num <= MAX_NUMBER);
     }
 
+    private boolean isWithinRange(int number) {
+        return number >= MIN_NUMBER && number <= MAX_NUMBER;
+    }
+
     private boolean hasDuplicate(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        return uniqueNumbers.size() != numbers.size();
+        return new HashSet<>(numbers).size() != numbers.size();
     }
 
     public List<Integer> getWinningNumbers() {
