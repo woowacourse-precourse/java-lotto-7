@@ -28,11 +28,16 @@ public enum LottoRank {
         return NONE;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
     @Override
     public String toString() {
+        // 가격을 출력할 때에는, 1,000,000원 형태로 출력
         if (matchBonus) {
-            return matchCount + "개 일치, 보너스 볼 일치 (" + prize + "원)";
+            return matchCount + "개 일치, 보너스 볼 일치 (" + String.format("%,d", prize) + "원)";
         }
-        return matchCount + "개 일치 (" + prize + "원)";
+        return matchCount + "개 일치 (" + String.format("%,d", prize) + "원)";
     }
 }

@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,10 +17,7 @@ public class LottoService {
     public void run() {
         purchaseLotto();
         inputWinningNumbersAndBonusNumber();
-        List<LottoRank> result = lottos.stream()
-                .map(lotto -> lotto.checkRank(winningNumbers, bonusNumber))
-                .toList();
-        result.forEach(this::printStatus);
+        printStatus();
     }
 
     private void purchaseLotto() {
@@ -83,8 +79,34 @@ public class LottoService {
         }
     }
 
-    private void printStatus(LottoRank lottoRank) {
-        System.out.println(lottoRank);
+    private void printStatus() {
+        System.out.println("\n당첨 통계");
+        System.out.println("---------");
+        List<LottoRank> lottoRanks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            lottoRanks.add(lotto.checkRank(winningNumbers, bonusNumber));
+        }
+        for (LottoRank rank : LottoRank.values()) {
+            int count = calculateCount(rank, lottoRanks);
+            System.out.println(rank + " - " + count + "개");
+        }
+        // 총 수익률을 두 번째 자리에서 반올림해 출력
+        System.out.printf("\n총 수익률은 %.1f%%입니다.\n", calculateProfitRate(lottoRanks));
+    }
+
+    private static int calculateCount(LottoRank rank, List<LottoRank> lottoRanks) {
+        return (int) lottoRanks.stream()
+                .filter(lottoRank -> lottoRank == rank)
+                .count();
+    }
+
+    private double calculateProfitRate(List<LottoRank> lottoRanks) {
+        int totalPrize = 0;
+        for (LottoRank rank : lottoRanks) {
+            totalPrize += rank.getPrize();
+        }
+        int totalPurchasePrice = lottos.size() * 1000;
+        return (double) totalPrize / totalPurchasePrice * 100;
     }
 
     private List<Integer> inputWinningNumbers() {
@@ -113,5 +135,4 @@ public class LottoService {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
     }
-
 }
