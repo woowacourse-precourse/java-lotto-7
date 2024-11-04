@@ -9,10 +9,10 @@ public class Lotto {
 
     public Lotto(String numbers) {
         Validator.lottoNumberValidate(numbers);
-        this.numbers = stringToList(numbers);
+        this.numbers = changeNumbers(numbers);
     }
 
-    private List<Integer> stringToList(String numbers) {
+    private List<Integer> changeNumbers(String numbers) {
         return Arrays.stream(numbers.split(","))
                 .map(String::trim)      // 앞 뒤 공백 제거
                 .map(Integer::parseInt) // 정수로 변환
