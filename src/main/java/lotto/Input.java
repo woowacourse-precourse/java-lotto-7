@@ -45,13 +45,13 @@ public class Input {
     }
 
     public static void validatePrice(int price) {
-        if (price < 0 || price % 1000 != 0) {
+        if (price < 0 || price % NumberConstant.EACH_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액이 올바르지 않습니다.");
         }
     }
 
     public static void validateWinningNumbers(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
+        if (winningNumbers.size() != NumberConstant.COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         if (Validator.validateDuplicate(winningNumbers)){
@@ -72,7 +72,7 @@ public class Input {
 
 
     public static void validateNumberRange(int num) {
-        if (num <= 0 || num  >= 46) {
+        if (num < NumberConstant.START || num  > NumberConstant.END) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }

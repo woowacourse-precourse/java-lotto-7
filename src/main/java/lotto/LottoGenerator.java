@@ -7,6 +7,6 @@ import java.util.List;
 
 public class LottoGenerator {
     public List<Integer> drawLots() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(NumberConstant.START, NumberConstant.END, NumberConstant.COUNT);
     }
 }

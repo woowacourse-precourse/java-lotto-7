@@ -20,7 +20,7 @@ public class LottoFactory {
 
     public List<Lotto> createLotto(int price){
         validateGenerator();
-        int count = price / 1000;
+        int count = price / NumberConstant.EACH_PRICE;
         List<Lotto> lotto = new ArrayList<Lotto>();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = lottoGenerator.drawLots();
