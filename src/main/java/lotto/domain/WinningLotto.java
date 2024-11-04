@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import static lotto.constans.ErrorMessages.ERROR_BONUS_NUMBER_RANGE;
+import static lotto.constans.ErrorMessages.ERROR_DUPLICATE_BONUS_NUMBER;
+import static lotto.constans.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.constans.LottoConstants.MIN_LOTTO_NUMBER;
+
 public class WinningLotto {
     private final Lotto winningLotto;
     private final int bonusNumber;
@@ -21,13 +26,13 @@ public class WinningLotto {
 
     private void validateNoDuplicateWithWinningNumbers(Lotto lotto, int bonusNumber) {
         if (lotto.containsNumber(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATE_BONUS_NUMBER);
         }
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자로 입력해야 합니다.");
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_RANGE);
         }
     }
 

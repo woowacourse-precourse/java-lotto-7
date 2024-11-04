@@ -1,10 +1,13 @@
 package lotto.utils;
 
+import static lotto.constans.ErrorMessages.ERROR_EMPTY_AMOUNT;
+import static lotto.constans.ErrorMessages.ERROR_NON_NUMERIC_AMOUNT;
+
 public class InputValidator {
 
     public static void validateNonEmptyAmount(String money) {
         if (money.isEmpty()) {
-            throw new IllegalArgumentException("금액을 입력해 주세요.");
+            throw new IllegalArgumentException(ERROR_EMPTY_AMOUNT);
         }
     }
 
@@ -12,7 +15,7 @@ public class InputValidator {
         try {
             Integer.parseInt(money);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("금액은 숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ERROR_NON_NUMERIC_AMOUNT);
         }
     }
 }

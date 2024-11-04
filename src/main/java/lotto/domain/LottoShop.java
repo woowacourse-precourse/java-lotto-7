@@ -1,6 +1,10 @@
 package lotto.domain;
 
+import static lotto.constans.ErrorMessages.ERROR_MAXIMUM_PURCHASE_AMOUNT;
+import static lotto.constans.ErrorMessages.ERROR_MINIMUM_PURCHASE_AMOUNT;
+
 import java.util.List;
+import lotto.constans.ErrorMessages;
 
 public class LottoShop {
     public static final int MAX_PURCHASE_AMOUNT = 100_000;
@@ -25,17 +29,17 @@ public class LottoShop {
 
     private void validateThousandUnitAmount(int money) {
         if (money % LOTTO_UNIT_PRICE != NO_REMAINDER) {
-            throw new IllegalArgumentException("로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_UNIT_AMOUNT);
         }
     }
 
     private void validatePurchaseAmount(int money) {
         if (money < LOTTO_UNIT_PRICE) {
-            throw new IllegalArgumentException("최소 구입 금액은 1,000원 입니다.");
+            throw new IllegalArgumentException(ERROR_MINIMUM_PURCHASE_AMOUNT);
         }
 
         if (money > MAX_PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException("최대 구입 금액은 100,000원 입니다.");
+            throw new IllegalArgumentException(ERROR_MAXIMUM_PURCHASE_AMOUNT);
         }
     }
 }

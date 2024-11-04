@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import static lotto.constans.ErrorMessages.ERROR_NON_NUMERIC_INPUT;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +22,7 @@ public class InputParser {
                     .map(InputParser::stringToInteger)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("입력에 숫자가 아닌 값이 포함되어 있습니다.");
+            throw new IllegalArgumentException(ERROR_NON_NUMERIC_INPUT);
         }
     }
 
