@@ -1,7 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -50,6 +53,79 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("단위가 맞지 않는 경우")
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("100009");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("로또 값에 문자가 포함된 경우")
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("10000", "1,2,a,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("로또의 범위를 벗어난 경우")
+    void 예외_테스트4() {
+        assertSimpleTest(() -> {
+            runException("10000", "1,2,3,4,5,46", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("로또 번호가 중복된 경우")
+    void 예외_테스트5() {
+        assertSimpleTest(() -> {
+            runException("10000", "1,2,3,4,5,4", "8");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 로또 번호와 중복된 경우")
+    void 예외_테스트6() {
+        assertSimpleTest(() -> {
+            runException("10000", "1,2,3,4,5,6", "6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 범위를 벗어난 경우")
+    void 예외_테스트7() {
+        assertSimpleTest(() -> {
+            runException("10000", "1,2,3,4,5,6", "59");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("로또 가격은 0이거나 1000보다 작은 경우")
+    void 예외_테스트9() {
+        assertSimpleTest(() -> {
+            runException("0", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"SEVEN", "59"})
+    @DisplayName("보너스 번호가 문자가 입력된 경우 및 범위를 벗어난 경우")
+    void 예외_테스트_보너스번호(String input) {
+        assertSimpleTest(() -> {
+            runException("10000", "1,2,3,4,5,6", input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

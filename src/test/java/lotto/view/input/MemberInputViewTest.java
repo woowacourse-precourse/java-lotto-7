@@ -1,6 +1,7 @@
 package lotto.view.input;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -11,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MemberInputViewTest {
 
     private MemberInputView memberInputView;
-    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @BeforeEach
     void setUp() {
@@ -19,8 +19,9 @@ class MemberInputViewTest {
     }
 
     @Test
+    @DisplayName("가격 단위가 맞지 않을때 다시 입력받아서 통과하는지의 여부")
     void getPrice_TooLowPrice_RetriesUntilValid() {
-        String userInput = "500\n1000\n";
+        String userInput = "2561\n1000\n";
         InputStream in = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(in);
 
