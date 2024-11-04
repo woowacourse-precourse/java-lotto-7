@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -49,6 +50,7 @@ public class Lotto {
         List<List<Integer>> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START, END, SIZE);
+            Collections.sort(randomNumbers);
             lottos.add(randomNumbers);
         }
         return lottos;

@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.validator.IntegerValidator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
@@ -18,15 +19,10 @@ public class Application {
         int count = money.getCount();
         List<List<Integer>> lottos = Lotto.makeRandomNumbers(count);
 
-//
-//        // 3. 구매 로또 번호 수량 및 번호 출력
-//        String checkCount = "%d개를 구매했습니다.".formatted(count);
-//        System.out.println(checkCount);
-//
-//        for (List<Integer> purchaseNumbers : purchaseLottos) {
-//            Collections.sort(purchaseNumbers);
-//            System.out.println(purchaseNumbers);
-//        }
+        // 3. 구매 로또 번호 수량 및 번호 출력
+        OutputView.printCount(count);
+        OutputView.printLottos(lottos);
+
 //
 //        // 4. 로또 당첨 번호 입력
 //        System.out.println("당첨 번호를 입력해 주세요.");
