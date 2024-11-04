@@ -15,7 +15,7 @@ public class Game {
 
         for (Lotto lotto : lottoList) {
             int count = lotto.matchingWinningNumber(winningNumber);
-            boolean bonus = lotto.matchingBounsNumber(bonusNumber);
+            boolean bonus = lotto.matchingBonusNumber(bonusNumber);
 
             LottoRank rank = getRankByMatchingCount(count, bonus);
             rankCount[rank.getRank()]++;
@@ -44,7 +44,7 @@ public class Game {
     }
 
     public void outReturnRate() {
-        double rate = totalPrize / (double)(buyAmount*1000);
+        double rate = totalPrize / (double)(buyAmount * 1000);
         double roundedRate = Math.round(rate * 1000) / 10.0;
         ConsoleOutputHandler.returnRateMessage(roundedRate);
     }
@@ -54,7 +54,7 @@ public class Game {
             LottoRank rank = LottoRank.values()[i];
             if (rank != LottoRank.NONE) {
                 int count = rankCount[rank.getRank()];
-                ConsoleOutputHandler.LottoRankCountInfoMessage(rank.getDescription(), rank.getPrize(), count);
+                ConsoleOutputHandler.lottoRankCountInfoMessage(rank.getDescription(), rank.getPrize(), count);
             }
         }
     }

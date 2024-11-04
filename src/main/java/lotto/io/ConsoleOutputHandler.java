@@ -12,6 +12,7 @@ public class ConsoleOutputHandler {
     private final static String GAME_RESULT_MESSAGE = "당첨 통계\n---";
     private final static String LOTTO_RANK_COUNT_INFO_MESSAGE = "%s (%s) - %d개%n";
     private final static DecimalFormat formatter = new DecimalFormat("#,###");
+
     public static void buyAmountMessage() {
         System.out.println(BUY_AMOUNT_MESSAGE);
     }
@@ -21,10 +22,10 @@ public class ConsoleOutputHandler {
     }
 
     public static void lottoAmountMessage(int lottoAmount) {
-        System.out.println(lottoAmount+ LOTTO_AMOUNT_MESSAGE);
+        System.out.println(lottoAmount + LOTTO_AMOUNT_MESSAGE);
     }
 
-    public static void buyLottoNumberMessage(List<Integer> numbers){
+    public static void buyLottoNumberMessage(List<Integer> numbers) {
         System.out.println(numbers.toString());
     }
 
@@ -32,18 +33,19 @@ public class ConsoleOutputHandler {
         System.out.println(WINNING_NUMBER_MESSAGE);
     }
 
-    public static void bounsNumberMessage() {
+    public static void bonusNumberMessage() {
         System.out.println(BONUS_NUMBER_MESSAGE);
     }
+
     public static void returnRateMessage(double roundedRate) {
-        System.out.printf(RETURN_RATE_MESSAGE,roundedRate);
+        System.out.printf(RETURN_RATE_MESSAGE, roundedRate);
     }
 
     public static void gameResultMessage() {
         System.out.println(GAME_RESULT_MESSAGE);
     }
 
-    public static void LottoRankCountInfoMessage(String description, int prize, int count) {
+    public static void lottoRankCountInfoMessage(String description, int prize, int count) {
         String formattedPrize = formatter.format(prize);
         System.out.printf(LOTTO_RANK_COUNT_INFO_MESSAGE, description, formattedPrize + "원", count);
     }

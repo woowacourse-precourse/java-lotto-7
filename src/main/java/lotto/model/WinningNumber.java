@@ -10,20 +10,21 @@ public class WinningNumber {
     private final List<Integer> winningNumberList;
 
     public WinningNumber(String winningNumberString) {
-        validateNotEmpty(winningNumberString); // 빈 값 검사
-        String[] winningNumberStringArray = splitWinningNumberString(winningNumberString); // 당첨번호 문자열 배열로 변환
-        validateSixNumbers(winningNumberStringArray); // 당첨번호가 6개인지 검사
-        validateAllNumbersAreIntegers(winningNumberStringArray); // 당첨번호가 모두 정수인지 검사
-        this.winningNumberList = convertToIntegerList(winningNumberStringArray); // 문자열 배열을 정수 리스트로 변환
-        validateNoDuplicates(); // 중복 검사
-        validateNumberRange(); // 숫자 범위 검사
+        validateNotEmpty(winningNumberString);
+        String[] winningNumberStringArray = splitWinningNumberString(winningNumberString);
+        validateSixNumbers(winningNumberStringArray);
+        validateAllNumbersAreIntegers(winningNumberStringArray);
+        this.winningNumberList = convertToIntegerList(winningNumberStringArray);
+        validateNoDuplicates();
+        validateNumberRange();
     }
+
     private String[] splitWinningNumberString(String winningNumberString) {
-        return winningNumberString.split(","); // 당첨번호 문자열 ","로 분리해 문자열 배열로 변환
+        return winningNumberString.split(",");
     }
 
     private List<Integer> convertToIntegerList(String[] winningNumberStringArray) {
-        return Arrays.stream(winningNumberStringArray) // 당첨번호 문자열 배열을 숫자 리스트로 변환
+        return Arrays.stream(winningNumberStringArray)
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
@@ -66,7 +67,7 @@ public class WinningNumber {
         }
     }
 
-    public boolean isContainsNumber(int number){
+    public boolean isContainsNumber(int number) {
         return winningNumberList.contains(number);
     }
 }

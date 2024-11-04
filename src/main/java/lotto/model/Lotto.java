@@ -26,7 +26,7 @@ public class Lotto {
         }
     }
 
-    public void lottoNumberOut(){
+    public void lottoNumberOut() {
         ConsoleOutputHandler.buyLottoNumberMessage(numbers);
     }
 
@@ -40,7 +40,7 @@ public class Lotto {
         return count;
     }
 
-    public boolean matchingBounsNumber(BonusNumber bonusNumber){
+    public boolean matchingBonusNumber(BonusNumber bonusNumber) {
         for (Integer number : numbers) {
             if (bonusNumber.isContainsNumber(number)) {
                 return true;
