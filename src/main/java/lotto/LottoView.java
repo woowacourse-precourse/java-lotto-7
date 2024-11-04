@@ -7,19 +7,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoView {
-    private static final String ERROR_INVALID_AMOUNT = "[ERROR] 구매 금액은 숫자여야 합니다.";
-
     public int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-
-        int input = 0;
-
-        try{
-            input = Integer.parseInt(Console.readLine());
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_INVALID_AMOUNT);
-        }
-        return input;
+        return Integer.parseInt(Console.readLine());
     }
 
     public List<Integer> inputWinningNumbers() {
