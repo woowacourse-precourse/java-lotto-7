@@ -6,7 +6,9 @@ import lotto.message.ErrorMessage;
 public class Input {
     private final int LOTTO_PRICE = 1000;
     private final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-    private final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    private final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+
 
     public int getAmount() {
         System.out.println(INPUT_AMOUNT_MESSAGE);
@@ -18,7 +20,7 @@ public class Input {
     }
 
     public String getWinningNumber() {
-        System.out.println(INPUT_WINNING_NUMBER);
+        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
 
         String winningNumber = Console.readLine();
         validateWinningNumber(winningNumber);
@@ -26,42 +28,58 @@ public class Input {
         return winningNumber;
     }
 
+    public int getBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+
+        String bonusNumber = Console.readLine();
+        validateBonusNumber(bonusNumber);
+
+        return Integer.parseInt(bonusNumber);
+    }
+
     private void validateAmount(String amount) {
-        if (amount.isEmpty() || amount.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_EXIST);
-        }
-
-        if (!isDigit(amount)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER);
-        }
-
-        if (Integer.parseInt(amount) % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INDIVISIBLE_NUMBER);
-        }
-
-        if (Integer.parseInt(amount) <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER);
-        }
+        validateInputExist(amount);
+        validateNumber(amount);
+        validateDivisibleNumber(amount);
+        validatePositiveNumber(amount);
     }
 
     private void validateWinningNumber(String winningNumber) {
-        if (winningNumber.isEmpty() || winningNumber.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_EXIST);
-        }
+        validateInputExist(winningNumber);
 
         winningNumber = winningNumber.replace(",", "");
+        validateNumber(winningNumber);
+    }
 
-        if (!isDigit(winningNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER);
+    private void validateBonusNumber(String bonusNumber) {
+        validateInputExist(bonusNumber);
+        validateNumber(bonusNumber);
+        validatePositiveNumber(bonusNumber);
+    }
+
+    private void validateInputExist(String input) {
+        if (input.isEmpty() || input.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_EXIST);
         }
     }
 
-    private boolean isDigit(String input) {
+    private void validateDivisibleNumber(String input) {
+        if (Integer.parseInt(input) % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.INDIVISIBLE_NUMBER);
+        }
+    }
+
+    private void validateNumber(String input) {
         for (char c : input.toCharArray()){
             if (!Character.isDigit(c)){
-                return false;
+                throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER);
             }
         }
-        return true;
+    }
+
+    private void validatePositiveNumber(String input) {
+        if (Integer.parseInt(input) <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_NUMBER);
+        }
     }
 }
