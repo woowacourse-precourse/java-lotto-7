@@ -145,7 +145,7 @@ https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=
 
 ---
 
-# 기능 목록
+# 프로젝트 구조
 
 <table>
     <thead>
@@ -157,101 +157,130 @@ https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=
     </thead>
     <tbody>
         <tr>
+            <td rowspan="2">configuration</td>
+            <td>Prize</td>
+            <td>로또 당첨 등수와 상금을 정의하는 enum 클래스입니다. 각 등수에 대한 조건과 상금을 설정하여 비교 및 계산 시 사용됩니다.</td>
+        </tr>
+        <tr>
+            <td>LottoConfiguration</td>
+            <td>로또 애플리케이션의 전반적인 설정 값을 관리하는 클래스입니다. 로또 가격, 상수 등을 정의합니다.</td>
+        </tr>
+        <tr>
             <td rowspan="5">entity</td>
             <td>Lotto</td>
-            <td>로또 클래스</td>
+            <td>로또 티켓을 나타내는 클래스입니다. 로또 번호를 관리하며, 생성 및 검증 로직을 포함합니다.</td>
         </tr>
         <tr>
             <td>PaymentAmount</td>
-            <td>사용자의 지불 금액을 가지고 있는 First class collection</td>
+            <td>사용자가 지불한 금액을 관리하는 클래스입니다. First class collection으로써 금액과 관련된 로직을 포함할 수 있습니다.</td>
         </tr>
         <tr>
             <td>WinningNumbers</td>
-            <td>로또 우승 번호들을 가지고 있는 클래스</td>
+            <td>우승 번호와 보너스 번호를 관리하는 클래스입니다. 로또 결과 계산에 사용됩니다.</td>
         </tr>
         <tr>
             <td>LottoMachine</td>
-            <td>전반적인 로또 로직을 관리해주는 클래스.</td>
+            <td>로또 티켓 구매와 로직을 처리하는 클래스입니다. 랜덤 로또 생성 및 티켓 관리를 수행합니다.</td>
         </tr>
         <tr>
             <td>ProfitReport</td>
-            <td>사용자의 로또들과 우승 번호를 비교하여 수익, 수익률 등을 계산하는 클래스.</td>
+            <td>구매한 로또들과 우승 번호를 비교하여 수익과 수익률을 계산하는 클래스입니다.</td>
         </tr>
         <tr>
             <td rowspan="3">controller</td>
             <td>LottoController</td>
-            <td>컨트롤러</td>
+            <td>로또 애플리케이션의 흐름을 관리하는 컨트롤러 클래스입니다. 사용자 입력을 받고 서비스와 연결하여 로직을 처리합니다.</td>
         </tr>
         <tr>
             <td>InputParser</td>
-            <td>로또 클래스</td>
+            <td>사용자 입력을 파싱하는 클래스입니다. 입력 데이터를 특정 형식으로 변환하고 검증하는 기능을 포함합니다.</td>
         </tr>
         <tr>
             <td>InputRetryUtil</td>
-            <td>로또 클래스</td>
+            <td>입력 오류 시 재시도를 지원하는 유틸리티 클래스입니다. 사용자 입력을 반복해서 받을 때 사용됩니다.</td>
+        </tr>
+        <tr>
+            <td>service</td>
+            <td>LottoService</td>
+            <td>로또 로직을 수행하는 서비스 클래스입니다. 비즈니스 로직을 처리하며, 컨트롤러와 엔티티 간의 중재 역할을 합니다.</td>
         </tr>
         <tr>
             <td rowspan="5">view</td>
             <td>ConsoleInput</td>
-            <td>컨트롤러</td>
+            <td>사용자로부터 입력을 받는 클래스입니다. 콘솔을 통해 입력을 처리하고 반환합니다.</td>
         </tr>
         <tr>
             <td>ConsoleOutput</td>
-            <td>컨트롤러</td>
+            <td>콘솔에 출력을 담당하는 클래스입니다. 메시지를 출력하고 결과를 사용자에게 보여줍니다.</td>
         </tr>
         <tr>
             <td>ConsoleUtils</td>
-            <td>컨트롤러</td>
+            <td>콘솔 출력을 지원하는 유틸리티 클래스입니다. 공통적인 출력 로직을 모아둔 클래스입니다.</td>
         </tr>
         <tr>
-            <td>inputProvider.inputProvider</td>
-            <td>컨트롤러</td>
+            <td>inputProvider.InputProvider</td>
+            <td>입력 처리 인터페이스입니다. 다양한 입력 소스를 지원할 수 있는 구조를 제공합니다.</td>
         </tr>
         <tr>
             <td>inputProvider.ConsoleInputProvider</td>
-            <td>컨트롤러</td>
+            <td>콘솔로부터 입력을 받는 구체적인 구현 클래스입니다. InputProvider를 구현하여 콘솔 입력을 처리합니다.</td>
         </tr>
         <tr>
             <td rowspan="5">validator</td>
-            <td>ConsoleInput</td>
-            <td>컨트롤러</td>
+            <td>LottoValidator</td>
+            <td>로또 번호 검증을 수행하는 클래스입니다. 입력된 로또 번호의 유효성을 확인합니다.</td>
+        </tr>
+        <tr>
+            <td>PaymentValidator</td>
+            <td>사용자의 지불 금액 검증을 수행하는 클래스입니다. 지불 금액의 유효성을 검사합니다.</td>
+        </tr>
+        <tr>
+            <td>ProfitReportValidator</td>
+            <td>수익 보고서의 유효성을 검증하는 클래스입니다. 보고서 관련 입력의 유효성을 확인합니다.</td>
+        </tr>
+        <tr>
+            <td>WinningNumbersValidator</td>
+            <td>우승 번호의 유효성을 검증하는 클래스입니다. 입력된 우승 번호와 보너스 번호의 유효성을 확인합니다.</td>
+        </tr>
+        <tr>
+            <td>LottoMachineValidator</td>
+            <td>로또 머신에 대한 입력과 상태를 검증하는 클래스입니다. 로또 구매 시 입력의 유효성을 검사합니다.</td>
+        </tr>
+        <tr>
+            <td rowspan="8">exception</td>
+            <td>ExceptionUtils</td>
+            <td>예외 처리를 돕는 유틸리티 클래스입니다. 예외 메시지와 관련된 기능을 제공합니다.</td>
+        </tr>
+        <tr>
+            <td>ExceptionMessage</td>
+            <td>예외 메시지를 관리하는 클래스입니다. 예외와 관련된 메시지를 일관성 있게 관리합니다.</td>
+        </tr>
+        <tr>
+            <td>InputParserExceptionMessage</td>
+            <td>입력 파싱과 관련된 예외 메시지를 정의하는 클래스입니다.</td>
+        </tr>
+        <tr>
+            <td>LottoConfigurationExceptionMessage</td>
+            <td>로또 설정과 관련된 예외 메시지를 정의하는 클래스입니다.</td>
+        </tr>
+        <tr>
+            <td>LottoExceptionMessage</td>
+            <td>로또 관련 예외 메시지를 정의하는 클래스입니다. 로또 로직과 관련된 예외 메시지를 관리합니다.</td>
+        </tr>
+        <tr>
+            <td>ProfitReportExceptionMessage</td>
+            <td>수익 보고서와 관련된 예외 메시지를 정의하는 클래스입니다.</td>
+        </tr>
+        <tr>
+            <td>PurchaseExceptionMessage</td>
+            <td>구매와 관련된 예외 메시지를 정의하는 클래스입니다.</td>
+        </tr>
+        <tr>
+            <td>WinningNumbersExceptionMessage</td>
+            <td>우승 번호 관련 예외 메시지를 정의하는 클래스입니다.</td>
         </tr>
     </tbody>
 </table>
 
-### Entities
 
-- Lotto 클래스 구현
-- WinningNumbers 클래스 구현
-- Purchase 클래스 구현
-- LottoMachine 클래스 구현
-- ProfitReport 클래스 구현
-
-### View
-
-- ConsoleInputView 클래스 구현
-    - 구입 금액을 입력 받는 기능.
-    - 당첨 번호를 입력 받는 기능.
-    - 보너스 번호를 입력 받는 기능.
-- ConsoleOutputView 클래스 구현
-    - 당첨 통계를 출력하는 기능.
-    - 발급한 로또를 출력하는 기능.
-
-### Controller
-
-- LottoController 클래스 구현
-    - ConsoleInputView, ConsoleOutputView을 주입 받음.
-    - 입력을 처리함.
-    - LottoMachine 을 생성.
-    - ProfitReport 를 생성.
-    - 결과를 출력.
-
-### ETC
-
-- InputParser 클래스 구현
-    - 여러 숫자를 파싱하는 기능.
-    - 숫자를 파싱하는 기능.
-- Exception
-- DTO
-- Configuration
 
