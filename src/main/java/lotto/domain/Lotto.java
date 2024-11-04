@@ -1,13 +1,14 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.LOTTO_MAXIMUM_BOUND;
+import static lotto.constant.LottoConstant.LOTTO_MINIMUM_BOUND;
+import static lotto.constant.LottoConstant.LOTTO_SIZE;
+
 import java.util.List;
 import lotto.exception.ErrorMessage;
 import lotto.exception.InputException;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
-    private static final int LOTTO_MINIMUM_BOUND = 1;
-    private static final int LOTTO_MAXIMUM_BOUND = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

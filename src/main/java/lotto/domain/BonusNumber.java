@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.LOTTO_MAXIMUM_BOUND;
+import static lotto.constant.LottoConstant.LOTTO_MINIMUM_BOUND;
+
 import lotto.exception.ErrorMessage;
 import lotto.exception.InputException;
 import lotto.util.ConvertInput;
 
 public class BonusNumber {
-    private static final int LOTTO_MINIMUM_BOUND = 1;
-    private static final int LOTTO_MAXIMUM_BOUND = 45;
     private final int bonusNumber;
 
     private BonusNumber(int bonusNumber) {

@@ -1,11 +1,12 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.UNIT_PRICE;
+
 import lotto.exception.ErrorMessage;
 import lotto.exception.InputException;
 import lotto.util.ConvertInput;
 
 public class Money {
-    private static final int UNIT_PRICE = 1_000;
     private final int money;
 
     private Money(int money) {
