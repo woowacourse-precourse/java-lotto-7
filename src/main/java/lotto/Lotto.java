@@ -11,13 +11,16 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+
         this.numbers = new ArrayList<>(numbers);
         Collections.sort(this.numbers);
+
     }
 
     public Lotto() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(this.numbers);
+        List<Integer> uniqueNumbers =new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6)); // 범위 내에서 6개의 유일한 숫자 선택
+        Collections.sort(uniqueNumbers); // 선택된 숫자 정렬
+        this.numbers = uniqueNumbers;
     }
 
     private void validate(List<Integer> numbers) {

@@ -3,17 +3,15 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import lotto.Lotto;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
         int buget;
         List<Lotto> severalLottos = new ArrayList<>();
         int lottoCount;
-        int bunusNumber;
+        int bonusNumber;
         String winningNumbers;
 
         System.out.println("구입금액을 입력해 주세요.");
@@ -31,8 +29,23 @@ public class Application {
         }
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        winningNumbers = Console.readLine();
+        List<Integer> winningList = Conversion.parseInput(Console.readLine());
 
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        bonusNumber = Integer.parseInt(Console.readLine());
+        System.out.println();
+
+        winningCount.calculatePrizes(severalLottos,winningList,bonusNumber);
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.printf("3개 일치 (5,000원) - %d개\n",LottoRank.THREE_MATCH.getCount());
+        System.out.printf("4개 일치 (50,000원) - %d개\n",LottoRank.FOUR_MATCH.getCount());
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n",LottoRank.FIVE_MATCH.getCount());
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n",LottoRank.FIVE_MATCH_BONUS.getCount());
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n",LottoRank.SIX_MATCH.getCount());
+
+        result.profitRate(buget);
         Console.close();// TODO: 프로그램 구현
     }
 }
