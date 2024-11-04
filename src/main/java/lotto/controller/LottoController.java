@@ -13,7 +13,7 @@ public class LottoController {
     public void run() {
         try {
             int purchaseAmount = InputView.requestPurchaseAmount();
-            lottoMachine.purchaseLottos(purchaseAmount);
+            lottoMachine.purchaseLottos(String.valueOf(purchaseAmount));
 
             OutputView.printPurchasedLottos(lottoMachine.getPurchasedLottos());
 
@@ -21,7 +21,6 @@ public class LottoController {
             Set<Integer> winningNumbers = InputView.requestWinningNumbers();
             int bonusNumber = InputView.requestBonusNumber(winningNumbers);
 
-            // TODO: 당첨 결과 계산 및 출력 로직 추가
             Result result = lottoMachine.calculateResults(winningNumbers, bonusNumber, purchaseAmount);
             OutputView.printResults(result);
 
