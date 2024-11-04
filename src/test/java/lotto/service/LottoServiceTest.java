@@ -20,4 +20,13 @@ public class LottoServiceTest {
         int expectedCount = buyMoney / 1000;
         assertEquals(expectedCount, lottos.size());
     }
+
+    @DisplayName("로또 구입 금액과 당청금을 통해 수익률을 계산한다.")
+    @Test
+    void 로또_구입_금액과_당청금을_통해_수익률을_계산한다() {
+        int buyMoney = 5000;
+        int winningMoney = 10000;
+
+        assertEquals(200.0, lottoService.getYield(buyMoney, winningMoney));
+    }
 }
