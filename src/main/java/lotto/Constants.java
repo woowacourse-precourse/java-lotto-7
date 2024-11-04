@@ -22,8 +22,6 @@ public class Constants {
     }
 
     public enum ErrorMessages {
-        INPUT_NOT_POSITIVE_INT("[ERROR] 값은 양수여야 합니다.\n"),
-        INPUT_TOTAL_AMOUNT_NOT_LARGER_THAN_1000("[ERROR] 구입 최소 금액은 1000원입니다.\n"),
         INPUT_TOTAL_AMOUNT_ERROR("[ERROR] 입력값은 1000원 단위여야 합니다.\n"),
         LOTTO_COUNT_ERROR("[ERROR] 로또 번호는 6개여야 합니다."),
         NUMBER_RANGE_ERROR("[ERROR]  로또 번호는 1부터 45 사이의 숫자여야 합니다."),
