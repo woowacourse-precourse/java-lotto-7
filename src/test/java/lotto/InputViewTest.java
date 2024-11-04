@@ -28,7 +28,7 @@ public class InputViewTest extends NsTest {
     @Test
     @DisplayName("당첨 번호 입력 - 정상 입력")
     void 당첨번호_입력_정상입력() {
-        run("1, 2, 3, 4, 5, 6");
+        run("1,2,3,4,5,6");
         List<Integer> winningNumbers = InputView.inputWinningNumber();
         assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
@@ -36,7 +36,7 @@ public class InputViewTest extends NsTest {
     @Test
     @DisplayName("당첨 번호 입력 - 비정상 입력 예외 발생")
     void 당첨번호_입력_비정상입력_예외발생() {
-        run("1, 2, 3, a, 5, 6");
+        run("1,2,3,a,5,6");
         assertThatThrownBy(InputView::inputWinningNumber)
                 .isInstanceOf(NumberFormatException.class)
                 .hasMessageContaining("For input string: \"a\"");

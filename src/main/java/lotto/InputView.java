@@ -12,7 +12,7 @@ public class InputView {
 
     public static List<Integer> inputWinningNumber() {
         List<Integer> numbers = new ArrayList<>();
-        String[] inputNumbers = Console.readLine().split(", ");
+        String[] inputNumbers = Console.readLine().split(",");
         for(String inputNumber : inputNumbers) {
             numbers.add(Integer.parseInt(inputNumber));
         }
