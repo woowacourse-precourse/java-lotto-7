@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.collection.WinningNumbers;
+import lotto.collection.WinningNumber;
 import lotto.domain.LottoResult;
 import lotto.util.ProgramExit;
 import lotto.view.ErrorOutputView;
@@ -22,11 +22,11 @@ public class LottoService {
         return instance;
     }
 
-    public WinningNumbers getWinningNumbers() {
+    public WinningNumber getWinningNumbers() {
         for (int i = 0; i < ACCESS_COUNT.getValue(); i++) {
             try {
                 String[] winningNumber = inputWinningNumbers();
-                return new WinningNumbers(winningNumber);
+                return new WinningNumber(winningNumber);
 
             } catch (IllegalArgumentException e) {
                 ErrorOutputView.printErrorMessage(e.getMessage());
@@ -41,7 +41,7 @@ public class LottoService {
         return InputView.readLine().split(",");
     }
 
-    public LottoResult getBonusNumbers(WinningNumbers winningNumbers) {
+    public LottoResult getBonusNumbers(WinningNumber winningNumbers) {
         for (int i = 0; i < ACCESS_COUNT.getValue(); i++) {
             try {
                 OutputView.newLine();

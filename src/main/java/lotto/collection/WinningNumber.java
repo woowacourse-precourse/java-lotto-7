@@ -5,13 +5,13 @@ import lotto.util.Validator;
 import java.util.Arrays;
 import java.util.List;
 
-public class WinningNumbers {
+public class WinningNumber {
 
-    private final List<Integer> winningNumbers;
+    private final List<Integer> numbers;
 
-    public WinningNumbers(String[] winningNumbers) {
+    public WinningNumber(String[] winningNumbers) {
         validate(winningNumbers);
-        this.winningNumbers = convertStringToInteger(winningNumbers);
+        this.numbers = convertStringToInteger(winningNumbers);
     }
 
     private void validate(String[] numbers) {
@@ -24,7 +24,7 @@ public class WinningNumbers {
                 .toList();
     }
 
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

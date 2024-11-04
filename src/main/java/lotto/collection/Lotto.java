@@ -23,11 +23,11 @@ public class Lotto {
         return numbers;
     }
 
-    public int countMatchNumberWithWinningNumber(WinningNumbers winningNumbers) {
-        List<Integer> winningNumber = winningNumbers.getWinningNumbers();
+    public int countMatchNumberWithWinningNumber(WinningNumber winningNumber) {
+        List<Integer> getNumbers = winningNumber.getNumbers();
         int count = 0;
         for (int number : numbers) {
-            if(winningNumber.contains(number)) {
+            if(getNumbers.contains(number)) {
                 count++;
             }
         }

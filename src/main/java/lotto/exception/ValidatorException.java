@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import lotto.collection.WinningNumbers;
+import lotto.collection.WinningNumber;
 import lotto.enums.ErrorCause;
 import lotto.enums.LottoConstant;
 
@@ -62,8 +62,8 @@ public class ValidatorException {
     }
 
     // 보너스 번호 예외처리
-    public static void throwIfBonusNumberIsDuplicate(WinningNumbers winningNumbers, String bonusNumber) {
-        final HashSet<Integer> duplicationCheckSet = new HashSet<>(winningNumbers.getWinningNumbers());
+    public static void throwIfBonusNumberIsDuplicate(WinningNumber winningNumbers, String bonusNumber) {
+        final HashSet<Integer> duplicationCheckSet = new HashSet<>(winningNumbers.getNumbers());
         int value = Integer.parseInt(bonusNumber);
 
         if (duplicationCheckSet.contains(value)) {

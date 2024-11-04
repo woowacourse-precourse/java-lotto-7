@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.collection.Lotto;
-import lotto.collection.WinningNumbers;
+import lotto.collection.WinningNumber;
 import lotto.domain.LottoResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,7 +42,7 @@ class LottoTest {
     @Test
     void 당첨_번호에_문자가_있으면_예외가_발생한다() {
         String[] array = {"1", "2", "3", "a", "5", "6"};
-        assertThatThrownBy(() -> new WinningNumbers(array))
+        assertThatThrownBy(() -> new WinningNumber(array))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -50,7 +50,7 @@ class LottoTest {
     @ValueSource(strings = {"6", "", " ", "a", "0", "46"})
     void 보너스_번호_유효성_검사_예외테스트(String bonusNumber) {
         String[] array = {"1", "2", "3", "4", "5", "6"};
-        WinningNumbers winningNumbers = new WinningNumbers(array);
+        WinningNumber winningNumbers = new WinningNumber(array);
 
         assertThatThrownBy(() -> new LottoResult(winningNumbers,bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);

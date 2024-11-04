@@ -1,24 +1,24 @@
 package lotto.domain;
 
-import lotto.collection.WinningNumbers;
+import lotto.collection.WinningNumber;
 import lotto.util.Validator;
 
 public class LottoResult {
 
-    private final WinningNumbers winningNumbers;
+    private final WinningNumber winningNumbers;
     private final int bonusNumber;
 
-    public LottoResult(WinningNumbers winningNumbers, String bonusNumber) {
+    public LottoResult(WinningNumber winningNumbers, String bonusNumber) {
         validate(winningNumbers,bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
-    private void validate(WinningNumbers winningNumbers, String bonusNumber) {
+    private void validate(WinningNumber winningNumbers, String bonusNumber) {
         Validator.checkBonusNumber(winningNumbers,bonusNumber);
     }
 
-    public WinningNumbers getWinningNumbers() {
+    public WinningNumber getWinningNumbers() {
         return winningNumbers;
     }
 
