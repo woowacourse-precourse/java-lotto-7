@@ -5,14 +5,15 @@ import java.util.EnumMap;
 
 public class LotteryResult {
     public static void printWinningResult(EnumMap<LotteryPrize, Integer> prizeCount) {
+        DecimalFormat df = new DecimalFormat("#,###");
         System.out.println("\n당첨 통계\n---");
         for (LotteryPrize prize : LotteryPrize.values()) {
-            System.out.println(prize.getDescription() + " (" + prize.getPrizeAmount() + "원) - " + prizeCount.getOrDefault(prize, 0) + "개");
+            System.out.println(prize.getDescription() + " (" + df.format(prize.getPrizeAmount()) + "원) - " + prizeCount.getOrDefault(prize, 0) + "개");
         }
     }
 
     public static void printRateOfReturn(double result) {
-        DecimalFormat df = new DecimalFormat("#,###");
+        DecimalFormat df = new DecimalFormat("#,##0.0");
         System.out.println("총 수익률은 " + df.format(result) + "%입니다.");
     }
 
