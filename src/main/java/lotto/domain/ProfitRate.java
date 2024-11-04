@@ -4,8 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class ProfitRate {
-    private static final int SCALE_DIVIDE = 3;
-    private static final int SCALE_RESULT = 1;
+    private static final int SCALE = 1;
     private static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
 
     private final double profitRate;
@@ -21,9 +20,8 @@ public class ProfitRate {
     private static double calculateProfitRate(double purchaseAmount, double totalPrize) {
         BigDecimal amount = BigDecimal.valueOf(purchaseAmount);
         BigDecimal prize = BigDecimal.valueOf(totalPrize);
-        BigDecimal profitRate = prize.divide(amount, SCALE_DIVIDE, RoundingMode.HALF_UP)
-                .multiply(HUNDRED)
-                .setScale(SCALE_RESULT, RoundingMode.HALF_UP);
+        BigDecimal profitRate = prize.multiply(HUNDRED)
+                .divide(amount, SCALE, RoundingMode.HALF_UP);
         return profitRate.doubleValue();
     }
 
