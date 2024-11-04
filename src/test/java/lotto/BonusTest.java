@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Constants.ERROR_HEADER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -17,45 +18,33 @@ class BonusTest {
     @DisplayName("보너스 번호가 1 미만일 경우 예외가 발생한다.")
     @Test
     void 보너스_번호가_일_미만일_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Bonus.from("0"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
+        assertBonusThrows("0");
     }
 
     @DisplayName("보너스 번호가 45를 초과할 경우 예외가 발생한다.")
     @Test
     void 보너스_번호가_사십오를_초과할_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Bonus.from("46"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
+        assertBonusThrows("46");
+        assertBonusThrows("4600000000");
     }
 
     @DisplayName("보너스 번호에 문자가 입력될 경우 예외가 발생한다.")
     @Test
     void 보너스_번호에_문자가_입력될_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Bonus.from("\t"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
-
-        assertThatThrownBy(() -> Bonus.from("-1"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
+        assertBonusThrows("\t");
+        assertBonusThrows("-1");
     }
 
     @DisplayName("보너스 번호에 아무것도 입력되지 않는 경우 예외가 발생한다")
     @Test
     void 보너스_번호에_아무것도_입력되지_않는_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Bonus.from(""))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
+        assertBonusThrows("");
     }
 
     @DisplayName("보너스 번호가 null일 경우 예외가 발생한다")
     @Test
     void 보너스_번호가_null일_경우_예외가_발생한다() {
-        assertThatThrownBy(() -> Bonus.from(null))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
+        assertBonusThrows(null);
     }
 
     @DisplayName("보너스 번호가 당첨 번호와 중복될 경우 예외가 발생한다.")
@@ -66,6 +55,12 @@ class BonusTest {
 
         assertThatThrownBy(() -> bonus.isDuplicated(winning))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
+                .hasMessageStartingWith(ERROR_HEADER);
+    }
+
+    void assertBonusThrows(String input) {
+        assertThatThrownBy(() -> Bonus.from(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith(ERROR_HEADER);
     }
 }
