@@ -6,7 +6,9 @@ import java.math.BigDecimal;
 import lotto.exception.LottoException;
 
 public class LottoPrice {
+
     private static final BigDecimal LOTTO_UNIT_PRICE = BigDecimal.valueOf(1000);
+
     private final BigDecimal price;
 
     public LottoPrice(int price) {
@@ -26,7 +28,7 @@ public class LottoPrice {
     }
 
     private void validatePrice(int price) {
-        if (price <= 0 || price % 1000 != 0) {
+        if (price >= LOTTO_UNIT_PRICE.intValue() || price % LOTTO_UNIT_PRICE.intValue() != 0) {
             throw new LottoException(INVALID_LOTTO_PRICE);
         }
     }
