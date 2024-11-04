@@ -9,36 +9,48 @@ import java.util.List;
 
 public class LottoServiceImpl implements LottoService {
 
-    private static final int LOTTO_PRICE = 1000;
-
     @Override
     public List<Lotto> generateLottos(int amount) {
-        int count = amount / LOTTO_PRICE;
+        int count = amount / 1000;
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            lottos.add(new Lotto(generateRandomLottoNumbers()));
         }
         return lottos;
     }
 
     @Override
-    public int[] getWinningCount(List<Lotto> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
-        int[] winCounts = new int[5]; // 3~6개 일치 카운트
-        for (Lotto lotto : lottoNumbers) {
+    public int[] getWinningCount(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        int[] counts = new int[Rank.values().length];
+        for (Lotto lotto : lottos) {
             Rank rank = Rank.determineRank(lotto.getNumbers(), winningNumbers, bonusNumber);
-            if (rank != null) {
-                winCounts[rank.ordinal()]++;
+            if (rank != Rank.NONE) {
+                counts[rank.getIndex()]++;
             }
         }
-        return winCounts;
+        return counts;
     }
 
     @Override
     public double calculateProfitRate(int[] winningCounts, int purchaseAmount) {
-        int totalPrize = 0;
-        for (int i = 0; i < winningCounts.length; i++) {
-            totalPrize += winningCounts[i] * Rank.values()[i].getPrize();
+        if (purchaseAmount <= 0) {
+            throw new IllegalArgumentException("구매 금액은 0보다 커야 합니다.");
         }
-        return Math.round((totalPrize / (double) purchaseAmount) * 100 * 100.0) / 100.0;
+
+        int totalPrize = 0;
+
+        for (Rank rank : Rank.values()) {
+            totalPrize += winningCounts[rank.getIndex()] * rank.getPrize();
+        }
+
+        if (totalPrize == 0) {
+            return 0.0;
+        }
+        return 100 - ((purchaseAmount - totalPrize) / (double) purchaseAmount * 100);
+    }
+
+
+    private List<Integer> generateRandomLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
