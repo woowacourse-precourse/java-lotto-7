@@ -38,13 +38,13 @@ public class Controller {
     public Payment getPayment() {
         Payment payment = null;
         while (payment == null) {
-            System.out.println(PROMPT_PAYMENT);
+            view.show(PROMPT_PAYMENT);
             String input = Console.readLine();
             try {
                 payment = Payment.from(input);
-                System.out.println();
+                view.printLine();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                view.show(e.getMessage());
             }
         }
         return payment;
@@ -53,13 +53,13 @@ public class Controller {
     public Winning getWinning() {
         Winning winning = null;
         while (winning == null) {
-            System.out.println(PROMPT_WINNING);
+            view.show(PROMPT_WINNING);
             String input = Console.readLine();
             try {
                 winning = Winning.from(input);
-                System.out.println();
+                view.printLine();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                view.show(e.getMessage());
             }
         }
         return winning;
@@ -68,14 +68,14 @@ public class Controller {
     public Bonus getBonus(Winning winning) {
         Bonus bonus = null;
         while (bonus == null) {
-            System.out.println(PROMPT_BONUS);
+            view.show(PROMPT_BONUS);
             String input = Console.readLine();
             try {
                 bonus = Bonus.from(input);
                 bonus.isDuplicated(winning);
-                System.out.println();
+                view.printLine();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                view.show(e.getMessage());
             }
         }
         return bonus;
