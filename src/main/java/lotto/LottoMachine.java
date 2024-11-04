@@ -32,7 +32,7 @@ public class LottoMachine {
                 .toList();
     }
 
-    private boolean validateWinningNumberInput(String input) {
+    protected boolean validateWinningNumberInput(String input) {
         Pattern pattern = Pattern.compile("[ ]*\\d+(?:[ ]*,[ ]*\\d+){5}");
         return pattern.matcher(input).matches();
     }
@@ -47,7 +47,7 @@ public class LottoMachine {
         bonusNumber = Integer.parseInt(BonusNumberinput);
     }
 
-    private boolean validateBonusNumberInput(String inputBonusNumber) {
+    protected boolean validateBonusNumberInput(String inputBonusNumber) {
         if (!NumberValidate.isNumber(inputBonusNumber)) {
             System.out.println(ErrorMessage.WINNING_NUMBER_NOT_NUMBER.getMessage());
             return false;
