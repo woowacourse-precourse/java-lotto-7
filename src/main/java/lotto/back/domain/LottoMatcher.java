@@ -9,8 +9,6 @@ import java.util.Optional;
 import lotto.global.enums.WinningLottoRank;
 import lotto.global.exception.DuplicatedLottoNumberException;
 
-import static lotto.global.enums.WinningLottoRank.*;
-
 public class LottoMatcher {
     private final List<Lotto> lottos;
     private final DrawnNumbers drawnNumbers;
@@ -56,7 +54,7 @@ public class LottoMatcher {
 
     // 로또 당첨 개수를 저장하기 위한 빈 EnumMap을 반환
     private Map<WinningLottoRank, Integer> getEmptyWinningCount() {
-        List<WinningLottoRank> winningLottoRanks = Arrays.stream(values()).toList();
+        List<WinningLottoRank> winningLottoRanks = Arrays.stream(WinningLottoRank.values()).toList();
         EnumMap<WinningLottoRank, Integer> winningCount = new EnumMap<>(WinningLottoRank.class);
         //초기 count는 0
         winningLottoRanks.forEach(lottoDrawRank -> {
