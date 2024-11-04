@@ -44,17 +44,18 @@
 - 집계
     - 보너스 볼은 2등을 제외하고 점수에 포함되지 않는다.
 
-```agsl
-5등 3개 일치 (5,000원) 
-4등 4개 일치 (50,000원) 
-3등 5개 일치 (1,500,000원)
-2등 5개 일치, 보너스 볼 일치 (30,000,000원)
-1등 6개 일치 (2,000,000,000원)
-```
+    ```agsl
+    5등 3개 일치 (5,000원) 
+    4등 4개 일치 (50,000원) 
+    3등 5개 일치 (1,500,000원)
+    2등 5개 일치, 보너스 볼 일치 (30,000,000원)
+    1등 6개 일치 (2,000,000,000원)
+    ```
 
 4. 기타
 
 - **공백**은 프로그램이 자동으로 없앤다. ex) `  1     0 , 5 ,...` -> `10,5,...`
+- 사용자 입력이 잘못되면 잘못된 지점부터 다시 입력받는다.
 
 ## 구현 기능 목록
 
@@ -112,11 +113,7 @@
     │           ├── common
     │           │   ├── ExceptionMessage.java
     │           │   ├── LottoConfig.java
-    │           │   ├── RandomNumberGenerator.java
-    │           │   └── validator
-    │           │       ├── IssuedLottoValidator.java
-    │           │       ├── LottoResultValidator.java
-    │           │       └── LottoValidator.java
+    │           │   └── RandomNumberGenerator.java
     │           ├── domain
     │           │   ├── IssuedLotto.java
     │           │   ├── IssuedRandomLotto.java
@@ -124,8 +121,12 @@
     │           │   ├── LottoProfitCalculator.java
     │           │   ├── LottoRank.java
     │           │   ├── LottoResult.java
-    │           │   └── dto
-    │           │       └── LottoStatisticsDto.java
+    │           │   └── validator
+    │           │       ├── IssuedLottoValidator.java
+    │           │       ├── LottoResultValidator.java
+    │           │       └── LottoValidator.java
+    │           ├── dto
+    │           │   └── LottoStatisticsDto.java
     │           ├── presentation
     │           │   ├── LottoController.java
     │           │   └── view
@@ -137,10 +138,10 @@
         └── java
             └── lotto
                 ├── ApplicationTest.java
-                └── domain
-                    ├── IssuedRandomLottoTest.java
-                    ├── LottoProfitCalculatorTest.java
-                    ├── LottoResultTest.java
-                    └── LottoTest.java
-
+                ├── domain
+                │   ├── IssuedRandomLottoTest.java
+                │   ├── LottoProfitCalculatorTest.java
+                │   ├── LottoResultTest.java
+                │   └── LottoTest.java
+                └── service
 ```
