@@ -7,27 +7,27 @@ import lotto.controller.LottoController;
 import lotto.view.OutputView;
 
 public class AppConfig {
-    public InputView createInputView() {
+    public AppRunner createAppRunner() {
+        return new AppRunner(createInputView(), createInputValidator(), createOutputView(), createLottoController());
+    }
+
+    private InputView createInputView() {
         return new InputView();
     }
 
-    public InputValidator createInputValidator() {
+    private InputValidator createInputValidator() {
         return new InputValidator();
     }
 
-    public OutputView createOutputView() {
+    private OutputView createOutputView() {
         return new OutputView();
     }
 
-    public LottoService createLottoService() {
+    private LottoService createLottoService() {
         return new LottoService();
     }
 
-    public LottoController createLottoController() {
+    private LottoController createLottoController() {
         return new LottoController(createLottoService());
-    }
-
-    public AppRunner createAppRunner() {
-        return new AppRunner(createInputView(), createInputValidator(), createOutputView(), createLottoController());
     }
 }
