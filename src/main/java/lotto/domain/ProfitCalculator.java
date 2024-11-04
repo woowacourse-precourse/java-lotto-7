@@ -11,6 +11,7 @@ public class ProfitCalculator {
         Map<Ranking, Integer> winningInfo = generateWinningInfo();
         for (Lotto lotto : lottos.getLottos()) {
             int matchingCount = matchLottoAndWinning(lotto, winningBonus);
+            boolean containsBonusNumber = checkBonusNumber(lotto, winningBonus, matchingCount);
         }
     }
 
@@ -26,6 +27,15 @@ public class ProfitCalculator {
         return (int)numbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    private boolean checkBonusNumber(Lotto lotto, WinningBonus winningBonus, int matchingCount) {
+        if (matchingCount != 5) {
+            return false;
+        }
+        List<Integer> numbers = lotto.getNumbers();
+        int bonusNumber = winningBonus.getBonusNumber();
+        return numbers.contains(bonusNumber);
     }
 
 }
