@@ -6,14 +6,17 @@ public class LottoResults {
     private List<LottoResult> lottoResults;
     private Checker checker;
 
-    public LottoResults(Lotto winningNumbers, int bonusNumber) {
-        checker = new Checker(winningNumbers, bonusNumber);
+    public LottoResults(WinningNumbers winningNumbers) {
+        checker = new Checker(winningNumbers);
     }
 
-    public List<LottoResult> getLottoResults(Lotties lotties) {
-        this.lottoResults = lotties.getLotties().stream()
+    public void initLottoResults(Lottos lottos) {
+        this.lottoResults = lottos.getLottos().stream()
                 .map(lotto -> checker.check(lotto))
                 .toList();
+    }
+
+    public List<LottoResult> getLottoResults() {
         return lottoResults;
     }
 }
