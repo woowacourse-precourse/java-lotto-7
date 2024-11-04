@@ -1,8 +1,5 @@
 package lotto.model;
 
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum Rank {
@@ -37,19 +34,5 @@ public enum Rank {
 
     public long getWinningPrice() {
         return winningPrice;
-    }
-
-    private static final Map<String, Rank> BY_RANK =
-            Stream.of(values()).collect(Collectors.toMap(Rank::getRank, Function.identity()));
-
-    private static final Map<Long, Rank> BY_WINNING_PRICE =
-            Stream.of(values()).collect(Collectors.toMap(Rank::getWinningPrice, Function.identity()));
-
-    public static Rank valueOfRank(String rank) {
-        return BY_RANK.get(rank);
-    }
-
-    public static Rank valueOfWinningPrice(long winningPrice) {
-        return BY_WINNING_PRICE.get(winningPrice);
     }
 }
