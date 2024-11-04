@@ -7,7 +7,7 @@ import lotto.constant.ErrorMessageConstants;
 public class InputUtils {
 
     public List<String> splitByComma(String input) {
-        return new ArrayList<>(List.of(input.split(", ")));
+        return new ArrayList<>(List.of(input.split(",")));
     }
 
     public List<Integer> toIntegerList(List<String> input) {
@@ -16,7 +16,7 @@ public class InputUtils {
             try {
                 result.add(Integer.parseInt(s));
             } catch (NumberFormatException e) {
-                System.out.println(ErrorMessageConstants.VALUE_IS_NOT_INT);
+                System.out.println(ErrorMessageConstants.VALUE_IS_NOT_NUMBER);
                 throw new IllegalArgumentException();
             }
         }

@@ -6,8 +6,8 @@ import static lotto.constant.LottoConstants.MIN_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.lotto.LottoNumberPicker;
 import lotto.lotto.object.MyLotto;
+import lotto.lotto.object.utils.LottoNumberPicker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -2,20 +2,22 @@ package lotto.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.ErrorMessageConstants;
 import lotto.constant.LottoConstants;
 import lotto.lotto.object.MyLotto;
+import lotto.lotto.object.utils.LottoNumberPicker;
+import lotto.validation.MoneyValidation;
 
 public class LottoShop {
+    private final LottoNumberPicker lottoNumberPicker;
+    private final MoneyValidation moneyValidation;
 
-    LottoNumberPicker lottoNumberPicker = new LottoNumberPicker();
+    public LottoShop(LottoNumberPicker lottoNumberPicker, MoneyValidation moneyValidation) {
+        this.lottoNumberPicker = lottoNumberPicker;
+        this.moneyValidation = moneyValidation;
+    }
 
-    public List<MyLotto> buyLottos(Long money) {
-        if (validateMoney(money) == false) {
-            System.out.println(ErrorMessageConstants.VALUE_IS_NOT_DIVISIBLE_BY_1000);
-            throw new IllegalArgumentException(ErrorMessageConstants.VALUE_IS_NOT_DIVISIBLE_BY_1000);
-        }
-
+    public List<MyLotto> buyLottos(long money) {
+        moneyValidation.validation(money);
         List<MyLotto> myLottos = new ArrayList<>();
         while (money > 0) {
             money = money - LottoConstants.LOTTO_PRICE;
@@ -23,9 +25,5 @@ public class LottoShop {
             myLottos.add(myLotto);
         }
         return myLottos;
-    }
-
-    public boolean validateMoney(Long money) {
-        return money % 1000 == 0;
     }
 }

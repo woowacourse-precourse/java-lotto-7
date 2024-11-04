@@ -14,7 +14,7 @@ public class InputUtilsTest {
     void 입력_받은_당첨_번호를_쉼표_기준으로_구분한다() {
         // given
         InputUtils inputUtils = new InputUtils();
-        String inputNumbers = "1, 2, 3, 4, 5, 6";
+        String inputNumbers = "1,2,3,4,5,6";
 
         // when
         List<String> splitNumbers = inputUtils.splitByComma(inputNumbers);

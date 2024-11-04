@@ -1,4 +1,4 @@
-package lotto.lotto;
+package lotto.lotto.object.utils;
 
 import static lotto.constant.LottoConstants.LOTTO_SIZE;
 import static lotto.constant.LottoConstants.MAX_LOTTO_NUMBER;
