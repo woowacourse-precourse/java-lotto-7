@@ -29,10 +29,14 @@ public class Application {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             int purchaseAmount = Integer.parseInt(Console.readLine());
+            LottoValidator.validatePurchaseAmount(purchaseAmount);
             System.out.println();
             return purchaseAmount;
         } catch (NumberFormatException e) {
             printErrorMessage("[ERROR] 유효한 숫자를 입력해 주세요.");
+            return getPurchaseAmount();
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
             return getPurchaseAmount();
         }
     }
