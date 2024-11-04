@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import lotto.TestConstants;
 import lotto.constants.ErrorMessageConstants;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,8 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PurchaseAmountValidatorTest {
-    private static final int INVALID_AMOUNT_NOT_DIVISIBLE_BY_BASE_UNIT = 1500;
-    private static final int VALID_AMOUNT = 10000;
+    private static final int INVALID_AMOUNT_NOT_DIVISIBLE_BY_BASE_UNIT = 1_500;
 
     @ParameterizedTest
     @NullAndEmptySource
@@ -46,6 +46,6 @@ class PurchaseAmountValidatorTest {
 
     @Test
     void 구입_금액_입력_정상_테스트() {
-        PurchaseAmountValidator.validatePurchaseAmount(VALID_AMOUNT);
+        PurchaseAmountValidator.validatePurchaseAmount(TestConstants.VALID_PURCHASE_AMOUNT);
     }
 }

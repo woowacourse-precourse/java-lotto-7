@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import lotto.TestConstants;
 import lotto.constants.ErrorMessageConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class WinningNumberValidatorTest {
     private static final List<Integer> INVALID_COUNT_NUMBERS = List.of(1, 2, 3, 4, 5);
     private static final List<Integer> OUT_OF_RANGE_NUMBERS = List.of(1, 2, 3, 4, 5, 46);
-    private static final List<Integer> DUPLICATE_NUMBERS = List.of(1, 2, 3, 4, 5, 5);
 
     @DisplayName("당첨 번호 입력값이 비어있거나 공백인 경우 예외 발생")
     @ParameterizedTest
@@ -51,7 +51,7 @@ class WinningNumberValidatorTest {
 
     @Test
     void 당첨_번호_중복_검증_테스트() {
-        assertThatThrownBy(() -> WinningNumberValidator.validateWinningNumbers(DUPLICATE_NUMBERS))
+        assertThatThrownBy(() -> WinningNumberValidator.validateWinningNumbers(TestConstants.DUPLICATE_NUMBERS))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessageConstants.INVALID_WINNING_NUMBER_DUPLICATE);
     }

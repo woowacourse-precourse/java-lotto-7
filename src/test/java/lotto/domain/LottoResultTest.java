@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.TestConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,11 +10,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoResultTest {
-    private static final int EXPECTED_FIRST_COUNT = 2;
-    private static final int EXPECTED_SECOND_COUNT = 1;
-    private static final int EXPECTED_THIRD_COUNT = 0;
-    private static final int PURCHASE_AMOUNT = 8_000;
-    private static final double EXPECTED_RETUN_ON_INVESTMENT = 62.5;
+    private static final double EXPECTED_RETURN_ON_INVESTMENT = 62.5;
 
     private LottoResult lottoResult;
 
@@ -35,21 +32,22 @@ class LottoResultTest {
     @Test
     void 당첨_결과_등수_추가_테스트() {
         lottoResult.addResult(Rank.FIRST);
-        lottoResult.addResult(Rank.SECOND);
-        lottoResult.addResult(Rank.FIRST);
         Map<Rank, Integer> winningResults = lottoResult.getWinningResults();
 
-        assertThat(winningResults).containsEntry(Rank.FIRST, EXPECTED_FIRST_COUNT)
-                .containsEntry(Rank.SECOND, EXPECTED_SECOND_COUNT)
-                .containsEntry(Rank.THIRD, EXPECTED_THIRD_COUNT);
+        assertThat(winningResults).containsEntry(Rank.FIRST, TestConstants.EXPECTED_FIRST_COUNT)
+                .containsEntry(Rank.SECOND, TestConstants.EXPECTED_SECOND_COUNT)
+                .containsEntry(Rank.THIRD, TestConstants.EXPECTED_THIRD_COUNT)
+                .containsEntry(Rank.FOURTH, TestConstants.EXPECTED_FOURTH_COUNT)
+                .containsEntry(Rank.FIFTH, TestConstants.EXPECTED_FIFTH_COUNT)
+                .containsEntry(Rank.NONE, TestConstants.EXPECTED_NONE_COUNT);
     }
 
     @DisplayName("수익률 계산 기능이 정상적으로 동작하는지 테스트")
     @Test
     void 수익률_계산_테스트() {
         lottoResult.addResult(Rank.FIFTH);
-        lottoResult.calculateReturnOnInvestment(PURCHASE_AMOUNT);
+        lottoResult.calculateReturnOnInvestment(TestConstants.VALID_PURCHASE_AMOUNT);
 
-        assertThat(lottoResult.getReturnOnInvestment()).isEqualTo(EXPECTED_RETUN_ON_INVESTMENT);
+        assertThat(lottoResult.getReturnOnInvestment()).isEqualTo(EXPECTED_RETURN_ON_INVESTMENT);
     }
 }
