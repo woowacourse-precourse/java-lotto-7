@@ -7,19 +7,19 @@ import java.util.List;
 
 public class LottoMachine {
 
-    private final List<Lotto> purchasedLottoList;
+    private final List<Lotto> purchasedLottos;
 
     public LottoMachine() {
-        this.purchasedLottoList = new ArrayList<>();
+        this.purchasedLottos = new ArrayList<>();
     }
 
     public List<Lotto> generateLotto(int purchaseCount) {
         for (int i = 0; i < purchaseCount; i++) {
             List<Integer> generatedLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(generatedLotto);
-            purchasedLottoList.add(new Lotto(generatedLotto));
+            purchasedLottos.add(new Lotto(generatedLotto));
         }
 
-        return purchasedLottoList;
+        return purchasedLottos;
     }
 }
