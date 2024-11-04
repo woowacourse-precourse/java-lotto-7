@@ -28,8 +28,8 @@ public class OutputView {
     }
 
     private void printStatHeader() {
-        System.out.println("당첨 통계\n");
-        System.out.println("---\n");
+        System.out.println("당첨 통계");
+        System.out.println("---");
     }
 
     private void printRankStat(Map<Rank, Integer> results) {
