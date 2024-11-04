@@ -3,8 +3,6 @@ package lotto.domain;
 import static lotto.common.ExceptionMessage.OUT_OF_RANGE_NUMBER;
 import static lotto.common.LottoConstant.*;
 
-import lotto.common.LottoConstant;
-
 public record BonusNumber(
         int number
 ) {

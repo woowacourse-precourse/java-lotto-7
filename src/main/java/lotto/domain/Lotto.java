@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.common.ExceptionMessage.*;
 import static lotto.common.LottoConstant.LOTTO_MAX_NUMBER;
 import static lotto.common.LottoConstant.LOTTO_MIN_NUMBER;
 import static lotto.common.LottoConstant.LOTTO_NUMBER_COUNT;
@@ -32,7 +33,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_OUT_SIZE);
         }
     }
 
@@ -41,7 +42,7 @@ public class Lotto {
                 .anyMatch(number -> number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER);
 
         if (isOutOfRange) {
-            throw new IllegalArgumentException("숫자는 1에서 45 사이여야 합니다.");
+            throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER);
         }
     }
 
@@ -51,7 +52,7 @@ public class Lotto {
                 .count() != numbers.size();
 
         if (isDuplicate) {
-            throw new IllegalArgumentException("로또 번호가 중복되서는 안됩니다.");
+            throw new IllegalArgumentException(NO_LOTTO_NUMBER_DUPLICATION);
         }
     }
 }
