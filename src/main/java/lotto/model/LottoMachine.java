@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.dto.LottoDto;
 import lotto.dto.LottoMachineDto;
 import lotto.dto.WinningNumberDto;
 
@@ -45,7 +46,11 @@ public class LottoMachine {
     public List<String> displayLottos() {
         return lottos.stream()
                 .map(Lotto::toLottoDto)
-                .map(lotto -> lotto.numbers().toString())
+                .map(lotto -> lotto.numbers().stream()
+                        .sorted()
+                        .toList()
+                        .toString()
+                )
                 .collect(Collectors.toList());
     }
 
