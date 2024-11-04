@@ -45,6 +45,19 @@ public class LottoGameView {
         return makeLottoNumbers();
     }
 
+    public int requestBonusNumber() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+        String input = Console.readLine();
+        System.out.println();
+
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 정수를 입력해야 합니다.");
+            return requestBonusNumber();
+        }
+    }
+
     private List<Integer> makeLottoNumbers() {
         String input = Console.readLine();
         try {
