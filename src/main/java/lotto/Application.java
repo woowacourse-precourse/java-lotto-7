@@ -2,14 +2,25 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
     private static final int LOTTO_PRICE = 1000;
 
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmount();
         int numberOfLottos = purchaseAmount / LOTTO_PRICE;
-        System.out.println(numberOfLottos + "개를 구매했습니다.");
-        // 이후 단계에서 로또 발행 기능을 추가할 예정입니다.
+        System.out.println("\n" + numberOfLottos + "개를 구매했습니다.");
+
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < numberOfLottos; i++) {
+            lottos.add(Lotto.generateRandomLotto());
+        }
+
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 
     private static int getPurchaseAmount() {
