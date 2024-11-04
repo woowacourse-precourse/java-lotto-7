@@ -22,15 +22,20 @@ public class LottoController {
     }
 
     public void run() {
-        String purchaseAmount = inputView.getLottoPurchaseAmount();
-        Lottos lottos = store.purchaseLottos(purchaseAmount);
-        outputView.printLottos(lottos);
+        try{
+            String purchaseAmount = inputView.getLottoPurchaseAmount();
+            Lottos lottos = store.purchaseLottos(purchaseAmount);
+            outputView.printLottos(lottos);
 
-        WinningNumbers winningNumbers = new WinningNumbers(inputView.getWinningNumbers(), inputView.getBonusNumber());
+            WinningNumbers winningNumbers = new WinningNumbers(inputView.getWinningNumbers(), inputView.getBonusNumber());
 
-        LottoResultChecker lottoResultChecker = new LottoResultChecker(winningNumbers);
-        Map<Prize, Integer> winningResult = lottoResultChecker.getLottosWinningResult(lottos);
-        double yield = lottoResultChecker.getYield(winningResult, lottos);
-        outputView.printResults(winningResult, yield);
+            LottoResultChecker lottoResultChecker = new LottoResultChecker(winningNumbers);
+            Map<Prize, Integer> winningResult = lottoResultChecker.getLottosWinningResult(lottos);
+            double yield = lottoResultChecker.getYield(winningResult, lottos);
+            outputView.printResults(winningResult, yield);
+        } catch(Exception e){
+            System.out.println("[ERROR] " + e.getMessage());
+        }
+
     }
 }
