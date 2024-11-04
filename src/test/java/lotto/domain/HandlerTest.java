@@ -110,14 +110,16 @@ class HandlerTest {
         "5개 일치 (1,500,000원) - 0개\n" +
         "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" +
         "6개 일치 (2,000,000,000원) - 0개";
-
+    Input input = new Input("8000");
+    int amount = input.readAmount();
+    int request = input.getLottoCounts(amount);
+    Handler handler = new Handler(request);
     // 수익률 계산
-    double revenue = handler.valueationRevenue(resultExam, input.readAmount());
+    double revenue = handler.valueationRevenue(resultExam, amount);
     // 수익률 계산 결과 조회
     String actual = handler.getResult(revenue);
     // 검증
-    assertEquals(expect, actual); // java.util.regex.PatternSyntaxException: Unclosed counted closure near index 6
-    // 아 시간 없어서 인공지능한테 물어봤더니 또 틀리네 기계녀석
+    assertEquals(expect, actual);
   }
 
 

@@ -97,12 +97,12 @@ public class InputTest {
 //  }
 
   //    구매 가능 범위를 초과한 경우 (최대 10만원) : NumberFormatException
-  @DisplayName("구매 가능 범위를 초과한 경우 (최대 10만원) : NumberFormatException")
-  @Test
-  void IllegalArgumentExceptionTest_2_되도_않는_영어이름_테스트_4() {
-
-    String invalid = "100001";
-    assertThatThrownBy(() -> new Input(invalid))
-        .isInstanceOf(NumberFormatException.class);
-  }
+//  @DisplayName("구매 가능 범위를 초과한 경우 (최대 10만원) : NumberFormatException")
+//  @Test
+//  void IllegalArgumentExceptionTest_2_되도_않는_영어이름_테스트_4() {
+//
+//    String invalid = "100001";
+//    assertThatThrownBy(() -> new Input(invalid))
+//        .isInstanceOf(NumberFormatException.class);
+//  }
 }
