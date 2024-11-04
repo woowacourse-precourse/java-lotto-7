@@ -20,7 +20,7 @@ public class LottoService {
     }
 
     private void validateAmount(int amount) {
-        if (amount < 0) {
+        if (amount <= 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 음수일 수 없습니다.");
         }
         if (amount % LOTTO_PRICE != 0) {
