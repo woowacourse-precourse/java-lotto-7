@@ -31,8 +31,8 @@
 - [x] Lotto 클래스
     - 주어진 Lotto 클래스 사용
 - [x] Lottos 클래스
-- [ ] LottoResult 클래스
-- [ ] Prize Enum 클래스
+- [x] LottoResult 클래스
+- [x] Prize Enum 클래스
 
 ### 2. view
 
