@@ -8,6 +8,8 @@ import lotto.model.constant.ErrorMessage;
 
 public class WinningNumbers {
     private final List<Integer> numbers;
+    private static final int MIN_NUMBER_VALUE = 1;
+    private static final int MAX_NUMBER_VALUE = 45;
 
     public WinningNumbers(List<Integer> numbers) {
         validate(numbers);
@@ -21,6 +23,19 @@ public class WinningNumbers {
         if (hasDuplicateNumbers(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER);
         }
+        if (!isValidNumberRange(numbers)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE);
+        }
+    }
+
+    private boolean isValidNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < MIN_NUMBER_VALUE || number > MAX_NUMBER_VALUE) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private boolean hasDuplicateNumbers(List<Integer> numbers) {
