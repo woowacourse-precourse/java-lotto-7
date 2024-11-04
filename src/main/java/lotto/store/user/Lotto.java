@@ -1,7 +1,8 @@
-package lotto;
+package lotto.store.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.store.LottoNumber;
 
 public class Lotto {
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.store;
 
 public enum LottoNumber {
     START(1),

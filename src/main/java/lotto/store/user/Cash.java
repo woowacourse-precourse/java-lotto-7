@@ -1,4 +1,4 @@
-package lotto;
+package lotto.store.user;
 
 public class Cash {
 

@@ -1,13 +1,14 @@
-package lotto;
+package lotto.store.machine;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.store.user.Cash;
+import lotto.store.user.Lotto;
+import lotto.store.LottoNumber;
+import lotto.store.user.LottoTickets;
+import lotto.util.RandomNumber;
 
 public class LottoMachine {
-
-    private static final int START_LOTTO_NUMBER = 1;
-    private static final int LAST_LOTTO_NUMBER = 45;
-    private static final int LOTTO_COUNT = 6;
 
     private LottoTickets lottoTickets;
 

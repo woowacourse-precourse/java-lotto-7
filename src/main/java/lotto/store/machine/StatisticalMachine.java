@@ -1,9 +1,14 @@
-package lotto;
+package lotto.store.machine;
 
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.stream.Collectors;
+import lotto.store.user.Cash;
+import lotto.store.user.Lotto;
+import lotto.store.user.LottoTickets;
+import lotto.store.winning.WinningLotto;
+import lotto.store.winning.WinningRank;
 
 public class StatisticalMachine {
 

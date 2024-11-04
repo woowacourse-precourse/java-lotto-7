@@ -1,6 +1,9 @@
-package lotto;
+package lotto.console;
 
 import java.util.function.Supplier;
+import lotto.store.winning.BonusNumber;
+import lotto.store.user.Cash;
+import lotto.store.user.Lotto;
 
 public class InputHandler {
 

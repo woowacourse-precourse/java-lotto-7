@@ -1,4 +1,6 @@
-package lotto;
+package lotto.store.winning;
+
+import lotto.store.user.Lotto;
 
 public class WinningLotto {
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.store.winning;
 
 import java.util.Arrays;
 import java.util.function.Predicate;

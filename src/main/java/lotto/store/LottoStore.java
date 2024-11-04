@@ -1,4 +1,13 @@
-package lotto;
+package lotto.store;
+
+import lotto.console.InputHandler;
+import lotto.console.OutputView;
+import lotto.store.machine.LottoMachine;
+import lotto.store.machine.StatisticalMachine;
+import lotto.store.user.Lotto;
+import lotto.store.winning.BonusNumber;
+import lotto.store.winning.WinningLotto;
+import lotto.store.user.Cash;
 
 public class LottoStore {
 

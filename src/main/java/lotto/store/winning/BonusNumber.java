@@ -1,4 +1,6 @@
-package lotto;
+package lotto.store.winning;
+
+import lotto.store.LottoNumber;
 
 public class BonusNumber {
 

@@ -1,6 +1,10 @@
-package lotto;
+package lotto.console;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.store.winning.BonusNumber;
+import lotto.store.user.Cash;
+import lotto.store.user.Lotto;
+import lotto.util.Converter;
 
 public class InputView {
 

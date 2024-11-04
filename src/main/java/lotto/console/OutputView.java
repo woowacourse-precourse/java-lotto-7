@@ -1,4 +1,7 @@
-package lotto;
+package lotto.console;
+
+import lotto.store.machine.LottoMachine;
+import lotto.store.machine.StatisticalMachine;
 
 public class OutputView {
 
