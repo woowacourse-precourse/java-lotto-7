@@ -13,8 +13,8 @@ public class Application {
     static LottoMachine lottoMachine = new LottoMachine();
 
     public static void main(String[] args) {
-
-        List<Lotto> playerLottos = createPlayerLottos();
+        LottoMoney lottoMoney = createLottoMoney();
+        List<Lotto> playerLottos = lottoMachine.purchaseLotto(lottoMoney.getPurchaseCount());
         output.printPurchaseLotto(playerLottos);
         WinningLotto winningLotto = createWinningLotto();
         Map<String, Integer> winningResult = winningLotto.getWinningResult(playerLottos);
@@ -22,11 +22,11 @@ public class Application {
         output.printWinningResult(winningResult, lottoStatistics.calculateYield(money, winningResult));
     }
 
-    private static List<Lotto> createPlayerLottos() {
+    private static LottoMoney createLottoMoney() {
         while (true) {
             try {
                 int money = input.askPurchaseAmount();
-                return lottoMachine.purchaseLotto(money);
+                return new LottoMoney(money);
             } catch (IllegalArgumentException e) {
                 output.printErrorMessage(e.getMessage());
             }
