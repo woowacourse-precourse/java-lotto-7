@@ -75,6 +75,10 @@ public class LottoController {
             throw new IllegalArgumentException(ErrorStatus.INVALID_MONEY_INPUT.getMessage());
         }
 
+        // 너무 큰 값이 들어온 경우
+        if (moneyString.length() > 10) {
+            throw new IllegalArgumentException(ErrorStatus.MONEY_OUT_OF_RANGE.getMessage());
+        }
     }
 
     private List<Integer> changeStringToNumberList(String numbersString) throws IllegalArgumentException {
