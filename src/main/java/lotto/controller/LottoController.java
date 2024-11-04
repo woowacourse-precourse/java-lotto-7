@@ -33,7 +33,8 @@ public class LottoController {
         List<Lotto> boughtLottoList = attempt(this::buyLottoByPrice);
         outputView.printBoughtLottoList(boughtLottoList);
 
-        WinningLotto winningLotto = attempt(this::generateWinningLotto);
+        Lotto lotto = attempt(this::generateLotto);
+        WinningLotto winningLotto = attempt(() -> this.generateWinningLotto(lotto));
         LottoStatistic lottoStatistic = lottoMachine.generateLottoStatistic(winningLotto, boughtLottoList);
         outputView.printLottoStatistic(lottoStatistic);
     }
@@ -51,13 +52,6 @@ public class LottoController {
         return Integer.parseInt(rawMoney);
     }
 
-    private WinningLotto generateWinningLotto() {
-        Lotto lotto = attempt(this::generateLotto);
-        Integer bonusNumber = attempt(this::inputWinningBonusNumber);
-
-        return lottoMachine.generateWinningLotto(lotto, bonusNumber);
-    }
-
     private Lotto generateLotto() {
         String rawWinningNumber = inputView.inputWinningNumber();
         inputValidator.validateInputWinningNumber(rawWinningNumber);
@@ -65,6 +59,12 @@ public class LottoController {
         List<Integer> numberList = Arrays.stream(splitWinningNumber).map(Integer::parseInt).toList();
 
         return new Lotto(numberList);
+    }
+
+    private WinningLotto generateWinningLotto(Lotto lotto) {
+        Integer bonusNumber = attempt(this::inputWinningBonusNumber);
+
+        return lottoMachine.generateWinningLotto(lotto, bonusNumber);
     }
 
     private Integer inputWinningBonusNumber() {
