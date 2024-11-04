@@ -17,22 +17,18 @@ public class LottoController {
     private static final NumberGenerator numberGenerator = new RandomNumberGenerator();
 
     public void run() {
-        try {
-            Money money = inputMoneyWithRetry();
-            Trial trial = new Trial(money.getMoney());
-            Lottos lottos = new Lottos(numberGenerator, trial);
-            OutputView.printLotties(lottos.getLottoNums());
+        Money money = inputMoneyWithRetry();
+        Trial trial = new Trial(money.getMoney());
+        Lottos lottos = new Lottos(numberGenerator, trial);
+        OutputView.printLotties(lottos.getLottoNums());
 
-            WinningNumber winningNumber = inputWinningNumberWithRetry();
-            LottoChecker lottoChecker = new LottoChecker(lottos, winningNumber);
-            WinningMoney winningMoney = new WinningMoney(lottoChecker.checkLottos());
-            ReturnRate returnRate = new ReturnRate(winningMoney, money);
+        WinningNumber winningNumber = inputWinningNumberWithRetry();
+        LottoChecker lottoChecker = new LottoChecker(lottos, winningNumber);
+        WinningMoney winningMoney = new WinningMoney(lottoChecker.checkLottos());
+        ReturnRate returnRate = new ReturnRate(winningMoney, money);
 
-            OutputView.printWinningDetails(lottoChecker.getResultMap());
-            OutputView.printReturnRate(returnRate.getReturnRate());
-        } catch (IllegalStateException e) {
-            OutputView.printErrorMessage(e.getMessage());
-        }
+        OutputView.printWinningDetails(lottoChecker.getResultMap());
+        OutputView.printReturnRate(returnRate.getReturnRate());
     }
 
     private Money inputMoneyWithRetry() {
