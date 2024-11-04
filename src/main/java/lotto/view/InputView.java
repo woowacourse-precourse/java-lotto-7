@@ -25,4 +25,8 @@ public class InputView {
         return Console.readLine();
     }
 
+    public void printException(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
+
 }
