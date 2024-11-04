@@ -29,39 +29,25 @@ public class LottoController {
         List<Lotto> lottos;
 
         while (true) {
-            outputView.printPaymentRequestMessage();
-            payment = inputView.readPayment();
+            payment = getPayment();
             try {
-                int quantity = salesService.getAvailableLottoQuantity(payment);
-                lottos = salesService.createLottos(quantity);
-                outputView.printLottoDetails(lottos);
+                lottos = getLotto(payment);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printExceptionMessage(e.getMessage());
+            } catch (Exception e) {
+                OutputView.printExceptionMessage(LottoExceptionMessage.THROWING_UNEXPECTED_EXCEPTION);
             }
         }
 
-        int bonusNumber;
-        List<Integer> winningNumbers;
-        List<Rank> winningResults;
-        List<Integer> winningStatistics;
-        String lottoProfitRate;
+
 
         while (true) {
-            outputView.printWinningNumbersRequestMessage();
-            winningNumbers = inputView.readWinningNumbers();
-
-            outputView.printBonusNumberRequestMessage();
-            bonusNumber = inputView.readBonusNumber();
+            List<Integer> winningNumbers = getWinningNumbers();
+            int bonusNumber = getBonusNumber();
 
             try {
-                // TODO: 개선 요망
-                setLottoResultAnalysisService(winningNumbers, bonusNumber);
-                winningResults = resultAnalysisService.generateWinningResults(lottos);
-
-                winningStatistics = resultAnalysisService.getWinningStatistics(winningResults);
-                lottoProfitRate = resultAnalysisService.getLottoProfitRate(winningResults, payment);
-                outputView.printWinningResults(winningStatistics, lottoProfitRate);
+                showWinningResult(winningNumbers, bonusNumber, lottos, payment);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.printExceptionMessage(e.getMessage());
@@ -71,6 +57,42 @@ public class LottoController {
         }
 
         inputView.closeConsole();
+    }
+
+    private int getPayment() {
+        outputView.printPaymentRequestMessage();
+        return inputView.readPayment();
+    }
+
+    private List<Lotto> getLotto(int payment) {
+        List<Lotto> lottos;
+
+        int quantity = salesService.getAvailableLottoQuantity(payment);
+        lottos = salesService.createLottos(quantity);
+        outputView.printLottoDetails(lottos);
+
+        return lottos;
+    }
+
+
+    private List<Integer> getWinningNumbers() {
+        outputView.printWinningNumbersRequestMessage();
+        return inputView.readWinningNumbers();
+    }
+
+    private int getBonusNumber() {
+        outputView.printBonusNumberRequestMessage();
+        return inputView.readBonusNumber();
+    }
+
+    private void showWinningResult(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottos, int payment) {
+        setLottoResultAnalysisService(winningNumbers, bonusNumber);
+
+        List<Rank> winningResults = resultAnalysisService.generateWinningResults(lottos);
+        List<Integer> winningStatistics = resultAnalysisService.getWinningStatistics(winningResults);
+        String lottoProfitRate = resultAnalysisService.getLottoProfitRate(winningResults, payment);
+
+        outputView.printWinningResults(winningStatistics, lottoProfitRate);
     }
 
     private void setLottoResultAnalysisService(List<Integer> winningLottoNumbers, int bonusNumber) {
