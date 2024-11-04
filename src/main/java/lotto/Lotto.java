@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.utils.ErrorMessages;
 
 /**
  * 로또 클래스
@@ -34,13 +35,13 @@ public class Lotto {
      */
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_NUMBER_INVALID_COUNT.getMessage());
         }
         if (hasDuplicates(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessages. LOTTO_NUMBER_DUPLICATE.getMessage());
         }
         if (!isWithRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 
