@@ -6,12 +6,12 @@ import java.util.Map;
 
 public class Output {
     public static void printPurchaseAmountRequestMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(OutputMessage.PURCHASE_AMOUNT_REQUEST);
     }
 
     public static void printNumberRequestMessage(int count) {
         printBlankLine();
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println(count + OutputMessage.LOTTO_PURCHASE_COUNT_MESSAGE);
     }
 
     public static void printLottos(List<Lotto> lottos) {
@@ -22,41 +22,41 @@ public class Output {
 
     public static void printWinningNumberRequestMessage() {
         printBlankLine();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(OutputMessage.WINNING_NUMBER_REQUEST);
     }
 
     public static void printBonusNumberRequestMessage() {
         printBlankLine();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(OutputMessage.BONUS_NUMBER_REQUEST);
     }
 
-    public static void printRunResultMessage() {
+    public static void printWinningResultsHeader() {
         printBlankLine();
-        System.out.println("당첨 통계");
+        System.out.println(OutputMessage.MESSAGE_WINNING_STATISTICS);
     }
 
     public static void printLine() {
-        System.out.println("---");
+        System.out.println(OutputMessage.LINE);
     }
 
     public static void printLottoRankResult(Map<LottoWinningRanks, Integer> rankCounts) {
         createRankMessages().forEach((rank, message) -> {
-            int count = rankCounts.getOrDefault(rank, 0);
+            int count = rankCounts.getOrDefault(rank, OutputMessage.NO_COUNT);
             System.out.printf("%s - %d개%n", message, count);
         });
     }
 
     public static void printRateOfReturn(double rateOfReturn) {
-        System.out.printf("총 수익률은 %,.1f%%입니다.%n", rateOfReturn);
+        System.out.printf(OutputMessage.RATE_OF_RETURN_FORMAT, rateOfReturn);
     }
 
     private static Map<LottoWinningRanks, String> createRankMessages() {
         Map<LottoWinningRanks, String> messages = new LinkedHashMap<>();
-        messages.put(LottoWinningRanks.FIFTH, "3개 일치 (5,000원)");
-        messages.put(LottoWinningRanks.FOURTH, "4개 일치 (50,000원)");
-        messages.put(LottoWinningRanks.THIRD, "5개 일치 (1,500,000원)");
-        messages.put(LottoWinningRanks.SECOND, "5개 일치, 보너스 볼 일치 (30,000,000원)");
-        messages.put(LottoWinningRanks.FIRST, "6개 일치 (2,000,000,000원)");
+        messages.put(LottoWinningRanks.FIFTH, OutputMessage.LOTTO_RESULT_FIFTH);
+        messages.put(LottoWinningRanks.FOURTH, OutputMessage.LOTTO_RESULT_FOURTH);
+        messages.put(LottoWinningRanks.THIRD, OutputMessage.LOTTO_RESULT_THIRD);
+        messages.put(LottoWinningRanks.SECOND, OutputMessage.LOTTO_RESULT_SECOND);
+        messages.put(LottoWinningRanks.FIRST, OutputMessage.LOTTO_RESULT_FIRST);
         return messages;
     }
 
