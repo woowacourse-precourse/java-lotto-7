@@ -25,8 +25,7 @@ public class InputView {
     public WinningNumbers receiveWinningNumbers() {
         while (true) {
             try {
-//            System.out.println("\n당첨 번호를 입력해 주세요.");
-                System.out.println("\nplease input the winning numbers");
+                System.out.println("\n당첨 번호를 입력해 주세요.");
                 String[] separatedNumbers = Console.readLine().split(",");
                 List<Integer> receivedLottoNumbers = Arrays.stream(separatedNumbers)
                         .map(String::trim)
@@ -44,8 +43,7 @@ public class InputView {
     public BonusNumber receiveBonusNumber(WinningNumbers winningNumbers) {
         while (true) {
             try {
-//            System.out.println("\n보너스 번호를 입력해 주세요.");
-                System.out.println("\nplease input the bonus number");
+                System.out.println("\n보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(Console.readLine().trim());
                 return new BonusNumber(bonusNumber, winningNumbers.getReceivedLottoNumbers());
             } catch (NumberFormatException e) {
