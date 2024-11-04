@@ -1,13 +1,16 @@
 package lotto.view;
 
+import lotto.view.formatter.ErrorFormatter;
+
 public class ErrorView {
 
-    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+    private static final ErrorFormatter ERROR_FORMATTER = new ErrorFormatter();
 
     protected ErrorView() {
     }
 
     public static void announceError(Exception exception) {
-        System.out.println(ERROR_MESSAGE_PREFIX + exception.getMessage() + "\n");
+        String formattedException = ERROR_FORMATTER.format(exception);
+        System.out.println(formattedException + "\n");
     }
 }

@@ -2,14 +2,15 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.model.Lotto;
+import lotto.view.formatter.LottoFormatter;
 
 public class LottoView {
 
     private static final String BUY_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String FIRST_RANK_LOTTO_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final LottoFormatter LOTTO_FORMATTER = new LottoFormatter();
 
     protected LottoView() {
     }
@@ -19,13 +20,13 @@ public class LottoView {
     }
 
     public static void announceBoughtLotto(List<Lotto> lottos) {
-        int lottoCount = lottos.size();
-        String lottosInfo = lottos.stream()
-                .map(Lotto::toString)
-                .collect(Collectors.joining("\n"));
+        String formattedCount = LOTTO_FORMATTER.formatCount(lottos);
+        String formattedInfo = LOTTO_FORMATTER.formatInfo(lottos);
 
-        System.out.println(lottoCount + "개를 구매했습니다.");
-        System.out.println(lottosInfo + "\n");
+        System.out.println(formattedCount);
+        System.out.println(formattedInfo);
+
+        System.out.print("\n");
     }
 
     public static String inputFirstRankNumbers() {
