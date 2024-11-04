@@ -12,9 +12,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_COUNT);
+        }
+        if(numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS);
         }
     }
-
-    // TODO: 추가 기능 구현
 }
