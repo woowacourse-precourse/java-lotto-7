@@ -5,15 +5,19 @@ import lotto.exception.GeneralExceptionMessages;
 public class NumberConverter{
 
     public int convertNumber(String input) {
-        String trimmedInput = input.trim();
-        if (trimmedInput.isEmpty() || !trimmedInput.matches("\\d+")) {
-            throw new IllegalArgumentException(GeneralExceptionMessages.INVALID_NUMBER);
-        }
+        validateInput(input);
+        return parseNumber(input);
+    }
 
-        try {
-            return Integer.parseInt(trimmedInput);
-        } catch (NumberFormatException e) {
+    private void validateInput(String input) {
+        String trimmedInput = input.trim();
+        if (trimmedInput.isEmpty() || !trimmedInput.matches(RegexConstants.NUMBER_PATTERN)) {
             throw new IllegalArgumentException(GeneralExceptionMessages.INVALID_NUMBER);
         }
     }
+
+    private int parseNumber(String input) {
+        return Integer.parseInt(input.trim());
+    }
+
 }
