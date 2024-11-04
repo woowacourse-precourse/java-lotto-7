@@ -21,6 +21,7 @@ public class LottoController {
         view.println(lottoGroup.getLottoNumbers());
 
         getWinningNumbers(view.getWinningNumbers());
+
         getBonusNumber(view.getBonusNumber());
         lottoRankGroup = LottoRankGroup.of(lottoGroup, winningLotto, bonusNumber);
 
