@@ -48,6 +48,9 @@ public class LottoInput {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(LOTTO_PURCHASE_MONEY_TYPE_ERROR);
         }
+        if (money < 0) {
+            throw new IllegalArgumentException(MINUS_MONEY_ERROR);
+        }
         if ((money % LOTTO_PRICE) != 0) {
             throw new IllegalArgumentException(MONEY_ERROR);
         }
