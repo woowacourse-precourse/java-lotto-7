@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.util.NumberUtil;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGeneratorService {
     public static final int LOTTO_PRICE = 1000;
@@ -12,12 +13,18 @@ public class LottoGeneratorService {
     }
 
     public int lottoPurchase() {
+        int lottoCount = repeatPromptPurchaseAmount();
+        return lottoCount;
+    }
+
+    public int repeatPromptPurchaseAmount() {
+        int lottoCount;
         while (true) {
             try {
                 String input = inputView.promptPurchaseAmount();
-                int number = NumberUtil.parsePositiveNumber(input);
-                checkThousandUnit(number);
-                return number;
+                lottoCount = NumberUtil.parsePositiveNumber(input);
+                checkThousandUnit(lottoCount);
+                return lottoCount;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
