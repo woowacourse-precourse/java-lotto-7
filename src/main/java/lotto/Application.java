@@ -1,4 +1,4 @@
-// Application.java (수익률 계산 및 출력 추가)
+// Application.java (당첨 통계 출력 추가)
 package lotto;
 
 import lotto.InputView;
@@ -23,6 +23,8 @@ public class Application {
 
             Lotto winningLotto = new Lotto(winningNumbers);
             LottoResult lottoResult = new LottoResult(lottos, winningLotto, bonusNumber);
+
+            ResultView.printStatistics(lottoResult.getResults());
 
             int totalPrize = lottoResult.getTotalPrize();
             double yield = (double) totalPrize / purchaseAmount * 100;
