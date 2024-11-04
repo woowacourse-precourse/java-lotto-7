@@ -59,17 +59,25 @@ public class LottoService {
     private Map<Integer, Integer> calculateRank(Map<Integer, Integer> ranks, int correct, boolean hasBonusNumber) {
         if (correct == 6) {
             ranks.put(1, ranks.getOrDefault(1, 0) + 1);
-        } else if (correct == 5 && hasBonusNumber) {
-            ranks.put(2, ranks.getOrDefault(2, 0) + 1);
-        } else if (correct == 5) {
-            ranks.put(3, ranks.getOrDefault(3, 0) + 1);
-        } else if (correct == 4) {
-            ranks.put(4, ranks.getOrDefault(4, 0) + 1);
-        } else if (correct == 3) {
-            ranks.put(5, ranks.getOrDefault(5, 0) + 1);
-        } else {
-            ranks.put(6, ranks.getOrDefault(6, 0) + 1);
+            return ranks;
         }
+        if (correct == 5 && hasBonusNumber) {
+            ranks.put(2, ranks.getOrDefault(2, 0) + 1);
+            return ranks;
+        }
+        if (correct == 5) {
+            ranks.put(3, ranks.getOrDefault(3, 0) + 1);
+            return ranks;
+        }
+        if (correct == 4) {
+            ranks.put(4, ranks.getOrDefault(4, 0) + 1);
+            return ranks;
+        }
+        if (correct == 3) {
+            ranks.put(5, ranks.getOrDefault(5, 0) + 1);
+            return ranks;
+        }
+        ranks.put(6, ranks.getOrDefault(6, 0) + 1);
         return ranks;
     }
 
