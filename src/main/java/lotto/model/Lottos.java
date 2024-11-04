@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,6 @@ public class Lottos {
     }
 
     public List<Lotto> getLottos() {
-        return lottos;
+        return Collections.unmodifiableList(lottos);
     }
 }
