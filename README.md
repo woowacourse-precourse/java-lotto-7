@@ -22,8 +22,79 @@
 
 ## 🔻디렉토리 구조
 ```
-
+lotto
+└── src
+   ├── main
+   │   └── java
+   │      └── lotto
+   │          ├── config
+   │          │   └── AppConfig.java
+   │          ├── controller
+   │          │   └── LottoController.java
+   │          ├── exception
+   │          │   ├── InputErrorMessage.java
+   │          │   └── LottoErrorMessage.java
+   │          ├── model
+   │          │   └── domain
+   │          │       ├── BonusNumber.java
+   │          │       ├── Lotto.java
+   │          │       ├── Lottos.java
+   │          │       ├── Money.java
+   │          │       ├── Rate.java
+   │          │       └── WinningNumbers.java
+   │          ├── service
+   │          │   ├── LottoCreationService.java
+   │          │   └── LottoRateService.java
+   │          ├── util
+   │          │   ├── generator
+   │          │   │   └── RandomNumberGenerator.java
+   │          │   ├── parser
+   │          │   │   └── InputParser.java
+   │          │   └── validator
+   │          │       └── InputValidator.java
+   │          └── view
+   │          │   ├── InputView.java
+   │          │   ├── InputViewInterface.java
+   │          │   ├── LottoView.java
+   │          │   └── LottoViewInterface.java
+   │          │   
+   │           └── Application.java  
+   └── test
+       └── java
+           └── lotto
+               ├── domain
+               │   ├── BonusNumberTest.java
+               │   ├── MoneyTest.java
+               │   └── WinningNumbersTest.java
+               ├── service
+               │   ├── LottoCreationServiceTest.java
+               │   └── LottoRateServiceTest.java
+               ├── util
+               │   ├── generator
+               │   │   └── RandomNumberGeneratorTest.java
+               │   ├── parser
+               │   │   └── InputParserTest.java
+               │   └── validator
+               │       └── InputValidatorTest.java
+               └── ApplicationTest.java
+               └── LottoTest.java
 ```
+
+## 🔎프로젝트 구조 소개
+- config: 애플리케이션의 설정 및 초기화를 담당하는 클래스가 포함되어 있습니다.
+- controller: 사용자 입력을 처리하고, 서비스와 뷰 간의 데이터 흐름을 조정합니다.
+- exception: 애플리케이션에서 발생할 수 있는 예외 메시지를 모아둔 클래스입니다. InputErrorMessage.java 및 LottoErrorMessage.java는 각각 사용자 입력과 로또 관련 오류 메시지를 정의합니다.
+- model: 애플리케이션의 비즈니스 모델을 정의하는 클래스입니다. 여기에는 도메인 클래스와 서비스 클래스가 포함됩니다
+  - domain: 로또의 핵심 도메인 객체를 나타내는 클래스입니다. BonusNumber.java, Lotto.java, Lottos.java, Money.java, Rate.java, WinningNumbers.java 등이 포함되어 있습니다.
+  - service: 비즈니스 로직을 수행하는 클래스입니다.
+    - LottoCreationService.java는 로또 티켓 생성을 담당합니다
+    - LottoRateService.java는 로또의 승률 계산 등을 처리합니다.
+- util: 애플리케이션의 공통 기능을 제공하는 유틸리티 클래스입니다.
+  - generator: 랜덤 숫자를 생성하는 RandomNumberGenerator.java가 포함되어 있습니다.
+  - parser: 사용자 입력을 파싱하는 InputParser.java가 포함되어 있습니다.
+  - validator: 입력 값의 유효성을 검증하는 InputValidator.java가 포함되어 있습니다.
+- view: 사용자와의 상호작용을 위한 입력 및 출력을 처리하는 클래스입니다. InputView.java, LottoView.java와 인터페이스 클래스들이 포함되어 있습니다.
+- Application.java: 애플리케이션의 진입점이며, 전체 프로그램을 실행하는 메인 클래스입니다.
 
 ## 📘프로그래밍 요구 사항 1
 1. 21 버전에서 실행 가능해야 한다.
