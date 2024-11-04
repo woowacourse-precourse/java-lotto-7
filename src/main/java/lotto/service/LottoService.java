@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
+import lotto.exception.BonusExceptionType;
 import lotto.exception.LottoExceptionType;
 import lotto.exception.MoneyExceptionType;
 
@@ -18,6 +20,7 @@ public class LottoService {
     private int numOfLottos;
     private List<Lotto> lottos = new ArrayList<>();
     private Lotto winningNumber;
+    private Bonus bonusNumber;
 
     public void checkAndConvertInputMoney(String moneyInput) throws IllegalArgumentException {
         if (moneyInput.isBlank()) {
@@ -54,6 +57,23 @@ public class LottoService {
         return Stream.of(winningNumberInput.split(",", -1))
                 .map(String::trim)
                 .toList();
+    }
+
+    public void checkAndConvertInputBonusNumber(String bonusNumberInput) throws IllegalArgumentException {
+        if (bonusNumberInput.isBlank()) {
+            throw new IllegalArgumentException(BonusExceptionType.EMPTY_INPUT_BONUS_NUMBER.getMessage());
+        }
+
+        try {
+            int bonus = Integer.parseInt(bonusNumberInput.trim());
+            if (winningNumber.getNumbers().contains(bonus)) {
+                throw new IllegalArgumentException(BonusExceptionType.DUPLICATED_BONUS_NUMBER.getMessage());
+            }
+
+            bonusNumber = new Bonus(bonus);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(BonusExceptionType.NOT_INTEGER_BONUS_NUMBER.getMessage());
+        }
     }
 
     public List<Lotto> generateLottos() {

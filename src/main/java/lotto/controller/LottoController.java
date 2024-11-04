@@ -19,8 +19,10 @@ public class LottoController {
         for (Lotto lotto : lottos) {
             outputView.printLotto(lotto.getNumbers());
         }
+        outputView.printEmptyLine();
 
         processInputWinningNumber();
+        processInputBonusNumber();
     }
 
     private void processInputMoney() {
@@ -29,8 +31,10 @@ public class LottoController {
             lottoService.checkAndConvertInputMoney(moneyInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
+            outputView.printEmptyLine();
             processInputMoney();
         }
+        outputView.printEmptyLine();
     }
 
     private void processInputWinningNumber() {
@@ -39,7 +43,21 @@ public class LottoController {
             lottoService.checkAndConvertInputWinningNumber(winningNumberInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
+            outputView.printEmptyLine();
             processInputWinningNumber();
         }
+        outputView.printEmptyLine();
+    }
+
+    private void processInputBonusNumber() {
+        String bonusNumberInput = inputView.inputBonusNumber();
+        try {
+            lottoService.checkAndConvertInputBonusNumber(bonusNumberInput);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            outputView.printEmptyLine();
+            processInputBonusNumber();
+        }
+        outputView.printEmptyLine();
     }
 }
