@@ -49,5 +49,7 @@ public class LottoController {
                     prize.getKey().getMatchingCount(), prize.getKey().getMoney(),
                     prize.getValue(), prize.getKey().isMatchBonus());
         }
+
+        float lottoReturn = prizeResult.calculateReturn(price);
     }
 }

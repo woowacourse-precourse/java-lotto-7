@@ -42,4 +42,8 @@ public enum Prize {
     public boolean isMatchBonus() {
         return matchBonus;
     }
+
+    public int calculateProfit(int value) {
+        return this.money * value;
+    }
 }
