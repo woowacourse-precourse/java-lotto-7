@@ -1,4 +1,4 @@
-package lotto.system;
+package lotto.system.lottoGetter;
 
 import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_LOWER_BOUND;
 import static lotto.system.utils.constants.LottoConstants.LOTTO_NUMBER_UPPER_BOUND;
