@@ -1,31 +1,37 @@
-package lotto.domain;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningNumbers;
+import lotto.domain.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoMachine {
 
-    private List<Lotto> lottos;
-    private List<Prize> prizes;
-
     public void run() {
         PurchaseAmount purchaseAmount = InputView.readPurchaseAmount();
-        purchaseLottos(purchaseAmount);
+        List<Lotto> lottos = purchaseLottos(purchaseAmount);
 
         WinningNumbers winningNumbers = InputView.readWinningNumbers();
+
+        WinningResult result = WinningResult.of(lottos, winningNumbers, purchaseAmount.amount());
+        OutputView.printWinningResult(result);
     }
 
-    private void purchaseLottos(final PurchaseAmount purchaseAmount) {
+    private List<Lotto> purchaseLottos(final PurchaseAmount purchaseAmount) {
         int purchaseQuantity = calculatePurchaseQuantity(purchaseAmount);
         OutputView.printPurchaseQuantity(purchaseQuantity);
 
-        this.lottos = IntStream.range(0, purchaseQuantity)
+        List<Lotto> lottos = IntStream.range(0, purchaseQuantity)
                 .mapToObj(i -> generateRandomLotto())
                 .toList();
-        OutputView.printLottos(this.lottos);
+        OutputView.printLottos(lottos);
+        return lottos;
     }
 
     private Lotto generateRandomLotto() {
