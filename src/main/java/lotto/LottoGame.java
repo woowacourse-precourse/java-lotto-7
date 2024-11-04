@@ -7,10 +7,10 @@ public class LottoGame {
     private final OutputView outputView;
     private final LottoPurchase lottoPurchase;
 
-    public LottoGame() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-        this.lottoPurchase = new LottoPurchase();
+    public LottoGame(InputView inputView, OutputView outputView, LottoPurchase lottoPurchase) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.lottoPurchase = lottoPurchase;
     }
 
     public void start() {
