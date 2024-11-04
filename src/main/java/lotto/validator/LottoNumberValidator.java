@@ -20,19 +20,19 @@ public class LottoNumberValidator {
             Integer.parseInt(token);
         }
         catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 정수 형태의 번호가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.TYPE.getMessage());
         }
     }
 
     public static void validateNumberRange(Integer number) {
         if (number < MIN || number > MAX) {
-            throw new IllegalArgumentException("[ERROR] 1~45 범위의 번호가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.RANGE.getMessage());
         }
     }
 
     public static void validateDuplicatedBonusNumber(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION.getMessage());
         }
     }
 }
