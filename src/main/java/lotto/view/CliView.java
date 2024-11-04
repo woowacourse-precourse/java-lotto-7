@@ -9,7 +9,7 @@ public class CliView implements View {
     private final CliOutputView output;
     private final CliInputView input;
 
-    public CliView(){
+    public CliView() {
         output = new CliOutputView();
         input = new CliInputView();
     }

@@ -40,7 +40,6 @@ public class CliOutputView {
             "5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoStatisticsDto.secondCount() + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoStatisticsDto.firstCount() + "개");
 
-
         DecimalFormat df = new DecimalFormat("#.##");
         System.out.println("총 수익률은 " + df.format(lottoStatisticsDto.profitRate()) + "%입니다.");
     }

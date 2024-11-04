@@ -1,6 +1,7 @@
 package lotto.view.converter.validator;
 
 public class DefaultValidator {
+
     public void validateNumberFromString(String s) {
         try {
             Integer.parseInt(s);

@@ -14,12 +14,12 @@ public class LottoStatisticsServiceTest {
     private LottoStatisticsService lottoStatisticsService;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         lottoStatisticsService = new LottoStatisticsService();
     }
 
     @Test
-    void 당첨내역과_구입금액으로_수익률을_계산한다(){
+    void 당첨내역과_구입금액으로_수익률을_계산한다() {
         //given
         List<LottoRank> ranks = List.of(
             LottoRank.FOURTH,
@@ -35,7 +35,6 @@ public class LottoStatisticsServiceTest {
 
         //then
         assertThat(profitRate).isEqualTo(600.0);
-
     }
 
 }
