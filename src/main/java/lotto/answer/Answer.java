@@ -31,12 +31,4 @@ public class Answer {
 	public boolean hasBonusLotto(Lotto pickedLotto) {
 		return pickedLotto.getNumbers().contains(bonusLotto);
 	}
-
-	public Lotto getAnswerLotto() {
-		return answerLotto;
-	}
-
-	public int getBonusLotto() {
-		return bonusLotto;
-	}
 }
