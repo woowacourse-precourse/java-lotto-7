@@ -1,5 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.service.LottoGameService;
 import lotto.service.LottoPurchaseService;
 
@@ -13,6 +17,7 @@ public class LottoController {
 	}
 
 	public void play() {
-		lottoPurchaseService.buyLottos();
+		List<Lotto> lottos = lottoPurchaseService.buyLottos();
+		LottoResult lottoResult = lottoGameService.playLottoGame(lottos);
 	}
 }
