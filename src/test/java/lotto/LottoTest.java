@@ -28,25 +28,22 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
-    @DisplayName("로또 번호가 45보다 크면 예외가 발생한다.")
     @Test
-    void 로또_번호_범위_초과_예외() {
+    void 로또_번호_범위_초과하면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 47, 3, 4, 5, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_LOTTO_NUMBER_RANGE);
     }
 
-    @DisplayName("로또 번호가 1보다 작으면 예외가 발생한다.")
     @Test
-    void 로또_번호_범위_미만_예외() {
+    void 로또_번호_범위_미만이면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 45, 3, 4, 5, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_LOTTO_NUMBER_RANGE);
     }
 
-    @DisplayName("로또 번호 변경하려고 하면 예외가 발생한다")
     @Test
-    void 로또_번호_변경_예외() {
+    void 로또_번호_변경시도하면_예외가_발생한다() {
         assertThatThrownBy(() -> {
             Lotto lotto = new Lotto(List.of(1, 45, 3, 4, 5, 7));
             lotto.getNumbers().add(2);

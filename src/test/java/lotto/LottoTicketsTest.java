@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class LottoTicketsTest {
 
     @Test
-    void 반환_받은_로또_티켓_변경_시도_예외() {
+    void 반환_받은_로또_티켓_변경_시도하면_예외가_발생한다() {
         assertThatThrownBy(() -> {
             Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
             LottoTickets lottoTickets = new LottoTickets(Arrays.asList(lotto));

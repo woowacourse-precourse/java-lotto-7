@@ -13,9 +13,8 @@ import org.junit.jupiter.api.Test;
 class WinningLottoTest {
     private Lotto winningNumbers = new Lotto(Arrays.asList(1, 12, 23, 34, 43, 45));
 
-    @DisplayName("보너스 번호가 45보다 크면 예외를 발생시킨다")
     @Test
-    void 보너스_번호_범위_초과_예외() {
+    void 보너스_번호_범위_초과하면_예외가_발생한다() {
         //give
         int bonusNumber = 47;
         //when,then
@@ -23,9 +22,8 @@ class WinningLottoTest {
                 hasMessage(INVALID_BONUS_NUMBER_RANGE);
     }
 
-    @DisplayName("보너스 번호가 1보다 작으면 예외를 발생시킨다")
     @Test
-    void 보너스_번호_범위_미만_예외() {
+    void 보너스_번호_범위_미만이면_예외가_발생한다() {
         //give
         int bonusNumber = -1;
         //when,then
@@ -33,9 +31,8 @@ class WinningLottoTest {
                 hasMessage(INVALID_BONUS_NUMBER_RANGE);
     }
 
-    @DisplayName("보너스 번호가 당첨번호와 중복되면 예외를 발생시킨다")
     @Test
-    void 보너스_번호_중복_예외() {
+    void 보너스_번호_중복되면_예외가_발생한다() {
         //give
         int bonusNumber = 12;
         //when,then

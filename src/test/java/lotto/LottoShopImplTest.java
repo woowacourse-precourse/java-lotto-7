@@ -7,18 +7,18 @@ import lotto.service.LottoMachineImpl;
 import lotto.service.LottoShopImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoShopImplTest {
     private LottoMachine lottoMachine;
+
     @BeforeEach
     void setUp() {
         this.lottoMachine = new LottoMachineImpl();
     }
-    @DisplayName("로또 구매 금액만큼 알맞은 수량으로 로또가 반환된다")
+
     @Test
-    void 로또_구매() {
+    void 로또_구매_수량_테스트() {
         //given
         int amount = 7000;
         PurchaseAmount purchaseAmount = new PurchaseAmount(amount);

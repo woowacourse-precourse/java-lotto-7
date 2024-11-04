@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class LottoWinningResultTest {
 
     @Test
-    void 총_획득_상금_반환() {
+    void 총_획득_상금_반환_테스트() {
         //given
         LottoWinningResult lottoWinningResult = new LottoWinningResult();
         lottoWinningResult.increment(WinningPrize.THIRD);
@@ -16,6 +16,6 @@ class LottoWinningResultTest {
         //when
         int totalPrize = lottoWinningResult.getTotalPrize();
         //then
-        Assertions.assertThat(totalPrize).isEqualTo(WinningPrize.THIRD.getPrize()+WinningPrize.FIFTH.getPrize());
+        Assertions.assertThat(totalPrize).isEqualTo(WinningPrize.THIRD.getPrize() + WinningPrize.FIFTH.getPrize());
     }
 }

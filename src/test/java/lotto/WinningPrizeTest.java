@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class WinningPrizeTest {
 
     @Test
-    void 당첨_1등() {
+    void 당첨_1등_테스트() {
         //given
         Optional<WinningPrize> winningPrize = WinningPrize.determineWinningPrize(6, false);
         //when
@@ -18,7 +18,7 @@ class WinningPrizeTest {
     }
 
     @Test
-    void 당첨_2등() {
+    void 당첨_2등_테스트() {
         //given
         Optional<WinningPrize> winningPrize = WinningPrize.determineWinningPrize(5, true);
         //when
@@ -28,7 +28,7 @@ class WinningPrizeTest {
     }
 
     @Test
-    void 당첨_3등() {
+    void 당첨_3등_테스트() {
         //given
         Optional<WinningPrize> winningPrize = WinningPrize.determineWinningPrize(5, false);
         //when
@@ -38,7 +38,7 @@ class WinningPrizeTest {
     }
 
     @Test
-    void 당첨_4등() {
+    void 당첨_4등_테스트() {
         //given
         Optional<WinningPrize> winningPrize = WinningPrize.determineWinningPrize(4, false);
         //when
@@ -48,7 +48,7 @@ class WinningPrizeTest {
     }
 
     @Test
-    void 당첨_5등() {
+    void 당첨_5등_테스트() {
         //given
         Optional<WinningPrize> winningPrize = WinningPrize.determineWinningPrize(3, false);
         //when
@@ -58,7 +58,7 @@ class WinningPrizeTest {
     }
 
     @Test
-    void 당첨_실패() {
+    void 당첨_실패_테스트() {
         //given
         Optional<WinningPrize> winningPrize = WinningPrize.determineWinningPrize(2, false);
         //when, then
