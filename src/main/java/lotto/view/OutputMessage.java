@@ -9,7 +9,8 @@ public enum OutputMessage {
     DOTTED_LINE("---"),
     BONUS(", 보너스 볼 일치"),
     RANK("%d개 일치%s (%s원) - "),
-    RANK_COUNT("%d개");
+    RANK_COUNT("%d개"),
+    RATIO("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

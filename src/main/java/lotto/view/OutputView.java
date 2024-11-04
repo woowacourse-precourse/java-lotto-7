@@ -62,4 +62,8 @@ public class OutputView {
         return NumberFormat.getInstance().format(prize);
     }
 
+    public static void printTotalRateMessage(double returnRate){
+        System.out.println();
+        System.out.println(OutputMessage.RATIO.getFormattedMessage(returnRate));
+    }
 }
