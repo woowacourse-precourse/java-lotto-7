@@ -28,7 +28,8 @@ class PurchaseAmountTests {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {LOTTO_PRICE + 700, LOTTO_PRICE * 2 + 400})    void testNonMultipleAmountThrowsException(int amount) {
+    @ValueSource(ints = {LOTTO_PRICE + 700, LOTTO_PRICE * 2 + 400})
+    void testNonMultipleAmountThrowsException(int amount) {
         assertThatThrownBy(() -> PurchaseAmount.of(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.MONEY_LEFT.getLottoPriceIncludeMessage());
