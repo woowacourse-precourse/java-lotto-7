@@ -104,11 +104,17 @@ public class Application {
     public static int getBonusNumber() {
         System.out.println(LOTTO_BONUS_NUMBER_INPUT_MESSAGE);
         String bonusNumber  = Console.readLine();
+        int getValidatedBonusNumber = Integer.parseInt(bonusNumber);
 
         if (bonusNumber.equals("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력이 가능합니다.");
         }
-        return Integer.parseInt(bonusNumber);
+
+        if (getValidatedBonusNumber < 1 || getValidatedBonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45번까지만 입력이 가능합니다.");
+        }
+
+        return getValidatedBonusNumber;
     }
 
     public static int getLottoCount(List<Integer> purchaseAmounts) {
