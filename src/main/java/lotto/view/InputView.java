@@ -28,7 +28,6 @@ public class InputView {
             LoggerUtils.logInfo("유효한 구입 금액 입력: " + amount);
             return amount;
         } catch (NumberFormatException e) {
-            LoggerUtils.logError(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
             throw new IllegalArgumentException(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
         }
     }
@@ -62,11 +61,9 @@ public class InputView {
             LoggerUtils.logInfo("유효한 보너스 번호 입력: " + bonusNumber);
             return bonusNumber;
         } catch (NumberFormatException e) {
-            LoggerUtils.logError(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
             throw new IllegalArgumentException(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
         }
     }
-
 
     /**
      * 문자열을 파싱하고 당첨 번호 유효성을 검증
@@ -82,7 +79,6 @@ public class InputView {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            LoggerUtils.logError(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
             throw new IllegalArgumentException(ErrorMessages.INPUT_NOT_NUMBER.getMessage());
         }
     }
