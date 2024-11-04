@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Map;
 import lotto.model.BonusNumber;
 import lotto.model.LottoCollection;
 import lotto.model.LottoGenerator;
@@ -23,6 +24,7 @@ public class LottoController {
         outputLottoCollection(lottoCollection);
         WinningNumbers winningNumbers = inputWinningNumbers();
         BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
+        outputLottoResult(lottoCollection, winningNumbers, bonusNumber);
     }
 
     private void inputLottoPurchaseMoney() {
@@ -65,6 +67,12 @@ public class LottoController {
                 OutputView.outputErrorMessage(e);
             }
         }
+    }
+
+    private void outputLottoResult(LottoCollection lottoCollection, WinningNumbers winningNumbers,
+                                   BonusNumber bonusNumber) {
+        Map<Integer, Long> lottoWinningResult = lottoCollection.matchWinningNumbers(winningNumbers, bonusNumber);
+        OutputView.outputWinningResult(lottoWinningResult);
     }
 
 }

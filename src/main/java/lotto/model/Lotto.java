@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import lotto.enums.LottoBoundInfo;
+import lotto.enums.Prize;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -36,6 +37,22 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    public int getPrize(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        int matchCount = getMatchCount(winningNumbers);
+        boolean isBonus = numbers.contains(bonusNumber.getBonusNumber());
+        return Prize.getPrize(matchCount, isBonus);
+    }
+
+    private int getMatchCount(WinningNumbers winningNumbers) {
+        int matchCount = 0;
+        for (int number : numbers) {
+            if (winningNumbers.getWinningNumbers().contains(number)) {
+                matchCount += 1;
+            }
+        }
+        return matchCount;
     }
 
 }

@@ -1,6 +1,9 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class LottoCollection {
     private final List<Lotto> lottoCollection;
@@ -21,6 +24,12 @@ public class LottoCollection {
 
     public int getLottoCount() {
         return lottoCollection.size();
+    }
+
+    public Map<Integer, Long> matchWinningNumbers(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return lottoCollection.stream()
+                .map(lotto -> lotto.getPrize(winningNumbers, bonusNumber))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
 }

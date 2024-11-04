@@ -90,4 +90,18 @@ class LottoTest {
                 .hasMessage("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
     }
 
+
+    @Test
+    void getPrize_당첨결과_확인() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,7");
+        BonusNumber bonusNumber = new BonusNumber(winningNumbers, "6");
+
+        // when
+        int result = lotto.getPrize(winningNumbers, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(30_000_000);
+    }
 }
