@@ -15,8 +15,8 @@ public class Result {
         }
     }
 
-    public Map<Rank, Integer> getMatchedRank() {
-        return matchedRank;
+    public int getNumberOfThatRank(Rank rank){
+        return matchedRank.get(rank);
     }
 
     public long getTotalPrize() {
