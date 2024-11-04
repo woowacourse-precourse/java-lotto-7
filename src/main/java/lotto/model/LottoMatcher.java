@@ -48,7 +48,7 @@ public class LottoMatcher {
                 .sum();
 
         Double lottoEarningRate = (double)earnings/priceToBuyLotto.price() * 100;
-        String formattedLottoEarningRate = String.format("%.2f", lottoEarningRate);
+        String formattedLottoEarningRate = String.format("%.1f", lottoEarningRate);
         OutputView.printRateOfReturn(formattedLottoEarningRate);
     }
 }
