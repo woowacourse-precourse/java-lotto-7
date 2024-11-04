@@ -1,8 +1,6 @@
 package lotto.dto;
 
-import lotto.exception.LottoExceptionStatus;
-
-import java.util.Arrays;
+import lotto.utils.LottoUtils;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,10 +24,13 @@ public record WinningLotteryDto(
     }
 
     private void isOutOfRange(List<Integer> winningLottery){
-        winningLottery.forEach(number -> {
-            if(number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END)
-                throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
-        });
+        winningLottery.forEach(this::checkEach);
+    }
+
+    private void checkEach(Integer number) {
+        if(number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
+        }
     }
 
     private void isGeneratedSixNumbers(List<Integer> numbers){
@@ -46,8 +47,6 @@ public record WinningLotteryDto(
     }
 
     public static WinningLotteryDto from(String winningLottery){
-        return new WinningLotteryDto(Arrays.stream(winningLottery.split(","))
-                .map(Integer::parseInt)
-                .toList());
+        return new WinningLotteryDto(LottoUtils.checkLottoNumberFormat(winningLottery));
     }
 }

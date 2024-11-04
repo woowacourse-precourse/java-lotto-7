@@ -23,6 +23,6 @@ public record BonusNumberDto(
     }
 
     public static BonusNumberDto from(String input){
-        return new BonusNumberDto(Integer.parseInt(input));
+        return new BonusNumberDto(Integer.parseInt(input.trim()));
     }
 }
