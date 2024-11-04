@@ -15,6 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LottoControllerTest {
     private LottoController lottoController;
 
+    //로또 컨트롤러 테스트
+
     @BeforeEach
     void beforeEach() {
         lottoController = new LottoController(
