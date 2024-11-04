@@ -28,7 +28,8 @@ public class LottoMachine {
 
     public void createLottos(int lottoCount) {
         for(int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = sortNumbers(makeNumbers());
+            List<Integer> numbers = new ArrayList<>(makeNumbers());
+            sortNumbers(numbers);
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }

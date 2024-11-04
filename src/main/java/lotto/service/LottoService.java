@@ -45,10 +45,10 @@ public class LottoService {
 
         // 보너스 볼 일치 여부에 따른 처리
         if (rank.isMatchBonusNumber()) {
-            sb.append(", 보너스 볼 일치 ");
+            sb.append(", 보너스 볼 일치");
         }
 
-        sb.append("(").append(formatter.format(rank.getPrize())).append("원) - ")
+        sb.append(" (").append(formatter.format(rank.getPrize())).append("원) - ")
                 .append(countWinningResult(results, rank)).append("개\n");
 
         return sb.toString();
