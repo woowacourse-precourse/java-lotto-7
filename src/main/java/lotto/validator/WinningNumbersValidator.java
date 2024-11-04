@@ -11,9 +11,16 @@ public class WinningNumbersValidator {
 
     public static List<Integer> validateWinningNumbers(String input){
         validateNullAndBlank(input);
+        validateStartEndPoint(input);
         List<Integer> parsedWinningNumbers=validateOnyIntegerAndComma(input);
 
         return parsedWinningNumbers;
+    }
+
+    private static void validateStartEndPoint(String input) {
+        if (input.charAt(0)==',' || input.charAt(input.length()-1)==','){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_START_END_POINT);
+        }
     }
 
     private static List<Integer> validateOnyIntegerAndComma(String input) {

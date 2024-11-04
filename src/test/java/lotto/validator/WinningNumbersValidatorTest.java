@@ -30,6 +30,14 @@ class WinningNumbersValidatorTest {
                 hasMessageContaining(ErrorMessage.INVALID_INPUT_TYPE);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,",",1,2,3,4,5,6"})
+    void 입력의_시작과_끝이_쉼표면_예외발생(String input){
+        assertThatThrownBy(() -> WinningNumbersValidator.validateWinningNumbers(input)).
+                isInstanceOf(IllegalArgumentException.class).
+                hasMessageContaining(ErrorMessage.INVALID_START_END_POINT);
+    }
+
     @Test
     void 올바른_문자열_입력시_리스트를_반환한다(){
         String input="1,2,3,4,5,6";
