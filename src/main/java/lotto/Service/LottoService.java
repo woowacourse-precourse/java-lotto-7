@@ -1,10 +1,12 @@
 package lotto.Service;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.WinningNumbers;
 import lotto.validator.InputValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,6 +27,20 @@ public class LottoService {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<Lotto> generateLottoNumbers(int amount){
+        List<Lotto> lottoList = new ArrayList<>();
+        for(int i = 0; i < amount;){
+            try{
+                List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+                lottoList.add(new Lotto(randomNumbers));
+                i++;
+            }catch(IllegalArgumentException e){
+                // 예외가 발생해도 반복문을 계속 진행하여 유효한 번호생성
+            }
+        }
+        return lottoList;
     }
 
     public WinningNumbers inputWinningNumbers(){
