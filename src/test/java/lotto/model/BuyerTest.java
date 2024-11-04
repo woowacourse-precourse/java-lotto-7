@@ -14,7 +14,7 @@ public class BuyerTest {
         assertSimpleTest(() -> {
             assertThatThrownBy(() -> Buyer.from("1200$"))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_NUMBER.getMessage());
+                    .hasMessage(ErrorMessage.INPUT_MUST_BE_NUMBER.getMessage());
         });
     }
 
@@ -42,6 +42,6 @@ public class BuyerTest {
     void 입력된_로또_구입_금액이_int의_범위가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> Buyer.from(String.valueOf((long) Integer.MAX_VALUE + 1)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.PURCHASE_AMOUNT_TOO_LARGE.getMessage());
+                .hasMessage(ErrorMessage.INPUT_VALUE_TOO_LARGE.getMessage());
     }
 }

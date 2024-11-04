@@ -13,12 +13,12 @@ public class NumberStringConverter {
 
             if (parsedNum.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0
                     || parsedNum.compareTo(BigInteger.valueOf(Integer.MIN_VALUE)) < 0) {
-                throw LottoException.from(ErrorMessage.PURCHASE_AMOUNT_TOO_LARGE);
+                throw LottoException.from(ErrorMessage.INPUT_VALUE_TOO_LARGE);
             }
 
             return parsedNum.intValue();
         } catch (NumberFormatException e) {
-            throw LottoException.from(ErrorMessage.PURCHASE_AMOUNT_MUST_BE_NUMBER);
+            throw LottoException.from(ErrorMessage.INPUT_MUST_BE_NUMBER);
         }
     }
 }
