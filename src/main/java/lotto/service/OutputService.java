@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.domain.Prize;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,5 +51,9 @@ public class OutputService {
         sb.append(prize.getReward());
         sb.append("원) - ");
         return sb.toString();
+    }
+
+    public void showRateOfReturn(double rate) {
+        System.out.println("총 수익률은 " + Math.round(rate * 100) / 100.0 + "%입니다.");
     }
 }

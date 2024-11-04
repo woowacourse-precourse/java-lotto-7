@@ -1,12 +1,8 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.service.GenerateLotto;
-import lotto.service.InputService;
-import lotto.service.OutputService;
-import lotto.service.PrizeSettle;
+import lotto.service.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,5 +28,9 @@ public class LottoController {
         );
         Map<Prize, Integer> resultPrizeSettle = prizeSettle.getResultCounts();
         outputService.showResultLotto(resultPrizeSettle);
+
+        RateOfReturn rateOfReturn = new RateOfReturn(resultPrizeSettle);
+        double rate = rateOfReturn.calculateRateOfReturn(money.getMoney());
+        outputService.showRateOfReturn(rate);
     }
 }

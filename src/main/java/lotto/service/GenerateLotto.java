@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class GenerateLotto {
@@ -22,8 +21,6 @@ public class GenerateLotto {
     }
 
     private List<Integer> drawRandomNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

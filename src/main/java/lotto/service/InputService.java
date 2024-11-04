@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.BonusNumber;
 import lotto.domain.WinningNumbers;
 
-import java.util.List;
-
 public class InputService {
     private final Validator validator = new Validator();
     public int inputPaidMoney() {

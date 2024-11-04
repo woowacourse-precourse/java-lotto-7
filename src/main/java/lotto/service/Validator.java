@@ -1,7 +1,5 @@
 package lotto.service;
 
-import lotto.domain.WinningNumbers;
-
 import java.util.List;
 
 public class Validator {
