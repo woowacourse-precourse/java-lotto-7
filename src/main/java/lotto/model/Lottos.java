@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Lottos implements Iterable<Lotto>{
+public class Lottos implements Iterable<Lotto> {
     List<Lotto> lottos = new ArrayList<>();
     String checkResult = "";
 
@@ -14,7 +14,7 @@ public class Lottos implements Iterable<Lotto>{
 
     @Override
     public String toString() {
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             checkResult = checkResult + lotto.toString() + "\n";
         }
         return checkResult;

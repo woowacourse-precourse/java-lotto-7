@@ -21,7 +21,8 @@ public class LottoService {
 
     private Map<LottoRank, Integer> rankCountMap = new HashMap<>();
 
-    public Map<Integer, Boolean> sameNumberCounts(Lottos lottos, WinningLotto winningLotto, LottoPurchaseDTO lottoPurchaseDTO) {
+    public Map<Integer, Boolean> sameNumberCounts(Lottos lottos, WinningLotto winningLotto,
+                                                  LottoPurchaseDTO lottoPurchaseDTO) {
         Map<Integer, Boolean> matchedResults = new HashMap<>();
         for (Lotto lotto : lottos) {
             Map<Integer, Boolean> result = lotto.sameNumbersCount(winningLotto, lottoPurchaseDTO.getBonusNumber());
@@ -56,7 +57,7 @@ public class LottoService {
         if (totalLottoPrice == 0) {
             return 0;
         }
-        return this.totalPrize / (double)totalLottoPrice * 100;
+        return this.totalPrize / (double) totalLottoPrice * 100;
     }
 
     public Map<LottoRank, Integer> getRankCount() {

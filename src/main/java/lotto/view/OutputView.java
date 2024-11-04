@@ -26,12 +26,6 @@ public class OutputView {
         System.out.print(Prompts.OUTPUT_PERCENTAGE_PROMPT_POST);
     }
 
-//    private void showLottoResults(List<String> result) {
-//        for (String s : result) {
-//            System.out.println(s);
-//        }
-//    }
-
     private void showCalculatedProfit(double profit) {
         System.out.print(Math.round(profit * 100.0) / 100.0 + Prompts.OUTPUT_PERCENTAGE_UNIT);
     }

@@ -13,5 +13,5 @@ public class ErrorMessages {
     public static final String LOTTO_NUMBER_ONLY = "[ERROR] 당첨 숫자는 숫자만 입력할 수 있습니다.";
     public static final String LOTTO_NUMBER_RANGE = "[ERROR] 당첨 숫자는 1 ~ 45 범위여야 합니다.";
     public static final String LOTTO_DUPLICATED = "[ERROR] 당첨 숫자는 중복될 수 없습니다.";
-    public static final String LOTTO_COUNT = "[ERROR] 당첨 숫자는 6개를 넘을 수 없습니다.";
+    public static final String LOTTO_COUNT = "[ERROR] 당첨 숫자는 6개여야 합니다.";
 }

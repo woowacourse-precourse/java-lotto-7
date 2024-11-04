@@ -13,13 +13,13 @@ public class InputParser {
     private final InputView inputView;
     private final Validator validator;
 
-    public InputParser (InputView inputView, Validator validator) {
+    public InputParser(InputView inputView, Validator validator) {
         this.inputView = inputView;
         this.validator = validator;
     }
 
     public int parsePrice() {
-        while(true) {
+        while (true) {
             try {
                 String rawPrice = inputView.requirePrice();
                 validator.isInputPriceValid(rawPrice);
@@ -37,7 +37,7 @@ public class InputParser {
 
     public List<Integer> parseLottoNumbers() {
 
-        while(true) {
+        while (true) {
             try {
                 String rawLottoNumbers = inputView.requireLottoNumbers();
                 List<String> lottoNumbers = List.of(rawLottoNumbers.split(Prompts.INPUT_DELIMITER));
@@ -58,19 +58,20 @@ public class InputParser {
     }
 
     public int parseBonusNumber(List<Integer> lottoNumbers) {
-        while(true) {
+        while (true) {
             try {
                 String rawBonusNumber = inputView.requireBonusNumber();
                 validator.isBonusNumberValid(rawBonusNumber);
                 validator.isBonusNumberDuplicated(rawBonusNumber, lottoNumbers);
                 int bonusNumber = Integer.parseInt(rawBonusNumber);
                 return bonusNumber;
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
     }
+
     public LottoPurchaseDTO lottoPurchaseDTO() {
         int parsedPrice = parsePrice();
         int lottoCount = calculateLottoCount(parsedPrice);

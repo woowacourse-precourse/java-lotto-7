@@ -26,7 +26,7 @@ public class LottoFactory {
     public Lottos createLottos(LottoPurchaseDTO lottoPurchaseDTO) {
         int lottoCount = lottoPurchaseDTO.getLottoCount();
 
-        for(int i=0; i<lottoCount; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             Lotto lotto = new Lotto(createRandomNumbers());
             lottos.addLotto(lotto);
         }
@@ -35,7 +35,8 @@ public class LottoFactory {
     }
 
     public WinningLotto createWinningLotto(LottoPurchaseDTO lottoPurchaseDTO) {
-        WinningLotto winningLotto = new WinningLotto(lottoPurchaseDTO.getLottoNumbers(), lottoPurchaseDTO.getBonusNumber());
+        WinningLotto winningLotto = new WinningLotto(lottoPurchaseDTO.getLottoNumbers(),
+                lottoPurchaseDTO.getBonusNumber());
         return winningLotto;
     }
 
