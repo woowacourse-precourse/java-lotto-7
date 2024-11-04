@@ -10,5 +10,6 @@ public class Application {
         int purchaseAmount = inputService.inputPurchaseAmount(TICKET_PRICE);
         int purchaseCount = purchaseAmount / TICKET_PRICE;
         String winningNumbers = inputService.inputWinningNumbers();
+        int bonusNumber = inputService.inputBonusNumber();
     }
 }

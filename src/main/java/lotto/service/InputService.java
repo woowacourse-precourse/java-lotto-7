@@ -3,8 +3,6 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.InputException;
 
-import java.util.List;
-
 public class InputService {
     private final InputException inputException = new InputException();
 
@@ -15,7 +13,6 @@ public class InputService {
         inputException.validateInputEmpty(purchaseAmount);
 
         int purchaseAmountValue = convertToNumericPurchaseAmount(purchaseAmount);
-
         inputException.validateDivisibleByTicketPrice(purchaseAmountValue, ticketPrice);
 
         return purchaseAmountValue;
@@ -30,8 +27,21 @@ public class InputService {
         return winningNumbers;
     }
 
+    public int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
+
+        inputException.validateInputEmpty(bonusNumber);
+
+        int bonusNumberValue = convertToNumericPurchaseAmount(bonusNumber);
+        inputException.validateValueInRange(bonusNumberValue);
+
+        return convertToNumericPurchaseAmount(bonusNumber);
+    }
+
     public int convertToNumericPurchaseAmount(String input) {
         inputException.validateNumericInput(input);
+
         return Integer.parseInt(input);
     }
 }
