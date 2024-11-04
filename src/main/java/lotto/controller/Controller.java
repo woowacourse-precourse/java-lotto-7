@@ -1,15 +1,14 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.LottoConstants;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
-import lotto.domain.WinningNumbers;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.Input;
 import lotto.view.Output;
-
 import java.util.List;
+
+import static lotto.validate.LottoConstants.LOTTO_PRICE;
 
 public class Controller {
     private final Input input;
@@ -22,18 +21,32 @@ public class Controller {
         this.lottoService = lottoService;
     }
 
-    public void run(){
+    public void run() {
         int amount = input.inputPurchaseAmount();
-        int numberOfTickets = amount / LottoConstants.LOTTO_PRICE.getValue();
-
-        List<Lotto> lottos = lottoService.createLotto(numberOfTickets);
+        List<Lotto> lottos = purchaseLottos(amount);
         output.printLottoNumbers(lottos);
 
-        Lotto winningLotto = input.inputWinningNumbers();
-        int bonusNumber = input.inputBonusNumber();
-        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
+        WinningLotto winningNumbers = getWinningLotto();
+        displayStatistics(lottos, winningNumbers, amount);
+    }
 
-        List<Prize> prizes = lottoService.countMatches(lottos, winningNumbers);
-        output.printPrizeStatistics(prizes, amount);
+    private List<Lotto> purchaseLottos(int amount) {
+        int numberOfTickets = calculateNumberOfTickets(amount);
+        return lottoService.createLotto(numberOfTickets);
+    }
+
+    private int calculateNumberOfTickets(int amount) {
+        return amount / LOTTO_PRICE.getValue();
+    }
+
+    private WinningLotto getWinningLotto() {
+        Lotto winningLotto = input.inputWinningNumbers();
+        int bonusNumber = input.inputBonusNumber(winningLotto);
+        return new WinningLotto(winningLotto, bonusNumber);
+    }
+
+    private void displayStatistics(List<Lotto> lottos, WinningLotto winningNumbers, int amount) {
+        List<Prize> prizes = lottoService.calculatePrizes(lottos, winningNumbers);
+        output.printStatistics(prizes, amount);
     }
 }
