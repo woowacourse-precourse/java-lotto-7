@@ -6,7 +6,7 @@ import static lotto.constant.LottoErrorConstant.ERROR_PRICE_NUMBER_FORMAT;
 import static lotto.constant.LottoValueConstant.LOTTO_PRICE;
 import static lotto.constant.LottoValueConstant.MAX_PRICE;
 
-public class PriceValuate{
+public class PriceValidate {
     public static void isValidNumber(String price) {
         try {
             Integer.parseInt(price);

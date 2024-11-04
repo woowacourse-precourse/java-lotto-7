@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.reposi.LottoRepository;
-import lotto.valuate.WinnerNumberValuate;
+import lotto.valuate.WinnerNumberValidate;
 
 public class WininngNumberManager {
 
@@ -24,7 +24,7 @@ public class WininngNumberManager {
     }
 
     private int evaluateWinningNumber(String inputWinningNumber) {
-        WinnerNumberValuate.isValidNumber(inputWinningNumber);
+        WinnerNumberValidate.isValidNumber(inputWinningNumber);
         return Integer.parseInt(inputWinningNumber);
     }
 

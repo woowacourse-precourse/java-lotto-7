@@ -3,7 +3,7 @@ package lotto.valuate;
 import static lotto.constant.LottoErrorConstant.ERROR_WINNING_NUMBER_NO_WHITESPACE;
 import static lotto.constant.LottoErrorConstant.ERROR_WINNING_NUMBER_ONLY_NUMBERS;
 
-public class WinnerNumberValuate{
+public class WinnerNumberValidate {
 
     public static void isValidNumber(String winningNumber) {
         isEmpty(winningNumber);

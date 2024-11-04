@@ -9,8 +9,8 @@ import static lotto.constant.LottoPrintConstant.INPUT_WINNING;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.function.Consumer;
 import lotto.controller.LottoController;
-import lotto.valuate.BonusNumberValuate;
-import lotto.valuate.PriceValuate;
+import lotto.valuate.BonusNumberValidate;
+import lotto.valuate.PriceValidate;
 
 public class InputView {
 
@@ -37,7 +37,7 @@ public class InputView {
 
     public void inputPrice() {
         inputWithRetry(INPUT_PRICE, input -> {
-            PriceValuate.isValidNumber(input);
+            PriceValidate.isValidNumber(input);
             int price = Integer.parseInt(input);
             controller.createLottoNumber(price);
         });
@@ -54,7 +54,7 @@ public class InputView {
 
     public void inputBonusNumber() {
         inputWithRetry(INPUT_BONUS, input -> {
-            BonusNumberValuate.isValidNumber(input);
+            BonusNumberValidate.isValidNumber(input);
             int price = Integer.parseInt(input);
             controller.createBonusNumber(price);
         });

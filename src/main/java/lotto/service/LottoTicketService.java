@@ -5,13 +5,13 @@ import static lotto.constant.LottoValueConstant.LOTTO_PRICE;
 import java.util.List;
 import lotto.domain.LottoNumberGenerater;
 import lotto.reposi.LottoRepository;
-import lotto.valuate.PriceValuate;
+import lotto.valuate.PriceValidate;
 
 public class LottoTicketService {
 
 
     public int purchaseLottoTickets(int price) {
-        PriceValuate.isValidPrice(price);
+        PriceValidate.isValidPrice(price);
         return (price / LOTTO_PRICE);
     }
 
