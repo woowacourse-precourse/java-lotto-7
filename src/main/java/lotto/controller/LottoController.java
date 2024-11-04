@@ -2,18 +2,23 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
+import lotto.domain.LottoRank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import service.LottoResultService;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoResultService lottoResultService;
 
-    public LottoController(InputView inputView, OutputView outputView){
+    public LottoController(InputView inputView, OutputView outputView, LottoResultService lottoResultService){
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoResultService = lottoResultService;
     }
 
     public void run(){
@@ -23,6 +28,11 @@ public class LottoController {
 
         Lotto winningLotto = getWinningLotto();
 
+        Integer bonusNumber = getBonusLottoNumber(winningLotto);
+
+        Map<LottoRank, Integer> lottoResult = lottoResultService.getLottoResult(lottos, winningLotto, bonusNumber);
+
+        printLottoResult(lottoResult);
 
     }
 
@@ -66,5 +76,9 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void printLottoResult(Map<LottoRank, Integer> lottoResult){
+        outputView.showLottoResults(lottoResult);
     }
 }

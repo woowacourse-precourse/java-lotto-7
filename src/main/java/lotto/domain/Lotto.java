@@ -52,4 +52,13 @@ public class Lotto {
         }
     }
 
+    public Integer getMatchCount(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto.getNumbers()::contains)
+                .count();
+    }
+
+    public boolean getBonusMatch(Integer bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }
