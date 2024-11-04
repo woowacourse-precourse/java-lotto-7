@@ -42,14 +42,6 @@ public class LottoService {
         return prizes;
     }
 
-    public Map<Prize, Integer> totalPrizeResult(List<Prize> prizes) {
-        Map<Prize, Integer> totalPrizeCount = initPrizeCount();
-        for (Prize prize : prizes) {
-            totalPrizeCount.put(prize, totalPrizeCount.get(prize) + 1);
-        }
-        return totalPrizeCount;
-    }
-
     public BigDecimal calculateProfit(int purchaseAmount, List<Prize> prizes) {
         BigDecimal totalPrizeAmount = BigDecimal.ZERO;
         BigDecimal purchase = BigDecimal.valueOf(purchaseAmount);
@@ -85,16 +77,5 @@ public class LottoService {
             }
         }
         return null;
-    }
-
-    private Map<Prize, Integer> initPrizeCount() {
-        Map<Prize, Integer> prizeCount = new LinkedHashMap<>();
-        prizeCount.put(Prize.FIFTH, 0);
-        prizeCount.put(Prize.FOURTH, 0);
-        prizeCount.put(Prize.THIRD, 0);
-        prizeCount.put(Prize.SECOND, 0);
-        prizeCount.put(Prize.FIRST, 0);
-
-        return prizeCount;
     }
 }

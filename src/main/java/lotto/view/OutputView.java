@@ -16,8 +16,8 @@ public class OutputView {
         }
     }
 
-    public void printTotalLottoResult(Map<Prize, Integer> totalPrizeCount) {
-        for (Prize prize : totalPrizeCount.keySet()) {
+    public void printTotalLottoResult() {
+        for (Prize prize : Prize.values()) {
             System.out.println(prize.toString());
         }
     }

@@ -34,8 +34,7 @@ public class LottoController {
         Lotto winningLotto = getWinningLotto();
         int bonusNumber = getBonusNumber();
         List<Prize> prizes = lottoService.calculateLottoResult(purchasedLottos, winningLotto, bonusNumber);
-        Map<Prize, Integer> totalPrizeCount = lottoService.totalPrizeResult(prizes);
-        outputView.printTotalLottoResult(totalPrizeCount);
+        outputView.printTotalLottoResult();
 
         printTotalProfit(purchaseAmount, prizes);
     }
