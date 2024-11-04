@@ -8,10 +8,10 @@ import java.util.Map;
 public class OutputView {
 
     private static final String PURCHASE_Money_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private static final String LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.\n";
-    private static final String PRIZE_STATISTICS_HEADER = "당첨 통계\n---";
+    private static final String WINNING_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
+    private static final String LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다.\n";
+    private static final String PRIZE_STATISTICS_HEADER = "\n당첨 통계\n---";
     private static final String[] MATCH_NUMBERS = {"3", "4", "5", "5.5", "6"};
     private static final String[] MATCH_PREFIX_MESSAGE = {
             "3개 일치 (5,000원)",
