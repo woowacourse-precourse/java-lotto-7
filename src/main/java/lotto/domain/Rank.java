@@ -19,6 +19,11 @@ public enum Rank {
         this.prize = prize;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
+
     public String getMessage() {
         return message;
     }

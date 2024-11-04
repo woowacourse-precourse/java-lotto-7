@@ -74,7 +74,7 @@ public class LottoResult {
 
     public long calculateWinningPrize() {
         return matchNumber.entrySet().stream()
-                .mapToLong(entry -> (long) entry.getKey().prize * entry.getValue())
+                .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }
 }
