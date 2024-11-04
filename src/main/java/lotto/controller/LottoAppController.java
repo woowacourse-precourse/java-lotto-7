@@ -30,7 +30,7 @@ public class LottoAppController {
 
     public List<Lotto> buyLottos() {
         Payment payment = inputView.getPayment();
-        long lottoCount = printLottoCount(payment);
+        long lottoCount = outputView.printLottoCount(payment);
 
         return publishLotto(lottoCount);
     }
@@ -44,11 +44,5 @@ public class LottoAppController {
         List<Lotto> lottos = lottoPublisher.publishLotto(lottoCount);
         outputView.printLottos(lottos);
         return lottos;
-    }
-
-    private long printLottoCount(Payment payment) {
-        long lottoCount = payment.calcLottoCount();
-        System.out.println(lottoCount + "개를 구매했습니다.");
-        return lottoCount;
     }
 }
