@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,8 +9,8 @@ import java.util.List;
 public class LottoGenerator {
     private final List<Lotto> Lottos;
 
-    public LottoGenerator(int amount) {
-        validate(amount);
+    public LottoGenerator() {
+        int amount = inputAmount();
 
         int count = calculateLottoCount(amount);
         List<Lotto> tmpLottoList = new ArrayList<>(count);
@@ -23,9 +24,31 @@ public class LottoGenerator {
         this.Lottos = tmpLottoList;
     }
 
-    private void validate(int amount) {
+    private int inputAmount() {
+        System.out.println("구매금액을 입력해 주세요.");
+        String inputAmount = Console.readLine();
+        System.out.println();
+
+        int amount;
+        amount = validateInputAmount(inputAmount);
+        validateAmount(amount);
+
+        return amount;
+    }
+
+    private int validateInputAmount(String inputAmount) {
+        int amount;
+        try {
+            amount = Integer.parseInt(inputAmount.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구매금액은 숫자로 이루어져야 합니다.");
+        }
+        return amount;
+    }
+
+    private void validateAmount(int amount) {
         if (amount%1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구매금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 
