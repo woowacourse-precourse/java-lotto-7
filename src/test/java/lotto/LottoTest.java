@@ -14,12 +14,18 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-//    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
-//    @Test
-//    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-//        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-//                .isInstanceOf(IllegalArgumentException.class);
-//    }
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_범위_밖에_있으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     // 로또 구입 금액 입력 테스트
     @Test
