@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 
 public class LottoResultManager {
 
-    public List<Integer> getWinningNumbers() {
+    public Lotto getWinningNumbers() {
         String inputWinningNumbers = InputView.getWinningNumbers();
         List<Integer> winningNumbers = new ArrayList<>();
 
@@ -26,7 +26,7 @@ public class LottoResultManager {
                 }
             }
         }
-        return winningNumbers;
+        return new Lotto(winningNumbers);
     }
 
     public int getBonusNumbers() {
@@ -40,11 +40,11 @@ public class LottoResultManager {
         return bonusNumber;
     }
 
-    public int compareLottoNumber(List<Integer> lotto, List<Integer> winningNumbers, int bonusNumber) {
+    public int compareLottoNumber(List<Integer> lotto, Lotto winningLotto, int bonusNumber) {
         int matches = 0;
         boolean checkBonusNumber = false;
         for (Integer integer : lotto) {
-            if (winningNumbers.contains(integer)) {
+            if (winningLotto.getNumbers().contains(integer)) {
                 matches++;
             }
         }
@@ -61,11 +61,11 @@ public class LottoResultManager {
         return result;
     }
 
-    public int[] saveLottoWinningResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public int[] saveLottoWinningResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         int result = 0;
         int[] saveResult = new int[5];
         for (Lotto lotto : lottos) {
-            result = compareLottoNumber(lotto.getNumbers(), winningNumbers, bonusNumber);
+            result = compareLottoNumber(lotto.getNumbers(), winningLotto, bonusNumber);
             if (result == 0) continue;
             if (result == 1) saveResult[0]++;
             if (result == 2) saveResult[1]++;
@@ -76,9 +76,8 @@ public class LottoResultManager {
         return saveResult;
     }
 
-    public void printResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        int[] saveResult = saveLottoWinningResult(lottos, winningNumbers, bonusNumber);
-        System.out.println("당첨 통계 \n---");
+    public void printResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        int[] saveResult = saveLottoWinningResult(lottos, winningLotto, bonusNumber);
         System.out.println(LottoWinningResult.THREE_MATCHES.print(saveResult[0]));
         System.out.println(LottoWinningResult.FOUR_MATCHES.print(saveResult[1]));
         System.out.println(LottoWinningResult.FIVE_MATCHES.print(saveResult[2]));
@@ -86,8 +85,8 @@ public class LottoResultManager {
         System.out.println(LottoWinningResult.SIX_MATCHES.print(saveResult[4]));
     }
 
-    public void printProfitRate(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
-        int[] saveResult = saveLottoWinningResult(lottos, winningNumbers, bonusNumber);
+    public void printProfitRate(List<Lotto> lottos, Lotto winningLotto, int bonusNumber, int purchaseAmount) {
+        int[] saveResult = saveLottoWinningResult(lottos, winningLotto, bonusNumber);
         int profit = 0;
         profit += saveResult[0] * LottoWinningResult.THREE_MATCHES.getAmount();
         profit += saveResult[1] * LottoWinningResult.FOUR_MATCHES.getAmount();
