@@ -5,7 +5,7 @@ import java.util.Map;
 public class ResultCalculator {
     private final LottoList lottoList;
     private final WinningNumbers winningNumbers;
-    private final Map<Rank, Integer> rankCounts; // 클래스 변수로 이동
+    private final Map<Rank, Integer> rankCounts;
 
     public ResultCalculator(LottoList lottoList, WinningNumbers winningNumbers) {
         this.lottoList = lottoList;
@@ -32,7 +32,21 @@ public class ResultCalculator {
         }
         return count;
     }
+    public double calculateProfitRate(int purchaseCost) {
+        double totalRevenue = 0;
 
+        for (Rank rank : rankCounts.keySet()) {
+            int count = rankCounts.get(rank);
+            totalRevenue += rank.getPrize() * count;
+        }
+
+        double profitRate = ((totalRevenue - purchaseCost) / purchaseCost) * 100;
+        return Math.round(profitRate * 100) / 100.0;
+    }
+
+    public Map<Rank, Integer> getRankCounts() {
+        return rankCounts;
+    }
 
 }
 
