@@ -34,7 +34,7 @@ public class InputView {
             System.out.println(InputViewEnum.BONUS_NUMBER.getMessage());
             String bonusNumberInput = Console.readLine();
             try {
-                this.bonusNumber = exception.validateLottoPurchase(bonusNumberInput);
+                this.bonusNumber = exception.validateBonusNumber(bonusNumberInput);
                 exception.validateBonusNumber(this.bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
@@ -47,7 +47,6 @@ public class InputView {
         while (true) {
             System.out.println(InputViewEnum.LOTTO_NUMBER.getMessage());
             String rawNumbers = Console.readLine();
-
             try{
                 this.lottoNumbers = exception.parseLottoNumbers(rawNumbers);
                 break;

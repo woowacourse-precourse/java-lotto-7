@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Exception {
+    private final int MIN_LOTTO_NUMBER = 1;
+    private final int MAX_LOTTO_NUMBER = 45;
     public boolean isInteger(String input) {
         try {
             Integer.parseInt(input);
@@ -19,11 +21,19 @@ public class Exception {
         if (!isInteger(input)) {
             throw new IllegalArgumentException("[ERROR] 정수가 입력돼야 합니다.");
         }
-        return isDivied1000(Integer.parseInt(input));
+        return isDivide1000(Integer.parseInt(input));
 
     }
 
-    public int isDivied1000(int inputNumber){
+    public int validateBonusNumber(String input) {
+        if (!isInteger(input)) {
+            throw new IllegalArgumentException("[ERROR] 정수가 입력돼야 합니다.");
+        }
+        return Integer.parseInt(input);
+
+    }
+
+    public int isDivide1000(int inputNumber){
         if(!(inputNumber % 1000 == 0)){
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 합니다.");
         }
@@ -31,7 +41,7 @@ public class Exception {
     }
 
     public void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
