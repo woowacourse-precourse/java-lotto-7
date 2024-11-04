@@ -5,12 +5,16 @@ import lotto.model.Lotto;
 import java.util.HashSet;
 import java.util.List;
 
+import static lotto.util.Constants.ZERO;
+import static lotto.util.Constants.BLANK;
+import static lotto.util.Constants.MIN_PURCHASE_MONEY;
+import static lotto.util.Constants.NUMERIC_REGEX;
 import static lotto.util.ErrorMessages.*;
 
 public class Validator {
 
     public static void validateIsNumeric(String input) {
-        if (!input.matches("\\d+"))
+        if (!input.matches(NUMERIC_REGEX))
             throw new IllegalArgumentException(NOT_NUMERIC);
     }
 
@@ -25,7 +29,7 @@ public class Validator {
     }
 
     public static void validateNotBlank(String input) {
-        if (input.contains(" "))
+        if (input.contains(BLANK))
             throw new IllegalArgumentException(CONTAINS_WHITESPACE);
     }
 
@@ -41,13 +45,13 @@ public class Validator {
     }
 
     public static void validateIsDivisible(int input) {
-        if (input % 1000 != 0) {
+        if (input % MIN_PURCHASE_MONEY != ZERO) {
             throw new IllegalArgumentException(NOT_DIVISIBLE_BY_THOUSAND);
         }
     }
 
     public static void validateBelowMinimum(int input) {
-        if (input < 1000) {
+        if (input < MIN_PURCHASE_MONEY) {
             throw new IllegalArgumentException(BELOW_MINIMUM_AMOUNT);
         }
     }
