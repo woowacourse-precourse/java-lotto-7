@@ -18,14 +18,14 @@ public class LottoGame {
     private long totalLottoPrizeMoney;
 
     public void start() {
-        purchaseAmountInput();
-        lottoWinningNumberInput();
-        lottoBonusNumberInput();
+        inputPurchaseAmount();
+        inputLottoWinningNumber();
+        inputLottoBonusNumber();
         printWinningStats();
     }
 
     // 첫 번째 입력(구입 금액)
-    private void purchaseAmountInput() {
+    private void inputPurchaseAmount() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
 
@@ -38,12 +38,12 @@ public class LottoGame {
             lottoIssuance(numberOfLottoPurchases);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            purchaseAmountInput();
+            inputPurchaseAmount();
         }
     }
 
     // 두 번째 입력(로또 번호(당첨 번호))
-    private void lottoWinningNumberInput() {
+    private void inputLottoWinningNumber() {
         try {
             System.out.println("\n당첨 번호를 입력해 주세요.");
 
@@ -59,12 +59,12 @@ public class LottoGame {
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            lottoWinningNumberInput();
+            inputLottoWinningNumber();
         }
     }
 
     // 세 번째 입력(보너스 번호)
-    private void lottoBonusNumberInput() {
+    private void inputLottoBonusNumber() {
         try {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             bonusNumber = Integer.parseInt(checkPositiveNumber(Console.readLine()));
@@ -72,7 +72,7 @@ public class LottoGame {
             checkBonusNumberRedundancy(bonusNumber, lotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            lottoBonusNumberInput();
+            inputLottoBonusNumber();
         }
     }
 
