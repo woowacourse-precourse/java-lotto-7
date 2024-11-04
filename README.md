@@ -27,22 +27,30 @@
         3-2. 1이하 45 이상 숫자일 때
 
 ##### 기능 구현
-1. static 메소드 7가지
+1. static 메소드 6가지
 2. Lotto 클래스 & 메소드
 3. WinningNums 열거형
 
 ##### static 메소드 구현
 * splitNumbers : 사용자로부터 입력 받은 로또 당첨 번호를 ,로 구분하여 저장
-* randomPickLottoNumbers : 구매한 로또 갯수만큼 랜덤 로또 번호를 생성
+* checkValidNumbers : 당첨번호가 1~45사이인지, 중복은 없는지 검사
+* checkAmount : 로또 구매 금액이 유효한 입력인지 검사
+* randomLottoNumberPick : 구매한 로또 갯수만큼 랜덤 로또 번호를 생성
+* printBuyLottoNumbers : 랜덤 로또 번호 출력
 * checkRange : 사용자로부터 받은 보너스 번호의 범위 체크
 
 #### Lotto 클래스 메소드 구현
-* printStaticsis : 당첨 갯수와 수익률 출력
+* calculateStatistics : 로또 번호 비교를 통해 당첨 확인
+* printStaticsis : 당첨 통계 출력
+* printRate : 수익률 출력
 
 #### 열거형 클래스, 메소드 구현
 * 5개의 열거형 상수 제공(일치 갯수, 로또 갯수, 일치 갯수 확인용 이름)
 * 6개일치, 5개일치 + 보너스, 5개일치, 4개일치, 3개일치
-*  
+* getMatchingCount : 몇개가 일치하는지 저장하는 멤버변수 반환
+* getPrize : 상금으로 설정한 값을 반환
+* getName : 일치 갯수 확인용 이름 반환
+* checkRank : 로또 번호 몇개가 일치하는지 확인
 
 
      
