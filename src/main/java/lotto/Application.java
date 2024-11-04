@@ -5,12 +5,11 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-
         Lotto lotto = new Lotto();
-        int cycle = lotto.validateMoney(input);
+
+        int cycle = requestMoneyInput(lotto);
         System.out.println(cycle + "개를 구매했습니다.");
+
 
         Lotto.generateRandomNumbers(cycle);
 
@@ -18,14 +17,48 @@ public class Application {
             System.out.println(numbers);
         }
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        input = Console.readLine();
-        List<Integer> lottoNum = lotto.validateNum(input);
+        List<Integer> lottoNum = requestWinningNumbers(lotto);
+        Lotto.Numbers.addInputNumbers(lottoNum);
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        input = Console.readLine();
-        lotto.bounusValidate(input);
+        int bonus = requestBonusNumber(lotto);
+        Lotto.Numbers.addBonusNumber(bonus);
 
-        System.out.println(Lotto.Numbers.showNum());
+        lotto.scoreCheck();
+    }
+
+    private static int requestMoneyInput(Lotto lotto) {
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String input = Console.readLine();
+                return lotto.validateMoney(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static List<Integer> requestWinningNumbers(Lotto lotto) {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                return lotto.validateNum(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static int requestBonusNumber(Lotto lotto) {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                return Lotto.bonusValidate(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
