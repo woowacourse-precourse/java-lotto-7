@@ -23,46 +23,54 @@ public class InputView {
     public int lottoMoneyInput() {
         System.out.println(ASK_MONEY_INPUT);
         String rawMoney = inputSupplier.get();
-        validateIsNumber(rawMoney);
-        return Integer.parseInt(rawMoney);
+        try {
+            if (!validateIsNumber(rawMoney)) {
+                throw new IllegalArgumentException(INPUT_MONEY_NOT_NUMBER);
+            }
+            return Integer.parseInt(rawMoney);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return lottoMoneyInput();  // 입력 재시도
+        }
     }
 
     public String[] lottoNumberInput() {
         System.out.println(ASK_LOTTO_NUM_INPUT);
         String rawNumbers = inputSupplier.get();
-        String[] numbers = rawNumbers.split(",");
-
-        // 각 번호가 숫자인지 확인하고, 그렇지 않으면 예외 발생
-        for (String number : numbers) {
-            if (!isNumber(number.trim())) {
-                throw new IllegalArgumentException(INPUT_INVALID_LOTTO_NUMBER);
+        try {
+            String[] numbers = rawNumbers.split(",");
+            for (String number : numbers) {
+                if (!validateIsNumber(number.trim())) {
+                    throw new IllegalArgumentException(INPUT_INVALID_LOTTO_NUMBER);
+                }
             }
+            return numbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return lottoNumberInput();
         }
-        return numbers;
     }
 
     public int bonusNumberInput() {
         System.out.println(ASK_BONUS_NUM_INPUT);
         String rawBonusNumber = inputSupplier.get();
-        validateIsNumber(rawBonusNumber);
-        return Integer.parseInt(rawBonusNumber);
-    }
-
-    private void validateIsNumber(String rawValue) {
         try {
-            Integer.parseInt(rawValue);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_MONEY_NOT_NUMBER);
+            if (!validateIsNumber(rawBonusNumber)) {
+                throw new IllegalArgumentException(INPUT_MONEY_NOT_NUMBER);
+            }
+            return Integer.parseInt(rawBonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return bonusNumberInput();
         }
     }
 
-    private boolean isNumber(String value) {
+    private boolean validateIsNumber(String rawValue) {
         try {
-            Integer.parseInt(value);
-            return true;
+            int amount = Integer.parseInt(rawValue);
+            return amount > 0;
         } catch (NumberFormatException e) {
             return false;
         }
     }
-
 }
