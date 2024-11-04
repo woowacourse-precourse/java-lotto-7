@@ -6,8 +6,8 @@ import lotto.common.constant.*;
 import lotto.common.model.Lotto;
 import lotto.dto.BonusNumberDto;
 import lotto.dto.LottoTicketsDto;
+import lotto.dto.NumberOfMatchingDto;
 import lotto.dto.WinningNumberDto;
-import lotto.winning.CheckingWinningService;
 import lotto.winning.model.*;
 import lotto.winning.view.*;
 
@@ -29,6 +29,7 @@ public class WinningController {
     public void presentRanksAndRates() {
         receiveWinningNumbers();
         receiveBonusNumbers();
+        calculateMatching();
 
         Map<RankConstant, Integer> ranks = getRanksOfLottoTickets();
         outputwinningResultView.printRanks(ranks);
@@ -59,6 +60,12 @@ public class WinningController {
             inputWinningNumberView.setNullInputBonusNumber();
             receiveBonusNumbers();
         }
+    }
+
+    private void calculateMatching() {
+        MatchingBetweenWinningAndTickets matching = new MatchingBetweenWinningAndTickets();
+        List<Integer> numberOfMatching = matching.getMatching();
+        new NumberOfMatchingDto(numberOfMatching);
     }
 
     private Map<RankConstant, Integer> getRanksOfLottoTickets() {

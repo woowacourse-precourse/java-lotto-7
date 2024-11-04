@@ -3,6 +3,7 @@ package lotto.winning.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.winning.ValidatorOfWinningNumber;
 
 public class WinningNumbers {
     private static final String DELIMITER = ",";
