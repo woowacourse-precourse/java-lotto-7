@@ -34,8 +34,15 @@ public enum Prize {
 
     public static Prize valueOf(int matchCount, boolean bonusMatch) {
         return Arrays.stream(values())
-                .filter(prize -> prize.matchCount == matchCount && prize.bonusMatch == bonusMatch)
+                .filter(prize -> prize.matchCount == matchCount)
+                .filter(prize -> {
+                    if (prize.matchCount == 5) {
+                        return prize.bonusMatch == bonusMatch;
+                    }
+                    return true;
+                })
                 .findFirst()
                 .orElse(NONE);
     }
+
 }

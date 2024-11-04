@@ -69,7 +69,7 @@ class ApplicationTest extends NsTest {
                     run("5000", "1,2,3,4,5,6", "7");
                     assertThat(output()).contains("총 수익률은 100.0%입니다.");
                 },
-                List.of(1, 2, 3, 6, 7, 8),
+                List.of(1, 2, 3, 7, 8, 9),
                 List.of(7, 8, 9, 10, 11, 12),
                 List.of(7, 8, 9, 10, 11, 12),
                 List.of(7, 8, 9, 10, 11, 12),
