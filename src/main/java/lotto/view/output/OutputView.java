@@ -28,6 +28,13 @@ public class OutputView {
     }
 
     private static void printRankResult(LottoRank rank, int count) {
+        if (rank == LottoRank.SECOND) {
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n",
+                    rank.getMatchCount(),
+                    rank.getPrize(),
+                    count);
+            return;
+        }
         System.out.printf("%d개 일치 (%,d원) - %d개\n",
                 rank.getMatchCount(),
                 rank.getPrize(),
