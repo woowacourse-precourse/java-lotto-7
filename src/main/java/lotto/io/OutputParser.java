@@ -9,11 +9,11 @@ import lotto.dto.PurchasedLottos;
 public class OutputParser {
 
     private static final String NEW_LINE = "\n";
+    private static final String PERCENT_FORMAT = "#,##0.0";
 
     public String parsePurchasedLottos(final PurchasedLottos purchasedLottos) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(NEW_LINE);
         stringBuilder.append(purchasedLottos.lottos().size());
         stringBuilder.append("개를 구매했습니다.");
         stringBuilder.append(NEW_LINE);
@@ -36,7 +36,6 @@ public class OutputParser {
     public String parsePrizeStatics(final PrizeStatics prizeStatics) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(NEW_LINE);
         stringBuilder.append("당첨 통계");
         stringBuilder.append(NEW_LINE);
         stringBuilder.append("---");
@@ -70,7 +69,7 @@ public class OutputParser {
     }
 
     private static String formatPercent(final double incomePercent) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        DecimalFormat decimalFormat = new DecimalFormat(PERCENT_FORMAT);
         decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
 
         return decimalFormat.format(incomePercent);
@@ -79,7 +78,6 @@ public class OutputParser {
     public String parseExceptionMessage(final Exception e) {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(NEW_LINE);
         stringBuilder.append("[ERROR] ");
         stringBuilder.append(e.getMessage());
         stringBuilder.append(NEW_LINE);

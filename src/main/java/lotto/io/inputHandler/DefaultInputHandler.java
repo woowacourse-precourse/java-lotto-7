@@ -22,18 +22,24 @@ public class DefaultInputHandler implements InputHandler {
     @Override
     public int handlePurchaseCost() {
         writer.writeLine(PURCHASE_COST_DESCRIPTION);
-        return reader.readLineAsNumber();
+        int purchaseCost = reader.readLineAsNumber();
+        writer.writeLine("");
+        return purchaseCost;
     }
 
     @Override
     public List<Integer> handleWinningNumbers() {
         writer.writeLine(WINNING_NUMBERS_DESCRPTION);
-        return reader.readLineAsNumbers(WINNING_NUMBERS_SPLITER);
+        List<Integer> winningNumbers = reader.readLineAsNumbers(WINNING_NUMBERS_SPLITER);
+        writer.writeLine("");
+        return winningNumbers;
     }
 
     @Override
     public int handleBonusNumber() {
         writer.writeLine(BONUS_NUMBER_DESCRPTION);
-        return reader.readLineAsNumber();
+        int bonusNumber = reader.readLineAsNumber();
+        writer.writeLine("");
+        return bonusNumber;
     }
 }
