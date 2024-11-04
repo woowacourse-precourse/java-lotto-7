@@ -8,6 +8,9 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +55,94 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 정수가_아니면_예외가_발생해야_한다() {
+        assertSimpleTest(() -> {
+            assertThrows(Exception.class, () -> {
+                Application.isInteger("abcd");
+            });
+        });
+    }
+
+    @Test
+    void 정수가_아닐_때_발생하는_예외() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.isInteger("abcd"))
+                    .isInstanceOf(NumberFormatException.class);
+        });
+    }
+
+    @Test
+    void 정수가_정상적으로_입력되면_예외가_발생하지_않는다() {
+        assertDoesNotThrow(() -> Application.isInteger("1000"));
+    }
+
+    @Test
+    void 천의_배수가_아니면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            assertThrows(Exception.class, () -> {
+                Application.isMultipleOf1000(100);
+            });
+        });
+    }
+
+    @Test
+    void 천의_배수가_아니면_발생하는_예외() {
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.isMultipleOf1000(300))
+                    .isInstanceOf(IllegalArgumentException.class);
+        });
+    }
+
+    @Test
+    void 천의_배수이면_예외가_발생하지_않는다() {
+        assertDoesNotThrow(() -> Application.isMultipleOf1000(3000));
+    }
+
+    @Test
+    void 당첨번호_입력_시_콤마로_구분했을때_요소가_6개가_아니면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            assertThrows(Exception.class, () -> {
+                Application.splitWithComma("a,b,c,d,e,w,f");
+            });
+        });
+    }
+
+    @Test
+    void 당첨번호_입력_시_콤마로_구분했을떄_요소가_6개가_아니면_발생하는_예외(){
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.splitWithComma("a,1,2,3,4,b,a"))
+                    .isInstanceOf(IllegalArgumentException.class);
+        });
+    }
+
+    @Test
+    void 당첨번호_입력_시_콤마로_구분했을떄_요소가_6개가_아니면_예외가_발생하지_않는다(){
+        assertDoesNotThrow(() -> Application.splitWithComma("a,d,b,c,d,e"));
+    }
+
+    @Test
+    void 당첨번호_범위를_벗어나면_예외가_발생한다() {
+        assertSimpleTest(() -> {
+            assertThrows(Exception.class, () -> {
+                Application.validateInputRange(90);
+            });
+        });
+    }
+
+    @Test
+    void 당첨번호_범위를_벗어나면_예외가_발생하는_예외(){
+        assertSimpleTest(() -> {
+            assertThatThrownBy(() -> Application.validateInputRange(90))
+                    .isInstanceOf(IllegalArgumentException.class);
+        });
+    }
+
+    @Test
+    void 당첨번호_범위를_벗어나지_않으면_예외가_발생하지_않는다(){
+        assertDoesNotThrow(() -> Application.validateInputRange(40));
     }
 
     @Override
