@@ -1,12 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constants.ConstraintConstants;
-import lotto.constants.ErrorViewConstants;
 import lotto.constants.InputViewConstants;
-
-import static lotto.service.ConverterService.stringArrayToIntegerArray;
-import static lotto.service.ValidatorService.*;
 
 public class InputService {
     public int getPurchaseAmount() {
@@ -17,15 +12,18 @@ public class InputService {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return getPurchaseAmount();
+        return this.getPurchaseAmount();
     }
 
     public int[] getWinningNumbers() {
         System.out.println(InputViewConstants.WINNING_NUMBER_INSTRUCTION);
-        String[] winningNumbers = Console.readLine().split(",");
-        if (validateWinningNumbersFormat(winningNumbers)) {
-            return stringArrayToIntegerArray(winningNumbers);
+        String enteredWinningNumber = Console.readLine();
+        try {
+            String[] splitWinningNumber = ConverterService.splitWinningNumber(enteredWinningNumber);
+            return ConverterService.convertWinningNumber(splitWinningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
-        throw new IllegalArgumentException(ErrorViewConstants.INVALID_INPUT_TYPE);
+        return this.getWinningNumbers();
     }
 }

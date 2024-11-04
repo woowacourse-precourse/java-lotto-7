@@ -17,10 +17,19 @@ public class ConverterService {
             throw new IllegalArgumentException(ErrorViewConstants.INVALID_WINNING_NUMBERS);
         }
     }
-    public static int[] stringArrayToIntegerArray(String[] inputs) {
-        int[] result = new int[inputs.length];
-        for (int i = 0; i < inputs.length; i++) {
-            result[i] = Integer.parseInt(inputs[i]);
+
+    public static String[] splitWinningNumber(String enteredWinningNumber) {
+        String[] splitWinningNumber = enteredWinningNumber.split(",");
+        if (splitWinningNumber.length != ConstraintConstants.WINNING_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ErrorViewConstants.INVALID_WINNING_NUMBERS);
+        }
+        return splitWinningNumber;
+    }
+
+    public static int[] convertWinningNumber(String[] enteredWinningNumber) {
+        int[] result = new int[enteredWinningNumber.length];
+        for (int i = 0; i < enteredWinningNumber.length; i++) {
+            result[i] = Integer.parseInt(enteredWinningNumber[i]);
         }
         return result;
     }
