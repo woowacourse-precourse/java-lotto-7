@@ -1,9 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.WinningNumbers;
+import lotto.domain.WinningNumber;
 import lotto.view.InputView;
-import lotto.view.view.OutputView;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Application {
             OutputView.printPurchaseCount(purchasedLottos.size());
             OutputView.printLottos(purchasedLottos);
 
-            WinningNumbers winningNumbers = inputWinningNumbers();
+            WinningNumber winningNumbers = inputWinningNumbers();
             // 다음 단계에서 당첨 결과 계산 및 출력 구현 예정
 
         } catch (IllegalArgumentException e) {
@@ -35,9 +35,9 @@ public class Application {
         return lottos;
     }
 
-    private static WinningNumbers inputWinningNumbers() {
+    private static WinningNumber inputWinningNumbers() {
         Lotto winningLotto = InputView.readWinningNumbers();
         int bonusNumber = InputView.readBonusNumber();
-        return new WinningNumbers(winningLotto, bonusNumber);
+        return new WinningNumber(winningLotto, bonusNumber);
     }
 }
