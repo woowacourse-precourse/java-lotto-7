@@ -1,10 +1,11 @@
 package lotto.model.domain;
 
-import static lotto.model.domain.LottoConstant.MAX_NUM;
-import static lotto.model.domain.LottoConstant.MIN_NUM;
-import static lotto.model.domain.LottoConstant.SIZE;
-import static lotto.exception.LottoError.*;
+import static lotto.constant.LottoConstant.MAX_NUM;
+import static lotto.constant.LottoConstant.MIN_NUM;
+import static lotto.constant.LottoConstant.SIZE;
+import static lotto.ui.error.LottoError.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +21,10 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public Set<Integer> getTempSet() {
+        return new HashSet<>(numbers);
     }
 
     private void validateNumbersSize(List<Integer> numbers) {

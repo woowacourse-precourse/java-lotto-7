@@ -1,4 +1,4 @@
-package lotto.model.service;
+package lotto.model.domain;
 
 import java.util.Arrays;
 

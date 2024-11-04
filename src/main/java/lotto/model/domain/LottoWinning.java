@@ -3,21 +3,23 @@ package lotto.model.domain;
 import static lotto.ui.error.LottoError.DUPLICATE_BONUS_NUMBER_ERR;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
-public class LottoWinningNumbers extends Lotto {
+public class LottoWinning extends Lotto {
     private final BonusNumber bonusNumber;
 
-    public LottoWinningNumbers(List<Integer> numbers, BonusNumber bonusNumber) {
+    public LottoWinning(List<Integer> numbers, BonusNumber bonusNumber) {
         super(numbers);
         validateDuplicateBonusNumber(numbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public LottoPrizes getLottoPrizes(List<Lotto> lottos) {
-        List<LottoPrize> prizes = lottos
+    public LottoPrizes getLottoPrizes(Lottos lottos) {
+        List<LottoPrize> prizes = lottos.get()
                 .stream()
                 .map(lotto -> getPrizeIfWinner(lotto))
+                .filter(Objects::nonNull)
                 .toList();
         return new LottoPrizes(prizes);
     }
