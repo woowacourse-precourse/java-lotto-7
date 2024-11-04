@@ -7,14 +7,12 @@
 ---
 
 ![Generic badge](https://img.shields.io/badge/precourse-week3-green.svg)
-![Generic badge](https://img.shields.io/badge/test-3_passed-blue.svg)
+![Generic badge](https://img.shields.io/badge/test-4_passed-blue.svg)
 ![Generic badge](https://img.shields.io/badge/version-1.0.1-brightgreen.svg)
 
-> 우아한테크코스 7기 프리코스 2주차 미션, 자동차 경주를 구현한 저장소입니다.
+> 우아한테크코스 7기 프리코스 3주차 미션, 로또를 구현한 저장소입니다.
 
 <br>
-
-<img src="src/main/resources/static/operation.gif" alt="실행 GIF" width="400">
 
 # 목차
 
@@ -54,7 +52,8 @@
 
 ## 자체 구현 사항
 - #### 사용자가 잘못된 값을 입력할 경우 예외를 발생시키고 그 부분부터 다시 입력을 받는데, 테스트 코드 작성 시 무한 루프에 빠지는걸 방지하고자 접근 횟수를 만듬
-  - 접근횟수를 모두 소진하면 IllegalStateException을 발생시키고 앱을 종료한다.
+  - 접근횟수를 모두 소진하면 NoSuchElementException 을 발생시키고 앱을 종료한다.
+  - NoSuchElementException 을 사용한 이유는 NsTest 의 runException 메서드가 NoSuchElementException 을 잡기 때문
 
 ---
 
@@ -104,6 +103,7 @@
 
 3. **수익률**:
 - 수익률은 소수점 둘째 자리에서 반올림하여 출력합니다.
+- 출력은 소수점 첫째 자리까지만 출력한다.
 - 예시 출력: `총 수익률은 62.5%입니다.`
 
 ### 예외 처리
@@ -182,8 +182,9 @@
 
 - **기능**: 사용자로부터 값을 입력받는다
     - **입력 형식**: String
-    - **유효성 검사**: `null` 입력 시 NoSuchElementException 오류 발생
+    - **유효성 검사**: `null` 입력 시 NoSuchElementException 오류 발생 후 공백으로 변환
     - **특이 사항**: `camp.nextstep.edu.missionutils.Console의 readLine()`을 활용한다.
+    - 바로 에러처리가 아니라 공백으로 변환시킨 이유는 입력 값에 대한 유효성 검사를 한 곳에서 진행시키고 싶기 때문이다.
 
 ### 2. 로직 구현
 
@@ -207,8 +208,8 @@
 
 
 - **기능**: 총 수익률 계산
-    - (총 수익 - 구입금액)/구입 금액 * 100 = 수익률
-    - 수익율이 0보다 작을 경우 `100+수익률` 반환
+    - (총 수익 - 구입금액)/구입 금액 * 100.0 = 수익률
+    - 수익율이 0보다 작을 경우 `100.0+수익률` 반환
 
 
 ### 3. 출력 처리
