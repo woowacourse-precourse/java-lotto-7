@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RankResult {
+    private static final long MINIMUM_AMOUNT = 0L;
     private final Map<Rank, Long> rankResult;
 
     public RankResult(Map<Rank, Long> rankResult) {
@@ -14,8 +15,8 @@ public class RankResult {
 
     public Money calculateWinningAmount() {
         return Arrays.stream(Rank.values())
-                .map(rank -> rank.getPrize().multiply(rankResult.getOrDefault(rank, 0L)))
-                .reduce(new Money(0L), Money::add);
+                .map(rank -> rank.getPrize().multiply(rankResult.getOrDefault(rank, MINIMUM_AMOUNT)))
+                .reduce(new Money(MINIMUM_AMOUNT), Money::add);
     }
 
     public double calculateRateOfResult(Money purchaseAmount) {
