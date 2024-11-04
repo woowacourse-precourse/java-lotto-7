@@ -51,13 +51,13 @@ public class Application {
         }
     }
 
-    private static void validateAmount(int amount) {
+    static void validateAmount(int amount) {
         if (amount <= 0 || amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] The purchase amount should be a positive multiple of 1,000.");
         }
     }
 
-    private static void validateWinningNumbers(List<Integer> numbers) {
+    static void validateWinningNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("There must be exactly 6 winning numbers.");
         }

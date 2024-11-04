@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -77,6 +79,18 @@ class ApplicationTest extends NsTest {
 
         double profitRate = Application.calculateProfitRate(totalPrize, purchaseAmount);
         assertEquals(30.0, profitRate, 0.1); // 예상 수익률 30.0%
+    }
+
+    @Test
+    void 구입금액이_잘못된_케이스_테스트() {
+        int invalidAmount = 1500; // 1000원 단위가 아님
+        assertThrows(IllegalArgumentException.class, () -> Application.validateAmount(invalidAmount));
+    }
+
+    @Test
+    void 잘못된_당첨번호_입력_테스트() {
+        List<Integer> invalidWinningNumbers = Arrays.asList(1, 1, 2, 3, 4, 5); // 중복된 번호
+        assertThrows(IllegalArgumentException.class, () -> Application.validateWinningNumbers(invalidWinningNumbers));
     }
 
     @Override
