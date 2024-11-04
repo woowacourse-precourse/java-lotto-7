@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.enums.Prize;
 import lotto.enums.Rank;
 
 import java.util.List;
@@ -19,10 +18,10 @@ public class EarningsRateCalculator {
     }
 
     private long calculateNetProfit() {
-        return placeCount.get(Rank.FIRST_PLACE_INDEX.getValue()) * Prize.FIRST_PLACE.getMoney()
-                + placeCount.get(Rank.SECOND_PLACE_INDEX.getValue()) * Prize.SECOND_PLACE.getMoney()
-                + placeCount.get(Rank.THIRD_PLACE_INDEX.getValue()) * Prize.THIRD_PLACE.getMoney()
-                + placeCount.get(Rank.FOURTH_PLACE_INDEX.getValue()) * Prize.FOURTH_PLACE.getMoney()
-                + placeCount.get(Rank.FIFTH_PLACE_INDEX.getValue()) * Prize.FIFTH_PLACE.getMoney();
+        return placeCount.get(Rank.FIRST_PLACE.getIndex()) * Rank.FIRST_PLACE.getPrizeMoney()
+                + placeCount.get(Rank.SECOND_PLACE.getIndex()) * Rank.SECOND_PLACE.getPrizeMoney()
+                + placeCount.get(Rank.THIRD_PLACE.getIndex()) * Rank.THIRD_PLACE.getPrizeMoney()
+                + placeCount.get(Rank.FOURTH_PLACE.getIndex()) * Rank.FOURTH_PLACE.getPrizeMoney()
+                + placeCount.get(Rank.FIFTH_PLACE.getIndex()) * Rank.FIFTH_PLACE.getPrizeMoney();
     }
 }

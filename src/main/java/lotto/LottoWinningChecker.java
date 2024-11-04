@@ -38,15 +38,15 @@ public class LottoWinningChecker {
     }
 
     private void checkRank(int matchingCount, boolean isBonusIncluded) {
-        if (matchingCount == Rank.FIRST_PLACE_MATCH_COUNT.getValue()) {
+        if (matchingCount == Rank.FIRST_PLACE.getMatchCount()) {
             firstPlaceCount++;
-        } else if (isBonusIncluded && matchingCount == Rank.SECOND_PLACE_MATCH_COUNT.getValue()) {
+        } else if (isBonusIncluded && matchingCount == Rank.SECOND_PLACE.getMatchCount()) {
             secondPlaceCount++;
-        } else if (matchingCount == Rank.THIRD_PLACE_MATCH_COUNT.getValue()) {
+        } else if (matchingCount == Rank.THIRD_PLACE.getMatchCount()) {
             thirdPlaceCount++;
-        } else if (matchingCount == Rank.FOURTH_PLACE_MATCH_COUNT.getValue()) {
+        } else if (matchingCount == Rank.FOURTH_PLACE.getMatchCount()) {
             fourthPlaceCount++;
-        } else if (matchingCount == Rank.FIFTH_PLACE_MATCH_COUNT.getValue()) {
+        } else if (matchingCount == Rank.FIFTH_PLACE.getMatchCount()) {
             fifthPlaceCount++;
         }
     }
