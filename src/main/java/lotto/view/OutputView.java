@@ -21,4 +21,8 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public void printBlank() {
+        System.out.println();
+    }
 }

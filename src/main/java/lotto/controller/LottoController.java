@@ -63,6 +63,7 @@ public class LottoController {
         try {
             String inputWinningNumbers = inputView.promptWinningNumbers();
             LottoValidator.validateWinningNumbers(inputWinningNumbers);
+            outputView.printBlank();
             return service.getWinningNumbers(inputWinningNumbers);
         } catch (IllegalArgumentException error) {
             outputView.printErrorMessage(error.getMessage());
