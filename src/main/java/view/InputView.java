@@ -10,6 +10,9 @@ import java.util.List;
 
 public class InputView {
 
+    private final static int LOTTO_COST = 1_000;
+    private final static int MAX_INPUT_NUMBER = 10_000;
+
     private List<Integer> inputNumber;
 
     // TODO: 구조가 비슷한 함수 있음, 합치기 고려
@@ -57,13 +60,13 @@ public class InputView {
 
     private boolean validateMoney(String money) {
         try {
-            if (parseInt(money) % 1000 != 0 || parseInt(money) == 0) {
-                System.out.println("[ERROR] 구입금액은 1,000원 단위입니다.");
+            if (parseInt(money) % LOTTO_COST != 0 || parseInt(money) == 0 || parseInt(money) >= MAX_INPUT_NUMBER) {
+                System.out.println("[ERROR] 구입금액은 1,000원 단위 10,000원 이하입니다.");
                 return false;
             }
             return true;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 구입금액은 1,000원 단위입니다.");
+            System.out.println("[ERROR] 구입금액은 1,000원 단위 10,000원 이하입니다.");
             return false;
         }
     }
