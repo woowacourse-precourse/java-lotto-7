@@ -29,6 +29,10 @@ public class WinningNumbers {
         }
     }
 
+    public static void resetWinningNumbers() {
+        winningNumbers.clear();
+    }
+
     private static void validate(List<Integer> numbers) {
         validateCount(numbers);
         validateRange(numbers);

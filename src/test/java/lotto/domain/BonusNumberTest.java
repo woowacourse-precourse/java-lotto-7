@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BonusNumberTest {
@@ -12,6 +13,10 @@ class BonusNumberTest {
     private static final String OUT_OF_RANGE = "46";
     private static final String DUPLICATED_NUMBER = "1";
 
+    @BeforeEach
+    void setUp() {
+        BonusNumber.resetInstance();
+    }
 
     @Test
     void 보너스_번호에_한개_이상의_숫자가_입력되면_예외가_발생한다() {

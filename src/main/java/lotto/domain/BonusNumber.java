@@ -24,6 +24,10 @@ public class BonusNumber {
         }
     }
 
+    public static void resetInstance() {
+        instance = null;
+    }
+
     public int getNumber() {
         return number;
     }

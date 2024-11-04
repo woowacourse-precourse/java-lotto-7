@@ -26,13 +26,12 @@ class CalculatorTest {
 
     @BeforeAll
     static void setUpBeforeAll() throws Exception {
+        WinningNumbers.resetWinningNumbers();
+        BonusNumber.resetInstance();
+
         // 당첨 번호를 입력한다.
         WinningNumbers.initialInstance(Arrays.asList(1, 2, 3, 4, 5, 6));
         BonusNumber.initialInstance("7");
-
-        // 유저는 5등과 4등에 당첨되었다.
-        WinningInformation.getInstance().addWinningCount(WinningPrize.FIFTH);
-        WinningInformation.getInstance().addWinningCount(WinningPrize.FOURTH);
     }
 
     @Test
@@ -74,6 +73,12 @@ class CalculatorTest {
 
     @Test
     void 발행한_로또_전체의_수익_합을_구하는_기능_테스트() {
+        WinningInformation.resetWinningInformation();
+
+        // 유저는 5등과 4등에 당첨되었다.
+        WinningInformation.getInstance().addWinningCount(WinningPrize.FIFTH);
+        WinningInformation.getInstance().addWinningCount(WinningPrize.FOURTH);
+
         Assertions.assertThat(calculator.sumOfPrize()).isEqualTo(55000);
     }
 
@@ -84,6 +89,11 @@ class CalculatorTest {
 
     @Test
     void 수익률_계산하는_기능_테스트() {
+        WinningInformation.resetWinningInformation();
+
+        // 유저는 5등과 4등에 당첨되었다.
+        WinningInformation.getInstance().addWinningCount(WinningPrize.FIFTH);
+        WinningInformation.getInstance().addWinningCount(WinningPrize.FOURTH);
         Assertions.assertThat(calculator.rateOfReturn(CAN_BUY_FIVE_LOTTO)).isEqualTo(1100.0);
     }
 

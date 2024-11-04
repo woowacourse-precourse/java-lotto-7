@@ -11,9 +11,10 @@ public class WinningInformation {
     private static final WinningInformation instance = new WinningInformation();
 
     private WinningInformation() {
+        initialPrizeAndCount();
     }
 
-    static {
+    private static void initialPrizeAndCount() {
         prizeAndCount.put(WinningPrize.FAILURE, 0);
         prizeAndCount.put(WinningPrize.FIFTH, 0);
         prizeAndCount.put(WinningPrize.FOURTH, 0);
@@ -28,6 +29,11 @@ public class WinningInformation {
 
     public static WinningInformation getInstance() {
         return instance;
+    }
+
+    public static void resetWinningInformation() {
+        prizeAndCount.clear();
+        initialPrizeAndCount();
     }
 
     public void addWinningCount(WinningPrize prize) {
