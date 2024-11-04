@@ -9,7 +9,7 @@ import lotto.util.Ranks;
 /**
  * 수익률 계산기
  */
-public class RevenuePercentCalculator {
+public class RevenuePercentCalculator implements RevenueCalculator {
 
     private final List<Long> rankCount;
 
@@ -19,7 +19,7 @@ public class RevenuePercentCalculator {
 
     public BigDecimal getRevenuePercent() {
         BigDecimal revenueSum = BigDecimal.ZERO;
-        ;
+
         long moneySpent = rankCount.stream().mapToLong(Long::longValue).sum() * Constants.LOTTO_PRICE.getNumber();
 
         for (Ranks rank : Ranks.values()) {
@@ -27,15 +27,15 @@ public class RevenuePercentCalculator {
         }
 
         return revenueSum.multiply(new BigDecimal("100"))
-                .divide(new BigDecimal(Long.toString(moneySpent)), Constants.ROUND_TO.getNumber(),
+                .divide(BigDecimal.valueOf(moneySpent), Constants.ROUND_TO.getNumber(),
                         RoundingMode.HALF_UP);
     }
 
-    private BigDecimal getRevenue(Ranks rank) {
+    public BigDecimal getRevenue(Ranks rank) {
         long count = rankCount.get(rank.getNumber());
         int prize = rank.getPrize();
 
-        return new BigDecimal(Long.toString(count * prize));
+        return BigDecimal.valueOf(count * prize);
     }
 
 
