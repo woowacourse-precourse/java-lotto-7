@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -53,9 +52,11 @@ public class WinningNumbers {
         return uniqueNumbers.size() != numbers.size();
     }
 
-    public List<Integer> getAllWinningNumbers() {
-        List<Integer> allWinningNumbers = new ArrayList<>(winningNumbers);
-        allWinningNumbers.add(bonusNumber);
-        return allWinningNumbers;
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
