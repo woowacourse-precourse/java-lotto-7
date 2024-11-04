@@ -86,4 +86,17 @@ public class LottoResultManager {
         System.out.println(LottoWinningResult.SIX_MATCHES.print(saveResult[4]));
     }
 
+    public void printProfitRate(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
+        int[] saveResult = saveLottoWinningResult(lottos, winningNumbers, bonusNumber);
+        int profit = 0;
+        profit += saveResult[0] * LottoWinningResult.THREE_MATCHES.getAmount();
+        profit += saveResult[1] * LottoWinningResult.FOUR_MATCHES.getAmount();
+        profit += saveResult[2] * LottoWinningResult.FIVE_MATCHES.getAmount();
+        profit += saveResult[3] * LottoWinningResult.FIVE_AND_BONUS_MATCHES.getAmount();
+        profit += saveResult[4] * LottoWinningResult.SIX_MATCHES.getAmount();
+
+        double profitRate = (double) profit / purchaseAmount *100;
+        System.out.println("총 수익률은 " + Math.round(profitRate*10)/10.0 + "%입니다.");
+    }
+
 }
