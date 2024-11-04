@@ -8,11 +8,12 @@ public class Application {
         // TODO: 프로그램 구현
         int buyingPrice= InputHandler.getBuyingPrice();
         MyLottos myLottos = new MyLottos(buyingPrice);
-        List<Integer> winningNumber = InputHandler.getWinningNumber();
 
-        int bonusNumber = InputHandler.getBonusNumber();
+        Lotto winningNumber = InputHandler.getWinningNumber();
 
-        LottoChecker lottoChecker = new LottoChecker(winningNumber, bonusNumber);
+        int bonusNumber = InputHandler.getBonusNumber(winningNumber);
+
+        LottoChecker lottoChecker = new LottoChecker(winningNumber.getNumbers(), bonusNumber);
         for(Lotto lotto : myLottos.getMyLottos()) {
             lottoChecker.recordLottoRank(lotto);
         }

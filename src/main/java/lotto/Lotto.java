@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,6 +15,14 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+        for (int num : numbers) {
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+            }
+        }
+        if(numbers.stream().collect(Collectors.toSet()).size() < 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
 
@@ -45,6 +55,10 @@ public class Lotto {
             return LottoRank.FIFTH.getRank();
         }
         return LottoRank.NONE.getRank();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     @Override

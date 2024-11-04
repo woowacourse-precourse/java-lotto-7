@@ -9,21 +9,46 @@ import java.util.stream.Collectors;
 public class InputHandler {
 
     public static int getBuyingPrice() {
-        String buyingPrice = Console.readLine();
-        return Integer.parseInt(buyingPrice);
+        while(true) {
+            try {
+                String buyingPrice = Console.readLine();
+                InputValidator.buyingPriceValidator(buyingPrice);
+                return Integer.parseInt(buyingPrice);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
-    public static List<Integer> getWinningNumber() {
+    public static Lotto getWinningNumber() {
         System.out.println("당첨 번호를 입력해주세요.");
-        String winningNumbers = Console.readLine();
-        return Arrays.stream(winningNumbers.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        while(true) {
+            try {
+                String winningNumbers = Console.readLine();
+                List<Integer> numbers = Arrays.stream(winningNumbers.split(","))
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+                Lotto winningLotto = new Lotto(numbers);
+                return winningLotto;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자만 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(Lotto winningNumber) {
         System.out.println("보너스 번호를 입력해주세요.");
-        String bonusNumber = Console.readLine();
-        return Integer.parseInt(bonusNumber);
+        while(true) {
+            try {
+                String bonusNumber = Console.readLine();
+                InputValidator.bonusNumberValidator(bonusNumber, winningNumber);
+                return Integer.parseInt(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
