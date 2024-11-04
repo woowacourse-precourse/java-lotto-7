@@ -33,8 +33,8 @@ public class LottoGame {
 
         // 당첨 통계 계산
         double rateOfResult = LottoStatistics.calcRateOfReturn(money, lottoRanks);
-        Map<LottoRank, Integer> rankMap = LottoStatistics.calcRankStatistics(lottoRanks);
-        outputDisplay.printWinStatistics(rankMap, rateOfResult);
+        Map<LottoRank, Integer> winningCntPerRank = LottoStatistics.calcRankStatistics(lottoRanks);
+        outputDisplay.printWinStatistics(winningCntPerRank, rateOfResult);
     }
 
     private List<LottoRank> checkLottosRank(List<Lotto> lottos, List<Integer> winnerNumbers, int bonus) {
