@@ -3,6 +3,8 @@ package lotto.domain;
 import lotto.constant.LottoRange;
 import lotto.utils.LottoMatcher;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.constant.ErrorMessage.*;
@@ -49,5 +51,12 @@ public class Lotto {
         if (!LottoRange.isAvailableRange(numbers)) {
             throw new IllegalArgumentException(NUMBERS_RANGE_ERROR.getMessage());
         }
+    }
+
+    @Override
+    public String toString() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers.toString();
     }
 }
