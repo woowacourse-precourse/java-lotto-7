@@ -39,6 +39,11 @@ public class LottoResultController {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
 
+            ArrayList<Integer> invalidNumbers = new ArrayList<>(winningNumber.getNumbers());
+            if (invalidNumbers.contains(bonusNumber)){
+                throw new IllegalArgumentException("[ERROR] 중복된 번호입니다.");
+            }
+
         }catch (NumberFormatException e){
             throw new IllegalArgumentException("[ERORR] 숫자만 입력 가능 합니다.");
         }
