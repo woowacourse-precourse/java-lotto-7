@@ -5,7 +5,7 @@ import static lotto.validator.LottoPurchaseCostValidator.validateLottoPurchaseCo
 public record LottoPurchaseCost(
         int amount
 ) {
-    public static LottoPurchaseCost from(String inputLottoPurchaseCost) {
+    public static LottoPurchaseCost of(String inputLottoPurchaseCost) {
         validateLottoPurchaseCost(inputLottoPurchaseCost);
         return new LottoPurchaseCost(Integer.parseInt(inputLottoPurchaseCost));
     }

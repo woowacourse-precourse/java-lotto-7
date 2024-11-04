@@ -54,6 +54,6 @@ public class LottoService {
             totalReword += ((long) entry.getKey().getReword() * entry.getValue());
         }
 
-        return RateOfReturn.of(totalReword, lottoPurchaseCost.amount());
+        return RateOfReturn.from(totalReword, lottoPurchaseCost.amount());
     }
 }

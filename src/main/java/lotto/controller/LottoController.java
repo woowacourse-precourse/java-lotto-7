@@ -39,7 +39,7 @@ public class LottoController {
         while (true) {
             try {
                 outputView.printLottoPurchaseCostMessage();
-                return LottoPurchaseCost.from(inputView.InputLottoPurchaseAmount());
+                return LottoPurchaseCost.of(inputView.InputLottoPurchaseAmount());
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
@@ -50,7 +50,7 @@ public class LottoController {
         while (true) {
             try {
                 outputView.printInputLottoWinningNumbersMessage();
-                return WinningLottoNumbers.from(inputView.InputLottoWinningNumbers());
+                return WinningLottoNumbers.of(inputView.InputLottoWinningNumbers());
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
