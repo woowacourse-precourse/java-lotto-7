@@ -14,7 +14,7 @@ public class InputView {
         return Long.parseLong(input);
     }
 
-    private static void validateNumberInput(String input){
+    private static void validateNumberInput(String input) {
         validateEmpty(input);
         validateNumeric(input);
     }

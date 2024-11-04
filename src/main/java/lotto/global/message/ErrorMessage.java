@@ -1,7 +1,7 @@
 package lotto.global.message;
 
 public class ErrorMessage {
-    private static final String ERROR_PREFIX = "[ERROR] : ";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     // Money 관련 에러 메시지
     public static final String MINIMUM_PURCHASE_AMOUNT = ERROR_PREFIX + "로또 구매는 1000원부터 가능합니다.";

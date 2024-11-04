@@ -12,8 +12,12 @@ import lotto.domain.WinningPrize;
 import lotto.global.message.OutputMessage;
 
 public class OutputView {
+    public static void printNewEmptyLine() {
+        System.out.print(OutputMessage.NEW_LINE);
+    }
+
     public static void printException(IllegalArgumentException e) {
-        System.out.println( e.getMessage());
+        System.out.println(e.getMessage());
     }
 
     public static void printPurchaseResult(Lottos purchasedLottos) {
@@ -22,7 +26,9 @@ public class OutputView {
     }
 
     private static void printPurchaseCount(Lottos purchasedLottos) {
+        printNewEmptyLine();
         System.out.printf(OutputMessage.PURCHASE_COUNT_FORMAT, purchasedLottos.getSize());
+        printNewEmptyLine();
     }
 
     private static void printLottoNumbers(Lottos purchasedLottos) {
@@ -33,6 +39,7 @@ public class OutputView {
             Collections.sort(sortedNumbers);
             System.out.println(sortedNumbers);
         }
+        printNewEmptyLine();
     }
 
     public static void printLottoResults(LottoResult lottoResult, double returnRate) {
@@ -42,12 +49,12 @@ public class OutputView {
     }
 
     private static void printResultHeader() {
+        printNewEmptyLine();
         System.out.println(OutputMessage.STATISTICS_HEADER);
         System.out.println(OutputMessage.STATISTICS_DELIMITER);
     }
 
     private static void printPrizeStatistics(Map<WinningPrize, Integer> results) {
-
         for (WinningPrize prize : WinningPrize.values()) {
             printValidPrizeResult(prize, results);
         }

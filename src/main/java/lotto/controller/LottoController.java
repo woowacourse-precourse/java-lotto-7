@@ -37,6 +37,8 @@ public class LottoController {
 
     private WinningNumbers inputWinningNumbers() {
         Lotto winnerLotto = inputLotto();
+        OutputView.printNewEmptyLine();
+
         BonusNumber bonusNumber = createBonusNumber();
         return createWinningNumbers(winnerLotto, bonusNumber);
     }
