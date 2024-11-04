@@ -16,8 +16,18 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        checkForDuplicates(numbers);
         for (int number : numbers) {
             validateNumberRange(number);
+        }
+    }
+
+    private void checkForDuplicates(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (int number : numbers) {
+            if (!uniqueNumbers.add(number)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+            }
         }
     }
 
