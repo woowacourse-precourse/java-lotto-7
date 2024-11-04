@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.validator.LottoValidator;
-import lotto.validator.PurchaseValidator;
+import lotto.validator.PaymentAmountValidator;
 import lotto.validator.WinningNumbersValidator;
 import lotto.view.ConsoleInput;
 import lotto.view.ConsoleOutput;
@@ -25,7 +25,7 @@ public class InputRetryUtil {
 
     public int getValidatedPurchaseAmount() {
         return readValidatedInput(consoleInput::getPurchasedAmount, InputParser::parseInteger,
-                PurchaseValidator::validate);
+                PaymentAmountValidator::validate);
     }
 
     public List<Integer> getValidatedWinningNumbers() {

@@ -10,7 +10,7 @@ public class LottoMachineValidator {
         if (winningMainNumbers == null || winningMainNumbers.isEmpty()) {
             throw ExceptionUtils.IllegalArgument(WinningNumbersExceptionMessage.NULL_OR_EMPTY_NUMBERS);
         }
-        PurchaseValidator.validate(paymentAmount);
+        PaymentAmountValidator.validate(paymentAmount);
     }
 
 }

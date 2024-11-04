@@ -1,13 +1,13 @@
 package lotto.entity;
 
 import lotto.configuration.LottoConfiguration;
-import lotto.validator.PurchaseValidator;
+import lotto.validator.PaymentAmountValidator;
 
 public class PaymentAmount {
     private final int amount;
 
     public PaymentAmount(int paymentAmount) {
-        PurchaseValidator.validate(paymentAmount);
+        PaymentAmountValidator.validate(paymentAmount);
         this.amount = paymentAmount;
     }
 

@@ -1,3 +1,7 @@
+![header](
+https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=Java%20Lotto&fontSize=90
+)
+
 # 프로그램 설명
 
 - 간단한 로또 발매기를 구현한다.
@@ -100,7 +104,7 @@
 
 ---
 
-# 변결 가능성이 높은 부분
+# 변경 가능성이 높은 부분
 
 1. 로또의 가격의 변경.
 2. 당첨 번호의 개수 및 형식의 변경
@@ -142,6 +146,78 @@
 ---
 
 # 기능 목록
+
+<table>
+    <thead>
+        <tr>
+            <th>패키지</th>
+            <th>클래스</th>
+            <th>설명</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="5">entity</td>
+            <td>Lotto</td>
+            <td>로또 클래스</td>
+        </tr>
+        <tr>
+            <td>PaymentAmount</td>
+            <td>사용자의 지불 금액을 가지고 있는 First class collection</td>
+        </tr>
+        <tr>
+            <td>WinningNumbers</td>
+            <td>로또 우승 번호들을 가지고 있는 클래스</td>
+        </tr>
+        <tr>
+            <td>LottoMachine</td>
+            <td>전반적인 로또 로직을 관리해주는 클래스.</td>
+        </tr>
+        <tr>
+            <td>ProfitReport</td>
+            <td>사용자의 로또들과 우승 번호를 비교하여 수익, 수익률 등을 계산하는 클래스.</td>
+        </tr>
+        <tr>
+            <td rowspan="3">controller</td>
+            <td>LottoController</td>
+            <td>컨트롤러</td>
+        </tr>
+        <tr>
+            <td>InputParser</td>
+            <td>로또 클래스</td>
+        </tr>
+        <tr>
+            <td>InputRetryUtil</td>
+            <td>로또 클래스</td>
+        </tr>
+        <tr>
+            <td rowspan="5">view</td>
+            <td>ConsoleInput</td>
+            <td>컨트롤러</td>
+        </tr>
+        <tr>
+            <td>ConsoleOutput</td>
+            <td>컨트롤러</td>
+        </tr>
+        <tr>
+            <td>ConsoleUtils</td>
+            <td>컨트롤러</td>
+        </tr>
+        <tr>
+            <td>inputProvider.inputProvider</td>
+            <td>컨트롤러</td>
+        </tr>
+        <tr>
+            <td>inputProvider.ConsoleInputProvider</td>
+            <td>컨트롤러</td>
+        </tr>
+        <tr>
+            <td rowspan="5">validator</td>
+            <td>ConsoleInput</td>
+            <td>컨트롤러</td>
+        </tr>
+    </tbody>
+</table>
 
 ### Entities
 

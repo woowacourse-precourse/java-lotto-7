@@ -4,7 +4,7 @@ import lotto.configuration.LottoConfiguration;
 import lotto.exception.ExceptionUtils;
 import lotto.exception.PurchaseExceptionMessage;
 
-public class PurchaseValidator {
+public class PaymentAmountValidator {
 
     public static void validate(int amount) {
         if (amount < LottoConfiguration.LOTTO_PRICE.getValue()) {
