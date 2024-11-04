@@ -18,6 +18,10 @@ public class Lottos {
 
     private final List<Lotto> lottos;
 
+    public Lottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
+
     public Lottos(PurchaseAmount purchaseAmount) {
         this.lottos = new ArrayList<>();
         generateRandomLottoNumbers(purchaseAmount.getPurchaseAmount());
