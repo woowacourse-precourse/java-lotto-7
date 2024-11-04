@@ -2,10 +2,13 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
+import lotto.util.WinnigResult;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -25,32 +28,61 @@ public class LottoService {
     }
 
     private void validatePurchaseAmount(int money) {
-        if (money % LOTTO_PRICE != 0){
+        if (money % LOTTO_PRICE != 0) {
             int remainder = money % LOTTO_PRICE;
             int neededMoney = LOTTO_PRICE - remainder;
             throw new IllegalArgumentException(
-                    String.format("[ERROR] %d원으로는 구매가 불가능합니다. %d원 더 채워주세요",remainder,neededMoney)
+                    String.format("[ERROR] %d원으로는 구매가 불가능합니다. %d원 더 채워주세요", remainder, neededMoney)
             );
         }
     }
 
     //당첨번호
-    public Lotto winningNumberSplit() {
-        List<Integer> numbers = Arrays.stream(winningNumberInput.split(","))
+    public Lotto parseWinnigNumbers(String input) {
+        List<Integer> numbers = Arrays.stream(input.split(","))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        lotto = new Lotto(numbers);
-        return lotto;
+
+        return new Lotto(numbers);
     }
-    public int bonusNumber() {
-        return Integer.valueOf(bonusNumberInput);
-    }
-    //무작위의 로또 배열
+
     public Lotto generateLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
-        return new Lotto(lottoNumbers);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
     }
 
+    public WinnigResult checkWinningResults(Lotto winningLotto, int bonusNumber) {
+        Map<LottoRank, Long> ranckCounts = purchasedLottos.stream()
+                .map(lotto -> calculateRank(lotto,winningLotto,bonusNumber))
+                .collect(Collectors.groupingBy(rank -> rank,Collectors.counting()));
 
+        long totalPrize = calculateToalPrize(ranckCounts);
+        double returnRate = calculateReturnRate(totalPrize,purchasedLottos.size());
 
+        return new WinnigResult(ranckCounts, returnRate);
+    }
+
+    private LottoRank calculateRank(Lotto userLotto, Lotto winningLotto, int bonusNumber) {
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+        List<Integer> userNumbers = userLotto.getNumbers();
+
+        long matchCount = userNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        boolean hasBonusMatched = userNumbers.contains(bonusNumber);
+
+        return LottoRank.of((int) matchCount, hasBonusMatched);
+    }
+
+    private long calculateToalPrize(Map<LottoRank, Long> rankCounts) {
+        return rankCounts.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
+
+    private double calculateReturnRate(long totalPrize, int lottoCount) {
+        return Math.round((totalPrize * 100.0) / (lottoCount * LOTTO_PRICE)) / 100.0;
+    }
 }
