@@ -32,7 +32,7 @@ public class Lotto {
         // 로또 번호에 중복된 숫자가 있으면 예외가 발생한다.
         for (int i = 0; i < SIZE.getMagicNumber() -1; i++) {
             if (numbers.get(i).equals(numbers.get(i+1))) {
-                throw new IllegalStateException(ILLEGAL_STATE.getMessage());
+                throw new IllegalArgumentException(ILLEGAL_STATE.getMessage());
             }
         }
 
