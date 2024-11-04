@@ -1,17 +1,18 @@
 package lotto.view;
 
+import java.util.List;
 import lotto.domain.Lottos;
 import lotto.dto.LottoStatisticsDto;
 
 public interface View {
 
-    String getMoney();
+    int getMoney();
 
     void printLottos(Lottos lottos);
 
-    String getWinningNumbers();
+    List<Integer> getWinningNumbers();
 
-    String getBonusNumber();
+    int getBonusNumber();
 
     void printResult(LottoStatisticsDto result);
 
