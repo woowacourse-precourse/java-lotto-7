@@ -8,7 +8,7 @@ public class LottoRequestParser {
 
     public static Integer parsePrice(String price) {
         try {
-            return Integer.parseInt(price);
+            return Integer.valueOf(price);
         } catch (NumberFormatException e) {
             throw new CustomIllegalArgumentException("금액은 유효한 숫자로 입력해주세요.");
         }
@@ -18,7 +18,7 @@ public class LottoRequestParser {
         try {
             return Stream.of(prizeNumber.split(","))
                     .map(String::trim)
-                    .map(Integer::parseInt)
+                    .map(Integer::valueOf)
                     .toList();
         } catch (NumberFormatException e) {
             throw new CustomIllegalArgumentException("당첨 번호는 유효한 숫자로 입력해주세요.");
@@ -27,7 +27,7 @@ public class LottoRequestParser {
 
     public static Integer parseBonusNumber(String bonusNumber) {
         try {
-            return Integer.parseInt(bonusNumber);
+            return Integer.valueOf(bonusNumber);
         } catch (NumberFormatException e) {
             throw new CustomIllegalArgumentException("보너스 번호는 유효한 숫자로 입력해주세요.");
         }
