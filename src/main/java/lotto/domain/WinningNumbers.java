@@ -11,7 +11,7 @@ public class WinningNumbers {
 
     public MatchResult match(Lotto lotto) {
         int matchCount = (int) lotto.countMatchNumbers(winningNumbers); // TODO long -> int
-        boolean matchBonus = lotto.containsNumber(bonusNumber);
+        boolean matchBonus = matchCount == 5 && lotto.containsNumber(bonusNumber);
         return new MatchResult(matchCount, matchBonus);
     }
 }
