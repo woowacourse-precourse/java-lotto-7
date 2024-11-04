@@ -17,6 +17,18 @@ public class Lotto {
         if (checkDuplicatedNumber(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 번호가 있습니다.");
         }
+        if (checkNumberRange(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 - 45범위의 경계를 포함한 값이여야합니다.");
+        }
+    }
+
+    private boolean checkNumberRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(this::isOutOfRange);
+    }
+
+    private boolean isOutOfRange(int number) {
+        return number < 1 || number > 45;
     }
 
     private boolean checkDuplicatedNumber(List<Integer> numbers) {

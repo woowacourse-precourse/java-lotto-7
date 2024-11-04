@@ -10,13 +10,15 @@ public class View {
     public String input() {
         return Console.readLine();
     }
+
     public String inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return input();
     }
 
-    public void printError(String errorMessage) {
-        System.out.println(errorMessage);
+    public String inputWinningLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return input();
     }
 
     public void printPaperStatus(List<PaperDto> paperDto) {
@@ -33,5 +35,9 @@ public class View {
             sb.append(paper).append("\n");
         }
         return sb.toString().trim();
+    }
+
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }
