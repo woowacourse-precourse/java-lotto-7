@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
+import static lotto.support.utils.CustomExceptionAssertions.assertCustomIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.lotto.InvalidLottoNumberException;
 import org.junit.jupiter.api.DisplayName;
@@ -35,10 +35,8 @@ public class LottoNumberTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> LottoNumber.valueOf(number))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> LottoNumber.valueOf(number))
                     .isExactlyInstanceOf(InvalidLottoNumberException.class)
-                    .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("로또 번호는 1 이상 45 이하여야 합니다.");
         }
     }

@@ -1,7 +1,7 @@
 package lotto.domain.quantity;
 
+import static lotto.support.utils.CustomExceptionAssertions.assertCustomIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.math.BigDecimal;
 import java.util.stream.Stream;
@@ -37,8 +37,7 @@ class QuantityTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> new Quantity(quantity))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> new Quantity(quantity))
                     .isExactlyInstanceOf(InvalidQuantityException.class)
                     .hasMessageContaining("수량은 자연수여야 합니다.");
         }

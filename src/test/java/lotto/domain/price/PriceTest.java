@@ -1,8 +1,8 @@
 package lotto.domain.price;
 
+import static lotto.support.utils.CustomExceptionAssertions.assertCustomIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.math.BigDecimal;
 import lotto.domain.quantity.Quantity;
@@ -36,8 +36,7 @@ public class PriceTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> new Price(BigDecimal.valueOf(500)))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> new Price(BigDecimal.valueOf(500)))
                     .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액이 1000원 단위가 아닙니다.");
         }
@@ -49,8 +48,7 @@ public class PriceTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> new Price(new BigDecimal(input)))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> new Price(new BigDecimal(input)))
                     .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액은 자연수여야 합니다.");
         }

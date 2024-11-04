@@ -2,9 +2,9 @@ package lotto.exception;
 
 public class CustomIllegalArgumentException extends IllegalArgumentException {
 
-    private static final String ERROR_MESSAGE = "[ERROR] ";
+    public static final String ERROR_PREFIX = "[ERROR] ";
 
     public CustomIllegalArgumentException(final String message) {
-        super(ERROR_MESSAGE + message);
+        super(ERROR_PREFIX + message);
     }
 }

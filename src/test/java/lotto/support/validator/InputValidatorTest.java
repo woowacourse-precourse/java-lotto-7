@@ -1,6 +1,6 @@
 package lotto.support.validator;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static lotto.support.utils.CustomExceptionAssertions.assertCustomIllegalArgumentException;
 
 import java.util.Collections;
 import lotto.exception.validator.InvalidInputException;
@@ -21,10 +21,8 @@ class InputValidatorTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> InputValidator.validateNotNullOrBlank(null, "입력값"))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> InputValidator.validateNotNullOrBlank(null, "입력값"))
                     .isExactlyInstanceOf(InvalidInputException.class)
-                    .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("입력값은(는) null일 수 없습니다.");
         }
 
@@ -34,10 +32,8 @@ class InputValidatorTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> InputValidator.validateNotNullOrBlank("", "입력값"))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> InputValidator.validateNotNullOrBlank("", "입력값"))
                     .isExactlyInstanceOf(InvalidInputException.class)
-                    .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("입력값은(는) 빈 문자열이거나 공백일 수 없습니다.");
         }
 
@@ -47,10 +43,8 @@ class InputValidatorTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> InputValidator.validateNotNullOrBlank(" ", "입력값"))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> InputValidator.validateNotNullOrBlank(" ", "입력값"))
                     .isExactlyInstanceOf(InvalidInputException.class)
-                    .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("입력값은(는) 빈 문자열이거나 공백일 수 없습니다.");
         }
     }
@@ -65,10 +59,8 @@ class InputValidatorTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> InputValidator.validateNotNullOrEmpty(null, "입력값"))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> InputValidator.validateNotNullOrEmpty(null, "입력값"))
                     .isExactlyInstanceOf(InvalidInputException.class)
-                    .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("입력값은(는) null일 수 없습니다.");
         }
 
@@ -78,10 +70,9 @@ class InputValidatorTest {
             // Given
 
             // When & Then
-            assertThatThrownBy(() -> InputValidator.validateNotNullOrEmpty(Collections.emptyList(), "입력값"))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(
+                    () -> InputValidator.validateNotNullOrEmpty(Collections.emptyList(), "입력값"))
                     .isExactlyInstanceOf(InvalidInputException.class)
-                    .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("입력값은(는) 빈 문자열일 수 없습니다.");
         }
     }

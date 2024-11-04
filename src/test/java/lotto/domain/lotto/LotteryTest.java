@@ -1,8 +1,8 @@
 package lotto.domain.lotto;
 
+import static lotto.support.utils.CustomExceptionAssertions.assertCustomIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.math.BigDecimal;
@@ -42,10 +42,8 @@ public class LotteryTest {
             List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
             // When & Then
-            assertThatThrownBy(() -> new Lottery(winningLotto, bonusNumber, lottos))
-                    .isInstanceOf(IllegalArgumentException.class)
+            assertCustomIllegalArgumentException(() -> new Lottery(winningLotto, bonusNumber, lottos))
                     .isExactlyInstanceOf(InvalidLottoNumberException.class)
-                    .hasMessageStartingWith("[ERROR] ")
                     .hasMessageContaining("보너스 번호가 로또에 포함되어서는 안됩니다.");
         }
     }
