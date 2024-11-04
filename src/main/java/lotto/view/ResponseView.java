@@ -22,6 +22,6 @@ public class ResponseView {
 		StringBuilder message = new StringBuilder();
 		message.append(MessageFormat.format(LOTTO_QUANTITY_MESSAGE_FORMAT, lotto.size())).append("\n");
 		lotto.forEach(l -> message.append(l.toString()).append("\n"));
-		System.out.println(message);
+		System.out.println(message.toString().trim());
 	}
 }
