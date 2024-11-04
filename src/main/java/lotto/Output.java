@@ -50,4 +50,8 @@ public class Output {
 		});
 	}
 
+	public void printEarningRate(double earningRate) {
+		System.out.println("총 수익률은 " + earningRate + "%입니다.");
+	}
+
 }
