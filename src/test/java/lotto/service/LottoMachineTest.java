@@ -1,4 +1,6 @@
-package lotto;
+package lotto.service;
+import lotto.domain.LottoTicket;
+import lotto.domain.PurchaseAmount;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

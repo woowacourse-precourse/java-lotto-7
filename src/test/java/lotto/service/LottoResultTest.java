@@ -1,6 +1,11 @@
-package lotto;
+package lotto.service;
 
 import java.lang.reflect.Field;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumbers;
+import lotto.domain.LottoTicket;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
