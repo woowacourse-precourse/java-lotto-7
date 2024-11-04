@@ -1,6 +1,12 @@
 package lotto.view;
 
+import static lotto.constant.Constant.DELIMITER;
+
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import lotto.exception.ExceptionCode;
+import lotto.exception.LottoException;
 
 public class InputView {
 
@@ -12,23 +18,36 @@ public class InputView {
 
     public static int readMoney() {
         System.out.println(MONEY_INPUT_VIEW);
-        int input = Integer.parseInt(Console.readLine().trim());
-
-        return input;
+        try {
+            int input = Integer.parseInt(Console.readLine().trim());
+            return input;
+        } catch (IllegalArgumentException e) {
+            throw new LottoException(ExceptionCode.INVALID_NUMBER_FORMAT);
+        }
     }
 
-    public static String readWinningNumbers() {
+    public static List<Integer> readWinningNumbers() {
         System.out.println(WINNING_NUMBERS_INPUT_VIEW);
         String input = Console.readLine().trim();
+        String[] inputInString = input.split(DELIMITER);
 
-        return input;
+        try {
+          List<Integer> winningNumbers = Arrays.stream(inputInString)
+                  .map(Integer::parseInt)
+                  .toList();
+          return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            throw new LottoException(ExceptionCode.INVALID_NUMBER_FORMAT);
+        }
     }
 
-    public static String readBonusNumber() {
+    public static int readBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_VIEW);
-        String input = Console.readLine().trim();
-
-        Console.close();
-        return input;
+        try {
+            int input = Integer.parseInt(Console.readLine().trim());
+            return input;
+        } catch (IllegalArgumentException e) {
+            throw new LottoException(ExceptionCode.INVALID_NUMBER_FORMAT);
+        }
     }
 }

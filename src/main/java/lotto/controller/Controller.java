@@ -16,12 +16,12 @@ public class Controller {
         List<Lotto> myLottos = lottoService.buyLotto(inputMoney);
         OutputView.showLottoNumbers(myLottos);
 
-        String inputNumbers = InputView.readWinningNumbers();
-        String inputBonusNumber = InputView.readBonusNumber();
+        List<Integer> inputNumbers = InputView.readWinningNumbers();
+        int inputBonusNumber = InputView.readBonusNumber();
         int[] result = lottoService.compareNumbers(myLottos, inputNumbers, inputBonusNumber);
         float profit = lottoService.calculateProfit(result, myLottos);
         OutputView.showWinningResult(result);
         OutputView.showProfitRatio(profit);
-    
+
     }
 }
