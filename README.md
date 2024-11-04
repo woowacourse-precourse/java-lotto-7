@@ -20,7 +20,7 @@ Lotto
 -[x] 로또 번호의 중복을 검증한다.
 
 Lotties
--[ ] Lotto 객체를 관리한다.
+-[x] Lotto 객체를 관리한다.
 
 LottoNumberGenerator
 -[ ] 로또 번호를 생성한다.
