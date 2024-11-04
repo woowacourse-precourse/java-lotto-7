@@ -13,24 +13,24 @@ public class WinningNumber {
 	}
 
 	private void validate(List<Integer> winningNumber) {
-		validateSize(winningNumber);
-		validateRange(winningNumber);
-		validateDuplicate(winningNumber);
+		checkSizeSix(winningNumber);
+		overInRange(winningNumber);
+		duplicateEach(winningNumber);
 	}
 
-	private void validateSize(List<Integer> winningNumber) {
+	private void checkSizeSix(List<Integer> winningNumber) {
 		if (winningNumber.size() != 6) {
 			throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
 		}
 	}
 
-	private void validateRange(List<Integer> winningNumber) {
+	private void overInRange(List<Integer> winningNumber) {
 		if (!winningNumber.stream().allMatch(number -> number >= 1 && number <= 45)) {
 			throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다.");
 		}
 	}
 
-	private void validateDuplicate(List<Integer> winningNumber) {
+	private void duplicateEach(List<Integer> winningNumber) {
 		Set<Integer> filteredNumbers = new HashSet<>(winningNumber);
 		if (filteredNumbers.size() != winningNumber.size()) {
 			throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
