@@ -38,7 +38,7 @@ public class Lotto {
         for (int i = 0; i < lottoMatchTable.size(); i++) {
             totalLottoWinPrice += lottoMatchTable.get(i) * lottoWinPrice.get(i);
         }
-        return (double) (totalLottoWinPrice - lottoPurchase) / lottoPurchase * LottoEnum.DIVIDE_100.getNumber();
+        return (double) (totalLottoWinPrice) / lottoPurchase * LottoEnum.DIVIDE_100.getNumber();
     }
 
     public List<Integer> pushNumberTable(List<Integer> equalNumberTable, int equalNumberCount, boolean bonusNumber) {
@@ -73,7 +73,7 @@ public class Lotto {
                     equalBonusNumber = true;
                 }
             }
-            if (3 <= equalNumberCount)
+            if (LottoEnum.EQUAL_NUMBER_COUNT_3.getNumber() <= equalNumberCount)
                 equalNumberTable = pushNumberTable(equalNumberTable, equalNumberCount, equalBonusNumber);
         }
         return equalNumberTable;

@@ -22,13 +22,12 @@ public class OutputView {
     }
 
     public void generateLotto(int lottoCount){
-        List<List<Integer>> lottos = new ArrayList<>();
+        this.boughtLottoNumbers = new ArrayList<>();
         for(int i = 0 ; i < lottoCount ; i++) {
-            List<Integer> lottoNumbers = randomNumber();
+            List<Integer> lottoNumbers = new ArrayList<>(randomNumber());
             lottoNumbers.sort(Integer::compareTo);
-            lottos.add(lottoNumbers);
+            this.boughtLottoNumbers.add(lottoNumbers);
         }
-        this.boughtLottoNumbers = lottos;
     }
 
     public void lottoWinOutput(List<Integer> lottoMatchTable){

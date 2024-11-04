@@ -11,6 +11,7 @@ public enum LottoEnum {
     EQUAL_LOTTO_NUMBER_5(5),
     NUMBER_TABLE_INDEX_3(3),
     NUMBER_TABLE_INDEX_6(6),
+    EQUAL_NUMBER_COUNT_3(3),
     LOTTO_WINNING(1);
 
 
