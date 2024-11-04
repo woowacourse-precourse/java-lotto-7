@@ -6,12 +6,11 @@ import java.util.List;
 import lotto.config.LottoConfig;
 
 public class Player {
+    public static final String RETURN_RATE_FORMAT = "%.1f";
     private final int purchaseAmount;
     private final List<Lotto> lottos;
     private WinningNumbers winningNumbers; // WinningNumbers 추가
     private int winningMoney;
-
-    public static final String RETURN_RATE_FORMAT = "%.1f";
 
     public Player(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;

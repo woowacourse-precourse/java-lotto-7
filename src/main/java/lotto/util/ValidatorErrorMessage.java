@@ -9,8 +9,8 @@ public enum ValidatorErrorMessage {
     NUMBER_COUNT_EXCEPTION("6개의 숫자를 입력해야 합니다."),
     MONEY_UNIT_EXCEPTION("1000원 단위로 입력해야 합니다.");
 
-    private final String errorMessage;
     private final static String prefix = "[ERROR] ";
+    private final String errorMessage;
 
     ValidatorErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;

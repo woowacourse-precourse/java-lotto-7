@@ -9,7 +9,6 @@ public class WinningNumbers {
 
     public void setWinningNumbers(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;
-
     }
 
     public void setBonusNumber(int bonusNumber) {

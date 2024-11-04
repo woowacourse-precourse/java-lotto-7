@@ -7,8 +7,7 @@ import lotto.config.LottoConfig;
 import lotto.model.domain.WinningMatch;
 
 public class OutputView {
-    public static final NumberFormat THOUSAND_SEPARATOR = NumberFormat.getInstance();
-
+    public final static NumberFormat THOUSAND_SEPARATOR = NumberFormat.getInstance();
     public final static String BEFORE_PURCHASE = "구입금액을 입력해 주세요.";
     public final static String COUNT_PURCHASE = "%d개를 구매했습니다.";
     public final static String WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
@@ -18,8 +17,6 @@ public class OutputView {
     public final static String STATISTIC_INFO = "%s (%s원) - %d개";
     public final static String TOTAL_RETURN_RATE = "총 수익률은 %s입니다.";
 
-    // 메서드 명 길이에 대해 고민해보기
-    // 메서드 명
     public void purchaseLottoAmountMesssage() {
         System.out.println(BEFORE_PURCHASE);
     }

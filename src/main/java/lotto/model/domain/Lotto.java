@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import lotto.config.LottoConfig;
 
 public class Lotto {
+    private final static String PREFIX = "[";
+    private final static String SUFFIX = "]";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -40,7 +42,7 @@ public class Lotto {
     }
 
     public String toFormattedString() {
-        String lottoNumber = "[" + numbers.stream().map(String::valueOf).collect(Collectors.joining(", ")) + "]";
+        String lottoNumber = PREFIX + numbers.stream().map(String::valueOf).collect(Collectors.joining(", ")) + SUFFIX;
         return lottoNumber;
     }
 

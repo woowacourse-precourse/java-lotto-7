@@ -11,7 +11,6 @@ import lotto.view.OutputView;
 public class Application {
     public static void main(String[] args) {
         WinningNumbers winningNumbers = new WinningNumbers();
-
         WinningNumbersService winningNumbersService = new WinningNumbersService(winningNumbers, new InputView());
 
         LottoController lottoController = new LottoController(
@@ -20,6 +19,7 @@ public class Application {
                 new LottoService(),
                 winningNumbersService
         );
+
         lottoController.run();
     }
 }
