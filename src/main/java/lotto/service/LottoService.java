@@ -2,11 +2,11 @@ package lotto.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import lotto.Lotto;
-import lotto.LottoPurchaseInfo;
-import lotto.LottoRank;
-import lotto.LottoResult;
-import lotto.Lottos;
+import lotto.domain.Lotto;
+import lotto.domain.LottoPurchaseInfo;
+import lotto.domain.LottoRank;
+import lotto.domain.LottoResult;
+import lotto.domain.Lottos;
 
 public class LottoService {
 

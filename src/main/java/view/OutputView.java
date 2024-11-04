@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lotto.Lotto;
-import lotto.LottoRank;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 
 public class OutputView {
 
