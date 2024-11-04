@@ -15,6 +15,9 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (numbers.getLast() > 45 || numbers.getFirst() < 1) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1이상 45이하입니다.");
+        }
     }
 
     // TODO: 추가 기능 구현
