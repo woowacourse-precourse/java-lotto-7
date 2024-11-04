@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.common.ErrorMessages;
+import lotto.domain.LottoConstants;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +18,7 @@ public class InputView {
                 validatePurchaseAmount(purchaseAmount);
                 return purchaseAmount;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다.");
+                System.out.println(ErrorMessages.INVALID_NUMBER_FORMAT);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -33,7 +35,7 @@ public class InputView {
                 validateWinningNumbers(numbers);
                 return numbers;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다.");
+                System.out.println(ErrorMessages.INVALID_NUMBER_FORMAT);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -48,7 +50,7 @@ public class InputView {
                 validateBonusNumber(bonusNumber);
                 return bonusNumber;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다.");
+                System.out.println(ErrorMessages.INVALID_NUMBER_FORMAT);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -57,29 +59,28 @@ public class InputView {
 
     private void validatePurchaseAmount(int amount){
         if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_AMOUNT);
         }
-        if(amount % 1000 != 0){
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위이어야 합니다.");
+        if (amount % LottoConstants.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_PRICE);
         }
     }
 
     private void validateWinningNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자여야 합니다.");
+        if (numbers.size() != LottoConstants.LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_COUNT);
         }
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이의 숫자여야 합니다.");
+        if (numbers.stream().anyMatch(num -> num < LottoConstants.LOTTO_MIN_NUMBER || num > LottoConstants.LOTTO_MAX_NUMBER)) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
         }
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        if (numbers.stream().distinct().count() != LottoConstants.LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_DUPLICATE_NUMBER);
         }
     }
 
     private void validateBonusNumber(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+        if (bonusNumber < LottoConstants.LOTTO_MIN_NUMBER || bonusNumber > LottoConstants.LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
         }
     }
-
 }

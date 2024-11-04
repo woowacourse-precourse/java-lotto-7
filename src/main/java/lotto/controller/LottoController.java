@@ -24,7 +24,6 @@ public class LottoController {
 
     public void run(){
         try{
-            // todo : Lotto Main Logic 작성
             int purchaseAmount = inputView.inputPurchaseAmount();
 
             List<Lotto> purchasedLottos = lottoService.purchaseLotto(purchaseAmount);

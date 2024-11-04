@@ -1,7 +1,9 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.common.ErrorMessages;
 import lotto.domain.Lotto;
+import lotto.domain.LottoConstants;
 import lotto.domain.Rank;
 
 import java.util.ArrayList;
@@ -11,13 +13,12 @@ import java.util.Map;
 
 public class LottoService {
 
-    final int LOTTO_PRICE = 1000;
 
     public List<Lotto> purchaseLotto(int purchaseAmount){
-        if(purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위이어야 합니다.");
+        if(purchaseAmount % LottoConstants.LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_PRICE);
         }
-        int purchaseLottoCount = purchaseAmount / LOTTO_PRICE;
+        int purchaseLottoCount = purchaseAmount / LottoConstants.LOTTO_PRICE;
         return issueLotto(purchaseLottoCount);
     }
 
@@ -53,7 +54,7 @@ public class LottoService {
     private List<Lotto> issueLotto(int purchaseLottoCount){
         List<Lotto> lottos = new ArrayList<>();
         for(int i=0; i<purchaseLottoCount; i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstants.LOTTO_MIN_NUMBER, LottoConstants.LOTTO_MAX_NUMBER, 6);
             lottos.add(new Lotto(numbers));
         }
         return lottos;
