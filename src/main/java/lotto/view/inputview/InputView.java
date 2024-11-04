@@ -1,10 +1,19 @@
 package lotto.view.inputview;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.handler.ExceptionHandler;
 import lotto.message.error.ErrorMessage;
 import lotto.message.info.InfoMessage;
 
+import java.util.List;
+
 public class InputView implements Input {
+
+    private final ExceptionHandler exceptionHandler;
+    public InputView(ExceptionHandler exceptionHandler) {
+        this.exceptionHandler = exceptionHandler;
+    }
+
     @Override
     public int requestPurchaseAmount() {
         int purchaseAmount = -1;
@@ -12,7 +21,7 @@ public class InputView implements Input {
             try {
                 System.out.println(InfoMessage.REQUEST_PURCHASE_AMOUNT.getMessage());
                 purchaseAmount = Integer.parseInt(Console.readLine());
-                validatePurchaseAmount(purchaseAmount);
+                exceptionHandler.validatePurchaseAmount(purchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
@@ -21,10 +30,12 @@ public class InputView implements Input {
         return purchaseAmount;
     }
 
-
-    public void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount <= 0 || purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
-        }
+    @Override
+    public String requestLottoNumbers() {
+        System.out.println(InfoMessage.REQUEST_WINNING_NUMBERS);
+        return Console.readLine();
     }
+
+
+
 }

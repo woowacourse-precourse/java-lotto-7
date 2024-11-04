@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.handler.ExceptionHandler;
 import lotto.model.service.LottServiceImpl;
 import lotto.model.service.LottoService;
 import lotto.view.inputview.InputView;
@@ -18,8 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    private final InputView inputView = new InputView();
+    private final InputView inputView = new InputView(new ExceptionHandler());
     private final LottoService lottoService = new LottServiceImpl();
+    private final ExceptionHandler exceptionHandler = new ExceptionHandler();
 
     @Test
     void 기능_테스트() {
@@ -70,7 +72,7 @@ class ApplicationTest extends NsTest {
         int amount = 1313;
         //when, then
         assertThrows(IllegalArgumentException.class,
-                () -> inputView.validatePurchaseAmount(amount));
+                () -> exceptionHandler.validatePurchaseAmount(amount));
     }
 
     @Test
@@ -79,7 +81,7 @@ class ApplicationTest extends NsTest {
         //given
         int amount = 2000;
         //when, then
-        assertDoesNotThrow(() -> inputView.validatePurchaseAmount(amount));
+        assertDoesNotThrow(() -> exceptionHandler.validatePurchaseAmount(amount));
     }
 
     @Test

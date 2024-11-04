@@ -1,6 +1,7 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
+import lotto.handler.ExceptionHandler;
 import lotto.model.service.LottServiceImpl;
 import lotto.model.service.LottoService;
 import lotto.view.inputview.InputView;
@@ -17,10 +18,14 @@ public class AppConfig {
     }
 
     public InputView inputView() {
-        return new InputView();
+        return new InputView(exceptionHandler());
     }
 
     public ResultView resultView() {
         return new ResultView();
+    }
+
+    public ExceptionHandler exceptionHandler() {
+        return exceptionHandler();
     }
 }
