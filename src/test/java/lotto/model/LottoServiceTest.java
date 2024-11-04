@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest;
@@ -72,5 +73,34 @@ class LottoServiceTest {
 
         // then
         assertThat(testRank).isEqualTo(rank);
+    }
+
+    @DisplayName("구매한 로또와 당첨 번호, 보너스 번호를 통해 올바른 당첨 결과를 계산한다.")
+    @Test
+    void calculateResultsTest() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    lottoService.buyLotto(8000); // 로또 8장 구매
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(7, 8, 9, 10, 11, 12),
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(1, 2, 3, 4, 5, 8),
+                List.of(1, 2, 3, 4, 7, 8),
+                List.of(1, 2, 3, 7, 8, 9),
+                List.of(8, 9, 10, 11, 12, 13),
+                List.of(14, 15, 16, 17, 18, 19)
+        );
+
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        Map<Rank, Integer> results = lottoService.calculateResults(winningNumbers, bonusNumber);
+
+        assertThat(results.get(Rank.FIRST)).isEqualTo(1);
+        assertThat(results.get(Rank.SECOND)).isEqualTo(1);
+        assertThat(results.get(Rank.THIRD)).isEqualTo(1);
+        assertThat(results.get(Rank.FOURTH)).isEqualTo(1);
+        assertThat(results.get(Rank.FIFTH)).isEqualTo(1);
+        assertThat(results.get(Rank.NONE)).isEqualTo(3);
     }
 }
