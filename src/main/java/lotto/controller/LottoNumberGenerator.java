@@ -17,7 +17,8 @@ public class LottoNumberGenerator {
     }
 
     public List<Integer> generateRandomLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBERS, LOTTO_NUMBER_COUNT);
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBERS, LOTTO_NUMBER_COUNT));
+        return lottoNumbers;
     }
 
     public List<List<Integer>> generateLottoSet(int lottoSetCount) {

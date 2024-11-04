@@ -23,5 +23,7 @@ public class LottoController {
         int bonusNumber = inputHandler.getBonusNumber();
         lottoService.compareWinningNumbers(lottoSets, winningNumbers, bonusNumber);
         resultPrinter.printMatchResult(lottoService.getMatchResults());
+        double profitRate = lottoService.calculateProfitRate();
+        resultPrinter.printProfitRate(profitRate);
     }
 }

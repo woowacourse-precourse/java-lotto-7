@@ -10,9 +10,11 @@ public class LottoService {
     private Map<String, Integer> matchResults;
     private final int lottoSetCount;
     private List<List<Integer>> lottoSets;
+    private final int lottoMoney;
 
     public LottoService(int lottoMoney) {
         this.lottoSetCount = calculateLottoSetCount(lottoMoney);
+        this.lottoMoney = lottoMoney;
         initializeMatchResults();
     }
 
@@ -58,5 +60,29 @@ public class LottoService {
 
     private int calculateLottoSetCount(int lottoMoney) {
         return lottoMoney / 1000;
+    }
+
+    public int calculateTotalEarnings() {
+        int earnings = 0;
+
+        earnings += matchResults.get("3") * 5000;
+        earnings += matchResults.get("4") * 50000;
+        earnings += matchResults.get("5") * 1500000;
+        earnings += matchResults.get("5+Bonus") * 30000000;
+        earnings += matchResults.get("6") * 2000000000;
+
+        return earnings;
+    }
+
+    public double calculateProfitRate() {
+        int totalSpent = lottoMoney;
+        int totalEarnings = calculateTotalEarnings();
+
+        if (totalSpent == 0) {
+            return 0;
+        }
+
+        double profitRate = (double) totalEarnings / totalSpent * 100;
+        return Math.round(profitRate * 100) / 100.0;
     }
 }

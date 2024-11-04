@@ -17,4 +17,8 @@ public class LottoResultHandler {
     public void printMatchResult(Map<String, Integer> matchResults) {
         ResultView.printMatchResult(matchResults);
     }
+
+    public void printProfitRate(double profitRate){
+        ResultView.printProfitRate(profitRate);
+    }
 }
