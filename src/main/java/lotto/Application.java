@@ -256,6 +256,6 @@ public class Application {
     private static void printProfit(int buy_price, int total){
         float profit = ((float)total / buy_price) * 100;
 
-        System.out.printf("총 수익률은 %.1f%%입니다.", profit);
+        System.out.printf("총 수익률은 %,.1f%%입니다.", profit);
     }
 }
