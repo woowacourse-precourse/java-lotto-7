@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class View {
     private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_PROMPT = "당첨 번호를 입력해 주세요.";
@@ -17,7 +19,7 @@ public class View {
 
     private static final String RATE_OF_RETURN_MONEY = "총 수익률은 %d%입니다.";
 
-    public String getPurchaseAmount(){
+    public String printAndgetPurchaseAmount(){
         System.out.println(PURCHASE_AMOUNT_PROMPT);
         return Console.readLine();
     }
@@ -42,6 +44,12 @@ public class View {
 
     public void printRateOfReturnMoney(int rateOfReturnMoney){
         System.out.println(String.format(RATE_OF_RETURN_MONEY, rateOfReturnMoney));
+    }
+
+    public void printLottos(List<List<Integer>> lottos){
+        for(List<Integer> lotto : lottos){
+            System.out.println(lotto.toString());
+        }
     }
 
 }
