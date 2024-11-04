@@ -17,10 +17,6 @@ public enum WinningType {
         this.message = message;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public int getPrize() {
         return prize;
     }
