@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.PurchaseAmount;
+import lotto.domain.Money;
 import lotto.domain.WinningNumbers;
 import lotto.domain.WinningResult;
 import lotto.view.InputView;
@@ -14,17 +14,17 @@ import lotto.view.OutputView;
 public class LottoMachine {
 
     public void run() {
-        PurchaseAmount purchaseAmount = InputView.readPurchaseAmount();
-        List<Lotto> lottos = purchaseLottos(purchaseAmount);
+        Money money = InputView.readMoney();
+        List<Lotto> lottos = purchaseLottos(money);
 
         WinningNumbers winningNumbers = InputView.readWinningNumbers();
 
-        WinningResult result = WinningResult.of(lottos, winningNumbers, purchaseAmount.amount());
+        WinningResult result = WinningResult.of(lottos, winningNumbers, money.amount());
         OutputView.printWinningResult(result);
     }
 
-    private List<Lotto> purchaseLottos(final PurchaseAmount purchaseAmount) {
-        int purchaseQuantity = calculatePurchaseQuantity(purchaseAmount);
+    private List<Lotto> purchaseLottos(final Money money) {
+        int purchaseQuantity = calculatePurchaseQuantity(money);
         OutputView.printPurchaseQuantity(purchaseQuantity);
 
         List<Lotto> lottos = IntStream.range(0, purchaseQuantity)
@@ -43,7 +43,7 @@ public class LottoMachine {
         return Lotto.from(numbers);
     }
 
-    private int calculatePurchaseQuantity(final PurchaseAmount purchaseAmount) {
-        return purchaseAmount.amount() / PurchaseAmount.UNIT_AMOUNT;
+    private int calculatePurchaseQuantity(final Money money) {
+        return money.divide(Lotto.PRICE);
     }
 }

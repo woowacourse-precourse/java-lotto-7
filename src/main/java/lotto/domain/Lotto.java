@@ -5,6 +5,7 @@ import lotto.exception.LottoException;
 
 public record Lotto(List<LottoNumber> numbers) {
 
+    public final static Money PRICE = Money.from(1000);
     public final static int LOTTO_SIZE = 6;
 
     public Lotto {
@@ -21,7 +22,7 @@ public record Lotto(List<LottoNumber> numbers) {
         return new Lotto(lottoNumbers);
     }
 
-    public boolean contains(LottoNumber number) {
+    public boolean contains(final LottoNumber number) {
         return numbers.contains(number);
     }
 
