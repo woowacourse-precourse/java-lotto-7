@@ -5,6 +5,8 @@ import java.util.List;
 
 public class LottoGame {
     private static final int LOTTO_COST = 1000;
+    private static final int NUM_MIN = 1;
+    private static final int NUM_MAX = 45;
 
     private final MyLotto myLotto;
 
@@ -39,11 +41,16 @@ public class LottoGame {
     }
 
     private void validateWinningNumber(String[] winningNumberString) {
-        boolean hasInvalidNumber = Arrays.stream(winningNumberString)
+        boolean containsNonNumeric = Arrays.stream(winningNumberString)
                 .anyMatch(num -> !isInteger(num));
-
-        if(hasInvalidNumber) {
+        if (containsNonNumeric) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
+        }
+
+        boolean containsOutOfRange = Arrays.stream(winningNumberString)
+                .anyMatch(num -> !isInRange(num));
+        if (containsOutOfRange) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45까지 입력 가능합니다.");
         }
     }
 
@@ -54,5 +61,12 @@ public class LottoGame {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    private boolean isInRange(String num) {
+        if (Integer.parseInt(num) >= NUM_MIN && Integer.parseInt(num) <= NUM_MAX) {
+            return true;
+        }
+        return false;
     }
 }
