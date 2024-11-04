@@ -7,32 +7,39 @@ import lotto.util.WinningNumberValidate;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class InputView extends View {
 
     private final String SPLIT_DELIMITER = ",";
 
     public int getAmount() {
-        System.out.println(AMOUNT_PROMPT);
-        String amount = Console.readLine().trim();
-        AmountValidate.validate(amount);
-        return stringToInt(amount);
+        return doLoop(AMOUNT_PROMPT, AmountValidate::validate, this::stringToInt);
     }
 
     public List<Integer> getWinningNumber() {
         br();
-        System.out.println(WINNING_NUMBER_PROMPT);
-        String winningNumber = Console.readLine();
-        WinningNumberValidate.validate(winningNumber);
-        return stringToList(winningNumber);
+        return doLoop(WINNING_NUMBER_PROMPT, WinningNumberValidate::validate, this::stringToList);
     }
 
     public int getBonusNumber(List<Integer> winningNumber) {
         br();
-        System.out.println(BONUS_NUMBER_PROMPT);
-        String bonusNumber = Console.readLine().trim();
-        BonusNumberValidate.validate(bonusNumber, winningNumber);
-        return stringToInt(bonusNumber);
+        return doLoop(BONUS_NUMBER_PROMPT,
+                input -> BonusNumberValidate.validate(input, winningNumber),
+                this::stringToInt);
+    }
+
+    private <T> T doLoop(String prompt, Consumer<String> validator, Function<String, T> converter) {
+        System.out.println(prompt);
+        String input = Console.readLine().trim();
+        try {
+            validator.accept(input);
+            return converter.apply(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return doLoop(prompt, validator, converter);
+        }
     }
 
     private int stringToInt(String string) {
