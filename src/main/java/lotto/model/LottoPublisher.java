@@ -16,7 +16,7 @@ public class LottoPublisher {
 
     public LottoPublisher(int repeatCount) {
         for (int i = 0; i < repeatCount; i++) {
-            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBERS_COUNT);
             //Collections.sort(lotto);
             publishedLotto.add(lotto);
         }

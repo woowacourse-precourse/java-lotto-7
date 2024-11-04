@@ -7,10 +7,6 @@ import java.util.stream.Collectors;
 public class TypeConverter {
     private static final String DELIMITER = ",";
 
-    public static int ToNumber(String input) {
-        return Integer.parseInt(input);
-    }
-
     public static List<Integer> ToNumberList(String input) {
         return Arrays.stream(input.split(DELIMITER))
                 .map(Integer::parseInt)

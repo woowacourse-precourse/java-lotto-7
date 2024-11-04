@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.List;
-
 public class ValidationManager {
 
     private final String NON_NUMERIC_ERROR = "[ERROR] 숫자 이외의 한글,알파벳,특수문자 등을 허용하지 않습니다.";
