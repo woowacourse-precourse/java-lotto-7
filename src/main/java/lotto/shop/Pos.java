@@ -30,7 +30,7 @@ public class Pos {
         return Integer.parseInt(trimmedWon);
     }
 
-    private String trim(String text) {
+    String trim(String text) {
         return text.trim();
     }
 
