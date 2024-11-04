@@ -1,10 +1,10 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.Utils;
 import lotto.view.Error;
 
 public class Seller {
@@ -29,7 +29,7 @@ public class Seller {
         int howmany = money / 1000;
 
         for (int i = 0; i < howmany; i++) {
-            setLottoTicket(lottos, new Lotto(getRandomNumber()));
+            setLottoTicket(lottos, new Lotto(Utils.getLottoNumber()));
         }
 
         return lottos;
@@ -37,9 +37,5 @@ public class Seller {
 
     public void setLottoTicket(List<Lotto> lottos, Lotto lotto) {
         lottos.add(lotto);
-    }
-
-    public List<Integer> getRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
