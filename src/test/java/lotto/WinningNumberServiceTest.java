@@ -46,4 +46,11 @@ public class WinningNumberServiceTest {
 
         assertThat(winning.getBonusNumber()).isEqualTo(7);
     }
+
+    @Test
+    void 순위_결과_구하기_테스트() {
+        Map<Ranking,Integer> rankingResult = winningNumberService.getRankingResult();
+
+        assertThat(rankingResult.size()).isEqualTo(5);
+    }
 }
