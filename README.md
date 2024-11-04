@@ -29,7 +29,7 @@
   - [x] create Lotto more than ones
   - [x] save win Lotto number and bonus number from user
   - [x] return winning info of created Lottos
-  - [ ] calculate rate of return
+  - [x] calculate rate of return
 
 - provide user interface
   - [ ] read input money from user 
