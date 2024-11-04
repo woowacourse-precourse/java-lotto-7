@@ -95,6 +95,11 @@ public class Application {
     }
 
     private static void displayResults(Map<Rank, Integer> matchCounts) {
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                System.out.printf("%s - %d개%n", rank.getMessage(), matchCounts.get(rank));
+            }
+        }
     }
 
     private static void displayProfit(Map<Rank, Integer> matchCounts, int moneySpent) {
