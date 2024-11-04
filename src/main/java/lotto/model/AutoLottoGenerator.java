@@ -25,8 +25,8 @@ public class AutoLottoGenerator {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
-                    COUNT_OF_NUMBERS_INCLUDED_IN_ONE_LOTTO);
+            List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
+                    COUNT_OF_NUMBERS_INCLUDED_IN_ONE_LOTTO));
             Collections.sort(lottoNumbers);
 
             Lotto lotto = new Lotto(lottoNumbers, inputValidator);
