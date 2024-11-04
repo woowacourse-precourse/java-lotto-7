@@ -44,7 +44,9 @@ public class Formatter {
         formattedStatistics.add(OutputMessage.WINNING_STATISTICS_HEADER.getMessage());
         formattedStatistics.add(OutputMessage.WINNING_STATISTICS_SEPARATOR.getMessage());
 
-        for (WinningRules rule : WinningRules.values()) {
+        WinningRules[] rules = WinningRules.values();
+        for (int i = rules.length - 1; i >= 0; i--) {
+            WinningRules rule = rules[i];
             if (rule == WinningRules.NO_WIN) {
                 continue;
             }

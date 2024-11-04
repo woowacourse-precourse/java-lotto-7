@@ -17,7 +17,9 @@ public enum ErrorMessage {
     RANGE_OUT_NUMBERS("번호는 %d에서 %d 사이의 정수만 입력할 수 있습니다."),
     DUPLICATE_NUMBERS("당첨 번호 중 중복된 번호가 있습니다: %d"),
     NOT_NUMERIC_BONUS_NUMBER("보너스 번호는 숫자만 입력할 수 있습니다."),
-    ;
+    INVALID_LOTTO_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
+    DUPLICATE_LOTTO_NUMBER("로또 번호는 중복되지 않는 숫자여야 합니다."),
+    INVALID_LOTTO_NUMBER_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
 
     private final String message;
 
