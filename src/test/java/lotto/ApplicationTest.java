@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -16,7 +18,9 @@ class ApplicationTest extends NsTest {
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("8000", "1,2,3,4,5,6", "7");
+                    run("8000");
+                    run("1,2,3,4,5,6");
+                    run("7");
                     assertThat(output()).contains(
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
@@ -46,10 +50,96 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("금액이 빈 칸이면 예외가 발생한다.")
     @Test
-    void 예외_테스트() {
+    void EMPTY_INPUT_ERROR() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            AmountValidator validator = new AmountValidator();
+            validator.validateInput("");
+        });
+        String expectedMessage = "[ERROR] 구매 금액을 입력해주세요.";
+        String actualMessage = exception.getMessage();
+
+        assertThat(actualMessage).contains(expectedMessage);
+    }
+
+    @DisplayName("금액이 공백이면 예외가 발생한다.")
+    @Test
+    void SPACE_INPUT_ERROR() {
         assertSimpleTest(() -> {
-            runException("1000j");
+            runException(" ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("문자로 입력하면 예외가 발생한다.")
+    @Test
+    void STRING_ERROR() {
+        assertSimpleTest(() -> {
+            runException("천 원");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("쉼표를 제외한 특수기호로 입력하면 예외가 발생한다.")
+    @Test
+    void MARKS_ERROR() {
+        assertSimpleTest(() -> {
+            runException("1[]000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("천 단위 이외에 쉼표가 붙으면 예외가 발생한다.")
+    @Test
+    void COMMA_FORMAT_ERROR1() {
+        assertSimpleTest(() -> {
+            runException("100,0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("천 단위 이외에 쉼표가 붙으면 예외가 발생한다.")
+    @Test
+    void COMMA_FORMAT_ERROR2() {
+        assertSimpleTest(() -> {
+            runException("1,0,000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("최소 금액(1000원) 불만족 시 예외가 발생한다.")
+    @Test
+    void MINIMUM_AMOUNT_ERROR() {
+        assertSimpleTest(() -> {
+            runException("900");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("1000원 단위가 아니면 예외가 발생한다.")
+    @Test
+    void AMOUNT_UNIT_ERROR() {
+        assertSimpleTest(() -> {
+            runException("5404");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("음수인 경우에 예외가 발생한다.")
+    @Test
+    void NEGATIVE_AMOUNT_ERROR() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("1,000,000원 초과 시 예외가 발생한다.")
+    @Test
+    void MAXIMUM_AMOUNT_ERROR() {
+        assertSimpleTest(() -> {
+            runException("10000000");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
