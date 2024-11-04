@@ -36,14 +36,17 @@ public class Input {
     }
 
     private int inputNumber() {
-        String inputString = Console.readLine();
-        int number = 0;
-        try {
-            number = Integer.parseInt(inputString);
-        } catch (NumberFormatException e) {
-            System.out.println(ERROR_LOG + INVALID_NUMBER_FORMAT);
+        while (true) {
+            String inputString = Console.readLine();
+            int number = 0;
+            try {
+                number = Integer.parseInt(inputString);
+                return number;
+            } catch (NumberFormatException e) {
+                System.out.println(ERROR_LOG + INVALID_NUMBER_FORMAT);
+            }
         }
-        return number;
+
     }
 
     private List<Integer> inputAndParsingNumbers() {

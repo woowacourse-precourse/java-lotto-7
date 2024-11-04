@@ -18,7 +18,6 @@ public class LottoFactory {
     }
 
     public Lotto createLottoByNumbers(List<Integer> numbers) {
-        lottoValidator.validateLottoCreate(numbers);
         return new Lotto(numbers);
     }
 
