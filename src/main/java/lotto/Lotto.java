@@ -7,6 +7,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicate(numbers);
+        validateNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -14,6 +16,28 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 숫자로 이루어져야합니다.");
+        }
+    }
+
+    private void validateNumbers(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public String toString() {
+        return numbers.toString();
     }
 
     // TODO: 추가 기능 구현
