@@ -8,7 +8,7 @@ import lotto.model.numbergenerator.NumberGenerator;
 public class Lottos {
 
     private List<Lotto> lottos = new ArrayList<>();
-    private final NumberGenerator numberGenerator;
+    private NumberGenerator numberGenerator;
     private final Trial trial;
 
     public Lottos(NumberGenerator numberGenerator, Trial trial) {
