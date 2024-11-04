@@ -7,7 +7,7 @@ import lotto.model.Lotto;
 public class OutputView implements OutputViewInterface {
 
   public void printPurchaseCount(int count) {
-    
+    System.out.println(count + "개를 구매했습니다.");
   }
 
   public void printGeneratedLottos(List<Lotto> lottos) {
