@@ -50,4 +50,14 @@ public class Lotto {
 			.filter(num -> lottos.contains(bonusNumber))
 			.count();
 	}
+
+	public long calculateTotalEarningRate(List<Lotto> lottos, List<Integer> luckyNumber, int bonusNumber) {
+		long total = 0;
+		for(Lotto lotto : lottos) {
+			List<Integer> numbers = lotto.getNumbers();
+			int matchCount = compareNumbers(numbers, luckyNumber, bonusNumber);
+			total += Prize.getPrize(matchCount, isBonusMatch(numbers, bonusNumber)).getReward();
+		}
+		return total;
+	}
 }
