@@ -1,7 +1,7 @@
 package lotto.model.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.model.generator.NumberGenerator;
 
 public class LottoMachine {
@@ -13,11 +13,9 @@ public class LottoMachine {
     }
 
     public List<Lotto> generateLottos(LottoTickets lottoTickets) {
-        ArrayList<Lotto> lottos = new ArrayList<>();
-        while (lottoTickets.hasTicketCount()) {
-            lottos.add(new Lotto(numberGenerator.generateNumbersInRange()));
-            lottoTickets.decreaseTicketCount();
-        }
-        return lottos;
+        // 구입 금액에 해당하는 만큼 로또를 발행해야 한다.
+        return IntStream.range(0, lottoTickets.getTicketCount())
+                .mapToObj(i -> new Lotto(numberGenerator.generateLottoNumbers()))
+                .toList();
     }
 }

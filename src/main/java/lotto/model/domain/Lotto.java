@@ -1,7 +1,7 @@
 package lotto.model.domain;
 
-import static lotto.constant.ErrorMessages.DUPLICATE_LOTTO_NUMBERS;
-import static lotto.constant.ErrorMessages.INVALID_LOTTO_NUMBERS_SIZE;
+import static lotto.constant.ErrorMessages.DUPLICATE_LOTTO_NUMBER_ERROR;
+import static lotto.constant.ErrorMessages.LOTTO_NUMBER_COUNT_ERROR;
 import static lotto.constant.LottoGameConfig.LOTTO_NUMBERS_COUNT;
 
 import java.util.HashSet;
@@ -17,20 +17,19 @@ public class Lotto {
         this.numbers = numbers.stream().sorted().toList();
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     private void validateUniqueLottoNumbers(List<Integer> numbers) {
-        HashSet<Integer> set = new HashSet<>(numbers);
-        if (numbers.size() != set.size()) {
-            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS);
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER_ERROR);
         }
     }
 
     private void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_COUNT) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS_SIZE);
+            throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_ERROR);
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

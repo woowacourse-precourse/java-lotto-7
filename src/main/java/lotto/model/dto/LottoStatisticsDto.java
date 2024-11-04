@@ -1,17 +1,20 @@
 package lotto.model.dto;
 
+import static lotto.constant.LottoGameConfig.TICKET_PRICE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.model.domain.LottoRank;
+import lotto.model.domain.LottoTickets;
 
 public class LottoStatisticsDto {
     private final List<LottoRankCount> sortedRankCounts;
     private final double profitRate;
 
-    public LottoStatisticsDto(List<LottoRank> lottoResults, int purchaseAmount) {
+    public LottoStatisticsDto(List<LottoRank> lottoResults, LottoTickets lottoTickets) {
         this.sortedRankCounts = calculateSortedRankCounts(lottoResults);
-        this.profitRate = calculateProfitRate(purchaseAmount);
+        this.profitRate = calculateProfitRate(lottoTickets);
     }
 
     private List<LottoRankCount> calculateSortedRankCounts(List<LottoRank> lottoResults) {
@@ -27,7 +30,8 @@ public class LottoStatisticsDto {
     }
 
 
-    private double calculateProfitRate(int purchaseAmount) {
+    private double calculateProfitRate(LottoTickets lottoTickets) {
+        int purchaseAmount = lottoTickets.getTicketCount() * TICKET_PRICE;
         int totalPrize = sortedRankCounts.stream()
                 .mapToInt(entry -> entry.rank().getPrize() * entry.count())
                 .sum();

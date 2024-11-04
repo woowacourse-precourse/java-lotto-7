@@ -24,7 +24,7 @@ public class LottoGameController {
         WinningLotto winningLotto = inputValidWinningLotto();
 
         List<LottoRank> LottoResults = matchLottosWithWinningLotto(lottos, winningLotto);
-        printLottoStatistics(LottoResults, lottoTickets.getPurchasePrice());
+        printLottoStatistics(LottoResults, lottoTickets);
     }
 
     private LottoTickets inputValidLottoTickets() {
@@ -64,8 +64,8 @@ public class LottoGameController {
                 .toList();
     }
 
-    private void printLottoStatistics(List<LottoRank> lottoResult, int purchasePrice) {
-        LottoStatisticsDto statisticsDto = new LottoStatisticsDto(lottoResult, purchasePrice);
+    private void printLottoStatistics(List<LottoRank> lottoResult, LottoTickets lottoTickets) {
+        LottoStatisticsDto statisticsDto = new LottoStatisticsDto(lottoResult, lottoTickets);
         LottoGameOutputView.printLottoStatistics(statisticsDto);
     }
 
