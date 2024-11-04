@@ -23,6 +23,12 @@ public class Lottos {
         return this.lottos;
     }
 
+    public List<Rank> match(Lotto winningLotto, LottoNumber bonusNumber) {
+        return this.lottos.stream()
+                .map(lotto -> Rank.of(lotto.matchCount(winningLotto), lotto.isContains(bonusNumber)))
+                .collect(Collectors.toList());
+    }
+
 
     public List<Lotto> getAllLotto() {
         return this.lottos;

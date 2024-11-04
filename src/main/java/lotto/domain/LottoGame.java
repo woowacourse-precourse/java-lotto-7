@@ -16,6 +16,11 @@ public class LottoGame {
         return this.userLottos.createLottos(countOfLotto(), numberStrategy);
     }
 
+    public List<Rank> match(Lotto winningLotto, LottoNumber bonusNumber) {
+        Lottos totalLotto = new Lottos(getAllLotto());
+        return totalLotto.match(winningLotto, bonusNumber);
+    }
+
     public int countOfLotto() {
         return this.amount.countOfBuyLotto();
     }
