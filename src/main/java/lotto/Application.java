@@ -9,13 +9,20 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        // 로또 생성
         int money = inputMoney();
         List<Lotto> tickets = generateLottoTickets(money);
         printTickets(tickets);
 
         // 당첨 번호 보너스 번호
-        List<Integer> winNumbers = inputWinNum();// 당첨 번호 입력
-        int bonusNum = inputBonusNum(); // 보너스 번호
+        List<Integer> winNumbers = inputWinNum();
+        int bonusNum = inputBonusNum();
+
+        // 로또 당첨 여부
+        for (Lotto ticket : tickets) {
+            int grade = compareGrade(ticket, winNumbers, bonusNum);
+            System.out.println("등수: " + grade); // 각 티켓의 등수 출력
+        }
     }
 
     private static int inputMoney() {
@@ -68,6 +75,30 @@ public class Application {
     private static int inputBonusNum() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine().trim());
+    }
+
+    // 당첨 번호와 티켓을 비교하여 일치하는 번호 개수 반환
+    private static int checkMatchingNumbers(Lotto ticket, List<Integer> winNumbers) {
+        int count = 0;
+        for (int number : ticket.getSortNumbers()) {
+            if (winNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // 로또의 일치 개수와 보너스 번호 여부로 grade 판별
+    private static int compareGrade(Lotto ticket, List<Integer> winNumbers, int bonusNum) {
+        int count = checkMatchingNumbers(ticket, winNumbers);
+        boolean bonusMatch = ticket.getSortNumbers().contains(bonusNum);
+
+        if (count == 6) return 1;
+        if (count == 5 && bonusMatch) return 2;
+        if (count == 5) return 3;
+        if (count == 4) return 4;
+        if (count == 3) return 5;
+        return 0;
     }
 }
 //inputWinningNum 당첨번호 입력
