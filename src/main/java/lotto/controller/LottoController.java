@@ -48,13 +48,13 @@ public class LottoController {
     }
 
     public LottoArchive buyLotto(Long ticket) {
-        List<Lotto> lottoList = LottoMaker.makeLottos(ticket);
-        return new LottoArchive(lottoList);
+        List<Lotto> lottos = LottoMaker.makeLottos(ticket);
+        return new LottoArchive(lottos);
     }
 
-    public void displayLottos(List<Lotto> lottoList) {
-        outView.printLottoCount(lottoList.size());
-        for (Lotto lotto : lottoList) {
+    public void displayLottos(List<Lotto> lottos) {
+        outView.printLottoCount(lottos.size());
+        for (Lotto lotto : lottos) {
             outView.printLottoNumbers(lotto.getNumbers());
         }
     }

@@ -23,7 +23,6 @@ public class BonusNumber {
         validateDuplicateWinningNumber(bonusNumber, winningNumber);
     }
 
-
     private void valiateNumberRange(int bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);
