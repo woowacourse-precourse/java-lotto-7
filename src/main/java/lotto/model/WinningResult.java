@@ -10,6 +10,10 @@ public class WinningResult {
         winningResult.put(type, winningResult.getOrDefault(type, 0) + 1);
     }
 
+    public int getCount(WinningType type) {
+        return winningResult.getOrDefault(type, 0);
+    }
+
     public Map<WinningType, Integer> getWinningResult(){
         return Map.copyOf(winningResult);
     }
