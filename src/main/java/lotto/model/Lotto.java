@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.enums.ExceptionMessage;
+import lotto.enums.LottoValue;
 
 import java.util.*;
 
@@ -16,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoValue.SIZE.getValue()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_SIZE.getMessage());
         }
     }
