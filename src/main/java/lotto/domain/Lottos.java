@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
     private List<Lotto> lottos;
@@ -20,5 +21,12 @@ public class Lottos {
         }
 
         return totalPrize;
+    }
+
+    @Override
+    public String toString() {
+        return lottos.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
     }
 }
