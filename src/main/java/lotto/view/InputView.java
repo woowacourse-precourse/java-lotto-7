@@ -9,19 +9,37 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputView {
-    public static int inputLottoAmount(){
-        String inputAmount = Console.readLine();
-        return convertInputToInt(inputAmount);
+    public static int inputLottoAmount() {
+        while (true) {
+            try {
+                String inputAmount = Console.readLine();
+                return convertInputToInt(inputAmount);
+            } catch (CustomLottoException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public static List<Integer> inputWinningNumbers() {
-        String inputWinningNumbers = Console.readLine();
-        return convertInputWinningNumbersToIntegerList(inputWinningNumbers);
+        while (true) {
+            try {
+                String inputWinningNumbers = Console.readLine();
+                return convertInputWinningNumbersToIntegerList(inputWinningNumbers);
+            } catch (CustomLottoException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     public static int inputBonusNumber() {
-        String bonusNumber = Console.readLine();
-        return convertInputToInt(bonusNumber);
+        while(true) {
+            try {
+                String bonusNumber = Console.readLine();
+                return convertInputToInt(bonusNumber);
+            } catch (CustomLottoException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     private static int convertInputToInt(String input) {
@@ -31,7 +49,7 @@ public class InputView {
             validateAmountEquality(intNumber, longNumber);
             return intNumber;
         } catch (NumberFormatException exception) {
-            throw new CustomLottoException(ErrorMessage.NOT_NUMBER);
+            throw new CustomLottoException(ErrorMessage.NOT_INTEGER_NUMBER);
         }
     }
 
@@ -50,13 +68,13 @@ public class InputView {
             validateNumberEquality(winningNumbers);
             return convertWinningNumbersToInteger(winningNumbers);
         } catch (NumberFormatException exception) {
-            throw new CustomLottoException(ErrorMessage.NOT_NUMBER);
+            throw new CustomLottoException(ErrorMessage.NOT_INTEGER_NUMBER);
         }
     }
 
     private static void validateNumberEquality(List<Long> numbers) {
         for (long number : numbers) {
-            int intNumber = (int)number;
+            int intNumber = (int) number;
             if (number != intNumber) {
                 throw new CustomLottoException(ErrorMessage.NOT_INTEGER_NUMBER);
             }
