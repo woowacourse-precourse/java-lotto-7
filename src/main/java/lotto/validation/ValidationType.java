@@ -8,7 +8,8 @@ public enum ValidationType {
     OUT_OF_RANGE("[ERROR]당첨 번호는 1에서 45 사이여야 합니다."),
     DUPLICATE_NUMBERS("[ERROR]당첨 번호는 중복될 수 없습니다."),
     INVALID_COUNT("[ERROR]당첨 번호는 6개여야 합니다."),
-    INVALID_FORMAT("[ERROR]당첨 번호는 6개의 쉼표로 구분되어야 합니다.");
+    INVALID_FORMAT("[ERROR]당첨 번호는 6개의 쉼표로 구분되어야 합니다."),
+    DUPLICATE_LOTTO("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
 
     ValidationType(String validationMsg) {
         this.validationMsg = validationMsg;

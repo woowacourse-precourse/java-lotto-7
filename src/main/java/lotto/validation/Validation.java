@@ -6,24 +6,31 @@ import java.util.Set;
 
 public class Validation {
     public static void validatedPurchaseAmount(String input) {
-        if (input == null || input.isEmpty()) {
+        if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(ValidationType.EMPTY_AMOUNT.validationMsg());
         }
-    }
-    public static void validatedThousandUnitAmount(String input) {
-        try {
-            int inputResult = Integer.parseInt(input);
-            if (inputResult < 1000) {
-                throw new IllegalArgumentException(ValidationType.NEGATIVE_AMOUNT.validationMsg());
-            }
-            if (!(inputResult % 1000 == 0)) {
-                throw new IllegalArgumentException(ValidationType.INVALID_UNIT.validationMsg());
-            }
-        }
-        catch (NumberFormatException e) {
+        // 숫자가 아닌 경우 체크
+        if (!input.matches("\\d+")) {
             throw new IllegalArgumentException(ValidationType.NOT_NUMERIC.validationMsg());
         }
     }
+
+    public static int validatedThousandUnitAmount(String input) {
+        int inputResult;
+        try {
+            inputResult = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ValidationType.NOT_NUMERIC.validationMsg());
+        }
+        if (inputResult < 1000) {
+            throw new IllegalArgumentException(ValidationType.NEGATIVE_AMOUNT.validationMsg());
+        }
+        if (inputResult % 1000 != 0) {
+            throw new IllegalArgumentException(ValidationType.INVALID_UNIT.validationMsg());
+        }
+        return inputResult;
+    }
+
 
     public static void validatedWinnigNumbers(List<Integer> winningNumbers) {
         Set<Integer> numberSet = new HashSet<>();
@@ -37,6 +44,13 @@ public class Validation {
         String regex ="^(\\d{1,2})(,\\d{1,2}){5}$";
         if (!winningNumber.matches(regex)) {
             throw new IllegalArgumentException(ValidationType.INVALID_FORMAT.validationMsg());
+        }
+    }
+
+    public static void validateLottoDuplicate(List<Integer> numbers) {
+        Set<Integer> numberSet = new HashSet<>(numbers); // List를 Set으로 변환하여 중복 제거
+        if (numberSet.size() != numbers.size()) { // 중복이 있을 경우
+            throw new IllegalArgumentException(ValidationType.DUPLICATE_LOTTO.validationMsg());
         }
     }
 
