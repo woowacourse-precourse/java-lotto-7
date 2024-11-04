@@ -1,6 +1,7 @@
 package lotto.global.status;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public enum LottoStatus {
@@ -44,6 +45,9 @@ public enum LottoStatus {
     }
 
     public static List<LottoStatus> getAllByAscendingPrize() {
-        return List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
+        return Arrays.stream(values())
+                .filter(lottoStatus -> !lottoStatus.equals(NONE))
+                .sorted(Comparator.comparing(LottoStatus::getPrize))
+                .toList();
     }
 }
