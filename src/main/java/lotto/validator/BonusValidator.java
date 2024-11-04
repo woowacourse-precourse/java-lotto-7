@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import lotto.enums.ExceptionMessage;
+import lotto.enums.LottoValue;
 
 public class BonusValidator implements Validator {
 
@@ -14,8 +15,9 @@ public class BonusValidator implements Validator {
     }
 
     private void validateRange(int number) {
-
-        if (number < 1 || number > 45) {
+        int min = LottoValue.MIN_RANGE_NUMBER.getValue();
+        int max = LottoValue.MAX_RANGE_NUMBER.getValue();
+        if (number < min || number > max) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE.getMessage());
         }
     }

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.enums.LottoValue;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoTicket;
@@ -31,7 +32,7 @@ public class LottoPurchaseService {
     }
 
     private int calculateQuantity(int price) {
-        return price / 1000;
+        return price / LottoValue.PRICE_PER_LOTTO.getValue();
     }
 
     private List<Lotto> generateLotteries(int quantity) {
