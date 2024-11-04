@@ -7,13 +7,12 @@ import java.util.*;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
+
+    static Input input = new Input();
+
     public static void main(String[] args) {
 
-// TODO: 프로그램 구현
-
-        //구입 금액 입력
-        System.out.println("구입금액을 입력해 주세요.");
-        int money = Integer.parseInt(readLine());
+        int money = input.askPurchaseAmount();
 
         //로뚜 구매   => LottoMachine
         int purchaseCount = money / 1000;
