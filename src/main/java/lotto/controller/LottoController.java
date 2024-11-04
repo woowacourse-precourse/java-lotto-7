@@ -15,6 +15,7 @@ public class LottoController {
         List<Lotto> purchasedLottos = purchaseLottos(purchaseAmount);
         WinningLotto winningLotto = inputWinningLotto();
         LottoResult lottoResult = calculateResult(purchasedLottos, winningLotto);
+        OutputView.printResult(lottoResult, purchaseAmount);
         // 추후 기능 추가 예정
     }
 
