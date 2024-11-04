@@ -1,7 +1,7 @@
 package lotto.exception;
 
-public class LottoException extends RuntimeException {
-    private LottoExceptionCode code;
+public class LottoException extends IllegalArgumentException {
+    private final LottoExceptionCode code;
     public LottoException(LottoExceptionCode code) {
         super("[ERROR] "+ code.getMessage());
         this.code = code;
