@@ -47,7 +47,7 @@ public class Draw {
                 .add(fourthPrize.multiply(BigInteger.valueOf(fourthRank)))
                 .add(fifthPrize.multiply(BigInteger.valueOf(fifthRank)));
 
-        return totalPrize.doubleValue() / cost * 100;
+        return (totalPrize.doubleValue() / cost) * 100;
     }
 
     private void drawLotto(List<Lotto> lottos, Lotto userLotto, int bonus) {
