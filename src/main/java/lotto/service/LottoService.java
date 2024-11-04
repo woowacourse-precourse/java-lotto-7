@@ -41,5 +41,16 @@ public class LottoService {
         return numbers;
     }
 
+    private int countMatchingNumbers(Lotto userLotto) {
+        return (int) userLotto.getNumbers().stream()
+                .filter(winningLotto.getWinningLotto().getNumbers()::contains)
+                .count();
+    }
+
+    // 보너스 번호 일치 여부 확인
+    private boolean isBonusNumberMatch(Lotto userLotto) {
+        return userLotto.getNumbers().contains(winningLotto.getBonusNumber());
+    }
+
 
 }
