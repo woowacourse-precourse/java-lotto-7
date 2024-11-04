@@ -1,10 +1,10 @@
 package lotto.model;
 
 import lotto.Exception.LottoException;
-import lotto.Exception.LottoExceptionType;
 
 import java.util.List;
 
+import static lotto.Exception.LottoExceptionType.*;
 import static lotto.utils.LottoRules.*;
 
 public class Lotto {
@@ -21,16 +21,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers == null || numbers.isEmpty()) {
-            throw new LottoException(LottoExceptionType.LOTTO_NUMBER_EMPTY_ERROR);
+            throw new LottoException(LOTTO_NUMBER_EMPTY_ERROR);
         }
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new LottoException(LottoExceptionType.LOTTO_NUMBER_COUNT_ERROR);
+            throw new LottoException(LOTTO_NUMBER_COUNT_ERROR);
         }
         if (isDuplicateNumbers(numbers)) {
-            throw new LottoException(LottoExceptionType.LOTTO_NUMBER_DUPLICATE_ERROR);
+            throw new LottoException(LOTTO_NUMBER_DUPLICATE_ERROR);
         }
         if (!isValidRangeNumbers(numbers)) {
-            throw new LottoException(LottoExceptionType.LOTTO_NUMBER_RANGE_ERROR);
+            throw new LottoException(LOTTO_NUMBER_RANGE_ERROR);
         }
     }
 
