@@ -17,7 +17,7 @@ public class UserLottoTest {
     @Test
     @DisplayName("보너스 번호와, 로또 번호 6개가 중복되면 오류가 발생합니다.")
     void 보너스번호와_로또번호가_중복이면_오류() {
-        assertThatThrownBy(() -> new UserLotto(testLotto, testBonus))
+        assertThatThrownBy(() -> UserLotto.of(testLotto, testBonus))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_LOTTO_DUPLICATED.getMessage());
     }
@@ -26,7 +26,7 @@ public class UserLottoTest {
     @DisplayName("보너스 번호가 범위 바깥에 있으면 오류가 발생합니다.")
     @ValueSource(ints = {0, 46, -100, 100, -1})
     void 보너스번호가_범위_바깥이면_오류(int target) {
-        assertThatThrownBy(() -> new UserLotto(testLotto, target))
+        assertThatThrownBy(() -> UserLotto.of(testLotto, target))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE.getMessage());
     }

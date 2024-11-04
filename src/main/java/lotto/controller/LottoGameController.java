@@ -137,7 +137,7 @@ public class LottoGameController {
                 String rawBonus = InputView.getUserBonus();
                 OutputView.printEnter();
 
-                UserLotto userLotto = new UserLotto(userSixNumber, Integer.parseInt(rawBonus));
+                UserLotto userLotto = UserLotto.of(userSixNumber, Integer.parseInt(rawBonus));
 
                 return UserLottoDTO.of(userLotto);
             } catch (IllegalArgumentException e) {
