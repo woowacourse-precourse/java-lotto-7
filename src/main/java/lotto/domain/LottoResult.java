@@ -8,12 +8,15 @@ public class LottoResult {
     private final Map<Rank, Integer> statistics = new HashMap<>();
 
     public void addResult(Rank rank) {
-        statistics.put(rank, statistics.getOrDefault(rank, 0) + 1);
+        if (rank != Rank.NONE) {
+            statistics.put(rank, statistics.getOrDefault(rank, 0) + 1);
+        }
     }
 
     public void printStatistics() {
         System.out.println("\n당첨 통계\n---");
         for (Rank rank : Rank.values()) {
+            if (rank == Rank.NONE) continue;
             int count = statistics.getOrDefault(rank, 0);
             System.out.printf("%s - %d개\n", rank.getDescription(), count);
         }
