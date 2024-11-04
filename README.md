@@ -1,4 +1,7 @@
 # java-lotto-precourse
+## 클래스 다이어그램
+![lotto](https://github.com/user-attachments/assets/63330d8b-5d2e-452b-b265-2557ce051472)
+
 ## 기능 목록
 
 ### 입력
