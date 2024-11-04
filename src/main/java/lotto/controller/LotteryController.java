@@ -18,7 +18,7 @@ public class LotteryController {
         Tickets tickets = money.createTickets();
         outputView.printGeneratedTickets(tickets);
 
-        WinningInfo winningInfo = inputProcessor.getWinningInfo();
+        WinningInfo winningInfo = inputProcessor.createWinningInfo();
         TotalResult totalResult = tickets.compareTicketsToWinningInfo(winningInfo);
         outputView.printResult(totalResult);
 
