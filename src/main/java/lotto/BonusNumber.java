@@ -5,27 +5,36 @@ import java.util.List;
 public class BonusNumber {
     private final int number;
 
-    public BonusNumber(List<String> bonusNumbers, List<String> winningNumbers) {
+    public BonusNumber(List<Integer> bonusNumbers, WinningNumbers winningNumbers) {
         validateBonusNumber(bonusNumbers, winningNumbers);
-        this.number = Integer.parseInt(bonusNumbers.get(0).trim());
+        this.number = bonusNumbers.get(0);
     }
 
-    private static void validateBonusNumber(List<String> bonusNumbers, List<String> winningNumbers) {
+    private static void validateBonusNumber(List<Integer> bonusNumbers, WinningNumbers winningNumbers) {
+
         if (bonusNumbers.size() != 1) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_COUNT.getMessage());
         }
 
-        String bonus = bonusNumbers.get(0);
+        List<Integer> winning = winningNumbers.getNumbers();
+        int bonus = validateNumber(bonusNumbers.get(0));
 
-        if (isDuplicateBonus(bonus, winningNumbers)) {
+        if (isDuplicateBonus(bonus, winning)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
-
-        WinningNumbers.validateNumber(bonus);
     }
 
-    private static boolean isDuplicateBonus(String bonus, List<String> winningNumbers) {
-        return winningNumbers.contains(bonus);
+    private static boolean isDuplicateBonus(int bonus, List<Integer> winning) {
+        return winning.contains(bonus);
+    }
+
+    public static int validateNumber(int bonus) {
+        if (bonus < LottoRules.MIN_NUMBER || bonus > LottoRules.MAX_NUMBER) {
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.OUT_OF_BOUNDS.getMessage(), LottoRules.MIN_NUMBER,
+                            LottoRules.MAX_NUMBER));
+        }
+        return bonus;
     }
 
     public int getNumber() {

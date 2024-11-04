@@ -34,11 +34,7 @@ public class InputHandler {
         WinningNumbers winningNumbers = getValidWinningNumbers();
         BonusNumber bonusNumber = getValidBonusNumber(winningNumbers);
 
-        List<String> winningNumbersAsString = winningNumbers.getNumbers().stream()
-                .map(String::valueOf)
-                .collect(Collectors.toList());
-
-        return new WinningLotto(winningNumbersAsString, List.of(String.valueOf(bonusNumber.getNumber())));
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
     private static WinningNumbers getValidWinningNumbers() {
@@ -48,8 +44,9 @@ public class InputHandler {
             String input = Console.readLine();
             try {
                 validateNotEmptyInput(input);
-                List<String> numbers = Arrays.stream(input.split(","))
+                List<Integer> numbers = Arrays.stream(input.split(","))
                         .map(String::trim)
+                        .map(Integer::parseInt)
                         .collect(Collectors.toList());
                 return new WinningNumbers(numbers);
             } catch (IllegalArgumentException e) {
@@ -66,10 +63,11 @@ public class InputHandler {
 
             try {
                 validateNotEmptyInput(input);
-                List<String> bonusNumber = List.of(input.split(","));
-                return new BonusNumber(bonusNumber, winningNumbers.getNumbers().stream()
-                        .map(String::valueOf)
-                        .collect(Collectors.toList()));
+                List<Integer> bonusNumber = Arrays.stream(input.split(","))
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+                return new BonusNumber(bonusNumber, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + BONUS_NUMBER_PROMPT);
             }
