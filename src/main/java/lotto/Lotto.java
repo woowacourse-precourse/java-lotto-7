@@ -21,6 +21,17 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호에는 중복이 없어야 합니다.");
         }
     }
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
 
     // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+    public int matchCount(List<Integer> winnigNumbers) {
+        Set<Integer> winningSet = new HashSet<>(winnigNumbers);
+        return (int) numbers.stream().filter(winningSet::contains).count();
+    }
 }
