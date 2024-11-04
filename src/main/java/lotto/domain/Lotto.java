@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int COUNT = 6;
 
     private final List<Integer> numbers;
 
@@ -54,5 +51,4 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복없이 입력하여야 합니다.");
         }
     }
-
 }

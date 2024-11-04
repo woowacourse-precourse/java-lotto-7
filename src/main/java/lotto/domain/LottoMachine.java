@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
+
     private static final int LOTTO_PRICE = 1000;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
@@ -18,5 +19,4 @@ public class LottoMachine {
         }
         return lottos;
     }
-
 }

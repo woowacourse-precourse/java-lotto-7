@@ -37,8 +37,7 @@ public class InputView {
         while (true) {
             try {
                 String input = Console.readLine();
-                int bonusNumber = InputValidator.validateBonusNumber(input);
-                return bonusNumber;
+                return InputValidator.validateBonusNumber(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
