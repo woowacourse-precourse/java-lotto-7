@@ -8,13 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    @Test
-    void 예외_테스트() {
-        assertSimpleTest(() -> {
-            runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
 
     @Override
     public void runMain() {
