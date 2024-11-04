@@ -8,13 +8,13 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.constants.Constants;
+import lotto.constants.LottoConstants;
 import lotto.model.Lotto;
 
 public class LottoService {
 
     public int calculateLottoCount(String purchaseAmount) {
-        return Integer.parseInt(purchaseAmount) / Constants.PURCHASE_UNIT;
+        return Integer.parseInt(purchaseAmount) / LottoConstants.PURCHASE_UNIT;
     }
 
     public List<Lotto> generateAutoLottoNumbers(int lottoCount) {
@@ -31,7 +31,6 @@ public class LottoService {
         return changeStringWinningNumbers(lottoNumbers);
     }
 
-    // 당첨 통계
     public Map<Integer, Integer> calculateLottoStatistics(Lotto winningNumbers, String bonusNumber,
                                                           List<Lotto> generatedLottoNumbers) {
         Map<Integer, Integer> lottoStatistics = new HashMap<>();
@@ -44,17 +43,16 @@ public class LottoService {
     }
 
     public int calculateProfits(Map<Integer, Integer> lottoStatistics) {
-        return lottoStatistics.get(3) * Constants.THREE_MATCHED_PRIZE
-                + lottoStatistics.get(4) * Constants.FOUR_MATCHED_PRIZE
-                + lottoStatistics.get(5) * Constants.FIVE_MATCHED_PRIZE
-                + lottoStatistics.get(6) * Constants.SIX_MATCHED_PRIZE
-                + lottoStatistics.get(7) * Constants.BONUS_MATCHED_PRIZE;
+        return lottoStatistics.get(3) * LottoConstants.THREE_MATCHED_PRIZE
+                + lottoStatistics.get(4) * LottoConstants.FOUR_MATCHED_PRIZE
+                + lottoStatistics.get(5) * LottoConstants.FIVE_MATCHED_PRIZE
+                + lottoStatistics.get(6) * LottoConstants.SIX_MATCHED_PRIZE
+                + lottoStatistics.get(7) * LottoConstants.BONUS_MATCHED_PRIZE;
     }
 
     public double calculateRateOfReturn(int lottoCount, int lottoSum) {
-        double rateOfReturn = ((double) lottoSum / (lottoCount * Constants.PURCHASE_UNIT)) * 100;
-        BigDecimal rateOfReturnRounded = new BigDecimal(rateOfReturn)
-                .setScale(2, RoundingMode.HALF_UP);
+        double rateOfReturn = ((double) lottoSum / (lottoCount * LottoConstants.PURCHASE_UNIT)) * 100;
+        BigDecimal rateOfReturnRounded = new BigDecimal(rateOfReturn).setScale(2, RoundingMode.HALF_UP);
 
         return rateOfReturnRounded.doubleValue();
     }
@@ -67,7 +65,8 @@ public class LottoService {
     }
 
     private List<Integer> generateAutoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(Constants.RANGE_START, Constants.RANGE_END, Constants.CHOICE);
+        return Randoms.pickUniqueNumbersInRange(LottoConstants.RANGE_START, LottoConstants.RANGE_END,
+                LottoConstants.NUMBER_OF_CHOICES);
     }
 
     private String[] separateWinningNumbers(String winningNumbers) {
@@ -75,7 +74,7 @@ public class LottoService {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 비어있을 수 없습니다.");
         }
 
-        String[] numbers = winningNumbers.split(Constants.DELIMITER);
+        String[] numbers = winningNumbers.split(LottoConstants.DELIMITER);
         if (numbers.length == 1) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 , 로 구분되는 문자열이어야 합니다.");
         }
@@ -106,7 +105,7 @@ public class LottoService {
 
     private int countEqualAndBonusNumsCount(Lotto eachLottoNumber, Lotto winningNumbers, String bonusNumber) {
         int equalNumsCount = countEqualNumsLotto(eachLottoNumber, winningNumbers);
-        if (equalNumsCount == 5 && hasBonusNumber(eachLottoNumber, bonusNumber)) { // 현재 5개 일치하는 것 중 보너스 있는지 체크
+        if (equalNumsCount == 5 && hasBonusNumber(eachLottoNumber, bonusNumber)) {
             equalNumsCount = 7; // 보너스 맞은 경우 7로 추가
         }
         return equalNumsCount;
