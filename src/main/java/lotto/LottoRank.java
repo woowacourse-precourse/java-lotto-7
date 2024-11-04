@@ -48,4 +48,10 @@ public class LottoRank {
     public int getCount() {
         return count;
     }
+
+    public static void initLottoRanks() {
+        for(LottoRank lottoRank : VALUES) {
+            lottoRank.count = 0;
+        }
+    }
 }

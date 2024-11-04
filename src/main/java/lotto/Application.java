@@ -14,5 +14,6 @@ public class Application {
         lottoView.printLottoRanksInfo();
 
         lottoView.printLottoPrizeInfo();
+        LottoRank.initLottoRanks();
     }
 }
