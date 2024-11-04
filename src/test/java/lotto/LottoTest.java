@@ -35,10 +35,28 @@ class LottoTest {
 
     @Test
     void 두_로또_간의_일치하는_번호_개수를_계산한다() {
-        // When
+        // when
         int matchingCount = lotto.countMatchingNumbers(otherLotto);
 
-        // Then
+        // then
         assertThat(matchingCount).isEqualTo(3);
+    }
+
+    @Test
+    void 로또_번호가_특정_숫자를_포함하면_true를_반환한다() {
+        // when
+        boolean contains = lotto.containsNumber(3);
+
+        // then
+        assertThat(contains).isTrue();
+    }
+
+    @Test
+    void 로또_번호가_특정_숫자를_포함하지_않으면_false를_반환한다() {
+        // when
+        boolean contains = lotto.containsNumber(10);
+
+        // then
+        assertThat(contains).isFalse();
     }
 }
