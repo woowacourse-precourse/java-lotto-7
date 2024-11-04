@@ -1,8 +1,8 @@
-package lotto.view;
+package lotto.purchasing.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class Purchasing_InputView {
+public class PurchasingInputView {
     private String payment;
 
     public String getPayment() {
@@ -13,5 +13,9 @@ public class Purchasing_InputView {
             return payment;
         }
         return payment;
+    }
+
+    public void setPaymentNull() {
+        payment = null;
     }
 }

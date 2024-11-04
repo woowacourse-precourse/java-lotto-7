@@ -1,9 +1,7 @@
-package lotto.controller;
+package lotto.publishing;
 
 import java.util.List;
-import lotto.service.PublishingService;
-import lotto.model.Lotto;
-import lotto.view.Publishing_OutputTicketsView;
+import lotto.common.model.Lotto;
 
 public class PublishingController {
     private final Publishing_OutputTicketsView outputPublishedTicketsView;

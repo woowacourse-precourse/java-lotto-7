@@ -1,9 +1,9 @@
-package lotto.service;
+package lotto.publishing;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.Lotto;
+import lotto.common.model.Lotto;
 
 public class PublishingService {
     private static PublishingService publishingService;

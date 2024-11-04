@@ -1,9 +1,10 @@
-package lotto.model;
+package lotto.winning.model;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constant.RankConstant;
-import lotto.service.CheckingWinningService;
+import lotto.common.constant.RankConstant;
+import lotto.common.model.Lotto;
+import lotto.winning.CheckingWinningService;
 
 public class WinningStatistics {
     //당첨번호, 보너스 번호, 로또 번호 -> 일치

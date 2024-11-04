@@ -1,12 +1,12 @@
-package lotto.service;
+package lotto.winning;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.constant.RankConstant;
-import lotto.model.Lotto;
+import lotto.common.constant.RankConstant;
+import lotto.common.model.Lotto;
 
 public class CheckingWinningService {
 

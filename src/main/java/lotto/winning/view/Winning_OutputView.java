@@ -1,7 +1,7 @@
-package lotto.view;
+package lotto.winning.view;
 
 import java.util.Map;
-import lotto.constant.RankConstant;
+import lotto.common.constant.RankConstant;
 
 public class Winning_OutputView {
     public void printRanks(Map<RankConstant, Integer> ranks) {

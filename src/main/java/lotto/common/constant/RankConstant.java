@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.common.constant;
 
 public enum RankConstant {
     FIRSTRANK(2_000_000_000),

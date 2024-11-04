@@ -1,14 +1,13 @@
-package lotto.controller;
+package lotto.winning;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constant.RankConstant;
-import lotto.model.Lotto;
-import lotto.model.WinningNumber;
-import lotto.model.WinningStatistics;
-import lotto.service.CheckingWinningService;
-import lotto.view.Winning_InputView;
-import lotto.view.Winning_OutputView;
+import lotto.common.constant.RankConstant;
+import lotto.common.model.Lotto;
+import lotto.winning.model.WinningNumber;
+import lotto.winning.model.WinningStatistics;
+import lotto.winning.view.Winning_InputView;
+import lotto.winning.view.Winning_OutputView;
 
 public class WinningController {
     private final List<Lotto> LottoTickets;
