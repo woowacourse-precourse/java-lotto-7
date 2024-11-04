@@ -57,6 +57,5 @@ public class PosTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MessageCenter.ERROR_MONEY.get());
     }
-
 }
 

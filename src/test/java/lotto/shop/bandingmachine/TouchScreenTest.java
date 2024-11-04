@@ -1,7 +1,6 @@
 package lotto.shop.bandingmachine;
 
 import lotto.MessageCenter;
-import lotto.shop.Pos;
 import lotto.user.UserStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,11 +17,6 @@ public class TouchScreenTest {
 
     @BeforeEach
     void setUp() {
-        TrialHistory trialHistory = new TrialHistory();
-        DrawnNumbers drawnNumbers = DrawnNumbers.create();
-        DrawSystem drawSystem = new DrawSystem(drawnNumbers);
-        Pos pos = new Pos();
-        Printer printer = new Printer();
         UserStorage.clean();
         touchScreen.trialHistory.savePayment(100000);
     }
@@ -44,7 +38,7 @@ public class TouchScreenTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5,100})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 100})
     @DisplayName("자동발권 후 구매시도 기록에 기록된 번호묶음의 사이즈는 구매장수와 같다.")
     void 자동발권_후_구매시도_기록에_기록된_번호묶음의_사이즈는_구매장수와_같다(Integer totalCount) {
         touchScreen.trialHistory.saveTotalCount(totalCount);
@@ -54,7 +48,7 @@ public class TouchScreenTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5,100})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 100})
     @DisplayName("자동발권 후 유저 구매기록에 기록된 구매내역의 사이즈는 구매장수와 같다")
     void 자동발권_후_유저_구매기록에_기록된_구매내역의_사이즈는_구매장수와_같다(Integer totalCount) {
         touchScreen.trialHistory.saveTotalCount(totalCount);
@@ -63,7 +57,7 @@ public class TouchScreenTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5,100})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 100})
     @DisplayName("자동발권 후 구매시도 내역과 유저 구매기록의 개수는 같다.")
     void 자동발권_후_구매시도_내역과_유저_구매기록의_개수는_같다(Integer totalCount) {
         touchScreen.trialHistory.saveTotalCount(totalCount);

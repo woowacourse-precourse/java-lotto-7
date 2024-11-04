@@ -3,25 +3,17 @@ package lotto.committee;
 import lotto.MessageCenter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-
 public class HeadQuarterTest {
 
     HeadQuarter headQuarter = new HeadQuarter();
-
-    @BeforeEach
-    void setUp() {
-
-    }
 
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,6"})
@@ -92,11 +84,11 @@ public class HeadQuarterTest {
 
     @ParameterizedTest
     @CsvSource({"'1,5,7,8,13,45','1'",
-                "'1,2,3,4,5,6', '5'",
-                "'1,5,7,8,13,45', '7'",
-                "'1,5,7,8,13,45', '8'",
-                "'1,5,7,8,13,45', '23'",
-                "'1,5,7,8,13,45', '45'"})
+            "'1,2,3,4,5,6', '5'",
+            "'1,5,7,8,13,45', '7'",
+            "'1,5,7,8,13,45', '8'",
+            "'1,5,7,8,13,45', '23'",
+            "'1,5,7,8,13,45', '45'"})
     @DisplayName("입력한 보너스번호가 일반번호묶음과 중복되면 예외가_발생한다.")
     void 입력한_보너스번호가_일반번호묶음과_중복되면_예외가_발생한다(String mainNums, String bonusNum) {
         headQuarter.loopMains(mainNums);
@@ -104,7 +96,4 @@ public class HeadQuarterTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MessageCenter.ERROR_PICK.get());
     }
-
-
-
 }

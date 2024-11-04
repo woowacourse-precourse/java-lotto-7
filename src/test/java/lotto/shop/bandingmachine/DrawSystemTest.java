@@ -16,7 +16,7 @@ public class DrawSystemTest {
     DrawSystem drawSystem = new DrawSystem(drawnNumbers);
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5,100})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 100})
     @DisplayName("추첨 후 drawnNumberPacks에 저장된 로또번호묶음의 개수는 구매장수와 같다.")
     void 추첨_후_drawnNumberPacks에_저장된_로또번호묶음의_개수는_totalCount와_같다(int totalCount) {
         assertThat(drawSystem.runDraws(totalCount).size()).isEqualTo(totalCount);

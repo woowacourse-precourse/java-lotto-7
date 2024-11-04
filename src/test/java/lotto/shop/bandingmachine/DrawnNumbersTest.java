@@ -11,8 +11,6 @@ import lotto.MessageCenter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class DrawnNumbersTest {
 
@@ -35,13 +33,12 @@ public class DrawnNumbersTest {
     void 당첨번호_중_일반번호는_6개이다() {
         List<Integer> mainNumbers = drawnNumbers.getMainNumbers();
         assertThat(mainNumbers.size()).isEqualTo(6);
-
     }
 
     @Test
     @DisplayName("이미_추첨완료된_당첨번호에_번호를_추가하려고_하면_예외가_발생한다.")
     void 이미_추첨완료된_당첨번호에_번호를_추가하려고_하면_예외가_발생한다() {
-        assertThatThrownBy(() -> drawnNumbers.addMainNumbers(List.of(1,2,3,4,5,6)))
+        assertThatThrownBy(() -> drawnNumbers.addMainNumbers(List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(MessageCenter.ERROR_NOTNULL.get());
         assertThatThrownBy(() -> drawnNumbers.addBonusNumber(23))
@@ -70,7 +67,7 @@ public class DrawnNumbersTest {
         List<Integer> numbers = new ArrayList<>(mainNumbers);
         numbers.add(bonusNumber);
         int count = numbers.size();
-        Stream<Integer> deleteDuplicate= numbers.stream().distinct();
+        Stream<Integer> deleteDuplicate = numbers.stream().distinct();
 
         assertThat(deleteDuplicate).hasSize(count);
     }
@@ -79,15 +76,15 @@ public class DrawnNumbersTest {
     @DisplayName("일반번호묶음에는 1부터 45 사이의 정수만 존재한다.")
     void 일반번호묶음에는_1부터_45_사이의_정수만_존재한다() {
         List<Integer> oneToFourtyFive = new ArrayList<>();
-        oneToFourtyFive = IntStream.rangeClosed(1,45).boxed().toList();
-        assertThat(mainNumbers).allMatch(oneToFourtyFive :: contains);
+        oneToFourtyFive = IntStream.rangeClosed(1, 45).boxed().toList();
+        assertThat(mainNumbers).allMatch(oneToFourtyFive::contains);
     }
 
     @Test
     @DisplayName("보너스번호는 1부터 45 사이의 정수이다.")
     void 보너스번호는_1부터_45_사이의_정수이다() {
         List<Integer> oneToFourtyFive = new ArrayList<>();
-        oneToFourtyFive = IntStream.rangeClosed(1,45).boxed().toList();
+        oneToFourtyFive = IntStream.rangeClosed(1, 45).boxed().toList();
         assertThat(bonusNumber).matches(oneToFourtyFive::contains);
     }
 }
