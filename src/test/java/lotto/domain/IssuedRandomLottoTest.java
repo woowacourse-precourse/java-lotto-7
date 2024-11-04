@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.common.ExceptionMessage;
 import lotto.common.LottoConfig;
 import lotto.common.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,8 @@ public class IssuedRandomLottoTest {
         assertThatThrownBy(() -> {
             RandomNumberGenerator generator = new RandomNumberGenerator();
             new IssuedRandomLotto(generator, 9800);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR_INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
     }
 
     @DisplayName("로또 구입 금액이 100000을 초과하면 예외가 발생한다.")
@@ -24,7 +26,8 @@ public class IssuedRandomLottoTest {
         assertThatThrownBy(() -> {
             RandomNumberGenerator generator = new RandomNumberGenerator();
             new IssuedRandomLotto(generator, 110000);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR_MAXIMUM_PURCHASE_AMOUNT.getMessage());
     }
 
     @DisplayName("구입 금액만큼 로또를 발행한다.")
