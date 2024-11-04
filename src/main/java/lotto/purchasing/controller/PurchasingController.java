@@ -1,5 +1,6 @@
 package lotto.purchasing.controller;
 
+import lotto.dto.NumberOfTicketsDto;
 import lotto.purchasing.model.Payment;
 import lotto.purchasing.view.*;
 
@@ -13,11 +14,11 @@ public class PurchasingController {
         this.purchasingOutputView = new PurchasingOutputView();
     }
 
-    public int purchaseLottoTickets() {
+    public void purchaseLottoTickets() {
         receivePayment();
         int numberOfTickets = payment.getNumberOfTickets();
         purchasingOutputView.printPurchasing(numberOfTickets);
-        return numberOfTickets;
+        NumberOfTicketsDto numberOfTicketsDto  = new NumberOfTicketsDto(numberOfTickets);
     }
 
     private void receivePayment() {
