@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.ErrorMessages.*;
+import static lotto.ErrorMessage.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +49,20 @@ public class LottoGame {
         this.bonusNumber = number;
     }
 
+    private void lottosFactory(RandomNumbersGenerator numbersGenerator) {
+        for (int i = 0; i < this.purchase; i++) {
+            this.lottos.add(new Lotto(numbersGenerator));
+        }
+    }
+
+    public void registController(LottoController controller) {
+        this.controller = controller;
+    }
+
+    public LottoGameDTO toDTO() {
+        return new LottoGameDTO(this.lottos, this.purchase, this.winingLotto, this.bonusNumber);
+    }
+
     private List<Integer> trySplitParse(String input) throws IllegalArgumentException {
         List<Integer> numberList;
         try {
@@ -81,15 +95,5 @@ public class LottoGame {
             throw new IllegalArgumentException(ERROR_NUMBER_FORMAT_MESSAGE.getMessage());
         }
         return amount;
-    }
-
-    private void lottosFactory(RandomNumbersGenerator numbersGenerator) {
-        for (int i = 0; i < this.purchase; i++) {
-            this.lottos.add(new Lotto(numbersGenerator));
-        }
-    }
-
-    public void registController(LottoController controller) {
-        this.controller = controller;
     }
 }

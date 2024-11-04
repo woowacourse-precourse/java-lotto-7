@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.ErrorMessages.*;
+import static lotto.ErrorMessage.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
