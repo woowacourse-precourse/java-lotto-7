@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Purchase;
@@ -13,13 +14,13 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class StatisticsTest {
     @DisplayName("로또 통계 결과를 올바르게 계산한다.")
     @Test
     void 로또_통계_결과를_올바르게_계산한다() {
         Purchase purchase = new Purchase(14000);
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,7");
         BonusNumber bonusNumber = new BonusNumber(6, winningNumbers);
         List<Lotto> lottos = List.of(
@@ -42,7 +43,6 @@ class StatisticsTest {
     @Test
     void 로또_수익률을_올바르게_계산한다() {
         Purchase purchase = new Purchase(14000);
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,7");
         BonusNumber bonusNumber = new BonusNumber(6, winningNumbers);
         List<Lotto> lottos = List.of(
@@ -57,4 +57,20 @@ class StatisticsTest {
 
         assertThat(yield).isEqualTo(14511071.4); //수익률
     }
+
+    @DisplayName("당첨 결과가 없거나 구매 금액이 설정되지 않은 상태에서 수익률 계산 시 예외가 발생한다.")
+    @Test
+    void 당첨_결과가_없거나_구매_금액이_설정되지_않은_상태에서_수익률_계산_시_예외가_발생한다() {
+        List<Lotto> emptyLottos = Collections.emptyList();
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+        BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
+        Purchase purchase = new Purchase(0);
+
+        Statistics statistics = new Statistics(emptyLottos, winningNumbers, bonusNumber, purchase);
+
+        assertThatThrownBy(statistics::calculateYield)
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("[ERROR] 당첨 결과가 없거나 유효한 구매 금액이 설정되지 않았습니다.");
+    }
+
 }

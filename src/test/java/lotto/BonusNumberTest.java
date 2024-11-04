@@ -26,4 +26,15 @@ public class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
     }
+
+    @DisplayName("유효하지 않은 당첨번호 상태에서 보너스 번호 생성 시 예외가 발생한다.")
+    @Test
+    void 유효하지_않은_당첨번호_상태에서_보너스_번호_생성_시_예외가_발생한다() {
+        WinningNumbers invalidWinningNumbers = null;
+
+        assertThatThrownBy(() -> new BonusNumber(7, invalidWinningNumbers))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("[ERROR] 유효한 당첨 번호가 설정되지 않았습니다.");
+    }
+
 }
