@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -23,7 +22,7 @@ public class PrizeTest {
     void Rank_반환_테스트(int matchCount, boolean bonusMatch, Prize expectedPrize) {
         Prize actualPrize = Prize.valueOf(matchCount, bonusMatch);
 
-        assertThat(actualPrize).isEqualTo(expectedPrize);
+        Assertions.assertThat(actualPrize).isEqualTo(expectedPrize);
     }
 
 }

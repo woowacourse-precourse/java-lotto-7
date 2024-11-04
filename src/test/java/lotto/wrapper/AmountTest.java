@@ -1,8 +1,7 @@
 package lotto.wrapper;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import lotto.exception.ErrorMessages;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -13,7 +12,7 @@ public class AmountTest {
     @ParameterizedTest
     @ValueSource(strings = {"1500", "2500", "1001"})
     void 금액이_1000원으로_나누어_떨어지지_않으면_예외가_발생한다(String inputAmount) {
-        assertThatThrownBy(() -> Amount.of(inputAmount))
+        Assertions.assertThatThrownBy(() -> Amount.of(inputAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.INVALID_LOTTO_PRICE_DIVISIBLE.getMessage());
     }
@@ -22,7 +21,7 @@ public class AmountTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "500", "999", "-1", "-1000"})
     void 금액이_1000원_미만이면_예외가_발생한다(String inputAmount) {
-        assertThatThrownBy(() -> Amount.of(inputAmount))
+        Assertions.assertThatThrownBy(() -> Amount.of(inputAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.INVALID_LOTTO_PRICE.getMessage());
     }
@@ -31,7 +30,7 @@ public class AmountTest {
     @ParameterizedTest
     @ValueSource(strings = {"abc", "def", "ghi", "", " ", "1.5"})
     void 금액이_숫자가_아니면_예외가_발생한다(String inputAmount) {
-        assertThatThrownBy(() -> Amount.of(inputAmount))
+        Assertions.assertThatThrownBy(() -> Amount.of(inputAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.INVALID_LOTTO_PRICE_TYPE.getMessage());
     }

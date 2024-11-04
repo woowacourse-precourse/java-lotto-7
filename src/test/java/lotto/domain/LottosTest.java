@@ -2,14 +2,13 @@ package lotto.domain;
 
 import java.util.Map;
 import lotto.wrapper.BonusNumber;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class LottosTest {
 
@@ -39,12 +38,12 @@ class LottosTest {
 
         Map<Prize, Integer> result = lottos.countMatchesWith(winningLotto);
 
-        assertThat(result.get(Prize.SIX_MATCHES)).isEqualTo(2);
-        assertThat(result.get(Prize.FIVE_MATCHES_WITH_BONUS)).isEqualTo(3);
-        assertThat(result.get(Prize.FIVE_MATCHES)).isEqualTo(1);
-        assertThat(result.get(Prize.FOUR_MATCHES)).isEqualTo(1);
-        assertThat(result.get(Prize.THREE_MATCHES)).isEqualTo(0);
-        assertThat(result.get(Prize.NO_MATCH)).isEqualTo(2);
+        Assertions.assertThat(result.get(Prize.SIX_MATCHES)).isEqualTo(2);
+        Assertions.assertThat(result.get(Prize.FIVE_MATCHES_WITH_BONUS)).isEqualTo(3);
+        Assertions.assertThat(result.get(Prize.FIVE_MATCHES)).isEqualTo(1);
+        Assertions.assertThat(result.get(Prize.FOUR_MATCHES)).isEqualTo(1);
+        Assertions.assertThat(result.get(Prize.THREE_MATCHES)).isEqualTo(0);
+        Assertions.assertThat(result.get(Prize.NO_MATCH)).isEqualTo(2);
     }
 
 }
