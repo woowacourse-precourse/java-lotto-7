@@ -1,5 +1,7 @@
 package lotto.enums;
 
+import static lotto.enums.Constants.BONUS_CONDITION_MATCH_COUNT;
+
 import java.util.Arrays;
 
 public enum Rank {
@@ -21,7 +23,7 @@ public enum Rank {
     }
 
     public static Rank getRank(int matchCount, boolean containsBonus) {
-        if (matchCount == 5) {
+        if (matchCount == BONUS_CONDITION_MATCH_COUNT.getValue()) {
             return Arrays.stream(values())
                     .filter(rank -> rank.matchCount == matchCount && rank.requiresBonus == containsBonus)
                     .findFirst()

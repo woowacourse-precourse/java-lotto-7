@@ -9,7 +9,8 @@ public enum Constants {
     LOTTO_NUMBER_COUNT(6),
     ZERO_VALUE(0),
     ONE_VALUE(1),
-    ONE_HUNDRED_VALUE(100);
+    ONE_HUNDRED_VALUE(100),
+    BONUS_CONDITION_MATCH_COUNT(5);
 
     private final int value;
 
