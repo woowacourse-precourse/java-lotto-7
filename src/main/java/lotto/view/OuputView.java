@@ -19,7 +19,7 @@ public class OuputView {
             4개 일치 (50,000원) - %d개
             5개 일치 (1,500,000원) - %d개
             5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
-            6개 일치 (2,000,000,000원) - %d개\n
+            6개 일치 (2,000,000,000원) - %d개
             """;
     private static final String LOTTO_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
