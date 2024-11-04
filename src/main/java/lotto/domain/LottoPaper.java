@@ -21,6 +21,10 @@ public class LottoPaper {
         return new LottoPaper(lottos);
     }
 
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
+
     public List<List<Integer>> getLottoNumbers() {
         return lottos.stream()
                 .map(Lotto::getNumbers)
