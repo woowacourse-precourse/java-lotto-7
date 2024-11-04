@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.converter.StringToIntConverter;
 import lotto.service.LottoResult;
@@ -58,8 +57,8 @@ public class LottoController {
     private BonusBall inputBonusNumber() {
         while (true) {
             try {
-                String rawNumber = inputView.lottoBonusNumInput().trim();
-                int bonusNumber = converter.convert(rawNumber);
+                String rawNumber = inputView.lottoBonusNumInput();
+                int bonusNumber = converter.convertStringNumberToInteger(rawNumber);
                 return new BonusBall(bonusNumber);
             } catch (IllegalArgumentException e) {
                 ErrorMessage.showErrorMsg(e.getMessage());
@@ -70,11 +69,8 @@ public class LottoController {
     private Lotto inputLottoNumbers() {
         while (true) {
             try {
-                String[] rawNumbers = inputView.lottoNumsInput().split(",");
-                List<Integer> numbers = Arrays.stream(rawNumbers)
-                        .map(String::trim)
-                        .map(converter::convert)
-                        .toList();
+                String rawNumbers = inputView.lottoNumsInput();
+                List<Integer> numbers = converter.convertStringNumbersToIntegers(rawNumbers);
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 ErrorMessage.showErrorMsg(e.getMessage());
@@ -85,8 +81,8 @@ public class LottoController {
     private PurchasedLottos inputMoney() {
         while (true) {
             try {
-                String rawMoney = inputView.lottoMoneyInput().trim();
-                int money = converter.convert(rawMoney);
+                String rawMoney = inputView.lottoMoneyInput();
+                int money = converter.convertStringNumberToInteger(rawMoney);
                 return lottoMachine.issueLotto(money);
             } catch (IllegalArgumentException e) {
                 ErrorMessage.showErrorMsg(e.getMessage());

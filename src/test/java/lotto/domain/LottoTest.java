@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import lotto.converter.StringToIntConverter;
 import lotto.util.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
@@ -38,11 +37,8 @@ class LottoTest {
     @Test
     void 로또_번호_사이에_공백이_있어도_정상_입력된다() {
         // given
-        String[] rawNumbers = "1,  2,  3   , 4  , 5   , 6".split(",");
-        List<Integer> numbers = Arrays.stream(rawNumbers)
-                .map(String::trim)
-                .map(converter::convert)
-                .toList();
+        String rawNumbers = "1,  2,  3   , 4  , 5   , 6";
+        List<Integer> numbers = converter.convertStringNumbersToIntegers(rawNumbers);
 
         // when, then
         assertThat(new Lotto(numbers)).isInstanceOf(Lotto.class);

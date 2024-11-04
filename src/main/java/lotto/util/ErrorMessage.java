@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.domain.Lotto;
 import lotto.service.LottoMachine;
 
 public enum ErrorMessage {
@@ -11,7 +12,7 @@ public enum ErrorMessage {
     MONEY_NOT_MODED_PRICE(String.format("[ERROR] 돈은 %d원 단위로 입력해야 합니다.", LottoMachine.LOTTO_PRICE)),
     LOTTO_SIZE_OUT_OF_RANGE("[ERROR] 로또 번호는 6개여야 합니다."),
     LOTTO_NUM_OUT_OF_RANGE(String.format("[ERROR] 로또 번호는 %d와 %d 사이의 숫자여야 합니다.",
-            LottoMachine.LOTTO_NUM_START, LottoMachine.LOTTO_NUM_END)),
+            Lotto.LOTTO_NUM_START, Lotto.LOTTO_NUM_END)),
     LOTTO_NUMS_DUPLICATION("[ERROR] 로또 번호가 중복됩니다."),
     LOTTO_BONUS_NUM_DUPLICATION("[ERROR] 보너스 번호가 로또 번호와 중복됩니다."),
     LOTTO_NUM_NOT_NUMBER("[ERROR] 로또 번호는 숫자여야 합니다.");

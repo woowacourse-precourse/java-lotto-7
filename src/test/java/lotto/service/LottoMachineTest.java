@@ -65,7 +65,7 @@ class LottoMachineTest {
     @Test
     void 랜덤_값_테스트() {
         // given
-        List<Integer> expect = numberGenerate.randomGenerateInRange(LottoMachine.LOTTO_NUM_START, LottoMachine.LOTTO_NUM_END, LottoMachine.LOTTO_NUM_SIZE);
+        List<Integer> expect = numberGenerate.randomGenerateInRange(Lotto.LOTTO_NUM_START, Lotto.LOTTO_NUM_END, Lotto.LOTTO_NUM_SIZE);
 
         // when
         PurchasedLottos purchasedLottos = lottoMachine.issueLotto(money);

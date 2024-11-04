@@ -13,9 +13,6 @@ public class LottoMachine {
 
     public static final int LOTTO_PRICE = 1000;
     public static final int MONEY_MAX = 1_000_000;
-    public static final int LOTTO_NUM_START = 1;
-    public static final int LOTTO_NUM_END = 45;
-    public static final int LOTTO_NUM_SIZE = 6;
 
     private final NumberGenerate lottoGenerate;
     private int money;
@@ -30,7 +27,7 @@ public class LottoMachine {
 
         List<Lotto> lottos = new ArrayList<>();
         for (int cnt = 0; cnt < lottoCount; cnt++) {
-            List<Integer> numbers = lottoGenerate.randomGenerateInRange(LOTTO_NUM_START, LOTTO_NUM_END, LOTTO_NUM_SIZE);
+            List<Integer> numbers = lottoGenerate.randomGenerateInRange(Lotto.LOTTO_NUM_START, Lotto.LOTTO_NUM_END, Lotto.LOTTO_NUM_SIZE);
             lottos.add(new Lotto(numbers));
         }
         
