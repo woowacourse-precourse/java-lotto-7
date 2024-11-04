@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -11,6 +12,11 @@ public class Application {
         List<Integer> winningNumbers = winningNumbersInput.inputWinningNumbers();
 
         BonusNumberInput bonusNumberInput = new BonusNumberInput();
-        bonusNumberInput.inputBonusNumber(winningNumbers);
+        int bonusNumber = bonusNumberInput.inputBonusNumber(winningNumbers);
+
+        WinningResultCalculator calculator = new WinningResultCalculator();
+        List<Lotto> userLottos = lottoPurchase.generateLottos(lottoPurchase.inputPurchaseAmount("8000") / 1000);
+        Map<Rank, Integer> results = calculator.calculateResults(userLottos, winningNumbers, bonusNumber);
+        calculator.printResults(results);
     }
 }
