@@ -1,12 +1,12 @@
 package lotto.view;
 
-import static lotto.system.utils.constants.ViewMessages.BONUS_NUMBER;
-import static lotto.system.utils.constants.ViewMessages.LOTTO_TICKET_QUANTITY;
-import static lotto.system.utils.constants.ViewMessages.PURCHASE_AMOUNT;
-import static lotto.system.utils.constants.ViewMessages.WINNING_NUMBER;
+import static lotto.config.ViewMessages.BONUS_NUMBER;
+import static lotto.config.ViewMessages.LOTTO_TICKET_QUANTITY;
+import static lotto.config.ViewMessages.PURCHASE_AMOUNT;
+import static lotto.config.ViewMessages.WINNING_NUMBER;
 
 import java.util.List;
-import lotto.system.unit.LottoTicket;
+import lotto.domain.value.LottoTicket;
 
 public class OutputView {
 

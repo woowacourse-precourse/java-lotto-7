@@ -1,7 +1,7 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.system.utils.constants.LottoErrorMessages.INVALID_NUMBER_INPUT;
+import static lotto.config.LottoErrorMessages.INVALID_NUMBER_INPUT;
 import static lotto.view.OutputView.printMessage;
 
 public class InputView {
