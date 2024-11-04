@@ -65,6 +65,33 @@ public class LottoController {
         outputView.printPublishCountMessage(publishCount.getPublishCount());
     }
 
+    private PublishCount createPublishCount(int purchasePrice) {
+        int countOfPublish = getCountOfPublish(purchasePrice);
+        return PublishCount.getInstance(countOfPublish);
+    }
+
+    public int getCountOfPublish(final int purchasePrice) {
+        return purchasePrice / TICKET_PRICE;
+    }
+
+    private int getPurchasePrice() {
+        return parseInt(inputView.printEnterPurChasePriceMessage());
+    }
+
+    public int parseInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage());
+        }
+    }
+
+    public void validatePurchaseAmount(final int purchaseAmount) {
+        if (purchaseAmount == 0 || purchaseAmount % TICKET_PRICE != 0 ) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
+        }
+    }
+
     public void publishLottoSetup() {
         publishLottoService = new PublishLottoService(publishCount, lottoValidator);
         publishLottoService.publishLotto();
@@ -75,52 +102,12 @@ public class LottoController {
         lotto = createLotto();
     }
 
-    public void bonusNumberSetUp() {
-        int parsedBonusNumber = getParsedBonusNumber();
-        bonusNumber = createBonusNumber(parsedBonusNumber);
-    }
-
-    public void run() {
-        Map<Prize, Integer> winningCounts = lottoResultService.calculatePrize(lotto, bonusNumber,
-            publishLottoRepository.findAll());
-        outputView.printWinningStatMessage(winningCounts);
-        BigDecimal profit = ProfitCalculate.calculateProfit(
-            publishCount.getPublishCount() * TICKET_PRICE, winningCounts);
-        outputView.printProfit(profit);
-    }
-
-    public void validatePurchaseAmount(final int purchaseAmount) {
-        if (purchaseAmount % TICKET_PRICE != 0) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
-        }
-    }
-
-    private BonusNumber createBonusNumber(int parsedBonusNumber) {
-        return BonusNumber.getInstance(parsedBonusNumber, lotto, bonusNumberValidator);
-    }
-
-    private int getParsedBonusNumber() {
-        String inputBonusNumber = inputView.printBonusNumberMessage();
-        return parseInt(inputBonusNumber);
-    }
-
-    private int getPurchasePrice() {
-        return parseInt(inputView.printEnterPurChasePriceMessage());
-    }
-
-    private PublishCount createPublishCount(int purchasePrice) {
-        int countOfPublish = getCountOfPublish(purchasePrice);
-        return PublishCount.getInstance(countOfPublish);
-    }
-
     private Lotto createLotto() {
-        List<String> splitWinningNumbers = splitByComma(inputView.printEnterWinningNumberMessage());
+        String inputWinningNumbers = inputView.printEnterWinningNumberMessage();
+        validateInputWinnigNumber(inputWinningNumbers);
+        List<String> splitWinningNumbers = splitByComma(inputWinningNumbers);
         List<Integer> winningNumbers = stringListToIntList(splitWinningNumbers);
         return new Lotto(winningNumbers, lottoValidator);
-    }
-
-    public int getCountOfPublish(final int purchasePrice) {
-        return purchasePrice / TICKET_PRICE;
     }
 
     public void validateInputWinnigNumber(final String inputWinnigNumber) {
@@ -143,12 +130,36 @@ public class LottoController {
         }
     }
 
-    public int parseInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage());
-        }
+    public void bonusNumberSetUp() {
+        int parsedBonusNumber = getParsedBonusNumber();
+        bonusNumber = createBonusNumber(parsedBonusNumber);
+    }
+
+    private int getParsedBonusNumber() {
+        String inputBonusNumber = inputView.printBonusNumberMessage();
+        return parseInt(inputBonusNumber);
+    }
+
+    private BonusNumber createBonusNumber(int parsedBonusNumber) {
+        return BonusNumber.getInstance(parsedBonusNumber, lotto, bonusNumberValidator);
+    }
+
+    public void run() {
+        Map<Prize, Integer> winningCounts = getWinningCounts();
+        getProfit(winningCounts);
+    }
+
+    private void getProfit(Map<Prize, Integer> winningCounts) {
+        BigDecimal profit = ProfitCalculate.calculateProfit(
+            publishCount.getPublishCount() * TICKET_PRICE, winningCounts);
+        outputView.printProfit(profit);
+    }
+
+    private Map<Prize, Integer> getWinningCounts() {
+        Map<Prize, Integer> winningCounts = lottoResultService.calculatePrize(lotto, bonusNumber,
+            publishLottoRepository.findAll());
+        outputView.printWinningStatMessage(winningCounts);
+        return winningCounts;
     }
 
 }
