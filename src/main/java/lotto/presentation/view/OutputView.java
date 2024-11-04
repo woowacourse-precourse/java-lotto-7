@@ -25,6 +25,7 @@ public class OutputView {
 
     private void printIssuedLotto(Lotto issuedLotto) {
         List<String> toStringLottoNumber = issuedLotto.getNumbers().stream()
+                .sorted()
                 .map(lottoNumber -> String.valueOf(lottoNumber))
                 .toList();
         System.out.println("[" + String.join(", ", toStringLottoNumber) + "]");
