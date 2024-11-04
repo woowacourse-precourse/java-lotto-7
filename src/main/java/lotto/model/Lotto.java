@@ -9,7 +9,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         Collections.sort(numbers);
-        LottoNumberValidator.validate(numbers);
         this.numbers = numbers;
     }
 
