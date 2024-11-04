@@ -19,12 +19,11 @@ class CalculateProfitRateTest {
                 new Lotto(List.of(7, 8, 9, 10, 11, 12)),
                 new Lotto(List.of(10, 11, 12, 4, 5, 6))
         ));
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 13, 14, 15));
         int bonusNumber = 20;
         LottoPrizeMap lottoPrizeMap = new LottoPrizeMap();
-        LottoWinning lottoWinning = new LottoWinning(lotto, bonusNumber, lottos);
+        LottoWinning lottoWinning = new LottoWinning(List.of(1, 2, 3, 13, 14, 15), bonusNumber, lottos);
 
-        CalculateProfitRate calculateProfitRate = new CalculateProfitRate(lottos.size() * 1000, lottoWinning, lottoPrizeMap);
+        CalculateProfitRate calculateProfitRate = new CalculateProfitRate(lottos.size() * 1000, lottoWinning.getWinningLotto(), lottoPrizeMap.getPrizes());
 
         assertEquals((5000.0 / 3000.0 * 100.0), calculateProfitRate.getProfitRate());
     }

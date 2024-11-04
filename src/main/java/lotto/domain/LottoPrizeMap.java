@@ -6,13 +6,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LottoPrizeMap {
-    private Map<String, Integer> prizes;
+    private final Map<String, Integer> prizes;
 
     public LottoPrizeMap() {
-        this.prizes = createPrizes();
+        this.prizes = initializePrizes();
     }
 
-    private Map<String, Integer> createPrizes() {
+    private Map<String, Integer> initializePrizes() {
         Map<String, Integer> setPrizes = new LinkedHashMap<>();
         setPrizes.put("3개 일치", LottoPrize.THREE_WINNING_PRIZE.getPrize());
         setPrizes.put("4개 일치", LottoPrize.FOUR_WINNING_PRIZE.getPrize());

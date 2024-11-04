@@ -19,13 +19,13 @@ public class MainController {
         inputWinningNumbers();
         inputBonusNumber();
 
-        LottoWinning lottoWinning = new LottoWinning(winningNumbers, bonusNumber, lottoDraw.getLottoDrawNumbers());
+        LottoWinning lottoWinning = new LottoWinning(winningNumbers.getNumbers(), bonusNumber, lottoDraw.getLottoDrawNumbers());
         LottoPrizeMap lottoPrizeMap = new LottoPrizeMap();
-        OutputView.outputWinningResult(lottoWinning, lottoPrizeMap);
+        OutputView.outputWinningResult(lottoWinning.getWinningLotto(), lottoPrizeMap.getPrizes());
 
         CalculateProfitRate calculateRateOfReturn
-                = new CalculateProfitRate(purchaseAmount, lottoWinning, lottoPrizeMap);
-        OutputView.outputRateOfReturn(calculateRateOfReturn);
+                = new CalculateProfitRate(purchaseAmount, lottoWinning.getWinningLotto(), lottoPrizeMap.getPrizes());
+        OutputView.outputRateOfReturn(calculateRateOfReturn.getProfitRate());
     }
 
     private void inputPurchaseAmount() {

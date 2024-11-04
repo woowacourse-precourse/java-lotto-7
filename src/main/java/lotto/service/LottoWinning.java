@@ -8,23 +8,19 @@ import java.util.Map;
 
 public class LottoWinning {
     private int bonusNumber;
-    private Lotto winningNumbers;
+    private List<Integer> winningNumbers;
     private List<Lotto> lottoDrawNumbers;
     private Map<String, Integer> winningLotto;
 
-    public LottoWinning(Lotto winningNumbers, int bonusNumber, List<Lotto> lottoDrawNumbers) {
+    public LottoWinning(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottoDrawNumbers) {
         this.bonusNumber = bonusNumber;
         this.winningNumbers = winningNumbers;
         this.lottoDrawNumbers = lottoDrawNumbers;
-        this.winningLotto = setWinningLotto();
+        this.winningLotto = initializeWinningLotto();
         calculateWinningResult();
     }
 
-    public Map<String, Integer> getWinningLotto() {
-        return winningLotto;
-    }
-
-    private Map<String, Integer> setWinningLotto() {
+    private Map<String, Integer> initializeWinningLotto() {
         Map<String, Integer> setWinningLotto = new LinkedHashMap<>();
         setWinningLotto.put("3개 일치", 0);
         setWinningLotto.put("4개 일치", 0);
@@ -32,6 +28,10 @@ public class LottoWinning {
         setWinningLotto.put("5개 일치, 보너스 볼 일치", 0);
         setWinningLotto.put("6개 일치", 0);
         return setWinningLotto;
+    }
+
+    public Map<String, Integer> getWinningLotto() {
+        return winningLotto;
     }
 
     private void calculateWinningResult() {
@@ -46,7 +46,7 @@ public class LottoWinning {
     private int calculateMatchCount(Lotto lotto) {
         int matchCount = 0;
         for (int numbers : lotto.getNumbers()) {
-            if (winningNumbers.getNumbers().contains(numbers)) {
+            if (winningNumbers.contains(numbers)) {
                 matchCount++;
             }
         }

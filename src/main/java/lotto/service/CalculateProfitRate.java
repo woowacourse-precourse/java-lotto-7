@@ -1,7 +1,5 @@
 package lotto.service;
 
-import lotto.domain.LottoPrizeMap;
-
 import java.util.Map;
 
 public class CalculateProfitRate {
@@ -9,10 +7,10 @@ public class CalculateProfitRate {
     private Map<String, Integer> winningLotto;
     private Map<String, Integer> prizes;
 
-    public CalculateProfitRate(int purchaseAmount, LottoWinning lottoWinning, LottoPrizeMap lottoPrizeMap) {
+    public CalculateProfitRate(int purchaseAmount, Map<String, Integer> winningLotto, Map<String, Integer> prizes) {
         this.purchaseAmount = purchaseAmount;
-        this.winningLotto = lottoWinning.getWinningLotto();
-        this.prizes = lottoPrizeMap.getPrizes();
+        this.winningLotto = winningLotto;
+        this.prizes = prizes;
     }
 
     public double getProfitRate() {

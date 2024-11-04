@@ -11,39 +11,35 @@ import java.util.Map;
 
 public class OutputView {
     public static void outputNumberOfPurchaseLotto(LottoDraw lottoDraw) {
-        int numberOfPurchases = lottoDraw.getNumberOfPurchases();
+        int numberOfPurchases = lottoDraw.getPurchasesCount();
         System.out.println(String.format(OutputMessage.NUMBER_OF_PURCHASE_OUTPUT.getMessage(), numberOfPurchases));
         for (Lotto lotto : lottoDraw.getLottoDrawNumbers()) {
             System.out.println(lotto);
         }
     }
 
-    public static void outputWinningResult(LottoWinning lottoWinning, LottoPrizeMap lottoPrizeMap) {
+    public static void outputWinningResult(Map<String, Integer> winningLotto, Map<String, Integer> prizes) {
         System.out.println(OutputMessage.STRING_WINNING_STATISTIC_OUTPUT.getMessage());
-        Map<String, Integer> winningResult = lottoWinning.getWinningLotto();
-        Map<String, Integer> prizes = lottoPrizeMap.getPrizes();
-
-        for (Map.Entry<String, Integer> entry : winningResult.entrySet()) {
+        for (Map.Entry<String, Integer> entry : winningLotto.entrySet()) {
             System.out.println(winningResultOutputString(entry, prizes));
         }
     }
 
+    public static void outputRateOfReturn(double profitRate) {
+        System.out.println(String.format(
+                OutputMessage.RATE_OF_RETURN_OUTPUT.getMessage(),
+                profitRate
+        ));
+    }
+
     private static String winningResultOutputString(
             Map.Entry<String, Integer> winningResult,
-            Map<String, Integer> prizes
-    ) {
+            Map<String, Integer> prizes) {
         return String.format(
                 OutputMessage.WINNING_STATISTICS_OUTPUT.getMessage(),
                 winningResult.getKey(),
                 prizes.get(winningResult.getKey()),
                 winningResult.getValue()
         );
-    }
-
-    public static void outputRateOfReturn(CalculateProfitRate calculateRateOfReturn) {
-        System.out.println(String.format(
-                OutputMessage.RATE_OF_RETURN_OUTPUT.getMessage(),
-                calculateRateOfReturn.getProfitRate()
-        ));
     }
 }
