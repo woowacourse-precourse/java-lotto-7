@@ -16,7 +16,7 @@ public class DrawNumbers {
 
     private void validateDuplicatedNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         if (winningNumbers.getParsedNumbers().contains(bonusNumber.getBonusNumber())) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_TO_WINNING_NUMBERS);
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER);
         }
     }
 

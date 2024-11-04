@@ -25,13 +25,13 @@ public class PaymentInput {
 
     private static void validatePositiveNumber(long input) {
         if (input < 0) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE_INPUT);
+            throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE_PAYMENT);
         }
     }
 
     private void validateUnit(long payment) {
         if (payment % UNIT != 0 || payment == 0) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_UNIT_INPUT);
+            throw new IllegalArgumentException(ErrorMessage.NOT_UNIT_PAYMENT);
         }
     }
 }

@@ -29,7 +29,7 @@ public class WinningNumbers {
         long distinctLotto = parsedNumbers.stream().distinct().count();
 
         if (parsedNumbers.size() != distinctLotto) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WINNING_NUMBER);
         }
     }
 
@@ -37,7 +37,7 @@ public class WinningNumbers {
         int lottoCount = parsedNumbers.size();
 
         if (lottoCount != LOTTO_COUNTS) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_COUNT);
         }
     }
 
@@ -46,7 +46,7 @@ public class WinningNumbers {
                 anyMatch(number -> (number < MININUM_NUMBER || number > MAXIM1UM_NUMBER));
 
         if (haveOutOfRangeNumber) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_RANGE);
         }
     }
 }

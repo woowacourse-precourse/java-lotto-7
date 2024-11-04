@@ -17,7 +17,7 @@ public class Lotto {
     private void validateDistinctNumber(List<Integer> numbers) {
         long totalSize = numbers.stream().distinct().count();
         if (numbers.size() != totalSize) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WINNING_NUMBER);
         }
     }
 

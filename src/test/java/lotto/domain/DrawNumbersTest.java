@@ -23,7 +23,7 @@ class DrawNumbersTest {
         assertThatThrownBy(() -> new DrawNumbers(
                 new WinningNumbers(List.of(1, 2, 3, 4, 5, 6)), new BonusNumber(5))).
                 isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.DUPLICATED_TO_WINNING_NUMBERS);
+                .hasMessageContaining(ErrorMessage.DUPLICATED_BONUS_NUMBER);
     }
 
 

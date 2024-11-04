@@ -17,7 +17,7 @@ class PaymentInputTest {
     void 입력이_1000으로_나누어떨어지지_않으면_예외_발생(int input) {
         assertThatThrownBy(() -> new PaymentInput(input)).
                 isInstanceOf(IllegalArgumentException.class).
-                hasMessageContaining(ErrorMessage.NOT_UNIT_INPUT);
+                hasMessageContaining(ErrorMessage.NOT_UNIT_PAYMENT);
     }
 
     @ParameterizedTest
@@ -25,7 +25,7 @@ class PaymentInputTest {
     void 입력이_음수이면_예외발생(int input) {
         assertThatThrownBy(() -> new PaymentInput(input)).
                 isInstanceOf(IllegalArgumentException.class).
-                hasMessageContaining(ErrorMessage.NOT_POSITIVE_INPUT);
+                hasMessageContaining(ErrorMessage.NOT_POSITIVE_PAYMENT);
     }
 
     @Test

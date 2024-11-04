@@ -17,7 +17,7 @@ class WinningNumbersTest {
     void 여섯개의_숫자를_입력하지_않으면_예외_발생(List<Integer> parsedNumbers) {
         assertThatThrownBy(() -> new WinningNumbers(parsedNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.INVALID_COUNT);
+                .hasMessageContaining(ErrorMessage.INVALID_WINNING_COUNT);
     }
 
     private static Stream<Arguments> makeInstance() {
@@ -32,7 +32,7 @@ class WinningNumbersTest {
     void 중복된_숫자를_입력하면_예외_발생(List<Integer> parsedNumbers) {
         assertThatThrownBy(() -> new WinningNumbers(parsedNumbers)).
                 isInstanceOf(IllegalArgumentException.class).
-                hasMessageContaining(ErrorMessage.DUPLICATED_NUMBER);
+                hasMessageContaining(ErrorMessage.DUPLICATED_WINNING_NUMBER);
     }
 
     private static Stream<Arguments> duplicatedInstance() {
@@ -47,7 +47,7 @@ class WinningNumbersTest {
     void 로또범위를_벗어나는_숫자를_입력하면_예외_발생(List<Integer> parsedNumbers) {
         assertThatThrownBy(() -> new WinningNumbers(parsedNumbers)).
                 isInstanceOf(IllegalArgumentException.class).
-                hasMessageContaining(ErrorMessage.INVALID_RANGE);
+                hasMessageContaining(ErrorMessage.INVALID_WINNING_RANGE);
     }
 
     private static Stream<Arguments> outOfRangeInstance() {

@@ -27,7 +27,7 @@ class WinningNumbersValidatorTest {
     void 쉼표와_숫자_이외의_다른_문자를_입력하면_예외_발생(String input) {
         assertThatThrownBy(() -> WinningNumbersValidator.validateWinningNumbers(input)).
                 isInstanceOf(IllegalArgumentException.class).
-                hasMessageContaining(ErrorMessage.INVALID_INPUT_TYPE);
+                hasMessageContaining(ErrorMessage.INVALID_WINNING_INPUT_TYPE);
     }
 
     @ParameterizedTest

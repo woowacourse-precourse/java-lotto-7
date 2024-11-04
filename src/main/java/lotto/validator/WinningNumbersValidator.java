@@ -30,7 +30,7 @@ public class WinningNumbersValidator {
                     .boxed()
                     .collect(Collectors.toList());
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_TYPE);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_INPUT_TYPE);
         }
     }
 
