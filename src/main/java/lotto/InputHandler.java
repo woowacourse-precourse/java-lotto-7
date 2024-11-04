@@ -10,16 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler {
+
     public static int getPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = readLine();
-        try {
-            int amount = Integer.parseInt(input);
-            validatePurchaseAmount(amount);
-            System.out.println();
-            return amount;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+        while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String input = readLine();
+            try {
+                int amount = Integer.parseInt(input);
+                validatePurchaseAmount(amount);
+                System.out.println();
+                return amount;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자만 입력해야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -32,17 +37,24 @@ public class InputHandler {
         }
     }
 
-
     public static WinningNumbers getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = readLine();
-        List<Integer> winningNumbers = parseWinningNumbers(input);
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = readLine();
+                List<Integer> winningNumbers = parseWinningNumbers(input);
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusInput = readLine();
-        int bonusNumber = parseNumber(bonusInput);
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String bonusInput = readLine();
+                int bonusNumber = parseNumber(bonusInput);
 
-        return new WinningNumbers(winningNumbers, bonusNumber);
+                System.out.println();
+                return new WinningNumbers(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            // 예외 발생 후 다시 입력 받기 위해 루프 계속 진행
+        }
     }
 
     private static List<Integer> parseWinningNumbers(String input) {
@@ -64,10 +76,10 @@ public class InputHandler {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
         }
-        
+
         if (number < MIN_RANDOM_NUMBER || number > MAX_RANDOM_NUMBER) {
             throw new IllegalArgumentException(
-                    "[ERROR] " + MIN_RANDOM_NUMBER + "~" + MAX_RANDOM_NUMBER + "사이의 숫자만 입력해야 합니다.");
+                    "[ERROR] " + MIN_RANDOM_NUMBER + "~" + MAX_RANDOM_NUMBER + " 사이의 숫자만 입력해야 합니다.");
         }
 
         return number;
