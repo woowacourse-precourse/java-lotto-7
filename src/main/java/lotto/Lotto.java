@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +14,40 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+
+        if (new HashSet<>(numbers).size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에는 중복된 숫자가 있을 수 없습니다.");
+        }
     }
 
-    // TODO: 추가 기능 구현
+    // TODO: 추가 기능
+
+    public Lotto() {
+        this.numbers = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    // 중복되지 않는 랜덤 숫자 생성 메서드
+    private List<Integer> generateUniqueRandomNumbers() {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        Random random = new Random();
+
+        while (uniqueNumbers.size() < 6) {
+            int number = random.nextInt(45) + 1;  // 1부터 45 사이의 난수 생성
+            uniqueNumbers.add(number);
+        }
+
+        List<Integer> sortedNumbers = new ArrayList<>(uniqueNumbers);
+        Collections.sort(sortedNumbers);  // 오름차순 정렬
+        return sortedNumbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
 }
