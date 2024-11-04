@@ -5,10 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.Utils;
 import lotto.view.Error;
 
 public class WinningNumber {
     private static final String WINNING_NUMBER_PATTERN = "([1-9][0-9]{0,1},){5}[1-9][0-9]{0,1}";
+    private static final String SEPARATOR = ",";
     private final List<Integer> numbers = new ArrayList<>();
 
     public void validate(String input) {
@@ -19,7 +21,8 @@ public class WinningNumber {
             Error.reject(Error.INVALID_MSG);
         }
 
-        String[] separateWinningNumber = input.split(",");
+        String[] separateWinningNumber = Utils.separateStr(input, SEPARATOR);
+        
         if (!Arrays.stream(separateWinningNumber)
                 .allMatch(num -> Integer.parseInt(num) >= 1 && Integer.parseInt(num) <= 45)) {
             Error.reject(Error.RANGE_MSG);
@@ -31,7 +34,7 @@ public class WinningNumber {
     }
 
     public void setNumbers(String input) {
-        String[] separateWinningNumber = input.split(",");
+        String[] separateWinningNumber = Utils.separateStr(input, SEPARATOR);
 
         for (int i = 0; i < separateWinningNumber.length; i++) {
             this.numbers.add(Integer.parseInt(separateWinningNumber[i]));

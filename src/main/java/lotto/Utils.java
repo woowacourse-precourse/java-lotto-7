@@ -15,7 +15,11 @@ public class Utils {
     public static int strToInteger(String input) {
         return Integer.parseInt(input);
     }
-    
+
+    public static String[] separateStr(String input, String separator) {
+        return input.split(separator);
+    }
+
     private static List<Integer> getRandomNumber(int start, int end, int count) {
         return Randoms.pickUniqueNumbersInRange(start, end, count);
     }
