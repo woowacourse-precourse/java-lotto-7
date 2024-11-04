@@ -14,7 +14,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-
 	private static final LottoController instance = new LottoController();
 	private final LottoService lottoService;
 

@@ -8,10 +8,8 @@ import java.util.stream.Collectors;
 
 import lotto.model.domain.LottoBundle;
 import lotto.model.domain.Rank;
-import lotto.model.domain.ReturnRate;
 
 public class OutputView {
-
 	public static void promptPurchaseMoney() {
 		System.out.println("구입금액을 입력해 주세요.");
 	}

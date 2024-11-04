@@ -3,7 +3,6 @@ package lotto.model.domain;
 import java.util.Arrays;
 
 public enum Rank {
-
 	FIFTH(3, false, 5_000),
 	FOURTH(4, false, 50_000),
 	THIRD(5, false, 1_500_000),

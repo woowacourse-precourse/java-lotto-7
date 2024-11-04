@@ -8,7 +8,6 @@ import lotto.model.domain.Delimiter;
 import lotto.model.domain.WinningNumber;
 
 public class Parse {
-
 	private final Delimiter delimiter;
 
 	public Parse(Delimiter delimiter) {

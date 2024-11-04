@@ -6,7 +6,6 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.model.util.Parse;
 
 public class InputView {
-
 	public static int purchaseMoney() {
 		while (true) {
 			try {
