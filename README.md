@@ -41,6 +41,7 @@
   - [ ] print bought Lotto info
   - [ ] print winning Lotto info from bough Lotto info
   - [ ] repeat read input when input is invalid
+  - [ ] print rate of return
 
 - handle user request
   - [ ] deliver user request and info 

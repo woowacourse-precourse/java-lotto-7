@@ -114,6 +114,12 @@ public class LottoView {
         System.out.printf(message+"\n",matchCount,prizeMoney,winningCount);
     }
 
+    public void printRateOfReturn(double rateOfReturn){
+        int roundPosition = 2;
+        String stringReturnRate = this.toStringWithRound(rateOfReturn,roundPosition);
+        System.out.printf(UserInterfaceMessage.PRINTF_RETURN_OF_RATE,stringReturnRate);
+    }
+
     public List<Integer> transformToIntegerList(String[] rawNumberList){
         List<Integer> numberList = new ArrayList<>();
 
@@ -123,6 +129,18 @@ public class LottoView {
         }
 
         return numberList;
+    }
+
+    /*TODO
+       - 변환 로직을 책임질 클래스 구현 고려하기
+     */
+    public String toStringWithRound(double decimal, int roundPosition){
+        String format = "%.0f";
+        int defaultPosition = 0;
+        if(roundPosition != defaultPosition){
+           format = format.replaceFirst(Integer.toString(defaultPosition),Integer.toString(roundPosition));
+        }
+        return String.format(format,decimal);
     }
 
 

@@ -10,7 +10,7 @@ public class UserInterfaceMessage {
     public final static String PRINT_LOTTO_LIST_START_DELIMITER = "[";
     public final static String PRINT_LOTTO_LIST_MIDDLE_DELIMITER = ",";
     public final static String PRINT_LOTTO_LIST_END_DELIMITER = "]";
-    ;
+    public final static String PRINTF_RETURN_OF_RATE = "총 수익률은 %s%%입니다.\n";
 
     public final static String PRINT_WINNING_INFO_HEAD ="당첨 통계\n"
             + "---";
