@@ -24,7 +24,7 @@ public class User {
 	public void setLottoPurchaseAmount(int lottoPurchaseAmount) {
 		this.lottoPurchaseAmount = lottoPurchaseAmount;
 	}
-	public void calculateRateOfReturns(int lottoPurchaseAmount) {
+	public void calculateRateOfReturns() {
 		int totals = 0;
 		for (Map.Entry<LottoRank, Integer> lottoRankEntry : lottoStats.entrySet()) {
 			totals += lottoRankEntry.getKey().getPrizeAmount() * lottoRankEntry.getValue();
