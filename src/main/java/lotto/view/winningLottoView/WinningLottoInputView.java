@@ -1,4 +1,4 @@
-package lotto.view.lottoWinningView;
+package lotto.view.winningLottoView;
 
 import lotto.util.NumberConverter;
 import lotto.util.NumberParserFactory;

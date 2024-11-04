@@ -1,6 +1,6 @@
 package lotto.model.lotto;
 
-public class LottoConstant {
+public class LottoConstants {
 
     public static final int NUMBER_START_INCLUSIVE = 1;
     public static final int NUMBER_END_INCLUSIVE = 45;

@@ -1,17 +1,17 @@
 package lotto.controller;
 
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoConstant;
+import lotto.model.lotto.LottoConstants;
 import lotto.model.lotto.LottoWinningNumbers;
 import lotto.model.lottoPurchaser.LottoPurchaser;
 import lotto.util.*;
 import lotto.view.InputProvider;
 import lotto.view.lottoPurchaseView.LottoPurchaseInputView;
 import lotto.view.lottoPurchaseView.LottoPurchaseOutputView;
-import lotto.view.lottoWinningView.LottoProfitOutputView;
-import lotto.view.lottoWinningView.LottoWinningOutputViewFactory;
-import lotto.view.lottoWinningView.WinningLottoInputView;
-import lotto.view.lottoWinningView.WinningLottoOutputView;
+import lotto.view.winningLottoView.LottoProfitOutputView;
+import lotto.view.winningLottoView.WinningLottoOutputViewFactory;
+import lotto.view.winningLottoView.WinningLottoInputView;
+import lotto.view.winningLottoView.WinningLottoOutputView;
 
 import java.util.List;
 import java.util.Set;
@@ -25,7 +25,7 @@ public class LottoController {
     private final LottoProfitOutputView lottoProfitOutputView;
 
 
-    public LottoController(InputProvider inputProvider, LottoWinningOutputViewFactory outputViewFactory){
+    public LottoController(InputProvider inputProvider, WinningLottoOutputViewFactory outputViewFactory){
         this.inputProvider = inputProvider;
         this.winningLottoOutputView = outputViewFactory.createWinningLottoOutputView();
         this.lottoProfitOutputView = outputViewFactory.createLottoProfitOutputView();
@@ -40,7 +40,7 @@ public class LottoController {
 
         printLottoPurchaseCount(lottoPurchaseCount);
         issueLottos(lottoPurchaser, lottoPurchaseCount);
-        printLottoResult(lottoPurchaser, getWinningLottoNumbers());
+        showLottoResult(lottoPurchaser, getWinningLottoNumbers());
     }
 
     private int getLottoPurchasePrice(LottoPurchaseInputView inputView){
@@ -48,7 +48,7 @@ public class LottoController {
     }
 
     private int calculateLottoCount(int lottoPurchasePrice){
-        return lottoPurchasePrice/LottoConstant.PRICE;
+        return lottoPurchasePrice/ LottoConstants.PRICE;
     }
 
     private void printLottoPurchaseCount(int lottoCount){
@@ -59,7 +59,7 @@ public class LottoController {
         for (int i=0; i<lottoCount; i++){
             List<Integer> issuedLotto = issueOneLotto();
             lottoPurchaser.addLotto(new Lotto(issuedLotto));
-            printIssuedLotto(issuedLotto);
+            showIssuedLotto(issuedLotto);
         }
     }
 
@@ -67,7 +67,7 @@ public class LottoController {
         return LottoNumberGenerator.generateRandomNumbers();
     }
 
-    private void printIssuedLotto(List<Integer> issuedLotto){
+    private void showIssuedLotto(List<Integer> issuedLotto){
         lottoPurchaseOutputView.showIssuedLottoNumbers(issuedLotto);
     }
 
@@ -78,7 +78,7 @@ public class LottoController {
         return new LottoWinningNumbers(winningLottoNumbers, bonusNumber);
     }
 
-    private void printLottoResult(LottoPurchaser lottoPurchaser, LottoWinningNumbers winningNumbers){
+    private void showLottoResult(LottoPurchaser lottoPurchaser, LottoWinningNumbers winningNumbers){
         winningLottoOutputView.showLottoResult(lottoPurchaser.calculateLottoResult(winningNumbers));
         lottoProfitOutputView.showLottoProfitRate(lottoPurchaser.calculateProfitRate());
     }

@@ -1,18 +1,18 @@
 package lotto.validator;
 
 import lotto.exception.LottoException;
-import lotto.model.lotto.LottoConstant;
+import lotto.model.lotto.LottoConstants;
 
 public class LottoPurchasePriceValidator {
 
     public static void validateLottoPurchasePrice(int lottoPurchasePrice){
-        if (lottoPurchasePrice < LottoConstant.PRICE){
+        if (lottoPurchasePrice < LottoConstants.PRICE){
             throw new IllegalArgumentException(LottoException.UNDER_MINIMUM_PURCHASE_AMOUNT.getMessage());
         }
-        if (lottoPurchasePrice > LottoConstant.MAX_PURCHASE_AMOUNT){
+        if (lottoPurchasePrice > LottoConstants.MAX_PURCHASE_AMOUNT){
             throw new IllegalArgumentException(LottoException.EXCEED_MAXIMUM_PURCHASE_AMOUNT.getMessage());
         }
-        if (lottoPurchasePrice % LottoConstant.PRICE != 0){
+        if (lottoPurchasePrice % LottoConstants.PRICE != 0){
             throw new IllegalArgumentException(LottoException.INVALID_PURCHASE_PRICE.getMessage());
         }
     }

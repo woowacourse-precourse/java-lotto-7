@@ -11,13 +11,13 @@ public enum LottoException {
     UNDER_MINIMUM_PURCHASE_AGE("[ERROR] 최소 구매 가능 연령은 19세입니다."),
     EXCEED_MINIMUM_PURCHASE_AGE("[ERROR] 최대 구매 가능 연령은 120세입니다.");
 
-    private final String exceptionMessage;
+    private final String message;
 
-    LottoException(String exceptionMessage) {
-        this.exceptionMessage = exceptionMessage;
+    LottoException(String message) {
+        this.message = message;
     }
 
     public String getMessage() {
-        return exceptionMessage;
+        return message;
     }
 }

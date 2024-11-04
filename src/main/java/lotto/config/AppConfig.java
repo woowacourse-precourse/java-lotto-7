@@ -3,7 +3,7 @@ package lotto.config;
 import lotto.controller.LottoController;
 import lotto.view.ConsoleInputProvider;
 import lotto.view.InputProvider;
-import lotto.view.lottoWinningView.LottoWinningOutputViewFactory;
+import lotto.view.winningLottoView.WinningLottoOutputViewFactory;
 
 public class AppConfig {
 
@@ -11,8 +11,8 @@ public class AppConfig {
         return new ConsoleInputProvider();
     }
 
-    public LottoWinningOutputViewFactory outputViewFactory() {
-        return new LottoWinningOutputViewFactory();
+    public WinningLottoOutputViewFactory outputViewFactory() {
+        return new WinningLottoOutputViewFactory();
     }
 
     public LottoController createLottoController() {

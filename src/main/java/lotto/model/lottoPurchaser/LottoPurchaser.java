@@ -1,7 +1,7 @@
 package lotto.model.lottoPurchaser;
 
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoConstant;
+import lotto.model.lotto.LottoConstants;
 import lotto.model.lotto.LottoRankAward;
 import lotto.model.lotto.LottoWinningNumbers;
 
@@ -47,7 +47,7 @@ public class LottoPurchaser {
 
     private void processLottoResult(Lotto lotto, Set<Integer> winningNumbers, int bonusNumber) {
         int matchedCount = calculateMatchedCount(lotto, winningNumbers);
-        boolean isBonusNumberMatched = (matchedCount == LottoConstant.REQUIRED_MATCH_COUNT_FOR_BONUS) && lotto.getLottoNumbers().contains(bonusNumber);
+        boolean isBonusNumberMatched = (matchedCount == LottoConstants.REQUIRED_MATCH_COUNT_FOR_BONUS) && lotto.getLottoNumbers().contains(bonusNumber);
         LottoRankAward rank = LottoRankAward.findLottoRank(matchedCount, isBonusNumberMatched);
         if (rank != null) {
             updateMatchCountResult(rank);

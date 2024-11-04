@@ -1,4 +1,4 @@
-package lotto.view.lottoWinningView;
+package lotto.view.winningLottoView;
 
 import lotto.model.lotto.LottoRankAward;
 import lotto.util.NumberFormatter;
