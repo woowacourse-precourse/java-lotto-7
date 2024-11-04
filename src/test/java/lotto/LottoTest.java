@@ -1,11 +1,13 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+import java.util.Arrays;
+import java.util.List;
+import model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @Test
@@ -21,5 +23,25 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 당첨_번호_일치_테스트() {
+        List<Integer> lottoNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumber);
+        List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        int matchingcount = lotto.countMatchingNumbers(winningNumber);
+        assertThat(matchingcount).isEqualTo(6);
+    }
+
+    @Test
+    void 보너스_번호_확인() {
+        List<Integer> lottoNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumber);
+
+        boolean containsBonus = lotto.containsBonusNumber(1);
+        assertThat(containsBonus).isTrue();
+
+        containsBonus = lotto.containsBonusNumber(7);
+        assertThat(containsBonus).isFalse();
+    }
 }
