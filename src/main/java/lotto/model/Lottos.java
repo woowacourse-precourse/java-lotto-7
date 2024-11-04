@@ -44,6 +44,16 @@ public class Lottos {
         return winningResult;
     }
 
+    public Long getTotalPrize(){
+        Long totalPrize = 0L;
+
+        for (WinningType winningType : winningResult.keySet()) {
+            totalPrize += winningType.getPrize() * winningResult.get(winningType);
+        }
+
+        return totalPrize;
+    }
+
     private void checkWinningResult() {
         for (Lotto lotto : lottos) {
             WinningType winningType = lotto.checkWinningNumbers(winningNumbers, bonusNumber);
