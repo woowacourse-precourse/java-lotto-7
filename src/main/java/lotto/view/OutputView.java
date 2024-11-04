@@ -1,4 +1,15 @@
 package lotto.view;
 
+import lotto.common.Prompts;
+
 public class OutputView {
+    public void showPurchaseCount(int count) {
+        System.out.println(count + Prompts.OUTPUT_PURCHASE_COUNT_PROMPT);
+    }
+
+    public void showStatistics() {
+        System.out.println(Prompts.OUTPUT_STATISTICS_PROMPT);
+        System.out.println(Prompts.OUTPUT_PERCENTAGE_PROMPT_PRE);
+        System.out.println(Prompts.OUTPUT_PERCENTAGE_PROMPT_POST);
+    }
 }
