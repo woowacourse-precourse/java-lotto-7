@@ -40,4 +40,9 @@ public class Application {
             purchasedLotteries[i] = new Lotto(randomNumbers);
         }
     }
+    public static void validateLotteryNumber(int input) {
+        if(input < 1 || input > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
 }
