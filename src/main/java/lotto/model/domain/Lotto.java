@@ -43,7 +43,9 @@ public class Lotto {
     @Override
     public String toString() {
         return "[" +
-                getNumbers().stream()
+                getNumbers()
+                        .stream()
+                        .sorted()
                         .map(String::valueOf)
                         .reduce((number1, number2) -> number1 + ", " + number2)
                         .orElseThrow()
