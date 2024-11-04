@@ -97,6 +97,39 @@
 ---
 <br />
 
+## 프로젝트 구조
+```text
+java
+└── lotto
+    ├── Application - 게임의 실행을 담당
+    ├── LottoGame - 로또 게임의 실행을 담당
+    ├── config
+        └── LottoConfig - 의존성 주입을 처리해주는 Config 파일
+    ├── controller
+        └── LottoController - Lotto 게임 속 객체들 간의 교류 장소
+    ├── converter
+        └── StringToIntConverter - Lotto 게임에서 문자열을 숫자로 변환해주는 컨버터
+    ├── domain
+        ├── BonusBall - 보너스 번호에 대한 도메인
+        ├── Lotto - 로또 번호에 대한 도메인
+        ├── LottoMoney - 구입 금액에 대한 도메인
+        ├── PurchasedLottos - 로또 객체의 일급 컬렉션
+        ├── Rank - 로또 당첨 관련 데이터 그룹화
+        └── WinningLotto - 당첨 로또에 대한 도메인
+    ├── service
+        ├── LottoMachine - 로또 발행을 위한 도메인 서비스
+        ├── LottoResult - 로또 당첨 결과를 저장하는 도메인 서비스
+        └── LottoWinMather - 로또 당첨 과정을 담당하는 도메인 서비스
+    ├── util
+        ├── ErrorMessage - 에러 메시지 그룹화
+        ├── LottoGenerator - 로또 번호 생성기
+        ├── LottoValidator - 로또 공통 검증 로직
+        └── NumberGenerate - 번호 생성기 인터페이스
+    └── view
+        ├── InputView - 입력 화면 담당
+        └── OutputView - 출력 담당
+```
+
 ## 기능 구현 목록
 ### 기능
 ---
@@ -168,7 +201,7 @@
 - [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
 - [x] 3항 연산자를 쓰지 않는다.
 - [x] 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
-- [ ] JUnit 5와 AssertJ를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
+- [x] JUnit 5와 AssertJ를 이용하여 정리한 기능 목록이 정상적으로 작동하는지 테스트 코드로 확인한다.
   
 ### 프로그래밍 요구 사항 2
 - [x] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
