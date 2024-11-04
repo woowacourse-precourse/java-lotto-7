@@ -46,9 +46,9 @@ public class Numbers {
     }
 
     private List<Number> parseIntToNumber(List<Integer> numbers) {
-        return new ArrayList<>(numbers.stream()
+        return numbers.stream()
             .map(Number::new)
-            .collect(Collectors.toList()));
+            .collect(Collectors.toList());
     }
 
     public List<Number> getNumbers() {

@@ -1,88 +1,82 @@
 package lotto.controller;
 
-import java.util.List;
-import lotto.domain.Lotto;
+import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import lotto.domain.LottoResult;
-import lotto.domain.LottoStore;
 import lotto.domain.Numbers;
 import lotto.domain.Number;
 import lotto.domain.Price;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
+    LottoService lottoService;
+    Price purchasePrice;
+    Numbers winNumbers;
+    Number bonusNumber;
+
+    public LottoController() {
+        lottoService = new LottoService(new ArrayList<>(), new LottoResult());
+    }
+
     public void run() {
-        Price purchasePrice = getPurchasePrice();
+        purchase();
+        winNumbersInfo();
+        bonusNumberInfo();
+        Console.close();
+        result();
+    }
+
+    private void purchase() {
+        while (true) {
+            try {
+                purchasePrice = lottoService.getPurchasePrice(InputView.inputPurchasePrice());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         OutputView.printPurchasedLottoAmount(purchasePrice.getLottoAmount());
 
-        List<Lotto> purchasedLottos = getPurchasedLottos(purchasePrice);
-        OutputView.printPurchasedLottoNumbers(purchasedLottos);
+        lottoService.buyLotto(purchasePrice);
 
-        Numbers winNumbers = getWinNumbers();
-        Number bonusNumber = getBonusNumber(winNumbers);
+        OutputView.printPurchasedLottoNumbers(lottoService.getPurchasedLottos());
+    }
 
-        LottoResult lottoResult = new LottoResult();
-        calculateLottoResult(lottoResult, purchasedLottos, winNumbers, bonusNumber);
-        calculateProfitRate(lottoResult, purchasePrice);
+    private void winNumbersInfo() {
+        while (true) {
+            try {
+                winNumbers = lottoService.getWinNumbers(InputView.inputWinNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void bonusNumberInfo() {
+        while (true) {
+            try {
+                bonusNumber = lottoService.getBonusNumber(winNumbers, InputView.inputBonusNumber());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void result() {
+        lottoService.calculateLottoResult(winNumbers, bonusNumber);
 
         OutputView.printWinStatistics();
 
-        lottoResult.getLottoResult().forEach((result, count) -> {
+        lottoService.getLottoResult().forEach((result, count) -> {
             OutputView.printWinStatisticsDetail(result.getMessage(), count);
         });
 
-        OutputView.printProfitRate(lottoResult.getProfitRate());
-    }
-
-    private Price getPurchasePrice() {
-        while (true) {
-            try {
-                return new Price(InputView.inputPurchasePrice());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private List<Lotto> getPurchasedLottos(Price price) {
-        LottoStore lottoStore = new LottoStore();
-        while (true) {
-            try {
-                return lottoStore.buyLotto(price.getLottoAmount());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private Numbers getWinNumbers() {
-        while (true) {
-            try {
-                return new Numbers(InputView.inputWinNumbers());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private Number getBonusNumber(Numbers winNumbers) {
-        while (true) {
-            try {
-                Number bonusNumber = new Number(InputView.inputBonusNumber());
-                Number.validateBonusNumber(winNumbers, bonusNumber);
-                return bonusNumber;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private void calculateLottoResult(LottoResult lottoResult, List<Lotto> lottos, Numbers winNumbers, Number bonusNumber) {
-        lottoResult.calculateLottoResult(lottos, winNumbers, bonusNumber);
-    }
-
-    private void calculateProfitRate(LottoResult lottoResult, Price purchasePrice) {
-        lottoResult.calculateProfitRate(purchasePrice);
+        OutputView.printProfitRate(lottoService.getProfitRate(purchasePrice));
     }
 }
