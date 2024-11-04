@@ -1,7 +1,9 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class Output {
     private final LottoManager lottoManager = new LottoManager();
@@ -26,15 +28,17 @@ public class Output {
 
     public void printWinningStatistics(List<Rank> rankResult) {
         System.out.println("당첨 통계\n---");
-        int[] rankCount = lottoManager.getRankCount(rankResult);
-        
+        Map<Rank, Integer> rankCountMap = lottoManager.getRankCountMap(rankResult);
+
         for (Rank rank : Rank.RANK_ASC) {
-            String message = rank.getMessage() + rankCount[rank.getIndex()] + "개";
+            int count = rankCountMap.getOrDefault(rank, 0);
+            String message = rank.getMessage() + count + "개";
             System.out.println(message);
         }
 
         printYield(rankResult);
     }
+
 
     public void printYield(List<Rank> rankResult) {
         double yield = lottoManager.getYield(rankResult);
@@ -42,7 +46,7 @@ public class Output {
     }
 
     private void printLotto(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
+        List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
         Collections.sort(numbers);
         System.out.println(numbers);
     }

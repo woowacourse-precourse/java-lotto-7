@@ -2,7 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoManager {
 
@@ -38,12 +40,14 @@ public class LottoManager {
                 .orElse(null);
     }
 
-    public int[] getRankCount(List<Rank> rankResult) {
-        int[] rankCount = new int[Rank.MAX_RANK];
-        rankResult.stream()
-                .filter(rank -> rank != null)
-                .forEach(rank -> rankCount[rank.getIndex()]++);
-        return rankCount;
+    public Map<Rank, Integer> getRankCountMap(List<Rank> rankResult) {
+        Map<Rank, Integer> rankCountMap = new HashMap<>();
+
+        for (Rank rank : rankResult) {
+            rankCountMap.put(rank, rankCountMap.getOrDefault(rank, 0) + 1);
+        }
+
+        return rankCountMap;
     }
 
     public boolean hasBonusNumber(Lotto lotto, int bonusNumber) {
