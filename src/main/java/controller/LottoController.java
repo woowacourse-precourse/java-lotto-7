@@ -1,6 +1,9 @@
 package controller;
 
-import common.InputMessage;
+import static common.InputMessage.SYSTEM_PICK_BONUS_LOTTO;
+import static common.InputMessage.SYSTEM_PICK_LOTTO;
+import static common.InputMessage.USER_BUY_LOTTO;
+
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -37,17 +40,17 @@ public class LottoController {
     }
 
     private String getValidatedBonusNumber(String pickLottoNumbers) {
-        outputView.showPrompt(InputMessage.SYSTEM_PICK_BONUS_LOTTO.getMessage());
+        outputView.showPrompt(SYSTEM_PICK_BONUS_LOTTO);
         return getInput(input -> InputValidator.validateWinningBonusNumbers(input, pickLottoNumbers));
     }
 
     private String getValidatedWinningNumbers() {
-        outputView.showPrompt(InputMessage.SYSTEM_PICK_LOTTO.getMessage());
+        outputView.showPrompt(SYSTEM_PICK_LOTTO);
         return getInput(InputValidator::validateWinningNumbers);
     }
 
     private String getUserPayment() {
-        outputView.showPrompt(InputMessage.USER_BUY_LOTTO.getMessage());
+        outputView.showPrompt(USER_BUY_LOTTO);
         return getInput(InputValidator::validataPurchaseAmount);
     }
 

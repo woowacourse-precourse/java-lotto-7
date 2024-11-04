@@ -1,6 +1,14 @@
 package validator;
 
-import common.ErrorMessage;
+import static common.ErrorMessage.INVALID_LOTTO_NUMBER;
+import static common.ErrorMessage.INVALID_LOTTO_SCOPE;
+import static common.ErrorMessage.NONE_INPUT;
+import static common.ErrorMessage.INVALID_TYPE;
+import static common.ErrorMessage.INVALID_VALUE_NEGATIVE;
+import static common.ErrorMessage.INVALID_VALUE_ZERO;
+import static common.ErrorMessage.INVALID_PRICE;
+import static common.ErrorMessage.INVALID_LOTTO_CONTAINS;
+
 import java.util.Arrays;
 import java.util.List;
 import model.Lotto;
@@ -40,7 +48,7 @@ public class InputValidator {
                         checkRangeNumber(parsednumber);
                         return parsednumber;
                     } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
+                        throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
                     }
                 })
                 .toList();
@@ -48,13 +56,13 @@ public class InputValidator {
 
     private static void checkRangeNumber(int parsednumber) {
         if (parsednumber < 1 || parsednumber > 45) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SCOPE.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_SCOPE.getMessage());
         }
     }
 
     private static void inputEmptyCheck(String purchaseAmount) {
         if (purchaseAmount.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.NONE_INPUT.getMessage());
+            throw new IllegalArgumentException(NONE_INPUT.getMessage());
         }
     }
 
@@ -62,34 +70,34 @@ public class InputValidator {
         try {
             int result = Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE.getMessage());
+            throw new IllegalArgumentException(INVALID_TYPE.getMessage());
         }
     }
 
     private static void inputNegative(String purchaseAmount) {
         int result = Integer.parseInt(purchaseAmount);
         if (result < 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE_NEGATIVE.getMessage());
+            throw new IllegalArgumentException(INVALID_VALUE_NEGATIVE.getMessage());
         }
     }
 
     private static void inputZero(String purchaseAmount) {
         int result = Integer.parseInt(purchaseAmount);
         if (result == 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_VALUE_ZERO.getMessage());
+            throw new IllegalArgumentException(INVALID_VALUE_ZERO.getMessage());
         }
     }
 
     private static void inputUnpayableValue(String purchaseAmount) {
         int result = Integer.parseInt(purchaseAmount);
         if (result % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PRICE.getMessage());
+            throw new IllegalArgumentException(INVALID_PRICE.getMessage());
         }
     }
 
     private static void checkBonusNumberDuplicate(List<Integer> parseWinningNumbers, int parseBonusNumber) {
         if (parseWinningNumbers.contains(parseBonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_CONTAINS.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_CONTAINS.getMessage());
         }
     }
 }
