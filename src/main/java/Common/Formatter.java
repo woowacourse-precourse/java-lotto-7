@@ -8,4 +8,10 @@ public class Formatter {
         DecimalFormat formatter = new DecimalFormat("#,###");
         return formatter.format(num);
     }
+
+    public static String profitFormatted(double rate) {
+        DecimalFormat formatter = new DecimalFormat("#,##0.0");
+//        return Double.parseDouble(formatter.format(rate));
+        return formatter.format(rate);
+    }
 }

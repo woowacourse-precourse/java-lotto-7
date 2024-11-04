@@ -29,7 +29,7 @@ public class LottoController {
         int amount = input.requestPurchasePrice();
         issueLotto(amount);
         Lotto lotto = input.requestNumbers();
-        int bonusNumber = input.requestBonusNumber();
+        bonusNumber = input.requestBonusNumber();
         setInputNumbers(lotto, bonusNumber);
 
         output.printPurchasedLotto(lotteryTickets);
@@ -52,8 +52,10 @@ public class LottoController {
         int matchedCount = 0;
         boolean bonusMatch = false;
         for (Lotto lotto : lotteryTickets) {
-            matchedCount = inputLotto.countMatchedNumber(lotto.getNumbers());
-            bonusMatch = lotto.getNumbers().contains(bonusNumber);
+            int matched = inputLotto.countMatchedNumber(lotto.getNumbers());
+            if (matched > matchedCount) matchedCount = matched;
+            boolean bonus = lotto.getNumbers().contains(bonusNumber);
+            if (bonus) bonusMatch = true;
         }
         Rank rank = getRank(matchedCount, bonusMatch);
         rank.setPrizeCount();

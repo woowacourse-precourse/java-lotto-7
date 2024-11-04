@@ -13,7 +13,7 @@ public class InputView {
     public int requestPurchasePrice() {
         System.out.println("구입금액을 입력해 주세요.");
         int price = Integer.parseInt(Console.readLine());
-        if (price % 1000 != 0) throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+        if (price % 1000 != 0) throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
         System.out.println();
         return price/1000;
     }
