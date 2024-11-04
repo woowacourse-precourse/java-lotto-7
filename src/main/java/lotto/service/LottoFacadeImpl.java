@@ -1,18 +1,19 @@
 package lotto.service;
 
-import java.util.List;
 import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
 import lotto.model.WinningStatistic;
 import lotto.service.issuing.LottoIssuingService;
-import lotto.service.statistic.StatisticService;
+import lotto.service.winningStatistic.WinningStatisticService;
 
 public class LottoFacadeImpl implements LottoFacade {
     private final LottoIssuingService lottoIssuingService;
-    private final StatisticService statisticService;
 
-    public LottoFacadeImpl(LottoIssuingService lottoIssuingService, StatisticService statisticService) {
+    private final WinningStatisticService winningStatisticService;
+
+    public LottoFacadeImpl(LottoIssuingService lottoIssuingService, WinningStatisticService winningStatisticService) {
         this.lottoIssuingService = lottoIssuingService;
-        this.statisticService = statisticService;
+        this.winningStatisticService = winningStatisticService;
     }
 
     @Override
@@ -21,8 +22,7 @@ public class LottoFacadeImpl implements LottoFacade {
     }
 
     @Override
-    public WinningStatistic getStatistic(int purchaseAmount, int cost, List<Integer> winningNumbers, int bonusNumber,
-                                         Lottos lottos) {
-        return statisticService.getStatistic(purchaseAmount, cost, winningNumbers, bonusNumber, lottos);
+    public WinningStatistic getStatistic(int cost, Lottos lottos, WinningNumbers winningNumbers) {
+        return winningStatisticService.calculateWinningStatistic(cost, lottos, winningNumbers);
     }
 }
