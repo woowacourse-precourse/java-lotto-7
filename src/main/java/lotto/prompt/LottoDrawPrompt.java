@@ -62,18 +62,19 @@ public class LottoDrawPrompt {
         }
     }
 
+    public void printReturnRate(double returnRate) {
+        System.out.printf(RATE_OF_RETURN_OUTPUT_MSG, formatDecimal(returnRate));
+    }
+
     private String getDrawWinningResult(LottoWinningStatistics statistics, LottoRank rank) {
         String msg = DRAW_WINNING_OUTPUT_MSG;
+        long prize = LottoWinningRule.getPrize(rank);
+        int winningNumber = statistics.search(rank);
+
         if (rank == LottoRank.SECOND) {
             msg = DRAW_WINNING_BONUS_OUTPUT_MSG;
         }
-        long prize = LottoWinningRule.getPrize(rank);
-        int winningNumber = statistics.search(rank);
         return String.format(msg, rank.matches, formatInteger(prize), winningNumber);
-    }
-
-    public void printReturnRate(double returnRate) {
-        System.out.printf(RATE_OF_RETURN_OUTPUT_MSG, formatDecimal(returnRate));
     }
 
     private String formatInteger(long value) {
