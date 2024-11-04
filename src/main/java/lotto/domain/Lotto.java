@@ -71,8 +71,8 @@ public class Lotto {
         return numbers.size() != uniqueNumbers.size();
     }
 
-    public boolean contains(long number) {
-        return numbers.contains((int) number);
+    public boolean contains(int number) {
+        return numbers.contains( number);
     }
 
     public List<Integer> getNumbers() {

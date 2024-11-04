@@ -57,7 +57,7 @@ public class LottoController {
     private BonusNumber inputBonus() {
         try {
             long winningBonusNumberInput = InputView.inputNumber(InputMessage.BONUS_NUMBER);
-            return BonusNumber.from(winningBonusNumberInput);
+            return BonusNumber.from((int)winningBonusNumberInput);
         } catch (IllegalArgumentException e) {
             OutputView.printException(e);
             return inputBonus();
