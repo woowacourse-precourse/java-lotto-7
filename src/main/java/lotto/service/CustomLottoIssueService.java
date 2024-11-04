@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.exception.ErrorMessage;
 import lotto.model.db.Lotto;
 import lotto.model.db.Buyer;
 import lotto.model.db.UserRepository;
@@ -11,6 +12,8 @@ import lotto.exception.BusinessException;
 import lotto.util.ConsoleInput;
 
 public class CustomLottoIssueService implements LottoIssueService {
+
+    public static final String LOTTO_NUM_DELIMITERS = ",";
 
     protected final UserRepository userRepository = UserRepository.getInstance();
 
@@ -45,7 +48,7 @@ public class CustomLottoIssueService implements LottoIssueService {
     }
 
     private List<Integer> parseLottoNums(String inputNums) {
-        return Arrays.stream(inputNums.split(","))
+        return Arrays.stream(inputNums.split(LOTTO_NUM_DELIMITERS))
                 .map(this::parseLottoNum)
                 .collect(Collectors.toList());
     }
@@ -55,7 +58,7 @@ public class CustomLottoIssueService implements LottoIssueService {
         try {
             lottoNum = Integer.parseInt(num);
         } catch (NumberFormatException e) {
-            throw new BusinessException("로또 번호는 정수로 입력해주세요.");
+            throw new BusinessException(ErrorMessage.INVALID_LOTTO_NUM_FORMAT);
         }
         validateLottoNumRange(lottoNum);
         return lottoNum;
@@ -63,7 +66,7 @@ public class CustomLottoIssueService implements LottoIssueService {
 
     protected void validateLottoNumRange(int num) {
         if (num < 1 || num > 45) {
-            throw new BusinessException("로또 번호는 1부터 45 사이의 정수여야 합니다.");
+            throw new BusinessException(ErrorMessage.INVALID_LOTTO_NUM_RANGE);
         }
     }
 }

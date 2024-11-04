@@ -2,6 +2,7 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.BusinessException;
+import lotto.exception.ErrorMessage;
 
 public class ConsoleInput {
 
@@ -16,7 +17,7 @@ public class ConsoleInput {
         try {
             return Long.parseLong(getStringWithQuestion(prompt));
         } catch (NumberFormatException e) {
-            throw new BusinessException("숫자만 입력할 수 있습니다.");
+            throw new BusinessException(ErrorMessage.INVALID_LOTTO_NUM_FORMAT);
         }
     }
 
@@ -24,7 +25,7 @@ public class ConsoleInput {
         try {
             return Integer.parseInt(getStringWithQuestion(prompt));
         } catch (NumberFormatException e) {
-            throw new BusinessException("숫자만 입력할 수 있습니다.");
+            throw new BusinessException(ErrorMessage.INVALID_LOTTO_NUM_FORMAT);
         }
     }
 }

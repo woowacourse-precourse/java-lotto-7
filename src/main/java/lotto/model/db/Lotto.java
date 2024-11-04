@@ -2,9 +2,11 @@ package lotto.model.db;
 
 import java.util.List;
 import lotto.exception.BusinessException;
+import lotto.exception.ErrorMessage;
 
 public class Lotto {
 
+    private static final int LOTTO_NUM_CNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,12 +16,12 @@ public class Lotto {
 
     private void validateDuplication(List<Integer> numbers) {
         if (isDuplicated(numbers)) {
-            throw new BusinessException("로또 번호는 중복되지 않는 번호 6개여야 합니다.");
+            throw new BusinessException(ErrorMessage.DUPLICATED_LOTTO_NUM);
         }
     }
 
     private boolean isDuplicated(List<Integer> numbers) {
-        return numbers.stream().distinct().count() != 6;
+        return numbers.stream().distinct().count() != LOTTO_NUM_CNT;
     }
 
     public boolean contains(int num) {

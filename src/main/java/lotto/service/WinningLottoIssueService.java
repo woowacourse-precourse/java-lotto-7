@@ -1,11 +1,15 @@
 package lotto.service;
 
+import lotto.exception.ErrorMessage;
 import lotto.model.db.Lotto;
 import lotto.exception.BusinessException;
 import lotto.model.db.Owner;
 import lotto.util.ConsoleInput;
 
 public class WinningLottoIssueService extends CustomLottoIssueService {
+
+    private static final String BONUS_ENTER_PROMPT = "\n보너스 번호를 입력해 주세요.";
+    private static final int UNINITIALIZED = -1;
 
     @Override
     public Lotto issue(String prompt) {
@@ -16,8 +20,8 @@ public class WinningLottoIssueService extends CustomLottoIssueService {
     }
 
     private int issueBonus(Lotto winningLotto) {
-        int bonus = -1;
-        while (bonus < 0) {
+        int bonus = UNINITIALIZED;
+        while (bonus == UNINITIALIZED) {
             bonus = getBonusNum(winningLotto);
         }
         return bonus;
@@ -26,11 +30,11 @@ public class WinningLottoIssueService extends CustomLottoIssueService {
     private int getBonusNum(Lotto winningLotto) {
         int bonus;
         try {
-            bonus = ConsoleInput.getIntWithPrompt("\n보너스 번호를 입력해 주세요.");
+            bonus = ConsoleInput.getIntWithPrompt(BONUS_ENTER_PROMPT);
             validateBonusNum(winningLotto, bonus);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return -1;
+            return UNINITIALIZED;
         }
         return bonus;
     }
@@ -42,7 +46,7 @@ public class WinningLottoIssueService extends CustomLottoIssueService {
 
     private void validateDuplicate(Lotto winningLotto, int bonusNum) {
         if (winningLotto.contains(bonusNum)) {
-            throw new BusinessException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new BusinessException(ErrorMessage.DUPLICATED_BONUS_NUM);
         }
     }
 }

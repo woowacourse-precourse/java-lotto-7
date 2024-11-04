@@ -10,6 +10,8 @@ public class LottoRankCounter {
     private static final Map<Integer, Integer> MATCH_CNT_TO_RANK = new HashMap<>();
     private static final int NONE_RANK = -1;
     private static final int TOTAL_RANK_SIZE = 5;
+    private static final int UNINITIALIZED_RANK_CNT = 0;
+    public static final int FIRST_RANK = 1;
 
     private final Map<Integer, Integer> rankCnt;
 
@@ -29,15 +31,19 @@ public class LottoRankCounter {
     }
 
     private int parseRank(Lotto buyerLotto, Lotto winningLotto, int bonus) {
-        int rank = MATCH_CNT_TO_RANK.getOrDefault(buyerLotto.getMatchCnt(winningLotto), NONE_RANK);
+        int rank = parseMatchCntToRank(buyerLotto, winningLotto);
         if (isSecondLottoRank(buyerLotto, bonus, rank)) {
             return 2;
         }
         return rank;
     }
 
+    private int parseMatchCntToRank(Lotto buyerLotto, Lotto winningLotto) {
+        return MATCH_CNT_TO_RANK.getOrDefault(buyerLotto.getMatchCnt(winningLotto), NONE_RANK);
+    }
+
     private void count(int rank) {
-        rankCnt.put(rank, rankCnt.getOrDefault(rank, 0) + 1);
+        rankCnt.put(rank, rankCnt.getOrDefault(rank, UNINITIALIZED_RANK_CNT) + 1);
     }
 
     private boolean isSecondLottoRank(Lotto lotto, int bonus, int rank) {
@@ -45,7 +51,11 @@ public class LottoRankCounter {
     }
 
     public int getCnt(int rank) {
-        return rankCnt.getOrDefault(rank, 0);
+        return rankCnt.getOrDefault(rank, UNINITIALIZED_RANK_CNT);
+    }
+
+    public int getFirstRank() {
+        return FIRST_RANK;
     }
 
     public int size() {

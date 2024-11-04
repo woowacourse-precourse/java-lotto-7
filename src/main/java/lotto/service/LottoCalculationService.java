@@ -34,9 +34,13 @@ public class LottoCalculationService {
 
     public double getRateOfReturn(LottoRankCounter rankCnts) {
         Buyer buyer = (Buyer) userRepository.findById(BUYER);
-        double sum = IntStream.rangeClosed(1, rankCnts.size())
-                .mapToDouble(rank -> rankCnts.getCnt(rank) * RANK_TO_PRIZE_MONEY.get(rank))
+        double sum = IntStream.rangeClosed(rankCnts.getFirstRank(), rankCnts.size())
+                .mapToDouble(rank -> calcReturn(rankCnts, rank))
                 .sum();
         return sum / (buyer.getLottoCnt() * PRICE_PER_LOTTO) * 100;
+    }
+
+    private long calcReturn(LottoRankCounter rankCnts, int rank) {
+        return rankCnts.getCnt(rank) * RANK_TO_PRIZE_MONEY.get(rank);
     }
 }

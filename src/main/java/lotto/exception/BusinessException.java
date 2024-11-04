@@ -2,7 +2,9 @@ package lotto.exception;
 
 public class BusinessException extends IllegalArgumentException {
 
-    public BusinessException(String message) {
-        super("[ERROR] " + message);
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+
+    public BusinessException(ErrorMessage message) {
+        super(ERROR_MESSAGE_PREFIX + message);
     }
 }

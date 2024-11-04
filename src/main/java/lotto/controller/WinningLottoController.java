@@ -6,6 +6,8 @@ import lotto.view.VoidView;
 
 public class WinningLottoController implements Controller {
 
+    private static final String WINNING_LOTTO_ISSUE_PROMPT = "\n당첨 번호를 입력해 주세요.";
+
     private final LottoIssueService lottoIssueService;
 
     public WinningLottoController(LottoIssueService lottoIssueService) {
@@ -14,7 +16,7 @@ public class WinningLottoController implements Controller {
 
     @Override
     public View execute() {
-        lottoIssueService.issue("\n당첨 번호를 입력해 주세요.");
+        lottoIssueService.issue(WINNING_LOTTO_ISSUE_PROMPT);
         return new VoidView();
     }
 }

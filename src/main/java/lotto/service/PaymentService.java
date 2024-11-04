@@ -1,15 +1,18 @@
 package lotto.service;
 
 import lotto.exception.BusinessException;
+import lotto.exception.ErrorMessage;
 import lotto.util.ConsoleInput;
 
 public class PaymentService {
 
+    private static final String PAYMENT_ENTER_PROMPT = "구입금액을 입력해 주세요.";
     private static final int PRICE_PER_LOTTO = 1_000;
+    private static final int UNINITIALIZED = -1;
 
     public int buyLotto() {
-        long payment = -1;
-        while (payment < 0) {
+        long payment = UNINITIALIZED;
+        while (payment == UNINITIALIZED) {
             payment = getPayment();
         }
         return convertToLottoCnt(payment);
@@ -18,7 +21,7 @@ public class PaymentService {
     private long getPayment() {
         long payment;
         try {
-            payment = ConsoleInput.getLongWithPrompt("구입금액을 입력해 주세요.");
+            payment = ConsoleInput.getLongWithPrompt(PAYMENT_ENTER_PROMPT);
             validatePayment(payment);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -29,14 +32,14 @@ public class PaymentService {
 
     private void validatePayment(long payment) {
         if (payment <= 0) {
-            throw new BusinessException("구입 금액으로 0 또는 음수는 입력할 수 없습니다.");
+            throw new BusinessException(ErrorMessage.INVALID_PAYMENT_AMOUNT);
         }
         validateThousandUnitAmount(payment);
     }
 
     private void validateThousandUnitAmount(long payment) {
         if (payment % 1000 != 0) {
-            throw new BusinessException("구입 금액은 1,000 단위로 입력해주세요.");
+            throw new BusinessException(ErrorMessage.NON_DIVISIBLE_BY_LOTTO_PRICE);
         }
     }
 

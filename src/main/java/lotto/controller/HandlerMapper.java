@@ -12,7 +12,7 @@ import lotto.service.WinningLottoIssueService;
 
 public class HandlerMapper {
 
-    private final static Map<RequestUrl, Controller> CONTROLLER_MAP = new HashMap<>();
+    private static final Map<RequestUrl, Controller> CONTROLLER_MAP = new HashMap<>();
 
     static {
         CONTROLLER_MAP.put(PURCHASE_RANDOM_LOTTO, new RandomLottoPurchaseController(new RandomLottoIssueService()));
