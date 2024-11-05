@@ -18,10 +18,10 @@ public class OutputFormatter {
         return OutputFormatter.OutputFormatterHolder.instance;
     }
 
-    public String formatPurchasedLottos(PurchasedLottosResponse responses) {
-        return responses.lottoResponses()
+    public String formatPurchasedLottos(PurchasedLottosResponse purchasedLottos) {
+        return purchasedLottos.lottoResponses()
                 .stream()
-                .map(response -> response.numbers()
+                .map(lotto -> lotto.numbers()
                         .stream()
                         .map(String::valueOf)
                         .collect(Collectors.joining(", ", "[", "]"))
@@ -29,16 +29,16 @@ public class OutputFormatter {
                 .collect(Collectors.joining("\n"));
     }
 
-    public String formatWinningResult(WinningSummaryResponse.WinningDetailResponse response) {
+    public String formatWinningDetail(WinningSummaryResponse.WinningDetailResponse winningDetail) {
         String bonusStatus = "";
-        if (response.bonusNumberStatus().equals("INCLUDE_BONUS")) {
+        if (winningDetail.bonusNumberStatus().equals("INCLUDE_BONUS")) {
             bonusStatus = ", 보너스 볼 일치";
         }
 
         return String.format("%d개 일치%s (%s원) - %d개",
-                response.matchingNumberCount(),
+                winningDetail.matchingNumberCount(),
                 bonusStatus,
-                NumberFormat.getInstance().format(response.prizeMoney()),
-                response.winningCount());
+                NumberFormat.getInstance().format(winningDetail.prizeMoney()),
+                winningDetail.winningCount());
     }
 }

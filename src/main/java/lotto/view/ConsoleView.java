@@ -41,12 +41,12 @@ public class ConsoleView {
         outputView.printPurchasableLottoCount(lottoCount);
     }
 
-    public void printPurchasedLottos(PurchasedLottosResponse response) {
-        outputView.printPurchasedLottos(response);
+    public void printPurchasedLottos(PurchasedLottosResponse purchasedLottos) {
+        outputView.printPurchasedLottos(purchasedLottos);
     }
 
-    public void printWinningResult(WinningSummaryResponse response) {
-        outputView.printWinningResult(response);
+    public void printWinningResult(WinningSummaryResponse winningSummary) {
+        outputView.printWinningResult(winningSummary);
     }
 
     private <T> T readInput(Runnable prompt, Supplier<T> inputSupplier) {

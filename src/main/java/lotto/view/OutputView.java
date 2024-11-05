@@ -44,14 +44,14 @@ public class OutputView {
         System.out.println(formattedLottos);
     }
 
-    public void printWinningResult(WinningSummaryResponse winningResultResponse) {
+    public void printWinningResult(WinningSummaryResponse winningSummary) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        winningResultResponse.winningDetailResponse()
-                .forEach(response -> {
-                    String formattedWinningResult = outputFormatter.formatWinningResult(response);
-                    System.out.println(formattedWinningResult);
+        winningSummary.winningDetailResponse()
+                .forEach(winningDetail -> {
+                    String formattedWinningDetail = outputFormatter.formatWinningDetail(winningDetail);
+                    System.out.println(formattedWinningDetail);
                 });
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", winningResultResponse.profitRate());
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", winningSummary.profitRate());
     }
 }
