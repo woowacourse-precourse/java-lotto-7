@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.domain.ExceptionType.NUMBER_FORMAT;
 import static lotto.domain.ExceptionType.OUT_OF_RANGE_AMOUNT;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -9,9 +10,13 @@ import java.util.Scanner;
 
 public class Input {
 
-  public Input(String enteredValue) {
+  public Input(String enteredValue) throws NumberFormatException {
     // 10만원이 넘는 로또 구매는 도박입니다. 도박은 중독입니다
-    //
+    // // 문자열이 포함된 값이 들어오는 경우 NumberFormatException
+    boolean isNumber = enteredValue.matches("-?\\\\d+");
+    if (!isNumber) {
+      throw new NumberFormatException(NUMBER_FORMAT.getMessage());
+    }
 //    validate(enteredValue);
     this.enteredValue = enteredValue;
   }

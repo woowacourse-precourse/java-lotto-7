@@ -12,6 +12,8 @@
 - 이유를 추적하기 어려운 상황
   - 어떻게 발생하고 있는가?
   - 메인 -> org.opentest4j.AssertionFailedError: execution timed out after 10000 ms / 10초 이상 타임아웃
+    - 어떻게 해결하고 있는가?
+    - 실패하는 테스트 -> 실행 후 병목 추적 -> 로깅 메시지 분석 -> 관련 내용 리서치 (책/ 구글링) -> 대안 도출 -> 검증 / 반복
   - 예외 -> java.lang.NumberFormatException: For input string: "1000j" / 문자열 포함 입력 예외 처리 
 ---
 
