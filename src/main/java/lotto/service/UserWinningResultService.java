@@ -1,0 +1,59 @@
+package lotto.service;
+
+import lotto.collection.Lotto;
+import lotto.collection.LottoTickets;
+import lotto.domain.LottoResult;
+import lotto.domain.user.User;
+import lotto.enums.LottoConstant;
+import lotto.util.LottoWinningPriceList;
+import lotto.view.OutputView;
+
+import static lotto.enums.LottoConstant.*;
+import static lotto.view.OutputView.WINNING_STATISTICS;
+
+public class UserWinningResultService {
+    // 싱글톤 패턴
+    private static final UserWinningResultService instance = new UserWinningResultService();
+
+    private UserWinningResultService() {
+
+    }
+
+    public static UserWinningResultService getInstance() {
+        return instance;
+    }
+
+    public void getWinningResult(LottoResult lottoResult, User user) {
+        OutputView.newLine();
+        OutputView.printMessage(WINNING_STATISTICS);
+        double rateOfRevenue = generateStatistics(lottoResult, user);
+
+        OutputView.printTotalReturn(rateOfRevenue);
+    }
+
+    private double generateStatistics(LottoResult lottoResult, User user) {
+        int[][] lottoMatchCount = countMatchWinningNumber(lottoResult, user);
+        for (int match = 3; match <= LottoConstant.COUNT.getValue(); match++) {
+            OutputView.printWinningResult(match, lottoMatchCount);
+        }
+        return user.getRateOfReturn();
+    }
+
+    private int[][] countMatchWinningNumber(LottoResult lottoResult, User user) {
+        int[][] priceResultTable = new int[LottoConstant.COUNT.getValue() + 1][2];
+        LottoTickets lottoTickets = user.getLottoTickets();
+
+        for (Lotto lotto : lottoTickets.getTickets()) {
+            int matchCount = lotto.countMatchNumberWithWinningNumber(lottoResult.getWinningNumbers());
+            if (matchCount == BONUS_MATCH_COUNT.getValue() && lotto.isBonusNumberIncludeInWinningNumbers(lottoResult.getBonusNumber())) {
+                priceResultTable[matchCount][BONUS_NUMBER_INCLUDED.getValue()]++;
+                user.addRevenue(LottoWinningPriceList.getIncludeBonus);
+                continue;
+            }
+            priceResultTable[matchCount][BONUS_NUMBER_NOT_INCLUDED.getValue()]++;
+            user.addRevenue(LottoWinningPriceList.get[matchCount]);
+        }
+        return priceResultTable;
+    }
+
+}
