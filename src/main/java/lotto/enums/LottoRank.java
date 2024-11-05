@@ -2,11 +2,11 @@ package lotto.enums;
 
 public enum LottoRank {
     NO_MATCH(0, 0, false),
-    THREE_MATCH(3, 5_000, false),
-    FOUR_MATCH(4, 50_000, false),
-    FIVE_MATCH(5, 1_500_000, false),
-    FIVE_MATCH_WITH_BONUS(5, 30_000_000, true),
-    SIX_MATCH(6, 2_000_000_000, false);
+    THREE_MATCH(3, 5000, false),
+    FOUR_MATCH(4, 50000, false),
+    FIVE_MATCH(5, 1500000, false),
+    FIVE_MATCH_WITH_BONUS(5, 30000000, true),
+    SIX_MATCH(6, 2000000000, false);
 
     private final int matchCount;
     private final int reward;
@@ -28,5 +28,14 @@ public enum LottoRank {
 
     public boolean matchesBonus() {
         return matchesBonus;
+    }
+
+    public static LottoRank matchCountAndRank(int matchCount, boolean bonusMatch) {
+        for (LottoRank rank : values()) {
+            if (rank.getMatchCount() == matchCount && rank.matchesBonus() == bonusMatch) {
+                return rank;
+            }
+        }
+        return NO_MATCH;
     }
 }
