@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+
 
 import java.util.List;
 
@@ -12,8 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    @DisplayName("로또 기능 테스트")
     @Test
-    void 기능_테스트() {
+    void shouldTestLottoFunctionality() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
@@ -46,8 +49,9 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("잘못된 입력값이 주어질 경우 예외 처리")
     @Test
-    void 예외_테스트() {
+    void shouldDisplayErrorMessageForInvalidInput() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
