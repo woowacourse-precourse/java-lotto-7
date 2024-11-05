@@ -38,15 +38,15 @@ public class OutputView {
         System.out.println("\n" + lottoCount + "개를 구매했습니다.");
     }
 
-    public void printPurchasedLottos(PurchasedLottosResponse purchasedLottosResponse) {
-        System.out.println(formatPurchasedLottos(purchasedLottosResponse));
+    public void printPurchasedLottos(PurchasedLottosResponse response) {
+        System.out.println(formatPurchasedLottos(response));
     }
 
     public void printWinningResult(WinningSummaryResponse winningResultResponse) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         winningResultResponse.winningDetailResponse()
-                .forEach(winningDetailResponse -> System.out.println(formatWinningResult(winningDetailResponse)));
+                .forEach(response -> System.out.println(formatWinningResult(response)));
         System.out.printf("총 수익률은 %.1f%%입니다.%n", winningResultResponse.profitRate());
     }
 
