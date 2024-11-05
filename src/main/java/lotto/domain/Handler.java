@@ -34,7 +34,7 @@ public class Handler {
     List<Integer> numbers = new ArrayList<>();
 
     while (numbers.size() < SIZE.getMagicNumber()){
-      int random = Randoms.pickNumberInRange(1, 45);
+      int random = Randoms.pickNumberInRange(1, 45); // org.opentest4j.AssertionFailedError: execution timed out after 10000 ms
       if (!numbers.contains(random)) {
         numbers.add(random);
       }

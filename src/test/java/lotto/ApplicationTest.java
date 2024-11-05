@@ -50,12 +50,9 @@ class ApplicationTest extends NsTest {
         );
     }
 
-    /**
-     * ApplicationTest > 예외_테스트() FAILED
-     *     java.lang.AssertionError at ApplicationTest.java:53
-     */
+
     @Test
-    void 예외_테스트() {
+    void 예외_테스트() { // java.lang.NumberFormatException: For input string: "1000j"
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
