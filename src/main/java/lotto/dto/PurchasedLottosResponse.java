@@ -12,4 +12,10 @@ public record PurchasedLottosResponse(List<LottoResponse> lottoResponses) {
 
         return new PurchasedLottosResponse(lottoResponses);
     }
+
+    public record LottoResponse(List<Integer> numbers) {
+        public LottoResponse(Lotto lotto) {
+            this(lotto.getNumbers());
+        }
+    }
 }
