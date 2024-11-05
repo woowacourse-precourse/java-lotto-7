@@ -2,16 +2,17 @@ package lotto.view;
 
 import lotto.dto.PurchasedLottosResponse;
 import lotto.dto.WinningSummaryResponse;
-
-import java.text.NumberFormat;
-import java.util.stream.Collectors;
+import lotto.view.formatter.OutputFormatter;
 
 public class OutputView {
-    private OutputView() {
+    private final OutputFormatter outputFormatter;
+
+    private OutputView(OutputFormatter outputFormatter) {
+        this.outputFormatter = outputFormatter;
     }
 
     private static class OutputViewHolder {
-        private static final OutputView instance = new OutputView();
+        private static final OutputView instance = new OutputView(OutputFormatter.getInstance());
     }
 
     public static OutputView getInstance() {
@@ -38,39 +39,19 @@ public class OutputView {
         System.out.println("\n" + lottoCount + "개를 구매했습니다.");
     }
 
-    public void printPurchasedLottos(PurchasedLottosResponse response) {
-        System.out.println(formatPurchasedLottos(response));
+    public void printPurchasedLottos(PurchasedLottosResponse purchasedLottos) {
+        String formattedLottos = outputFormatter.formatPurchasedLottos(purchasedLottos);
+        System.out.println(formattedLottos);
     }
 
     public void printWinningResult(WinningSummaryResponse winningResultResponse) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         winningResultResponse.winningDetailResponse()
-                .forEach(response -> System.out.println(formatWinningResult(response)));
+                .forEach(response -> {
+                    String formattedWinningResult = outputFormatter.formatWinningResult(response);
+                    System.out.println(formattedWinningResult);
+                });
         System.out.printf("총 수익률은 %.1f%%입니다.%n", winningResultResponse.profitRate());
-    }
-
-    private String formatPurchasedLottos(PurchasedLottosResponse responses) {
-        return responses.lottoResponses()
-                .stream()
-                .map(response -> response.numbers()
-                        .stream()
-                        .map(String::valueOf)
-                        .collect(Collectors.joining(", ", "[", "]"))
-                )
-                .collect(Collectors.joining("\n"));
-    }
-
-    private String formatWinningResult(WinningSummaryResponse.WinningDetailResponse response) {
-        String bonusStatus = "";
-        if (response.bonusNumberStatus().equals("INCLUDE_BONUS")) {
-            bonusStatus = ", 보너스 볼 일치";
-        }
-
-        return String.format("%d개 일치%s (%s원) - %d개",
-                response.matchingNumberCount(),
-                bonusStatus,
-                NumberFormat.getInstance().format(response.prizeMoney()),
-                response.winningCount());
     }
 }
