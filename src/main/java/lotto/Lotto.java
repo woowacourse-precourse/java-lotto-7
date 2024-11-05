@@ -1,20 +1,28 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        LottoValidator.validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+    public int getMatchCount(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
     }
 
-    // TODO: 추가 기능 구현
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
 }
