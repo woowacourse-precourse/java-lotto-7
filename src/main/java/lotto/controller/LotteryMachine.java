@@ -32,7 +32,7 @@ public class LotteryMachine {
         final EnumMap<Grade, Integer> gradeWithCount = judge.allJudgedGrade();
         OutputView.printResultScore(gradeWithCount);
 
-        final Long profit = profitCalculator.calculateProfit(gradeWithCount, purchasePrice);
+        final Double profit = profitCalculator.calculateProfit(gradeWithCount, purchasePrice);
         OutputView.printProfitPercentage(profit);
     }
 

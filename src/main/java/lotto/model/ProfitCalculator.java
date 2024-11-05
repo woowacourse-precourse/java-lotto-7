@@ -4,7 +4,7 @@ import java.util.EnumMap;
 import lotto.util.Grade;
 
 public class ProfitCalculator extends Calculator {
-    public Long calculateProfit(final EnumMap<Grade, Integer> gradeWithCounts, final int expenditure) {
+    public Double calculateProfit(final EnumMap<Grade, Integer> gradeWithCounts, final int expenditure) {
         return divide(calculateTotalRevenue(gradeWithCounts), expenditure);
     }
 
