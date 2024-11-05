@@ -45,8 +45,8 @@ public class OutputView {
     public void printWinningResult(WinningSummaryResponse winningResultResponse) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        winningResultResponse.matchingCountResponses()
-                .forEach(matchingCountResponse -> System.out.println(formatWinningResult(matchingCountResponse)));
+        winningResultResponse.winningDetailResponse()
+                .forEach(winningDetailResponse -> System.out.println(formatWinningResult(winningDetailResponse)));
         System.out.printf("총 수익률은 %.1f%%입니다.%n", winningResultResponse.profitRate());
     }
 
@@ -61,7 +61,7 @@ public class OutputView {
                 .collect(Collectors.joining("\n"));
     }
 
-    private String formatWinningResult(WinningSummaryResponse.MatchingCountResponse response) {
+    private String formatWinningResult(WinningSummaryResponse.WinningDetailResponse response) {
         String bonusStatus = "";
         if (response.bonusNumberStatus().equals("INCLUDE_BONUS")) {
             bonusStatus = ", 보너스 볼 일치";

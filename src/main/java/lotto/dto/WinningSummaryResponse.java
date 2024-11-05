@@ -6,32 +6,28 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public record WinningSummaryResponse(List<MatchingCountResponse> matchingCountResponses, double profitRate) {
+public record WinningSummaryResponse(List<WinningDetailResponse> winningDetailResponse, double profitRate) {
     public static WinningSummaryResponse from(Map<Prize, Integer> winningSummary, double profitRate) {
-        List<MatchingCountResponse> matchingCountResponses = Arrays.stream(Prize.values())
-                .map(prize -> new MatchingCountResponse(prize, winningSummary.get(prize)))
+        List<WinningDetailResponse> winningDetailResponse = Arrays.stream(Prize.values())
+                .map(prize -> new WinningDetailResponse(prize, winningSummary.get(prize)))
                 .toList();
 
-        return new WinningSummaryResponse(matchingCountResponses, profitRate);
+        return new WinningSummaryResponse(winningDetailResponse, profitRate);
     }
 
-    public record MatchingCountResponse(
+    public record WinningDetailResponse(
             int matchingNumberCount,
             int prizeMoney,
             String bonusNumberStatus,
             int winningCount
     ) {
-        public MatchingCountResponse(Prize prize, int winningCount) {
+        public WinningDetailResponse(Prize prize, int winningCount) {
             this(
                     prize.getMatchingNumberCount(),
                     prize.getPrizeMoney(),
                     prize.getBonusNumberStatus().name(),
                     winningCount
             );
-        }
-
-        public int getProfit() {
-            return prizeMoney * winningCount;
         }
     }
 }

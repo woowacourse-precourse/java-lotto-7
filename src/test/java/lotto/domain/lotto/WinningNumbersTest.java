@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.dto.WinningSummaryResponse.MatchingCountResponse;
+import static lotto.dto.WinningSummaryResponse.WinningDetailResponse;
 import static lotto.exception.ErrorMessage.LOTTO_NUMBER_DUPLICATED;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,13 +42,13 @@ class WinningNumbersTest {
 
         // when
         WinningSummaryResponse winningSummaryResponse = winningNumbers.findWinningResult(lottos, purchaseAmount);
-        List<MatchingCountResponse> matchingCountResponses = winningSummaryResponse.matchingCountResponses();
+        List<WinningDetailResponse> winningDetailRespons = winningSummaryResponse.winningDetailResponse();
 
         // then
-        assertEquals(matchingCountResponses.get(5).matchingNumberCount(), 6);
-        assertEquals(matchingCountResponses.get(5).bonusNumberStatus(), "UNDEFINED");
-        assertEquals(matchingCountResponses.get(5).prizeMoney(), 2_000_000_000);
-        assertEquals(matchingCountResponses.get(5).winningCount(), 1);
+        assertEquals(winningDetailRespons.get(5).matchingNumberCount(), 6);
+        assertEquals(winningDetailRespons.get(5).bonusNumberStatus(), "UNDEFINED");
+        assertEquals(winningDetailRespons.get(5).prizeMoney(), 2_000_000_000);
+        assertEquals(winningDetailRespons.get(5).winningCount(), 1);
         assertEquals(winningSummaryResponse.profitRate(), 40000000.0);
     }
 }
