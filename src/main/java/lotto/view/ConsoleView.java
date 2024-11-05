@@ -49,10 +49,6 @@ public class ConsoleView {
         outputView.printWinningResult(winningSummaryResponse);
     }
 
-    public void printProfitRate(double profitRate) {
-        outputView.printProfitRate(profitRate);
-    }
-
     private <T> T readInput(Runnable prompt, Supplier<T> inputSupplier) {
         try {
             prompt.run();

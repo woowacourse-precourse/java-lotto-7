@@ -18,6 +18,10 @@ public class OutputView {
         return OutputViewHolder.instance;
     }
 
+    public void printException(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
+
     public void promptPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
     }
@@ -34,10 +38,6 @@ public class OutputView {
         System.out.println("\n" + lottoCount + "개를 구매했습니다.");
     }
 
-    public void printException(Exception exception) {
-        System.out.println(exception.getMessage());
-    }
-
     public void printPurchasedLottos(PurchasedLottosResponse purchasedLottosResponse) {
         System.out.println(formatPurchasedLottos(purchasedLottosResponse));
     }
@@ -47,10 +47,7 @@ public class OutputView {
         System.out.println("---");
         winningResultResponse.matchingCountResponses()
                 .forEach(matchingCountResponse -> System.out.println(formatWinningResult(matchingCountResponse)));
-    }
-
-    public void printProfitRate(double profitRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", winningResultResponse.profitRate());
     }
 
     private String formatPurchasedLottos(PurchasedLottosResponse responses) {
