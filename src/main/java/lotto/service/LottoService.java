@@ -29,7 +29,6 @@ public class LottoService {
         outputView.displayTickets(tickets);
 
         Lotto winningLotto = winningNumbers();
-        LottoBonusNumber bonusNumber = getBonusNumber(winningLotto.getNumbers());
         LottoMachine lottoMachine = new LottoMachine(winningLotto);
 
         Map<LottoRank, Integer> results = lottoMachine.match(tickets);
@@ -59,17 +58,5 @@ public class LottoService {
         String winningNumbersInput = inputView.readWinningNumber();
         List<Integer> winningNumbers = LottoValidation.validateWinningNumbers(winningNumbersInput);
         return new Lotto(winningNumbers);
-    }
-
-    private LottoBonusNumber getBonusNumber(List<Integer> winningNumbers) {
-        while (true) {
-            try {
-                String bonusNumberInput = inputView.readBonusNumber();
-                int bonusNumber = LottoValidation.validateBonusNumber(bonusNumberInput);
-                return new LottoBonusNumber(bonusNumber, winningNumbers);
-            } catch (LottoException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
     }
 }
