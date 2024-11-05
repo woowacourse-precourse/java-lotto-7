@@ -33,14 +33,11 @@ public class LottoFactory {
     }
 
     private int parseOrThrow(String count) {
-        try {
-            InputValidator.validateNumeric(count);
-            return Integer.parseInt(count);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
-        } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.unknownError);
+        if (count == null) {
+            throw new IllegalArgumentException(ErrorMessage.nullPointException);
         }
+        InputValidator.validateNumeric(count);
+        return Integer.parseInt(count);
     }
 
     private int calculateCountOrThrow() {

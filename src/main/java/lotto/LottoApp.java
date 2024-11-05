@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.common.ErrorMessage;
 import lotto.common.LottoGrade;
 import lotto.common.MessageGenerator;
 import lotto.domain.EarningReteCalculator;
@@ -52,8 +53,8 @@ public class LottoApp {
     }
 
     private int inputBonusNumber() {
+        consoleOutput.print(MessageGenerator.inputBonusNumber);
         return read(() -> {
-            consoleOutput.print(MessageGenerator.inputBonusNumber);
             String input = consoleInput.inputString();
             InputValidator.validateNumeric(input);
             return Integer.parseInt(input);
@@ -61,8 +62,8 @@ public class LottoApp {
     }
 
     private Lotto inputWinningLotto() {
+        consoleOutput.print(MessageGenerator.inputWinningNumber);
         return read(() -> {
-            consoleOutput.print(MessageGenerator.inputWinningNumber);
             String input = consoleInput.inputString();
             return LottoParser.parse(input);
         });
@@ -74,8 +75,8 @@ public class LottoApp {
     }
 
     private LottoFactory createLottoFactory() {
+        consoleOutput.print(MessageGenerator.inputCost);
         return read(() -> {
-            consoleOutput.print(MessageGenerator.inputCost);
             String cost = consoleInput.inputString();
             InputValidator.validateNumeric(cost);
             return new LottoFactory(cost);
@@ -83,10 +84,13 @@ public class LottoApp {
     }
 
     private <T> T read(final Supplier<T> supplier) {
-        try {
-            return supplier.get();
-        } catch (final IllegalArgumentException e) {
-            throw new IllegalArgumentException(e);
+        while (true) {
+            try {
+                return supplier.get();
+
+            } catch (final IllegalArgumentException e) {
+                consoleOutput.print(e.getMessage());
+            }
         }
     }
 }

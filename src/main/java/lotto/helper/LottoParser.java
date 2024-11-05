@@ -17,8 +17,6 @@ public class LottoParser {
             return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
-        } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.unknownError);
         }
     }
 

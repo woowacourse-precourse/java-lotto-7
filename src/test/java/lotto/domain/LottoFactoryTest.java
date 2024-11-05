@@ -37,7 +37,7 @@ class LottoFactoryTest {
         });
 
         //then
-        assertEquals(exception.getMessage(), ErrorMessage.unknownError);
+        assertEquals(exception.getMessage(), ErrorMessage.nullPointException);
     }
 
     @Test

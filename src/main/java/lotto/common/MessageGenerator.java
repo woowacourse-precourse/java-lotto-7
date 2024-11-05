@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MessageGenerator {
-    public static String inputCost = "금액을 입력해주세요.";
+    public static String inputCost = "구입금액을 입력해주세요.";
     public static String inputWinningNumber = "당첨 번호를 입력해 주세요.";
     public static String inputBonusNumber = "보너스 번호를 입력해 주세요.";
 

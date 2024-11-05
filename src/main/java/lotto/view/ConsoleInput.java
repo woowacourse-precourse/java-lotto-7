@@ -5,11 +5,6 @@ import lotto.common.ErrorMessage;
 
 public class ConsoleInput {
     public String inputString() {
-        try {
-            return Console.readLine();
-        } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.unknownError);
-        }
+        return Console.readLine();
     }
-
 }
