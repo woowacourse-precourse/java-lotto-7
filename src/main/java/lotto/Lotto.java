@@ -11,44 +11,14 @@ public class Lotto {
     // 생성자는 객체를 초기화 할 때만 호출된다.
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        duplicatesCheck(numbers);
-        rangeCheck(numbers);
-        typeCheck(numbers);
         this.numbers = numbers;
-
     }
 
-    // 로또 번호 길이 체크
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    }
-
-    // 로또 번호 중복 체크
-    private void duplicatesCheck(List<Integer> numbers) {
-        Set<Integer> uniqueNumber = new HashSet<>(numbers);
-        if (uniqueNumber.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
-        }
-    }
-
-    // 로또 번호 범위 체크
-    private void rangeCheck(List<Integer> numbers) {
-        for (int number:numbers){
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1과 45사이어야 합니다.");
-            }
-        }
-    }
-
-    // 로또 번호가 숫자가 맞는지 체크
-    private void typeCheck(List<Integer> numbers) {
-        for (Object number : numbers) {
-            if (!(number instanceof Integer)) {
-                throw new IllegalArgumentException("[ERROR] 리스트에는 정수형 숫자만 포함되어야 합니다.");
-            }
-        }
+        LottoValidate.validateSize(numbers);
+        LottoValidate.validateUnique(numbers);
+        LottoValidate.validateRange(numbers);
+        LottoValidate.validateType(numbers);
     }
 
     // 구매한 로또의 개수 반환
@@ -57,8 +27,10 @@ public class Lotto {
     }
 
     // 랜덤으로 선택된 로또 번호 오름차순 정렬
-    public static void SortRandomPickPurchaseLottoNumbers(List<Integer> numbers){
-        Collections.sort(numbers);
+    public static List<Integer> sortRandomPickPurchaseLottoNumbers(List<Integer> numbers){
+        List<Integer> sortNumbers  = new ArrayList<>(numbers);
+        Collections.sort(sortNumbers);
+        return sortNumbers;
     }
 
     // 로또 번호 랜덤으로 선택
@@ -71,8 +43,8 @@ public class Lotto {
         List<List<Integer>> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = randomPickPurchaseLottoNumbers();
-            SortRandomPickPurchaseLottoNumbers(numbers);
-            lottoNumbers.add(numbers);
+            List<Integer> sortNumber =sortRandomPickPurchaseLottoNumbers(numbers);
+            lottoNumbers.add(sortNumber);
         }
         return lottoNumbers;
     }
@@ -86,21 +58,20 @@ public class Lotto {
 
     // 번호를 맞춘 개수를 리스트에 반영
     public static void bonusNumberCheck(int[] checkNumber, int count, List<Integer> purchaseLottoNumber,int bonusNumber){
-        if (count == 3){
-            checkNumber[0]++;
-        }
-        else if (count == 4){
-            checkNumber[1]++;
-        }
-        else if (count == 5){
+        if (count == 5){
             if (purchaseLottoNumber.contains(bonusNumber)){
-                checkNumber[3]++;
+                checkNumber[count-2]++;
                 return;
             }
-            checkNumber[2]++;
+            checkNumber[count-3]++;
+            return;
         }
         else if (count == 6){
-            checkNumber[4]++;
+            checkNumber[count-2]++;
+            return;
+        }
+        else if (count == 3 || count == 4){
+            checkNumber[count-3]++;
         }
     }
 
