@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.manager.OperationManager;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        OperationManager operationManager = new OperationManager();
+        operationManager.execute();
     }
 }
