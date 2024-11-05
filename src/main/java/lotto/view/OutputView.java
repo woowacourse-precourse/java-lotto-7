@@ -46,17 +46,7 @@ public class OutputView {
     public void printWinningResult(List<PrizeResponse> prizeResponses) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        prizeResponses.forEach(prizeResponse -> {
-            String result = prizeResponse.matchingNumberCount() + "개 일치";
-            if (prizeResponse.bonusNumberStatus().equals("INCLUDE_BONUS")) {
-                result += ", 보너스 볼 일치";
-            }
-            result += " (" + NumberFormat.getInstance().format(prizeResponse.prizeMoney()) + "원)"
-                    + " - "
-                    + prizeResponse.winningCount() + "개";
-
-            System.out.println(result);
-        });
+        prizeResponses.forEach(prizeResponse -> System.out.println(formatWinningResult(prizeResponse)));
     }
 
     public void printProfitRate(double profitRate) {
@@ -72,5 +62,18 @@ public class OutputView {
                         .collect(Collectors.joining(", ", "[", "]"))
                 )
                 .collect(Collectors.joining("\n"));
+    }
+
+    private String formatWinningResult(PrizeResponse prizeResponse) {
+        String bonusStatus = "";
+        if (prizeResponse.bonusNumberStatus().equals("INCLUDE_BONUS")) {
+            bonusStatus = ", 보너스 볼 일치";
+        }
+
+        return String.format("%d개 일치%s (%s원) - %d개",
+                prizeResponse.matchingNumberCount(),
+                bonusStatus,
+                NumberFormat.getInstance().format(prizeResponse.prizeMoney()),
+                prizeResponse.winningCount());
     }
 }
