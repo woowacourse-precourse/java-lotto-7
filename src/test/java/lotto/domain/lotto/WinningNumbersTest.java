@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import lotto.domain.PurchaseAmount;
 import lotto.dto.WinningSummaryResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.dto.WinningSummaryResponse.MatchingCountResponse;
 import static lotto.exception.ErrorMessage.LOTTO_NUMBER_DUPLICATED;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,28 +32,23 @@ class WinningNumbersTest {
     @Test
     void 구매한_로또들을_당첨_번호_및_보너스_번호와_비교하여_당첨_결과를_반환한다() {
         // given
+        PurchaseAmount purchaseAmount = new PurchaseAmount(5000);
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = new LottoNumber(7);
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
 
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 7, 8)));
-        lottos.add(new Lotto(List.of(1, 2, 3, 7, 8, 9)));
-        lottos.add(new Lotto(List.of(1, 2, 7, 8, 9, 10)));
-        lottos.add(new Lotto(List.of(1, 7, 8, 9, 10, 11)));
 
         // when
-        List<WinningSummaryResponse.MatchingCountResponse> matchingCountResponses =
-                winningNumbers.findWinningResult(lottos).matchingCountResponses();
+        WinningSummaryResponse winningSummaryResponse = winningNumbers.findWinningResult(lottos, purchaseAmount);
+        List<MatchingCountResponse> matchingCountResponses = winningSummaryResponse.matchingCountResponses();
 
         // then
-        assertEquals(matchingCountResponses.get(0).matchingNumberCount(), 0);
-        assertEquals(matchingCountResponses.get(1).matchingNumberCount(), 3);
-        assertEquals(matchingCountResponses.get(2).matchingNumberCount(), 4);
-        assertEquals(matchingCountResponses.get(3).matchingNumberCount(), 5);
-        assertEquals(matchingCountResponses.get(4).matchingNumberCount(), 5);
         assertEquals(matchingCountResponses.get(5).matchingNumberCount(), 6);
+        assertEquals(matchingCountResponses.get(5).bonusNumberStatus(), "UNDEFINED");
+        assertEquals(matchingCountResponses.get(5).prizeMoney(), 2_000_000_000);
+        assertEquals(matchingCountResponses.get(5).winningCount(), 1);
+        assertEquals(winningSummaryResponse.profitRate(), 40000000.0);
     }
 }

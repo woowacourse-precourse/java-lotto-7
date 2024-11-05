@@ -33,19 +33,4 @@ class PurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(PURCHASE_AMOUNT_NOT_DIVISIBLE.getMessage());
     }
-
-    @DisplayName("총 수익이 주어질 떄 수익률을 계산한다.")
-    @Test
-    void 총_수익이_주어질_떄_수익률을_계산한다() {
-        // given
-        int amount = 10000;
-        PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
-        int totalProfit = 20000;
-
-        // when
-        double profitRate = purchaseAmount.calculateProfitRate(totalProfit);
-
-        // then
-        assertEquals(profitRate, 200);
-    }
 }
