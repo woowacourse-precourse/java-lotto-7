@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.dto.LottoResponse;
+import lotto.dto.PurchasedLottosResponse;
 import lotto.dto.PrizeResponse;
 
 import java.text.NumberFormat;
@@ -40,9 +41,9 @@ public class OutputView {
 
     }
 
-    public void printPurchasedLottos(List<LottoResponse> lottoResponses) {
-
-        lottoResponses.forEach(lottoResponse -> System.out.println(formatLottoNumbers(lottoResponse)));
+    public void printPurchasedLottos(PurchasedLottosResponse purchasedLottosResponse) {
+        purchasedLottosResponse.lottoResponses()
+                .forEach(lottoResponse -> System.out.println(formatLottoNumbers(lottoResponse)));
     }
 
     public void printWinningResult(List<PrizeResponse> prizeResponses) {

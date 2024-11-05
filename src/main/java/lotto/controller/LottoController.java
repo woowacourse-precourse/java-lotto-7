@@ -2,11 +2,11 @@ package lotto.controller;
 
 import lotto.domain.LottoGenerator;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.lotto.WinningLottoWithBonus;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
-import lotto.dto.LottoResponse;
+import lotto.domain.lotto.WinningLottoWithBonus;
 import lotto.dto.PrizeResponse;
+import lotto.dto.PurchasedLottosResponse;
 import lotto.parser.LottoNumbersInputParser;
 import lotto.view.ConsoleView;
 
@@ -50,11 +50,7 @@ public class LottoController {
     }
 
     private void printPurchasedLottos(List<Lotto> purchasedLottos) {
-        List<LottoResponse> lottoResponses = purchasedLottos.stream()
-                .map(LottoResponse::new)
-                .toList();
-
-        consoleView.printPurchasedLottos(lottoResponses);
+        consoleView.printPurchasedLottos(PurchasedLottosResponse.from(purchasedLottos));
     }
 
     private Lotto readWinningLottoNumbers() {
