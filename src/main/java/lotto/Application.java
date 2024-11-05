@@ -4,21 +4,16 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        while (true) {
-            try {
-                InputView.requestAmount();
-                int totalAmount = InputView.getAmount();
-                List<Lotto> lotteries = LottoGenerator.generate(totalAmount);
+        InputView.requestAmount();
 
-                OutputView.printReceipt(new LottoReceipt(lotteries));
+        int totalAmount = InputView.getAmount();
+        List<Lotto> lotteries = LottoGenerator.generate(totalAmount);
 
-                InputView.requestWinningNumber();
-                WinningNumber winningNumber = InputView.getWinningNumber();
+        OutputView.printReceipt(new LottoReceipt(lotteries));
 
-                OutputView.printResult(winningNumber, lotteries, totalAmount);
-            }catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        InputView.requestWinningNumber();
+        WinningNumber winningNumber = InputView.getWinningNumber();
+
+        OutputView.printResult(winningNumber, lotteries, totalAmount);
     }
 }

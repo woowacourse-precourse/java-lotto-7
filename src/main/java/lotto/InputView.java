@@ -18,12 +18,15 @@ public class InputView {
     }
 
     public static void requestAmount() {
-        System.out.println(REQUEST_AMOUNT);
-        String inputAmount = readLine();
-        try {
-            amount = Integer.parseInt(inputAmount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 금액에는 숫자만 입력해야 해요.");
+        while (true) {
+            try {
+                System.out.println(REQUEST_AMOUNT);
+                String inputAmount = readLine();
+                amount = Integer.parseInt(inputAmount);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 금액에는 숫자만 입력해야 해요.");
+            }
         }
     }
 
