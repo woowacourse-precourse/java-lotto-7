@@ -6,13 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public record WinningSummaryResponse(List<MatchingCountResponse> matchingCountResponses) {
-    public static WinningSummaryResponse from(Map<Prize, Integer> winningSummary) {
+public record WinningSummaryResponse(List<MatchingCountResponse> matchingCountResponses, double profitRate) {
+    public static WinningSummaryResponse from(Map<Prize, Integer> winningSummary, double profitRate) {
         List<MatchingCountResponse> matchingCountResponses = Arrays.stream(Prize.values())
                 .map(prize -> new MatchingCountResponse(prize, winningSummary.get(prize)))
                 .toList();
 
-        return new WinningSummaryResponse(matchingCountResponses);
+        return new WinningSummaryResponse(matchingCountResponses, profitRate);
     }
 
     public record MatchingCountResponse(
