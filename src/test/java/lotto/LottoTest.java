@@ -1,10 +1,12 @@
 package lotto;
 
+import lotto.dto.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +23,71 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 당첨을_확인한다_1등(){
+        Lotto  lotto=new Lotto(List.of(1,2,3,4,5,6));
+
+        List<Integer> winingLotto=List.of(1,2,3,4,5,6);
+        int bonus=7;
+        Rank rank=lotto.checkWining(winingLotto,7);
+
+
+        assertThat(rank).isEqualTo(Rank.FIRST);
+    }
+    @Test
+    void 당첨을_확인한다_2등(){
+        Lotto  lotto=new Lotto(List.of(7,2,3,4,5,6));
+
+        List<Integer> winingLotto=List.of(1,2,3,4,5,6);
+        int bonus=7;
+        Rank rank=lotto.checkWining(winingLotto,7);
+
+
+        assertThat(rank).isEqualTo(Rank.SECOND);
+    }
+    @Test
+    void 당첨을_확인한다_3등(){
+        Lotto  lotto=new Lotto(List.of(11,2,3,4,5,6));
+
+        List<Integer> winingLotto=List.of(1,2,3,4,5,6);
+        int bonus=7;
+        Rank rank=lotto.checkWining(winingLotto,7);
+
+
+        assertThat(rank).isEqualTo(Rank.THIRD);
+    }
+    @Test
+    void 당첨을_확인한다_4등(){
+        Lotto  lotto=new Lotto(List.of(8,7,3,4,5,6));
+
+        List<Integer> winingLotto=List.of(1,2,3,4,5,6);
+        int bonus=7;
+        Rank rank=lotto.checkWining(winingLotto,7);
+
+
+        assertThat(rank).isEqualTo(Rank.FOURTH);
+    }
+    @Test
+    void 당첨을_확인한다_5등(){
+        Lotto  lotto=new Lotto(List.of(9,8,7,4,5,6));
+
+        List<Integer> winingLotto=List.of(1,2,3,4,5,6);
+        int bonus=7;
+        Rank rank=lotto.checkWining(winingLotto,7);
+
+
+        assertThat(rank).isEqualTo(Rank.FIFTH);
+    }
+    @Test
+    void 당첨을_확인한다_등수없음(){
+        Lotto  lotto=new Lotto(List.of(7,8,9,10,11,12));
+
+        List<Integer> winingLotto=List.of(1,2,3,4,5,6);
+        int bonus=7;
+        Rank rank=lotto.checkWining(winingLotto,7);
+
+
+        assertThat(rank).isEqualTo(Rank.NONE);
+    }
+
 }
