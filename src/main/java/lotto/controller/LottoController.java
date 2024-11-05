@@ -22,6 +22,7 @@ public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         List<Lotto> purchasedLottos = generateLottos(purchaseAmount);
+        consoleView.printPurchasedLottos(PurchasedLottosResponse.from(purchasedLottos));
 
         Lotto winningLotto = readWinningLottoNumbers();
         LottoNumber bonusNumber = readBonusNumber();
@@ -33,19 +34,18 @@ public class LottoController {
 
     private PurchaseAmount readPurchaseAmount() {
         int purchaseAmountInput = consoleView.readPurchaseAmountInput();
+        PurchaseAmount purchaseAmount = new PurchaseAmount(purchaseAmountInput);
 
-        return new PurchaseAmount(purchaseAmountInput);
-    }
-
-    private List<Lotto> generateLottos(PurchaseAmount purchaseAmount) {
         int lottoCount = purchaseAmount.calculatePurchasableLottoCount();
         consoleView.printPurchasableLottoCount(lottoCount);
 
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        List<Lotto> purchasedLottos = lottoGenerator.generateLottos(lottoCount);
-        consoleView.printPurchasedLottos(PurchasedLottosResponse.from(purchasedLottos));
+        return purchaseAmount;
+    }
 
-        return purchasedLottos;
+    private List<Lotto> generateLottos(PurchaseAmount purchaseAmount) {
+        LottoGenerator lottoGenerator = new LottoGenerator();
+
+        return lottoGenerator.generateLottos(purchaseAmount.calculatePurchasableLottoCount());
     }
 
     private Lotto readWinningLottoNumbers() {
