@@ -11,10 +11,27 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        LottoNumberValidator.validateNumbers(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public boolean hasSameNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    public int findMatchCount(Lotto userLotto) {
+        int count = 0;
+        for (Integer number : userLotto.numbers) {
+            if (this.numbers.contains(number)) {
+                count++;
+            }
+
+        }
+
+        return count;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
