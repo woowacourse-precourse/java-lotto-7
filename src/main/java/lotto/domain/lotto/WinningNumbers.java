@@ -9,11 +9,11 @@ import java.util.Map;
 
 import static lotto.exception.ErrorMessage.LOTTO_NUMBER_DUPLICATED;
 
-public class WinningLottoWithBonus {
+public class WinningNumbers {
     private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
 
-    public WinningLottoWithBonus(Lotto winningLotto, LottoNumber bonusNumber) {
+    public WinningNumbers(Lotto winningLotto, LottoNumber bonusNumber) {
         validate(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;

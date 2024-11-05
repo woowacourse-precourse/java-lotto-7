@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("당첨 번호 및 보너스 번호 테스트")
-class WinningLottoWithBonusTest {
+class WinningNumbersTest {
     @DisplayName("당첨 번호와 보너스 번호가 중복되면 예외를 발생시킨다.")
     @Test
     void 당첨_번호와_보너스_번호가_중복되면_예외를_발생시킨다() {
@@ -21,7 +21,7 @@ class WinningLottoWithBonusTest {
         LottoNumber bonusNumber = new LottoNumber(6);
 
         // when, then
-        assertThatThrownBy(() -> new WinningLottoWithBonus(winningLotto, bonusNumber))
+        assertThatThrownBy(() -> new WinningNumbers(winningLotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_DUPLICATED.getMessage());
     }
@@ -32,7 +32,7 @@ class WinningLottoWithBonusTest {
         // given
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = new LottoNumber(7);
-        WinningLottoWithBonus winningLottoWithBonus = new WinningLottoWithBonus(winningLotto, bonusNumber);
+        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
 
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
@@ -44,7 +44,7 @@ class WinningLottoWithBonusTest {
 
         // when
         List<WinningSummaryResponse.MatchingCountResponse> matchingCountResponses =
-                winningLottoWithBonus.findWinningResult(lottos).matchingCountResponses();
+                winningNumbers.findWinningResult(lottos).matchingCountResponses();
 
         // then
         assertEquals(matchingCountResponses.get(0).matchingNumberCount(), 0);

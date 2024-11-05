@@ -4,7 +4,7 @@ import lotto.domain.LottoGenerator;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
-import lotto.domain.lotto.WinningLottoWithBonus;
+import lotto.domain.lotto.WinningNumbers;
 import lotto.dto.PurchasedLottosResponse;
 import lotto.dto.WinningSummaryResponse;
 import lotto.parser.LottoNumbersInputParser;
@@ -25,9 +25,9 @@ public class LottoController {
 
         Lotto winningLotto = readWinningLottoNumbers();
         LottoNumber bonusNumber = readBonusNumber();
-        WinningLottoWithBonus winningLottoWithBonus = new WinningLottoWithBonus(winningLotto, bonusNumber);
+        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
 
-        WinningSummaryResponse winningSummary = winningLottoWithBonus.findWinningResult(purchasedLottos);
+        WinningSummaryResponse winningSummary = winningNumbers.findWinningResult(purchasedLottos);
         consoleView.printWinningResult(winningSummary);
 
         double profitRate = calculateProfitRate(purchaseAmount, winningSummary);
