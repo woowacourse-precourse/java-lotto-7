@@ -9,6 +9,5 @@ public class Application {
         LottoController lottoController = new LottoController(consoleView);
 
         lottoController.run();
-
     }
 }

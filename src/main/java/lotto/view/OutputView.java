@@ -1,10 +1,9 @@
 package lotto.view;
 
-import lotto.dto.PrizeResponse;
 import lotto.dto.PurchasedLottosResponse;
+import lotto.dto.WinningSummaryResponse;
 
 import java.text.NumberFormat;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -43,10 +42,11 @@ public class OutputView {
         System.out.println(formatPurchasedLottos(purchasedLottosResponse));
     }
 
-    public void printWinningResult(List<PrizeResponse> prizeResponses) {
+    public void printWinningResult(WinningSummaryResponse winningResultResponse) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        prizeResponses.forEach(prizeResponse -> System.out.println(formatWinningResult(prizeResponse)));
+        winningResultResponse.matchingCountResponses()
+                .forEach(matchingCountResponse -> System.out.println(formatWinningResult(matchingCountResponse)));
     }
 
     public void printProfitRate(double profitRate) {
@@ -64,16 +64,16 @@ public class OutputView {
                 .collect(Collectors.joining("\n"));
     }
 
-    private String formatWinningResult(PrizeResponse prizeResponse) {
+    private String formatWinningResult(WinningSummaryResponse.MatchingCountResponse response) {
         String bonusStatus = "";
-        if (prizeResponse.bonusNumberStatus().equals("INCLUDE_BONUS")) {
+        if (response.bonusNumberStatus().equals("INCLUDE_BONUS")) {
             bonusStatus = ", 보너스 볼 일치";
         }
 
         return String.format("%d개 일치%s (%s원) - %d개",
-                prizeResponse.matchingNumberCount(),
+                response.matchingNumberCount(),
                 bonusStatus,
-                NumberFormat.getInstance().format(prizeResponse.prizeMoney()),
-                prizeResponse.winningCount());
+                NumberFormat.getInstance().format(response.prizeMoney()),
+                response.winningCount());
     }
 }

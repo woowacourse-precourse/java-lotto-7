@@ -1,9 +1,8 @@
 package lotto.domain.lotto;
 
 import lotto.domain.Prize;
-import lotto.dto.PrizeResponse;
+import lotto.dto.WinningSummaryResponse;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,18 +19,18 @@ public class WinningLottoWithBonus {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<PrizeResponse> findWinningResult(List<Lotto> purchasedLottos) {
-        Map<Prize, Integer> winningCounts = new HashMap<>();
+    public WinningSummaryResponse findWinningResult(List<Lotto> purchasedLottos) {
+        Map<Prize, Integer> WinningSummary = new HashMap<>();
         for (Prize prize : Prize.values()) {
-            winningCounts.put(prize, 0);
+            WinningSummary.put(prize, 0);
         }
 
         for (Lotto lotto : purchasedLottos) {
             Prize prize = findPrize(lotto);
-            winningCounts.merge(prize, 1, Integer::sum);
+            WinningSummary.merge(prize, 1, Integer::sum);
         }
 
-        return mapResponse(winningCounts);
+        return WinningSummaryResponse.from(WinningSummary);
     }
 
     private Prize findPrize(Lotto lotto) {
@@ -46,12 +45,6 @@ public class WinningLottoWithBonus {
         }
 
         return Prize.of(matchingNumberCount, containsBonusNumber);
-    }
-
-    private List<PrizeResponse> mapResponse(Map<Prize, Integer> winningCounts) {
-        return Arrays.stream(Prize.values())
-                .map(prize -> new PrizeResponse(prize, winningCounts.get(prize)))
-                .toList();
     }
 
     private boolean containsBonusNumberIn(Lotto lotto) {

@@ -1,9 +1,8 @@
 package lotto.view;
 
-import lotto.dto.PrizeResponse;
 import lotto.dto.PurchasedLottosResponse;
+import lotto.dto.WinningSummaryResponse;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class ConsoleView {
@@ -46,8 +45,8 @@ public class ConsoleView {
         outputView.printPurchasedLottos(purchasedLottosResponse);
     }
 
-    public void printWinningResult(List<PrizeResponse> prizeResponses) {
-        outputView.printWinningResult(prizeResponses);
+    public void printWinningResult(WinningSummaryResponse winningSummaryResponse) {
+        outputView.printWinningResult(winningSummaryResponse);
     }
 
     public void printProfitRate(double profitRate) {

@@ -5,8 +5,8 @@ import lotto.domain.PurchaseAmount;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.WinningLottoWithBonus;
-import lotto.dto.PrizeResponse;
 import lotto.dto.PurchasedLottosResponse;
+import lotto.dto.WinningSummaryResponse;
 import lotto.parser.LottoNumbersInputParser;
 import lotto.view.ConsoleView;
 
@@ -27,10 +27,10 @@ public class LottoController {
         LottoNumber bonusNumber = readBonusNumber();
         WinningLottoWithBonus winningLottoWithBonus = new WinningLottoWithBonus(winningLotto, bonusNumber);
 
-        List<PrizeResponse> winningResult = winningLottoWithBonus.findWinningResult(purchasedLottos);
-        consoleView.printWinningResult(winningResult);
+        WinningSummaryResponse winningSummary = winningLottoWithBonus.findWinningResult(purchasedLottos);
+        consoleView.printWinningResult(winningSummary);
 
-        double profitRate = calculateProfitRate(purchaseAmount, winningResult);
+        double profitRate = calculateProfitRate(purchaseAmount, winningSummary);
         consoleView.printProfitRate(profitRate);
     }
 
@@ -65,9 +65,10 @@ public class LottoController {
         return new LottoNumber(bonusNumberInput);
     }
 
-    private double calculateProfitRate(PurchaseAmount purchaseAmount, List<PrizeResponse> winningResult) {
-        int totalProfit = winningResult.stream()
-                .mapToInt(PrizeResponse::getProfit)
+    private double calculateProfitRate(PurchaseAmount purchaseAmount, WinningSummaryResponse winningSummaryResponse) {
+        int totalProfit = winningSummaryResponse.matchingCountResponses()
+                .stream()
+                .mapToInt(WinningSummaryResponse.MatchingCountResponse::getProfit)
                 .sum();
 
         return purchaseAmount.calculateProfitRate(totalProfit);

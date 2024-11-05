@@ -1,6 +1,6 @@
 package lotto.domain.lotto;
 
-import lotto.dto.PrizeResponse;
+import lotto.dto.WinningSummaryResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,14 +43,15 @@ class WinningLottoWithBonusTest {
         lottos.add(new Lotto(List.of(1, 7, 8, 9, 10, 11)));
 
         // when
-        List<PrizeResponse> winningResult = winningLottoWithBonus.findWinningResult(lottos);
+        List<WinningSummaryResponse.MatchingCountResponse> matchingCountResponses =
+                winningLottoWithBonus.findWinningResult(lottos).matchingCountResponses();
 
         // then
-        assertEquals(winningResult.get(0).matchingNumberCount(), 0);
-        assertEquals(winningResult.get(1).matchingNumberCount(), 3);
-        assertEquals(winningResult.get(2).matchingNumberCount(), 4);
-        assertEquals(winningResult.get(3).matchingNumberCount(), 5);
-        assertEquals(winningResult.get(4).matchingNumberCount(), 5);
-        assertEquals(winningResult.get(5).matchingNumberCount(), 6);
+        assertEquals(matchingCountResponses.get(0).matchingNumberCount(), 0);
+        assertEquals(matchingCountResponses.get(1).matchingNumberCount(), 3);
+        assertEquals(matchingCountResponses.get(2).matchingNumberCount(), 4);
+        assertEquals(matchingCountResponses.get(3).matchingNumberCount(), 5);
+        assertEquals(matchingCountResponses.get(4).matchingNumberCount(), 5);
+        assertEquals(matchingCountResponses.get(5).matchingNumberCount(), 6);
     }
 }
