@@ -27,11 +27,8 @@ public class LottoController {
         LottoNumber bonusNumber = readBonusNumber();
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
 
-        WinningSummaryResponse winningSummary = winningNumbers.findWinningResult(purchasedLottos);
+        WinningSummaryResponse winningSummary = winningNumbers.findWinningResult(purchasedLottos, purchaseAmount);
         consoleView.printWinningResult(winningSummary);
-
-        double profitRate = calculateProfitRate(purchaseAmount, winningSummary);
-        consoleView.printProfitRate(profitRate);
     }
 
     private PurchaseAmount readPurchaseAmount() {
@@ -63,14 +60,5 @@ public class LottoController {
         int bonusNumberInput = consoleView.readBonusNumberInput();
 
         return new LottoNumber(bonusNumberInput);
-    }
-
-    private double calculateProfitRate(PurchaseAmount purchaseAmount, WinningSummaryResponse winningSummaryResponse) {
-        int totalProfit = winningSummaryResponse.matchingCountResponses()
-                .stream()
-                .mapToInt(WinningSummaryResponse.MatchingCountResponse::getProfit)
-                .sum();
-
-        return purchaseAmount.calculateProfitRate(totalProfit);
     }
 }

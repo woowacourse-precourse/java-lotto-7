@@ -17,10 +17,6 @@ public class PurchaseAmount {
         return amount / LOTTO_PRICE;
     }
 
-    public double calculateProfitRate(int totalProfit) {
-        return ((double) totalProfit / amount) * 100;
-    }
-
     private void validate(int purchaseAmount) {
         validateMinimumPurchaseAmount(purchaseAmount);
         validateDivisibility(purchaseAmount);
