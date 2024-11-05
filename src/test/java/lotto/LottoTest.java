@@ -1,11 +1,14 @@
 package lotto;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class LottoTest {
     @Test
@@ -21,5 +24,28 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void createLotto_ShouldThrowException_WhenNumbersOutOfRange() {
+        // given
+        List<Integer> invalidNumbers = Arrays.asList(1, 2, 3, 46, 47, 48); // 46, 47, 48 범위 초과
+
+        // when & then
+        assertThatThrownBy(() -> new Lotto(invalidNumbers)
+                .getNumbers()).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+
+    @Test
+    void createLotto_ShouldCreateLottoWithValidNumbers() {
+        // given
+        List<Integer> validNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        // when
+        Lotto lotto = new Lotto(validNumbers);
+
+        // then
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
 }
