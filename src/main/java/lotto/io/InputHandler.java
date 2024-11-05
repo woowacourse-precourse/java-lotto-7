@@ -36,7 +36,7 @@ public class InputHandler {
         while (true) {
             try {
                 List<String> rawNumbers = Arrays.asList(Console.readLine().split(","));
-                List<Integer> winningNumbers = convertRawNumbers();
+                List<Integer> winningNumbers = convertRawNumbers(rawNumbers);
                 Lotto lotto = new Lotto(winningNumbers);
                 return lotto;
             } catch (NumberFormatException e) {
