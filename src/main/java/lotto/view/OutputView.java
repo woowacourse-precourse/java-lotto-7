@@ -1,12 +1,11 @@
 package lotto.view;
 
-import lotto.dto.LottoResponse;
-import lotto.dto.PurchasedLottosResponse;
 import lotto.dto.PrizeResponse;
+import lotto.dto.PurchasedLottosResponse;
 
 import java.text.NumberFormat;
 import java.util.List;
-import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private OutputView() {
@@ -38,12 +37,10 @@ public class OutputView {
 
     public void printException(Exception exception) {
         System.out.println(exception.getMessage());
-
     }
 
     public void printPurchasedLottos(PurchasedLottosResponse purchasedLottosResponse) {
-        purchasedLottosResponse.lottoResponses()
-                .forEach(lottoResponse -> System.out.println(formatLottoNumbers(lottoResponse)));
+        System.out.println(formatPurchasedLottos(purchasedLottosResponse));
     }
 
     public void printWinningResult(List<PrizeResponse> prizeResponses) {
@@ -66,12 +63,14 @@ public class OutputView {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 
-
-    private String formatLottoNumbers(LottoResponse lottoResponse) {
-        StringJoiner joiner = new StringJoiner(", ", "[", "]");
-        lottoResponse.numbers()
-                .forEach(number -> joiner.add(String.valueOf(number)));
-
-        return joiner.toString();
+    private String formatPurchasedLottos(PurchasedLottosResponse responses) {
+        return responses.lottoResponses()
+                .stream()
+                .map(response -> response.numbers()
+                        .stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(", ", "[", "]"))
+                )
+                .collect(Collectors.joining("\n"));
     }
 }
