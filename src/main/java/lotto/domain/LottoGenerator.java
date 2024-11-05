@@ -18,10 +18,10 @@ public class LottoGenerator {
     }
 
     private Lotto generateLotto() {
-        return new Lotto(generateLottoNumbers(LOTTO_COUNT));
+        return new Lotto(generateLottoNumbers());
     }
 
-    private List<Integer> generateLottoNumbers(int count) {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, count);
+    private List<Integer> generateLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LottoGenerator.LOTTO_COUNT);
     }
 }
