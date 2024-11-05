@@ -46,7 +46,7 @@ class WinningNumbersTest {
 
         // then
         assertEquals(winningDetailRespons.get(5).matchingNumberCount(), 6);
-        assertEquals(winningDetailRespons.get(5).bonusNumberStatus(), "UNDEFINED");
+        assertEquals(winningDetailRespons.get(5).bonusNumberStatus(), "OPTIONAL");
         assertEquals(winningDetailRespons.get(5).prizeMoney(), 2_000_000_000);
         assertEquals(winningDetailRespons.get(5).winningCount(), 1);
         assertEquals(winningSummaryResponse.profitRate(), 40000000.0);

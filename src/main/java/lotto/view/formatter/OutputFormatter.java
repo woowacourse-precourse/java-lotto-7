@@ -31,7 +31,7 @@ public class OutputFormatter {
 
     public String formatWinningDetail(WinningSummaryResponse.WinningDetailResponse winningDetail) {
         String bonusStatus = "";
-        if (winningDetail.bonusNumberStatus().equals("INCLUDE_BONUS")) {
+        if (winningDetail.bonusNumberStatus().equals("INCLUDE")) {
             bonusStatus = ", 보너스 볼 일치";
         }
 
