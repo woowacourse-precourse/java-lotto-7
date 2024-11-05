@@ -1,7 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -46,10 +50,101 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("3자리씩 끊어서 수익률을 출력한다.")
     @Test
-    void 예외_테스트() {
+    void printFormatCorrectly() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("7000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "7개를 구매했습니다.",
+                            "[1, 2, 8, 9, 10, 11]",
+                            "[1, 2, 8, 9, 10, 12]",
+                            "[1, 2, 8, 9, 10, 13]",
+                            "[1, 2, 8, 9, 10, 14]",
+                            "[1, 2, 8, 9, 10, 15]",
+                            "[1, 2, 8, 9, 10, 16]",
+                            "[1, 2, 3, 4, 5, 7]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 428,571.4%입니다."
+                    );
+                },
+                List.of(1, 2, 8, 9, 10, 11),
+                List.of(1, 2, 8, 9, 10, 12),
+                List.of(1, 2, 8, 9, 10, 13),
+                List.of(1, 2, 8, 9, 10, 14),
+                List.of(1, 2, 8, 9, 10, 15),
+                List.of(1, 2, 8, 9, 10, 16),
+                List.of(1, 2, 3, 4, 5, 7)
+        );
+    }
+
+    @DisplayName("소수 둘째자리에서 반올림하여 수익률을 출력한다.")
+    @Test
+    void CalculateDecimalCorrectly() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("7000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "7개를 구매했습니다.",
+                            "[1, 2, 8, 9, 10, 11]",
+                            "[1, 2, 8, 9, 10, 12]",
+                            "[1, 2, 8, 9, 10, 13]",
+                            "[1, 2, 8, 9, 10, 14]",
+                            "[1, 2, 8, 9, 10, 15]",
+                            "[1, 2, 8, 9, 10, 16]",
+                            "[1, 2, 3, 4, 10, 17]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 1개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 714.3%입니다."
+                    );
+                },
+                List.of(1, 2, 8, 9, 10, 11),
+                List.of(1, 2, 8, 9, 10, 12),
+                List.of(1, 2, 8, 9, 10, 13),
+                List.of(1, 2, 8, 9, 10, 14),
+                List.of(1, 2, 8, 9, 10, 15),
+                List.of(1, 2, 8, 9, 10, 16),
+                List.of(1, 2, 3, 4, 10, 17)
+        );
+    }
+
+    @DisplayName("숫자가 아닌 구매금액을 입력했을 때 예외가 발생한다")
+    @NullSource
+    @ParameterizedTest
+    @ValueSource(strings = {"1000j"})
+    void throwWhenInvalidPurchaseAmount(String input) {
         assertSimpleTest(() -> {
-            runException("1000j");
+            runException(input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("숫자가 아닌 로또 번호를 입력했을 때 예외가 발생한다")
+    @NullSource
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,a"})
+    void throwWhenInvalidLottoNumber(String input) {
+        assertSimpleTest(() -> {
+            runException("1000", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("숫자가 아닌 보너스 번호를 입력했을 때 예외가 발생한다")
+    @NullSource
+    @ParameterizedTest
+    @ValueSource(strings = {"a"})
+    void throwWhenInvalidBonusNumber(String input) {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", input);
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
