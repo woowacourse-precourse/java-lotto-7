@@ -1,8 +1,12 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,4 +26,35 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @Test
+    @DisplayName("로또 번호 오름차순 정렬")
+    void checkNumbersSortByAsc(){
+        //given
+        List<Integer> testNumbers = new ArrayList<>();
+
+        testNumbers.add(39);
+        testNumbers.add(29);
+        testNumbers.add(9);
+        testNumbers.add(3);
+        testNumbers.add(1);
+        testNumbers.add(32);
+        Collections.sort(testNumbers);
+
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(3);
+        numbers.add(9);
+        numbers.add(29);
+        numbers.add(32);
+        numbers.add(39);
+        //when
+        Lotto lotto = new Lotto(testNumbers);
+
+        //then
+        Assertions.assertThat(lotto.getNumbers()).isEqualTo(numbers);
+
+    }
+
+
 }

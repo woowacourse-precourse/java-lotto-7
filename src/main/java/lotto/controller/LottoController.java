@@ -1,0 +1,78 @@
+package lotto.controller;
+
+
+import lotto.domain.CustomLotto;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
+import lotto.service.LottoService;
+import lotto.util.Parse;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+
+public class LottoController {
+
+    private final LottoService lottoService;
+
+    public LottoController(){
+        lottoService=new LottoService();
+    }
+
+    public void run(){
+        LottoGame lottoGame = createLottoGame();
+
+        printRandomLottos(lottoGame);
+
+        inputCustomNumbers(lottoGame);
+
+        BigDecimal profit = computeProfit(lottoGame);
+
+        printResult(lottoGame, profit);
+    }
+
+    private static void printResult(LottoGame lottoGame, BigDecimal profit) {
+        OutputView.outputResult();
+        OutputView.outputResultOfWinning(lottoGame.getRank());
+        OutputView.outputProfit(profit);
+    }
+
+    private BigDecimal computeProfit(LottoGame lottoGame) {
+        lottoService.calculateLottoRank(lottoGame);
+        return lottoService.calculateProfit(lottoGame);
+    }
+
+    private void inputCustomNumbers(LottoGame lottoGame) {
+        OutputView.inputLottoNumber();
+        String lottoNumbers = InputView.input();
+        OutputView.inputBonusNumber();
+        String bonusNumber = InputView.input();
+
+        createCustomLotto(lottoGame, lottoNumbers, bonusNumber);
+    }
+
+    private void createCustomLotto(LottoGame lottoGame, String lottoNumbers, String bonusNumber) {
+        lottoService.validateLottoInput(lottoNumbers, bonusNumber);
+        Integer bonus = Parse.parseInteger(bonusNumber);
+        CustomLotto customLotto = lottoService.createCustomLotto(lottoNumbers, bonus);
+        lottoGame.setCustomLotto(customLotto);
+    }
+
+    private static void printRandomLottos(LottoGame lottoGame) {
+        OutputView.outputHowManyBuy(lottoGame.getLottos().size());
+        List<Lotto> lottos = lottoGame.getLottos();
+        for (Lotto lotto : lottos) {
+            OutputView.outputRandomLottoNumbers(lotto.getNumbers());
+        }
+    }
+
+    private LottoGame createLottoGame() {
+        OutputView.inputHowMuchBuy();
+        String budget = InputView.input();
+        lottoService.validateBudget(budget);
+        return lottoService.createLottoGame(budget);
+    }
+
+}
