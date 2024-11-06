@@ -10,7 +10,9 @@ public class Lotto {
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateNumberCount(numbers);
+        validateUnique(numbers);
+
         this.numbers = numbers.stream()
                 .map(LottoNumber::new)
                 .toList();
@@ -23,11 +25,6 @@ public class Lotto {
     protected boolean contains(int number) {
         return numbers.stream()
                 .anyMatch(lottoNumber -> lottoNumber.getNumber() == number);
-    }
-
-    private void validate(List<Integer> numbers) {
-        validateNumberCount(numbers);
-        validateUnique(numbers);
     }
 
     private void validateNumberCount(List<Integer> numbers) {

@@ -34,7 +34,7 @@ class WinningNumbersTest {
         // given
         PurchaseAmount purchaseAmount = new PurchaseAmount("5000");
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoNumber bonusNumber = new LottoNumber(7);
+        LottoNumber bonusNumber = new LottoNumber("7");
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
 
         List<Lotto> lottos = new ArrayList<>();

@@ -24,10 +24,10 @@ public class LottoNumbersInputParser {
     public List<Integer> parse(String input) {
         String[] lottoNumbers = input.split(DELIMITER);
 
-        return mapInteger(lottoNumbers);
+        return mapIntegerList(lottoNumbers);
     }
 
-    private List<Integer> mapInteger(String[] lottoNumbers) {
+    private List<Integer> mapIntegerList(String[] lottoNumbers) {
         try {
             return Arrays.stream(lottoNumbers)
                     .map(Integer::parseInt)

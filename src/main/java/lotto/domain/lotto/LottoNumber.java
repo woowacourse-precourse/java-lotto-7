@@ -10,30 +10,35 @@ public class LottoNumber {
 
 	private final int number;
 
-	public LottoNumber(String lottoNumberInput) {
-		validateNotBlank(lottoNumberInput);
-		validateDigit(lottoNumberInput);
+	public LottoNumber(String bonusNumberInput) {
+		validateNotBlank(bonusNumberInput);
+		validateDigit(bonusNumberInput);
 
-		int lottoNumber = Integer.parseInt(lottoNumberInput);
+		int lottoNumber = Integer.parseInt(bonusNumberInput);
 		validateRange(lottoNumber);
 
 		this.number = lottoNumber;
 	}
 
-	private void validateNotBlank(String lottoNumberInput) {
-		if (lottoNumberInput.isBlank()) {
+	protected LottoNumber(int lottoNumber) {
+		validateRange(lottoNumber);
+		this.number = lottoNumber;
+	}
+
+	private void validateNotBlank(String bonusNumberInput) {
+		if (bonusNumberInput.isBlank()) {
 			System.out.println(INPUT_BLANK.getMessage());
 		}
 	}
 
-	private void validateDigit(String lottoNumberInput) {
-		if (!isDigit(lottoNumberInput)) {
+	private void validateDigit(String bonusNumberInput) {
+		if (!isDigit(bonusNumberInput)) {
 			System.out.println(INPUT_NOT_DIGIT.getMessage());
 		}
 	}
 
-	private boolean isDigit(String lottoNumberInput) {
-		return lottoNumberInput.chars().anyMatch(character -> !Character.isDigit(character));
+	private boolean isDigit(String bonusNumberInput) {
+		return bonusNumberInput.chars().anyMatch(character -> !Character.isDigit(character));
 	}
 
 	private void validateRange(int lottoNumber) {

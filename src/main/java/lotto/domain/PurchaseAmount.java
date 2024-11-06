@@ -30,12 +30,12 @@ public class PurchaseAmount {
     }
 
     private void validateDigit(String purchaseAmountInput) {
-        if (!isDigit(purchaseAmountInput)) {
+        if (containsNonDigit(purchaseAmountInput)) {
             System.out.println(INPUT_NOT_DIGIT.getMessage());
         }
     }
 
-    private boolean isDigit(String purchaseAmountInput) {
+    private boolean containsNonDigit(String purchaseAmountInput) {
         return purchaseAmountInput.chars().anyMatch(character -> !Character.isDigit(character));
     }
 
