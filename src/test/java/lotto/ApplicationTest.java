@@ -7,11 +7,12 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-
+    private static final String CREDIT_ERROR = "[ERROR] 구입 금액은 1,000의 배수여야 합니다.";
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
