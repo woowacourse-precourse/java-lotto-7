@@ -31,5 +31,3 @@ public record WinningSummaryResponse(List<WinningDetailResponse> winningDetailRe
         }
     }
 }
-
-

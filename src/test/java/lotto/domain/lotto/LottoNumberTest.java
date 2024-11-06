@@ -40,5 +40,4 @@ class LottoNumberTest {
         // when, then
         assertThat(lottoNumber1).isEqualTo(lottoNumber2);
     }
-
 }
