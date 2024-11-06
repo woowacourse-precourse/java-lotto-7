@@ -3,8 +3,6 @@ package lotto.view;
 import lotto.dto.PurchasedLottosResponse;
 import lotto.dto.WinningSummaryResponse;
 
-import java.util.function.Supplier;
-
 public class ConsoleView {
     private final InputView inputView;
     private final OutputView outputView;
@@ -25,16 +23,22 @@ public class ConsoleView {
         return ConsoleViewHolder.CONSOLE_VIEW;
     }
 
-    public int readPurchaseAmountInput() {
-        return readInput(outputView::promptPurchaseAmount, inputView::readPurchaseAmountInput);
+    public String readPurchaseAmountInput() {
+        outputView.promptPurchaseAmount();
+
+        return inputView.readInput();
     }
 
     public String readWinningLottoNumbersInput() {
-        return readInput(outputView::promptLottoNumbers, inputView::readLottoNumbersInput);
+        outputView.promptLottoNumbers();
+
+        return inputView.readInput();
     }
 
-    public int readBonusNumberInput() {
-        return readInput(outputView::promptBonusNumber, inputView::readBonusNumberInput);
+    public String readBonusNumberInput() {
+        outputView.promptBonusNumber();
+
+        return inputView.readInput();
     }
 
     public void printPurchasableLottoCount(int lottoCount) {
@@ -49,13 +53,7 @@ public class ConsoleView {
         outputView.printWinningResult(winningSummary);
     }
 
-    private <T> T readInput(Runnable prompt, Supplier<T> inputSupplier) {
-        try {
-            prompt.run();
-            return inputSupplier.get();
-        } catch (IllegalArgumentException exception) {
-            outputView.printException(exception);
-            return readInput(prompt, inputSupplier);
-        }
+    public void printException(Exception exception) {
+        outputView.printException(exception);
     }
 }

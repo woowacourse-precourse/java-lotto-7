@@ -11,6 +11,7 @@ import lotto.parser.LottoNumbersInputParser;
 import lotto.view.ConsoleView;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class LottoController {
     private final ConsoleView consoleView;
@@ -33,7 +34,7 @@ public class LottoController {
     }
 
     private PurchaseAmount readPurchaseAmount() {
-        int purchaseAmountInput = consoleView.readPurchaseAmountInput();
+        String purchaseAmountInput = consoleView.readPurchaseAmountInput();
         PurchaseAmount purchaseAmount = new PurchaseAmount(purchaseAmountInput);
 
         int lottoCount = purchaseAmount.calculatePurchasableLottoCount();
@@ -57,8 +58,18 @@ public class LottoController {
     }
 
     private LottoNumber readBonusNumber() {
-        int bonusNumberInput = consoleView.readBonusNumberInput();
+        String bonusNumberInput = consoleView.readBonusNumberInput();
 
         return new LottoNumber(bonusNumberInput);
+    }
+
+    private <T> T readInput(Runnable prompt, Supplier<T> inputSupplier) {
+        try {
+            prompt.run();
+            return inputSupplier.get();
+        } catch (IllegalArgumentException exception) {
+            consoleView.printException(exception);
+            return readInput(prompt, inputSupplier);
+        }
     }
 }

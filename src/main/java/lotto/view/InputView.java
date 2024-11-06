@@ -19,7 +19,15 @@ public class InputView {
 		return instance;
 	}
 
-	public int readPurchaseAmountInput() {
+	public String readInput() {
+		return Console.readLine();
+	}
+
+	public void closeRead() {
+		Console.close();
+	}
+
+	public String readPurchaseAmountInput() {
 		String input = Console.readLine();
 		validatePurchaseAmount(input);
 
@@ -67,6 +75,6 @@ public class InputView {
 	}
 
 	private boolean isDigit(String input) {
-		return input.chars().allMatch(Character::isDigit);
+		return input.chars().anyMatch(character -> !Character.isDigit(character));
 	}
 }
