@@ -43,14 +43,14 @@ public class LottoController {
     }
 
     private List<Lotto> generateLottos(PurchaseAmount purchaseAmount) {
-        LottoGenerator lottoGenerator = new LottoGenerator();
+        LottoGenerator lottoGenerator = LottoGenerator.getInstance();
 
         return lottoGenerator.generateLottos(purchaseAmount.calculatePurchasableLottoCount());
     }
 
     private Lotto readWinningLottoNumbers() {
         String winningLottoNumbersInput = consoleView.readWinningLottoNumbersInput();
-        LottoNumbersInputParser lottoNumbersInputParser = new LottoNumbersInputParser();
+        LottoNumbersInputParser lottoNumbersInputParser = LottoNumbersInputParser.getInstance();
         List<Integer> lottoNumbers = lottoNumbersInputParser.parse(winningLottoNumbersInput);
 
         return new Lotto(lottoNumbers);

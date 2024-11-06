@@ -16,7 +16,7 @@ class LottoGeneratorTest {
     void 주어진_개수만큼_로또_번호들을_생성한다() {
         // given
         int lottoCount = 6;
-        LottoGenerator lottoGenerator = new LottoGenerator();
+        LottoGenerator lottoGenerator = LottoGenerator.getInstance();
 
         // when
         List<Lotto> lottos = lottoGenerator.generateLottos(lottoCount);
@@ -30,7 +30,7 @@ class LottoGeneratorTest {
     void 로또_생성_시_1_이상_45_이하의_숫자들로_구성된_로또를_생성한다() {
         // given
         int lottoCount = 5;
-        LottoGenerator lottoGenerator = new LottoGenerator();
+        LottoGenerator lottoGenerator = LottoGenerator.getInstance();
 
         // when
         List<Lotto> lottos = lottoGenerator.generateLottos(lottoCount);

@@ -14,7 +14,7 @@ class LottoNumbersInputParserTest {
     @ValueSource(strings = {"d,1,2,3", "1,!,2,3", "1,2,(,3"})
     void 주어진_입력값에_구분자_외에_숫자가_아닌_값이_포함되어_있을_때_예외를_발생시킨다(String input) {
         // when, then
-        assertThatThrownBy(() -> new LottoNumbersInputParser().parse(input))
+        assertThatThrownBy(() -> LottoNumbersInputParser.getInstance().parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_NOT_DIGIT.getMessage());
     }
