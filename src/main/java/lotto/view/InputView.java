@@ -62,19 +62,5 @@ public class InputView {
 		validateDigit(input);
 	}
 
-	private void validateNotBlank(String input) {
-		if (input.isBlank()) {
-			System.out.println(INPUT_BLANK.getMessage());
-		}
-	}
 
-	private void validateDigit(String input) {
-		if (!isDigit(input)) {
-			System.out.println(INPUT_NOT_DIGIT.getMessage());
-		}
-	}
-
-	private boolean isDigit(String input) {
-		return input.chars().anyMatch(character -> !Character.isDigit(character));
-	}
 }

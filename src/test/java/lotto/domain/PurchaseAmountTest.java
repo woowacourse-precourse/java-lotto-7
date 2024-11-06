@@ -14,10 +14,10 @@ class PurchaseAmountTest {
     @Test
     void 구매_금액이_1000원_미만일_경우_예외를_발생시킨다() {
         // given
-        int amount = 999;
+        String amountInput = "999";
 
         // when, then
-        assertThatThrownBy(() -> new PurchaseAmount(amount))
+        assertThatThrownBy(() -> new PurchaseAmount(amountInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(PURCHASE_AMOUNT_NOT_ENOUGH.getMessage());
     }
@@ -26,10 +26,10 @@ class PurchaseAmountTest {
     @Test
     void 구매_금액이_1000원으로_나누어_떨어지지_않을_경우_예외를_발생시킨다() {
         // given
-        int amount = 1500;
+        String amountInput = "1500";
 
         // when, then
-        assertThatThrownBy(() -> new PurchaseAmount(amount))
+        assertThatThrownBy(() -> new PurchaseAmount(amountInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(PURCHASE_AMOUNT_NOT_DIVISIBLE.getMessage());
     }

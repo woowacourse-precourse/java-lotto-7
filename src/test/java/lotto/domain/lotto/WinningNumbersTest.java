@@ -32,7 +32,7 @@ class WinningNumbersTest {
     @Test
     void 구매한_로또들을_당첨_번호_및_보너스_번호와_비교하여_당첨_결과를_반환한다() {
         // given
-        PurchaseAmount purchaseAmount = new PurchaseAmount(5000);
+        PurchaseAmount purchaseAmount = new PurchaseAmount("5000");
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = new LottoNumber(7);
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);

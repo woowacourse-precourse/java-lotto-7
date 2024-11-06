@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.Objects;
 
-import static lotto.exception.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
+import static lotto.exception.ErrorMessage.*;
 
 public class LottoNumber {
 	private static final int MIN_NUMBER = 1;
@@ -10,23 +10,40 @@ public class LottoNumber {
 
 	private final int number;
 
-	public LottoNumber(int number) {
-		validate(number);
-		this.number = number;
+	public LottoNumber(String lottoNumberInput) {
+		validateNotBlank(lottoNumberInput);
+		validateDigit(lottoNumberInput);
+
+		int lottoNumber = Integer.parseInt(lottoNumberInput);
+		validateRange(lottoNumber);
+
+		this.number = lottoNumber;
 	}
 
-	private void validate(int number) {
-		validateRange(number);
+	private void validateNotBlank(String lottoNumberInput) {
+		if (lottoNumberInput.isBlank()) {
+			System.out.println(INPUT_BLANK.getMessage());
+		}
 	}
 
-	private void validateRange(int number) {
-		if (isNumberOutOfRange(number)) {
+	private void validateDigit(String lottoNumberInput) {
+		if (!isDigit(lottoNumberInput)) {
+			System.out.println(INPUT_NOT_DIGIT.getMessage());
+		}
+	}
+
+	private boolean isDigit(String lottoNumberInput) {
+		return lottoNumberInput.chars().anyMatch(character -> !Character.isDigit(character));
+	}
+
+	private void validateRange(int lottoNumber) {
+		if (isNumberOutOfRange(lottoNumber)) {
 			throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
 		}
 	}
 
-	private boolean isNumberOutOfRange(int number) {
-		return number < MIN_NUMBER || number > MAX_NUMBER;
+	private boolean isNumberOutOfRange(int lottoNumber) {
+		return lottoNumber < MIN_NUMBER || lottoNumber > MAX_NUMBER;
 	}
 
 	public int getNumber() {

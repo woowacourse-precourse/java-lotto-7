@@ -1,25 +1,42 @@
 package lotto.domain;
 
-import static lotto.exception.ErrorMessage.PURCHASE_AMOUNT_NOT_DIVISIBLE;
-import static lotto.exception.ErrorMessage.PURCHASE_AMOUNT_NOT_ENOUGH;
+import static lotto.exception.ErrorMessage.*;
+import static lotto.exception.ErrorMessage.INPUT_NOT_DIGIT;
 
 public class PurchaseAmount {
     private static final int LOTTO_PRICE = 1000;
 
     private final int amount;
 
-    public PurchaseAmount(int amount) {
-        validate(amount);
-        this.amount = amount;
+    public PurchaseAmount(String purchaseAmountInput) {
+        validateNotBlank(purchaseAmountInput);
+        validateDigit(purchaseAmountInput);
+
+        int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+        validateMinimumPurchaseAmount(purchaseAmount);
+        validateDivisibility(purchaseAmount);
+
+        this.amount = purchaseAmount;
     }
 
     public int calculatePurchasableLottoCount() {
         return amount / LOTTO_PRICE;
     }
 
-    private void validate(int purchaseAmount) {
-        validateMinimumPurchaseAmount(purchaseAmount);
-        validateDivisibility(purchaseAmount);
+    private void validateNotBlank(String purchaseAmountInput) {
+        if (purchaseAmountInput.isBlank()) {
+            System.out.println(INPUT_BLANK.getMessage());
+        }
+    }
+
+    private void validateDigit(String purchaseAmountInput) {
+        if (!isDigit(purchaseAmountInput)) {
+            System.out.println(INPUT_NOT_DIGIT.getMessage());
+        }
+    }
+
+    private boolean isDigit(String purchaseAmountInput) {
+        return purchaseAmountInput.chars().anyMatch(character -> !Character.isDigit(character));
     }
 
     private void validateMinimumPurchaseAmount(int purchaseAmount) {
