@@ -6,15 +6,17 @@ import static lotto.exception.ErrorMessage.INPUT_BLANK;
 import static lotto.exception.ErrorMessage.INPUT_NOT_DIGIT;
 
 public class InputView {
+	private static InputView instance;
+
 	private InputView() {
 	}
 
-	private static class InputViewHolder {
-		private static final InputView INPUT_VIEW = new InputView();
-	}
-
 	public static InputView getInstance() {
-		return InputViewHolder.INPUT_VIEW;
+		if (instance == null) {
+			instance = new InputView();
+		}
+
+		return instance;
 	}
 
 	public int readPurchaseAmountInput() {

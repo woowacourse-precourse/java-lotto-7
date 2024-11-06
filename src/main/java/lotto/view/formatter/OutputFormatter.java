@@ -7,15 +7,17 @@ import java.text.NumberFormat;
 import java.util.stream.Collectors;
 
 public class OutputFormatter {
+    private static OutputFormatter instance;
+
     private OutputFormatter() {
     }
 
-    private static class OutputFormatterHolder {
-        private static final OutputFormatter instance = new OutputFormatter();
-    }
-
     public static OutputFormatter getInstance() {
-        return OutputFormatter.OutputFormatterHolder.instance;
+        if (instance == null) {
+            instance = new OutputFormatter();
+        }
+
+        return instance;
     }
 
     public String formatPurchasedLottos(PurchasedLottosResponse purchasedLottos) {

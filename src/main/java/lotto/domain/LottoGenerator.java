@@ -11,14 +11,17 @@ public class LottoGenerator {
     private static final int LOTTO_NUMBER_MAX = 45;
     private static final int LOTTO_COUNT = 6;
 
-    private LottoGenerator() {}
+    private static LottoGenerator instance;
 
-    private static class LottoGeneratorHolder {
-        private static final LottoGenerator INSTANCE = new LottoGenerator();
+    private LottoGenerator() {
     }
 
     public static LottoGenerator getInstance() {
-        return LottoGeneratorHolder.INSTANCE;
+        if (instance == null) {
+            instance = new LottoGenerator();
+        }
+
+        return instance;
     }
 
     public List<Lotto> generateLottos(int count) {

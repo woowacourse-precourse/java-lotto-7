@@ -1,8 +1,5 @@
 package lotto.parser;
 
-import lotto.domain.LottoGenerator;
-import lotto.domain.lotto.Lotto;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,14 +8,17 @@ import static lotto.exception.ErrorMessage.LOTTO_NUMBER_NOT_DIGIT;
 public class LottoNumbersInputParser {
     private static final String DELIMITER = ",";
 
-    private LottoNumbersInputParser() {}
+    private static LottoNumbersInputParser instance;
 
-    private static class LottoNumbersInputParserHolder {
-        private static final LottoNumbersInputParser INSTANCE = new LottoNumbersInputParser();
+    private LottoNumbersInputParser() {
     }
 
     public static LottoNumbersInputParser getInstance() {
-        return LottoNumbersInputParserHolder.INSTANCE;
+        if (instance == null) {
+            instance = new LottoNumbersInputParser();
+        }
+
+        return instance;
     }
 
     public List<Integer> parse(String input) {

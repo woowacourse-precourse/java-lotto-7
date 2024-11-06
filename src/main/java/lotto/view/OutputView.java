@@ -6,17 +6,18 @@ import lotto.view.formatter.OutputFormatter;
 
 public class OutputView {
     private final OutputFormatter outputFormatter;
+    private static OutputView instance;
 
     private OutputView(OutputFormatter outputFormatter) {
         this.outputFormatter = outputFormatter;
     }
 
-    private static class OutputViewHolder {
-        private static final OutputView instance = new OutputView(OutputFormatter.getInstance());
-    }
-
     public static OutputView getInstance() {
-        return OutputViewHolder.instance;
+        if (instance == null) {
+            instance = new OutputView(OutputFormatter.getInstance());
+        }
+
+        return instance;
     }
 
     public void printException(Exception exception) {
