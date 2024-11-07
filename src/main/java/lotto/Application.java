@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.List;
 
 public class Application {
@@ -9,23 +7,17 @@ public class Application {
         // TODO: 프로그램 구현
 
         LottoMachine machine = new LottoMachine();
-        List<Lotto> lottos;
+        Customer kim = new Customer();
+        LottoReader reader = new LottoReader();
 
-        machine.enterPay();
+        machine.enterPay(kim);
+        machine.buyLotto(kim);
+        reader.setWinningNum();
 
-        lottos = machine.buyLotto();
+        reader.setBonusNum();
 
-        for (Lotto lotto : lottos) {
-            lotto.printLottoNumber();
-        }
-
-        machine.setWinningNum();
-
-        machine.setBonusNum();
-
-        machine.checkResult(lottos);
-
-        machine.printBenefitRate();
+        reader.checkResult(kim);
+        reader.printBenefitRate(kim);
 
     }
 }

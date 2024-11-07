@@ -1,15 +1,18 @@
 package lotto;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 
-import static org.assertj.core.api.Assertions.*;
 public abstract class IOTest {
 
+    private final InputStream inputStreamCaptor = System.in;
     private ByteArrayOutputStream outputStreamCaptor;
+    private PrintStream standardOut;
 
     protected void systemIn(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
@@ -17,12 +20,20 @@ public abstract class IOTest {
 
     @BeforeEach
     void setUp() {
+        standardOut = System.out;
         outputStreamCaptor = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStreamCaptor));
+        System.setIn(inputStreamCaptor);
+    }
+
+    @AfterEach
+    protected void printResult() {
+        System.setIn(inputStreamCaptor);
+        System.setOut(standardOut);
+        System.out.println(getOutput());
     }
 
     protected String getOutput() {
-        // ByteArrayOutputStream의 toString은 기본 문자집합을 사용하여 버퍼의 내용을 문자열 디코딩 바이트로 변환해줍니다.
         return outputStreamCaptor.toString();
     }
 }
