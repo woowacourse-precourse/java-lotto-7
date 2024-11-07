@@ -4,6 +4,7 @@ import lotto.domain.Prize;
 import lotto.domain.PurchaseAmount;
 import lotto.dto.WinningSummaryResponse;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,17 +22,17 @@ public class WinningNumbers {
     }
 
     public WinningSummaryResponse findWinningResult(List<Lotto> purchasedLottos, PurchaseAmount purchaseAmount) {
-        Map<Prize, Integer> WinningSummary = new HashMap<>();
+        Map<Prize, Integer> winningSummary = new EnumMap<>(Prize.class);
         for (Prize prize : Prize.values()) {
-            WinningSummary.put(prize, 0);
+            winningSummary.put(prize, 0);
         }
 
         for (Lotto lotto : purchasedLottos) {
             Prize prize = findPrize(lotto);
-            WinningSummary.merge(prize, 1, Integer::sum);
+            winningSummary.merge(prize, 1, Integer::sum);
         }
 
-        return WinningSummaryResponse.from(WinningSummary, calculateProfitRate(purchaseAmount, WinningSummary));
+        return WinningSummaryResponse.from(winningSummary, calculateProfitRate(purchaseAmount, winningSummary));
     }
 
     private Prize findPrize(Lotto lotto) {
