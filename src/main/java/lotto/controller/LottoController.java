@@ -21,12 +21,12 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = readPurchaseAmount();
+        PurchaseAmount purchaseAmount = retryIfFailed(this::readPurchaseAmount);
         List<Lotto> purchasedLottos = generateLottos(purchaseAmount);
         consoleView.printPurchasedLottos(PurchasedLottosResponse.from(purchasedLottos));
 
-        Lotto winningLotto = readWinningLottoNumbers();
-        LottoNumber bonusNumber = readBonusNumber();
+        Lotto winningLotto = retryIfFailed(this::readWinningLottoNumbers);
+        LottoNumber bonusNumber = retryIfFailed(this::readBonusNumber);
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
 
         WinningSummaryResponse winningSummary = winningNumbers.findWinningResult(purchasedLottos, purchaseAmount);
@@ -63,13 +63,12 @@ public class LottoController {
         return new LottoNumber(bonusNumberInput);
     }
 
-    private <T> T readInput(Runnable prompt, Supplier<T> inputSupplier) {
+    private <T> T retryIfFailed(Supplier<T> inputSupplier) {
         try {
-            prompt.run();
             return inputSupplier.get();
         } catch (IllegalArgumentException exception) {
             consoleView.printException(exception);
-            return readInput(prompt, inputSupplier);
+            return retryIfFailed(inputSupplier);
         }
     }
 }
