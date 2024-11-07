@@ -41,6 +41,10 @@ public class ConsoleView {
         return inputView.readInput();
     }
 
+    public void closeRead() {
+        inputView.closeRead();
+    }
+
     public void printPurchasableLottoCount(int lottoCount) {
         outputView.printPurchasableLottoCount(lottoCount);
     }
