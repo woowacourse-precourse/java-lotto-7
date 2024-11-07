@@ -27,8 +27,9 @@ public class LottoController {
 
         Lotto winningLotto = retryIfFailed(this::readWinningLottoNumbers);
         LottoNumber bonusNumber = retryIfFailed(this::readBonusNumber);
-        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
+        consoleView.closeRead();
 
+        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
         WinningSummaryResponse winningSummary = winningNumbers.findWinningResult(purchasedLottos, purchaseAmount);
         consoleView.printWinningResult(winningSummary);
     }
