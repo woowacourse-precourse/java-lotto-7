@@ -7,6 +7,10 @@ import java.text.NumberFormat;
 import java.util.stream.Collectors;
 
 public class OutputFormatter {
+    private final String LOTTO_PREFIX = "[";
+    private final String LOTTO_SUFFIX = "]";
+    private final String LOTTO_DELIMITER = ", ";
+
     private static OutputFormatter instance;
 
     private OutputFormatter() {
@@ -26,7 +30,7 @@ public class OutputFormatter {
                 .map(lotto -> lotto.numbers()
                         .stream()
                         .map(String::valueOf)
-                        .collect(Collectors.joining(", ", "[", "]"))
+                        .collect(Collectors.joining(LOTTO_DELIMITER, LOTTO_PREFIX, LOTTO_SUFFIX))
                 )
                 .collect(Collectors.joining("\n"));
     }
