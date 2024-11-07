@@ -25,13 +25,13 @@ public class PurchaseAmount {
 
     private void validateNotBlank(String purchaseAmountInput) {
         if (purchaseAmountInput.isBlank()) {
-            System.out.println(INPUT_BLANK.getMessage());
+            throw new IllegalArgumentException(INPUT_BLANK.getMessage());
         }
     }
 
     private void validateDigit(String purchaseAmountInput) {
         if (containsNonDigit(purchaseAmountInput)) {
-            System.out.println(INPUT_NOT_DIGIT.getMessage());
+            throw new IllegalArgumentException(INPUT_NOT_DIGIT.getMessage());
         }
     }
 

@@ -27,17 +27,17 @@ public class LottoNumber {
 
 	private void validateNotBlank(String bonusNumberInput) {
 		if (bonusNumberInput.isBlank()) {
-			System.out.println(INPUT_BLANK.getMessage());
+			throw new IllegalArgumentException(INPUT_BLANK.getMessage());
 		}
 	}
 
 	private void validateDigit(String bonusNumberInput) {
-		if (!isDigit(bonusNumberInput)) {
-			System.out.println(INPUT_NOT_DIGIT.getMessage());
+		if (containsNonDigit(bonusNumberInput)) {
+			throw new IllegalArgumentException(INPUT_NOT_DIGIT.getMessage());
 		}
 	}
 
-	private boolean isDigit(String bonusNumberInput) {
+	private boolean containsNonDigit(String bonusNumberInput) {
 		return bonusNumberInput.chars().anyMatch(character -> !Character.isDigit(character));
 	}
 
