@@ -4,8 +4,8 @@ import lotto.domain.Prize;
 import lotto.domain.PurchaseAmount;
 import lotto.dto.WinningSummaryResponse;
 
+import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,12 +23,11 @@ public class WinningNumbers {
 
     public WinningSummaryResponse findWinningResult(List<Lotto> purchasedLottos, PurchaseAmount purchaseAmount) {
         Map<Prize, Integer> winningSummary = new EnumMap<>(Prize.class);
-        for (Prize prize : Prize.values()) {
-            winningSummary.put(prize, 0);
-        }
+        Arrays.stream(Prize.values())
+                .forEach(prize -> winningSummary.put(prize, 0));
 
-        for (Lotto lotto : purchasedLottos) {
-            Prize prize = findPrize(lotto);
+        for (Lotto purchasedLotto : purchasedLottos) {
+            Prize prize = findPrize(purchasedLotto);
             winningSummary.merge(prize, 1, Integer::sum);
         }
 
