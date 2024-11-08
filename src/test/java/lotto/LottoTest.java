@@ -1,11 +1,13 @@
 package lotto;
 
+import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -21,5 +23,25 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호를 [] 사이에 넣어서 출력되는 메서드")
+    @Test
+    void toStringTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertEquals("[1, 2, 3, 4, 5, 6]", lotto.toString());
+    }
+
+    @DisplayName("로또 번호를 가져오는 메서드")
+    @Test
+    void getNumbersTest() {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+        numbers.add(6);
+
+        Lotto lotto = new Lotto(numbers);
+        assertEquals(numbers, lotto.getNumbers());
+    }
 }
