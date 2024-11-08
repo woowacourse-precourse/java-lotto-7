@@ -14,6 +14,7 @@ public class Lotto {
         validateUnique(numbers);
 
         this.numbers = numbers.stream()
+                .sorted()
                 .map(LottoNumber::new)
                 .toList();
     }
