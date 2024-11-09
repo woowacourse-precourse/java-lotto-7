@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.*;
+import static lotto.util.InputHandler.*;
 import static lotto.validation.LottoValidation.*;
 
 import java.util.List;
@@ -21,16 +22,5 @@ public class InputView {
 
 	public static int getBonusNumber(List<Integer> winningNumbers) {
 		return getInput(input -> parseBonusNumber(input, winningNumbers));
-	}
-
-	private static <T> T getInput(Function<String, T> parser) {
-		while (true) {
-			try {
-				String input = readLine();
-				return parser.apply(input);
-			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-			}
-		}
 	}
 }
