@@ -12,6 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    /**
+     * ApplicationTest > 기능_테스트() FAILED
+     *     java.lang.AssertionError at ApplicationTest.java:20
+     */
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -46,8 +50,9 @@ class ApplicationTest extends NsTest {
         );
     }
 
+
     @Test
-    void 예외_테스트() {
+    void 예외_테스트() { // java.lang.NumberFormatException: For input string: "1000j"
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
