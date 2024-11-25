@@ -52,3 +52,8 @@
     - 보너스 번호가 당첨 번호와 중복되거나 1~45 범위를 벗어난 경우 에러 메시지를 출력하고 다시 입력을 요청합니다.
     - 숫자가 아닐 경우 다시 입력을 요청합니다.
     - null 일 경우 다시 입력을 요청합니다.
+ 
+[3.로또.pdf](https://github.com/user-attachments/files/17895882/3.pdf)
+[[7기] 프리코스 2주 차 웹 백엔드 피드백.pdf](https://github.com/user-attachments/files/17895881/7.2.pdf)
+
+  
