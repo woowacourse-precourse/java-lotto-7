@@ -1,5 +1,7 @@
 # java-lotto-precourse
 
+> 로또 구매 및 당첨 결과를 계산하는 애플리케이션입니다. 기존 코드에서 MVC(Model-View-Controller) 패턴을 적용하여 역할과 책임을 분리하고 유지보수성과 확장성을 개선했습니다.
+
 ![alt text](image.png)
 
 ## **Controller (LottoController)**:  
