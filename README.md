@@ -1,44 +1,49 @@
 # java-lotto-precourse
 
-# Application Class
+![alt text](image.png)
 
-- main(String[] args): 애플리케이션의 진입점으로 run() 메서드를 호출하여 실행을 시작합니다.
+## **Controller (LottoController)**:  
+  >사용자로부터 입력을 받고(`InputView`), 비즈니스 로직(`LottoService`)을 수행한 후, 결과를 출력(`OutputView`)하는 전체 흐름을 제어합니다.  
+  - 구매금액 입력 → 구매 개수 계산  
+  - 로또 티켓 구매  
+  - 당첨 번호 및 보너스 번호 입력  
+  - 당첨 결과 계산 및 수익률 출력
 
-- run(): 애플리케이션의 주요 흐름을 관리합니다. 구매 금액 입력, 로또 티켓 구매, 당첨 번호 입력, 결과 분석 및 출력이 이 순서대로 진행됩니다.
+## **Model/Service (LottoService)**:  
+  >Lotto 핵심 로직을 담당합니다.  
+  - 로또 티켓 구매 로직 수행  
+  - 당첨 번호 설정 및 당첨 결과 계산  
+  - 당첨 통계(등수별 개수), 총 상금, 수익률 계산
 
-- getPurchaseCount(): 사용자가 입력한 구매 금액을 통해 로또 티켓 수량을 계산합니다. 예외 발생 시 [ERROR] 메시지를 출력하고 재입력을 요구합니다.
+## **View (InputView, OutputView)**:  
+  >I/O를 담당하며, 비즈니스 로직이 포함되지 않습니다.  
+  - **InputView**:  
+    사용자로부터 입력(구매금액, 당첨번호, 보너스번호)을 받습니다.  
+  - **OutputView**:  
+    당첨 통계, 수익률 등을 출력합니다.
 
-- purchaseLottos(int count): 입력된 수량만큼 로또 티켓을 생성하여 purchasedLottos 리스트에 저장합니다. 각 티켓은 랜덤하게 생성된 번호 6개로 구성됩니다.
+# 실행 방법
 
-- setWinningNumbers(): 당첨 번호와 보너스 번호를 사용자가 입력하도록 합니다. 입력된 당첨 번호는 winningNumbers 리스트에 저장되며, 보너스 번호는 bonusNumber로 저장됩니다.
+1. `Application.java`를 실행합니다.
+2. 콘솔을 통해 구매 금액, 당첨 번호, 보너스 번호를 입력합니다.
+3. 결과로 구매한 로또 번호, 당첨 통계, 총 수익률이 출력됩니다.
 
-- showResults(): 각 티켓의 당첨 결과와 수익률을 계산하고, 결과를 출력합니다. calculateRankCounts()와 calculateTotalPrize()를 통해 당첨 통계를 구하고, 이를 기반으로 수익률을 계산합니다.
+## 예외 상황 처리
 
-- calculateRankCounts(): 각 티켓을 순회하며 당첨 등급을 계산하고, 각 등급별로 몇 개의 티켓이 당첨되었는지 카운트하여 맵으로 반환합니다.
+- 구매 금액이 0 이하인 경우 `[ERROR]` 메시지를 출력하고, 테스트 환경을 고려해 -1을 반환하여 재실행을 방지할 수 있습니다. 실사용 환경에서는 재입력 받는 로직을 추가할 수 있습니다.
+- 숫자 형식이 아닌 값 입력 시 `[ERROR]` 메시지를 출력할 수 있으며, 예외 처리 로직을 통해 사용자 경험 개선이 가능합니다.
 
-- calculateTotalPrize(Map<Rank, Integer> rankCounts): 각 등급의 상금과 해당 등급에 당첨된 티켓 수를 곱하여 총 상금을 계산합니다.
-
-# Lotto Class
-
-- Lotto(List<Integer> numbers): 로또 티켓을 생성하는 생성자입니다. 번호가 6개인지, 중복된 번호가 없는지를 검증합니다. 조건을 만족하지 않으면 예외가 발생합니다.
-
-- validate(List<Integer> numbers): 로또 번호의 유효성을 검사합니다. 6개의 번호가 중복 없이 존재해야 하며, 유효하지 않으면 예외가 발생합니다.
-
-- hasDuplicates(List<Integer> numbers): 로또 번호 중 중복이 있는지를 확인합니다. 중복된 번호가 있는 경우 true를 반환하여 유효성 검사를 도와줍니다.
-
-- countMatchingNumbers(List<Integer> winningNumbers): 로또 티켓의 번호와 당첨 번호를 비교하여 일치하는 번호 개수를 반환합니다.
-
-- containsBonus(int bonusNumber): 로또 티켓에 보너스 번호가 포함되어 있는지를 확인합니다.
-
-- generateRandomLotto(): 1~45 사이의 번호 중 중복 없이 랜덤하게 6개의 숫자를 선택하여 오름차순으로 정렬된 로또 티켓을 생성합니다.
-
-# Rank Enum
-> 당첨 등급과 각 등급의 상금을 정의한 Enum입니다.
-
-- Enum 값: THREE_MATCH, FOUR_MATCH, FIVE_MATCH, FIVE_MATCH_BONUS, SIX_MATCH는 각각 일치하는 번호의 개수와 상금을 나타냅니다.
-
-- getPrize(): Enum 값에 따라 상금을 반환합니다.
-
-- getRank(int matchCount, boolean bonusMatch): 일치하는 번호 개수와 보너스 번호 일치 여부에 따라 당첨 등급을 판별하고, 해당 등급의 Enum 값을 반환합니다.
-
-- toString(): 등급 이름과 상금을 사람이 읽기 쉬운 형식으로 반환하여 출력 시 사용합니다.
+# Package 구조
+```
+>📦lotto
+ ┣ 📂controller
+ ┃ ┗ 📜LottoController.java
+ ┣ 📂domain
+ ┃ ┣ 📜Lotto.java
+ ┃ ┣ 📜LottoService.java
+ ┃ ┗ 📜Rank.java
+ ┣ 📂view
+ ┃ ┣ 📜InputView.java
+ ┃ ┗ 📜OutputView.java
+ ┗ 📜Application.java
+ ```
