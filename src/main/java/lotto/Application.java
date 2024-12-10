@@ -1,7 +1,16 @@
 package lotto;
 
+import lotto.config.LottoGameAppConfig;
+import lotto.controller.LottoGameController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoGameAppConfig config = new LottoGameAppConfig();
+        LottoGameController lottoGame = config.lottoGame();
+
+        lottoGame.start();
     }
 }
+
+
+
