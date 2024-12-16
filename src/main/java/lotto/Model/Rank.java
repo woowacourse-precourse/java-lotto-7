@@ -20,6 +20,7 @@ public enum Rank {
         this.bonusMatch = bonusMatch;
         this.prize = prize;
         this.rankCriteria = rankCriteria;
+
     }
 
     public int getMatchCount() {
