@@ -34,5 +34,4 @@ class InputBonusValidatorTest {
                 .getBonusNumber(winningnumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }

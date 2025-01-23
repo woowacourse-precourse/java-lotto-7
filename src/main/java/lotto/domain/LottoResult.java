@@ -20,7 +20,7 @@ public class LottoResult {
     public void checkWinningLotto() {
         for (WinningPrize prize:WinningPrize.values()){
             if (prize.winningCount == getWinningCount() && prize.bonusCount <= getBonusCount()){
-                prize.setTotalCount();
+                prize.minusTotalCount();
                 return;
             }
         }

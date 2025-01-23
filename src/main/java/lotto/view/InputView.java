@@ -2,23 +2,26 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.regex.Pattern;
 import lotto.InputBonusValidator;
 import lotto.InputLottoValidator;
 import lotto.InputMoneyValidator;
+import lotto.util.ErrorUtil;
 
 public class InputView {
 
     private static final String PRINT_INPUT_MONEY ="구입금액을 입력해 주세요.";
     private static final String PRINT_INPUT_WINNING_NUMBER ="당첨 번호를 입력해 주세요.";
     private static final String PRINT_INPUT_BONUS_NUMBER ="보너스 번호를 입력해 주세요.";
+    private static final String MONEY_REGEX_PATTERN = "\\d+";
+    private static final int MINIMUM_MONEY_UNIT = 1000;
 
     public String inputMoney() {
-        InputMoneyValidator inputMoneyValidator = new InputMoneyValidator();
         while (true) {
             try {
                 System.out.println(PRINT_INPUT_MONEY);
                 String money = Console.readLine();
-                inputMoneyValidator.validate(money);
+                moneyValidate(money);
                 return money;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
@@ -26,30 +29,30 @@ public class InputView {
         }
     }
 
-    public List<Integer> inputWinningNumber() {
-        InputLottoValidator inputLottoValidator = new InputLottoValidator();
-
-        while (true) {
-            try {
+    public String inputWinningNumber() {
                 System.out.println(PRINT_INPUT_WINNING_NUMBER);
-                String winningNumber = Console.readLine();
-                return inputLottoValidator.getWinningNumber(winningNumber);
-            }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
+                return Console.readLine();
+    }
+
+    public String inputBonusNumber() {
+        System.out.println(PRINT_INPUT_BONUS_NUMBER);
+        return Console.readLine();
+    }
+
+    private void validateNumber(String money) {
+        if (!Pattern.matches(MONEY_REGEX_PATTERN, money)) {
+            ErrorUtil.PURCHASE_MONEY_NUMBER_ERROR_MESSAGE.errorException();
         }
     }
 
-    public int inputBonusNumber(List<Integer> winningNumber) {
-        while (true) {
-            try {
-                System.out.println(PRINT_INPUT_BONUS_NUMBER);
-                String bonusNumber = Console.readLine();
-                InputBonusValidator inputBonusValidator = new InputBonusValidator(bonusNumber);
-                return inputBonusValidator.getBonusNumber(winningNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    private void validateTicketPrice(String money) {
+        if (Integer.parseInt(money)%MINIMUM_MONEY_UNIT != 0 || Integer.parseInt(money)/MINIMUM_MONEY_UNIT == 0) {
+            ErrorUtil.PURCHASE_MONEY_THOUSAND_UNIT_ERROR_MESSAGE.errorException();
         }
+    }
+
+    public void moneyValidate(String money) {
+        validateNumber(money);
+        validateTicketPrice(money);
     }
 }

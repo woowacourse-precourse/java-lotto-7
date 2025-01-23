@@ -27,13 +27,21 @@ public class LottoDrawer {
 
     private int winningCountResult(List<Integer> lottos, int winningCount) {
         for (Integer lotto : lottos) {
-            winningCount += (int) winningLottoNumbers.stream().filter(e -> e.equals(lotto)).distinct().count();
+            winningCount += (int) winningLottoNumbers
+                    .stream()
+                    .filter(e -> e.equals(lotto))
+                    .distinct()
+                    .count();
         }
         return winningCount;
     }
 
     private int bonusCountResult(List<Integer> lottos, int bonusCount) {
-        bonusCount += (int)lottos.stream().filter(e -> e.equals(bonusNumber)).distinct().count();
+        bonusCount += (int)lottos
+                .stream()
+                .filter(e -> e.equals(bonusNumber))
+                .distinct()
+                .count();
         return bonusCount;
     }
 

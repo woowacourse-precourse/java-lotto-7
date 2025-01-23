@@ -28,5 +28,4 @@ class InputMoneyValidatorTest {
                 .validate(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }

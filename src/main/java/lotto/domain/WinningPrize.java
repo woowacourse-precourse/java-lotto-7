@@ -20,7 +20,7 @@ public enum WinningPrize {
         this.prizeMoney = prizeMoney;
     }
 
-    public void setTotalCount() {
+    public void minusTotalCount() {
         totalCount += 1;
 
     }
