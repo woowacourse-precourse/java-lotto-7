@@ -1,4 +1,11 @@
-package lotto;
+package lotto.controller;
+
+import lotto.view.InputView;
+import lotto.domain.LottoDrawer;
+import lotto.domain.LottoMachine;
+import lotto.domain.LottoStore;
+import lotto.view.OutputView;
+import lotto.domain.PrizeResult;
 
 public class LottoController {
 

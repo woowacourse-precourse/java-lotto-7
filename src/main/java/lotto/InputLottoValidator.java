@@ -3,13 +3,12 @@ package lotto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.exception.ErrorMessageUtil;
 
 public class InputLottoValidator {
     private static final String WINNING_NUMBER_REGEX_PATTERN = "\\d+";
     private static final String WINNING_NUMBER_SEPARATOR = ",";
     private static final String WINNING_NUMBER_BLANK = " ";
-
-    Lotto lotto;
 
     private void validateNumber(String winningNumber) {
         if (Pattern.matches(WINNING_NUMBER_REGEX_PATTERN, winningNumber)) {
@@ -20,7 +19,6 @@ public class InputLottoValidator {
     public List<Integer> getWinningNumber(String winningNumber) {
         validateNumber(winningNumber);
         checkEmpty(winningNumber);
-        this.lotto = new Lotto(checkWrongSeparator(winningNumber));
         return checkWrongSeparator(winningNumber);
     }
 

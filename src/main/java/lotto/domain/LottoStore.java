@@ -1,6 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+import lotto.view.InputView;
 
 public class LottoStore {
     private static final int MINIMUM_MONEY_UNIT = 1000;

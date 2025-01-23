@@ -1,7 +1,10 @@
-package lotto;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.InputBonusValidator;
+import lotto.InputLottoValidator;
+import lotto.InputMoneyValidator;
 
 public class InputView {
 

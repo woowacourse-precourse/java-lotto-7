@@ -1,6 +1,7 @@
-package lotto;
+package lotto.view;
 
 import java.util.List;
+import lotto.domain.WinningPrize;
 
 public class OutputView {
     private static final String PRINT_BUY_LOTTO = "개를 구매했습니다.";

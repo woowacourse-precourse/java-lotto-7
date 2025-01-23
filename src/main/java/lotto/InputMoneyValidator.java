@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.regex.Pattern;
+import lotto.exception.ErrorMessageUtil;
 
 public class InputMoneyValidator {
     private static final String MONEY_REGEX_PATTERN = "\\d+";

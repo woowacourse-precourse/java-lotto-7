@@ -1,4 +1,4 @@
-package lotto;
+package lotto.exception;
 
 public enum ErrorMessageUtil {
     PURCHASE_MONEY_NUMBER_ERROR_MESSAGE("1000원 이상의 숫자로 구성된 금액을 입력해주세요."),

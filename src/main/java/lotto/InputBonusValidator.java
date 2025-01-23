@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.exception.ErrorMessageUtil;
 
 public class InputBonusValidator {
     private static final String BONUS_NUMBER_REGEX_PATTERN = "\\d+";

@@ -1,6 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+import lotto.exception.ErrorMessageUtil;
 
 public class Lotto {
     private static final int WINNING_NUMBER_MAX = 45;

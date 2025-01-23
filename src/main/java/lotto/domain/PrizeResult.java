@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class PrizeResult {
     private static final String RATE_OF_RETURN_ROUND = "%.1f";

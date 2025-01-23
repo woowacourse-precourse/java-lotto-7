@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum WinningPrize {
     FIRST(6,0,2_000_000_000,0),
@@ -7,10 +7,10 @@ public enum WinningPrize {
     FORTH(4,0,50_000,0),
     FIFTH(3,0,5_000,0);
 
-    final int winningCount;
-    final int bonusCount;
-    final int prizeMoney;
-    int totalCount;
+    public final int winningCount;
+    public final int bonusCount;
+    public final int prizeMoney;
+    public int totalCount;
 
 
     WinningPrize(int winningCount, int bonusCount, int prizeMoney,int totalCount) {
