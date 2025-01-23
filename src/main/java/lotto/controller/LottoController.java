@@ -11,7 +11,7 @@ import lotto.domain.PrizeResult;
 public class LottoController {
 
     private final InputView inputView = new InputView();
-    LottoStore lottoStore = new LottoStore(inputView.inputMoney());
+    private final LottoStore lottoStore = new LottoStore(inputView.inputMoney());
 
 
     public void start(){
