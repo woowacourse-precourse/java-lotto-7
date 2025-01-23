@@ -1,10 +1,10 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.util.NumberUtil;
 import lotto.view.InputView;
 
 public class LottoStore {
-    private static final int MINIMUM_MONEY_UNIT = 1000;
 
     private final int money;
     private int tickets;
@@ -26,7 +26,7 @@ public class LottoStore {
     }
 
     private void changeTickets() {
-        this.tickets = money/MINIMUM_MONEY_UNIT;
+        this.tickets = money/ NumberUtil.LOTTO_PER_PURCHASE_UNIT;
     }
 
     public int getTickets() {

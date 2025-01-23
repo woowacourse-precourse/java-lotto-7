@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.regex.Pattern;
-import lotto.exception.ErrorMessageUtil;
+import lotto.util.ErrorUtil;
 
 public class InputMoneyValidator {
     private static final String MONEY_REGEX_PATTERN = "\\d+";
@@ -15,13 +15,13 @@ public class InputMoneyValidator {
 
     private void validateNumber(String money) {
         if (!Pattern.matches(MONEY_REGEX_PATTERN, money)) {
-            ErrorMessageUtil.PURCHASE_MONEY_NUMBER_ERROR_MESSAGE.errorException();
+            ErrorUtil.PURCHASE_MONEY_NUMBER_ERROR_MESSAGE.errorException();
         }
     }
 
     private void validateTicketPrice(String money) {
         if (Integer.parseInt(money)%MINIMUM_MONEY_UNIT != 0 || Integer.parseInt(money)/MINIMUM_MONEY_UNIT == 0) {
-            ErrorMessageUtil.PURCHASE_MONEY_THOUSAND_UNIT_ERROR_MESSAGE.errorException();
+            ErrorUtil.PURCHASE_MONEY_THOUSAND_UNIT_ERROR_MESSAGE.errorException();
         }
     }
 

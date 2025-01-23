@@ -1,12 +1,10 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.exception.ErrorMessageUtil;
+import lotto.util.ErrorUtil;
+import lotto.util.NumberUtil;
 
 public class Lotto {
-    private static final int WINNING_NUMBER_MAX = 45;
-    private static final int WINNING_NUMBER_MINIMUM = 1;
-    private static final int WINNING_NUMBER_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -22,21 +20,21 @@ public class Lotto {
     }
 
     private void validateNumberSize() {
-        if (numbers.size() != WINNING_NUMBER_SIZE) {
-            ErrorMessageUtil.WINNING_LOTTO_SIZE_ERROR_MESSAGE.errorException();
+        if (numbers.size() != NumberUtil.MAX_PICK_NUMBER) {
+            ErrorUtil.WINNING_LOTTO_SIZE_ERROR_MESSAGE.errorException();
         }
     }
 
     private void validateNumberRange() {
         for (int number : numbers) {
-            if (number > WINNING_NUMBER_MAX || number < WINNING_NUMBER_MINIMUM) {
-                ErrorMessageUtil.WINNING_LOTTO_RANGE_ERROR_MESSAGE.errorException();
+            if (number > NumberUtil.MAX_RANGE_NUMBER || number < NumberUtil.MINIMUM_RANGE_NUMBER) {
+                ErrorUtil.WINNING_LOTTO_RANGE_ERROR_MESSAGE.errorException();
             }
         }
     }
     private void validateNumberRepeat(){
         if (numbers.stream().distinct().toList().size() != numbers.size()){
-            ErrorMessageUtil.WINNING_LOTTO_REPEAT_ERROR_MESSAGE.errorException();
+            ErrorUtil.WINNING_LOTTO_REPEAT_ERROR_MESSAGE.errorException();
         }
     }
 }
