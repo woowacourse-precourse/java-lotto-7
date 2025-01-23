@@ -20,9 +20,8 @@ public class LottoController {
         LottoMachine lottoMachine = new LottoMachine(lottoStore.getTickets());
         outputView.printLottoNumbers(lottoMachine.getLottoNumbers());
         LottoDrawer lottoDrawer = new LottoDrawer(lottoMachine, winningNumber(),bonusNumber());
-        lottoDrawer.getWinningCount();
-        outputView.printPrizeResults();
-        outputView.printRateOfReturn(prizeResult.getRateOfReturn(lottoStore.getMoney()));
+        outputView.printPrizeResults(lottoDrawer.checkWinningNumbers());
+        outputView.printRateOfReturn(prizeResult.getRateOfReturn(lottoStore.getMoney(), outputView.totalMoney()));
     }
 
     private List<Integer> winningNumber() {
