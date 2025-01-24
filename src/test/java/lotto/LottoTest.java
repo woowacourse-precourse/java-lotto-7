@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +19,13 @@ class LottoTest {
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("지정된 범위 이상의 숫자가 있으면 예외 처리")
+    @Test
+    void lottoRangeTest() {
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,50)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
