@@ -13,7 +13,6 @@ public enum WinningPrize {
     public final int winningCount;
     public final int bonusCount;
     public final int prizeMoney;
-    public int totalCount;
 
 
     WinningPrize(int winningCount, int bonusCount, int prizeMoney) {

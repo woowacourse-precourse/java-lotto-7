@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 import lotto.util.ErrorUtil;
 import lotto.util.NumberUtil;
-import lotto.view.InputView;
 
 public class LottoStore {
     private static final String NUMBER_REGEX_PATTERN = "\\d+";
@@ -16,14 +15,11 @@ public class LottoStore {
     private static final int BONUS_NUMBER_MINIMUM = 1;
 
     private final int money;
-//    private final String bonusNumber;
     private int tickets;
     private List<Integer> winningLotto = new ArrayList<>();
 
     public LottoStore(String money) {
         this.money = Integer.parseInt(money);
-//        this.winningNumbers = winningNumbers;
-//        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getLottoNumbers(String winningNumbers) {
