@@ -34,8 +34,16 @@ public class Lotto {
     }
 
     private void validateNumberRepeat() {
-        if (numbers.stream().distinct().toList().size() != numbers.size()) {
+        if (lottoSize() != numbers.size()) {
             ErrorUtil.WINNING_LOTTO_REPEAT_ERROR_MESSAGE.errorException();
         }
+    }
+
+    private int lottoSize() {
+        return numbers
+                .stream()
+                .distinct()
+                .toList()
+                .size();
     }
 }

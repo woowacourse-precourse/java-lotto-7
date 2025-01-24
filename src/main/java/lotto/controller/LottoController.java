@@ -19,7 +19,7 @@ public class LottoController {
         PrizeResult prizeResult = new PrizeResult();
         LottoMachine lottoMachine = new LottoMachine(lottoStore.getTickets());
         outputView.printLottoNumbers(lottoMachine.getLottoNumbers());
-        LottoDrawer lottoDrawer = new LottoDrawer(lottoMachine, winningNumber(), bonusNumber());
+        LottoDrawer lottoDrawer = new LottoDrawer(lottoMachine.getLottoNumbers(), winningNumber(), bonusNumber());
         outputView.printPrizeResults(lottoDrawer.checkWinningNumbers());
         outputView.printRateOfReturn(prizeResult.getRateOfReturn(lottoStore.getMoney(), outputView.totalMoney()));
     }

@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoDrawer {
-    private final LottoMachine lottoMachine;
+    private final List<List<Integer>> lottos;
     private final List<Integer> winningLottoNumbers;
     private final int bonusNumber;
 
-    public LottoDrawer(LottoMachine lottoMachine, List<Integer> winningLottoNumbers, int bonusNumber) {
-        this.lottoMachine = lottoMachine;
+    public LottoDrawer(List<List<Integer>> lottos, List<Integer> winningLottoNumbers, int bonusNumber) {
+        this.lottos = lottos;
         this.winningLottoNumbers = winningLottoNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -18,11 +18,11 @@ public class LottoDrawer {
     public Map<WinningPrize, Integer> checkWinningNumbers() {
         Map<WinningPrize, Integer> rank = new HashMap<>();
 
-        for (List<Integer> lottos : lottoMachine.getLottoNumbers()) {
+        for (List<Integer> lotto : lottos) {
             int winningCount = 0;
             int bonusCount = 0;
-            WinningPrize nowPrize = WinningPrize.getPrize(winningCountResult(lottos, winningCount),
-                    bonusCountResult(lottos, bonusCount));
+            WinningPrize nowPrize = WinningPrize.getPrize(winningCountResult(lotto, winningCount),
+                    bonusCountResult(lotto, bonusCount));
             makeNowRank(rank, nowPrize);
         }
         return rank;
