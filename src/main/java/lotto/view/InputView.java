@@ -6,9 +6,9 @@ import lotto.util.ErrorUtil;
 
 public class InputView {
 
-    private static final String PRINT_INPUT_MONEY ="구입금액을 입력해 주세요.";
-    private static final String PRINT_INPUT_WINNING_NUMBER ="당첨 번호를 입력해 주세요.";
-    private static final String PRINT_INPUT_BONUS_NUMBER ="보너스 번호를 입력해 주세요.";
+    private static final String PRINT_INPUT_MONEY = "구입금액을 입력해 주세요.";
+    private static final String PRINT_INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    private static final String PRINT_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String MONEY_REGEX_PATTERN = "\\d+";
     private static final int MINIMUM_MONEY_UNIT = 1000;
 
@@ -19,15 +19,15 @@ public class InputView {
                 String money = Console.readLine();
                 moneyValidate(money);
                 return money;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
     public String inputWinningNumber() {
-                System.out.println(PRINT_INPUT_WINNING_NUMBER);
-                return Console.readLine();
+        System.out.println(PRINT_INPUT_WINNING_NUMBER);
+        return Console.readLine();
     }
 
     public String inputBonusNumber() {
@@ -42,7 +42,7 @@ public class InputView {
     }
 
     private void validateTicketPrice(String money) {
-        if (Integer.parseInt(money)%MINIMUM_MONEY_UNIT != 0 || Integer.parseInt(money)/MINIMUM_MONEY_UNIT == 0) {
+        if (Integer.parseInt(money) % MINIMUM_MONEY_UNIT != 0 || Integer.parseInt(money) / MINIMUM_MONEY_UNIT == 0) {
             ErrorUtil.PURCHASE_MONEY_THOUSAND_UNIT_ERROR_MESSAGE.errorException();
         }
     }

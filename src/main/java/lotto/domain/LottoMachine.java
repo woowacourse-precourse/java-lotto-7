@@ -20,7 +20,8 @@ public class LottoMachine {
         this.lottoNumbers = new ArrayList<>();
         for (int i = 0; i < tickets; i++) {
             lottoNumbers.add(Randoms
-                    .pickUniqueNumbersInRange(NumberUtil.MINIMUM_RANGE_NUMBER, NumberUtil.MAX_RANGE_NUMBER, NumberUtil.MAX_PICK_NUMBER)
+                    .pickUniqueNumbersInRange(NumberUtil.MINIMUM_RANGE_NUMBER, NumberUtil.MAX_RANGE_NUMBER,
+                            NumberUtil.MAX_PICK_NUMBER)
                     .stream()
                     .sorted()
                     .toList());

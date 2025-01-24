@@ -18,10 +18,11 @@ public class LottoDrawer {
     public Map<WinningPrize, Integer> checkWinningNumbers() {
         Map<WinningPrize, Integer> rank = new HashMap<>();
 
-        for (List<Integer> lottos:lottoMachine.getLottoNumbers()){
-            int winningCount=0;
-            int bonusCount=0;
-            WinningPrize nowPrize = WinningPrize.getPrize(winningCountResult(lottos,winningCount),bonusCountResult(lottos,bonusCount));
+        for (List<Integer> lottos : lottoMachine.getLottoNumbers()) {
+            int winningCount = 0;
+            int bonusCount = 0;
+            WinningPrize nowPrize = WinningPrize.getPrize(winningCountResult(lottos, winningCount),
+                    bonusCountResult(lottos, bonusCount));
             makeNowRank(rank, nowPrize);
         }
         return rank;
@@ -29,7 +30,7 @@ public class LottoDrawer {
 
     private void makeNowRank(Map<WinningPrize, Integer> rank, WinningPrize nowPrize) {
         if (rank.get(nowPrize) != null) {
-            rank.put(nowPrize, rank.get(nowPrize)+1);
+            rank.put(nowPrize, rank.get(nowPrize) + 1);
         }
         rank.putIfAbsent(nowPrize, 1);
     }
@@ -47,7 +48,7 @@ public class LottoDrawer {
     }
 
     private int bonusCountResult(List<Integer> lottos, int bonusCount) {
-        bonusCount += (int)lottos
+        bonusCount += (int) lottos
                 .stream()
                 .filter(e -> e.equals(bonusNumber))
                 .distinct()

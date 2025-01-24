@@ -14,12 +14,12 @@ public class LottoController {
     private final LottoStore lottoStore = new LottoStore(inputView.inputMoney());
 
 
-    public void start(){
-        OutputView outputView =new OutputView();
+    public void start() {
+        OutputView outputView = new OutputView();
         PrizeResult prizeResult = new PrizeResult();
         LottoMachine lottoMachine = new LottoMachine(lottoStore.getTickets());
         outputView.printLottoNumbers(lottoMachine.getLottoNumbers());
-        LottoDrawer lottoDrawer = new LottoDrawer(lottoMachine, winningNumber(),bonusNumber());
+        LottoDrawer lottoDrawer = new LottoDrawer(lottoMachine, winningNumber(), bonusNumber());
         outputView.printPrizeResults(lottoDrawer.checkWinningNumbers());
         outputView.printRateOfReturn(prizeResult.getRateOfReturn(lottoStore.getMoney(), outputView.totalMoney()));
     }

@@ -10,11 +10,11 @@ public class OutputView {
     private static final String PRINT_PRIZE_MATCH = "%d개 일치 (%s원) - %d개%n";
     private static final String PRINT_BONUS_MATCH = "%d개 일치, 보너스 볼 일치 (%s원) - %d개%n";
 
-    private int totalMoney=0;
+    private int totalMoney = 0;
 
     public void printLottoNumbers(List<List<Integer>> lottos) {
-        System.out.println(lottos.size()+PRINT_BUY_LOTTO);
-        for (List<Integer> lotto:lottos) {
+        System.out.println(lottos.size() + PRINT_BUY_LOTTO);
+        for (List<Integer> lotto : lottos) {
             System.out.println(lotto);
         }
     }
@@ -31,7 +31,7 @@ public class OutputView {
                 printPrizeMatch(prize, rank);
             }
             if (prize.bonusCount == 1) {
-                printBonusMatch(prize,rank);
+                printBonusMatch(prize, rank);
             }
         }
     }
@@ -39,20 +39,20 @@ public class OutputView {
     private void printPrizeMatch(WinningPrize prize, Map<WinningPrize, Integer> rank) {
         if (rank.get(prize) != null) {
             totalMoney += prize.getMoney() * rank.get(prize);
-            System.out.printf(PRINT_PRIZE_MATCH,prize.winningCount,printChangeMoneyBar(prize),rank.get(prize));
+            System.out.printf(PRINT_PRIZE_MATCH, prize.winningCount, printChangeMoneyBar(prize), rank.get(prize));
         }
         if (rank.get(prize) == null) {
-            System.out.printf(PRINT_PRIZE_MATCH,prize.winningCount,printChangeMoneyBar(prize),0);
+            System.out.printf(PRINT_PRIZE_MATCH, prize.winningCount, printChangeMoneyBar(prize), 0);
         }
     }
 
     private void printBonusMatch(WinningPrize prize, Map<WinningPrize, Integer> rank) {
         if (rank.get(prize) != null) {
             totalMoney += prize.getMoney() * rank.get(prize);
-            System.out.printf(PRINT_BONUS_MATCH,prize.winningCount,printChangeMoneyBar(prize),rank.get(prize));
+            System.out.printf(PRINT_BONUS_MATCH, prize.winningCount, printChangeMoneyBar(prize), rank.get(prize));
         }
         if (rank.get(prize) == null) {
-            System.out.printf(PRINT_BONUS_MATCH,prize.winningCount,printChangeMoneyBar(prize),0);
+            System.out.printf(PRINT_BONUS_MATCH, prize.winningCount, printChangeMoneyBar(prize), 0);
         }
     }
 
@@ -61,6 +61,6 @@ public class OutputView {
     }
 
     private String printChangeMoneyBar(WinningPrize prize) {
-        return String.format("%,d",prize.prizeMoney);
+        return String.format("%,d", prize.prizeMoney);
     }
 }

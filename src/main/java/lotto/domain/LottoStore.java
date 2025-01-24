@@ -32,14 +32,13 @@ public class LottoStore {
     }
 
     private void changeTickets() {
-        this.tickets = money/ NumberUtil.LOTTO_PER_PURCHASE_UNIT;
+        this.tickets = money / NumberUtil.LOTTO_PER_PURCHASE_UNIT;
     }
 
     public int getTickets() {
         changeTickets();
         return tickets;
     }
-
 
 
     private void validateNumber(String winningNumber) {
@@ -55,10 +54,10 @@ public class LottoStore {
         return checkWrongSeparator(winningNumber);
     }
 
-    private List<Integer> checkWrongSeparator(String winningNumber){
+    private List<Integer> checkWrongSeparator(String winningNumber) {
         try {
             return Arrays.stream(winningNumber.split(WINNING_NUMBER_SEPARATOR)).map(Integer::parseInt).toList();
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             ErrorUtil.WINNING_LOTTO_COMA_ERROR_MESSAGE.errorException();
         }
         return List.of();
@@ -71,10 +70,10 @@ public class LottoStore {
     }
 
     public int getBonusNumber(String bonusNumber) {
-            validateBonusNumber(bonusNumber);
-            checkSameNumberInWinningNumber(winningLotto,bonusNumber);
-            validateNumberRange(bonusNumber);
-            return Integer.parseInt(bonusNumber);
+        validateBonusNumber(bonusNumber);
+        checkSameNumberInWinningNumber(winningLotto, bonusNumber);
+        validateNumberRange(bonusNumber);
+        return Integer.parseInt(bonusNumber);
 
     }
 
@@ -84,7 +83,7 @@ public class LottoStore {
         }
     }
 
-    public void checkSameNumberInWinningNumber(List<Integer> winningNumber,String bonusNumber) {
+    public void checkSameNumberInWinningNumber(List<Integer> winningNumber, String bonusNumber) {
         System.out.println(winningLotto);
         if (winningNumber.contains(Integer.parseInt(bonusNumber))) {
             ErrorUtil.BONUS_NUMBER_REPEAT_ERROR_MESSAGE.errorException();
