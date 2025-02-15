@@ -1,8 +1,9 @@
-package lotto;
+package lotto.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -21,5 +22,20 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("번호가 1보다 작으면 예외 발생")
+    @Test
+    void 로또_번호_범위_위반시_예외가_발생한다1() {
+        int num = Randoms.pickNumberInRange(-100, 0);
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, num)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("번호가 45보다 크면 예외 발생")
+    @Test
+    void 로또_번호_범위_위반시_예외가_발생한다2() {
+        int num = Randoms.pickNumberInRange(46, 100);
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, num)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
