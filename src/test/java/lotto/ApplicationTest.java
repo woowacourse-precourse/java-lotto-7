@@ -46,10 +46,77 @@ class ApplicationTest extends NsTest {
         );
     }
 
+
+    // 예외 테스트
+
     @Test
-    void 예외_테스트() {
+    void 예외_테스트_가격_숫자가_아닌_입력() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_가격_1000의_배수가_아닌_숫자() {
+        assertSimpleTest(() -> {
+            runException("1020");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_가격_1000_미만() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨_번호_형식_1() {
+        assertSimpleTest(() -> {
+            runException("1000", "1 2 3 4 5 6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨_번호_형식_2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,java,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨_번호_개수() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨_번호_실수() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4.5,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스_번호_형식() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "java");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스_번호_실수() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "4.5");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
