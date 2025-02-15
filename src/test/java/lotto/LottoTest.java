@@ -1,11 +1,12 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import lotto.model.Lotto;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -21,5 +22,27 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또에 1~45 범위를 벗언는 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void givenOutOfRangeNumber_whenLotto_thenThrowIllegalArgumentException() {
+        List<Integer> input = List.of(1, 569, -35, 2, 3, 4);
+        assertThatThrownBy(() -> new Lotto(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("랜덤 번호를 가진 로또 생성이 검증에 걸리는 지 확인")
+    @Test
+    void givenNothing_whenCreateWithRandomNumber_thenNonThrownException() {
+        Assertions.assertDoesNotThrow(Lotto::createWithRandomNumbers);
+    }
+
+    @DisplayName("매칭 수를 계산하는 로직 검증")
+    @Test
+    void givenValidLottos_whenCountMatchingNumbers_thenCorrect() {
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(2, 3, 4, 5, 6, 7));
+        int excepted = 5;
+        int result = lotto1.countMatchingNumbers(lotto2);
+        Assertions.assertEquals(excepted, result);
+    }
 }
