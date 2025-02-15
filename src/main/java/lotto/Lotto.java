@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private int matchCount;
+    private boolean correctBonus;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -16,5 +18,23 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public void setMatchCount(int matchCount) {
+        this.matchCount = matchCount;
+    }
+
+    public int getMatchCount() {
+        return this.matchCount;
+    }
+
+    public boolean getCorrectBonus() {
+        return this.correctBonus;
+    }
+
+    public void setCorrectBonusTrue() {
+        this.correctBonus = true;
+    }
 }
